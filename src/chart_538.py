@@ -1,59 +1,58 @@
 def apply_538_template(ax, fig, *, title="", subtitle="", vertical_gridlines=False):
     bg = "#F3F4F6"
 
-    # Background
     fig.patch.set_facecolor(bg)
     ax.set_facecolor(bg)
 
-    # ---- LAYOUT SYSTEM (LOCKED) ----
-    # Top = title block
-    # Middle = plot
-    # Bottom = axis
-
+    # ---- TRUE OUTER PADDING ----
+    # This creates actual breathing room from image edge
     fig.subplots_adjust(
-        left=0.08,
-        right=0.98,
-        top=0.78,   # pushes plot DOWN (more header space)
-        bottom=0.12
+        left=0.10,
+        right=0.96,
+        top=0.80,
+        bottom=0.15
     )
 
-    # ---- TITLE BLOCK (EXPLICIT POSITIONS) ----
+    # ---- TITLE BLOCK (SAFE ZONE) ----
+    # Now positioned inside safe margin, not edge
     if title:
         fig.text(
-            0.08, 0.94,
+            0.10, 0.92,
             title,
             ha="left",
             va="top",
             fontsize=20,
-            fontweight="bold"
+            fontweight="bold",
+            color="#111111"
         )
 
     if subtitle:
         fig.text(
-            0.08, 0.89,
+            0.10, 0.87,
             subtitle,
             ha="left",
             va="top",
-            fontsize=12,
-            alpha=0.85
+            fontsize=11,
+            color="#555555"
         )
 
-    # ---- GRIDLINES ----
-    ax.grid(axis="y", linestyle="-", linewidth=0.6, alpha=0.25)
-    if vertical_gridlines:
-        ax.grid(axis="x", linestyle="-", linewidth=0.6, alpha=0.25)
+    # ---- GRIDLINES (VERY SUBTLE) ----
+    ax.grid(axis="y", linestyle="-", linewidth=0.5, alpha=0.10)
 
-    # ---- AXIS CLEANUP ----
+    if vertical_gridlines:
+        ax.grid(axis="x", linestyle="-", linewidth=0.5, alpha=0.10)
+
+    # ---- SPINES ----
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
-    # soften remaining spines
-    ax.spines["left"].set_alpha(0.3)
-    ax.spines["bottom"].set_alpha(0.3)
+    ax.spines["left"].set_alpha(0.15)
+    ax.spines["bottom"].set_alpha(0.15)
 
-    # ---- TICKS (QUIETER) ----
+    # ---- TICKS ----
     ax.tick_params(
         axis="both",
-        labelsize=10,
-        length=0
+        labelsize=9,
+        length=0,
+        colors="#555555"
     )
