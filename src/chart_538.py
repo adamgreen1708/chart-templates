@@ -1,11 +1,11 @@
 def apply_538_template(ax, fig, *, title="", subtitle="", vertical_gridlines=False):
     bg = "#F3F4F6"
 
+    # Background
     fig.patch.set_facecolor(bg)
     ax.set_facecolor(bg)
 
-    # ---- TRUE OUTER PADDING ----
-    # This creates actual breathing room from image edge
+    # ---- LAYOUT ----
     fig.subplots_adjust(
         left=0.10,
         right=0.96,
@@ -13,30 +13,29 @@ def apply_538_template(ax, fig, *, title="", subtitle="", vertical_gridlines=Fal
         bottom=0.15
     )
 
-    # ---- TITLE BLOCK (SAFE ZONE - LOWERED) ----
-if title:
-    fig.text(
-        0.10, 0.88,   # LOWERED from 0.92
-        title,
-        ha="left",
-        va="top",
-        fontsize=20,
-        fontweight="bold",
-        color="#111111"
-    )
+    # ---- TITLE BLOCK ----
+    if title:
+        fig.text(
+            0.10, 0.88,
+            title,
+            ha="left",
+            va="top",
+            fontsize=20,
+            fontweight="bold",
+            color="#111111"
+        )
 
-if subtitle:
-    fig.text(
-        0.10, 0.83,   # LOWERED from 0.87
-        subtitle,
-        ha="left",
-        va="top",
-        fontsize=11,
-        color="#555555"
-    )
+    if subtitle:
+        fig.text(
+            0.10, 0.83,
+            subtitle,
+            ha="left",
+            va="top",
+            fontsize=11,
+            color="#555555"
+        )
 
-
-    # ---- GRIDLINES (VERY SUBTLE) ----
+    # ---- GRIDLINES ----
     ax.grid(axis="y", linestyle="-", linewidth=0.5, alpha=0.10)
 
     if vertical_gridlines:
