@@ -1,40 +1,28 @@
 CHART_CONFIG = {
-"data_file": "data/test_chart_multi.csv",
-"data_format": "long",
-"x_col": "x",
-"series_col": "series",
-"value_col": "value",
-"series_overrides": {
-    "Actual": {"color": "#1F8FA8", "linewidth": 3},
-    "Benchmark": {"color": "#999999", "linewidth": 2},
-},
-"reference_lines": [],
-"highlight_points": [],
-"auto_end_labels": True,
+    "data_file": "data/test_chart.csv",
+    "data_format": "wide",
+    "chart_type": "line",
+    "title": "Test chart for locked 538 template",
+    "subtitle": "Stable v1.1 renderer using a standard config schema.",
+    "source_text": "Source: test data",
+    "footer_left": "Adam Green | coffeetableviz",
+    "vertical_gridlines": False,
 
-    # Column mapping
     "x_col": "x",
     "y_col": "y",
     "series_col": "series",
     "value_col": "value",
 
-    # Layout / axis
     "xlim_right_pad": 0.8,
 
-    # Default styling for series
     "series_style": {
         "default_color": "#1F8FA8",
         "default_linewidth": 3,
         "palette": ["#1F8FA8", "#C44E52", "#7A7A7A", "#999999"],
     },
 
-    # Optional overrides for named series in long-format charts
-    "series_overrides": {
-        # "Actual": {"color": "#1F8FA8", "linewidth": 3},
-        # "Benchmark": {"color": "#999999", "linewidth": 2},
-    },
+    "series_overrides": {},
 
-    # Annotation / guides
     "reference_lines": [
         {
             "y": 50,
@@ -60,9 +48,6 @@ CHART_CONFIG = {
         }
     ],
 
-    # End labels
     "auto_end_labels": True,
-    "end_labels": [
-        # Manual labels can still be added here if needed
-    ],
+    "end_labels": [],
 }
