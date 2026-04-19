@@ -2,6 +2,7 @@ CHART_CONFIG = {
     "data_file": "data/test_chart.csv",
     "data_format": "wide",
     "chart_type": "line",
+    "sort_descending": True,
     "title": "Test chart for locked 538 template",
     "subtitle": "Stable v1.1 renderer using a standard config schema.",
     "source_text": "Source: test data",
