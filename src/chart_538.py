@@ -9,32 +9,32 @@ def apply_538_template(ax, fig, *, title="", subtitle="", vertical_gridlines=Fal
     fig.subplots_adjust(
         left=0.10,
         right=0.96,
-        top=0.80,
+        top=0.72,
         bottom=0.15
     )
 
-    # ---- TITLE BLOCK (SAFE ZONE) ----
-    # Now positioned inside safe margin, not edge
-    if title:
-        fig.text(
-            0.10, 0.92,
-            title,
-            ha="left",
-            va="top",
-            fontsize=20,
-            fontweight="bold",
-            color="#111111"
-        )
+    # ---- TITLE BLOCK (SAFE ZONE - LOWERED) ----
+if title:
+    fig.text(
+        0.10, 0.88,   # LOWERED from 0.92
+        title,
+        ha="left",
+        va="top",
+        fontsize=20,
+        fontweight="bold",
+        color="#111111"
+    )
 
-    if subtitle:
-        fig.text(
-            0.10, 0.87,
-            subtitle,
-            ha="left",
-            va="top",
-            fontsize=11,
-            color="#555555"
-        )
+if subtitle:
+    fig.text(
+        0.10, 0.83,   # LOWERED from 0.87
+        subtitle,
+        ha="left",
+        va="top",
+        fontsize=11,
+        color="#555555"
+    )
+
 
     # ---- GRIDLINES (VERY SUBTLE) ----
     ax.grid(axis="y", linestyle="-", linewidth=0.5, alpha=0.10)
