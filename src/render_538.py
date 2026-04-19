@@ -224,7 +224,6 @@ def render_dot(ax, series_data, config):
 
     ax.set_yticks(positions)
     ax.set_yticklabels(x_vals)
-
     ax.invert_yaxis()
 
     max_y = max(y_vals) if y_vals else 0
