@@ -1,41 +1,49 @@
 def apply_538_template(ax, fig, *, title="", subtitle="", vertical_gridlines=False):
-    bg = "#F3F4F6"
+    """
+    Locked 538-style chart template (v2.0 baseline)
+    """
 
-    # Background
+    # ---- COLOURS ----
+    bg = "#F3F4F6"
+    title_color = "#111111"
+    subtitle_color = "#6B6B6B"
+    axis_color = "#555555"
+
+    # ---- BACKGROUND ----
     fig.patch.set_facecolor(bg)
     ax.set_facecolor(bg)
 
-    # ---- LAYOUT ----
+    # ---- LAYOUT (BALANCED + SAFE PADDING) ----
     fig.subplots_adjust(
         left=0.10,
         right=0.96,
-        top=0.72,
-        bottom=0.15
+        top=0.76,
+        bottom=0.14
     )
 
-    # ---- TITLE BLOCK ----
+    # ---- TITLE BLOCK (CLEAN + EDITORIAL) ----
     if title:
         fig.text(
-            0.10, 0.88,
+            0.10, 0.90,
             title,
             ha="left",
             va="top",
-            fontsize=20,
+            fontsize=19,
             fontweight="bold",
-            color="#111111"
+            color=title_color
         )
 
     if subtitle:
         fig.text(
-            0.10, 0.83,
+            0.10, 0.855,
             subtitle,
             ha="left",
             va="top",
             fontsize=11,
-            color="#555555"
+            color=subtitle_color
         )
 
-    # ---- GRIDLINES ----
+    # ---- GRIDLINES (SUBTLE) ----
     ax.grid(axis="y", linestyle="-", linewidth=0.5, alpha=0.10)
 
     if vertical_gridlines:
@@ -53,5 +61,5 @@ def apply_538_template(ax, fig, *, title="", subtitle="", vertical_gridlines=Fal
         axis="both",
         labelsize=9,
         length=0,
-        colors="#555555"
+        colors=axis_color
     )
