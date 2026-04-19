@@ -337,7 +337,7 @@ def main():
         vertical_gridlines=CHART_CONFIG.get("vertical_gridlines", False),
     )
 
-    data_file = CHART_CONFIG.get("data_file", "data/test_chart.csv")
+    data_file = CHART_CONFIG.get("data_file", "data/weather.csv")
     base_name = Path(data_file).stem
 
     timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
