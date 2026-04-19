@@ -1,5 +1,5 @@
 CHART_CONFIG = {
-    "data_file": "data/test_chart.csv",
+    "data_file": "data/weather.csv",
     "data_format": "wide",  # "wide" = x,y ; "long" = x,series,value
     "chart_type": "line",   # "line", "bar", "scatter", "dot"
 
