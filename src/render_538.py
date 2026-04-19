@@ -1,6 +1,7 @@
 import csv
 import os
 import sys
+from collections import defaultdict
 from pathlib import Path
 from datetime import datetime
 
@@ -16,71 +17,126 @@ from chart_utils import add_reference_line, highlight_point, add_end_label  # no
 from chart_config import CHART_CONFIG  # noqa: E402
 
 
-def load_xy_data(csv_path, x_col, y_col):
-    """
-    Load two columns from a CSV file.
-    Attempts numeric conversion where possible.
-    """
+def _coerce_value(value):
+    try:
+        num = float(value)
+        if num.is_integer():
+            return int(num)
+        return num
+    except ValueError:
+        return value
+
+
+def load_wide_data(csv_path, x_col, y_col):
     x_vals = []
     y_vals = []
 
     with open(csv_path, newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            x_raw = row[x_col]
-            y_raw = row[y_col]
-
-            try:
-                x_val = float(x_raw)
-                if x_val.is_integer():
-                    x_val = int(x_val)
-            except ValueError:
-                x_val = x_raw
-
-            try:
-                y_val = float(y_raw)
-                if y_val.is_integer():
-                    y_val = int(y_val)
-            except ValueError as exc:
-                raise ValueError(f"Non-numeric y value found: {y_raw}") from exc
-
-            x_vals.append(x_val)
+            x_vals.append(_coerce_value(row[x_col]))
+            y_val = _coerce_value(row[y_col])
+            if not isinstance(y_val, (int, float)):
+                raise ValueError(f"Non-numeric y value found: {row[y_col]}")
             y_vals.append(y_val)
 
-    return x_vals, y_vals
+    return {"Main": {"x": x_vals, "y": y_vals}}
+
+
+def load_long_data(csv_path, x_col, series_col, value_col):
+    grouped = defaultdict(lambda: {"x": [], "y": []})
+
+    with open(csv_path, newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            series_name = row[series_col]
+            x_val = _coerce_value(row[x_col])
+            y_val = _coerce_value(row[value_col])
+
+            if not isinstance(y_val, (int, float)):
+                raise ValueError(f"Non-numeric value found: {row[value_col]}")
+
+            grouped[series_name]["x"].append(x_val)
+            grouped[series_name]["y"].append(y_val)
+
+    return dict(grouped)
+
+
+def get_series_style(series_name, index, config):
+    default_color = config["series_style"].get("default_color", "#1F8FA8")
+    default_linewidth = config["series_style"].get("default_linewidth", 3)
+    palette = config["series_style"].get("palette", [default_color])
+
+    style = {
+        "color": palette[index % len(palette)] if palette else default_color,
+        "linewidth": default_linewidth,
+    }
+
+    override = config.get("series_overrides", {}).get(series_name, {})
+    style.update(override)
+    return style
 
 
 def main():
-    print("RUNNING CONFIG-DRIVEN 538 RENDER V1")
+    print("RUNNING STABLE 538 RENDER V1.1")
 
     os.makedirs(REPO_ROOT / "output", exist_ok=True)
 
     data_path = REPO_ROOT / CHART_CONFIG["data_file"]
-    x_col = CHART_CONFIG["x_col"]
-    y_col = CHART_CONFIG["y_col"]
+    data_format = CHART_CONFIG.get("data_format", "wide")
 
-    x_vals, y_vals = load_xy_data(data_path, x_col, y_col)
+    if data_format == "long":
+        series_data = load_long_data(
+            data_path,
+            CHART_CONFIG["x_col"],
+            CHART_CONFIG["series_col"],
+            CHART_CONFIG["value_col"],
+        )
+    else:
+        series_data = load_wide_data(
+            data_path,
+            CHART_CONFIG["x_col"],
+            CHART_CONFIG["y_col"],
+        )
 
     fig, ax = plt.subplots(figsize=(12.0, 8.5))
 
-    # ---- PLOT SERIES ----
-    for series in CHART_CONFIG["series"]:
+    all_numeric_x = []
+
+    # Plot series
+    for idx, (series_name, values) in enumerate(series_data.items()):
+        style = get_series_style(series_name, idx, CHART_CONFIG)
+
         ax.plot(
-            x_vals,
-            y_vals,
-            color=series.get("color", "#1F8FA8"),
-            linewidth=series.get("linewidth", 3),
-            label=series.get("name", "Series"),
+            values["x"],
+            values["y"],
+            color=style["color"],
+            linewidth=style["linewidth"],
+            label=series_name,
         )
 
-    # ---- AXIS RANGE ----
-    if x_vals and isinstance(x_vals[0], (int, float)):
+        numeric_x = [v for v in values["x"] if isinstance(v, (int, float))]
+        all_numeric_x.extend(numeric_x)
+
+        # Auto end labels
+        if CHART_CONFIG.get("auto_end_labels", False) and values["x"] and values["y"]:
+            add_end_label(
+                ax,
+                x=values["x"][-1],
+                y=values["y"][-1],
+                label=series_name if data_format == "long" else "Latest",
+                color=style["color"],
+                dx=0.15,
+            )
+
+    # X-axis padding for numeric x
+    if all_numeric_x:
         ax.set_xlim(
-            min(x_vals),
-            max(x_vals) + CHART_CONFIG.get("xlim_right_pad", 0.0),
+            min(all_numeric_x),
+            max(all_numeric_x) + CHART_CONFIG.get("xlim_right_pad", 0.0),
         )
 
-    # ---- REFERENCE LINES ----
+    # Reference lines
     for ref in CHART_CONFIG.get("reference_lines", []):
         add_reference_line(
             ax,
@@ -93,7 +149,7 @@ def main():
             label_offset=ref.get("label_offset", 0.0),
         )
 
-    # ---- HIGHLIGHT POINTS ----
+    # Highlight points
     for point in CHART_CONFIG.get("highlight_points", []):
         highlight_point(
             ax,
@@ -107,7 +163,7 @@ def main():
             ha=point.get("ha", "left"),
         )
 
-    # ---- END LABELS ----
+    # Manual end labels
     for label in CHART_CONFIG.get("end_labels", []):
         add_end_label(
             ax,
@@ -118,7 +174,6 @@ def main():
             dx=label.get("dx", 0.2),
         )
 
-    # ---- APPLY TEMPLATE ----
     apply_538_template(
         ax,
         fig,
