@@ -10,15 +10,17 @@ SPINE_COLOR = "#D1D5DB"
 CANVAS_WIDTH = 12.0
 CANVAS_HEIGHT = 8.5
 
-LEFT_MARGIN = 0.08
+# Slightly more breathing room at the top and better vertical balance
+LEFT_MARGIN = 0.085
 RIGHT_MARGIN = 0.97
-TOP_MARGIN = 0.81
+TOP_MARGIN = 0.79
 BOTTOM_MARGIN = 0.11
 
-TITLE_X = 0.08
-TITLE_Y = 0.955
-SUBTITLE_X = 0.08
-SUBTITLE_Y = 0.905
+# Clearer separation: title, subtitle, then plot
+TITLE_X = 0.085
+TITLE_Y = 0.97
+SUBTITLE_X = 0.085
+SUBTITLE_Y = 0.915
 
 TITLE_SIZE = 18
 SUBTITLE_SIZE = 11
@@ -58,7 +60,7 @@ def _set_canvas(fig, ax):
 
 
 def _set_layout(fig):
-    """Apply generous margins that leave safe room for titles above the plot."""
+    """Apply balanced margins with stronger top spacing for title/subtitle block."""
     fig.subplots_adjust(
         left=LEFT_MARGIN,
         right=RIGHT_MARGIN,
@@ -68,7 +70,7 @@ def _set_layout(fig):
 
 
 def _add_titles(fig, *, title, subtitle):
-    """Add left-aligned title text with safer vertical separation."""
+    """Add left-aligned title and subtitle with improved vertical hierarchy."""
     if title:
         fig.text(
             TITLE_X,
@@ -96,10 +98,10 @@ def _add_titles(fig, *, title, subtitle):
 def _style_gridlines(ax, *, vertical_gridlines):
     """Keep horizontal gridlines subtle and vertical ones opt-in only."""
     ax.set_axisbelow(True)
-    ax.grid(axis="y", color=GRID_COLOR, linestyle="-", linewidth=0.7, alpha=0.55)
+    ax.grid(axis="y", color=GRID_COLOR, linestyle="-", linewidth=0.7, alpha=0.5)
 
     if vertical_gridlines:
-        ax.grid(axis="x", color=GRID_COLOR, linestyle="-", linewidth=0.7, alpha=0.55)
+        ax.grid(axis="x", color=GRID_COLOR, linestyle="-", linewidth=0.7, alpha=0.5)
 
 
 def _style_spines(ax):
