@@ -1,6 +1,7 @@
 print("RUNNING NEW RENDER VERSION V2")
 import os
 import sys
+from chart_utils import add_reference_line, highlight_point
 from pathlib import Path
 from datetime import datetime
 
@@ -23,7 +24,22 @@ def main():
 
     fig, ax = plt.subplots(figsize=(12.0, 8.5))
     ax.plot(x, y, color="#1F8FA8", linewidth=3)
+# ---- REFERENCE LINES (TEST) ----
+add_reference_line(
+    ax,
+    y=50,
+    label="Baseline",
+    color="#999999"
+)
 
+# ---- HIGHLIGHT POINT (TEST) ----
+highlight_point(
+    ax,
+    x=x[-1],
+    y=y[-1],
+    label="Latest",
+    color="#C44E52"
+)
     title = "Test chart for locked 538 template"
     subtitle = "This is a workflow check to confirm GitHub Actions can render and save a PNG."
 
