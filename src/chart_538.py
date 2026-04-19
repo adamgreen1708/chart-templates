@@ -8,25 +8,43 @@ def apply_538_template(
     title="",
     subtitle="",
     source_text="Source: data",
-    footer_left="Coffeetableviz | coffeetableviz.wordpress.com",
+    footer_left="Adam Green | coffeetableviz",
     vertical_gridlines=False,
 ):
     """
-    538-style layout with header + chart + footer structure
+    Apply the locked 538-style layout to a matplotlib chart.
+
+    Parameters
+    ----------
+    ax : matplotlib.axes.Axes
+        Chart axes.
+    fig : matplotlib.figure.Figure
+        Figure object.
+    title : str
+        Main chart title.
+    subtitle : str
+        Chart subtitle.
+    source_text : str
+        Footer source text shown at bottom-right.
+    footer_left : str
+        Footer text shown at bottom-left.
+    vertical_gridlines : bool
+        Whether to show vertical gridlines.
     """
 
+    # ---- COLOURS ----
     bg = "#F3F4F6"
     header_line = "#222222"
     footer_bg = "#E6E6E6"
-
     title_color = "#111111"
     subtitle_color = "#333333"
     axis_color = "#555555"
 
+    # ---- BACKGROUND ----
     fig.patch.set_facecolor(bg)
     ax.set_facecolor(bg)
 
-    # Top rule
+    # ---- HEADER RULE ----
     fig.lines.append(
         plt.Line2D(
             [0.05, 0.95],
@@ -37,7 +55,7 @@ def apply_538_template(
         )
     )
 
-    # Header
+    # ---- HEADER TEXT ----
     if title:
         fig.text(
             0.07,
@@ -61,7 +79,7 @@ def apply_538_template(
             color=subtitle_color,
         )
 
-    # Chart area
+    # ---- CHART AREA ----
     fig.subplots_adjust(
         left=0.08,
         right=0.96,
@@ -69,21 +87,21 @@ def apply_538_template(
         bottom=0.22,
     )
 
-    # Gridlines
+    # ---- GRIDLINES ----
     ax.grid(axis="y", linestyle="-", linewidth=0.5, alpha=0.10)
     if vertical_gridlines:
         ax.grid(axis="x", linestyle="-", linewidth=0.5, alpha=0.10)
 
-    # Spines
+    # ---- SPINES ----
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     ax.spines["left"].set_alpha(0.15)
     ax.spines["bottom"].set_alpha(0.15)
 
-    # Ticks
+    # ---- TICKS ----
     ax.tick_params(axis="both", labelsize=10, length=0, colors=axis_color)
 
-    # Footer bar
+    # ---- FOOTER BAR ----
     footer = plt.Rectangle(
         (0, 0),
         1,
