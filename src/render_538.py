@@ -1,3 +1,4 @@
+print("RUNNING NEW RENDER VERSION V2")
 import os
 import sys
 from pathlib import Path
