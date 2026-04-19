@@ -1,7 +1,7 @@
 print("RUNNING NEW RENDER VERSION V2")
 import os
 import sys
-from chart_utils import add_reference_line, highlight_point
+from src.chart_utils import add_reference_line, highlight_point
 from pathlib import Path
 from datetime import datetime
 
