@@ -337,11 +337,14 @@ def main():
         vertical_gridlines=CHART_CONFIG.get("vertical_gridlines", False),
     )
 
-    timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+    # --- Derive filename from CSV ---
+data_file = CHART_CONFIG.get("data_file", "data/test_chart.csv")
+base_name = Path(data_file).stem  # e.g. "uk_inflation"
 
-    latest_path = REPO_ROOT / "output" / "test_chart.png"
-    versioned_path = REPO_ROOT / "output" / f"test_chart_{timestamp}.png"
+timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
 
+latest_path = REPO_ROOT / "output" / f"{base_name}.png"
+versioned_path = REPO_ROOT / "output" / f"{base_name}_{timestamp}.png"
     fig.savefig(latest_path, dpi=300)
     fig.savefig(versioned_path, dpi=300)
     plt.close(fig)
