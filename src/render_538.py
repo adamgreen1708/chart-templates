@@ -1,36 +1,45 @@
+import os
+import sys
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 
-from chart_538 import apply_538_template, create_538_figure, add_538_titles, plot_538_line
+# Allow imports when running from repository root
+REPO_ROOT = Path(__file__).resolve().parent.parent
+SRC_DIR = REPO_ROOT / "src"
+if str(SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(SRC_DIR))
+
+from chart_538 import apply_538_template  # noqa: E402
 
 
-def main() -> None:
-    """Render a simple example line chart using the 538 template."""
+def main():
+    os.makedirs(REPO_ROOT / "output", exist_ok=True)
 
-    output_dir = Path("output")
-    output_dir.mkdir(parents=True, exist_ok=True)
+    # Simple placeholder data for first successful render
+    x = [2019, 2020, 2021, 2022, 2023, 2024]
+    y = [48, 52, 55, 61, 58, 64]
 
-    x = [1, 2, 3, 4, 5]
-    y = [10, 14, 13, 17, 20]
+    fig, ax = plt.subplots(figsize=(12.0, 8.5))
 
-    fig, ax = create_538_figure()
-    plot_538_line(ax, x, y)
-    apply_538_template(ax, fig)
+    ax.plot(x, y, linewidth=2)
 
-    add_538_titles(
+    title = "Test chart for locked 538 template"
+    subtitle = "This is a workflow check to confirm GitHub Actions can render and save a PNG."
+
+    apply_538_template(
+        ax,
         fig,
-        title="Example 538-style chart",
-        subtitle="Reusable matplotlib template with locked layout and styling",
+        title=title,
+        subtitle=subtitle,
+        vertical_gridlines=False,
     )
 
-    ax.set_xlabel("X axis")
-    ax.set_ylabel("Y axis")
+    output_path = REPO_ROOT / "output" / "test_chart.png"
+    fig.savefig(output_path, dpi=300, bbox_inches="tight")
+    plt.close(fig)
 
-    output_path = output_dir / "test_chart.png"
-    plt.savefig(output_path, dpi=300, bbox_inches="tight")
-
-    print(f"Chart saved to {output_path}")
+    print(f"Saved chart to {output_path}")
 
 
 if __name__ == "__main__":
