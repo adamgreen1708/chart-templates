@@ -3,28 +3,28 @@ from __future__ import annotations
 
 BACKGROUND = "#F3F4F6"
 TEXT_COLOR = "#111827"
-SUBTITLE_COLOR = "#4B5563"
+SUBTITLE_COLOR = "#6B7280"
 GRID_COLOR = "#D1D5DB"
 SPINE_COLOR = "#D1D5DB"
 
 CANVAS_WIDTH = 12.0
 CANVAS_HEIGHT = 8.5
 
-# Slightly more breathing room at the top and better vertical balance
+# Generous but efficient chart margins with stronger space reserved for titles.
 LEFT_MARGIN = 0.085
 RIGHT_MARGIN = 0.97
-TOP_MARGIN = 0.79
+TOP_MARGIN = 0.775
 BOTTOM_MARGIN = 0.11
 
-# Clearer separation: title, subtitle, then plot
+# Title block tuned for clearer editorial hierarchy and vertical balance.
 TITLE_X = 0.085
-TITLE_Y = 0.97
+TITLE_Y = 0.968
 SUBTITLE_X = 0.085
-SUBTITLE_Y = 0.915
+SUBTITLE_Y = 0.908
 
 TITLE_SIZE = 18
 SUBTITLE_SIZE = 11
-TICK_SIZE = 10
+TICK_SIZE = 9
 
 
 def apply_538_template(ax, fig, *, title="", subtitle="", vertical_gridlines=False):
@@ -60,7 +60,7 @@ def _set_canvas(fig, ax):
 
 
 def _set_layout(fig):
-    """Apply balanced margins with stronger top spacing for title/subtitle block."""
+    """Apply balanced margins with stronger separation above the plot area."""
     fig.subplots_adjust(
         left=LEFT_MARGIN,
         right=RIGHT_MARGIN,
@@ -70,7 +70,7 @@ def _set_layout(fig):
 
 
 def _add_titles(fig, *, title, subtitle):
-    """Add left-aligned title and subtitle with improved vertical hierarchy."""
+    """Add a restrained left-aligned title block with clearer spacing."""
     if title:
         fig.text(
             TITLE_X,
@@ -96,12 +96,12 @@ def _add_titles(fig, *, title, subtitle):
 
 
 def _style_gridlines(ax, *, vertical_gridlines):
-    """Keep horizontal gridlines subtle and vertical ones opt-in only."""
+    """Keep horizontal gridlines subtle and supportive, with vertical lines opt-in."""
     ax.set_axisbelow(True)
-    ax.grid(axis="y", color=GRID_COLOR, linestyle="-", linewidth=0.7, alpha=0.5)
+    ax.grid(axis="y", color=GRID_COLOR, linestyle="-", linewidth=0.65, alpha=0.45)
 
     if vertical_gridlines:
-        ax.grid(axis="x", color=GRID_COLOR, linestyle="-", linewidth=0.7, alpha=0.5)
+        ax.grid(axis="x", color=GRID_COLOR, linestyle="-", linewidth=0.65, alpha=0.45)
 
 
 def _style_spines(ax):
@@ -114,5 +114,5 @@ def _style_spines(ax):
 
 
 def _style_ticks(ax):
-    """Keep axis labels and ticks clean and understated."""
+    """Quiet the axis ticks so the chart content remains dominant."""
     ax.tick_params(axis="both", which="both", length=0, labelsize=TICK_SIZE, colors=SUBTITLE_COLOR)
