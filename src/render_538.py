@@ -1,30 +1,36 @@
+from pathlib import Path
+
 import matplotlib.pyplot as plt
-import os
-from chart_538 import apply_538_template
+
+from chart_538 import apply_538_template, create_538_figure, add_538_titles, plot_538_line
 
 
-def main():
-    # Ensure output folder exists
-    os.makedirs("output", exist_ok=True)
+def main() -> None:
+    """Render a simple example line chart using the 538 template."""
 
-    # Sample data
+    output_dir = Path("output")
+    output_dir.mkdir(parents=True, exist_ok=True)
+
     x = [1, 2, 3, 4, 5]
-    y = [10, 15, 12, 18, 20]
+    y = [10, 14, 13, 17, 20]
 
-    # Create figure
-    fig, ax = plt.subplots(figsize=(12.0, 8.5))
-
-    # Plot
-    ax.plot(x, y)
-
-    # Apply 538 styling
+    fig, ax = create_538_figure()
+    plot_538_line(ax, x, y)
     apply_538_template(ax, fig)
 
-    # Save output
-    filepath = "output/test_chart.png"
-    plt.savefig(filepath, dpi=300, bbox_inches="tight")
+    add_538_titles(
+        fig,
+        title="Example 538-style chart",
+        subtitle="Reusable matplotlib template with locked layout and styling",
+    )
 
-    print(f"Chart saved to {filepath}")
+    ax.set_xlabel("X axis")
+    ax.set_ylabel("Y axis")
+
+    output_path = output_dir / "test_chart.png"
+    plt.savefig(output_path, dpi=300, bbox_inches="tight")
+
+    print(f"Chart saved to {output_path}")
 
 
 if __name__ == "__main__":
