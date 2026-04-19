@@ -22,7 +22,7 @@ def main():
     y = [48, 52, 55, 61, 58, 64]
 
     fig, ax = plt.subplots(figsize=(12.0, 8.5))
-    ax.plot(x, y, linewidth=2)
+    ax.plot(x, y, color="#1F8FA8", linewidth=3)
 
     title = "Test chart for locked 538 template"
     subtitle = "This is a workflow check to confirm GitHub Actions can render and save a PNG."
