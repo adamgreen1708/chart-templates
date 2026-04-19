@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 def apply_538_template(ax, fig, *, title="", subtitle="", vertical_gridlines=False):
     """
     538-style layout with true header + chart + footer structure
