@@ -1,49 +1,59 @@
 def apply_538_template(ax, fig, *, title="", subtitle="", vertical_gridlines=False):
     """
-    Locked 538-style chart template (v2.0 baseline)
+    538-style layout with true header + chart + footer structure
     """
 
     # ---- COLOURS ----
     bg = "#F3F4F6"
+    header_line = "#222222"
+    footer_bg = "#E6E6E6"
+
     title_color = "#111111"
-    subtitle_color = "#6B6B6B"
+    subtitle_color = "#333333"
     axis_color = "#555555"
 
-    # ---- BACKGROUND ----
     fig.patch.set_facecolor(bg)
     ax.set_facecolor(bg)
 
-    # ---- LAYOUT (BALANCED + SAFE PADDING) ----
-    fig.subplots_adjust(
-        left=0.10,
-        right=0.96,
-        top=0.76,
-        bottom=0.14
+    # ---- HEADER LINE (TOP RULE) ----
+    fig.lines.append(
+        plt.Line2D([0.05, 0.95], [0.965, 0.965],
+                   transform=fig.transFigure,
+                   color=header_line,
+                   linewidth=3)
     )
 
-    # ---- TITLE BLOCK (CLEAN + EDITORIAL) ----
+    # ---- TITLE BLOCK (TRUE HEADER AREA) ----
     if title:
         fig.text(
-            0.10, 0.90,
+            0.07, 0.92,
             title,
             ha="left",
             va="top",
-            fontsize=19,
+            fontsize=22,
             fontweight="bold",
             color=title_color
         )
 
     if subtitle:
         fig.text(
-            0.10, 0.855,
+            0.07, 0.865,
             subtitle,
             ha="left",
             va="top",
-            fontsize=11,
+            fontsize=13,
             color=subtitle_color
         )
 
-    # ---- GRIDLINES (SUBTLE) ----
+    # ---- CHART AREA ----
+    fig.subplots_adjust(
+        left=0.08,
+        right=0.96,
+        top=0.70,
+        bottom=0.22
+    )
+
+    # ---- GRIDLINES ----
     ax.grid(axis="y", linestyle="-", linewidth=0.5, alpha=0.10)
 
     if vertical_gridlines:
@@ -59,7 +69,30 @@ def apply_538_template(ax, fig, *, title="", subtitle="", vertical_gridlines=Fal
     # ---- TICKS ----
     ax.tick_params(
         axis="both",
-        labelsize=9,
+        labelsize=10,
         length=0,
         colors=axis_color
+    )
+
+    # ---- FOOTER BAR ----
+    footer = plt.Rectangle(
+        (0, 0), 1, 0.08,
+        transform=fig.transFigure,
+        color=footer_bg,
+        zorder=-1
+    )
+    fig.patches.append(footer)
+
+    fig.text(
+        0.07, 0.035,
+        "Coffeetableviz | coffeetableviz.wordpress.com",
+        fontsize=11,
+        color="#333333"
+    )
+
+    fig.text(
+        0.75, 0.035,
+        "Source: data",
+        fontsize=11,
+        color="#333333"
     )
