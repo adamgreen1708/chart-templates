@@ -12,7 +12,6 @@ def add_reference_line(
 
     if label:
         x_min, x_max = ax.get_xlim()
-
         if label_x == "right":
             x_pos = x_max
             ha = "right"
