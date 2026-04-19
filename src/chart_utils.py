@@ -8,10 +8,14 @@ def add_reference_line(
     label_x="left",
     label_offset=0.0,
 ):
+    """
+    Add a horizontal reference line with an optional label.
+    """
     ax.axhline(y, linestyle=linestyle, linewidth=linewidth, color=color)
 
     if label:
         x_min, x_max = ax.get_xlim()
+
         if label_x == "right":
             x_pos = x_max
             ha = "right"
@@ -41,6 +45,9 @@ def highlight_point(
     dy=0,
     ha="left",
 ):
+    """
+    Highlight a single point and optionally label it.
+    """
     ax.scatter(x, y, color=color, s=size, zorder=5)
 
     if label:
@@ -56,6 +63,9 @@ def highlight_point(
 
 
 def add_end_label(ax, x, y, label, color="#111111", dx=0.2):
+    """
+    Add a label just to the right of the end of a series.
+    """
     ax.text(
         x + dx,
         y,
