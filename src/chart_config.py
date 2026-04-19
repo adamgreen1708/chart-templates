@@ -1,15 +1,17 @@
 CHART_CONFIG = {
+    "data_file": "data/test_chart.csv",
+    "chart_type": "line",
     "title": "Test chart for locked 538 template",
-    "subtitle": "Now using a config-driven 538 renderer with reusable annotations.",
-    "footer_left": "Adam Green | coffeetableviz",
+    "subtitle": "Standard config schema with reusable annotations and styling.",
     "source_text": "Source: test data",
+    "footer_left": "Adam Green | coffeetableviz",
     "vertical_gridlines": False,
+    "x_col": "x",
+    "y_col": "y",
     "xlim_right_pad": 0.8,
     "series": [
         {
-            "name": "Main series",
-            "x": [2019, 2020, 2021, 2022, 2023, 2024],
-            "y": [48, 52, 55, 61, 58, 64],
+            "name": "Main",
             "color": "#1F8FA8",
             "linewidth": 3,
         }
