@@ -1,12 +1,16 @@
 CHART_CONFIG = {
-    "data_file": "data/test_chart.csv",
-    "data_format": "wide",  # "wide" for x,y ; "long" for x,series,value
-    "chart_type": "line",
-    "title": "Test chart for locked 538 template",
-    "subtitle": "Stable v1.1 renderer using a standard config schema.",
-    "source_text": "Source: test data",
-    "footer_left": "Adam Green | coffeetableviz",
-    "vertical_gridlines": False,
+"data_file": "data/test_chart_multi.csv",
+"data_format": "long",
+"x_col": "x",
+"series_col": "series",
+"value_col": "value",
+"series_overrides": {
+    "Actual": {"color": "#1F8FA8", "linewidth": 3},
+    "Benchmark": {"color": "#999999", "linewidth": 2},
+},
+"reference_lines": [],
+"highlight_points": [],
+"auto_end_labels": True,
 
     # Column mapping
     "x_col": "x",
