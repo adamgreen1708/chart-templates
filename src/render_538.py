@@ -16,6 +16,7 @@ if str(SRC_DIR) not in sys.path:
 from chart_538 import apply_538_template
 from chart_config import CHART_CONFIG
 
+
 def _coerce_value(value):
     try:
         num = float(value)
@@ -46,15 +47,33 @@ def _get_color(d, default="#1F8FA8"):
 def _format_value(val, fmt=None):
     if fmt:
         try:
-            return fmt.format(val)
+            # Support both "{:.1f}°C" style and plain numeric fallback
+            if "{" in fmt:
+                return fmt.format(val)
         except Exception:
             pass
+
     if isinstance(val, float):
         return f"{val:.1f}".rstrip("0").rstrip(".")
     return str(val)
 
 
-def _safe_text_x_right(ax, frac=0.985):
+def _axis_formatter_from_fmt(fmt):
+    if not fmt:
+        return None
+
+    def _formatter(val, pos):
+        try:
+            if "{" in fmt:
+                return fmt.format(val)
+        except Exception:
+            pass
+        return _format_value(val)
+
+    return FuncFormatter(_formatter)
+
+
+def _safe_text_x_right(ax, frac=0.955):
     x_min, x_max = ax.get_xlim()
     return x_min + (x_max - x_min) * frac
 
@@ -73,8 +92,13 @@ def _safe_text_y(ax, y, frac=0.02):
 
 
 def _add_safe_end_label(ax, y, label, color="#1F8FA8"):
-    x_pos = _safe_text_x_right(ax, 0.985)
-    y_pos = _safe_text_y(ax, y, 0.025)
+    """
+    Keep end labels inside the plot area and away from the right whitespace.
+    """
+    x_pos = _safe_text_x_right(ax, 0.955)
+    y_min, y_max = ax.get_ylim()
+    y_span = y_max - y_min
+    y_pos = _safe_text_y(ax, y + y_span * 0.01, 0.03)
 
     ax.text(
         x_pos,
@@ -96,8 +120,8 @@ def _add_safe_highlight_label(ax, x, y, label, color="#C44E52"):
     y_span = y_max - y_min
 
     if isinstance(x, (int, float)):
-        near_right = x > x_min + x_span * 0.84
-        text_x = x - x_span * 0.02 if near_right else x + x_span * 0.02
+        near_right = x > x_min + x_span * 0.82
+        text_x = x - x_span * 0.025 if near_right else x + x_span * 0.02
         ha = "right" if near_right else "left"
     else:
         text_x = x
@@ -189,10 +213,9 @@ def apply_axis_controls(ax, cfg):
         ax.yaxis.set_major_locator(MultipleLocator(y_tick_interval))
 
     y_tick_format = cfg.get("y_tick_format")
-    if y_tick_format:
-        ax.yaxis.set_major_formatter(
-            FuncFormatter(lambda val, pos: _format_value(val, y_tick_format))
-        )
+    formatter = _axis_formatter_from_fmt(y_tick_format)
+    if formatter:
+        ax.yaxis.set_major_formatter(formatter)
 
     x_tick_rotation = cfg.get("x_tick_rotation", 0)
     if x_tick_rotation:
@@ -221,7 +244,7 @@ def apply_reference_lines(ax, cfg):
                 label_x = ref.get("label_x", "left")
                 label_offset = ref.get("label_offset", 0.0)
 
-                x_pos = _safe_text_x_right(ax, 0.985) if label_x == "right" else _safe_text_x_left(ax, 0.015)
+                x_pos = _safe_text_x_right(ax, 0.955) if label_x == "right" else _safe_text_x_left(ax, 0.015)
                 y_pos = _safe_text_y(ax, y + label_offset, 0.03)
 
                 ax.text(
@@ -263,14 +286,30 @@ def apply_highlights(ax, cfg):
 def apply_annotations(ax, cfg):
     for ann in cfg.get("annotate_points", []):
         try:
+            x = ann["x"]
+            y = ann["y"]
+            text = ann["text"]
+
+            x_min, x_max = ax.get_xlim()
+            x_span = x_max - x_min
+
+            # If annotation is near right edge, force it leftwards
+            if isinstance(x, (int, float)) and x > x_min + x_span * 0.82:
+                xytext = (-55, ann.get("xytext", (0, 0))[1] if isinstance(ann.get("xytext"), tuple) else -10)
+                ha = "right"
+            else:
+                xytext = ann.get("xytext", (0, 0))
+                ha = ann.get("ha", "left")
+
             ax.annotate(
-                ann["text"],
-                (ann["x"], ann["y"]),
-                xytext=ann.get("xytext", (0, 0)),
+                text,
+                (x, y),
+                xytext=xytext,
                 textcoords="offset points",
-                ha=ann.get("ha", "left"),
+                ha=ha,
                 fontsize=9,
                 zorder=9,
+                clip_on=True,
             )
         except Exception:
             continue
@@ -280,11 +319,11 @@ def _get_story_styles(cfg):
     return {
         "context": cfg.get(
             "context_style",
-            {"color": "#CFCFCF", "linewidth": 1.0, "alpha": 0.40},
+            {"color": "#D9D9D9", "linewidth": 0.7, "alpha": 0.25},
         ),
         "focus": cfg.get(
             "focus_style",
-            {"color": "#1F8FA8", "linewidth": 3.0, "alpha": 1.0},
+            {"color": "#1F8FA8", "linewidth": 3.4, "alpha": 1.0},
         ),
         "secondary": cfg.get(
             "secondary_style",
@@ -324,32 +363,26 @@ def render_line_focus_vs_context(ax, data, cfg):
     secondary_series = cfg.get("secondary_series")
     label_strategy = cfg.get("label_strategy", "focus_only")
 
-    # Context first
     for series_name, vals in data.items():
         if series_name in {focus_series, secondary_series}:
             continue
         _plot_series(ax, vals["x"], vals["y"], styles["context"], cfg, zorder=2)
 
-    # Secondary next
     if secondary_series and secondary_series in data:
         vals = data[secondary_series]
         _plot_series(ax, vals["x"], vals["y"], styles["secondary"], cfg, zorder=4)
 
         if cfg.get("auto_end_labels", True) and label_strategy in {"focus_and_secondary", "all"}:
-            y = vals["y"][-1]
-            _add_safe_end_label(ax, y, secondary_series, _get_color(styles["secondary"]))
+            _add_safe_end_label(ax, vals["y"][-1], secondary_series, _get_color(styles["secondary"]))
 
-    # Focus last
     if focus_series and focus_series in data:
         vals = data[focus_series]
         _plot_series(ax, vals["x"], vals["y"], styles["focus"], cfg, zorder=6)
 
         if cfg.get("auto_end_labels", True) and label_strategy in {"focus_only", "focus_and_secondary", "all"}:
-            y = vals["y"][-1]
-            _add_safe_end_label(ax, y, focus_series, _get_color(styles["focus"]))
+            _add_safe_end_label(ax, vals["y"][-1], focus_series, _get_color(styles["focus"]))
     else:
-        # fallback if focus series missing
-        for series_name, vals in data.items():
+        for _, vals in data.items():
             _plot_series(ax, vals["x"], vals["y"], styles["focus"], cfg, zorder=4)
 
 
@@ -374,7 +407,6 @@ def render_line_comparison(ax, data, cfg):
 
         if not cfg.get("auto_end_labels", True):
             continue
-
         if label_strategy == "none":
             continue
         if label_strategy == "focus_only" and series_name != focus_series:
