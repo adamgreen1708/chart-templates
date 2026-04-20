@@ -1,58 +1,46 @@
 CHART_CONFIG = {
-    "data_file": "data/uk-mean-temperature.csv",
-    "data_format": "csv",
-
+    "data_file": "data/inflation-1989-2025.csv",
+    "data_format": "wide",
     "chart_type": "line",
-
-    "title": "UK temperatures have left the past behind",
-    "subtitle": "After hovering around ~8.3°C for over a century, recent years are consistently pushing toward — and beyond — 10°C, with 2025 the highest on record.",
-
-    "source_text": "Source: UK Met Office historical temperature data",
+    "title": "Inflation didn’t just rise — it snapped back",
+    "subtitle": "UK inflation surged in the early 2020s to levels not seen since the early 1990s",
+    "source_text": "Source: ONS",
     "footer_left": "Adam Green | coffeetableviz",
-
-    "vertical_gridlines": False,
-
-    "x_col": "Year",
-    "y_col": "Annual mean temperature (°C)",
+    "vertical_gridlines": True,
+    "x_col": "year",
+    "y_col": "rate",
     "series_col": None,
-    "value_col": "Annual mean temperature (°C)",
-
-    "xlim_right_pad": 2,
-
+    "value_col": None,
+    "xlim_right_pad": 1,
     "sort_descending": False,
-
     "series_style": {
         "color": "#1F8FA8",
-        "linewidth": 2.6
+        "linewidth": 2.5
     },
-
     "series_overrides": {},
-
     "reference_lines": [
         {
-            "y": 8.3,
-            "label": "20th century average (~8.3°C)",
-            "color": "#999999",
+            "y": 2.65,
+            "label": "Pre-2020 average",
+            "color": "#C44E52",
             "linestyle": "--",
-            "linewidth": 1,
-            "label_x": 0.02,
-            "label_offset": 0
+            "linewidth": 1.5,
+            "label_x": 1992,
+            "label_offset": 0.1
         }
     ],
-
     "highlight_points": [
         {
-            "x": 2025,
-            "y": 10.09,
-            "label": "2025: 10.1°C (record high)",
+            "x": 2022,
+            "y": 7.9,
+            "label": "Post-pandemic spike",
             "color": "#C44E52",
-            "dx": -10,
-            "dy": 10,
-            "ha": "right",
-            "size": 10
+            "dx": 0,
+            "dy": 0.5,
+            "ha": "center",
+            "size": 90
         }
     ],
-
     "auto_end_labels": False,
     "end_labels": []
 }
