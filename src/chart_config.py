@@ -1,60 +1,46 @@
 CHART_CONFIG = {
+    "data_file": "data/uk-mean-temperature.csv",
+    "data_format": "wide",
     "chart_type": "line",
+
+    "title": "UK temperatures are trending upward",
+    "subtitle": "Annual mean temperature has risen over time, with 2025 the warmest year in the series.",
+    "source_text": "Source: UK Met Office",
+    "footer_left": "Adam Green | coffeetableviz",
+
+    "vertical_gridlines": False,
+
     "x_col": "Year",
     "y_col": "Annual mean temperature (°C)",
     "series_col": None,
+    "value_col": None,
 
-    "title": "Britain keeps getting warmer",
-    "subtitle": "Annual mean temperature has trended upward over the long run, with 2025 the warmest year in this series.",
-    "footer_left": "Adam Green | coffeetableviz",
+    "xlim_right_pad": 0.5,
 
-    "colour": "#1F8FA8",
-    "highlight_colour": "#C44E52",
+    "sort_descending": False,
 
-    "sort_descending": True,
+    "series_style": {
+        "color": "#1F8FA8",
+        "linewidth": 2.5
+    },
 
-    "x_is_datetime": False,
-    "x_tick_rotation": 0,
-    "y_axis_min": 7.0,
-    "y_axis_max": 10.5,
-    "y_tick_interval": 0.5,
-    "y_tick_format": "{:.1f}°C",
+    "series_overrides": {},
 
-    "line_width": 2.6,
-    "marker_size": 0,
-    "show_markers": False,
-    "show_grid_x": True,
-    "show_grid_y": True,
-
-    "auto_end_labels": False,
-
-    "reference_lines": [
-        {
-            "axis": "y",
-            "value": 8.5,
-            "label": "Long-run average",
-            "color": "#999999",
-            "linestyle": "--",
-            "linewidth": 1.0
-        }
-    ],
+    "reference_lines": [],
 
     "highlight_points": [
         {
             "x": 2025,
             "y": 10.09,
-            "label": "2025",
-            "color": "#C44E52"
+            "label": "Warmest year on record",
+            "color": "#C44E52",
+            "dx": -10,
+            "dy": 10,
+            "ha": "right",
+            "size": 10
         }
     ],
 
-    "annotate_points": [
-        {
-            "x": 2025,
-            "y": 10.09,
-            "text": "Warmest year in the series",
-            "xytext": (-36, -18),
-            "ha": "right"
-        }
-    ]
+    "auto_end_labels": False,
+    "end_labels": []
 }
