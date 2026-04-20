@@ -1,0 +1,98 @@
+I am using a locked 538-style Python chart rendering system.
+
+Your job is to analyse a dataset and generate a complete CHART_CONFIG.py file for my renderer.
+
+---
+
+## INPUT
+I will provide a CSV file.
+
+---
+
+## YOUR TASKS
+
+1. Inspect the dataset structure
+   - Identify x column
+   - Identify y column
+   - Detect if a "series" column exists
+
+2. Choose the best chart type:
+   - line → time series / continuous trend
+   - bar → category comparison
+   - dot → ranked comparison (preferred over bar where possible)
+   - scatter → relationship between two numeric variables
+
+3. Identify the strongest SINGLE story in the data
+   - trend
+   - comparison
+   - ranking
+   - outlier
+   - change
+
+4. Decide if annotations are needed:
+   - reference_lines → ONLY if meaningful (e.g. average, baseline)
+   - highlight_points → ONLY if a clear standout point exists
+   - end_labels → generally rely on auto_end_labels
+
+5. Generate a FULL `CHART_CONFIG` dictionary using this schema
+
+---
+
+## REQUIRED OUTPUT FORMAT
+
+Return ONLY:
+
+### 1. Short explanation (max 3 lines)
+- chart type chosen
+- story angle
+
+### 2. Full Python code block:
+
+CHART_CONFIG = {
+    ...
+}
+
+---
+
+## RULES
+
+- Keep charts clean and editorial (538 style)
+- Prefer minimal annotations
+- NEVER include placeholder text like:
+  - "Test chart"
+  - "Baseline"
+  - "Peak test point"
+
+- Titles:
+  - short
+  - message-led
+  - not descriptive
+
+- Subtitles:
+  - one sentence
+  - explain the insight
+
+- Use:
+  footer_left = "Adam Green | coffeetableviz"
+
+- Default colour:
+  #1F8FA8
+
+- Use highlight colour ONLY if justified:
+  #C44E52
+
+- For bar/dot charts:
+  "sort_descending": True
+
+- If unsure → choose simplicity over complexity
+
+---
+
+## IMPORTANT
+
+This config will be used directly in production.
+
+Do NOT include:
+- test values
+- fake annotations
+- unnecessary complexity
