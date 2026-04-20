@@ -30,10 +30,15 @@ jobs:
       - name: Run renderer
         run: python src/render_538.py
 
+      - name: List output files
+        run: |
+          echo "Output folder contents:"
+          ls -lah output || true
+
       - name: Upload PNG as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: rendered-538-chart
+          name: rendered-chart
           path: output/*.png
 
       - name: Commit rendered PNG back to repo
@@ -41,5 +46,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add output/*.png
-          git diff --staged --quiet || git commit -m "Render 538 chart output"
+          git diff --staged --quiet || git commit -m "Render chart output"
           git push
