@@ -11,22 +11,27 @@ def apply_538_template(
     footer_left="",
     vertical_gridlines=False,
 ):
+    # --- Background ---
     fig.patch.set_facecolor("#F3F4F6")
     ax.set_facecolor("#F3F4F6")
 
+    # --- Remove spines ---
     for spine in ["top", "right", "left", "bottom"]:
         ax.spines[spine].set_visible(False)
 
+    # --- Gridlines ---
     ax.grid(axis="y", color="#DADADA", linewidth=1)
-    if vertical_gridlines:
-        ax.grid(axis="x", color="#E6E6E6", linewidth=0.8)
-    else:
-        ax.grid(False, axis="x")
+    ax.grid(axis="x", color="#E6E6E6", linewidth=0.8)
 
-    # Title
+    # Respect config if vertical gridlines explicitly disabled
+    if not vertical_gridlines:
+        ax.grid(False, axis="x")
+        ax.grid(axis="y", color="#DADADA", linewidth=1)
+
+    # --- Title ---
     fig.text(
-        0.08,
-        0.95,
+        0.09,
+        0.94,
         title,
         fontsize=20,
         fontweight="bold",
@@ -35,13 +40,13 @@ def apply_538_template(
         color="#111111",
     )
 
-    # Dynamic wrap
-    wrap_width = int(fig.get_figwidth() * 10)
+    # --- Subtitle (wrapped safely) ---
+    wrap_width = max(60, int(fig.get_figwidth() * 9))
     wrapped_subtitle = "\n".join(textwrap.wrap(subtitle, width=wrap_width))
 
     fig.text(
-        0.08,
-        0.90,
+        0.09,
+        0.895,
         wrapped_subtitle,
         fontsize=12,
         color="#555555",
@@ -49,26 +54,43 @@ def apply_538_template(
         va="top",
     )
 
-    if source_text:
-        fig.text(
-            0.08,
-            0.02,
-            source_text,
-            fontsize=9,
-            color="#666666",
-            ha="left",
-        )
-
+    # --- Footer ---
     if footer_left:
         fig.text(
-            0.98,
-            0.02,
+            0.09,
+            0.045,
             footer_left,
             fontsize=9,
             color="#666666",
-            ha="right",
+            ha="left",
+            va="bottom",
         )
 
-    ax.tick_params(axis="both", length=0, labelsize=10, colors="#333")
+    if source_text:
+        fig.text(
+            0.91,
+            0.045,
+            source_text,
+            fontsize=9,
+            color="#666666",
+            ha="right",
+            va="bottom",
+        )
 
-    plt.subplots_adjust(left=0.08, right=0.98, top=0.82, bottom=0.10)
+    # --- Tick styling ---
+    ax.tick_params(
+        axis="both",
+        which="both",
+        length=0,
+        labelsize=10,
+        colors="#333333",
+    )
+
+    # --- Layout spacing ---
+    # More generous and more even whitespace around the full chart
+    plt.subplots_adjust(
+        left=0.09,
+        right=0.91,
+        top=0.80,
+        bottom=0.16,
+    )
