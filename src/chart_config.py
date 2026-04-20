@@ -1,7 +1,7 @@
 CHART_CONFIG = {
     "chart_type": "line",
     "x_col": "x",
-    "y_col": "y",
+    "y_col": "value",
     "series_col": None,
 
     "title": "Britain keeps getting warmer",
