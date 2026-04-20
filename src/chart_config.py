@@ -1,7 +1,7 @@
 CHART_CONFIG = {
     "chart_type": "line",
-    "x_col": "Year",
-    "y_col": "Annual mean temperature (°C)",
+    "x_col": "x",
+    "y_col": "y",
     "series_col": None,
 
     "title": "Britain keeps getting warmer",
