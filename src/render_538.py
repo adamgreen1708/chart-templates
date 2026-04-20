@@ -16,15 +16,11 @@ from chart_538 import apply_538_template
 from chart_config import CHART_CONFIG
 
 
-# -------------------------
-# Helpers
-# -------------------------
-
 def _coerce_value(value):
     try:
         num = float(value)
         return int(num) if num.is_integer() else num
-    except:
+    except Exception:
         return value
 
 
@@ -51,16 +47,33 @@ def _format_value(val, fmt=None):
     if fmt:
         try:
             return fmt.format(val)
-        except:
+        except Exception:
             pass
     if isinstance(val, float):
         return f"{val:.1f}".rstrip("0").rstrip(".")
     return str(val)
 
 
-# -------------------------
-# Loaders
-# -------------------------
+def _add_safe_end_label(ax, y, label, color="#1F8FA8"):
+    """
+    Place the end label just inside the right plot boundary so it never
+    overruns the chart margin.
+    """
+    x_min, x_max = ax.get_xlim()
+    x_pos = x_max - (x_max - x_min) * 0.01  # 1% inset from right edge
+
+    ax.text(
+        x_pos,
+        y,
+        label,
+        fontsize=10,
+        color=color,
+        ha="right",
+        va="center",
+        clip_on=True,
+        zorder=6,
+    )
+
 
 def load_wide_data(csv_path, x_col, y_col):
     x_vals, y_vals = [], []
@@ -81,27 +94,20 @@ def load_wide_data(csv_path, x_col, y_col):
     return {"Main": {"x": x_vals, "y": y_vals}}
 
 
-# -------------------------
-# Rendering
-# -------------------------
-
 def render_line(ax, data, cfg):
     color = _get_color(cfg)
     lw = cfg.get("line_width", 2.6)
 
-    for name, vals in data.items():
+    for _, vals in data.items():
         ax.plot(vals["x"], vals["y"], color=color, linewidth=lw)
 
         if cfg.get("auto_end_labels", True):
-            x, y = vals["x"][-1], vals["y"][-1]
-            ax.text(
-                x,
-                y,
-                _format_value(y, cfg.get("y_tick_format")),
-                fontsize=10,
+            y = vals["y"][-1]
+            _add_safe_end_label(
+                ax,
+                y=y,
+                label=_format_value(y, cfg.get("y_tick_format")),
                 color=color,
-                ha="left",
-                va="center",
             )
 
 
@@ -112,33 +118,42 @@ def apply_reference_lines(ax, cfg):
             if y is None:
                 continue
 
+            line_color = _get_color(ref, "#999999")
+
             ax.axhline(
                 y=y,
-                color=_get_color(ref, "#999999"),
+                color=line_color,
                 linestyle=ref.get("linestyle", "--"),
                 linewidth=ref.get("linewidth", 1.2),
             )
 
             if ref.get("label"):
+                x_min, x_max = ax.get_xlim()
+                x_pos = x_min + (x_max - x_min) * 0.002
+
                 ax.text(
-                    ax.get_xlim()[0],
+                    x_pos,
                     y,
                     ref["label"],
                     fontsize=9,
-                    color=_get_color(ref, "#999999"),
+                    color=line_color,
                     va="bottom",
+                    ha="left",
+                    clip_on=True,
                 )
-        except:
+        except Exception:
             continue
 
 
 def apply_highlights(ax, cfg):
     for pt in cfg.get("highlight_points", []):
         try:
+            pt_color = _get_color(pt, "#C44E52")
+
             ax.scatter(
                 pt["x"],
                 pt["y"],
-                color=_get_color(pt, "#C44E52"),
+                color=pt_color,
                 s=40,
                 zorder=5,
             )
@@ -149,9 +164,12 @@ def apply_highlights(ax, cfg):
                     pt["y"],
                     pt["label"],
                     fontsize=9,
-                    color=_get_color(pt, "#C44E52"),
+                    color=pt_color,
+                    ha="left",
+                    va="bottom",
+                    clip_on=True,
                 )
-        except:
+        except Exception:
             continue
 
 
@@ -166,13 +184,9 @@ def apply_annotations(ax, cfg):
                 ha=ann.get("ha", "left"),
                 fontsize=9,
             )
-        except:
+        except Exception:
             continue
 
-
-# -------------------------
-# Main
-# -------------------------
 
 def main():
     print("RUNNING 538 RENDER V2")
@@ -193,11 +207,12 @@ def main():
 
     render_line(ax, data, cfg)
 
-    # Axis control
-    if cfg.get("y_axis_min") is not None:
-        ax.set_ylim(bottom=cfg["y_axis_min"])
-    if cfg.get("y_axis_max") is not None:
-        ax.set_ylim(top=cfg["y_axis_max"])
+    if cfg.get("y_axis_min") is not None or cfg.get("y_axis_max") is not None:
+        current_min, current_max = ax.get_ylim()
+        ax.set_ylim(
+            bottom=cfg.get("y_axis_min", current_min),
+            top=cfg.get("y_axis_max", current_max),
+        )
 
     apply_reference_lines(ax, cfg)
     apply_highlights(ax, cfg)
