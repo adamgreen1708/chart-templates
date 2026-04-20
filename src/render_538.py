@@ -121,15 +121,22 @@ def render_line(ax, series_data, config):
         numeric_x = [v for v in values["x"] if isinstance(v, (int, float))]
         all_numeric_x.extend(numeric_x)
 
-        if config.get("auto_end_labels", False) and values["x"] and values["y"]:
-            add_end_label(
-                ax,
-                x=values["x"][-1],
-                y=values["y"][-1],
-                label=series_name if len(series_data) > 1 else "Latest",
-                color=style["color"],
-                dx=0.15,
-            )
+        if config.get("auto_end_labels", False) and values["x"] and values["latest_val = values["y"][-1]
+
+# format nicely (int vs float)
+if isinstance(latest_val, float):
+    label_text = f"{latest_val:.1f}".rstrip("0").rstrip(".")
+else:
+    label_text = str(latest_val)
+
+add_end_label(
+    ax,
+    x=values["x"][-1],
+    y=latest_val,
+    label=label_text,
+    color=style["color"],
+    dx=0.15,
+)
 
     if all_numeric_x:
         ax.set_xlim(
