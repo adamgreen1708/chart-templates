@@ -14,7 +14,7 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 from chart_538 import apply_538_template
-
+from chart_config import CHART_CONFIG
 
 def _coerce_value(value):
     try:
