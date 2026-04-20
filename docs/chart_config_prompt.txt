@@ -1,98 +1,103 @@
 I am using a locked 538-style Python chart rendering system.
 
-Your job is to analyse a dataset and generate a complete CHART_CONFIG.py file for my renderer.
-
----
+Your job is to analyse a dataset and generate a complete `CHART_CONFIG` dictionary for my renderer.
 
 ## INPUT
-I will provide a CSV file.
-
----
+I will provide a CSV file and its repo filename/path.
 
 ## YOUR TASKS
 
-1. Inspect the dataset structure
+1. Inspect the dataset structure.
+   - Identify the correct data file path I provide
    - Identify x column
    - Identify y column
-   - Detect if a "series" column exists
+   - Detect whether a series column exists
 
 2. Choose the best chart type:
-   - line → time series / continuous trend
-   - bar → category comparison
-   - dot → ranked comparison (preferred over bar where possible)
-   - scatter → relationship between two numeric variables
+   - `line` → time series / continuous trend
+   - `bar` → category comparison
+   - `dot` → ranked comparison
+   - `scatter` → relationship between two numeric variables
 
-3. Identify the strongest SINGLE story in the data
-   - trend
-   - comparison
-   - ranking
-   - outlier
-   - change
+3. Identify the strongest single story in the data.
 
-4. Decide if annotations are needed:
-   - reference_lines → ONLY if meaningful (e.g. average, baseline)
-   - highlight_points → ONLY if a clear standout point exists
-   - end_labels → generally rely on auto_end_labels
+4. Decide whether annotations are needed:
+   - `reference_lines` only if genuinely useful
+   - `highlight_points` only if there is a clear standout point
+   - `auto_end_labels` should usually be used instead of manual end labels
 
-5. Generate a FULL `CHART_CONFIG` dictionary using this schema
+5. Generate a full `CHART_CONFIG` dictionary using the exact schema below.
 
----
+## REQUIRED SCHEMA
 
-## REQUIRED OUTPUT FORMAT
+Return a Python dictionary called `CHART_CONFIG` with these fields:
 
-Return ONLY:
+- `data_file`
+- `data_format`
+- `chart_type`
+- `title`
+- `subtitle`
+- `source_text`
+- `footer_left`
+- `vertical_gridlines`
+- `x_col`
+- `y_col`
+- `series_col`
+- `value_col`
+- `xlim_right_pad`
+- `sort_descending`
+- `series_style`
+- `series_overrides`
+- `reference_lines`
+- `highlight_points`
+- `auto_end_labels`
+- `end_labels`
 
-### 1. Short explanation (max 3 lines)
-- chart type chosen
-- story angle
+## IMPORTANT SCHEMA RULES
 
-### 2. Full Python code block:
+- Always include:
+  - `"data_file": "data/<filename>.csv"`
+  - `"source_text": "Source: ..."`
+- Use American spelling for renderer keys:
+  - `color` not `colour`
+- For wide data:
+  - use `data_format = "wide"`
+  - use `x_col` and `y_col`
+- For long data:
+  - use `data_format = "long"`
+  - use `x_col`, `series_col`, and `value_col`
+- `reference_lines` entries must use:
+  - `y`, `label`, `color`, `linestyle`, `linewidth`, `label_x`, `label_offset`
+- `highlight_points` entries must use:
+  - `x`, `y`, `label`, `color`, `dx`, `dy`, `ha`, `size`
+- If no annotations are needed, return:
+  - `"reference_lines": []`
+  - `"highlight_points": []`
+  - `"end_labels": []`
 
-CHART_CONFIG = {
-    ...
-}
+## STYLE RULES
 
----
-
-## RULES
-
-- Keep charts clean and editorial (538 style)
+- Keep charts clean and editorial
 - Prefer minimal annotations
-- NEVER include placeholder text like:
+- Never include placeholder or test text like:
   - "Test chart"
   - "Baseline"
   - "Peak test point"
-
-- Titles:
-  - short
-  - message-led
-  - not descriptive
-
-- Subtitles:
-  - one sentence
-  - explain the insight
-
+- Titles should be short and message-led
+- Subtitles should be concise and explanatory
 - Use:
-  footer_left = "Adam Green | coffeetableviz"
+  - `"footer_left": "Adam Green | coffeetableviz"`
+- Default primary color:
+  - `#1F8FA8`
+- Highlight color only if justified:
+  - `#C44E52`
+- For bar and dot charts:
+  - `"sort_descending": True`
+- If unsure, choose simplicity over complexity
 
-- Default colour:
-  #1F8FA8
+## REQUIRED OUTPUT
 
-- Use highlight colour ONLY if justified:
-  #C44E52
+Return only:
 
-- For bar/dot charts:
-  "sort_descending": True
-
-- If unsure → choose simplicity over complexity
-
----
-
-## IMPORTANT
-
-This config will be used directly in production.
-
-Do NOT include:
-- test values
-- fake annotations
-- unnecessary complexity
+1. A short explanation of the chosen chart type and story angle
+2. One Python code block containing the full `CHART_CONFIG = {...}` dictionary
