@@ -1,116 +1,86 @@
 import matplotlib.pyplot as plt
+import textwrap
 
 
 def apply_538_template(
     ax,
     fig,
-    *,
     title="",
     subtitle="",
-    source_text="Source: data",
-    footer_left="Adam Green | coffeetableviz",
+    source_text="",
+    footer_left="",
     vertical_gridlines=False,
 ):
-    """
-    Apply the locked 538-style layout to a matplotlib chart.
+    # --- Background ---
+    fig.patch.set_facecolor("#F3F4F6")
+    ax.set_facecolor("#F3F4F6")
 
-    Parameters
-    ----------
-    ax : matplotlib.axes.Axes
-        Chart axes.
-    fig : matplotlib.figure.Figure
-        Figure object.
-    title : str
-        Main chart title.
-    subtitle : str
-        Chart subtitle.
-    source_text : str
-        Footer source text shown at bottom-right.
-    footer_left : str
-        Footer text shown at bottom-left.
-    vertical_gridlines : bool
-        Whether to show vertical gridlines.
-    """
+    # --- Remove spines ---
+    for spine in ["top", "right", "left", "bottom"]:
+        ax.spines[spine].set_visible(False)
 
-    # ---- COLOURS ----
-    bg = "#F3F4F6"
-    header_line = "#222222"
-    footer_bg = "#E6E6E6"
-    title_color = "#111111"
-    subtitle_color = "#333333"
-    axis_color = "#555555"
-
-    # ---- BACKGROUND ----
-    fig.patch.set_facecolor(bg)
-    ax.set_facecolor(bg)
-
-    # ---- HEADER RULE ----
-    fig.lines.append(
-        plt.Line2D(
-            [0.05, 0.95],
-            [0.965, 0.965],
-            transform=fig.transFigure,
-            color=header_line,
-            linewidth=3,
-        )
-    )
-
-    # ---- HEADER TEXT ----
-    if title:
-        fig.text(
-            0.07,
-            0.92,
-            title,
-            ha="left",
-            va="top",
-            fontsize=22,
-            fontweight="bold",
-            color=title_color,
-        )
-
-    if subtitle:
-        fig.text(
-            0.07,
-            0.865,
-            subtitle,
-            ha="left",
-            va="top",
-            fontsize=13,
-            color=subtitle_color,
-        )
-
-    # ---- CHART AREA ----
-    fig.subplots_adjust(
-        left=0.08,
-        right=0.96,
-        top=0.70,
-        bottom=0.22,
-    )
-
-    # ---- GRIDLINES ----
-    ax.grid(axis="y", linestyle="-", linewidth=0.5, alpha=0.10)
+    # --- Gridlines ---
+    ax.grid(axis="y", color="#DADADA", linewidth=1)
     if vertical_gridlines:
-        ax.grid(axis="x", linestyle="-", linewidth=0.5, alpha=0.10)
+        ax.grid(axis="x", color="#E6E6E6", linewidth=0.8)
+    else:
+        ax.grid(False, axis="x")
 
-    # ---- SPINES ----
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-    ax.spines["left"].set_alpha(0.15)
-    ax.spines["bottom"].set_alpha(0.15)
-
-    # ---- TICKS ----
-    ax.tick_params(axis="both", labelsize=10, length=0, colors=axis_color)
-
-    # ---- FOOTER BAR ----
-    footer = plt.Rectangle(
-        (0, 0),
-        1,
+    # --- Title ---
+    fig.text(
         0.08,
-        transform=fig.transFigure,
-        color=footer_bg,
-        zorder=-1,
+        0.95,
+        title,
+        fontsize=20,
+        fontweight="bold",
+        ha="left",
+        va="top",
+        color="#111111",
     )
-    fig.patches.append(footer)
 
-    fig.text(0.07, 0.035, footer_left, fontsize=11, color="#333333")
-    fig.text(0.75, 0.035, source_text, fontsize=11, color="#333333")
+    # --- Subtitle (wrapped safely) ---
+    wrapped_subtitle = "\n".join(textwrap.wrap(subtitle, width=80))
+
+    fig.text(
+        0.08,
+        0.90,
+        wrapped_subtitle,
+        fontsize=12,
+        color="#555555",
+        ha="left",
+        va="top",
+    )
+
+    # --- Source / footer ---
+    if source_text:
+        fig.text(
+            0.08,
+            0.02,
+            source_text,
+            fontsize=9,
+            color="#666666",
+            ha="left",
+            va="bottom",
+        )
+
+    if footer_left:
+        fig.text(
+            0.98,
+            0.02,
+            footer_left,
+            fontsize=9,
+            color="#666666",
+            ha="right",
+            va="bottom",
+        )
+
+    # --- Tick styling ---
+    ax.tick_params(axis="both", which="both", length=0, labelsize=10, colors="#333333")
+
+    # --- Layout spacing (CRITICAL) ---
+    plt.subplots_adjust(
+        left=0.08,
+        right=0.98,
+        top=0.82,   # creates space for title + subtitle
+        bottom=0.10
+    )
