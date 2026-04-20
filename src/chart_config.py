@@ -1,7 +1,7 @@
 CHART_CONFIG = {
     "chart_type": "line",
-    "x_col": "x",
-    "y_col": "value",
+    "x_col": "Year",
+    "y_col": "Annual mean temperature (°C)",
     "series_col": None,
 
     "title": "Britain keeps getting warmer",
@@ -33,7 +33,7 @@ CHART_CONFIG = {
             "axis": "y",
             "value": 8.5,
             "label": "Long-run average",
-            "colour": "#999999",
+            "color": "#999999",
             "linestyle": "--",
             "linewidth": 1.0
         }
@@ -44,7 +44,7 @@ CHART_CONFIG = {
             "x": 2025,
             "y": 10.09,
             "label": "2025",
-            "colour": "#C44E52"
+            "color": "#C44E52"
         }
     ],
 
