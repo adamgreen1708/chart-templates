@@ -8,20 +8,20 @@ CHART_CONFIG = {
     "series_col": "month",
     "value_col": "sunshine_hours",
 
-    "title": "East Anglia’s winters are getting brighter",
-    "subtitle": "January, February and December sunshine have all trended upward over the long run. January shows the clearest lift, while February has delivered some of the biggest recent spikes.",
+    "title": "Spring is arriving brighter in East Anglia",
+    "subtitle": "March sunshine has trended upward over the long run, suggesting the darker months are giving way earlier. Recent decades have delivered some of the brightest early springs in the series.",
     "source_text": "Source: Met Office regional climate statistics (East Anglia sunshine)",
     "footer_left": "Adam Green | coffeetableviz",
 
     "story_angle": "comparison",
 
-    "focus_series": "Jan",
-    "secondary_series": ["Feb", "Dec"],
+    "focus_series": "Mar",
+    "secondary_series": "Apr",
 
     "context_style": {
         "color": "#CFCFCF",
         "linewidth": 1.0,
-        "alpha": 0.35,
+        "alpha": 0.28,
     },
 
     "focus_style": {
@@ -32,7 +32,7 @@ CHART_CONFIG = {
 
     "secondary_style": {
         "color": "#7A7A7A",
-        "linewidth": 2.0,
+        "linewidth": 2.1,
         "alpha": 0.9,
     },
 
@@ -41,7 +41,7 @@ CHART_CONFIG = {
     "x_is_datetime": False,
     "x_tick_rotation": 0,
     "y_axis_min": 0,
-    "y_axis_max": 150,
+    "y_axis_max": 200,
     "y_tick_interval": 25,
     "y_tick_format": ".0f",
 
@@ -54,8 +54,8 @@ CHART_CONFIG = {
     "reference_lines": [
         {
             "axis": "y",
-            "value": 50,
-            "label": "50 hours",
+            "value": 100,
+            "label": "100 hours",
             "color": "#9A9A9A",
             "linestyle": "--",
             "linewidth": 1.2,
@@ -65,31 +65,31 @@ CHART_CONFIG = {
 
     "highlight_points": [
         {
-            "series": "Jan",
+            "series": "Mar",
             "x": 2022,
-            "y": 96.0,
-            "label": "Record January",
+            "y": 185.5,
+            "label": "Exceptional March",
         },
         {
-            "series": "Feb",
-            "x": 2019,
-            "y": 137.2,
-            "label": "Exceptional February",
+            "series": "Apr",
+            "x": 2020,
+            "y": 224.8,
+            "label": "Record April",
         }
     ],
 
     "annotate_points": [
         {
-            "series": "Jan",
+            "series": "Mar",
             "x": 2022,
-            "y": 96.0,
-            "text": "January hit a record high in 2022",
+            "y": 185.5,
+            "text": "March 2022 was one of the brightest early-spring months on record",
         },
         {
-            "series": "Feb",
-            "x": 2019,
-            "y": 137.2,
-            "text": "February spiked dramatically in 2019",
+            "series": "Apr",
+            "x": 2020,
+            "y": 224.8,
+            "text": "April 2020 delivered an extraordinary sunshine spike",
         }
     ],
 
