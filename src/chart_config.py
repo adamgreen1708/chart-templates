@@ -1,21 +1,21 @@
 CHART_CONFIG = {
-    "data_file": "data/self-reported-trust-attitudes.csv",
+    "data_file": "data/east_anglia_sunshine_clean.csv",
     "data_format": "long",
     "chart_type": "line",
 
-    "x_col": "Year",
-    "y_col": "Trust in others",
-    "series_col": "Entity",
-    "value_col": "Trust in others",
+    "x_col": "year",
+    "y_col": "sunshine_hours",
+    "series_col": "month",
+    "value_col": "sunshine_hours",
 
-    "title": "Britain’s trust slump has been reversed",
-    "subtitle": "Self-reported trust in others in the UK fell sharply from the late 1990s to the mid-2000s, but by 2022 it had recovered to slightly above its 1984 level. Other countries stay in the background for context.",
-    "source_text": "Source: Self-reported trust attitudes dataset (user-provided)",
+    "title": "April is pulling away",
+    "subtitle": "East Anglia sunshine shows April strengthening faster than any other month, peaking with a record in 2025 while others sit in the background.",
+    "source_text": "Source: Met Office regional climate statistics (East Anglia sunshine)",
     "footer_left": "Adam Green | coffeetableviz",
 
     "story_angle": "focus_vs_context",
 
-    "focus_series": "United Kingdom",
+    "focus_series": "Apr",
     "secondary_series": None,
 
     "context_style": {
@@ -41,8 +41,8 @@ CHART_CONFIG = {
     "x_is_datetime": False,
     "x_tick_rotation": 0,
     "y_axis_min": 0,
-    "y_axis_max": 100,
-    "y_tick_interval": 20,
+    "y_axis_max": 325,
+    "y_tick_interval": 50,
     "y_tick_format": ".0f",
 
     "line_width": 2.6,
@@ -54,8 +54,8 @@ CHART_CONFIG = {
     "reference_lines": [
         {
             "axis": "y",
-            "value": 42.48,
-            "label": "UK 1984 level",
+            "value": 200,
+            "label": "200 hours",
             "color": "#9A9A9A",
             "linestyle": "--",
             "linewidth": 1.2,
@@ -65,31 +65,19 @@ CHART_CONFIG = {
 
     "highlight_points": [
         {
-            "series": "United Kingdom",
-            "x": 2004,
-            "y": 28.54928,
-            "label": "Low point",
-        },
-        {
-            "series": "United Kingdom",
-            "x": 2022,
-            "y": 43.31179,
-            "label": "Recovered by 2022",
+            "series": "Apr",
+            "x": 2025,
+            "y": 269.2,
+            "label": "Record April",
         }
     ],
 
     "annotate_points": [
         {
-            "series": "United Kingdom",
-            "x": 2004,
-            "y": 28.54928,
-            "text": "Trust bottomed out in the mid-2000s",
-        },
-        {
-            "series": "United Kingdom",
-            "x": 2022,
-            "y": 43.31179,
-            "text": "Back above the 1984 level",
+            "series": "Apr",
+            "x": 2025,
+            "y": 269.2,
+            "text": "Sunniest April on record",
         }
     ],
 
