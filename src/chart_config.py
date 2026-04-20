@@ -8,7 +8,7 @@ CHART_CONFIG = {
     "footer_left": "Adam Green | coffeetableviz",
     "vertical_gridlines": True,
     "x_col": "Year",
-    "y_col": None,
+    "y_col": "Trust in others",
     "series_col": "Entity",
     "value_col": "Trust in others",
     "xlim_right_pad": 1,
