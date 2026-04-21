@@ -1023,9 +1023,71 @@ def render_dot(ax, data, cfg):
         except Exception:
             continue
             
+def _linear_regression_stats(x_vals, y_vals):
+    """
+    Simple least-squares regression with R².
+    Returns (slope, intercept, r_squared) or None if not enough valid points.
+    """
+    pairs = []
+    for x, y in zip(x_vals, y_vals):
+        if isinstance(x, (int, float)) and isinstance(y, (int, float)):
+            pairs.append((float(x), float(y)))
+
+    if len(pairs) < 2:
+        return None
+
+    xs = [p[0] for p in pairs]
+    ys = [p[1] for p in pairs]
+
+    x_mean = sum(xs) / len(xs)
+    y_mean = sum(ys) / len(ys)
+
+    ss_xx = sum((x - x_mean) ** 2 for x in xs)
+    ss_xy = sum((x - x_mean) * (y - y_mean) for x, y in pairs)
+
+    if ss_xx == 0:
+        return None
+
+    slope = ss_xy / ss_xx
+    intercept = y_mean - slope * x_mean
+
+    y_hat = [slope * x + intercept for x in xs]
+    ss_res = sum((y - yh) ** 2 for y, yh in zip(ys, y_hat))
+    ss_tot = sum((y - y_mean) ** 2 for y in ys)
+
+    r_squared = 0.0 if ss_tot == 0 else 1 - (ss_res / ss_tot)
+
+    return slope, intercept, r_squared
+
+
+def _scatter_label_position(ax, x, y):
+    """
+    Returns sensible label placement for highlighted scatter points.
+    """
+    x_min, x_max = ax.get_xlim()
+    y_min, y_max = ax.get_ylim()
+    x_span = x_max - x_min
+    y_span = y_max - y_min
+
+    near_right = x > x_min + x_span * 0.82
+    near_top = y > y_min + y_span * 0.82
+
+    text_x = x - x_span * 0.025 if near_right else x + x_span * 0.02
+    text_y = y - y_span * 0.03 if near_top else y + y_span * 0.025
+
+    ha = "right" if near_right else "left"
+    va = "top" if near_top else "bottom"
+
+    return text_x, text_y, ha, va
+            
 def render_scatter(ax, data, cfg):
     styles = _get_story_styles(cfg)
-    story_angle = cfg.get("story_angle", "comparison")
+    story_angle = cfg.get("story_angle", "relationship")
+
+    all_x = []
+    all_y = []
+
+    point_size = cfg.get("scatter_point_size", 55)
 
     for series_name, vals in data.items():
         if story_angle == "focus_vs_context":
@@ -1053,12 +1115,108 @@ def render_scatter(ax, data, cfg):
             vals["x"],
             vals["y"],
             color=_get_color(style),
-            s=55,
+            s=point_size,
             alpha=style.get("alpha", 1.0),
             zorder=z,
         )
 
+        for x, y in zip(vals["x"], vals["y"]):
+            if isinstance(x, (int, float)) and isinstance(y, (int, float)):
+                all_x.append(x)
+                all_y.append(y)
 
+    # Optional regression line
+    if cfg.get("show_regression_line", False):
+        stats = _linear_regression_stats(all_x, all_y)
+        if stats is not None:
+            slope, intercept, r_squared = stats
+            x_min = min(all_x)
+            x_max = max(all_x)
+            x_line = [x_min, x_max]
+            y_line = [slope * x + intercept for x in x_line]
+
+            line_color = cfg.get("regression_line_color", "#7A7A7A")
+
+            ax.plot(
+                x_line,
+                y_line,
+                color=line_color,
+                linestyle=cfg.get("regression_line_style", "--"),
+                linewidth=cfg.get("regression_line_width", 1.6),
+                zorder=2,
+            )
+
+            if cfg.get("show_r_squared", False):
+                x0, x1 = ax.get_xlim()
+                y0, y1 = ax.get_ylim()
+                x_pos = x0 + (x1 - x0) * 0.02
+                y_pos = y1 - (y1 - y0) * 0.04
+
+                ax.text(
+                    x_pos,
+                    y_pos,
+                    f"R² = {r_squared:.2f}",
+                    fontsize=9,
+                    color=line_color,
+                    ha="left",
+                    va="top",
+                    clip_on=True,
+                    zorder=9,
+                )
+
+    # Scatter-specific highlight points
+    for pt in cfg.get("highlight_points", []):
+        try:
+            pt_color = _get_color(pt, "#C44E52")
+            x = pt["x"]
+            y = pt["y"]
+
+            ax.scatter(
+                x,
+                y,
+                color=pt_color,
+                s=point_size + 10,
+                zorder=7,
+            )
+
+            if pt.get("label"):
+                text_x, text_y, ha, va = _scatter_label_position(ax, x, y)
+                ax.text(
+                    text_x,
+                    text_y,
+                    pt["label"],
+                    fontsize=9,
+                    color=pt_color,
+                    ha=ha,
+                    va=va,
+                    clip_on=True,
+                    zorder=9,
+                )
+        except Exception:
+            continue
+
+    # Scatter-specific annotations
+    for ann in cfg.get("annotate_points", []):
+        try:
+            x = ann["x"]
+            y = ann["y"]
+            text = ann["text"]
+
+            text_x, text_y, ha, va = _scatter_label_position(ax, x, y)
+
+            ax.text(
+                text_x,
+                text_y,
+                text,
+                fontsize=9,
+                ha=ha,
+                va=va,
+                clip_on=True,
+                zorder=9,
+            )
+        except Exception:
+            continue
+            
 def main():
     print("RUNNING 538 RENDER V8")
 
@@ -1111,12 +1269,13 @@ def main():
 
     special_case = (
         cfg.get("chart_type") == "dot"
+        or cfg.get("chart_type") == "scatter"
         or (cfg.get("chart_type") == "bar" and cfg.get("sort_descending", False))
     )
     if not special_case:
         apply_highlights(ax, cfg)
         apply_annotations(ax, cfg)
-
+        
     apply_538_template(
         ax,
         fig,
