@@ -21,6 +21,21 @@ I will provide a CSV file and its repo filename/path.
    - `dot` → ranked comparison
    - `scatter` → relationship between two numeric variables
 
+### CHART TYPE DECISION (STRICT)
+
+You must explicitly decide which of these four stories the data represents BEFORE choosing the chart:
+
+- Trend over time → use `line`
+- Ranked comparison (best to worst) → use `dot` (preferred) or `bar`
+- Category comparison (unordered or natural order like months) → use `bar`
+- Relationship between two numeric variables → use `scatter`
+
+IMPORTANT RULES:
+- Do NOT choose `line` unless the x-axis is time or ordered sequence
+- If the dataset is a single snapshot of categories (e.g. months in one year), DO NOT use `line`
+- If the story is ranking, prefer `dot` over `bar`
+- If categories have a natural order (e.g. Jan–Dec), preserve that order (do NOT sort)
+
 3. Identify the strongest single story in the data.
 
 4. Decide whether annotations are needed:
@@ -40,6 +55,16 @@ I will provide a CSV file and its repo filename/path.
 - `secondary_series` can be a string or a list.
 - Do not force a multi-series story if a single-series story is cleaner.
 - If the renderer cannot support the editorial idea cleanly, change the story.
+- For `bar` charts:
+  - Preserve natural category order unless the story is ranking
+  - Use `sort_descending = True` only when the story is explicitly “highest vs lowest”
+
+- For `dot` charts:
+  - Always sort descending
+  - Use for ranked comparisons instead of bar where possible
+
+- For non-line charts:
+  - Do not use `focus_series` or `secondary_series`
 
 ## REQUIRED OUTPUT FORMAT
 
