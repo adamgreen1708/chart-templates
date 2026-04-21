@@ -117,6 +117,7 @@ def _series_is_secondary(series_name, cfg):
 
 def _should_label_series(series_name, cfg):
     label_strategy = cfg.get("label_strategy", "all")
+
     if label_strategy == "none":
         return False
     if label_strategy == "all":
@@ -140,7 +141,18 @@ def _add_safe_end_label(ax, y, label, color="#1F8FA8"):
     y_min, y_max = ax.get_ylim()
     y_span = y_max - y_min
     y_pos = _safe_text_y(ax, y + y_span * 0.01, 0.03)
-    ax.text(x_pos, y_pos, label, fontsize=10, color=color, ha="right", va="center", clip_on=True, zorder=8)
+
+    ax.text(
+        x_pos,
+        y_pos,
+        label,
+        fontsize=10,
+        color=color,
+        ha="right",
+        va="center",
+        clip_on=True,
+        zorder=8,
+    )
 
 
 def _add_safe_highlight_label(ax, x, y, label, color="#C44E52"):
@@ -148,6 +160,7 @@ def _add_safe_highlight_label(ax, x, y, label, color="#C44E52"):
     y_min, y_max = ax.get_ylim()
     x_span = x_max - x_min
     y_span = y_max - y_min
+
     if isinstance(x, (int, float)):
         near_right = x > x_min + x_span * 0.82
         text_x = x - x_span * 0.025 if near_right else x + x_span * 0.02
@@ -155,8 +168,20 @@ def _add_safe_highlight_label(ax, x, y, label, color="#C44E52"):
     else:
         text_x = x
         ha = "left"
+
     text_y = _safe_text_y(ax, y + y_span * 0.02, 0.04)
-    ax.text(text_x, text_y, label, fontsize=9, color=color, ha=ha, va="bottom", clip_on=True, zorder=9)
+
+    ax.text(
+        text_x,
+        text_y,
+        label,
+        fontsize=9,
+        color=color,
+        ha=ha,
+        va="bottom",
+        clip_on=True,
+        zorder=9,
+    )
 
 
 def _approx_equal(a, b, tolerance=0.5):
@@ -168,66 +193,97 @@ def _approx_equal(a, b, tolerance=0.5):
 
 def _sort_series_by_x(data):
     sorted_data = {}
+
     for series_name, vals in data.items():
         pairs = list(zip(vals["x"], vals["y"]))
         pairs.sort(key=lambda t: t[0])
-        sorted_data[series_name] = {"x": [p[0] for p in pairs], "y": [p[1] for p in pairs]}
+
+        sorted_data[series_name] = {
+            "x": [p[0] for p in pairs],
+            "y": [p[1] for p in pairs],
+        }
+
     return sorted_data
 
 
 def load_wide_data(csv_path, x_col, y_col):
     x_vals, y_vals = [], []
+
     with open(csv_path, newline="", encoding="utf-8") as f:
         reader = _safe_headers(csv.DictReader(f))
+
         if x_col not in reader.fieldnames:
             _fail_with_columns(reader, x_col)
         if y_col not in reader.fieldnames:
             _fail_with_columns(reader, y_col)
+
         for row in reader:
             row = _clean_row(row)
             x_vals.append(_coerce_value(row[x_col]))
             y_vals.append(_coerce_value(row[y_col]))
+
     return {"Main": {"x": x_vals, "y": y_vals}}
 
 
 def load_long_data(csv_path, x_col, series_col, value_col):
     grouped = defaultdict(lambda: {"x": [], "y": []})
+
     with open(csv_path, newline="", encoding="utf-8") as f:
         reader = _safe_headers(csv.DictReader(f))
+
         for col in [x_col, series_col, value_col]:
             if col not in reader.fieldnames:
                 _fail_with_columns(reader, col)
+
         for row in reader:
             row = _clean_row(row)
             series_name = row[series_col]
             grouped[series_name]["x"].append(_coerce_value(row[x_col]))
             grouped[series_name]["y"].append(_coerce_value(row[value_col]))
+
     return _sort_series_by_x(dict(grouped))
 
 
 def sort_single_series_for_rank_chart(series_data, descending=True):
     if len(series_data) != 1:
         return series_data
+
     series_name = next(iter(series_data))
     values = series_data[series_name]
     pairs = list(zip(values["x"], values["y"]))
     pairs.sort(key=lambda t: t[1], reverse=descending)
-    return {series_name: {"x": [p[0] for p in pairs], "y": [p[1] for p in pairs]}}
+
+    return {
+        series_name: {
+            "x": [p[0] for p in pairs],
+            "y": [p[1] for p in pairs],
+        }
+    }
 
 
 def validate_config_points(data, cfg, tolerance=0.75):
     warnings = []
+
     for block_name in ("highlight_points", "annotate_points"):
         for item in cfg.get(block_name, []) or []:
             series = item.get("series")
             x = item.get("x")
             y = item.get("y")
-            candidate_series = [series] if series is not None and series in data else list(data.keys()) if series is None else []
-            if series is not None and series not in data:
-                warnings.append(f"{block_name}: series {series!r} not found in loaded data.")
-                continue
+
+            candidate_series = []
+            if series is not None:
+                if series not in data:
+                    warnings.append(
+                        f"{block_name}: series {series!r} not found in loaded data."
+                    )
+                    continue
+                candidate_series = [series]
+            else:
+                candidate_series = list(data.keys())
+
             matched_x = False
             matched_xy = False
+
             for series_name in candidate_series:
                 vals = data[series_name]
                 for xv, yv in zip(vals["x"], vals["y"]):
@@ -238,10 +294,20 @@ def validate_config_points(data, cfg, tolerance=0.75):
                             break
                 if matched_xy:
                     break
+
             if not matched_x:
-                warnings.append(f"{block_name}: no matching x={x!r} found" + (f" for series={series!r}" if series is not None else "") + ".")
+                warnings.append(
+                    f"{block_name}: no matching x={x!r} found"
+                    + (f" for series={series!r}" if series is not None else "")
+                    + "."
+                )
             elif y is not None and not matched_xy:
-                warnings.append(f"{block_name}: x={x!r} found" + (f" for series={series!r}" if series is not None else "") + f", but y={y!r} does not match the data.")
+                warnings.append(
+                    f"{block_name}: x={x!r} found"
+                    + (f" for series={series!r}" if series is not None else "")
+                    + f", but y={y!r} does not match the data."
+                )
+
     return warnings
 
 
@@ -252,10 +318,21 @@ def validate_chart_config(cfg, data):
 
     if chart_type not in {"line", "bar", "dot", "scatter"}:
         errors.append(f"Invalid chart_type: {chart_type}")
+
     if data_format not in {"long", "wide"}:
         errors.append(f"Invalid data_format: {data_format}")
 
-    for required_key in ("y_axis_min", "y_axis_max", "y_tick_interval", "y_tick_format", "auto_end_labels", "sort_descending", "reference_lines", "highlight_points", "annotate_points"):
+    for required_key in (
+        "y_axis_min",
+        "y_axis_max",
+        "y_tick_interval",
+        "y_tick_format",
+        "auto_end_labels",
+        "sort_descending",
+        "reference_lines",
+        "highlight_points",
+        "annotate_points",
+    ):
         if required_key not in cfg:
             errors.append(f"Missing required config key: '{required_key}'")
 
@@ -279,13 +356,17 @@ def validate_chart_config(cfg, data):
         if data_format != "wide":
             errors.append("Dot charts require data_format='wide'")
         if cfg.get("sort_descending") is not True:
-            errors.append(f"Dot charts require sort_descending=True (got {cfg.get('sort_descending')})")
+            errors.append(
+                f"Dot charts require sort_descending=True (got {cfg.get('sort_descending')})"
+            )
         if cfg.get("series_col") is not None:
             errors.append("Dot charts must not use 'series_col'")
         if cfg.get("value_col") is not None:
             errors.append("Dot charts must not use 'value_col'")
         if cfg.get("story_angle") == "category_comparison":
-            errors.append("Dot charts are for ranked comparisons; use bar for natural-order category comparison")
+            errors.append(
+                "Dot charts are for ranked comparisons; use bar for natural-order category comparison"
+            )
 
     if chart_type == "scatter":
         for vals in data.values():
@@ -308,7 +389,7 @@ def validate_chart_config(cfg, data):
             errors.append(f"y_axis_max={y_axis_max} is below data max {max(all_y)}")
 
     if errors:
-        raise ValueError("CHART CONFIG VALIDATION FAILED:\\n- " + "\\n- ".join(errors))
+        raise ValueError("CHART CONFIG VALIDATION FAILED:\n- " + "\n- ".join(errors))
 
 
 def apply_axis_controls(ax, cfg):
@@ -319,7 +400,6 @@ def apply_axis_controls(ax, cfg):
     )
 
     if horizontal_numeric_axis:
-        # For dot plots and ranked horizontal bars, the numeric axis is X
         x_min = cfg.get("y_axis_min")
         x_max = cfg.get("y_axis_max")
 
@@ -341,7 +421,6 @@ def apply_axis_controls(ax, cfg):
 
         return
 
-    # Default behaviour for vertical / line charts
     y_min = cfg.get("y_axis_min")
     y_max = cfg.get("y_axis_max")
 
@@ -365,6 +444,7 @@ def apply_axis_controls(ax, cfg):
     if x_tick_rotation:
         plt.setp(ax.get_xticklabels(), rotation=x_tick_rotation, ha="right")
 
+
 def apply_reference_lines(ax, cfg):
     horizontal_numeric_axis = (
         cfg.get("chart_type") == "dot"
@@ -375,7 +455,6 @@ def apply_reference_lines(ax, cfg):
         try:
             axis = ref.get("axis")
 
-            # For dot plots and ranked horizontal bars, default to x-axis
             if axis is None:
                 axis = "x" if horizontal_numeric_axis else "y"
 
@@ -449,14 +528,23 @@ def apply_reference_lines(ax, cfg):
                     )
         except Exception:
             continue
-                        
+
+
 def apply_highlights(ax, cfg):
     for pt in cfg.get("highlight_points", []):
         try:
             pt_color = _get_color(pt, "#C44E52")
             x = pt["x"]
             y = pt["y"]
-            ax.scatter(x, y, color=pt_color, s=55, zorder=7)
+
+            ax.scatter(
+                x,
+                y,
+                color=pt_color,
+                s=55,
+                zorder=7,
+            )
+
             if pt.get("label"):
                 _add_safe_highlight_label(ax, x, y, pt["label"], pt_color)
         except Exception:
@@ -469,8 +557,10 @@ def apply_annotations(ax, cfg):
             x = ann["x"]
             y = ann["y"]
             text = ann["text"]
+
             x_min, x_max = ax.get_xlim()
             x_span = x_max - x_min
+
             if isinstance(x, (int, float)) and x > x_min + x_span * 0.82:
                 base_xytext = ann.get("xytext", (-55, -10))
                 if not isinstance(base_xytext, tuple):
@@ -482,29 +572,61 @@ def apply_annotations(ax, cfg):
                 if not isinstance(xytext, tuple):
                     xytext = (0, 0)
                 ha = ann.get("ha", "left")
-            ax.annotate(text, (x, y), xytext=xytext, textcoords="offset points", ha=ha, fontsize=9, zorder=9, clip_on=True)
+
+            ax.annotate(
+                text,
+                (x, y),
+                xytext=xytext,
+                textcoords="offset points",
+                ha=ha,
+                fontsize=9,
+                zorder=9,
+                clip_on=True,
+            )
         except Exception:
             continue
 
 
 def _get_story_styles(cfg):
     return {
-        "context": cfg.get("context_style", {"color": "#D9D9D9", "linewidth": 0.7, "alpha": 0.25}),
-        "focus": cfg.get("focus_style", {"color": "#1F8FA8", "linewidth": 3.4, "alpha": 1.0}),
-        "secondary": cfg.get("secondary_style", {"color": "#7A7A7A", "linewidth": 2.0, "alpha": 0.90}),
+        "context": cfg.get(
+            "context_style",
+            {"color": "#D9D9D9", "linewidth": 0.7, "alpha": 0.25},
+        ),
+        "focus": cfg.get(
+            "focus_style",
+            {"color": "#1F8FA8", "linewidth": 3.4, "alpha": 1.0},
+        ),
+        "secondary": cfg.get(
+            "secondary_style",
+            {"color": "#7A7A7A", "linewidth": 2.0, "alpha": 0.90},
+        ),
     }
 
 
 def _plot_series(ax, x_vals, y_vals, style, cfg, zorder=3):
-    ax.plot(x_vals, y_vals, color=_get_color(style, "#1F8FA8"), linewidth=style.get("linewidth", cfg.get("line_width", 2.6)), alpha=style.get("alpha", 1.0), marker="o" if cfg.get("show_markers", False) else None, markersize=cfg.get("marker_size", 0) if cfg.get("show_markers", False) else None, zorder=zorder)
+    ax.plot(
+        x_vals,
+        y_vals,
+        color=_get_color(style, "#1F8FA8"),
+        linewidth=style.get("linewidth", cfg.get("line_width", 2.6)),
+        alpha=style.get("alpha", 1.0),
+        marker="o" if cfg.get("show_markers", False) else None,
+        markersize=cfg.get("marker_size", 0) if cfg.get("show_markers", False) else None,
+        zorder=zorder,
+    )
 
 
 def _get_single_series_name(data, cfg):
     if len(data) == 1:
         return next(iter(data))
+
     focus_list = cfg.get("_focus_list", [])
-    if focus_list and focus_list[0] in data:
-        return focus_list[0]
+    if focus_list:
+        focus_series = focus_list[0]
+        if focus_series in data:
+            return focus_series
+
     return next(iter(data))
 
 
@@ -512,7 +634,9 @@ def render_line_single_series(ax, data, cfg):
     styles = _get_story_styles(cfg)
     series_name = _get_single_series_name(data, cfg)
     vals = data[series_name]
+
     _plot_series(ax, vals["x"], vals["y"], styles["focus"], cfg, zorder=4)
+
     if cfg.get("auto_end_labels", True):
         label = _build_end_label(series_name, vals["y"][-1], cfg, include_series_name=False)
         _add_safe_end_label(ax, vals["y"][-1], label, _get_color(styles["focus"]))
@@ -521,18 +645,22 @@ def render_line_single_series(ax, data, cfg):
 def render_line_focus_vs_context(ax, data, cfg):
     styles = _get_story_styles(cfg)
     label_strategy = cfg.get("label_strategy", "focus_only")
+
     for series_name, vals in data.items():
         if _series_is_focus(series_name, cfg) or _series_is_secondary(series_name, cfg):
             continue
         _plot_series(ax, vals["x"], vals["y"], styles["context"], cfg, zorder=2)
+
     for series_name in cfg.get("_secondary_list", []):
         if series_name not in data:
             continue
         vals = data[series_name]
         _plot_series(ax, vals["x"], vals["y"], styles["secondary"], cfg, zorder=4)
+
         if cfg.get("auto_end_labels", True) and label_strategy in {"focus_and_secondary", "all"}:
             label = _build_end_label(series_name, vals["y"][-1], cfg, include_series_name=True)
             _add_safe_end_label(ax, vals["y"][-1], label, _get_color(styles["secondary"]))
+
     focus_plotted = False
     for series_name in cfg.get("_focus_list", []):
         if series_name not in data:
@@ -540,9 +668,11 @@ def render_line_focus_vs_context(ax, data, cfg):
         vals = data[series_name]
         _plot_series(ax, vals["x"], vals["y"], styles["focus"], cfg, zorder=6)
         focus_plotted = True
+
         if cfg.get("auto_end_labels", True) and label_strategy in {"focus_only", "focus_and_secondary", "all"}:
             label = _build_end_label(series_name, vals["y"][-1], cfg, include_series_name=True)
             _add_safe_end_label(ax, vals["y"][-1], label, _get_color(styles["focus"]))
+
     if not focus_plotted:
         for _, vals in data.items():
             _plot_series(ax, vals["x"], vals["y"], styles["focus"], cfg, zorder=4)
@@ -550,21 +680,32 @@ def render_line_focus_vs_context(ax, data, cfg):
 
 def render_line_comparison(ax, data, cfg):
     styles = _get_story_styles(cfg)
+
     for series_name, vals in data.items():
         if _series_is_focus(series_name, cfg):
-            style = styles["focus"]; z = 6
+            style = styles["focus"]
+            z = 6
         elif _series_is_secondary(series_name, cfg):
-            style = styles["secondary"]; z = 5
+            style = styles["secondary"]
+            z = 5
         else:
-            style = styles["context"] if len(data) > 4 else styles["secondary"]; z = 4
+            style = styles["context"] if len(data) > 4 else styles["secondary"]
+            z = 4
+
         _plot_series(ax, vals["x"], vals["y"], style, cfg, zorder=z)
-        if cfg.get("auto_end_labels", True) and _should_label_series(series_name, cfg):
-            label = _build_end_label(series_name, vals["y"][-1], cfg, include_series_name=True)
-            _add_safe_end_label(ax, vals["y"][-1], label, _get_color(style))
+
+        if not cfg.get("auto_end_labels", True):
+            continue
+        if not _should_label_series(series_name, cfg):
+            continue
+
+        label = _build_end_label(series_name, vals["y"][-1], cfg, include_series_name=True)
+        _add_safe_end_label(ax, vals["y"][-1], label, _get_color(style))
 
 
 def render_line(ax, data, cfg):
     story_angle = cfg.get("story_angle", "single_series_trend")
+
     if len(data) == 1 or story_angle == "single_series_trend":
         render_line_single_series(ax, data, cfg)
     elif story_angle == "focus_vs_context":
@@ -578,10 +719,9 @@ def render_bar(ax, data, cfg):
     vals = data[series_name]
     color = _get_color(cfg, "#1F8FA8")
     ranked = cfg.get("sort_descending", False)
+    positions = list(range(len(vals["x"])))
 
     if ranked:
-        positions = list(range(len(vals["x"])))
-
         ax.barh(
             positions,
             vals["y"],
@@ -606,7 +746,6 @@ def render_bar(ax, data, cfg):
                     fontsize=9,
                 )
 
-        # Handle highlight points for ranked horizontal bars
         for pt in cfg.get("highlight_points", []):
             try:
                 category = pt.get("x")
@@ -635,7 +774,6 @@ def render_bar(ax, data, cfg):
             except Exception:
                 continue
 
-        # Handle annotations for ranked horizontal bars
         for ann in cfg.get("annotate_points", []):
             try:
                 category = ann.get("x")
@@ -660,8 +798,6 @@ def render_bar(ax, data, cfg):
                 continue
 
     else:
-        positions = list(range(len(vals["x"])))
-
         ax.bar(
             positions,
             vals["y"],
@@ -683,46 +819,125 @@ def render_bar(ax, data, cfg):
                     fontsize=9,
                 )
 
+
 def render_dot(ax, data, cfg):
     series_name = _get_single_series_name(data, cfg)
     vals = data[series_name]
     color = _get_color(cfg, "#1F8FA8")
     positions = list(range(len(vals["x"])))
+
     ax.scatter(vals["y"], positions, color=color, s=55, zorder=4)
     ax.set_yticks(positions)
     ax.set_yticklabels(vals["x"])
     ax.invert_yaxis()
+
     max_y = max(vals["y"]) if vals["y"] else 0
     ax.set_xlim(0, max_y * 1.08 if max_y else 1)
+
     if cfg.get("auto_end_labels", True):
         for pos, y in zip(positions, vals["y"]):
-            ax.text(y, pos, _format_value(y, cfg.get("y_tick_format")), ha="left", va="center", fontsize=9)
+            ax.text(
+                y,
+                pos,
+                _format_value(y, cfg.get("y_tick_format")),
+                ha="left",
+                va="center",
+                fontsize=9,
+            )
+
+    for pt in cfg.get("highlight_points", []):
+        try:
+            category = pt.get("x")
+            value = pt.get("y")
+            label = pt.get("label")
+            pt_color = _get_color(pt, "#C44E52")
+
+            if category in vals["x"]:
+                pos = vals["x"].index(category)
+                ax.scatter(value, pos, color=pt_color, s=55, zorder=7)
+
+                if label:
+                    max_y = max(vals["y"]) if vals["y"] else 0
+                    pad = max_y * 0.015 if max_y else 0.5
+                    ax.text(
+                        value + pad,
+                        pos,
+                        label,
+                        fontsize=9,
+                        color=pt_color,
+                        ha="left",
+                        va="center",
+                        clip_on=True,
+                        zorder=9,
+                    )
+        except Exception:
+            continue
+
+    for ann in cfg.get("annotate_points", []):
+        try:
+            category = ann.get("x")
+            value = ann.get("y")
+            text = ann.get("text")
+
+            if category in vals["x"] and text:
+                pos = vals["x"].index(category)
+                max_y = max(vals["y"]) if vals["y"] else 0
+                pad = max_y * 0.02 if max_y else 1
+                ax.text(
+                    value + pad,
+                    pos - 0.28,
+                    text,
+                    fontsize=9,
+                    ha="left",
+                    va="bottom",
+                    clip_on=True,
+                    zorder=9,
+                )
+        except Exception:
+            continue
 
 
 def render_scatter(ax, data, cfg):
     styles = _get_story_styles(cfg)
     story_angle = cfg.get("story_angle", "comparison")
+
     for series_name, vals in data.items():
         if story_angle == "focus_vs_context":
             if _series_is_focus(series_name, cfg):
-                style = styles["focus"]; z = 6
+                style = styles["focus"]
+                z = 6
             elif _series_is_secondary(series_name, cfg):
-                style = styles["secondary"]; z = 5
+                style = styles["secondary"]
+                z = 5
             else:
-                style = styles["context"]; z = 3
+                style = styles["context"]
+                z = 3
         else:
             if _series_is_focus(series_name, cfg):
-                style = styles["focus"]; z = 6
+                style = styles["focus"]
+                z = 6
             elif _series_is_secondary(series_name, cfg):
-                style = styles["secondary"]; z = 5
+                style = styles["secondary"]
+                z = 5
             else:
-                style = styles["secondary"] if len(data) <= 4 else styles["context"]; z = 4
-        ax.scatter(vals["x"], vals["y"], color=_get_color(style), s=55, alpha=style.get("alpha", 1.0), zorder=z)
+                style = styles["secondary"] if len(data) <= 4 else styles["context"]
+                z = 4
+
+        ax.scatter(
+            vals["x"],
+            vals["y"],
+            color=_get_color(style),
+            s=55,
+            alpha=style.get("alpha", 1.0),
+            zorder=z,
+        )
 
 
 def main():
-    print("RUNNING 538 RENDER V7")
+    print("RUNNING 538 RENDER V8")
+
     os.makedirs(REPO_ROOT / "output", exist_ok=True)
+
     cfg = _normalise_cfg(CHART_CONFIG)
 
     if "data_file" not in cfg:
@@ -747,7 +962,7 @@ def main():
 
     point_warnings = validate_config_points(data, cfg, tolerance=0.75)
     if point_warnings:
-        raise ValueError("Config point validation failed:\\n- " + "\\n- ".join(point_warnings))
+        raise ValueError("Config point validation failed:\n- " + "\n- ".join(point_warnings))
 
     if chart_type in {"bar", "dot"} and cfg.get("sort_descending", False):
         data = sort_single_series_for_rank_chart(data, descending=True)
@@ -768,11 +983,14 @@ def main():
     apply_axis_controls(ax, cfg)
     apply_reference_lines(ax, cfg)
 
-    ranked_bar = cfg.get("chart_type") == "bar" and cfg.get("sort_descending", False)
-    if not ranked_bar:
+    special_case = (
+        cfg.get("chart_type") == "dot"
+        or (cfg.get("chart_type") == "bar" and cfg.get("sort_descending", False))
+    )
+    if not special_case:
         apply_highlights(ax, cfg)
         apply_annotations(ax, cfg)
-        
+
     apply_538_template(
         ax,
         fig,
@@ -785,8 +1003,10 @@ def main():
 
     base = Path(cfg["data_file"]).stem
     ts = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+
     fig.savefig(REPO_ROOT / f"output/{base}.png", dpi=300)
     fig.savefig(REPO_ROOT / f"output/{base}_{ts}.png", dpi=300)
+
     plt.close(fig)
     print(f"Saved output/{base}.png")
     print(f"Saved output/{base}_{ts}.png")
