@@ -1,12 +1,12 @@
 CHART_CONFIG = {
     "data_file": "data/your_file.csv",
-    "data_format": "wide",  # "wide" or "long"
-    "chart_type": "bar",    # "line", "bar", "dot", "scatter"
+    "data_format": "wide",
+    "chart_type": "bar",
 
     "x_col": "category_or_x",
     "y_col": "value_or_y",
-    "series_col": None,     # line only
-    "value_col": None,      # line only
+    "series_col": None,
+    "value_col": None,
 
     "title": "Your headline title",
     "subtitle": "Your explanatory subtitle",
@@ -29,7 +29,6 @@ CHART_CONFIG = {
     "marker_size": 0,
     "show_markers": False,
     "auto_end_labels": True,
-
     "sort_descending": False,
 
     "reference_lines": [],
