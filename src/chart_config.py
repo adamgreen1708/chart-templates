@@ -2,10 +2,11 @@ CHART_CONFIG = {
     "data_file": "data/east_anglia_sunshine_2025.csv",
     "data_format": "wide",
     "chart_type": "dot",
-    "sort_descending": True,
 
     "x_col": "month",
     "y_col": "sunshine_hours",
+
+    "sort_descending": True,
 
     "title": "East Anglia’s sunshine exploded in spring",
     "subtitle": "Monthly sunshine hours in 2025 rose sharply from winter lows to a June peak, before dropping back hard by October. Months should stay in calendar order, not be ranked.",
