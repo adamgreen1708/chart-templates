@@ -7,8 +7,8 @@ CHART_CONFIG = {
     "y_col": "sunshine_hours",
 
     "title": "Warmer years tend to be sunnier in East Anglia",
-    "subtitle": "Average temperature and sunshine hours show a clear positive relationship, though not perfectly aligned.",
-    "source_text": "Source: Met Office (combined datasets)",
+    "subtitle": "Average temperature and sunshine hours move together, though not perfectly.",
+    "source_text": "Source: Met Office combined datasets",
     "footer_left": "Adam Green | coffeetableviz",
 
     "story_angle": "relationship",
@@ -20,6 +20,10 @@ CHART_CONFIG = {
 
     "auto_end_labels": False,
     "sort_descending": False,
+
+    "show_regression_line": True,
+    "show_r_squared": True,
+    "scatter_point_size": 55,
 
     "reference_lines": [],
     "highlight_points": [],
