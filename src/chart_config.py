@@ -1,32 +1,50 @@
 CHART_CONFIG = {
-    "data_file": "data/temp_vs_sunshine.csv",
+    "data_file": "data/east_anglia_sunshine_2025_wide.csv",
     "data_format": "wide",
-    "chart_type": "scatter",
+    "chart_type": "dot",
 
-    "x_col": "avg_temp",
-    "y_col": "sunshine_hours",
+    "x_col": "sunshine_hours",
+    "y_col": "month",
 
-    "title": "Warmer years tend to be sunnier in East Anglia",
-    "subtitle": "Average temperature and sunshine hours move together, though not perfectly.",
-    "source_text": "Source: Met Office combined datasets",
+    "title": "Spring 2025 did the heavy lifting for sunshine",
+    "subtitle": "March–May dominate the sunshine rankings in East Anglia, with April peaking far above the rest.",
+    "source_text": "Source: East Anglia sunshine dataset (2025)",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "relationship",
+    "story_angle": "ranking",
 
-    "y_axis_min": 1200,
-    "y_axis_max": 1700,
-    "y_tick_interval": 100,
-    "y_tick_format": ".0f",
+    "focus_series": None,
+    "secondary_series": None,
 
-    "auto_end_labels": False,
-    "sort_descending": False,
+    "sort_order": "descending",
 
-    "show_regression_line": True,
-    "show_r_squared": True,
-    "scatter_point_size": 55,
+    "annotations": {
+        "reference_lines": [],
+        "highlight_points": [
+            {
+                "x": 269.2,
+                "y": "Apr",
+                "label": "Peak sunshine month"
+            }
+        ],
+        "annotate_points": [
+            {
+                "x": 222.0,
+                "y": "Mar",
+                "label": "Start of spring surge"
+            },
+            {
+                "x": 252.8,
+                "y": "May",
+                "label": "Sustained high sunshine"
+            }
+        ],
+        "auto_end_labels": False
+    },
 
-    "reference_lines": [],
-    "highlight_points": [],
-    "annotate_points": [],
-    "end_labels": []
+    "style": {
+        "dot_size": 60,
+        "color": "#1F8FA8",
+        "highlight_color": "#C44E52"
+    }
 }
