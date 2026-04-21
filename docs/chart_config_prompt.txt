@@ -130,6 +130,14 @@ If exact coordinates are uncertain, leave annotations empty.
 - Do not force a line chart onto categorical snapshot data
 - Do not force a dot chart onto natural-order category stories unless you are explicitly changing the story to ranking
 
+IMPORTANT RENDERER RULE:
+For `dot` charts, keep:
+- `x_col` = category
+- `y_col` = value
+
+Do NOT swap them.
+The renderer itself converts the dot chart so categories appear on the y-axis and values on the x-axis.
+
 ## ALWAYS INCLUDE THESE STANDARD FIELDS IN EVERY CHART_CONFIG
 Always include these keys explicitly:
 
