@@ -4,76 +4,61 @@ I am using a locked 538-style Python chart rendering system.
 
 Your job is to analyse a dataset and generate a complete `CHART_CONFIG` dictionary for my renderer.
 
----
-
 ## INPUT
 I will provide:
 - A CSV file
 - Its repo filename/path
 
----
-
 ## YOUR TASKS
 
 ### 1. Inspect the dataset structure
-- Identify:
-  - the correct data file path
-  - x column
-  - y column
-  - whether a series column exists
-
----
+- Identify the correct data file path
+- Identify x column
+- Identify y column
+- Identify whether a series column exists
 
 ### 2. DATA STRUCTURE CLASSIFICATION (CRITICAL)
+Determine whether the dataset is LONG or WIDE format BEFORE generating the config.
 
-You must determine whether the dataset is LONG or WIDE format BEFORE generating the config:
-
-#### Use `data_format = "long"` ONLY if:
-- There is a series/category column (e.g. month, country, product)
-- AND multiple observations per category (e.g. over time)
+Use `data_format = "long"` ONLY if:
+- There is a series/category column
+- AND multiple observations per category
 - Example: Jan, Feb, Mar across many years
 
-#### Use `data_format = "wide"` if:
+Use `data_format = "wide"` if:
 - The dataset is a single snapshot of categories
 - OR there is only one value per category
 - Example: Jan–Dec for a single year
 
-#### IMPORTANT RULES:
+IMPORTANT:
 - If using `wide`, DO NOT include `series_col` or `value_col`
 - If using `long`, you MUST include both `series_col` and `value_col`
-- Never set `series_col = None`
-
----
+- Never set `series_col = None` in a long chart
 
 ### 3. Choose the best chart type
-
 - `line` → time series / continuous trend
 - `bar` → category comparison
 - `dot` → ranked comparison
 - `scatter` → relationship between two numeric variables
 
----
-
 ### 4. CHART TYPE DECISION (STRICT)
+You must explicitly decide which story the data represents before choosing the chart:
 
-You must explicitly decide which of these four stories the data represents BEFORE choosing the chart:
+- Trend over time → `line`
+- Ranked comparison (best to worst) → `dot` preferred, or ranked `bar`
+- Category comparison in natural order (e.g. Jan–Dec) → `bar`
+- Relationship between two numeric variables → `scatter`
 
-- Trend over time → use `line`
-- Ranked comparison (best to worst) → use `dot` (preferred) or `bar`
-- Category comparison (unordered or natural order like months) → use `bar`
-- Relationship between two numeric variables → use `scatter`
+IMPORTANT:
+- Do NOT choose `line` unless x is time or ordered sequence
+- If the dataset is a single snapshot of categories, DO NOT use `line`
+- If the story is ranking, prefer `dot`
+- If categories have a natural order (e.g. Jan–Dec), preserve that order and do NOT sort
+- If you use `dot`, it must be a ranking story
+- If you want a ranked bar, set `chart_type = "bar"` and `sort_descending = True`
 
-#### IMPORTANT RULES:
-- Do NOT choose `line` unless the x-axis is time or ordered sequence
-- If the dataset is a single snapshot of categories (e.g. months in one year), DO NOT use `line`
-- If the story is ranking, prefer `dot` over `bar`
-- If categories have a natural order (e.g. Jan–Dec), preserve that order (do NOT sort)
-
----
-
-### 5. Identify the strongest SINGLE story in the data
-
-You must identify ONE dominant narrative, such as:
+### 5. Identify the strongest single story in the data
+Choose one dominant narrative:
 - trend
 - ranking
 - comparison
@@ -82,89 +67,77 @@ You must identify ONE dominant narrative, such as:
 
 Avoid generic summaries.
 
----
-
 ### 6. Decide whether annotations are needed
+- `reference_lines` only if genuinely useful
+- `highlight_points` only if exact coordinates are known
+- `annotate_points` only if exact coordinates are known
+- `auto_end_labels` usually preferred except for scatter
 
-- `reference_lines` → only if genuinely useful
-- `highlight_points` → only if a clear standout point exists
-- `auto_end_labels` → usually preferred
-
-If exact coordinates are uncertain, DO NOT include annotations.
-
----
+If exact coordinates are uncertain, leave annotations empty.
 
 ## CHART-TYPE-SPECIFIC RULES
 
 ### Line charts
 - Must use `data_format = "long"`
-- Must include `series_col`
+- Must include `series_col` and `value_col`
 - Use `focus_series` if a single series is the story
-- Use `label_strategy = "focus_only"` or `"focus_and_secondary"`
+- Keep `sort_descending = False`
 
 ### Bar charts
 - Must use `data_format = "wide"`
-- DO NOT use `series_col`
-- DO NOT use `focus_series` or `secondary_series`
-- Preserve natural category order unless ranking
-- Use `sort_descending = True` ONLY if ranking
+- Do NOT use `series_col` or `value_col`
+- Use calendar/natural order unless explicitly ranking
+- Ranked bar is allowed by setting `sort_descending = True`
+- Bar charts may use `auto_end_labels = True`
 
 ### Dot charts
 - Must use `data_format = "wide"`
 - Must include `sort_descending = True`
-- Used for ranked comparisons
-- DO NOT use `series_col`
+- Used for ranked comparisons only
+- Do NOT use `series_col` or `value_col`
 
 ### Scatter charts
-- Both x and y must be numeric
-- Do NOT use `auto_end_labels`
-- Only annotate meaningful points
-
----
+- x and y must both be numeric
+- Set `auto_end_labels = False`
+- Only annotate meaningful standout points with exact coordinates
 
 ## CRITICAL RULES
 
 - Do not invent values
-- Any `highlight_points` or `annotate_points` must match real data exactly
+- Any `highlight_points` and `annotate_points` must match real data exactly
 - If unsure, leave them empty
-- Never use `data_format = "long"` without a valid `series_col`
-- Never set `series_col = None`
+- Never use `data_format = "long"` without valid `series_col` and `value_col`
+- Never set duplicate keys in the output
 - If the dataset is a single snapshot, it is almost always `wide`
-- If the renderer cannot support the story cleanly, change the story
+- If the renderer cannot support the editorial idea cleanly, change the story
 
-### ALWAYS INCLUDE THESE STANDARD AXIS FIELDS IN EVERY CHART_CONFIG
+### ALWAYS INCLUDE THESE STANDARD FIELDS IN EVERY CHART_CONFIG
 - `"y_axis_min": 0`
 - `"y_axis_max": None`
 - `"y_tick_interval": 25`
 - `"y_tick_format": ".0f"`
-- `"auto_end_labels": True`
+- `"auto_end_labels": True` for line/bar/dot
+- `"auto_end_labels": False` for scatter
+- `"sort_descending": False` unless chart is dot or a ranked bar
 
-Do not omit these fields, even if they are defaults.
-
-### DO NOT CREATE DUPLICATE KEYS
-- Every key in `CHART_CONFIG` must appear only once
-- Never output the same key twice with different values
-
----
+Do not omit these fields.
 
 ## REQUIRED OUTPUT FORMAT
 
 Return:
+1. Short explanation (max 4 lines)
+   - chart type chosen
+   - data format chosen
+   - key story
 
-### 1. Short explanation (max 4 lines)
-- chart type chosen
-- data format chosen
-- key story
+2. A valid Python dictionary called `CHART_CONFIG`
 
-### 2. CHART_CONFIG
-
-Return a valid Python dictionary called `CHART_CONFIG`.
-
-The returned config must always explicitly include these fields:
-
+The config must always explicitly include:
 ```python
 "y_axis_min": 0,
 "y_axis_max": None,
 "y_tick_interval": 25,
 "y_tick_format": ".0f",
-"auto_end_labels": True,
+"auto_end_labels": True,   # or False for scatter
+"sort_descending": False,  # or True for dot / ranked bar
+```
