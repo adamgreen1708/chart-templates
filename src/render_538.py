@@ -363,37 +363,87 @@ def apply_axis_controls(ax, cfg):
         plt.setp(ax.get_xticklabels(), rotation=x_tick_rotation, ha="right")
 
 def apply_reference_lines(ax, cfg):
+    ranked_bar = cfg.get("chart_type") == "bar" and cfg.get("sort_descending", False)
+
     for ref in cfg.get("reference_lines", []):
         try:
-            axis = ref.get("axis", "y")
+            axis = ref.get("axis")
+
+            # For ranked horizontal bars, default reference lines to x-axis
+            if axis is None:
+                axis = "x" if ranked_bar else "y"
+
             value = ref.get("value")
             if value is None:
                 value = ref.get(axis)
             if value is None:
                 value = ref.get("y") if axis == "y" else ref.get("x")
+
             if value is None:
                 continue
+
             line_color = _get_color(ref, "#999999")
+
             if axis == "x":
-                ax.axvline(x=value, color=line_color, linestyle=ref.get("linestyle", "--"), linewidth=ref.get("linewidth", 1.0), alpha=ref.get("alpha", 1.0), zorder=1)
+                ax.axvline(
+                    x=value,
+                    color=line_color,
+                    linestyle=ref.get("linestyle", "--"),
+                    linewidth=ref.get("linewidth", 1.0),
+                    alpha=ref.get("alpha", 1.0),
+                    zorder=1,
+                )
             else:
-                ax.axhline(y=value, color=line_color, linestyle=ref.get("linestyle", "--"), linewidth=ref.get("linewidth", 1.0), alpha=ref.get("alpha", 1.0), zorder=1)
+                ax.axhline(
+                    y=value,
+                    color=line_color,
+                    linestyle=ref.get("linestyle", "--"),
+                    linewidth=ref.get("linewidth", 1.0),
+                    alpha=ref.get("alpha", 1.0),
+                    zorder=1,
+                )
+
             label = ref.get("label")
             if label:
                 if axis == "x":
                     y_min, y_max = ax.get_ylim()
                     y_pos = y_max - (y_max - y_min) * 0.04
-                    ax.text(value, y_pos, label, fontsize=9, color=line_color, ha="center", va="top", clip_on=True, zorder=5)
+                    ax.text(
+                        value,
+                        y_pos,
+                        label,
+                        fontsize=9,
+                        color=line_color,
+                        ha="center",
+                        va="top",
+                        clip_on=True,
+                        zorder=5,
+                    )
                 else:
                     label_x = ref.get("label_x", "left")
                     label_offset = ref.get("label_offset", 0.0)
-                    x_pos = _safe_text_x_right(ax, 0.955) if label_x == "right" else _safe_text_x_left(ax, 0.015)
+
+                    x_pos = (
+                        _safe_text_x_right(ax, 0.955)
+                        if label_x == "right"
+                        else _safe_text_x_left(ax, 0.015)
+                    )
                     y_pos = _safe_text_y(ax, value + label_offset, 0.03)
-                    ax.text(x_pos, y_pos, label, fontsize=9, color=line_color, ha="right" if label_x == "right" else "left", va="bottom", clip_on=True, zorder=5)
+
+                    ax.text(
+                        x_pos,
+                        y_pos,
+                        label,
+                        fontsize=9,
+                        color=line_color,
+                        ha="right" if label_x == "right" else "left",
+                        va="bottom",
+                        clip_on=True,
+                        zorder=5,
+                    )
         except Exception:
             continue
-
-
+            
 def apply_highlights(ax, cfg):
     for pt in cfg.get("highlight_points", []):
         try:
@@ -522,26 +572,110 @@ def render_bar(ax, data, cfg):
     vals = data[series_name]
     color = _get_color(cfg, "#1F8FA8")
     ranked = cfg.get("sort_descending", False)
-    positions = list(range(len(vals["x"])))
 
     if ranked:
-        ax.barh(positions, vals["y"], color=color, height=0.7, zorder=3)
+        positions = list(range(len(vals["x"])))
+
+        ax.barh(
+            positions,
+            vals["y"],
+            color=color,
+            height=0.7,
+            zorder=3,
+        )
         ax.set_yticks(positions)
         ax.set_yticklabels(vals["x"])
         ax.invert_yaxis()
+
         if cfg.get("auto_end_labels", True):
             max_y = max(vals["y"]) if vals["y"] else 0
             pad = max_y * 0.015 if max_y else 0.5
             for pos, y in zip(positions, vals["y"]):
-                ax.text(y + pad, pos, _format_value(y, cfg.get("y_tick_format")), ha="left", va="center", fontsize=9)
+                ax.text(
+                    y + pad,
+                    pos,
+                    _format_value(y, cfg.get("y_tick_format")),
+                    ha="left",
+                    va="center",
+                    fontsize=9,
+                )
+
+        # Handle highlight points for ranked horizontal bars
+        for pt in cfg.get("highlight_points", []):
+            try:
+                category = pt.get("x")
+                value = pt.get("y")
+                label = pt.get("label")
+                pt_color = _get_color(pt, "#C44E52")
+
+                if category in vals["x"]:
+                    pos = vals["x"].index(category)
+                    ax.scatter(value, pos, color=pt_color, s=55, zorder=7)
+
+                    if label:
+                        max_y = max(vals["y"]) if vals["y"] else 0
+                        pad = max_y * 0.015 if max_y else 0.5
+                        ax.text(
+                            value + pad,
+                            pos,
+                            label,
+                            fontsize=9,
+                            color=pt_color,
+                            ha="left",
+                            va="center",
+                            clip_on=True,
+                            zorder=9,
+                        )
+            except Exception:
+                continue
+
+        # Handle annotations for ranked horizontal bars
+        for ann in cfg.get("annotate_points", []):
+            try:
+                category = ann.get("x")
+                value = ann.get("y")
+                text = ann.get("text")
+
+                if category in vals["x"] and text:
+                    pos = vals["x"].index(category)
+                    max_y = max(vals["y"]) if vals["y"] else 0
+                    pad = max_y * 0.02 if max_y else 1
+                    ax.text(
+                        value + pad,
+                        pos - 0.28,
+                        text,
+                        fontsize=9,
+                        ha="left",
+                        va="bottom",
+                        clip_on=True,
+                        zorder=9,
+                    )
+            except Exception:
+                continue
+
     else:
-        ax.bar(positions, vals["y"], color=color, width=0.7, zorder=3)
+        positions = list(range(len(vals["x"])))
+
+        ax.bar(
+            positions,
+            vals["y"],
+            color=color,
+            width=0.7,
+            zorder=3,
+        )
         ax.set_xticks(positions)
         ax.set_xticklabels(vals["x"])
+
         if cfg.get("auto_end_labels", True):
             for pos, y in zip(positions, vals["y"]):
-                ax.text(pos, y, _format_value(y, cfg.get("y_tick_format")), ha="center", va="bottom", fontsize=9)
-
+                ax.text(
+                    pos,
+                    y,
+                    _format_value(y, cfg.get("y_tick_format")),
+                    ha="center",
+                    va="bottom",
+                    fontsize=9,
+                )
 
 def render_dot(ax, data, cfg):
     series_name = _get_single_series_name(data, cfg)
@@ -627,9 +761,12 @@ def main():
 
     apply_axis_controls(ax, cfg)
     apply_reference_lines(ax, cfg)
-    apply_highlights(ax, cfg)
-    apply_annotations(ax, cfg)
 
+    ranked_bar = cfg.get("chart_type") == "bar" and cfg.get("sort_descending", False)
+    if not ranked_bar:
+        apply_highlights(ax, cfg)
+        apply_annotations(ax, cfg)
+        
     apply_538_template(
         ax,
         fig,
