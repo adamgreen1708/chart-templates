@@ -1,7 +1,8 @@
 CHART_CONFIG = {
     "data_file": "data/east_anglia_sunshine_2025.csv",
     "data_format": "wide",
-    "chart_type": "bar",
+    "chart_type": "dot",
+    "sort_descending": True,
 
     "x_col": "month",
     "y_col": "sunshine_hours",
