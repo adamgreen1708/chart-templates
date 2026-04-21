@@ -312,22 +312,55 @@ def validate_chart_config(cfg, data):
 
 
 def apply_axis_controls(ax, cfg):
+    chart_type = cfg.get("chart_type")
+    ranked_bar = chart_type == "bar" and cfg.get("sort_descending", False)
+
+    if ranked_bar:
+        # For horizontal ranked bars, the numeric axis is X
+        x_min = cfg.get("y_axis_min")
+        x_max = cfg.get("y_axis_max")
+
+        if x_min is not None or x_max is not None:
+            current_min, current_max = ax.get_xlim()
+            ax.set_xlim(
+                left=x_min if x_min is not None else current_min,
+                right=x_max if x_max is not None else current_max,
+            )
+
+        tick_interval = cfg.get("y_tick_interval")
+        if tick_interval is not None:
+            ax.xaxis.set_major_locator(MultipleLocator(tick_interval))
+
+        tick_format = cfg.get("y_tick_format")
+        formatter = _axis_formatter_from_fmt(tick_format)
+        if formatter:
+            ax.xaxis.set_major_formatter(formatter)
+
+        return
+
+    # Default behaviour for all other chart types
     y_min = cfg.get("y_axis_min")
     y_max = cfg.get("y_axis_max")
+
     if y_min is not None or y_max is not None:
         current_min, current_max = ax.get_ylim()
-        ax.set_ylim(bottom=y_min if y_min is not None else current_min, top=y_max if y_max is not None else current_max)
+        ax.set_ylim(
+            bottom=y_min if y_min is not None else current_min,
+            top=y_max if y_max is not None else current_max,
+        )
+
     y_tick_interval = cfg.get("y_tick_interval")
     if y_tick_interval is not None:
         ax.yaxis.set_major_locator(MultipleLocator(y_tick_interval))
+
     y_tick_format = cfg.get("y_tick_format")
     formatter = _axis_formatter_from_fmt(y_tick_format)
     if formatter:
         ax.yaxis.set_major_formatter(formatter)
+
     x_tick_rotation = cfg.get("x_tick_rotation", 0)
     if x_tick_rotation:
         plt.setp(ax.get_xticklabels(), rotation=x_tick_rotation, ha="right")
-
 
 def apply_reference_lines(ax, cfg):
     for ref in cfg.get("reference_lines", []):
