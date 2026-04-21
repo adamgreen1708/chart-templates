@@ -94,7 +94,12 @@ If exact coordinates are uncertain, leave annotations empty.
 - Must use `data_format = "wide"`
 - Must include `sort_descending = True`
 - Used for ranked comparisons only
+- Keep `x_col` as the category column
+- Keep `y_col` as the numeric value column
+- The renderer will plot values on the x-axis and categories on the y-axis
 - Do NOT use `series_col` or `value_col`
+- `auto_end_labels` may be True
+- Standard axis fields still apply, but in dot charts they control the numeric value axis
 
 ### Scatter charts
 - x and y must both be numeric
