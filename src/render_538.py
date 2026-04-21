@@ -684,7 +684,7 @@ def main():
 
     point_warnings = validate_config_points(data, cfg, tolerance=0.75)
     if point_warnings:
-        raise ValueError("Config point validation failed:\n- " + "\n- ".join(point_warnings))
+        raise ValueError("Config point validation failed:\\n- " + "\\n- ".join(point_warnings))
 
     if chart_type in {"bar", "dot"} and cfg.get("sort_descending", False):
         data = sort_single_series_for_rank_chart(data, descending=True)
