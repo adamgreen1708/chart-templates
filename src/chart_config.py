@@ -44,5 +44,5 @@ CHART_CONFIG = {
     "y_tick_format": ".0f",
 
     "auto_end_labels": True,
-    "sort_descending": False,
+    "sort_descending": True,
 }
