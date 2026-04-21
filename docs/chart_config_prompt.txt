@@ -45,7 +45,7 @@ You must determine whether the dataset is LONG or WIDE format BEFORE generating 
 
 ---
 
-### 3. Choose the best chart type:
+### 3. Choose the best chart type
 
 - `line` → time series / continuous trend
 - `bar` → category comparison
@@ -102,8 +102,6 @@ If exact coordinates are uncertain, DO NOT include annotations.
 - Use `focus_series` if a single series is the story
 - Use `label_strategy = "focus_only"` or `"focus_and_secondary"`
 
----
-
 ### Bar charts
 - Must use `data_format = "wide"`
 - DO NOT use `series_col`
@@ -111,15 +109,11 @@ If exact coordinates are uncertain, DO NOT include annotations.
 - Preserve natural category order unless ranking
 - Use `sort_descending = True` ONLY if ranking
 
----
-
 ### Dot charts
 - Must use `data_format = "wide"`
 - Must include `sort_descending = True`
 - Used for ranked comparisons
 - DO NOT use `series_col`
-
----
 
 ### Scatter charts
 - Both x and y must be numeric
@@ -138,6 +132,19 @@ If exact coordinates are uncertain, DO NOT include annotations.
 - If the dataset is a single snapshot, it is almost always `wide`
 - If the renderer cannot support the story cleanly, change the story
 
+### ALWAYS INCLUDE THESE STANDARD AXIS FIELDS IN EVERY CHART_CONFIG
+- `"y_axis_min": 0`
+- `"y_axis_max": None`
+- `"y_tick_interval": 25`
+- `"y_tick_format": ".0f"`
+- `"auto_end_labels": True`
+
+Do not omit these fields, even if they are defaults.
+
+### DO NOT CREATE DUPLICATE KEYS
+- Every key in `CHART_CONFIG` must appear only once
+- Never output the same key twice with different values
+
 ---
 
 ## REQUIRED OUTPUT FORMAT
@@ -149,10 +156,15 @@ Return:
 - data format chosen
 - key story
 
----
-
 ### 2. CHART_CONFIG
 
-Return a valid Python dictionary called `CHART_CONFIG` using the correct schema.
+Return a valid Python dictionary called `CHART_CONFIG`.
 
-Only include fields relevant to the chart type.
+The returned config must always explicitly include these fields:
+
+```python
+"y_axis_min": 0,
+"y_axis_max": None,
+"y_tick_interval": 25,
+"y_tick_format": ".0f",
+"auto_end_labels": True,
