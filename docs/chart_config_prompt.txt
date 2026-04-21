@@ -1,193 +1,48 @@
-You are generating a production-ready chart_config.py for a reusable chart rendering system.
+# 538-style CHART_CONFIG generation prompt (updated)
 
-Your goal is to define a clear visual data story, not just map fields.
+I am using a locked 538-style Python chart rendering system.
 
-## TASK
+Your job is to analyse a dataset and generate a complete `CHART_CONFIG` dictionary for my renderer.
 
-Analyse the dataset and return ONLY valid Python:
+## INPUT
+I will provide a CSV file and its repo filename/path.
 
-CHART_CONFIG = { ... }
+## YOUR TASKS
 
-No markdown.
-No explanation.
-No commentary.
+1. Inspect the dataset structure.
+   - Identify the correct data file path I provide
+   - Identify x column
+   - Identify y column
+   - Detect whether a series column exists
 
-## STEP 1 — UNDERSTAND THE DATA
+2. Choose the best chart type:
+   - `line` → time series / continuous trend
+   - `bar` → category comparison
+   - `dot` → ranked comparison
+   - `scatter` → relationship between two numeric variables
 
-Identify:
-- the correct data file path I provide
-- whether the dataset is wide or long format
-- x column
-- y column (for wide)
-- series column and value column (for long)
+3. Identify the strongest single story in the data.
 
-## STEP 2 — CHOOSE CHART TYPE
+4. Decide whether annotations are needed:
+   - `reference_lines` only if genuinely useful
+   - `highlight_points` only if there is a clear standout point
+   - `auto_end_labels` should usually be used instead of manual end labels
 
-Use one of:
-- "line"
-- "bar"
-- "dot"
-- "scatter"
+5. Generate a full `CHART_CONFIG` dictionary using the exact schema below.
 
-## STEP 3 — CHOOSE STORY ANGLE
+## CRITICAL RULES
 
-Use one of:
-- "single_series_trend"
-- "focus_vs_context"
-- "comparison"
+- Do not invent values.
+- Any `highlight_points` and `annotate_points` must match real data coordinates exactly.
+- If you are not confident in the exact coordinates, leave those arrays empty.
+- For long-format single-series charts, explicitly set `focus_series`.
+- `focus_series` can be a string or a list.
+- `secondary_series` can be a string or a list.
+- Do not force a multi-series story if a single-series story is cleaner.
+- If the renderer cannot support the editorial idea cleanly, change the story.
 
-Rules:
-- single_series_trend = one main series only
-- focus_vs_context = one highlighted series, others muted in background
-- comparison = 2–4 important series compared clearly
+## REQUIRED OUTPUT FORMAT
 
-## STEP 4 — REQUIRED FIELDS
-
-Always include:
-
-- "data_file"
-- "data_format"
-- "chart_type"
-
-- "x_col"
-- and either:
-  - "y_col" (for wide)
-  - OR "series_col" and "value_col" (for long)
-
-- "title"
-- "subtitle"
-- "source_text"
-- "footer_left"
-
-- "story_angle"
-- "focus_series"
-- "secondary_series"
-- "label_strategy"
-
-- "context_style"
-- "focus_style"
-- "secondary_style"
-
-- "sort_descending"
-
-- "x_tick_rotation"
-- "y_axis_min"
-- "y_axis_max"
-- "y_tick_interval"
-- "y_tick_format"
-
-- "line_width"
-- "marker_size"
-- "show_markers"
-
-- "auto_end_labels"
-
-- "reference_lines"
-- "highlight_points"
-- "annotate_points"
-
-## STYLE RULES
-
-Use:
-"footer_left": "Adam Green | coffeetableviz"
-
-Default focus color:
-#1F8FA8
-
-Default secondary color:
-#7A7A7A
-
-Default context style:
-{
-    "color": "#D9D9D9",
-    "linewidth": 0.7,
-    "alpha": 0.25
-}
-
-Default focus style:
-{
-    "color": "#1F8FA8",
-    "linewidth": 3.4,
-    "alpha": 1.0
-}
-
-Default secondary style:
-{
-    "color": "#7A7A7A",
-    "linewidth": 2.0,
-    "alpha": 0.9
-}
-
-## LABEL STRATEGY RULES
-
-Use one of:
-- "focus_only"
-- "focus_and_secondary"
-- "all"
-- "none"
-
-For focus_vs_context:
-- usually use "focus_only"
-
-For comparison:
-- usually use "focus_and_secondary" or "all"
-
-## ANNOTATION RULES
-
-Keep annotations minimal.
-Maximum 1–2 annotations.
-Avoid clutter.
-Avoid placing annotations at the far right edge if an end label is already present.
-
-Use:
-"reference_lines": [
-  {
-    "value": ...,
-    "label": "...",
-    "color": "#999999",
-    "linestyle": "--",
-    "linewidth": 1.0,
-    "label_x": "left",
-    "label_offset": 0.0
-  }
-]
-
-Use:
-"highlight_points": [
-  {
-    "x": ...,
-    "y": ...,
-    "label": "...",
-    "color": "#C44E52"
-  }
-]
-
-Use:
-"annotate_points": [
-  {
-    "x": ...,
-    "y": ...,
-    "text": "...",
-    "xytext": (-40, -15),
-    "ha": "right"
-  }
-]
-
-## IMPORTANT RULES
-
-- Always include:
-  "data_file": "data/<filename>.csv"
-- Always include:
-  "source_text": "Source: ..."
-- Use American spelling:
-  "color" not "colour"
-- Prefer simple, editorial charts
-- If multi-series, never render all lines equally unless comparison is the explicit story
-- For bar and dot charts, usually set:
-  "sort_descending": True
-- Do not include placeholder text like:
-  "Test chart"
-  "Baseline"
-  "Peak test point"
-
-Return only the Python dictionary assignment.
+Return:
+1. A short explanation (max 4 lines)
+2. A full Python dictionary called `CHART_CONFIG`
