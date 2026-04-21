@@ -721,7 +721,7 @@ def render_bar(ax, data, cfg):
     ranked = cfg.get("sort_descending", False)
     positions = list(range(len(vals["x"])))
 
-        if ranked:
+    if ranked:
         ax.barh(
             positions,
             vals["y"],
@@ -796,70 +796,6 @@ def render_bar(ax, data, cfg):
                     )
             except Exception:
                 continue
-                
-        if cfg.get("auto_end_labels", True):
-            max_y = max(vals["y"]) if vals["y"] else 0
-            pad = max_y * 0.015 if max_y else 0.5
-            for pos, y in zip(positions, vals["y"]):
-                ax.text(
-                    y + pad,
-                    pos,
-                    _format_value(y, cfg.get("y_tick_format")),
-                    ha="left",
-                    va="center",
-                    fontsize=9,
-                )
-
-        for pt in cfg.get("highlight_points", []):
-            try:
-                category = pt.get("x")
-                value = pt.get("y")
-                label = pt.get("label")
-                pt_color = _get_color(pt, "#C44E52")
-
-                if category in vals["x"]:
-                    pos = vals["x"].index(category)
-                    ax.scatter(value, pos, color=pt_color, s=55, zorder=7)
-
-                    if label:
-                        max_y = max(vals["y"]) if vals["y"] else 0
-                        pad = max_y * 0.015 if max_y else 0.5
-                        ax.text(
-                            value + pad,
-                            pos,
-                            label,
-                            fontsize=9,
-                            color=pt_color,
-                            ha="left",
-                            va="center",
-                            clip_on=True,
-                            zorder=9,
-                        )
-            except Exception:
-                continue
-
-        for ann in cfg.get("annotate_points", []):
-            try:
-                category = ann.get("x")
-                value = ann.get("y")
-                text = ann.get("text")
-
-                if category in vals["x"] and text:
-                    pos = vals["x"].index(category)
-                    max_y = max(vals["y"]) if vals["y"] else 0
-                    pad = max_y * 0.02 if max_y else 1
-                    ax.text(
-                        value + pad,
-                        pos - 0.28,
-                        text,
-                        fontsize=9,
-                        ha="left",
-                        va="bottom",
-                        clip_on=True,
-                        zorder=9,
-                    )
-            except Exception:
-                continue
 
     else:
         ax.bar(
@@ -882,16 +818,8 @@ def render_bar(ax, data, cfg):
                     va="bottom",
                     fontsize=9,
                 )
-
+                
 def _dot_text_positions(ax, value, pos):
-    """
-    Returns coordinated positions for:
-    - value label
-    - highlight label
-    - annotation text
-
-    Designed to reduce overlap in ranked dot plots.
-    """
     x_min, x_max = ax.get_xlim()
     x_span = x_max - x_min
 
@@ -925,6 +853,89 @@ def _dot_text_positions(ax, value, pos):
         "highlight": (highlight_x, pos - 0.18, highlight_ha),
         "annotation": (ann_x, pos - 0.34, ann_ha),
     }
+
+
+def render_dot(ax, data, cfg):
+    series_name = _get_single_series_name(data, cfg)
+    vals = data[series_name]
+    color = _get_color(cfg, "#1F8FA8")
+    positions = list(range(len(vals["x"])))
+
+    ax.scatter(vals["y"], positions, color=color, s=55, zorder=4)
+    ax.set_yticks(positions)
+    ax.set_yticklabels(vals["x"])
+    ax.invert_yaxis()
+
+    max_y = max(vals["y"]) if vals["y"] else 0
+    ax.set_xlim(0, max_y * 1.10 if max_y else 1)
+
+    if cfg.get("auto_end_labels", True):
+        for pos, y in zip(positions, vals["y"]):
+            coords = _dot_text_positions(ax, y, pos)
+            value_x, value_y, value_ha = coords["value"]
+
+            ax.text(
+                value_x,
+                value_y,
+                _format_value(y, cfg.get("y_tick_format")),
+                ha=value_ha,
+                va="center",
+                fontsize=9,
+                zorder=8,
+            )
+
+    for pt in cfg.get("highlight_points", []):
+        try:
+            category = pt.get("x")
+            value = pt.get("y")
+            label = pt.get("label")
+            pt_color = _get_color(pt, "#C44E52")
+
+            if category in vals["x"]:
+                pos = vals["x"].index(category)
+                ax.scatter(value, pos, color=pt_color, s=55, zorder=7)
+
+                if label:
+                    coords = _dot_text_positions(ax, value, pos)
+                    hx, hy, hha = coords["highlight"]
+
+                    ax.text(
+                        hx,
+                        hy,
+                        label,
+                        fontsize=9,
+                        color=pt_color,
+                        ha=hha,
+                        va="bottom",
+                        clip_on=True,
+                        zorder=9,
+                    )
+        except Exception:
+            continue
+
+    for ann in cfg.get("annotate_points", []):
+        try:
+            category = ann.get("x")
+            value = ann.get("y")
+            text = ann.get("text")
+
+            if category in vals["x"] and text:
+                pos = vals["x"].index(category)
+                coords = _dot_text_positions(ax, value, pos)
+                ax_x, ax_y, ax_ha = coords["annotation"]
+
+                ax.text(
+                    ax_x,
+                    ax_y,
+                    text,
+                    fontsize=9,
+                    ha=ax_ha,
+                    va="bottom",
+                    clip_on=True,
+                    zorder=9,
+                )
+        except Exception:
+            continue
 
 def render_dot(ax, data, cfg):
     series_name = _get_single_series_name(data, cfg)
