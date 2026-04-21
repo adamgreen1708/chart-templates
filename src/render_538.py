@@ -191,6 +191,21 @@ def _approx_equal(a, b, tolerance=0.5):
         return a == b
 
 
+def _sort_series(data):
+    sorted_data = {}
+
+    for series_name, vals in data.items():
+        pairs = list(zip(vals["x"], vals["y"]))
+        pairs.sort(key=lambda t: t[0])
+
+        sorted_data[series_name] = {
+            "x": [p[0] for p in pairs],
+            "y": [p[1] for p in pairs],
+        }
+
+    return sorted_data
+
+
 def load_wide_data(csv_path, x_col, y_col):
     x_vals, y_vals = [], []
 
@@ -207,7 +222,7 @@ def load_wide_data(csv_path, x_col, y_col):
             x_vals.append(_coerce_value(row[x_col]))
             y_vals.append(_coerce_value(row[y_col]))
 
-    return {"Main": {"x": x_vals, "y": y_vals}}
+    return _sort_series({"Main": {"x": x_vals, "y": y_vals}})
 
 
 def load_long_data(csv_path, x_col, series_col, value_col):
@@ -226,7 +241,7 @@ def load_long_data(csv_path, x_col, series_col, value_col):
             grouped[series_name]["x"].append(_coerce_value(row[x_col]))
             grouped[series_name]["y"].append(_coerce_value(row[value_col]))
 
-    return dict(grouped)
+    return _sort_series(dict(grouped))
 
 
 def sort_single_series_for_rank_chart(series_data, descending=True):
@@ -658,7 +673,7 @@ def render_scatter(ax, data, cfg):
 
 
 def main():
-    print("RUNNING 538 RENDER V4")
+    print("RUNNING 538 RENDER V5")
 
     os.makedirs(REPO_ROOT / "output", exist_ok=True)
 
@@ -684,7 +699,7 @@ def main():
 
     point_warnings = validate_config_points(data, cfg, tolerance=0.75)
     if point_warnings:
-        raise ValueError("Config point validation failed:\\n- " + "\\n- ".join(point_warnings))
+        raise ValueError("Config point validation failed:\n- " + "\n- ".join(point_warnings))
 
     if chart_type in {"bar", "dot"} and cfg.get("sort_descending", False):
         data = sort_single_series_for_rank_chart(data, descending=True)
