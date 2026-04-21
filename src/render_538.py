@@ -313,10 +313,13 @@ def validate_chart_config(cfg, data):
 
 def apply_axis_controls(ax, cfg):
     chart_type = cfg.get("chart_type")
-    ranked_bar = chart_type == "bar" and cfg.get("sort_descending", False)
+    horizontal_numeric_axis = (
+        chart_type == "dot"
+        or (chart_type == "bar" and cfg.get("sort_descending", False))
+    )
 
-    if ranked_bar:
-        # For horizontal ranked bars, the numeric axis is X
+    if horizontal_numeric_axis:
+        # For dot plots and ranked horizontal bars, the numeric axis is X
         x_min = cfg.get("y_axis_min")
         x_max = cfg.get("y_axis_max")
 
@@ -338,7 +341,7 @@ def apply_axis_controls(ax, cfg):
 
         return
 
-    # Default behaviour for all other chart types
+    # Default behaviour for vertical / line charts
     y_min = cfg.get("y_axis_min")
     y_max = cfg.get("y_axis_max")
 
@@ -363,15 +366,18 @@ def apply_axis_controls(ax, cfg):
         plt.setp(ax.get_xticklabels(), rotation=x_tick_rotation, ha="right")
 
 def apply_reference_lines(ax, cfg):
-    ranked_bar = cfg.get("chart_type") == "bar" and cfg.get("sort_descending", False)
+    horizontal_numeric_axis = (
+        cfg.get("chart_type") == "dot"
+        or (cfg.get("chart_type") == "bar" and cfg.get("sort_descending", False))
+    )
 
     for ref in cfg.get("reference_lines", []):
         try:
             axis = ref.get("axis")
 
-            # For ranked horizontal bars, default reference lines to x-axis
+            # For dot plots and ranked horizontal bars, default to x-axis
             if axis is None:
-                axis = "x" if ranked_bar else "y"
+                axis = "x" if horizontal_numeric_axis else "y"
 
             value = ref.get("value")
             if value is None:
@@ -443,7 +449,7 @@ def apply_reference_lines(ax, cfg):
                     )
         except Exception:
             continue
-            
+                        
 def apply_highlights(ax, cfg):
     for pt in cfg.get("highlight_points", []):
         try:
