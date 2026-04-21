@@ -47,9 +47,9 @@ def _get_color(d, default="#1F8FA8"):
 def _format_value(val, fmt=None):
     if fmt:
         try:
-            # Support both "{:.1f}°C" style and plain numeric fallback
             if "{" in fmt:
                 return fmt.format(val)
+            return format(val, fmt)
         except Exception:
             pass
 
@@ -66,9 +66,9 @@ def _axis_formatter_from_fmt(fmt):
         try:
             if "{" in fmt:
                 return fmt.format(val)
+            return format(val, fmt)
         except Exception:
-            pass
-        return _format_value(val)
+            return _format_value(val)
 
     return FuncFormatter(_formatter)
 
@@ -91,10 +91,52 @@ def _safe_text_y(ax, y, frac=0.02):
     return min(max(y, low), high)
 
 
+def _as_list(value):
+    if value is None:
+        return []
+    if isinstance(value, (list, tuple, set)):
+        return list(value)
+    return [value]
+
+
+def _normalise_cfg(cfg):
+    out = dict(cfg)
+    out["_focus_list"] = _as_list(cfg.get("focus_series"))
+    out["_secondary_list"] = _as_list(cfg.get("secondary_series"))
+    out["_highlighted_series"] = set(out["_focus_list"] + out["_secondary_list"])
+    return out
+
+
+def _series_is_focus(series_name, cfg):
+    return series_name in cfg.get("_focus_list", [])
+
+
+def _series_is_secondary(series_name, cfg):
+    return series_name in cfg.get("_secondary_list", [])
+
+
+def _should_label_series(series_name, cfg):
+    label_strategy = cfg.get("label_strategy", "all")
+
+    if label_strategy == "none":
+        return False
+    if label_strategy == "all":
+        return True
+    if label_strategy == "focus_only":
+        return _series_is_focus(series_name, cfg)
+    if label_strategy == "focus_and_secondary":
+        return series_name in cfg.get("_highlighted_series", set())
+    return True
+
+
+def _build_end_label(series_name, y_value, cfg, include_series_name=True):
+    value_text = _format_value(y_value, cfg.get("y_tick_format"))
+    if include_series_name and series_name:
+        return f"{series_name} {value_text}"
+    return value_text
+
+
 def _add_safe_end_label(ax, y, label, color="#1F8FA8"):
-    """
-    Keep end labels inside the plot area and away from the right whitespace.
-    """
     x_pos = _safe_text_x_right(ax, 0.955)
     y_min, y_max = ax.get_ylim()
     y_span = y_max - y_min
@@ -140,6 +182,13 @@ def _add_safe_highlight_label(ax, x, y, label, color="#C44E52"):
         clip_on=True,
         zorder=9,
     )
+
+
+def _approx_equal(a, b, tolerance=0.5):
+    try:
+        return abs(float(a) - float(b)) <= tolerance
+    except Exception:
+        return a == b
 
 
 def load_wide_data(csv_path, x_col, y_col):
@@ -197,6 +246,56 @@ def sort_single_series_for_rank_chart(series_data, descending=True):
     }
 
 
+def validate_config_points(data, cfg, tolerance=0.75):
+    warnings = []
+
+    for block_name in ("highlight_points", "annotate_points"):
+        for item in cfg.get(block_name, []) or []:
+            series = item.get("series")
+            x = item.get("x")
+            y = item.get("y")
+
+            candidate_series = []
+            if series is not None:
+                if series not in data:
+                    warnings.append(
+                        f"{block_name}: series {series!r} not found in loaded data."
+                    )
+                    continue
+                candidate_series = [series]
+            else:
+                candidate_series = list(data.keys())
+
+            matched_x = False
+            matched_xy = False
+
+            for series_name in candidate_series:
+                vals = data[series_name]
+                for xv, yv in zip(vals["x"], vals["y"]):
+                    if xv == x:
+                        matched_x = True
+                        if y is None or _approx_equal(yv, y, tolerance=tolerance):
+                            matched_xy = True
+                            break
+                if matched_xy:
+                    break
+
+            if not matched_x:
+                warnings.append(
+                    f"{block_name}: no matching x={x!r} found"
+                    + (f" for series={series!r}" if series is not None else "")
+                    + "."
+                )
+            elif y is not None and not matched_xy:
+                warnings.append(
+                    f"{block_name}: x={x!r} found"
+                    + (f" for series={series!r}" if series is not None else "")
+                    + f", but y={y!r} does not match the data."
+                )
+
+    return warnings
+
+
 def apply_axis_controls(ax, cfg):
     y_min = cfg.get("y_axis_min")
     y_max = cfg.get("y_axis_max")
@@ -225,39 +324,73 @@ def apply_axis_controls(ax, cfg):
 def apply_reference_lines(ax, cfg):
     for ref in cfg.get("reference_lines", []):
         try:
-            y = ref.get("y") if "y" in ref else ref.get("value")
-            if y is None:
+            axis = ref.get("axis", "y")
+            value = ref.get("value")
+            if value is None:
+                value = ref.get(axis)
+
+            if value is None:
                 continue
 
             line_color = _get_color(ref, "#999999")
 
-            ax.axhline(
-                y=y,
-                color=line_color,
-                linestyle=ref.get("linestyle", "--"),
-                linewidth=ref.get("linewidth", 1.0),
-                zorder=1,
-            )
+            if axis == "x":
+                ax.axvline(
+                    x=value,
+                    color=line_color,
+                    linestyle=ref.get("linestyle", "--"),
+                    linewidth=ref.get("linewidth", 1.0),
+                    alpha=ref.get("alpha", 1.0),
+                    zorder=1,
+                )
+            else:
+                ax.axhline(
+                    y=value,
+                    color=line_color,
+                    linestyle=ref.get("linestyle", "--"),
+                    linewidth=ref.get("linewidth", 1.0),
+                    alpha=ref.get("alpha", 1.0),
+                    zorder=1,
+                )
 
             label = ref.get("label")
             if label:
                 label_x = ref.get("label_x", "left")
                 label_offset = ref.get("label_offset", 0.0)
 
-                x_pos = _safe_text_x_right(ax, 0.955) if label_x == "right" else _safe_text_x_left(ax, 0.015)
-                y_pos = _safe_text_y(ax, y + label_offset, 0.03)
+                if axis == "x":
+                    y_min, y_max = ax.get_ylim()
+                    y_pos = y_max - (y_max - y_min) * 0.04
+                    ax.text(
+                        value,
+                        y_pos,
+                        label,
+                        fontsize=9,
+                        color=line_color,
+                        ha="center",
+                        va="top",
+                        clip_on=True,
+                        zorder=5,
+                    )
+                else:
+                    x_pos = (
+                        _safe_text_x_right(ax, 0.955)
+                        if label_x == "right"
+                        else _safe_text_x_left(ax, 0.015)
+                    )
+                    y_pos = _safe_text_y(ax, value + label_offset, 0.03)
 
-                ax.text(
-                    x_pos,
-                    y_pos,
-                    label,
-                    fontsize=9,
-                    color=line_color,
-                    ha="right" if label_x == "right" else "left",
-                    va="bottom",
-                    clip_on=True,
-                    zorder=5,
-                )
+                    ax.text(
+                        x_pos,
+                        y_pos,
+                        label,
+                        fontsize=9,
+                        color=line_color,
+                        ha="right" if label_x == "right" else "left",
+                        va="bottom",
+                        clip_on=True,
+                        zorder=5,
+                    )
         except Exception:
             continue
 
@@ -293,12 +426,16 @@ def apply_annotations(ax, cfg):
             x_min, x_max = ax.get_xlim()
             x_span = x_max - x_min
 
-            # If annotation is near right edge, force it leftwards
             if isinstance(x, (int, float)) and x > x_min + x_span * 0.82:
-                xytext = (-55, ann.get("xytext", (0, 0))[1] if isinstance(ann.get("xytext"), tuple) else -10)
+                base_xytext = ann.get("xytext", (-55, -10))
+                if not isinstance(base_xytext, tuple):
+                    base_xytext = (-55, -10)
+                xytext = (-55, base_xytext[1])
                 ha = "right"
             else:
                 xytext = ann.get("xytext", (0, 0))
+                if not isinstance(xytext, tuple):
+                    xytext = (0, 0)
                 ha = ann.get("ha", "left")
 
             ax.annotate(
@@ -345,58 +482,75 @@ def _plot_series(ax, x_vals, y_vals, style, cfg, zorder=3):
     )
 
 
+def _get_single_series_name(data, cfg):
+    if len(data) == 1:
+        return next(iter(data))
+
+    focus_list = cfg.get("_focus_list", [])
+    if focus_list:
+        focus_series = focus_list[0]
+        if focus_series in data:
+            return focus_series
+
+    return next(iter(data))
+
+
 def render_line_single_series(ax, data, cfg):
     styles = _get_story_styles(cfg)
-    series_name = next(iter(data))
+    series_name = _get_single_series_name(data, cfg)
     vals = data[series_name]
 
     _plot_series(ax, vals["x"], vals["y"], styles["focus"], cfg, zorder=4)
 
     if cfg.get("auto_end_labels", True):
-        y = vals["y"][-1]
-        _add_safe_end_label(ax, y, _format_value(y, cfg.get("y_tick_format")), _get_color(styles["focus"]))
+        label = _build_end_label(series_name, vals["y"][-1], cfg, include_series_name=False)
+        _add_safe_end_label(ax, vals["y"][-1], label, _get_color(styles["focus"]))
 
 
 def render_line_focus_vs_context(ax, data, cfg):
     styles = _get_story_styles(cfg)
-    focus_series = cfg.get("focus_series")
-    secondary_series = cfg.get("secondary_series")
     label_strategy = cfg.get("label_strategy", "focus_only")
 
     for series_name, vals in data.items():
-        if series_name in {focus_series, secondary_series}:
+        if _series_is_focus(series_name, cfg) or _series_is_secondary(series_name, cfg):
             continue
         _plot_series(ax, vals["x"], vals["y"], styles["context"], cfg, zorder=2)
 
-    if secondary_series and secondary_series in data:
-        vals = data[secondary_series]
+    for series_name in cfg.get("_secondary_list", []):
+        if series_name not in data:
+            continue
+        vals = data[series_name]
         _plot_series(ax, vals["x"], vals["y"], styles["secondary"], cfg, zorder=4)
 
         if cfg.get("auto_end_labels", True) and label_strategy in {"focus_and_secondary", "all"}:
-            _add_safe_end_label(ax, vals["y"][-1], secondary_series, _get_color(styles["secondary"]))
+            label = _build_end_label(series_name, vals["y"][-1], cfg, include_series_name=True)
+            _add_safe_end_label(ax, vals["y"][-1], label, _get_color(styles["secondary"]))
 
-    if focus_series and focus_series in data:
-        vals = data[focus_series]
+    focus_plotted = False
+    for series_name in cfg.get("_focus_list", []):
+        if series_name not in data:
+            continue
+        vals = data[series_name]
         _plot_series(ax, vals["x"], vals["y"], styles["focus"], cfg, zorder=6)
+        focus_plotted = True
 
         if cfg.get("auto_end_labels", True) and label_strategy in {"focus_only", "focus_and_secondary", "all"}:
-            _add_safe_end_label(ax, vals["y"][-1], focus_series, _get_color(styles["focus"]))
-    else:
+            label = _build_end_label(series_name, vals["y"][-1], cfg, include_series_name=True)
+            _add_safe_end_label(ax, vals["y"][-1], label, _get_color(styles["focus"]))
+
+    if not focus_plotted:
         for _, vals in data.items():
             _plot_series(ax, vals["x"], vals["y"], styles["focus"], cfg, zorder=4)
 
 
 def render_line_comparison(ax, data, cfg):
     styles = _get_story_styles(cfg)
-    focus_series = cfg.get("focus_series")
-    secondary_series = cfg.get("secondary_series")
-    label_strategy = cfg.get("label_strategy", "all")
 
     for series_name, vals in data.items():
-        if focus_series and series_name == focus_series:
+        if _series_is_focus(series_name, cfg):
             style = styles["focus"]
             z = 6
-        elif secondary_series and series_name == secondary_series:
+        elif _series_is_secondary(series_name, cfg):
             style = styles["secondary"]
             z = 5
         else:
@@ -407,14 +561,11 @@ def render_line_comparison(ax, data, cfg):
 
         if not cfg.get("auto_end_labels", True):
             continue
-        if label_strategy == "none":
-            continue
-        if label_strategy == "focus_only" and series_name != focus_series:
-            continue
-        if label_strategy == "focus_and_secondary" and series_name not in {focus_series, secondary_series}:
+        if not _should_label_series(series_name, cfg):
             continue
 
-        _add_safe_end_label(ax, vals["y"][-1], series_name, _get_color(style))
+        label = _build_end_label(series_name, vals["y"][-1], cfg, include_series_name=True)
+        _add_safe_end_label(ax, vals["y"][-1], label, _get_color(style))
 
 
 def render_line(ax, data, cfg):
@@ -429,7 +580,7 @@ def render_line(ax, data, cfg):
 
 
 def render_bar(ax, data, cfg):
-    series_name = next(iter(data))
+    series_name = _get_single_series_name(data, cfg)
     vals = data[series_name]
     color = _get_color(cfg, "#1F8FA8")
     positions = list(range(len(vals["x"])))
@@ -444,7 +595,7 @@ def render_bar(ax, data, cfg):
 
 
 def render_dot(ax, data, cfg):
-    series_name = next(iter(data))
+    series_name = _get_single_series_name(data, cfg)
     vals = data[series_name]
     color = _get_color(cfg, "#1F8FA8")
     positions = list(range(len(vals["x"])))
@@ -464,27 +615,24 @@ def render_dot(ax, data, cfg):
 
 def render_scatter(ax, data, cfg):
     styles = _get_story_styles(cfg)
-    focus_series = cfg.get("focus_series")
-    secondary_series = cfg.get("secondary_series")
-    label_strategy = cfg.get("label_strategy", "focus_only")
     story_angle = cfg.get("story_angle", "comparison")
 
     for series_name, vals in data.items():
         if story_angle == "focus_vs_context":
-            if series_name == focus_series:
+            if _series_is_focus(series_name, cfg):
                 style = styles["focus"]
                 z = 6
-            elif secondary_series and series_name == secondary_series:
+            elif _series_is_secondary(series_name, cfg):
                 style = styles["secondary"]
                 z = 5
             else:
                 style = styles["context"]
                 z = 3
         else:
-            if series_name == focus_series:
+            if _series_is_focus(series_name, cfg):
                 style = styles["focus"]
                 z = 6
-            elif secondary_series and series_name == secondary_series:
+            elif _series_is_secondary(series_name, cfg):
                 style = styles["secondary"]
                 z = 5
             else:
@@ -502,22 +650,19 @@ def render_scatter(ax, data, cfg):
 
         if not cfg.get("auto_end_labels", True):
             continue
-        if label_strategy == "none":
-            continue
-        if label_strategy == "focus_only" and series_name != focus_series:
-            continue
-        if label_strategy == "focus_and_secondary" and series_name not in {focus_series, secondary_series}:
+        if not _should_label_series(series_name, cfg):
             continue
 
-        _add_safe_end_label(ax, vals["y"][-1], series_name, _get_color(style))
+        label = _build_end_label(series_name, vals["y"][-1], cfg, include_series_name=True)
+        _add_safe_end_label(ax, vals["y"][-1], label, _get_color(style))
 
 
 def main():
-    print("RUNNING 538 RENDER V3")
+    print("RUNNING 538 RENDER V4")
 
     os.makedirs(REPO_ROOT / "output", exist_ok=True)
 
-    cfg = CHART_CONFIG
+    cfg = _normalise_cfg(CHART_CONFIG)
 
     if "data_file" not in cfg:
         raise ValueError("Missing 'data_file' in CHART_CONFIG")
@@ -536,6 +681,10 @@ def main():
         if "x_col" not in cfg or "y_col" not in cfg:
             raise ValueError("Wide format requires 'x_col' and 'y_col'")
         data = load_wide_data(data_path, cfg["x_col"], cfg["y_col"])
+
+    point_warnings = validate_config_points(data, cfg, tolerance=0.75)
+    if point_warnings:
+        raise ValueError("Config point validation failed:\n- " + "\n- ".join(point_warnings))
 
     if chart_type in {"bar", "dot"} and cfg.get("sort_descending", False):
         data = sort_single_series_for_rank_chart(data, descending=True)
