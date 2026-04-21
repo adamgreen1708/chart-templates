@@ -1,4 +1,4 @@
-# 538-style CHART_CONFIG generation prompt (production version)
+# 538-style CHART_CONFIG generation prompt (production version, renderer-aligned)
 
 I am using a locked 538-style Python chart rendering system.
 
@@ -21,19 +21,21 @@ I will provide:
 Determine whether the dataset is LONG or WIDE format BEFORE generating the config.
 
 Use `data_format = "long"` ONLY if:
-- There is a series/category column
+- There is a real series/category column
 - AND multiple observations per category
-- Example: Jan, Feb, Mar across many years
+- Example: Jan, Feb, Mar across many years or multiple countries over time
 
 Use `data_format = "wide"` if:
 - The dataset is a single snapshot of categories
 - OR there is only one value per category
 - Example: Jan–Dec for a single year
+- Example: country ranking, league table, category comparison
 
 IMPORTANT:
 - If using `wide`, DO NOT include `series_col` or `value_col`
 - If using `long`, you MUST include both `series_col` and `value_col`
 - Never set `series_col = None` in a long chart
+- If the dataset is a single snapshot, it is almost always `wide`
 
 ### 3. Choose the best chart type
 - `line` → time series / continuous trend
@@ -50,7 +52,7 @@ You must explicitly decide which story the data represents before choosing the c
 - Relationship between two numeric variables → `scatter`
 
 IMPORTANT:
-- Do NOT choose `line` unless x is time or ordered sequence
+- Do NOT choose `line` unless x is time or an ordered sequence
 - If the dataset is a single snapshot of categories, DO NOT use `line`
 - If the story is ranking, prefer `dot`
 - If categories have a natural order (e.g. Jan–Dec), preserve that order and do NOT sort
@@ -66,6 +68,7 @@ Choose one dominant narrative:
 - change
 
 Avoid generic summaries.
+Pick the clearest editorial story the renderer can support cleanly.
 
 ### 6. Decide whether annotations are needed
 - `reference_lines` only if genuinely useful
@@ -82,6 +85,7 @@ If exact coordinates are uncertain, leave annotations empty.
 - Must include `series_col` and `value_col`
 - Use `focus_series` if a single series is the story
 - Keep `sort_descending = False`
+- Use for time or ordered-sequence trends only
 
 ### Bar charts
 - Must use `data_format = "wide"`
@@ -89,22 +93,29 @@ If exact coordinates are uncertain, leave annotations empty.
 - Use calendar/natural order unless explicitly ranking
 - Ranked bar is allowed by setting `sort_descending = True`
 - Bar charts may use `auto_end_labels = True`
+- In bar charts:
+  - `x_col` = category column
+  - `y_col` = numeric value column
 
 ### Dot charts
 - Must use `data_format = "wide"`
 - Must include `sort_descending = True`
 - Used for ranked comparisons only
+- Do NOT use `series_col` or `value_col`
 - Keep `x_col` as the category column
 - Keep `y_col` as the numeric value column
-- The renderer will plot values on the x-axis and categories on the y-axis
-- Do NOT use `series_col` or `value_col`
+- The renderer will plot:
+  - categories from `x_col` on the y-axis
+  - numeric values from `y_col` on the x-axis
 - `auto_end_labels` may be True
-- Standard axis fields still apply, but in dot charts they control the numeric value axis
+- The standard fields `y_axis_min`, `y_axis_max`, `y_tick_interval`, and `y_tick_format` must still be included
+- For dot charts, those standard axis fields control the numeric value axis used by the renderer
 
 ### Scatter charts
 - x and y must both be numeric
 - Set `auto_end_labels = False`
 - Only annotate meaningful standout points with exact coordinates
+- Use only when the story is a relationship between two numeric variables
 
 ## CRITICAL RULES
 
@@ -115,8 +126,13 @@ If exact coordinates are uncertain, leave annotations empty.
 - Never set duplicate keys in the output
 - If the dataset is a single snapshot, it is almost always `wide`
 - If the renderer cannot support the editorial idea cleanly, change the story
+- Use only config structures the renderer can actually handle
+- Do not force a line chart onto categorical snapshot data
+- Do not force a dot chart onto natural-order category stories unless you are explicitly changing the story to ranking
 
-### ALWAYS INCLUDE THESE STANDARD FIELDS IN EVERY CHART_CONFIG
+## ALWAYS INCLUDE THESE STANDARD FIELDS IN EVERY CHART_CONFIG
+Always include these keys explicitly:
+
 - `"y_axis_min": 0`
 - `"y_axis_max": None`
 - `"y_tick_interval": 25`
@@ -127,9 +143,9 @@ If exact coordinates are uncertain, leave annotations empty.
 
 Do not omit these fields.
 
-## REQUIRED OUTPUT FORMAT
-
+## OUTPUT REQUIREMENTS
 Return:
+
 1. Short explanation (max 4 lines)
    - chart type chosen
    - data format chosen
@@ -137,7 +153,9 @@ Return:
 
 2. A valid Python dictionary called `CHART_CONFIG`
 
+## REQUIRED OUTPUT SHAPE
 The config must always explicitly include:
+
 ```python
 "y_axis_min": 0,
 "y_axis_max": None,
@@ -145,4 +163,3 @@ The config must always explicitly include:
 "y_tick_format": ".0f",
 "auto_end_labels": True,   # or False for scatter
 "sort_descending": False,  # or True for dot / ranked bar
-```
