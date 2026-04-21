@@ -41,7 +41,7 @@ CHART_CONFIG = {
     "x_is_datetime": False,
     "x_tick_rotation": 0,
     "y_axis_min": 0,
-    "y_axis_max": 110,
+    "y_axis_max": 230,
     "y_tick_interval": 25,
     "y_tick_format": ".0f",
 
