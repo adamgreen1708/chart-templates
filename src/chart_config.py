@@ -13,18 +13,14 @@ CHART_CONFIG = {
 
     "story_angle": "ranking",
 
-    # 🔴 CRITICAL (dot charts REQUIRE this)
-    "sort_descending": True,
-
-    # 🔴 CRITICAL (these must exist)
     "y_axis_min": 0,
     "y_axis_max": None,
     "y_tick_interval": 25,
     "y_tick_format": ".0f",
 
     "auto_end_labels": True,
+    "sort_descending": True,
 
-    # Optional but powerful
     "reference_lines": [
         {
             "value": 165.8,
@@ -40,7 +36,13 @@ CHART_CONFIG = {
         }
     ],
 
-    "annotate_points": [],
+    "annotate_points": [
+        {
+            "x": "Jun",
+            "y": 276.8,
+            "text": "June is the clear peak"
+        }
+    ],
 
     "end_labels": []
 }
