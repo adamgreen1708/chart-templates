@@ -9,19 +9,19 @@ CHART_CONFIG = {
     "value_col": "sunshine_hours",
 
     "title": "Spring is arriving brighter in East Anglia",
-    "subtitle": "March sunshine has trended upward over the long run, suggesting the darker months are giving way earlier. Recent decades have delivered some of the brightest early springs in the series.",
+    "subtitle": "March sunshine has trended upward over the long run, suggesting the darker months are giving way earlier. Some of the brightest early springs in the series have come in recent decades.",
     "source_text": "Source: Met Office regional climate statistics (East Anglia sunshine)",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "comparison",
+    "story_angle": "single_series_trend",
 
     "focus_series": "Mar",
-    "secondary_series": "Apr",
+    "secondary_series": None,
 
     "context_style": {
-        "color": "#CFCFCF",
-        "linewidth": 1.0,
-        "alpha": 0.28,
+        "color": "#E0E0E0",
+        "linewidth": 0.8,
+        "alpha": 0.25,
     },
 
     "focus_style": {
@@ -32,11 +32,11 @@ CHART_CONFIG = {
 
     "secondary_style": {
         "color": "#7A7A7A",
-        "linewidth": 2.1,
+        "linewidth": 2.0,
         "alpha": 0.9,
     },
 
-    "label_strategy": "focus_and_secondary",
+    "label_strategy": "focus_only",
 
     "x_is_datetime": False,
     "x_tick_rotation": 0,
@@ -69,12 +69,6 @@ CHART_CONFIG = {
             "x": 2022,
             "y": 185.5,
             "label": "Exceptional March",
-        },
-        {
-            "series": "Apr",
-            "x": 2020,
-            "y": 224.8,
-            "label": "Record April",
         }
     ],
 
@@ -84,12 +78,6 @@ CHART_CONFIG = {
             "x": 2022,
             "y": 185.5,
             "text": "March 2022 was one of the brightest early-spring months on record",
-        },
-        {
-            "series": "Apr",
-            "x": 2020,
-            "y": 224.8,
-            "text": "April 2020 delivered an extraordinary sunshine spike",
         }
     ],
 
