@@ -1,37 +1,37 @@
 CHART_CONFIG = {
     "data_file": "data/east_anglia_sunshine_2025.csv",
-    "data_format": "long",
+    "data_format": "wide",
     "chart_type": "bar",
 
     "x_col": "month",
     "y_col": "sunshine_hours",
-    "series_col": None,
-    "value_col": "sunshine_hours",
 
-    "title": "Spring 2025 delivered a surge of sunshine",
-    "subtitle": "East Anglia saw a sharp jump in sunshine hours through spring, with April standing out as the brightest month by a clear margin.",
-    "source_text": "Source: East Anglia sunshine dataset (2025)",
+    "title": "East Anglia’s sunshine exploded in spring",
+    "subtitle": "Monthly sunshine hours in 2025 rose sharply from winter lows to a June peak, before dropping back hard by October. Months should stay in calendar order, not be ranked.",
+    "source_text": "Source: East Anglia sunshine dataset (user-provided)",
     "footer_left": "Adam Green | coffeetableviz",
 
     "story_angle": "category_comparison",
 
     "sort_descending": False,
 
-    "reference_lines": [
+    "highlight_points": [
         {
-            "value": 165.8,
-            "label": "2025 monthly average"
+            "x": "Jun",
+            "y": 276.8,
+            "label": "Peak: June"
         }
     ],
 
-    "highlight_points": [
+    "reference_lines": [
         {
-            "x": "Apr",
-            "y": 269.2
+            "y": 165.8,
+            "label": "2025 monthly average"
         }
     ],
 
     "annotate_points": [],
 
+    "show_data_labels": False,
     "auto_end_labels": False
 }
