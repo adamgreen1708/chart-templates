@@ -15,8 +15,6 @@ CHART_CONFIG = {
 
     "story_angle": "category_comparison",
 
-    "sort_descending": False,
-
     "highlight_points": [
         {
             "x": "Jun",
