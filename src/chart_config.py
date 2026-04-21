@@ -1,37 +1,44 @@
 CHART_CONFIG = {
     "data_file": "data/east_anglia_sunshine_2025.csv",
     "data_format": "wide",
-    "chart_type": "dot",
+    "chart_type": "bar",
 
     "x_col": "month",
     "y_col": "sunshine_hours",
 
-    "sort_descending": True,
-
     "title": "East Anglia’s sunshine exploded in spring",
-    "subtitle": "Monthly sunshine hours in 2025 rose sharply from winter lows to a June peak, before dropping back hard by October. Months should stay in calendar order, not be ranked.",
+    "subtitle": "Monthly sunshine hours in 2025 jumped from muted winter levels to a June peak, before falling sharply back into autumn and winter. Months should remain in calendar order.",
     "source_text": "Source: East Anglia sunshine dataset (user-provided)",
     "footer_left": "Adam Green | coffeetableviz",
 
     "story_angle": "category_comparison",
 
-    "highlight_points": [
-        {
-            "x": "Jun",
-            "y": 276.8,
-            "label": "Peak: June"
-        }
-    ],
+    "sort_descending": False,
 
-    "reference_lines": [
-        {
-            "y": 165.8,
-            "label": "2025 monthly average"
-        }
-    ],
+    "focus_style": {
+        "color": "#1F8FA8",
+        "alpha": 1.0
+    },
 
+    "secondary_style": {
+        "color": "#C44E52",
+        "alpha": 1.0
+    },
+
+    "context_style": {
+        "color": "#D0D0D0",
+        "alpha": 0.5
+    },
+
+    "highlight_points": [],
     "annotate_points": [],
+    "reference_lines": [],
 
-    "show_data_labels": False,
-    "auto_end_labels": False
+    "label_strategy": "none",
+
+    "y_axis_min": 0,
+    "y_axis_max": None,
+    "y_tick_interval": 25,
+    "y_tick_format": ".0f",
+    "auto_end_labels": True
 }
