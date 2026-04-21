@@ -6,12 +6,12 @@ CHART_CONFIG = {
     "x_col": "month",
     "y_col": "sunshine_hours",
 
-    "title": "Spring did the heavy lifting",
-    "subtitle": "East Anglia’s sunshine in 2025 surged from subdued winter levels to a June peak, with most of the year’s standout brightness concentrated in spring and early summer. Months should remain in calendar order, not be ranked.",
+    "title": "June dominates East Anglia’s sunshine rankings",
+    "subtitle": "Sunshine hours in 2025 were heavily skewed — June stands clear at the top, with a sharp drop to the rest of the year.",
     "source_text": "Source: East Anglia sunshine dataset (user-provided)",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "natural_order_seasonal_surge",
+    "story_angle": "ranked_outlier",
 
     "focus_series": None,
     "secondary_series": None,
@@ -24,19 +24,17 @@ CHART_CONFIG = {
 
     "focus_style": {
         "color": "#1F8FA8",
-        "linewidth": 2.5,
+        "linewidth": 2.0,
         "alpha": 1.0,
     },
 
     "secondary_style": {
         "color": "#7A7A7A",
-        "linewidth": 1.8,
+        "linewidth": 2.0,
         "alpha": 0.9,
     },
 
-    "reference_lines": [],
-    "highlight_points": [],
-    "annotate_points": [],
+    "sort_descending": True,
 
     "y_axis_min": 0,
     "y_axis_max": None,
@@ -44,5 +42,34 @@ CHART_CONFIG = {
     "y_tick_format": ".0f",
 
     "auto_end_labels": True,
-    "sort_descending": True,
+
+    "reference_lines": [
+        {
+            "axis": "y",
+            "value": 165.8,
+            "label": "2025 monthly average",
+            "color": "#7A7A7A",
+            "linestyle": ":",
+            "linewidth": 1.5,
+            "alpha": 0.9,
+        }
+    ],
+
+    "highlight_points": [
+        {
+            "x": "Jun",
+            "y": 276.8,
+            "label": "Highest"
+        }
+    ],
+
+    "annotate_points": [
+        {
+            "x": "Jun",
+            "y": 276.8,
+            "text": "June leads by a wide margin\n(276.8 hours)",
+            "xytext": (12, 0),
+            "ha": "left"
+        }
+    ]
 }
