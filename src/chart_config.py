@@ -41,7 +41,7 @@ CHART_CONFIG = {
     "x_is_datetime": False,
     "x_tick_rotation": 0,
     "y_axis_min": 0,
-    "y_axis_max": 200,
+    "y_axis_max": 110,
     "y_tick_interval": 25,
     "y_tick_format": ".0f",
 
@@ -51,35 +51,8 @@ CHART_CONFIG = {
 
     "auto_end_labels": True,
 
-    "reference_lines": [
-        {
-            "axis": "y",
-            "value": 100,
-            "label": "100 hours",
-            "color": "#9A9A9A",
-            "linestyle": "--",
-            "linewidth": 1.2,
-            "alpha": 0.8,
-        }
-    ],
-
-    "highlight_points": [
-        {
-            "series": "Mar",
-            "x": 2022,
-            "y": 185.5,
-            "label": "Exceptional March",
-        }
-    ],
-
-    "annotate_points": [
-        {
-            "series": "Mar",
-            "x": 2022,
-            "y": 185.5,
-            "text": "March 2022 was one of the brightest early-spring months on record",
-        }
-    ],
-
+    "reference_lines": [],
+    "highlight_points": [],
+    "annotate_points": [],
     "end_labels": [],
 }
