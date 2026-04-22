@@ -1,5 +1,9 @@
 import matplotlib.pyplot as plt
-import textwrap
+
+BG = "#F3F4F6"
+GRID = "#D9D9D9"
+TEXT = "#111111"
+SUBTEXT = "#555555"
 
 
 def apply_538_template(
@@ -10,107 +14,86 @@ def apply_538_template(
     source_text="",
     footer_left="",
     vertical_gridlines=True,
+
+    title_fontsize=24,
+    subtitle_fontsize=15,
+    footer_fontsize=10,
+
+    title_y=0.93,
+    subtitle_y=0.885,
+
+    plot_top=0.78,
+    plot_bottom=0.16,
+    plot_left=0.12,
+    plot_right=0.95,
 ):
-    """
-    Apply the locked 538/coffeetableviz template styling.
+    fig.patch.set_facecolor(BG)
+    ax.set_facecolor(BG)
 
-    Notes
-    -----
-    - Vertical gridlines are now always on by design.
-    - Outer whitespace is intentionally generous and consistent.
-    - Footer is locked:
-        left  = footer_left
-        right = source_text
-    """
+    # Clean axes
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.spines["left"].set_visible(False)
+    ax.spines["bottom"].set_color("#B0B0B0")
 
-    bg = "#F3F4F6"
-    title_color = "#111111"
-    subtitle_color = "#555555"
-    footer_color = "#666666"
-    tick_color = "#333333"
-    grid_y = "#D0D0D0"
-    grid_x = "#E6E6E6"
+    # Ticks
+    ax.tick_params(axis="x", colors=SUBTEXT, labelsize=12, length=0)
+    ax.tick_params(axis="y", colors=SUBTEXT, labelsize=12, length=0)
 
-    # --- Figure / axes background ---
-    fig.patch.set_facecolor(bg)
-    ax.set_facecolor(bg)
+    # Grid
+    ax.grid(axis="y", color=GRID, linewidth=0.8)
+    if vertical_gridlines:
+        ax.grid(axis="x", color=GRID, linewidth=0.35, alpha=0.6)
 
-    # --- Remove spines ---
-    for spine in ["top", "right", "left", "bottom"]:
-        ax.spines[spine].set_visible(False)
-
-    # --- Gridlines ---
-    # Always on: stronger horizontal, lighter vertical
-    ax.grid(axis="y", color=grid_y, linewidth=1.0)
-    ax.grid(axis="x", color=grid_x, linewidth=0.8)
-
-    # --- Tick styling ---
-    ax.tick_params(
-        axis="both",
-        which="both",
-        length=0,
-        labelsize=10,
-        colors=tick_color,
-        pad=6,
+    # Layout
+    fig.subplots_adjust(
+        top=plot_top,
+        bottom=plot_bottom,
+        left=plot_left,
+        right=plot_right,
     )
 
-    # --- Title ---
-    if title:
-        fig.text(
-            0.10,
-            0.945,
-            title,
-            fontsize=20,
-            fontweight="bold",
-            ha="left",
-            va="top",
-            color=title_color,
-        )
+    # Title
+    fig.text(
+        plot_left,
+        title_y,
+        title,
+        ha="left",
+        va="top",
+        fontsize=title_fontsize,
+        fontweight="bold",
+        color=TEXT,
+    )
 
-    # --- Subtitle ---
-    if subtitle:
-        wrap_width = max(58, int(fig.get_figwidth() * 8.5))
-        wrapped_subtitle = "\n".join(textwrap.wrap(subtitle, width=wrap_width))
+    # Subtitle
+    fig.text(
+        plot_left,
+        subtitle_y,
+        subtitle,
+        ha="left",
+        va="top",
+        fontsize=subtitle_fontsize,
+        color=SUBTEXT,
+    )
 
-        fig.text(
-            0.10,
-            0.892,
-            wrapped_subtitle,
-            fontsize=12,
-            color=subtitle_color,
-            ha="left",
-            va="top",
-            linespacing=1.25,
-        )
+    # Footer left
+    fig.text(
+        plot_left,
+        0.06,
+        footer_left,
+        ha="left",
+        va="bottom",
+        fontsize=footer_fontsize,
+        color=SUBTEXT,
+    )
 
-    # --- Footer ---
-    if footer_left:
-        fig.text(
-            0.10,
-            0.050,
-            footer_left,
-            fontsize=9,
-            color=footer_color,
-            ha="left",
-            va="bottom",
-        )
-
-    if source_text:
-        fig.text(
-            0.90,
-            0.050,
-            source_text,
-            fontsize=9,
-            color=footer_color,
-            ha="right",
-            va="bottom",
-        )
-
-    # --- Layout spacing ---
-    # Equal-feeling generous whitespace around the full chart system
-    plt.subplots_adjust(
-        left=0.10,
-        right=0.90,
-        top=0.79,
-        bottom=0.18,
+    # Source right
+    fig.text(
+        plot_right,
+        0.06,
+        source_text,
+        ha="right",
+        va="bottom",
+        fontsize=footer_fontsize,
+        color=SUBTEXT,
     )
