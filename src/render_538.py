@@ -58,6 +58,7 @@ def _format_value(val, fmt=None):
 def _axis_formatter_from_fmt(fmt):
     if not fmt:
         return None
+
     def _formatter(val, pos):
         try:
             if "{" in fmt:
@@ -65,6 +66,7 @@ def _axis_formatter_from_fmt(fmt):
             return format(val, fmt)
         except Exception:
             return _format_value(val)
+
     return FuncFormatter(_formatter)
 
 
@@ -262,19 +264,26 @@ def validate_chart_config(cfg, data):
     chart_type = cfg.get("chart_type")
     data_format = cfg.get("data_format")
     errors = []
+
     if chart_type not in {"line", "bar", "dot", "scatter"}:
         errors.append(f"Invalid chart_type: {chart_type}")
     if data_format not in {"long", "wide"}:
         errors.append(f"Invalid data_format: {data_format}")
+
     required = (
         "series_col", "value_col", "focus_series", "secondary_series", "label_strategy",
         "x_is_datetime", "x_tick_rotation", "y_axis_min", "y_axis_max", "y_tick_interval",
         "y_tick_format", "line_width", "marker_size", "show_markers", "auto_end_labels",
-        "sort_descending", "reference_lines", "highlight_points", "annotate_points", "end_labels"
+        "sort_descending", "reference_lines", "highlight_points", "annotate_points", "end_labels",
+        "fig_width", "fig_height", "title_fontsize", "subtitle_fontsize", "tick_label_fontsize",
+        "footer_fontsize", "title_wrap_width", "subtitle_wrap_width", "title_max_lines",
+        "subtitle_max_lines", "title_x", "title_y", "subtitle_x", "subtitle_y", "footer_left_x",
+        "footer_right_x", "footer_y", "plot_top", "plot_bottom", "plot_left", "plot_right"
     )
     for required_key in required:
         if required_key not in cfg:
             errors.append(f"Missing required config key: '{required_key}'")
+
     if chart_type == "line":
         if data_format != "long":
             errors.append("Line charts require data_format='long'")
@@ -282,6 +291,7 @@ def validate_chart_config(cfg, data):
             errors.append("Line charts require 'series_col'")
         if not cfg.get("value_col"):
             errors.append("Line charts require 'value_col'")
+
     if chart_type == "bar":
         if data_format != "wide":
             errors.append("Bar charts require data_format='wide'")
@@ -289,6 +299,7 @@ def validate_chart_config(cfg, data):
             errors.append("Bar charts must not use 'series_col'")
         if cfg.get("value_col") is not None:
             errors.append("Bar charts must not use 'value_col'")
+
     if chart_type == "dot":
         if data_format != "wide":
             errors.append("Dot charts require data_format='wide'")
@@ -298,6 +309,7 @@ def validate_chart_config(cfg, data):
             errors.append("Dot charts must not use 'series_col'")
         if cfg.get("value_col") is not None:
             errors.append("Dot charts must not use 'value_col'")
+
     if chart_type == "scatter":
         for vals in data.values():
             if not all(isinstance(x, (int, float)) for x in vals["x"]):
@@ -309,6 +321,7 @@ def validate_chart_config(cfg, data):
                 break
         if cfg.get("auto_end_labels") is not False:
             errors.append("Scatter charts should set auto_end_labels=False")
+
     y_axis_max = cfg.get("y_axis_max")
     if y_axis_max is not None:
         all_y = []
@@ -316,6 +329,7 @@ def validate_chart_config(cfg, data):
             all_y.extend(vals["y"])
         if all_y and max(all_y) > y_axis_max:
             errors.append(f"y_axis_max={y_axis_max} is below data max {max(all_y)}")
+
     if errors:
         raise ValueError("CHART CONFIG VALIDATION FAILED:\n- " + "\n- ".join(errors))
 
@@ -323,6 +337,7 @@ def validate_chart_config(cfg, data):
 def apply_axis_controls(ax, cfg):
     chart_type = cfg.get("chart_type")
     horizontal_numeric_axis = chart_type == "dot" or (chart_type == "bar" and cfg.get("sort_descending", False))
+
     if horizontal_numeric_axis:
         x_min = cfg.get("y_axis_min")
         x_max = cfg.get("y_axis_max")
@@ -337,6 +352,7 @@ def apply_axis_controls(ax, cfg):
         if formatter:
             ax.xaxis.set_major_formatter(formatter)
         return
+
     y_min = cfg.get("y_axis_min")
     y_max = cfg.get("y_axis_max")
     if y_min is not None or y_max is not None:
@@ -349,6 +365,7 @@ def apply_axis_controls(ax, cfg):
     formatter = _axis_formatter_from_fmt(y_tick_format)
     if formatter:
         ax.yaxis.set_major_formatter(formatter)
+
     x_tick_rotation = cfg.get("x_tick_rotation", 0)
     if x_tick_rotation:
         plt.setp(ax.get_xticklabels(), rotation=x_tick_rotation, ha="right")
@@ -507,21 +524,28 @@ def render_bar(ax, data, cfg):
     color = _get_color(cfg, "#1F8FA8")
     ranked = cfg.get("sort_descending", False)
     positions = list(range(len(vals["x"])))
+
     if ranked:
         ax.barh(positions, vals["y"], color=color, height=0.7, zorder=3)
         ax.set_yticks(positions)
         ax.set_yticklabels(vals["x"])
         ax.invert_yaxis()
+
         max_y = max(vals["y"]) if vals["y"] else 0
         value_pad = max_y * 0.012 if max_y else 0.5
         highlight_pad = max_y * 0.018 if max_y else 0.8
         ann_pad = max_y * 0.035 if max_y else 1.2
+
         if cfg.get("auto_end_labels", True):
             for pos, y in zip(positions, vals["y"]):
                 ax.text(y + value_pad, pos, _format_value(y, cfg.get("y_tick_format")), ha="left", va="center", fontsize=9, zorder=8)
+
         for pt in cfg.get("highlight_points", []):
             try:
-                category = pt.get("x"); value = pt.get("y"); label = pt.get("label"); pt_color = _get_color(pt, "#C44E52")
+                category = pt.get("x")
+                value = pt.get("y")
+                label = pt.get("label")
+                pt_color = _get_color(pt, "#C44E52")
                 if category in vals["x"]:
                     pos = vals["x"].index(category)
                     ax.scatter(value, pos, color=pt_color, s=55, zorder=7)
@@ -529,14 +553,18 @@ def render_bar(ax, data, cfg):
                         ax.text(value + highlight_pad, pos - 0.16, label, fontsize=9, color=pt_color, ha="left", va="bottom", clip_on=True, zorder=9)
             except Exception:
                 continue
+
         for ann in cfg.get("annotate_points", []):
             try:
-                category = ann.get("x"); value = ann.get("y"); text = ann.get("text")
+                category = ann.get("x")
+                value = ann.get("y")
+                text = ann.get("text")
                 if category in vals["x"] and text:
                     pos = vals["x"].index(category)
                     ax.text(value + ann_pad, pos - 0.34, text, fontsize=9, ha="left", va="bottom", clip_on=True, zorder=9)
             except Exception:
                 continue
+
     else:
         ax.bar(positions, vals["y"], color=color, width=0.7, zorder=3)
         ax.set_xticks(positions)
@@ -551,20 +579,26 @@ def render_dot(ax, data, cfg):
     vals = data[series_name]
     color = _get_color(cfg, "#1F8FA8")
     positions = list(range(len(vals["x"])))
+
     ax.scatter(vals["y"], positions, color=color, s=55, zorder=4)
     ax.set_yticks(positions)
     ax.set_yticklabels(vals["x"])
     ax.invert_yaxis()
     max_y = max(vals["y"]) if vals["y"] else 0
     ax.set_xlim(0, max_y * 1.10 if max_y else 1)
+
     if cfg.get("auto_end_labels", True):
         for pos, y in zip(positions, vals["y"]):
             coords = _dot_text_positions(ax, y, pos)
             value_x, value_y, value_ha = coords["value"]
             ax.text(value_x, value_y, _format_value(y, cfg.get("y_tick_format")), ha=value_ha, va="center", fontsize=9, zorder=8)
+
     for pt in cfg.get("highlight_points", []):
         try:
-            category = pt.get("x"); value = pt.get("y"); label = pt.get("label"); pt_color = _get_color(pt, "#C44E52")
+            category = pt.get("x")
+            value = pt.get("y")
+            label = pt.get("label")
+            pt_color = _get_color(pt, "#C44E52")
             if category in vals["x"]:
                 pos = vals["x"].index(category)
                 ax.scatter(value, pos, color=pt_color, s=55, zorder=7)
@@ -573,9 +607,12 @@ def render_dot(ax, data, cfg):
                     ax.text(hx, hy, label, fontsize=9, color=pt_color, ha=hha, va="bottom", clip_on=True, zorder=9)
         except Exception:
             continue
+
     for ann in cfg.get("annotate_points", []):
         try:
-            category = ann.get("x"); value = ann.get("y"); text = ann.get("text")
+            category = ann.get("x")
+            value = ann.get("y")
+            text = ann.get("text")
             if category in vals["x"] and text:
                 pos = vals["x"].index(category)
                 ax_x, ax_y, ax_ha = _dot_text_positions(ax, value, pos)["annotation"]
@@ -613,6 +650,7 @@ def render_scatter(ax, data, cfg):
     story_angle = cfg.get("story_angle", "relationship")
     all_x, all_y = [], []
     point_size = cfg.get("scatter_point_size", 55)
+
     for series_name, vals in data.items():
         if story_angle == "focus_vs_context":
             if _series_is_focus(series_name, cfg):
@@ -628,36 +666,49 @@ def render_scatter(ax, data, cfg):
                 style = styles["secondary"]; z = 5
             else:
                 style = styles["secondary"] if len(data) <= 4 else styles["context"]; z = 4
+
         ax.scatter(vals["x"], vals["y"], color=_get_color(style), s=point_size, alpha=style.get("alpha", 1.0), zorder=z)
+
         for x, y in zip(vals["x"], vals["y"]):
             if isinstance(x, (int, float)) and isinstance(y, (int, float)):
-                all_x.append(x); all_y.append(y)
+                all_x.append(x)
+                all_y.append(y)
+
     if cfg.get("show_regression_line", False):
         stats = _linear_regression_stats(all_x, all_y)
         if stats is not None:
             slope, intercept, r_squared = stats
-            x_min = min(all_x); x_max = max(all_x)
+            x_min = min(all_x)
+            x_max = max(all_x)
             x_line = [x_min, x_max]
             y_line = [slope * x + intercept for x in x_line]
             line_color = cfg.get("regression_line_color", "#7A7A7A")
             ax.plot(x_line, y_line, color=line_color, linestyle=cfg.get("regression_line_style", "--"), linewidth=cfg.get("regression_line_width", 1.6), zorder=2)
+
             if cfg.get("show_r_squared", False):
-                x0, x1 = ax.get_xlim(); y0, y1 = ax.get_ylim()
+                x0, x1 = ax.get_xlim()
+                y0, y1 = ax.get_ylim()
                 x_pos = x0 + (x1 - x0) * 0.02
                 y_pos = y1 - (y1 - y0) * 0.04
                 ax.text(x_pos, y_pos, f"RÂ² = {r_squared:.2f}", fontsize=9, color=line_color, ha="left", va="top", clip_on=True, zorder=9)
+
     for pt in cfg.get("highlight_points", []):
         try:
-            pt_color = _get_color(pt, "#C44E52"); x = pt["x"]; y = pt["y"]
+            pt_color = _get_color(pt, "#C44E52")
+            x = pt["x"]
+            y = pt["y"]
             ax.scatter(x, y, color=pt_color, s=point_size + 10, zorder=7)
             if pt.get("label"):
                 text_x, text_y, ha, va = _scatter_label_position(ax, x, y)
                 ax.text(text_x, text_y, pt["label"], fontsize=9, color=pt_color, ha=ha, va=va, clip_on=True, zorder=9)
         except Exception:
             continue
+
     for ann in cfg.get("annotate_points", []):
         try:
-            x = ann["x"]; y = ann["y"]; text = ann["text"]
+            x = ann["x"]
+            y = ann["y"]
+            text = ann["text"]
             text_x, text_y, ha, va = _scatter_label_position(ax, x, y)
             ax.text(text_x, text_y, text, fontsize=9, ha=ha, va=va, clip_on=True, zorder=9)
         except Exception:
@@ -665,15 +716,19 @@ def render_scatter(ax, data, cfg):
 
 
 def main():
-    print("RUNNING 538 RENDER V9")
+    print("RUNNING 538 RENDER V10")
     os.makedirs(REPO_ROOT / "output", exist_ok=True)
     cfg = _normalise_cfg(CHART_CONFIG)
+
     if "data_file" not in cfg:
         raise ValueError("Missing 'data_file' in CHART_CONFIG")
+
     data_path = REPO_ROOT / cfg["data_file"]
     print(f"Reading CSV from: {data_path}")
+
     chart_type = cfg.get("chart_type", "line")
     data_format = cfg.get("data_format", "wide")
+
     if data_format == "long":
         if not cfg.get("x_col") or not cfg.get("series_col") or not cfg.get("value_col"):
             raise ValueError("Long format requires valid 'x_col', 'series_col', and 'value_col'")
@@ -682,13 +737,18 @@ def main():
         if not cfg.get("x_col") or not cfg.get("y_col"):
             raise ValueError("Wide format requires valid 'x_col' and 'y_col'")
         data = load_wide_data(data_path, cfg["x_col"], cfg["y_col"])
+
     validate_chart_config(cfg, data)
+
     point_warnings = validate_config_points(data, cfg, tolerance=0.75)
     if point_warnings:
         raise ValueError("Config point validation failed:\n- " + "\n- ".join(point_warnings))
+
     if chart_type in {"bar", "dot"} and cfg.get("sort_descending", False):
         data = sort_single_series_for_rank_chart(data, descending=True)
-    fig, ax = plt.subplots(figsize=(cfg.get("fig_width", 8.5), cfg.get("fig_height", 8.5)))
+
+    fig, ax = plt.subplots(figsize=(cfg.get("fig_width", 8.0), cfg.get("fig_height", 8.0)))
+
     if chart_type == "line":
         render_line(ax, data, cfg)
     elif chart_type == "bar":
@@ -699,37 +759,48 @@ def main():
         render_scatter(ax, data, cfg)
     else:
         raise ValueError("chart_type must be one of: line, bar, dot, scatter")
+
     apply_axis_controls(ax, cfg)
     apply_reference_lines(ax, cfg)
-    special_case = cfg.get("chart_type") in {"dot", "scatter"} or (cfg.get("chart_type") == "bar" and cfg.get("sort_descending", False))
+
+    special_case = (
+        cfg.get("chart_type") == "dot"
+        or cfg.get("chart_type") == "scatter"
+        or (cfg.get("chart_type") == "bar" and cfg.get("sort_descending", False))
+    )
     if not special_case:
         apply_highlights(ax, cfg)
         apply_annotations(ax, cfg)
+
     apply_538_template(
-        ax, fig,
+        ax,
+        fig,
         title=cfg.get("title", ""),
         subtitle=cfg.get("subtitle", ""),
         source_text=cfg.get("source_text", ""),
         footer_left=cfg.get("footer_left", ""),
         vertical_gridlines=True,
-        title_fontsize=cfg.get("title_fontsize", 24),
-        subtitle_fontsize=cfg.get("subtitle_fontsize", 14),
-        tick_label_fontsize=cfg.get("tick_label_fontsize", 13),
+        title_fontsize=cfg.get("title_fontsize", 22),
+        subtitle_fontsize=cfg.get("subtitle_fontsize", 13),
+        tick_label_fontsize=cfg.get("tick_label_fontsize", 12),
         footer_fontsize=cfg.get("footer_fontsize", 10),
-        title_wrap_width=cfg.get("title_wrap_width", 34),
-        subtitle_wrap_width=cfg.get("subtitle_wrap_width", 72),
-        title_x=cfg.get("title_x", 0.14),
-        title_y=cfg.get("title_y", 0.955),
-        subtitle_x=cfg.get("subtitle_x", 0.14),
-        subtitle_y=cfg.get("subtitle_y", 0.89),
-        footer_left_x=cfg.get("footer_left_x", 0.14),
-        footer_right_x=cfg.get("footer_right_x", 0.96),
-        footer_y=cfg.get("footer_y", 0.06),
-        plot_top=cfg.get("plot_top", 0.74),
-        plot_bottom=cfg.get("plot_bottom", 0.16),
-        plot_left=cfg.get("plot_left", 0.14),
-        plot_right=cfg.get("plot_right", 0.96),
+        title_wrap_width=cfg.get("title_wrap_width", 28),
+        subtitle_wrap_width=cfg.get("subtitle_wrap_width", 56),
+        title_max_lines=cfg.get("title_max_lines", 2),
+        subtitle_max_lines=cfg.get("subtitle_max_lines", 2),
+        title_x=cfg.get("title_x", 0.10),
+        title_y=cfg.get("title_y", 0.93),
+        subtitle_x=cfg.get("subtitle_x", 0.10),
+        subtitle_y=cfg.get("subtitle_y", 0.855),
+        footer_left_x=cfg.get("footer_left_x", 0.10),
+        footer_right_x=cfg.get("footer_right_x", 0.90),
+        footer_y=cfg.get("footer_y", 0.075),
+        plot_top=cfg.get("plot_top", 0.72),
+        plot_bottom=cfg.get("plot_bottom", 0.15),
+        plot_left=cfg.get("plot_left", 0.10),
+        plot_right=cfg.get("plot_right", 0.90),
     )
+
     base = Path(cfg["data_file"]).stem
     ts = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
     fig.savefig(REPO_ROOT / f"output/{base}.png", dpi=300)
