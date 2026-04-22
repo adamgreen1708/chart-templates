@@ -1,16 +1,20 @@
-name: Render chart
+name: Generate config and render chart
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - "src/render_538.py"
-      - "src/chart_538.py"
-      - "src/chart_config.py"
-      - "data/**"
-      - ".github/workflows/render-chart.yml"
+    inputs:
+      data_file:
+        description: "Path to CSV file in repo"
+        required: true
+        default: "data/east_anglia_sunshine_2025_wide.csv"
+      prompt_file:
+        description: "Path to chart config prompt file"
+        required: true
+        default: "chart_config_prompt.md"
+      model:
+        description: "OpenAI model"
+        required: true
+        default: "gpt-5"
 
 jobs:
   render:
@@ -28,13 +32,96 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install matplotlib
+          pip install matplotlib openai pandas
+
+      - name: Generate src/chart_config.py from OpenAI
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          DATA_FILE: ${{ inputs.data_file }}
+          PROMPT_FILE: ${{ inputs.prompt_file }}
+          OPENAI_MODEL: ${{ inputs.model }}
+        run: |
+          python - <<'PY'
+          import os
+          import re
+          from pathlib import Path
+          import pandas as pd
+          from openai import OpenAI
+
+          repo_root = Path(".")
+          data_file = repo_root / os.environ["DATA_FILE"]
+          prompt_file = repo_root / os.environ["PROMPT_FILE"]
+          model = os.environ["OPENAI_MODEL"]
+
+          if not data_file.exists():
+              raise FileNotFoundError(f"Data file not found: {data_file}")
+
+          if not prompt_file.exists():
+              raise FileNotFoundError(f"Prompt file not found: {prompt_file}")
+
+          prompt_text = prompt_file.read_text(encoding="utf-8")
+
+          df = pd.read_csv(data_file)
+
+          preview_rows = min(len(df), 40)
+          preview_csv = df.head(preview_rows).to_csv(index=False)
+
+          user_input = f"""
+          DATA FILE PATH:
+          {data_file.as_posix()}
+
+          DATASET COLUMNS:
+          {list(df.columns)}
+
+          ROW COUNT:
+          {len(df)}
+
+          DATA PREVIEW (first {preview_rows} rows):
+          {preview_csv}
+
+          Generate a complete Python file containing only a valid CHART_CONFIG dictionary.
+          The output must begin with:
+          CHART_CONFIG = {{
+          and contain no markdown fences.
+          """
+
+          client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+
+          response = client.responses.create(
+              model=model,
+              instructions=prompt_text,
+              input=user_input,
+          )
+
+          output_text = response.output_text.strip()
+
+          # Remove markdown fences if the model adds them anyway
+          output_text = re.sub(r"^```python\\s*", "", output_text)
+          output_text = re.sub(r"^```\\s*", "", output_text)
+          output_text = re.sub(r"\\s*```$", "", output_text).strip()
+
+          if "CHART_CONFIG" not in output_text:
+              raise ValueError("Generated output did not contain CHART_CONFIG")
+
+          out_path = repo_root / "src" / "chart_config.py"
+          out_path.write_text(output_text + "\\n", encoding="utf-8")
+
+          print(f"Wrote config to {out_path}")
+          print(output_text[:1200])
+          PY
 
       - name: Ensure output folder exists
         run: mkdir -p output
 
       - name: Run renderer
         run: python src/render_538.py
+
+      - name: Upload generated config
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-chart-config
+          path: src/chart_config.py
+          if-no-files-found: error
 
       - name: Upload rendered charts
         uses: actions/upload-artifact@v4
