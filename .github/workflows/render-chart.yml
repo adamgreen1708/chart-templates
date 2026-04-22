@@ -1,1 +1,44 @@
+name: Render chart
 
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "src/render_538.py"
+      - "src/chart_538.py"
+      - "src/chart_config.py"
+      - "data/**"
+      - ".github/workflows/render-chart.yml"
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install matplotlib
+
+      - name: Ensure output folder exists
+        run: mkdir -p output
+
+      - name: Run renderer
+        run: python src/render_538.py
+
+      - name: Upload rendered charts
+        uses: actions/upload-artifact@v4
+        with:
+          name: rendered-chart-output
+          path: output/**
+          if-no-files-found: error
