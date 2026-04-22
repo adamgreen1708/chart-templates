@@ -1,162 +1,35 @@
-# 538-style CHART_CONFIG generation prompt (FULL HOUSE VERSION)
+### REQUIRED HOUSE STYLE FIELDS
+You MUST always include these keys in every CHART_CONFIG output, even if they use the default values:
 
-I am using a locked 538-style Python chart rendering system.
+"fig_width": 8.0,
+"fig_height": 8.0,
 
-Your job is to analyse a dataset and generate a complete `CHART_CONFIG` dictionary for my renderer.
+"title_fontsize": 22,
+"subtitle_fontsize": 13,
+"tick_label_fontsize": 12,
+"footer_fontsize": 10,
 
-## INPUT
-I will provide:
-- a CSV file
-- its repo filename/path
+"title_wrap_width": 30,
+"subtitle_wrap_width": 58,
+"title_max_lines": 2,
+"subtitle_max_lines": 2,
 
-## YOUR TASKS
+"title_x": 0.11,
+"title_y": 0.94,
+"subtitle_x": 0.11,
+"subtitle_y": 0.865,
 
-### 1. Inspect the dataset structure
-Identify:
-- the correct data file path
-- x column
-- y column
-- whether a series column exists
+"footer_left_x": 0.11,
+"footer_right_x": 0.89,
+"footer_y": 0.075,
 
-### 2. Classify the data structure
-Use `data_format = "long"` ONLY if:
-- there is a true series/category column
-- and there are multiple observations per series
-
-Use `data_format = "wide"` if:
-- the dataset is a single snapshot of categories
-- or there is only one value per category
-- or the chart is scatter with numeric x and numeric y
-
-Rules:
-- if using `wide`, set `"series_col": None` and `"value_col": None`
-- if using `long`, you MUST include `"series_col"` and `"value_col"`
-- never omit these keys
-
-### 3. Choose the best chart type
-- `line` → time series / continuous trend
-- `bar` → category comparison
-- `dot` → ranked comparison
-- `scatter` → relationship between two numeric variables
-
-### 4. Chart type decision (strict)
-- trend over time → `line`
-- ranked comparison → `dot` preferred, or ranked `bar`
-- category comparison in natural order → `bar`
-- relationship between two numeric variables → `scatter`
+"plot_top": 0.70,
+"plot_bottom": 0.16,
+"plot_left": 0.11,
+"plot_right": 0.89,
 
 Rules:
-- do NOT choose `line` unless x is time or ordered sequence
-- if the dataset is a single snapshot of categories, do NOT use `line`
-- if the story is ranking, prefer `dot`
-- if categories have a natural order, preserve that order and do NOT sort
-- if you want a ranked bar, set `"chart_type": "bar"` and `"sort_descending": True`
-- ranked bar charts should be treated as horizontal bars
-
-### 5. Identify the strongest single story
-Choose ONE dominant narrative:
-- trend
-- ranking
-- comparison
-- outlier
-- change
-- relationship
-
-### 6. Decide whether editorial helpers are needed
-Actively consider:
-- a benchmark or average reference line
-- a highlight point for a standout maximum, minimum, or outlier
-- a short annotation for a major turning point, outlier, or top-ranked category
-
-Only include these when exact coordinates are known.
-
-### 7. Headline and layout rules (CRITICAL)
-- Titles must be short enough to fit in at most 2 lines
-- Subtitles must be short enough to fit in at most 2 lines
-- Prefer tighter, punchier phrasing over explanatory overflow
-- Avoid subtitles that simply restate the title
-- Assume square social-first layout with generous outer padding
-
-## CHART-TYPE-SPECIFIC RULES
-
-### Line charts
-- must use `data_format = "long"`
-- must include `"series_col"` and `"value_col"`
-- use `focus_series` if a single series is the story
-- keep `"sort_descending": False`
-
-### Bar charts
-- must use `data_format = "wide"`
-- must set `"series_col": None` and `"value_col": None`
-- use natural order unless explicitly ranking
-- ranked bar is allowed by setting `"sort_descending": True`
-- if `"sort_descending": True`, the ranked bar should be horizontal
-
-### Dot charts
-- must use `data_format = "wide"`
-- must set `"series_col": None` and `"value_col": None`
-- must include `"sort_descending": True`
-
-### Scatter charts
-- must use numeric x and numeric y
-- should usually use `data_format = "wide"`
-- must set `"auto_end_labels": False`, `"sort_descending": False`, `"series_col": None`, `"value_col": None`
-- if a relationship exists, include `"show_regression_line": True` and `"show_r_squared": True`
-- if a regression line is shown, you MUST highlight the point with the largest deviation from the regression line and you SHOULD annotate it
-
-## CRITICAL RULES
-
-- do not invent values
-- highlight_points and annotate_points must match real data exactly
-- if unsure, leave them empty
-- never use `data_format = "long"` without valid `"series_col"` and `"value_col"`
-- never set duplicate keys in the output
-
-### ALWAYS INCLUDE THESE STANDARD FIELDS IN EVERY CHART_CONFIG
-Always include all of these keys, even if defaults:
-- series_col
-- value_col
-- focus_series
-- secondary_series
-- label_strategy
-- x_is_datetime
-- x_tick_rotation
-- y_axis_min
-- y_axis_max
-- y_tick_interval
-- y_tick_format
-- line_width
-- marker_size
-- show_markers
-- auto_end_labels
-- sort_descending
-- reference_lines
-- highlight_points
-- annotate_points
-- end_labels
-- fig_width
-- fig_height
-- title_fontsize
-- subtitle_fontsize
-- tick_label_fontsize
-- footer_fontsize
-- title_wrap_width
-- subtitle_wrap_width
-- title_max_lines
-- subtitle_max_lines
-- title_x
-- title_y
-- subtitle_x
-- subtitle_y
-- footer_left_x
-- footer_right_x
-- footer_y
-- plot_top
-- plot_bottom
-- plot_left
-- plot_right
-
-## REQUIRED OUTPUT FORMAT
-Return:
-1. Short explanation (max 4 lines)
-2. A valid Python dictionary called `CHART_CONFIG`
+- Titles must be short enough to fit within 2 lines.
+- Subtitles must be short enough to fit within 2 lines.
+- Output is square-first and social/mobile friendly.
+- Do not omit any of these fields.
