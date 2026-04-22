@@ -1,43 +1,31 @@
 CHART_CONFIG = {
-    "data_file": "data/east_anglia_sunshine_2025_wide.csv",
+    "data_file": "east_anglia_sunshine_2025_wide.csv",
     "data_format": "wide",
-    "chart_type": "dot",
+    "chart_type": "bar",
 
     "x_col": "month",
     "y_col": "sunshine_hours",
     "series_col": None,
     "value_col": None,
 
-    "title": "June towers over East Anglia’s 2025 sunshine table",
-    "subtitle": "Monthly sunshine hours ranked from highest to lowest show one standout peak and a steep drop into the darker months.",
-    "source_text": "Source: Met Office East Anglia sunshine dataset",
+    "title": "June blows the rest away",
+    "subtitle": "East Anglia’s 2025 sunshine surged through spring before peaking at 276.8 hours in June, well above the monthly average.",
+    "source_text": "Source: East Anglia sunshine dataset (user-provided)",
     "footer_left": "Adam Green | coffeetableviz",
+    "footer_right": "",
 
-    "story_angle": "ranking",
+    "story_angle": "category_comparison",
+
     "focus_series": None,
     "secondary_series": None,
-    "label_strategy": "focus_only",
 
-    "x_is_datetime": False,
-    "x_tick_rotation": 0,
-    "y_axis_min": 0,
-    "y_axis_max": None,
-    "y_tick_interval": 25,
-    "y_tick_format": ".0f",
-
-    "line_width": 2.6,
-    "marker_size": 0,
-    "show_markers": False,
-    "auto_end_labels": True,
-    "sort_descending": True,
+    "sort_descending": False,
+    "auto_end_labels": False,
 
     "reference_lines": [
         {
-            "value": 165.8,
-            "label": "2025 monthly average",
-            "linestyle": "--",
-            "linewidth": 1.0,
-            "alpha": 0.9,
+            "y": 149.1,
+            "label": "2025 monthly average"
         }
     ],
 
@@ -45,8 +33,7 @@ CHART_CONFIG = {
         {
             "x": "Jun",
             "y": 276.8,
-            "label": "#1",
-            "color": "#C44E52",
+            "label": "Peak: June"
         }
     ],
 
@@ -54,27 +41,9 @@ CHART_CONFIG = {
         {
             "x": "Jun",
             "y": 276.8,
-            "text": "June is the clear peak",
+            "label": "276.8 hours"
         }
     ],
-
-    "end_labels": [],
-
-    "context_style": {
-        "color": "#D9D9D9",
-        "linewidth": 0.8,
-        "alpha": 0.25,
-    },
-    "focus_style": {
-        "color": "#1F8FA8",
-        "linewidth": 3.2,
-        "alpha": 1.0,
-    },
-    "secondary_style": {
-        "color": "#7A7A7A",
-        "linewidth": 2.0,
-        "alpha": 0.9,
-    },
 
     "fig_width": 8.0,
     "fig_height": 8.0,
@@ -101,5 +70,5 @@ CHART_CONFIG = {
     "plot_top": 0.70,
     "plot_bottom": 0.16,
     "plot_left": 0.11,
-    "plot_right": 0.89,
+    "plot_right": 0.89
 }
