@@ -1,45 +1,63 @@
 CHART_CONFIG = {
-    "data_file": "east_anglia_sunshine_2025_wide.csv",
-    "data_format": "wide",
-    "chart_type": "bar",
+    "data_file": "east_anglia_sunshine_clean.csv",
+    "data_format": "long",
+    "chart_type": "line",
 
-    "x_col": "month",
+    "x_col": "year",
     "y_col": "sunshine_hours",
-    "series_col": None,
-    "value_col": None,
+    "series_col": "month",
+    "value_col": "sunshine_hours",
 
-    "title": "June blows the rest away",
-    "subtitle": "East Anglia’s 2025 sunshine surged through spring before peaking at 276.8 hours in June, well above the monthly average.",
+    "title": "June 2025 was almost off the charts",
+    "subtitle": "East Anglia recorded 276.8 sunshine hours in June 2025, making it one of the brightest Junes in the series and far above the typical June level.",
     "source_text": "Source: East Anglia sunshine dataset (user-provided)",
     "footer_left": "Adam Green | coffeetableviz",
     "footer_right": "",
 
-    "story_angle": "category_comparison",
+    "story_angle": "focus_vs_context",
 
-    "focus_series": None,
+    "focus_series": "Jun",
     "secondary_series": None,
 
+    "context_style": {
+        "color": "#CFCFCF",
+        "linewidth": 1.0,
+        "alpha": 0.45
+    },
+    "focus_style": {
+        "color": "#1F8FA8",
+        "linewidth": 3.0,
+        "alpha": 1.0
+    },
+    "secondary_style": {
+        "color": "#7A7A7A",
+        "linewidth": 2.0,
+        "alpha": 0.9
+    },
+
     "sort_descending": False,
-    "auto_end_labels": False,
+    "auto_end_labels": True,
 
     "reference_lines": [
         {
-            "y": 149.1,
-            "label": "2025 monthly average"
+            "y": 202.6,
+            "label": "Average June"
         }
     ],
 
     "highlight_points": [
         {
-            "x": "Jun",
+            "series": "Jun",
+            "x": 2025,
             "y": 276.8,
-            "label": "Peak: June"
+            "label": "June 2025"
         }
     ],
 
     "annotate_points": [
         {
-            "x": "Jun",
+            "series": "Jun",
+            "x": 2025,
             "y": 276.8,
             "label": "276.8 hours"
         }
