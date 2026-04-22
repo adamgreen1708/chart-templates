@@ -1,5 +1,5 @@
 CHART_CONFIG = {
-    "data_file": "east_anglia_sunshine_clean.csv",
+    "data_file": "data/east_anglia_sunshine_clean.csv",
     "data_format": "long",
     "chart_type": "line",
 
