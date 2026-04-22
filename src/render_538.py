@@ -1251,7 +1251,17 @@ def main():
     if chart_type in {"bar", "dot"} and cfg.get("sort_descending", False):
         data = sort_single_series_for_rank_chart(data, descending=True)
 
-    fig, ax = plt.subplots(figsize=(12, 8.5))
+    fig, ax = plt.subplots(
+    figsize=(
+        cfg.get("fig_width", 8.0),
+        cfg.get("fig_height", 10.0),
+    )
+)
+
+ax.tick_params(
+    axis="both",
+    labelsize=cfg.get("tick_label_fontsize", 12)
+)
 
     if chart_type == "line":
         render_line(ax, data, cfg)
