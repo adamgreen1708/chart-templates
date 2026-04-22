@@ -51,7 +51,7 @@ Rules:
 - if the story is ranking, prefer `dot`
 - if categories have a natural order, preserve that order and do NOT sort
 - if you want a ranked bar, set `"chart_type": "bar"` and `"sort_descending": True`
-- ranked bar charts should be horizontal
+- ranked bar charts should be treated as horizontal bars
 
 ### 5. Identify the strongest single story
 Choose ONE dominant narrative:
@@ -70,42 +70,12 @@ Actively consider:
 
 Only include these when exact coordinates are known.
 
-### 7. House style rules (critical)
-All charts must be generated for a square, mobile-friendly output.
-
-Use these defaults unless there is a strong reason not to:
-- `"fig_width": 8.0`
-- `"fig_height": 8.0`
-- `"title_fontsize": 22`
-- `"subtitle_fontsize": 13`
-- `"tick_label_fontsize": 12`
-- `"footer_fontsize": 10`
-
-Headlines and subtitles must be kept short enough to fit a square layout.
-You MUST also include:
-- `"title_wrap_width": 28`
-- `"subtitle_wrap_width": 56`
-- `"title_max_lines": 2`
-- `"subtitle_max_lines": 2`
-
-Spacing / margins must be:
-- `"title_x": 0.10`
-- `"title_y": 0.93`
-- `"subtitle_x": 0.10`
-- `"subtitle_y": 0.855`
-- `"footer_left_x": 0.10`
-- `"footer_right_x": 0.90`
-- `"footer_y": 0.075`
-- `"plot_top": 0.72`
-- `"plot_bottom": 0.15`
-- `"plot_left": 0.10`
-- `"plot_right": 0.90`
-
-This is to ensure:
-- square render proportions
-- shorter headers and subheaders
-- visible space between title and subtitle
-- consistent right-hand border and padding on all sides
+### 7. Headline and layout rules (CRITICAL)
+- Titles must be short enough to fit in at most 2 lines
+- Subtitles must be short enough to fit in at most 2 lines
+- Prefer tighter, punchier phrasing over explanatory overflow
+- Avoid subtitles that simply restate the title
+- Assume square social-first layout with generous outer padding
 
 ## CHART-TYPE-SPECIFIC RULES
 
@@ -120,6 +90,7 @@ This is to ensure:
 - must set `"series_col": None` and `"value_col": None`
 - use natural order unless explicitly ranking
 - ranked bar is allowed by setting `"sort_descending": True`
+- if `"sort_descending": True`, the ranked bar should be horizontal
 
 ### Dot charts
 - must use `data_format = "wide"`
