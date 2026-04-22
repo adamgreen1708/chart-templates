@@ -24,43 +24,40 @@ You must decide whether the dataset is `long` or `wide` before generating the co
 Use `data_format = "long"` ONLY if:
 - there is a true series/category column
 - and there are multiple observations per series
-- example: Jan, Feb, Mar across many years
 
 Use `data_format = "wide"` if:
 - the dataset is a single snapshot of categories
 - or there is only one value per category
-- example: Jan–Dec for a single year
-- example: country and value
-- example: x numeric and y numeric for scatter
+- or the chart is scatter with numeric x and numeric y
 
 Rules:
 - if using `wide`, set:
   - `"series_col": None`
   - `"value_col": None`
-- if using `long`, you MUST include both:
+- if using `long`, you MUST include:
   - `"series_col": "..."`
   - `"value_col": "..."`
 - never omit these keys
 
 ### 3. Choose the best chart type
-- `line` → time series / continuous trend
-- `bar` → category comparison
-- `dot` → ranked comparison
-- `scatter` → relationship between two numeric variables
+- `line` â time series / continuous trend
+- `bar` â category comparison
+- `dot` â ranked comparison
+- `scatter` â relationship between two numeric variables
 
 ### 4. Chart type decision (strict)
-You must explicitly decide which story the data represents before choosing the chart:
+Decide the story before choosing the chart:
 
-- trend over time → `line`
-- ranked comparison (best to worst) → `dot` preferred, or ranked `bar`
-- category comparison in natural order (e.g. Jan–Dec) → `bar`
-- relationship between two numeric variables → `scatter`
+- trend over time â `line`
+- ranked comparison â `dot` preferred, or ranked `bar`
+- category comparison in natural order â `bar`
+- relationship between two numeric variables â `scatter`
 
 Rules:
 - do NOT choose `line` unless x is time or ordered sequence
 - if the dataset is a single snapshot of categories, do NOT use `line`
 - if the story is ranking, prefer `dot`
-- if categories have a natural order (e.g. Jan–Dec), preserve that order and do NOT sort
+- if categories have a natural order, preserve that order and do NOT sort
 - if you want a ranked bar, set:
   - `"chart_type": "bar"`
   - `"sort_descending": True`
@@ -75,8 +72,6 @@ Choose ONE dominant narrative:
 - change
 - relationship
 
-Avoid generic summaries.
-
 ### 6. Decide whether editorial helpers are needed
 Actively consider whether the chart would benefit from:
 - a benchmark or average reference line
@@ -89,8 +84,6 @@ Only include these when:
 
 If exact coordinates are uncertain, leave them empty.
 
----
-
 ## CHART-TYPE-SPECIFIC RULES
 
 ### Line charts
@@ -100,8 +93,6 @@ If exact coordinates are uncertain, leave them empty.
   - `"value_col"`
 - use `focus_series` if a single series is the story
 - keep `"sort_descending": False`
-- consider a reference line if a long-run average, benchmark, or threshold helps interpretation
-- consider a highlight / annotation for a turning point, record value, or latest notable point if exact coordinates are known
 
 ### Bar charts
 - must use `data_format = "wide"`
@@ -111,9 +102,6 @@ If exact coordinates are uncertain, leave them empty.
 - use natural order unless explicitly ranking
 - ranked bar is allowed by setting `"sort_descending": True`
 - if `"sort_descending": True`, the ranked bar should be horizontal
-- consider a reference line if an average, benchmark, or threshold adds meaning
-- consider a highlight point for the top or bottom category if it strengthens the story
-- add annotations only when exact coordinates are known and materially improve understanding
 
 ### Dot charts
 - must use `data_format = "wide"`
@@ -123,8 +111,6 @@ If exact coordinates are uncertain, leave them empty.
 - must include:
   - `"sort_descending": True`
 - used for ranked comparisons only
-- consider a reference line only if a benchmark materially improves the ranking story
-- consider a highlight point or short annotation for the top-ranked category or a clear outlier if exact coordinates are known
 
 ### Scatter charts
 - must use numeric x and numeric y
@@ -140,10 +126,6 @@ If exact coordinates are uncertain, leave them empty.
 - if a regression line is shown:
   - you MUST highlight the point with the largest deviation from the regression line
   - and you SHOULD annotate it
-- do NOT highlight arbitrary highs or lows unless they are also the clearest outlier from trend
-- consider benchmark reference lines when useful
-
----
 
 ## CRITICAL RULES
 
@@ -153,19 +135,54 @@ If exact coordinates are uncertain, leave them empty.
 - never use `data_format = "long"` without valid `"series_col"` and `"value_col"`
 - never set duplicate keys in the output
 - if the dataset is a single snapshot, it is almost always `wide`
-- if the renderer cannot support the editorial idea cleanly, change the story
 
 ### ALWAYS INCLUDE THESE STANDARD FIELDS IN EVERY CHART_CONFIG
 The returned config must ALWAYS explicitly include all of these keys, even if they are defaults:
 
 ```python
+"series_col": None,
+"value_col": None,
+"focus_series": None,
+"secondary_series": None,
+"label_strategy": "focus_only",
+"x_is_datetime": False,
+"x_tick_rotation": 0,
 "y_axis_min": 0,
 "y_axis_max": None,
 "y_tick_interval": 25,
 "y_tick_format": ".0f",
-"auto_end_labels": True,   # or False for scatter
-"sort_descending": False,  # or True for dot / ranked bar
+"line_width": 2.6,
+"marker_size": 0,
+"show_markers": False,
+"auto_end_labels": True,
+"sort_descending": False,
 "reference_lines": [],
 "highlight_points": [],
 "annotate_points": [],
 "end_labels": [],
+"fig_width": 8.5,
+"fig_height": 8.5,
+"title_fontsize": 24,
+"subtitle_fontsize": 14,
+"tick_label_fontsize": 13,
+"footer_fontsize": 10,
+"title_wrap_width": 34,
+"subtitle_wrap_width": 72,
+"title_x": 0.14,
+"title_y": 0.955,
+"subtitle_x": 0.14,
+"subtitle_y": 0.89,
+"footer_left_x": 0.14,
+"footer_right_x": 0.96,
+"footer_y": 0.06,
+"plot_top": 0.74,
+"plot_bottom": 0.16,
+"plot_left": 0.14,
+"plot_right": 0.96,
+```
+
+## REQUIRED OUTPUT FORMAT
+
+Return:
+1. Short explanation (max 4 lines)
+2. A valid Python dictionary called `CHART_CONFIG`
