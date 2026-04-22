@@ -31,8 +31,31 @@ CHART_CONFIG = {
     "auto_end_labels": True,
     "sort_descending": True,
     
-    "fig_width": 8,
-    "fig_height": 10,
+        "fig_width": 8.0,
+    "fig_height": 8.0,
+    "title_fontsize": 22,
+    "subtitle_fontsize": 13,
+    "tick_label_fontsize": 12,
+    "footer_fontsize": 10,
+
+    "title_wrap_width": 30,
+    "subtitle_wrap_width": 58,
+    "title_max_lines": 2,
+    "subtitle_max_lines": 2,
+
+    "title_x": 0.11,
+    "title_y": 0.94,
+    "subtitle_x": 0.11,
+    "subtitle_y": 0.865,
+
+    "footer_left_x": 0.11,
+    "footer_right_x": 0.89,
+    "footer_y": 0.075,
+
+    "plot_top": 0.70,
+    "plot_bottom": 0.16,
+    "plot_left": 0.11,
+    "plot_right": 0.89,
 
     "title_fontsize": 24,
     "subtitle_fontsize": 15,
