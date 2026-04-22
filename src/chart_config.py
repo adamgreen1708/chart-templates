@@ -8,9 +8,9 @@ CHART_CONFIG = {
     "series_col": None,
     "value_col": None,
 
-    "title": "June sits clearly on top of East Anglia’s sunshine rankings",
-    "subtitle": "Monthly sunshine hours in 2025 ranked from highest to lowest show a clear leader, with June well ahead of the rest.",
-    "source_text": "Source: East Anglia sunshine dataset (user-provided)",
+    "title": "June towers over East Anglia’s 2025 sunshine table",
+    "subtitle": "Monthly sunshine hours ranked from highest to lowest show one standout peak and a steep drop into the darker months.",
+    "source_text": "Source: Met Office East Anglia sunshine dataset",
     "footer_left": "Adam Green | coffeetableviz",
 
     "story_angle": "ranking",
@@ -30,9 +30,55 @@ CHART_CONFIG = {
     "show_markers": False,
     "auto_end_labels": True,
     "sort_descending": True,
-    
-        "fig_width": 8.0,
+
+    "reference_lines": [
+        {
+            "value": 165.8,
+            "label": "2025 monthly average",
+            "linestyle": "--",
+            "linewidth": 1.0,
+            "alpha": 0.9,
+        }
+    ],
+
+    "highlight_points": [
+        {
+            "x": "Jun",
+            "y": 276.8,
+            "label": "#1",
+            "color": "#C44E52",
+        }
+    ],
+
+    "annotate_points": [
+        {
+            "x": "Jun",
+            "y": 276.8,
+            "text": "June is the clear peak",
+        }
+    ],
+
+    "end_labels": [],
+
+    "context_style": {
+        "color": "#D9D9D9",
+        "linewidth": 0.8,
+        "alpha": 0.25,
+    },
+    "focus_style": {
+        "color": "#1F8FA8",
+        "linewidth": 3.2,
+        "alpha": 1.0,
+    },
+    "secondary_style": {
+        "color": "#7A7A7A",
+        "linewidth": 2.0,
+        "alpha": 0.9,
+    },
+
+    "fig_width": 8.0,
     "fig_height": 8.0,
+
     "title_fontsize": 22,
     "subtitle_fontsize": 13,
     "tick_label_fontsize": 12,
@@ -56,50 +102,4 @@ CHART_CONFIG = {
     "plot_bottom": 0.16,
     "plot_left": 0.11,
     "plot_right": 0.89,
-
-    "title_fontsize": 24,
-    "subtitle_fontsize": 15,
-    "tick_label_fontsize": 12,
-    "footer_fontsize": 10,
-
-    "reference_lines": [
-        {
-            "value": 165.8,
-            "label": "2025 monthly average"
-        }
-    ],
-
-    "highlight_points": [
-        {
-            "x": "Jun",
-            "y": 276.8,
-            "label": "#1"
-        }
-    ],
-
-    "annotate_points": [
-        {
-            "x": "Jun",
-            "y": 276.8,
-            "text": "June is the clear peak"
-        }
-    ],
-
-    "end_labels": [],
-
-    "context_style": {
-        "color": "#D9D9D9",
-        "linewidth": 0.8,
-        "alpha": 0.25,
-    },
-    "focus_style": {
-        "color": "#1F8FA8",
-        "linewidth": 3.2,
-        "alpha": 1.0,
-    },
-    "secondary_style": {
-        "color": "#7A7A7A",
-        "linewidth": 2.0,
-        "alpha": 0.9,
-    },
 }
