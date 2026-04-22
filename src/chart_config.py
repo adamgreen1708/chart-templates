@@ -30,6 +30,14 @@ CHART_CONFIG = {
     "show_markers": False,
     "auto_end_labels": True,
     "sort_descending": True,
+    
+    "fig_width": 8,
+    "fig_height": 10,
+
+    "title_fontsize": 24,
+    "subtitle_fontsize": 15,
+    "tick_label_fontsize": 12,
+    "footer_fontsize": 10,
 
     "reference_lines": [
         {
