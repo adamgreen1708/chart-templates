@@ -52,7 +52,6 @@ def _format_value(val, fmt=None):
             return format(val, fmt)
         except Exception:
             pass
-
     if isinstance(val, float):
         return f"{val:.1f}".rstrip("0").rstrip(".")
     return str(val)
@@ -100,10 +99,72 @@ def _as_list(value):
 
 
 def _normalise_cfg(cfg):
-    out = dict(cfg)
-    out["_focus_list"] = _as_list(cfg.get("focus_series"))
-    out["_secondary_list"] = _as_list(cfg.get("secondary_series"))
+    defaults = {
+        "series_col": None,
+        "value_col": None,
+        "focus_series": None,
+        "secondary_series": None,
+        "label_strategy": "focus_only",
+        "x_is_datetime": False,
+        "x_tick_rotation": 0,
+        "y_axis_min": 0,
+        "y_axis_max": None,
+        "y_tick_interval": 25,
+        "y_tick_format": ".0f",
+        "line_width": 2.6,
+        "marker_size": 0,
+        "show_markers": False,
+        "auto_end_labels": True,
+        "sort_descending": False,
+        "reference_lines": [],
+        "highlight_points": [],
+        "annotate_points": [],
+        "end_labels": [],
+        "context_style": {
+            "color": "#D9D9D9",
+            "linewidth": 0.8,
+            "alpha": 0.25,
+        },
+        "focus_style": {
+            "color": "#1F8FA8",
+            "linewidth": 3.2,
+            "alpha": 1.0,
+        },
+        "secondary_style": {
+            "color": "#7A7A7A",
+            "linewidth": 2.0,
+            "alpha": 0.9,
+        },
+        "fig_width": 8.0,
+        "fig_height": 8.0,
+        "title_fontsize": 22,
+        "subtitle_fontsize": 13,
+        "tick_label_fontsize": 12,
+        "footer_fontsize": 10,
+        "title_wrap_width": 30,
+        "subtitle_wrap_width": 58,
+        "title_max_lines": 2,
+        "subtitle_max_lines": 2,
+        "title_x": 0.11,
+        "title_y": 0.94,
+        "subtitle_x": 0.11,
+        "subtitle_y": 0.865,
+        "footer_left_x": 0.11,
+        "footer_right_x": 0.89,
+        "footer_y": 0.075,
+        "plot_top": 0.70,
+        "plot_bottom": 0.16,
+        "plot_left": 0.11,
+        "plot_right": 0.89,
+    }
+
+    out = dict(defaults)
+    out.update(cfg)
+
+    out["_focus_list"] = _as_list(out.get("focus_series"))
+    out["_secondary_list"] = _as_list(out.get("secondary_series"))
     out["_highlighted_series"] = set(out["_focus_list"] + out["_secondary_list"])
+
     return out
 
 
@@ -140,7 +201,6 @@ def _add_safe_end_label(ax, y, label, color="#1F8FA8"):
     y_min, y_max = ax.get_ylim()
     y_span = y_max - y_min
     y_pos = _safe_text_y(ax, y + y_span * 0.01, 0.03)
-
     ax.text(
         x_pos,
         y_pos,
@@ -157,11 +217,9 @@ def _add_safe_end_label(ax, y, label, color="#1F8FA8"):
 def _dot_text_positions(ax, value, pos):
     x_min, x_max = ax.get_xlim()
     x_span = x_max - x_min
-
     value_pad = x_span * 0.012
     label_pad = x_span * 0.018
     ann_pad = x_span * 0.035
-
     near_right = value > x_min + x_span * 0.86
 
     if near_right:
@@ -183,16 +241,12 @@ def _scatter_label_position(ax, x, y):
     y_min, y_max = ax.get_ylim()
     x_span = x_max - x_min
     y_span = y_max - y_min
-
     near_right = x > x_min + x_span * 0.82
     near_top = y > y_min + y_span * 0.82
-
     text_x = x - x_span * 0.025 if near_right else x + x_span * 0.02
     text_y = y - y_span * 0.03 if near_top else y + y_span * 0.025
-
     ha = "right" if near_right else "left"
     va = "top" if near_top else "bottom"
-
     return text_x, text_y, ha, va
 
 
@@ -205,22 +259,18 @@ def _approx_equal(a, b, tolerance=0.5):
 
 def _sort_series_by_x(data):
     sorted_data = {}
-
     for series_name, vals in data.items():
         pairs = list(zip(vals["x"], vals["y"]))
         pairs.sort(key=lambda t: t[0])
-
         sorted_data[series_name] = {
             "x": [p[0] for p in pairs],
             "y": [p[1] for p in pairs],
         }
-
     return sorted_data
 
 
 def load_wide_data(csv_path, x_col, y_col):
     x_vals, y_vals = [], []
-
     with open(csv_path, newline="", encoding="utf-8") as f:
         reader = _safe_headers(csv.DictReader(f))
 
@@ -284,47 +334,11 @@ def validate_chart_config(cfg, data):
         errors.append(f"Invalid data_format: {data_format}")
 
     required = (
-        "series_col",
-        "value_col",
-        "focus_series",
-        "secondary_series",
-        "label_strategy",
-        "x_is_datetime",
-        "x_tick_rotation",
-        "y_axis_min",
-        "y_axis_max",
-        "y_tick_interval",
-        "y_tick_format",
-        "line_width",
-        "marker_size",
-        "show_markers",
-        "auto_end_labels",
-        "sort_descending",
-        "reference_lines",
-        "highlight_points",
-        "annotate_points",
-        "end_labels",
-        "fig_width",
-        "fig_height",
-        "title_fontsize",
-        "subtitle_fontsize",
-        "tick_label_fontsize",
-        "footer_fontsize",
-        "title_wrap_width",
-        "subtitle_wrap_width",
-        "title_max_lines",
-        "subtitle_max_lines",
-        "title_x",
-        "title_y",
-        "subtitle_x",
-        "subtitle_y",
-        "footer_left_x",
-        "footer_right_x",
-        "footer_y",
-        "plot_top",
-        "plot_bottom",
-        "plot_left",
-        "plot_right",
+        "data_file",
+        "data_format",
+        "chart_type",
+        "x_col",
+        "y_col",
     )
     for required_key in required:
         if required_key not in cfg:
@@ -394,7 +408,6 @@ def _sanitise_point_blocks(data, cfg):
 
     for block_name in ("highlight_points", "annotate_points"):
         cleaned_items = []
-
         for item in cfg.get(block_name, []) or []:
             item_copy = dict(item)
             series = item_copy.get("series")
