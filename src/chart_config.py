@@ -15,12 +15,17 @@ CHART_CONFIG = {
     "footer_right": "",
 
     "story_angle": "focus_vs_context",
+    "focus_series": 2025,
+
+    # 🔴 THIS IS THE FIX
+
+    "apply_focus_to_all_others": True,
 
     "focus_series": 2025,
     "secondary_series": None,
 
     "context_style": {
-        "color": "#D3D3D3",
+        "color": "#D9D9D9",
         "linewidth": 1.0,
         "alpha": 0.35
     },
