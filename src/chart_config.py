@@ -35,6 +35,7 @@ CHART_CONFIG = {
         "color": "#7A7A7A",
         "linewidth": 2.0,
         "alpha": 0.9
+        "zorder": 3
     },
 
     "reference_lines": [],
