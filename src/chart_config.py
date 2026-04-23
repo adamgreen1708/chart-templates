@@ -20,7 +20,7 @@ CHART_CONFIG = {
     "secondary_series": None,
 
     "context_style": {
-        "color": "#CFCFCF",
+        "color": "#D3D3D3",
         "linewidth": 1.0,
         "alpha": 0.35
     },
