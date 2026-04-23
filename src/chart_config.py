@@ -28,14 +28,15 @@ CHART_CONFIG = {
     "focus_style": {
         "color": "#1F8FA8",
         "linewidth": 3.0,
-        "alpha": 1.0
+        "alpha": 1.0,
+        "zorder": 3
     },
 
     "secondary_style": {
         "color": "#7A7A7A",
         "linewidth": 2.0,
         "alpha": 0.9
-        "zorder": 3
+        
     },
 
     "reference_lines": [],
