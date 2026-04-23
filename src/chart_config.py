@@ -8,8 +8,8 @@ CHART_CONFIG = {
     "series_col": "year",
     "value_col": "sunshine_hours",
 
-    "title": "East Anglia’s 2025 sunshine surge was built in spring",
-    "subtitle": "Monthly sunshine hours. Against more than a century of background years, 2025 stands out most in March and April, both record months in this dataset.",
+    "title": "2025 stayed bright",
+    "subtitle": "East Anglia sunshine by month. March, April and June made 2025 hard to catch.",
     "source_text": "Source: East Anglia sunshine dataset (user-provided)",
     "footer_left": "Adam Green | coffeetableviz",
     "footer_right": "",
@@ -41,12 +41,14 @@ CHART_CONFIG = {
 
     "highlight_points": [
         {"x": 3, "y": 222.0, "series": 2025},
-        {"x": 4, "y": 269.2, "series": 2025}
+        {"x": 4, "y": 269.2, "series": 2025},
+        {"x": 6, "y": 276.8, "series": 2025}
     ],
 
     "annotate_points": [
         {"x": 3, "y": 222.0, "series": 2025, "text": "Record March"},
-        {"x": 4, "y": 269.2, "series": 2025, "text": "Record April"}
+        {"x": 4, "y": 269.2, "series": 2025, "text": "Record April"},
+        {"x": 6, "y": 276.8, "series": 2025, "text": "Huge June"}
     ],
 
     "auto_end_labels": True,
