@@ -394,18 +394,18 @@ def main():
     _plot_highlights_and_annotations(ax)
     _add_titles_and_footer(fig)
 
-output_dir = REPO_ROOT / "output"
-output_dir.mkdir(exist_ok=True)
+    output_dir = REPO_ROOT / "output"
+    output_dir.mkdir(exist_ok=True)
 
-from datetime import datetime
+    from datetime import datetime
 
-timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-output_slug = CHART_CONFIG.get("output_slug", Path(CHART_CONFIG["data_file"]).stem)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    output_slug = CHART_CONFIG.get("output_slug", Path(CHART_CONFIG["data_file"]).stem)
 
-output_path = output_dir / f"{output_slug}_{timestamp}.png"
+    output_path = output_dir / f"{output_slug}_{timestamp}.png"
 
-fig.savefig(output_path, dpi=200, facecolor=fig.get_facecolor())
-print(f"Saved chart to {output_path}")
+    fig.savefig(output_path, dpi=200, facecolor=fig.get_facecolor())
+    print(f"Saved chart to {output_path}")
 
 if __name__ == "__main__":
     main()
