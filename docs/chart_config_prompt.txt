@@ -183,6 +183,28 @@ Never allow axis labels, annotations, or point labels to spill into the padding.
 - never add renderer flags unless explicitly listed in this prompt
 - for focus-vs-context charts, rely on `focus_series`, `secondary_series`, `focus_style`, `secondary_style`, and `context_style`
 
+## OUTPUT FILE NAMING (REQUIRED)
+
+Every CHART_CONFIG must include an "output_slug".
+
+Rules:
+- lowercase
+- use underscores, no spaces
+- short but descriptive of the story (not the dataset)
+- do not include dates or file extensions
+- must be unique per chart in a multi-chart story
+
+Examples:
+- "cheap_fuel_still_spiked"
+- "diesel_carries_the_pain"
+- "fuel_price_quadrants"
+
+Avoid:
+- dataset-based names like "fuel_prices_output"
+- generic names like "chart1"
+
+The renderer uses this slug to generate the output filename.
+
 ## REQUIRED OUTPUT
 Return ONLY:
 
