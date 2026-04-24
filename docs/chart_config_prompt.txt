@@ -140,6 +140,40 @@ Use these defaults unless there is a strong reason not to:
 - avoid bland descriptive titles
 - write like an editorial headline, not a chart label
 
+## DYNAMIC LAYOUT RULES
+
+Choose plot spacing based on chart type. Do not blindly use the default plot_top / plot_bottom.
+
+For scatter charts:
+- use plot_top: 0.70
+- use plot_bottom: 0.16
+- use plot_left: 0.11
+- use plot_right: 0.89
+
+For dot charts / ranked charts:
+- use plot_top: 0.75
+- use plot_bottom: 0.17
+- use plot_left: 0.24
+- use plot_right: 0.89
+
+For bar charts:
+- use plot_top: 0.74
+- use plot_bottom: 0.17
+- use plot_left: 0.16
+- use plot_right: 0.89
+
+For line charts:
+- use plot_top: 0.72
+- use plot_bottom: 0.16
+- use plot_left: 0.11
+- use plot_right: 0.89
+
+If the subtitle is only one line, increase plot_top by 0.03.
+If the title is only one line and subtitle is only one line, increase plot_top by 0.04.
+If labels are long category names, increase plot_left to at least 0.24.
+Never allow a large empty gap between subtitle and plot.
+Never allow axis labels, annotations, or point labels to spill into the padding.
+
 ## CRITICAL RULES
 - Do NOT invent values
 - `highlight_points` and `annotate_points` must match dataset coordinates exactly
