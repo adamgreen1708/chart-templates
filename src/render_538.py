@@ -201,27 +201,52 @@ def _plot_reference_lines(ax):
 
 
 def _plot_highlights_and_annotations(ax):
-    focus_style = CHART_CONFIG.get("focus_style", {})
     highlight_color = CHART_CONFIG.get("highlight_color", "#C44E52")
 
     for p in CHART_CONFIG.get("highlight_points", []):
         ax.scatter(
             p["x"],
             p["y"],
-            s=p.get("size", 46),
-            color=p.get("color", highlight_color),
-            zorder=p.get("zorder", 8),
+            s=p.get("size", CHART_CONFIG.get("highlight_style", {}).get("size", 90)),
+            color=p.get("color", CHART_CONFIG.get("highlight_style", {}).get("color", highlight_color)),
+            alpha=p.get("alpha", CHART_CONFIG.get("highlight_style", {}).get("alpha", 1.0)),
+            zorder=p.get("zorder", CHART_CONFIG.get("highlight_style", {}).get("zorder", 8)),
         )
 
+    x_min, x_max = ax.get_xlim()
+    x_range = x_max - x_min
+
     for p in CHART_CONFIG.get("annotate_points", []):
+        x = p["x"]
+        y = p["y"]
+
+        # Default offset from config, but make it edge-aware
+        dx = p.get("dx", None)
+        dy = p.get("dy", None)
+
+        if dx is None or dy is None:
+            xytext = p.get("xytext", [10, 10])
+            dx = xytext[0]
+            dy = xytext[1]
+
+        ha = p.get("ha", "left")
+
+        # Auto-flip labels when point is close to right edge
+        if isinstance(x, (int, float)) and x_range > 0:
+            right_edge_threshold = x_min + (0.82 * x_range)
+
+            if x >= right_edge_threshold and dx > 0:
+                dx = -10
+                ha = "right"
+
         ax.annotate(
             p.get("text", ""),
-            xy=(p["x"], p["y"]),
-            xytext=(p.get("dx", 10), p.get("dy", 10)),
+            xy=(x, y),
+            xytext=(dx, dy),
             textcoords="offset points",
             fontsize=p.get("fontsize", 9),
             color=p.get("color", "#111111"),
-            ha=p.get("ha", "left"),
+            ha=ha,
             va=p.get("va", "bottom"),
             arrowprops=p.get(
                 "arrowprops",
@@ -233,7 +258,6 @@ def _plot_highlights_and_annotations(ax):
             ),
             zorder=p.get("zorder", 9),
         )
-
 
 def _plot_line(ax, rows):
     x_col = CHART_CONFIG["x_col"]
