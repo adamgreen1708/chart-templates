@@ -29,7 +29,7 @@ Rules:
 ### 3. Choose chart type
 - line → time trend
 - bar → category comparison
-- dot → ranked comparison (preferred)
+- dot → ranked comparison, preferred
 - scatter → relationship
 
 ### 4. Identify ONE clear story
@@ -46,6 +46,8 @@ You MUST consider:
 - highlight point
 - annotation
 
+Only use them when they genuinely strengthen the story.
+
 For long-format charts:
 - the `"series"` field inside `highlight_points` / `annotate_points` must refer to the `series_col` values, not the x-axis values
 - if uncertain, omit `"series"` and let the renderer resolve from `x` / `y`
@@ -54,6 +56,43 @@ For long-format charts:
 For scatter charts with regression:
 - include regression line
 - highlight the biggest outlier
+
+## FOCUS VS CONTEXT RULE
+For long-format line charts with a highlighted series:
+
+- Set `"story_angle": "focus_vs_context"`
+- Set `"focus_series"` to the exact value from the `series_col`
+- Set `"secondary_series": None` unless there is a clear second comparison line
+- Do NOT add extra flags to force context styling
+- The renderer automatically applies:
+  - `focus_style` to `focus_series`
+  - `secondary_style` to `secondary_series`
+  - `context_style` to all other series
+
+Never manually duplicate non-focus series styling in the config.
+
+Use these focus-vs-context styles unless there is a strong reason not to:
+
+"context_style": {
+    "color": "#D9D9D9",
+    "linewidth": 0.8,
+    "alpha": 0.25,
+    "zorder": 1
+},
+
+"focus_style": {
+    "color": "#1F8FA8",
+    "linewidth": 3.5,
+    "alpha": 1.0,
+    "zorder": 5
+},
+
+"secondary_style": {
+    "color": "#7A7A7A",
+    "linewidth": 2.0,
+    "alpha": 0.9,
+    "zorder": 4
+}
 
 ## REQUIRED HOUSE STYLE
 Always include:
@@ -98,18 +137,22 @@ Use these defaults unless there is a strong reason not to:
 - punchy
 - max 2 lines
 - avoid explanatory overflow
+- avoid bland descriptive titles
+- write like an editorial headline, not a chart label
 
 ## CRITICAL RULES
 - Do NOT invent values
 - `highlight_points` and `annotate_points` must match dataset coordinates exactly
-- if unsure, leave those arrays empty
+- if unsure, leave `highlight_points` and `annotate_points` empty
 - never omit required fields
 - never duplicate keys
+- never add renderer flags unless explicitly listed in this prompt
+- for focus-vs-context charts, rely on `focus_series`, `secondary_series`, `focus_style`, `secondary_style`, and `context_style`
 
 ## REQUIRED OUTPUT
 Return ONLY:
 
-1. Short explanation (max 3 lines)
+1. Short explanation, max 3 lines
 2. Full valid Python:
 
 CHART_CONFIG = {
