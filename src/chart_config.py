@@ -2,23 +2,23 @@ CHART_CONFIG = {
     "data_file": "data/fuel_prices_trimmed_correct_pct_clean.csv",
     "data_format": "wide",
     "chart_type": "dot",
-    "output_slug": "diesel_rose_harder",
+    "output_slug": "some_countries_didnt_move",
 
-    "x_col": "Diesel_pct_change_minus_gasoline_pct_change",
+    "x_col": "Gasoline_pct_change_y",
     "y_col": "Country",
     "series_col": None,
     "value_col": None,
 
-    "title": "Diesel rose harder",
-    "subtitle": "In many countries diesel prices increased faster than petrol between Feb and Apr 2026.",
+    "title": "Some countries didn’t move",
+    "subtitle": "While many saw sharp increases, several countries kept fuel prices flat over the same period.",
     "source_text": "Source: GlobalPetrolPrices.com, user-compiled dataset",
     "footer_left": "Adam Green | coffeetableviz",
     "footer_right": "20 Apr 2026; change since 23 Feb",
 
     "story_angle": "ranking",
 
-    "sort_by": "Diesel_pct_change_minus_gasoline_pct_change",
-    "sort_order": "descending",
+    "sort_by": "Gasoline_pct_change_y",
+    "sort_order": "ascending",
     "limit": 25,
 
     "point_style": {
@@ -38,7 +38,7 @@ CHART_CONFIG = {
         {
             "axis": "x",
             "value": 0,
-            "label": "Equal change",
+            "label": "No change",
             "color": "#B8B8B8",
             "linewidth": 1.0,
             "linestyle": "--",
@@ -46,14 +46,35 @@ CHART_CONFIG = {
         }
     ],
 
-    "highlight_points": [],
+    "highlight_points": [
+        {
+            "x": 0.0,
+            "y": "Saudi Arabia"
+        },
+        {
+            "x": 0.0,
+            "y": "Kuwait"
+        },
+        {
+            "x": 0.0,
+            "y": "Algeria"
+        }
+    ],
 
-    "annotate_points": [],
+    "annotate_points": [
+        {
+            "x": 0.0,
+            "y": "Saudi Arabia",
+            "text": "Price controls",
+            "xytext": [12, 0],
+            "ha": "left"
+        }
+    ],
 
-    "x_axis_label": "Diesel rise minus petrol rise (percentage points)",
+    "x_axis_label": "Gasoline price change (%)",
     "y_axis_label": "",
 
-    "x_tick_format": "{x:.0f}pp",
+    "x_tick_format": "{x:.0f}%",
     "y_tick_format": "{x}",
 
     "fig_width": 8.0,
