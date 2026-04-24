@@ -15,33 +15,29 @@ CHART_CONFIG = {
     "footer_right": "",
 
     "story_angle": "focus_vs_context",
-    "focus_series": 2025,
-
-    # 🔴 THIS IS THE FIX
-
-    "apply_focus_to_all_others": True,
 
     "focus_series": 2025,
     "secondary_series": None,
 
     "context_style": {
         "color": "#D9D9D9",
-        "linewidth": 1.0,
-        "alpha": 0.35
+        "linewidth": 0.8,
+        "alpha": 0.25,
+        "zorder": 1,
     },
 
     "focus_style": {
         "color": "#1F8FA8",
-        "linewidth": 3.0,
+        "linewidth": 3.5,
         "alpha": 1.0,
-        "zorder": 3
+        "zorder": 5,
     },
 
     "secondary_style": {
         "color": "#7A7A7A",
         "linewidth": 2.0,
-        "alpha": 0.9
-        
+        "alpha": 0.9,
+        "zorder": 4,
     },
 
     "reference_lines": [],
@@ -49,13 +45,13 @@ CHART_CONFIG = {
     "highlight_points": [
         {"x": 3, "y": 222.0, "series": 2025},
         {"x": 4, "y": 269.2, "series": 2025},
-        {"x": 6, "y": 276.8, "series": 2025}
+        {"x": 6, "y": 276.8, "series": 2025},
     ],
 
     "annotate_points": [
         {"x": 3, "y": 222.0, "series": 2025, "text": "Record March"},
         {"x": 4, "y": 269.2, "series": 2025, "text": "Record April"},
-        {"x": 6, "y": 276.8, "series": 2025, "text": "Huge June"}
+        {"x": 6, "y": 276.8, "series": 2025, "text": "Huge June"},
     ],
 
     "auto_end_labels": True,
@@ -85,5 +81,5 @@ CHART_CONFIG = {
     "plot_top": 0.70,
     "plot_bottom": 0.16,
     "plot_left": 0.11,
-    "plot_right": 0.89
+    "plot_right": 0.89,
 }
