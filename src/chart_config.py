@@ -2,24 +2,48 @@ CHART_CONFIG = {
     "data_file": "data/fuel_prices_trimmed_correct_pct_clean.csv",
     "data_format": "wide",
     "chart_type": "dot",
-    "output_slug": "some_countries_didnt_move",
+    "output_slug": "uk_diesel_premium_position",
 
-    "x_col": "Gasoline_pct_change_y",
+    "x_col": "Diesel_minus_gasoline_USD_per_litre",
     "y_col": "Country",
     "series_col": None,
     "value_col": None,
 
-    "title": "Some countries didn’t move",
-    "subtitle": "While many saw sharp increases, several countries kept fuel prices flat over the same period.",
+    "title": "The UK sits in the diesel pain zone",
+    "subtitle": "Among countries with full data, the UK has one of the largest diesel premiums over petrol.",
     "source_text": "Source: GlobalPetrolPrices.com, user-compiled dataset",
     "footer_left": "Adam Green | coffeetableviz",
-    "footer_right": "20 Apr 2026; change since 23 Feb",
+    "footer_right": "20 Apr 2026 prices",
 
     "story_angle": "ranking",
 
-    "sort_by": "Gasoline_pct_change_y",
-    "sort_order": "ascending",
-    "limit": 25,
+    "focus_series": None,
+    "secondary_series": None,
+
+    "sort_by": "Diesel_minus_gasoline_USD_per_litre",
+    "sort_order": "descending",
+    "limit": 15,
+
+    "context_style": {
+        "color": "#D9D9D9",
+        "linewidth": 0.8,
+        "alpha": 0.25,
+        "zorder": 1
+    },
+
+    "focus_style": {
+        "color": "#1F8FA8",
+        "linewidth": 3.5,
+        "alpha": 1.0,
+        "zorder": 5
+    },
+
+    "secondary_style": {
+        "color": "#7A7A7A",
+        "linewidth": 2.0,
+        "alpha": 0.9,
+        "zorder": 4
+    },
 
     "point_style": {
         "color": "#1F8FA8",
@@ -30,7 +54,7 @@ CHART_CONFIG = {
     "highlight_style": {
         "color": "#C44E52",
         "alpha": 1.0,
-        "size": 90,
+        "size": 95,
         "zorder": 6
     },
 
@@ -38,7 +62,7 @@ CHART_CONFIG = {
         {
             "axis": "x",
             "value": 0,
-            "label": "No change",
+            "label": "Diesel = petrol",
             "color": "#B8B8B8",
             "linewidth": 1.0,
             "linestyle": "--",
@@ -48,33 +72,26 @@ CHART_CONFIG = {
 
     "highlight_points": [
         {
-            "x": 0.0,
-            "y": "Saudi Arabia"
-        },
-        {
-            "x": 0.0,
-            "y": "Kuwait"
-        },
-        {
-            "x": 0.0,
-            "y": "Algeria"
+            "x": 0.454,
+            "y": "United Kingdom",
+            "label": "United Kingdom"
         }
     ],
 
     "annotate_points": [
         {
-            "x": 0.0,
-            "y": "Saudi Arabia",
-            "text": "Price controls",
-            "xytext": [12, 0],
+            "x": 0.454,
+            "y": "United Kingdom",
+            "text": "UK: diesel +$0.45/L",
+            "xytext": [18, 0],
             "ha": "left"
         }
     ],
 
-    "x_axis_label": "Gasoline price change (%)",
+    "x_axis_label": "Diesel premium over gasoline, USD per litre",
     "y_axis_label": "",
 
-    "x_tick_format": "{x:.0f}%",
+    "x_tick_format": "${x:.2f}",
     "y_tick_format": "{x}",
 
     "fig_width": 8.0,
