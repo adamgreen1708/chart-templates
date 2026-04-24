@@ -2,8 +2,8 @@ CHART_CONFIG = {
     "data_file": "data/fuel_prices_trimmed_correct_pct_clean.csv",
     "data_format": "wide",
     "chart_type": "dot",
-    "output_slug": "fuel_price_quadrants",
-
+    "output_slug": "diesel_carries_the_pain",
+    
     "x_col": "Diesel_minus_gasoline_USD_per_litre",
     "y_col": "Country",
     "series_col": None,
