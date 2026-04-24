@@ -394,8 +394,8 @@ def main():
     _plot_highlights_and_annotations(ax)
     _add_titles_and_footer(fig)
 
-    output_dir = REPO_ROOT / "output"
-    output_dir.mkdir(exist_ok=True)
+output_dir = REPO_ROOT / "output"
+output_dir.mkdir(exist_ok=True)
 
 from datetime import datetime
 
