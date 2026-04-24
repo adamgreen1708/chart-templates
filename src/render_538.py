@@ -319,19 +319,35 @@ def _plot_dot(ax, rows):
     x_col = CHART_CONFIG["x_col"]
     y_col = CHART_CONFIG["y_col"]
 
-    rows = sorted(rows, key=lambda d: d[y_col])
+    sort_by = CHART_CONFIG.get("sort_by", x_col)
+    sort_order = CHART_CONFIG.get("sort_order", "ascending")
+    limit = CHART_CONFIG.get("limit")
+
+    rows = sorted(
+        rows,
+        key=lambda d: d[sort_by],
+        reverse=(sort_order == "descending")
+    )
+
+    if limit:
+        rows = rows[:limit]
+
+    point_style = CHART_CONFIG.get("point_style", {})
 
     ax.scatter(
-        [r[y_col] for r in rows],
         [r[x_col] for r in rows],
-        color=CHART_CONFIG.get("focus_style", {}).get("color", "#1F8FA8"),
-        s=CHART_CONFIG.get("dot_size", 52),
+        [r[y_col] for r in rows],
+        color=point_style.get("color", "#1F8FA8"),
+        alpha=point_style.get("alpha", 0.75),
+        s=point_style.get("size", 52),
         zorder=4,
     )
 
-    ax.set_xlabel(y_col)
-    ax.set_ylabel("")
+    ax.set_xlabel(CHART_CONFIG.get("x_axis_label", x_col))
+    ax.set_ylabel(CHART_CONFIG.get("y_axis_label", ""))
 
+    if sort_order == "descending":
+        ax.invert_yaxis()
 
 def _plot_scatter(ax, rows):
     x_col = CHART_CONFIG["x_col"]
