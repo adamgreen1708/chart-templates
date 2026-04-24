@@ -1,60 +1,100 @@
 CHART_CONFIG = {
-    "data_file": "data/east_anglia_sunshine_clean.csv",
-    "data_format": "long",
-    "chart_type": "line",
+    "data_file": "data/fuel_prices_trimmed_correct_pct_clean.csv",
+    "data_format": "wide",
+    "chart_type": "scatter",
 
-    "x_col": "month_num",
-    "y_col": "sunshine_hours",
-    "series_col": "year",
-    "value_col": "sunshine_hours",
+    "x_col": "Gasoline_USD_per_litre",
+    "y_col": "Gasoline_pct_change_y",
+    "series_col": None,
+    "value_col": None,
 
-    "title": "2025 stayed bright",
-    "subtitle": "East Anglia sunshine by month. March, April and June made 2025 hard to catch.",
-    "source_text": "Source: East Anglia sunshine dataset (user-provided)",
+    "title": "Cheap fuel still spiked",
+    "subtitle": "Countries with lower petrol prices were not protected from sharp rises between 23 Feb and 20 Apr 2026. Malaysia stands out as the biggest break from the trend.",
+    "source_text": "Source: GlobalPetrolPrices.com, user-compiled dataset",
     "footer_left": "Adam Green | coffeetableviz",
-    "footer_right": "",
+    "footer_right": "20 Apr 2026 prices; change since 23 Feb 2026",
 
-    "story_angle": "focus_vs_context",
+    "story_angle": "relationship",
 
-    "focus_series": 2025,
+    "focus_series": None,
     "secondary_series": None,
 
     "context_style": {
         "color": "#D9D9D9",
         "linewidth": 0.8,
         "alpha": 0.25,
-        "zorder": 1,
+        "zorder": 1
     },
 
     "focus_style": {
         "color": "#1F8FA8",
         "linewidth": 3.5,
         "alpha": 1.0,
-        "zorder": 5,
+        "zorder": 5
     },
 
     "secondary_style": {
         "color": "#7A7A7A",
         "linewidth": 2.0,
         "alpha": 0.9,
-        "zorder": 4,
+        "zorder": 4
     },
 
-    "reference_lines": [],
+    "point_style": {
+        "color": "#1F8FA8",
+        "alpha": 0.55,
+        "size": 42
+    },
+
+    "highlight_style": {
+        "color": "#C44E52",
+        "alpha": 1.0,
+        "size": 95,
+        "zorder": 6
+    },
+
+    "regression_line": {
+        "show": True,
+        "color": "#7A7A7A",
+        "linewidth": 1.6,
+        "alpha": 0.75
+    },
+
+    "reference_lines": [
+        {
+            "axis": "y",
+            "value": 0,
+            "label": "No change",
+            "color": "#B8B8B8",
+            "linewidth": 1.0,
+            "linestyle": "--",
+            "alpha": 0.8
+        }
+    ],
 
     "highlight_points": [
-        {"x": 3, "y": 222.0, "series": 2025},
-        {"x": 4, "y": 269.2, "series": 2025},
-        {"x": 6, "y": 276.8, "series": 2025},
+        {
+            "x": 1.017,
+            "y": 58.3,
+            "label": "Malaysia"
+        }
     ],
 
     "annotate_points": [
-        {"x": 3, "y": 222.0, "series": 2025, "text": "Record March"},
-        {"x": 4, "y": 269.2, "series": 2025, "text": "Record April"},
-        {"x": 6, "y": 276.8, "series": 2025, "text": "Huge June"},
+        {
+            "x": 1.017,
+            "y": 58.3,
+            "text": "Malaysia: +58.3%",
+            "xytext": [18, 16],
+            "ha": "left"
+        }
     ],
 
-    "auto_end_labels": True,
+    "x_axis_label": "Gasoline price, USD per litre",
+    "y_axis_label": "Gasoline price change since 23 Feb 2026",
+
+    "x_tick_format": "${x:.2f}",
+    "y_tick_format": "{x:.0f}%",
 
     "fig_width": 8.0,
     "fig_height": 8.0,
@@ -82,4 +122,9 @@ CHART_CONFIG = {
     "plot_bottom": 0.16,
     "plot_left": 0.11,
     "plot_right": 0.89,
+
+    "plot_padding": {
+        "x": 0.08,
+        "y": 0.10
+    }
 }
