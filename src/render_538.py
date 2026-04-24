@@ -1,6 +1,7 @@
 import csv
 import os
 import sys
+import textwrap
 from collections import defaultdict
 from pathlib import Path
 
@@ -89,9 +90,31 @@ def _apply_house_style(fig, ax):
     )
 
 
+def _wrap_text(text, width, max_lines=None):
+    if not text:
+        return ""
+
+    lines = textwrap.wrap(str(text), width=width)
+
+    if max_lines is not None:
+        lines = lines[:max_lines]
+
+    return "\n".join(lines)
+
+
 def _add_titles_and_footer(fig):
-    title = CHART_CONFIG.get("title", "")
-    subtitle = CHART_CONFIG.get("subtitle", "")
+    title = _wrap_text(
+        CHART_CONFIG.get("title", ""),
+        CHART_CONFIG.get("title_wrap_width", 30),
+        CHART_CONFIG.get("title_max_lines", 2),
+    )
+
+    subtitle = _wrap_text(
+        CHART_CONFIG.get("subtitle", ""),
+        CHART_CONFIG.get("subtitle_wrap_width", 58),
+        CHART_CONFIG.get("subtitle_max_lines", 2),
+    )
+
     footer_left = CHART_CONFIG.get("footer_left", "")
     footer_right = CHART_CONFIG.get("source_text", CHART_CONFIG.get("footer_right", ""))
 
@@ -114,6 +137,7 @@ def _add_titles_and_footer(fig):
         ha="left",
         va="top",
         color="#4A4A4A",
+        linespacing=1.15,
     )
 
     fig.text(
@@ -135,7 +159,6 @@ def _add_titles_and_footer(fig):
         va="bottom",
         color="#555555",
     )
-
 
 def _plot_reference_lines(ax):
     for ref in CHART_CONFIG.get("reference_lines", []):
