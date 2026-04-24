@@ -43,10 +43,10 @@ jobs:
           name: rendered-chart
           path: output/*.png
 
-      - name: Commit rendered PNG back to repo
+      - name: Commit cleaned output back to repo
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add output/*.png
+          git add -A output
           git diff --staged --quiet || git commit -m "Render chart output"
           git push
