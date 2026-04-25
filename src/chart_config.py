@@ -54,13 +54,6 @@ CHART_CONFIG = {
         "zorder": 6
     },
 
-    "regression_line": {
-        "show": True,
-        "color": "#7A7A7A",
-        "linewidth": 1.5,
-        "alpha": 0.65
-    },
-
     "reference_lines": [
         {
             "axis": "diagonal",
@@ -73,38 +66,23 @@ CHART_CONFIG = {
         }
     ],
 
+    # 🔥 CRITICAL: enforce identical axis scaling
     "axis_equal": True,
     "x_limits": [-10, 170],
     "y_limits": [-10, 170],
 
     "highlight_points": [
-        {
-            "x": 101.1,
-            "y": 161.4,
-            "label": "Burma (Myanmar)"
-        },
-        {
-            "x": 35.8,
-            "y": 149.7,
-            "label": "Laos"
-        },
-        {
-            "x": 57.6,
-            "y": 118.4,
-            "label": "Philippines"
-        },
-        {
-            "x": 19.7,
-            "y": 35.2,
-            "label": "United Kingdom"
-        }
+        {"x": 101.1, "y": 161.4, "label": "Burma (Myanmar)"},
+        {"x": 35.8, "y": 149.7, "label": "Laos"},
+        {"x": 57.6, "y": 118.4, "label": "Philippines"},
+        {"x": 19.7, "y": 35.2, "label": "United Kingdom"}
     ],
 
     "annotate_points": [
         {
             "x": 101.1,
             "y": 161.4,
-            "text": "Myanmar: +161% diesel",
+            "text": "Myanmar: diesel +161%",
             "xytext": [-12, -12],
             "ha": "right"
         },
