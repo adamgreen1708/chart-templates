@@ -1,8 +1,8 @@
 import csv
-import os
 import sys
 import textwrap
 from collections import defaultdict
+from datetime import datetime
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -23,16 +23,6 @@ def _coerce_value(value):
         return int(num) if num.is_integer() else num
     except Exception:
         return value
-
-
-def _series_matches(series_value, target_value):
-    if target_value is None:
-        return False
-
-    if series_value == target_value:
-        return True
-
-    return str(series_value) == str(target_value)
 
 
 def _clean_headers(headers):
@@ -59,6 +49,12 @@ def _require_columns(columns, required):
             f"Missing column(s): {', '.join(missing)}\n"
             f"Available columns: {', '.join(columns)}"
         )
+
+
+def _series_matches(series_value, target_value):
+    if target_value is None:
+        return False
+    return series_value == target_value or str(series_value) == str(target_value)
 
 
 def _get_style(style, fallback):
@@ -116,7 +112,7 @@ def _add_titles_and_footer(fig):
     )
 
     footer_left = CHART_CONFIG.get("footer_left", "")
-    footer_right = CHART_CONFIG.get("source_text", CHART_CONFIG.get("footer_right", ""))
+    footer_right = CHART_CONFIG.get("footer_right", CHART_CONFIG.get("source_text", ""))
 
     fig.text(
         CHART_CONFIG.get("title_x", 0.11),
@@ -160,11 +156,68 @@ def _add_titles_and_footer(fig):
         color="#555555",
     )
 
+
+def _apply_axis_formatting(ax):
+    x_format = CHART_CONFIG.get("x_tick_format")
+    y_format = CHART_CONFIG.get("y_tick_format")
+
+    if x_format:
+        ax.xaxis.set_major_formatter(FuncFormatter(lambda x, pos: x_format.format(x=x)))
+
+    if y_format:
+        ax.yaxis.set_major_formatter(FuncFormatter(lambda x, pos: y_format.format(x=x)))
+
+    if CHART_CONFIG.get("x_axis_label"):
+        ax.set_xlabel(CHART_CONFIG.get("x_axis_label"), fontsize=11, color="#4A4A4A")
+
+    if CHART_CONFIG.get("y_axis_label"):
+        ax.set_ylabel(CHART_CONFIG.get("y_axis_label"), fontsize=11, color="#4A4A4A")
+
+
+def _apply_limits_and_aspect(ax):
+    if CHART_CONFIG.get("x_limits"):
+        ax.set_xlim(CHART_CONFIG["x_limits"])
+
+    if CHART_CONFIG.get("y_limits"):
+        ax.set_ylim(CHART_CONFIG["y_limits"])
+
+    if CHART_CONFIG.get("axis_equal"):
+        ax.set_aspect("equal", adjustable="box")
+
+
 def _plot_reference_lines(ax):
     for ref in CHART_CONFIG.get("reference_lines", []):
         axis = ref.get("axis", "y")
         value = ref.get("value")
         label = ref.get("label", "")
+
+        if axis == "diagonal":
+            x_min, x_max = ax.get_xlim()
+            y_min, y_max = ax.get_ylim()
+            low = max(x_min, y_min)
+            high = min(x_max, y_max)
+
+            ax.plot(
+                [low, high],
+                [low, high],
+                color=ref.get("color", "#888888"),
+                linewidth=ref.get("linewidth", 1.0),
+                linestyle=ref.get("linestyle", "--"),
+                alpha=ref.get("alpha", 0.8),
+                zorder=ref.get("zorder", 0),
+            )
+
+            if label:
+                ax.text(
+                    high,
+                    high,
+                    label,
+                    ha="right",
+                    va="bottom",
+                    fontsize=10,
+                    color=ref.get("color", "#888888"),
+                )
+            continue
 
         if value is None:
             continue
@@ -176,41 +229,32 @@ def _plot_reference_lines(ax):
                 linewidth=ref.get("linewidth", 1.0),
                 linestyle=ref.get("linestyle", "--"),
                 alpha=ref.get("alpha", 0.8),
-                zorder=0,
+                zorder=ref.get("zorder", 0),
             )
-            if label:
-                ax.text(
-                    ax.get_xlim()[1],
-                    value,
-                    label,
-                    ha="right",
-                    va="bottom",
-                    fontsize=10,
-                    color=ref.get("color", "#888888"),
-                )
 
-        if axis == "x":
+        elif axis == "x":
             ax.axvline(
                 value,
                 color=ref.get("color", "#888888"),
                 linewidth=ref.get("linewidth", 1.0),
                 linestyle=ref.get("linestyle", "--"),
                 alpha=ref.get("alpha", 0.8),
-                zorder=0,
+                zorder=ref.get("zorder", 0),
             )
 
 
 def _plot_highlights_and_annotations(ax):
+    highlight_style = CHART_CONFIG.get("highlight_style", {})
     highlight_color = CHART_CONFIG.get("highlight_color", "#C44E52")
 
     for p in CHART_CONFIG.get("highlight_points", []):
         ax.scatter(
             p["x"],
             p["y"],
-            s=p.get("size", CHART_CONFIG.get("highlight_style", {}).get("size", 90)),
-            color=p.get("color", CHART_CONFIG.get("highlight_style", {}).get("color", highlight_color)),
-            alpha=p.get("alpha", CHART_CONFIG.get("highlight_style", {}).get("alpha", 1.0)),
-            zorder=p.get("zorder", CHART_CONFIG.get("highlight_style", {}).get("zorder", 8)),
+            s=p.get("size", highlight_style.get("size", 90)),
+            color=p.get("color", highlight_style.get("color", highlight_color)),
+            alpha=p.get("alpha", highlight_style.get("alpha", 1.0)),
+            zorder=p.get("zorder", highlight_style.get("zorder", 8)),
         )
 
     x_min, x_max = ax.get_xlim()
@@ -220,21 +264,13 @@ def _plot_highlights_and_annotations(ax):
         x = p["x"]
         y = p["y"]
 
-        # Default offset from config, but make it edge-aware
-        dx = p.get("dx", None)
-        dy = p.get("dy", None)
-
-        if dx is None or dy is None:
-            xytext = p.get("xytext", [10, 10])
-            dx = xytext[0]
-            dy = xytext[1]
-
+        xytext = p.get("xytext", [10, 10])
+        dx = p.get("dx", xytext[0])
+        dy = p.get("dy", xytext[1])
         ha = p.get("ha", "left")
 
-        # Auto-flip labels when point is close to right edge
         if isinstance(x, (int, float)) and x_range > 0:
             right_edge_threshold = x_min + (0.82 * x_range)
-
             if x >= right_edge_threshold and dx > 0:
                 dx = -10
                 ha = "right"
@@ -258,6 +294,7 @@ def _plot_highlights_and_annotations(ax):
             ),
             zorder=p.get("zorder", 9),
         )
+
 
 def _plot_line(ax, rows):
     x_col = CHART_CONFIG["x_col"]
@@ -291,9 +328,6 @@ def _plot_line(ax, rows):
         for series_name, points in grouped.items():
             points = sorted(points, key=lambda d: d[x_col])
 
-            x_values = [p[x_col] for p in points]
-            y_values = [p[y_col] for p in points]
-
             if _series_matches(series_name, focus_series):
                 style = focus_style
             elif _series_matches(series_name, secondary_series):
@@ -304,8 +338,8 @@ def _plot_line(ax, rows):
                 style = focus_style
 
             ax.plot(
-                x_values,
-                y_values,
+                [p[x_col] for p in points],
+                [p[y_col] for p in points],
                 color=style.get("color", "#1F8FA8"),
                 linewidth=style.get("linewidth", 2.0),
                 alpha=style.get("alpha", 1.0),
@@ -314,7 +348,7 @@ def _plot_line(ax, rows):
 
     else:
         rows = sorted(rows, key=lambda d: d[x_col])
-
+        focus_style = CHART_CONFIG.get("focus_style", {})
         ax.plot(
             [r[x_col] for r in rows],
             [r[y_col] for r in rows],
@@ -329,13 +363,24 @@ def _plot_bar(ax, rows):
     x_col = CHART_CONFIG["x_col"]
     y_col = CHART_CONFIG["y_col"]
 
-    rows = sorted(rows, key=lambda d: d[y_col], reverse=CHART_CONFIG.get("sort_desc", False))
+    rows = sorted(
+        rows,
+        key=lambda d: d[CHART_CONFIG.get("sort_by", y_col)],
+        reverse=CHART_CONFIG.get("sort_order", "ascending") == "descending",
+    )
+
+    limit = CHART_CONFIG.get("limit")
+    if limit:
+        rows = rows[:limit]
+
+    style = CHART_CONFIG.get("point_style", CHART_CONFIG.get("focus_style", {}))
 
     ax.bar(
         [r[x_col] for r in rows],
         [r[y_col] for r in rows],
-        color=CHART_CONFIG.get("focus_style", {}).get("color", "#1F8FA8"),
-        alpha=CHART_CONFIG.get("focus_style", {}).get("alpha", 1.0),
+        color=style.get("color", "#1F8FA8"),
+        alpha=style.get("alpha", 0.75),
+        zorder=4,
     )
 
 
@@ -343,16 +388,13 @@ def _plot_dot(ax, rows):
     x_col = CHART_CONFIG["x_col"]
     y_col = CHART_CONFIG["y_col"]
 
-    sort_by = CHART_CONFIG.get("sort_by", x_col)
-    sort_order = CHART_CONFIG.get("sort_order", "ascending")
-    limit = CHART_CONFIG.get("limit")
-
     rows = sorted(
         rows,
-        key=lambda d: d[sort_by],
-        reverse=(sort_order == "descending")
+        key=lambda d: d[CHART_CONFIG.get("sort_by", x_col)],
+        reverse=CHART_CONFIG.get("sort_order", "ascending") == "descending",
     )
 
+    limit = CHART_CONFIG.get("limit")
     if limit:
         rows = rows[:limit]
 
@@ -367,22 +409,22 @@ def _plot_dot(ax, rows):
         zorder=4,
     )
 
-    ax.set_xlabel(CHART_CONFIG.get("x_axis_label", x_col))
-    ax.set_ylabel(CHART_CONFIG.get("y_axis_label", ""))
-
-    if sort_order == "descending":
+    if CHART_CONFIG.get("sort_order") == "descending":
         ax.invert_yaxis()
+
 
 def _plot_scatter(ax, rows):
     x_col = CHART_CONFIG["x_col"]
     y_col = CHART_CONFIG["y_col"]
 
+    point_style = CHART_CONFIG.get("point_style", {})
+
     ax.scatter(
         [r[x_col] for r in rows],
         [r[y_col] for r in rows],
-        color=CHART_CONFIG.get("focus_style", {}).get("color", "#1F8FA8"),
-        alpha=0.85,
-        s=CHART_CONFIG.get("dot_size", 52),
+        color=point_style.get("color", "#1F8FA8"),
+        alpha=point_style.get("alpha", 0.55),
+        s=point_style.get("size", 42),
         zorder=4,
     )
 
@@ -430,22 +472,22 @@ def main():
     else:
         raise ValueError(f"Unsupported chart_type: {chart_type}")
 
+    _apply_limits_and_aspect(ax)
     _plot_reference_lines(ax)
     _plot_highlights_and_annotations(ax)
+    _apply_axis_formatting(ax)
     _add_titles_and_footer(fig)
 
     output_dir = REPO_ROOT / "output"
     output_dir.mkdir(exist_ok=True)
 
-    from datetime import datetime
-
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     output_slug = CHART_CONFIG.get("output_slug", Path(CHART_CONFIG["data_file"]).stem)
-
     output_path = output_dir / f"{output_slug}_{timestamp}.png"
 
     fig.savefig(output_path, dpi=200, facecolor=fig.get_facecolor())
     print(f"Saved chart to {output_path}")
+
 
 if __name__ == "__main__":
     main()
