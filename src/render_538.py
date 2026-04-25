@@ -6,7 +6,7 @@ from datetime import datetime
 from pathlib import Path
 
 import matplotlib.pyplot as plt
-from matplotlib.ticker import FuncFormatter
+from matplotlib.ticker import FuncFormatter, MultipleLocator
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SRC_DIR = REPO_ROOT / "src"
@@ -36,7 +36,10 @@ def _read_csv(path):
 
         rows = []
         for row in reader:
-            clean = {k.strip().replace("\ufeff", ""): _coerce_value(v) for k, v in row.items()}
+            clean = {
+                k.strip().replace("\ufeff", ""): _coerce_value(v)
+                for k, v in row.items()
+            }
             rows.append(clean)
 
     return rows, reader.fieldnames
@@ -54,6 +57,7 @@ def _require_columns(columns, required):
 def _series_matches(series_value, target_value):
     if target_value is None:
         return False
+
     return series_value == target_value or str(series_value) == str(target_value)
 
 
@@ -61,6 +65,24 @@ def _get_style(style, fallback):
     merged = fallback.copy()
     merged.update(style or {})
     return merged
+
+
+def _apply_filters(rows):
+    condition = CHART_CONFIG.get("filter_condition")
+
+    if not condition:
+        return rows
+
+    if condition == "near_zero":
+        col = CHART_CONFIG.get("filter_column", CHART_CONFIG.get("x_col"))
+        threshold = CHART_CONFIG.get("filter_threshold", 2)
+
+        return [
+            r for r in rows
+            if isinstance(r.get(col), (int, float)) and abs(r.get(col)) <= threshold
+        ]
+
+    return rows
 
 
 def _apply_house_style(fig, ax):
@@ -174,22 +196,64 @@ def _apply_axis_formatting(ax):
         ax.set_ylabel(CHART_CONFIG.get("y_axis_label"), fontsize=11, color="#4A4A4A")
 
 
-def _apply_limits_and_aspect(ax):
+def _apply_limits_ticks_and_aspect(ax):
     if CHART_CONFIG.get("x_limits"):
         ax.set_xlim(CHART_CONFIG["x_limits"])
 
     if CHART_CONFIG.get("y_limits"):
         ax.set_ylim(CHART_CONFIG["y_limits"])
 
+    tick_step = CHART_CONFIG.get("tick_step")
+    if tick_step:
+        ax.xaxis.set_major_locator(MultipleLocator(tick_step))
+        ax.yaxis.set_major_locator(MultipleLocator(tick_step))
+
     if CHART_CONFIG.get("axis_equal"):
         ax.set_aspect("equal", adjustable="box")
 
 
-def _plot_reference_lines(ax):
+def _get_stat_value(rows, axis, stat):
+    x_col = CHART_CONFIG.get("x_col")
+    y_col = CHART_CONFIG.get("y_col")
+
+    if axis == "x":
+        col = x_col
+    elif axis == "y":
+        col = y_col
+    else:
+        return None
+
+    values = [r[col] for r in rows if isinstance(r.get(col), (int, float))]
+
+    if not values:
+        return None
+
+    values = sorted(values)
+
+    if stat == "median":
+        n = len(values)
+        mid = n // 2
+
+        if n % 2 == 1:
+            return values[mid]
+
+        return (values[mid - 1] + values[mid]) / 2
+
+    if stat == "mean":
+        return sum(values) / len(values)
+
+    return None
+
+
+def _plot_reference_lines(ax, rows):
     for ref in CHART_CONFIG.get("reference_lines", []):
         axis = ref.get("axis", "y")
         value = ref.get("value")
+        stat = ref.get("stat")
         label = ref.get("label", "")
+
+        if stat:
+            value = _get_stat_value(rows, axis, stat)
 
         if axis == "diagonal":
             x_min, x_max = ax.get_xlim()
@@ -217,6 +281,7 @@ def _plot_reference_lines(ax):
                     fontsize=10,
                     color=ref.get("color", "#888888"),
                 )
+
             continue
 
         if value is None:
@@ -232,6 +297,17 @@ def _plot_reference_lines(ax):
                 zorder=ref.get("zorder", 0),
             )
 
+            if label:
+                ax.text(
+                    ax.get_xlim()[1],
+                    value,
+                    label,
+                    ha="right",
+                    va="bottom",
+                    fontsize=10,
+                    color=ref.get("color", "#888888"),
+                )
+
         elif axis == "x":
             ax.axvline(
                 value,
@@ -241,6 +317,18 @@ def _plot_reference_lines(ax):
                 alpha=ref.get("alpha", 0.8),
                 zorder=ref.get("zorder", 0),
             )
+
+            if label:
+                ax.text(
+                    value,
+                    ax.get_ylim()[1],
+                    label,
+                    ha="left",
+                    va="top",
+                    rotation=90,
+                    fontsize=10,
+                    color=ref.get("color", "#888888"),
+                )
 
 
 def _plot_highlights_and_annotations(ax):
@@ -349,6 +437,7 @@ def _plot_line(ax, rows):
     else:
         rows = sorted(rows, key=lambda d: d[x_col])
         focus_style = CHART_CONFIG.get("focus_style", {})
+
         ax.plot(
             [r[x_col] for r in rows],
             [r[y_col] for r in rows],
@@ -433,6 +522,8 @@ def main():
     data_file = REPO_ROOT / CHART_CONFIG["data_file"]
     rows, columns = _read_csv(data_file)
 
+    rows = _apply_filters(rows)
+
     required = [
         CHART_CONFIG.get("x_col"),
         CHART_CONFIG.get("y_col"),
@@ -472,8 +563,8 @@ def main():
     else:
         raise ValueError(f"Unsupported chart_type: {chart_type}")
 
-    _apply_limits_and_aspect(ax)
-    _plot_reference_lines(ax)
+    _apply_limits_ticks_and_aspect(ax)
+    _plot_reference_lines(ax, rows)
     _plot_highlights_and_annotations(ax)
     _apply_axis_formatting(ax)
     _add_titles_and_footer(fig)
