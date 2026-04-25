@@ -2,18 +2,18 @@ CHART_CONFIG = {
     "data_file": "data/fuel_prices_trimmed_correct_pct_clean.csv",
     "data_format": "wide",
     "chart_type": "scatter",
-    "output_slug": "diesel_tracks_petrol_but_bites_harder",
+    "output_slug": "diesel_rose_harder_than_petrol",
 
-    "x_col": "Gasoline_USD_per_litre",
-    "y_col": "Diesel_USD_per_litre",
+    "x_col": "Gasoline_pct_change_y",
+    "y_col": "Diesel_pct_change_y",
     "series_col": None,
     "value_col": None,
 
-    "title": "Diesel tracks petrol, but bites for some",
-    "subtitle": "Most markets sit close to parity, but points above the line show where diesel carries extra pressure.",
+    "title": "Diesel rose harder",
+    "subtitle": "Most countries sit above parity, showing diesel prices often rose faster than petrol during the shock.",
     "source_text": "Source: GlobalPetrolPrices.com, user-compiled dataset",
     "footer_left": "Adam Green | coffeetableviz",
-    "footer_right": "Prices on 20 Apr 2026",
+    "footer_right": "Change from 23 Feb to 20 Apr 2026",
 
     "story_angle": "relationship",
 
@@ -54,11 +54,18 @@ CHART_CONFIG = {
         "zorder": 6
     },
 
+    "regression_line": {
+        "show": True,
+        "color": "#7A7A7A",
+        "linewidth": 1.5,
+        "alpha": 0.65
+    },
+
     "reference_lines": [
         {
             "axis": "diagonal",
             "value": "y_equals_x",
-            "label": "Diesel = petrol",
+            "label": "Diesel = petrol rise",
             "color": "#7A7A7A",
             "linewidth": 1.2,
             "linestyle": "--",
@@ -67,56 +74,61 @@ CHART_CONFIG = {
     ],
 
     "axis_equal": True,
-    "x_limits": [0, 5],
-    "y_limits": [0, 5],
+    "x_limits": [-10, 170],
+    "y_limits": [-10, 170],
 
     "highlight_points": [
         {
-            "x": 2.421,
-            "y": 3.268,
-            "label": "Singapore"
+            "x": 101.1,
+            "y": 161.4,
+            "label": "Burma (Myanmar)"
         },
         {
-            "x": 2.128,
-            "y": 2.582,
+            "x": 35.8,
+            "y": 149.7,
+            "label": "Laos"
+        },
+        {
+            "x": 57.6,
+            "y": 118.4,
+            "label": "Philippines"
+        },
+        {
+            "x": 19.7,
+            "y": 35.2,
             "label": "United Kingdom"
-        },
-        {
-            "x": 4.136,
-            "y": 4.619,
-            "label": "Hong Kong"
         }
     ],
 
     "annotate_points": [
         {
-            "x": 2.421,
-            "y": 3.268,
-            "text": "Singapore: diesel premium",
-            "xytext": [18, 12],
-            "ha": "left"
-        },
-        {
-            "x": 2.128,
-            "y": 2.582,
-            "text": "UK: diesel above petrol",
-            "xytext": [18, -14],
-            "ha": "left"
-        },
-        {
-            "x": 4.136,
-            "y": 4.619,
-            "text": "Hong Kong: highest prices",
+            "x": 101.1,
+            "y": 161.4,
+            "text": "Myanmar: +161% diesel",
             "xytext": [-12, -12],
             "ha": "right"
+        },
+        {
+            "x": 35.8,
+            "y": 149.7,
+            "text": "Laos: diesel shock",
+            "xytext": [18, 0],
+            "ha": "left"
+        },
+        {
+            "x": 19.7,
+            "y": 35.2,
+            "text": "UK above parity",
+            "xytext": [18, -10],
+            "ha": "left"
         }
     ],
 
-    "x_axis_label": "Gasoline price, USD per litre",
-    "y_axis_label": "Diesel price, USD per litre",
+    "x_axis_label": "Gasoline price change (%)",
+    "y_axis_label": "Diesel price change (%)",
 
-    "x_tick_format": "${x:.2f}",
-    "y_tick_format": "${x:.2f}",
+    "x_tick_format": "{x:.0f}%",
+    "y_tick_format": "{x:.0f}%",
 
     "fig_width": 8.0,
     "fig_height": 8.0,
