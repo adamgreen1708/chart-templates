@@ -1,28 +1,24 @@
 CHART_CONFIG = {
     "data_file": "data/fuel_prices_trimmed_correct_pct_clean.csv",
     "data_format": "wide",
-    "chart_type": "dot",
-    "output_slug": "uk_diesel_premium_position",
+    "chart_type": "scatter",
+    "output_slug": "diesel_tracks_petrol_but_bites_harder",
 
-    "x_col": "Diesel_minus_gasoline_USD_per_litre",
-    "y_col": "Country",
+    "x_col": "Gasoline_USD_per_litre",
+    "y_col": "Diesel_USD_per_litre",
     "series_col": None,
     "value_col": None,
 
-    "title": "The UK sits in the diesel pain zone",
-    "subtitle": "Among countries with full data, the UK has one of the largest diesel premiums over petrol.",
+    "title": "Diesel tracks petrol, then bites",
+    "subtitle": "Most countries sit close to parity, but markets above the line show where diesel is carrying extra pressure.",
     "source_text": "Source: GlobalPetrolPrices.com, user-compiled dataset",
     "footer_left": "Adam Green | coffeetableviz",
-    "footer_right": "20 Apr 2026 prices",
+    "footer_right": "Prices on 20 Apr 2026",
 
-    "story_angle": "ranking",
+    "story_angle": "relationship",
 
     "focus_series": None,
     "secondary_series": None,
-
-    "sort_by": "Diesel_minus_gasoline_USD_per_litre",
-    "sort_order": "descending",
-    "limit": 15,
 
     "context_style": {
         "color": "#D9D9D9",
@@ -47,8 +43,8 @@ CHART_CONFIG = {
 
     "point_style": {
         "color": "#1F8FA8",
-        "alpha": 0.65,
-        "size": 48
+        "alpha": 0.55,
+        "size": 42
     },
 
     "highlight_style": {
@@ -58,41 +54,62 @@ CHART_CONFIG = {
         "zorder": 6
     },
 
-    "reference_lines": [
-        {
-            "axis": "x",
-            "value": 0,
-            "label": "Diesel = petrol",
-            "color": "#B8B8B8",
-            "linewidth": 1.0,
-            "linestyle": "--",
-            "alpha": 0.8
-        }
-    ],
+    "regression_line": {
+        "show": True,
+        "color": "#7A7A7A",
+        "linewidth": 1.6,
+        "alpha": 0.75
+    },
+
+    "reference_lines": [],
 
     "highlight_points": [
         {
-            "x": 0.454,
-            "y": "United Kingdom",
+            "x": 2.421,
+            "y": 3.268,
+            "label": "Singapore"
+        },
+        {
+            "x": 2.128,
+            "y": 2.582,
             "label": "United Kingdom"
+        },
+        {
+            "x": 4.136,
+            "y": 4.619,
+            "label": "Hong Kong"
         }
     ],
 
     "annotate_points": [
         {
-            "x": 0.454,
-            "y": "United Kingdom",
-            "text": "UK: diesel +$0.45/L",
-            "xytext": [18, 0],
+            "x": 2.421,
+            "y": 3.268,
+            "text": "Singapore: diesel premium",
+            "xytext": [18, 12],
             "ha": "left"
+        },
+        {
+            "x": 2.128,
+            "y": 2.582,
+            "text": "UK: diesel above petrol",
+            "xytext": [18, -14],
+            "ha": "left"
+        },
+        {
+            "x": 4.136,
+            "y": 4.619,
+            "text": "Hong Kong: highest prices",
+            "xytext": [-12, -12],
+            "ha": "right"
         }
     ],
 
-    "x_axis_label": "Diesel premium over gasoline, USD per litre",
-    "y_axis_label": "",
+    "x_axis_label": "Gasoline price, USD per litre",
+    "y_axis_label": "Diesel price, USD per litre",
 
     "x_tick_format": "${x:.2f}",
-    "y_tick_format": "{x}",
+    "y_tick_format": "${x:.2f}",
 
     "fig_width": 8.0,
     "fig_height": 8.0,
@@ -108,21 +125,21 @@ CHART_CONFIG = {
     "subtitle_max_lines": 2,
 
     "title_x": 0.11,
-    "title_y": 0.93,
+    "title_y": 0.94,
     "subtitle_x": 0.11,
-    "subtitle_y": 0.855,
+    "subtitle_y": 0.865,
 
     "footer_left_x": 0.11,
     "footer_right_x": 0.89,
     "footer_y": 0.075,
 
-    "plot_top": 0.75,
-    "plot_bottom": 0.17,
-    "plot_left": 0.24,
+    "plot_top": 0.70,
+    "plot_bottom": 0.16,
+    "plot_left": 0.11,
     "plot_right": 0.89,
 
     "plot_padding": {
         "x": 0.08,
-        "y": 0.04
+        "y": 0.10
     }
 }
