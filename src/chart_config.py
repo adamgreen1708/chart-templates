@@ -10,7 +10,7 @@ CHART_CONFIG = {
     "value_col": None,
 
     "title": "Diesel tracks petrol, then bites",
-    "subtitle": "Most countries sit close to parity, but markets above the line show where diesel is carrying extra pressure.",
+    "subtitle": "Most markets sit close to parity, but points above the line show where diesel carries extra pressure.",
     "source_text": "Source: GlobalPetrolPrices.com, user-compiled dataset",
     "footer_left": "Adam Green | coffeetableviz",
     "footer_right": "Prices on 20 Apr 2026",
@@ -54,14 +54,21 @@ CHART_CONFIG = {
         "zorder": 6
     },
 
-    "regression_line": {
-        "show": True,
-        "color": "#7A7A7A",
-        "linewidth": 1.6,
-        "alpha": 0.75
-    },
+    "reference_lines": [
+        {
+            "axis": "diagonal",
+            "value": "y_equals_x",
+            "label": "Diesel = petrol",
+            "color": "#7A7A7A",
+            "linewidth": 1.2,
+            "linestyle": "--",
+            "alpha": 0.85
+        }
+    ],
 
-    "reference_lines": [],
+    "axis_equal": True,
+    "x_limits": [0, 5],
+    "y_limits": [0, 5],
 
     "highlight_points": [
         {
