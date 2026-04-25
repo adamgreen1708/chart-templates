@@ -9,7 +9,7 @@ CHART_CONFIG = {
     "series_col": None,
     "value_col": None,
 
-    "title": "Diesel tracks petrol, then bites",
+    "title": "Diesel tracks petrol, but bites for some",
     "subtitle": "Most markets sit close to parity, but points above the line show where diesel carries extra pressure.",
     "source_text": "Source: GlobalPetrolPrices.com, user-compiled dataset",
     "footer_left": "Adam Green | coffeetableviz",
