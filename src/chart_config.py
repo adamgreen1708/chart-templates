@@ -85,8 +85,8 @@ CHART_CONFIG = {
     ],
 
     "axis_equal": True,
-    "x_limits": [0, 160],
-    "y_limits": [0, 160],
+    "x_limits": [0, 180"],
+    "y_limits": [0, 180],
     "tick_step": 20,
 
     "highlight_points": [
