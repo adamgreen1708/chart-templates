@@ -63,19 +63,53 @@ CHART_CONFIG = {
             "linewidth": 1.2,
             "linestyle": "--",
             "alpha": 0.85
+        },
+        {
+            "axis": "x",
+            "stat": "median",
+            "label": "Median petrol rise",
+            "color": "#B8B8B8",
+            "linewidth": 1.0,
+            "linestyle": ":",
+            "alpha": 0.75
+        },
+        {
+            "axis": "y",
+            "stat": "median",
+            "label": "Median diesel rise",
+            "color": "#B8B8B8",
+            "linewidth": 1.0,
+            "linestyle": ":",
+            "alpha": 0.75
         }
     ],
 
-    # 🔥 CRITICAL: enforce identical axis scaling
     "axis_equal": True,
-    "x_limits": [-10, 170],
-    "y_limits": [-10, 170],
+    "x_limits": [0, 160],
+    "y_limits": [0, 160],
+    "tick_step": 20,
 
     "highlight_points": [
-        {"x": 101.1, "y": 161.4, "label": "Burma (Myanmar)"},
-        {"x": 35.8, "y": 149.7, "label": "Laos"},
-        {"x": 57.6, "y": 118.4, "label": "Philippines"},
-        {"x": 19.7, "y": 35.2, "label": "United Kingdom"}
+        {
+            "x": 101.1,
+            "y": 161.4,
+            "label": "Burma (Myanmar)"
+        },
+        {
+            "x": 35.8,
+            "y": 149.7,
+            "label": "Laos"
+        },
+        {
+            "x": 57.6,
+            "y": 118.4,
+            "label": "Philippines"
+        },
+        {
+            "x": 19.7,
+            "y": 35.2,
+            "label": "United Kingdom"
+        }
     ],
 
     "annotate_points": [
