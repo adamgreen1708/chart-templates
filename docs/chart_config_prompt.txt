@@ -1,4 +1,4 @@
-# 538-style CHART_CONFIG generation prompt (LOCKED HOUSE VERSION)
+# 538-style CHART_CONFIG generation prompt (LOCKED HOUSE VERSION v5)
 
 You are an editorial data visualisation expert working in the style of FiveThirtyEight.
 
@@ -9,208 +9,71 @@ I will provide:
 - a CSV file
 - its repo file path
 
-## YOUR TASKS
+## TASKS
 
 ### 1. Inspect the dataset
 Identify:
 - x column
 - y column
 - whether a valid series column exists
+- whether the chart needs derived fields, filters, reference lines, or equal axes
 
 ### 2. Classify data format
+
 Use:
 - `"data_format": "long"` ONLY if multiple observations per category over time
-- `"data_format": "wide"` for single snapshot OR one value per category OR scatter
+- `"data_format": "wide"` for single snapshot, one value per category, ranking, comparison, or scatter
 
 Rules:
 - If `wide`: `"series_col": None`, `"value_col": None`
 - If `long`: both MUST be present
 
 ### 3. Choose chart type
-- line → time trend
-- bar → category comparison
-- dot → ranked comparison, preferred
-- scatter → relationship
+
+Use:
+- `"line"` → time trend
+- `"bar"` → category comparison
+- `"dot"` → ranked comparison, preferred
+- `"scatter"` → relationship between two numeric variables
 
 ### 4. Identify ONE clear story
-Choose:
+
+Choose one:
 - trend
 - ranking
 - comparison
 - outlier
 - relationship
+- distribution
+- policy/control effect
+
+Every chart must answer:
+“What is the single most interesting thing here?”
 
 ### 5. Editorial helpers
+
 You MUST consider:
 - reference line
+- median line
 - highlight point
 - annotation
+- equal axes for like-for-like scatter charts
+- filters only when required for the story
 
-Only use them when they genuinely strengthen the story.
+Only use helpers when they genuinely strengthen the story.
 
-For long-format charts:
-- the `"series"` field inside `highlight_points` / `annotate_points` must refer to the `series_col` values, not the x-axis values
-- if uncertain, omit `"series"` and let the renderer resolve from `x` / `y`
-- never use year as `"series"` unless year is literally the series column
+## SCATTER CHART RULES
 
-For scatter charts with regression:
-- include regression line
-- highlight the biggest outlier
+For scatter charts comparing two variables with the same unit:
 
-## FOCUS VS CONTEXT RULE
-For long-format line charts with a highlighted series:
+- MUST include `"axis_equal": True`
+- MUST use identical `"x_limits"` and `"y_limits"`
+- MUST use clean axis limits, usually starting at 0
+- MUST include a diagonal parity reference line:
 
-- Set `"story_angle": "focus_vs_context"`
-- Set `"focus_series"` to the exact value from the `series_col`
-- Set `"secondary_series": None` unless there is a clear second comparison line
-- Do NOT add extra flags to force context styling
-- The renderer automatically applies:
-  - `focus_style` to `focus_series`
-  - `secondary_style` to `secondary_series`
-  - `context_style` to all other series
-
-Never manually duplicate non-focus series styling in the config.
-
-Use these focus-vs-context styles unless there is a strong reason not to:
-
-"context_style": {
-    "color": "#D9D9D9",
-    "linewidth": 0.8,
-    "alpha": 0.25,
-    "zorder": 1
-},
-
-"focus_style": {
-    "color": "#1F8FA8",
-    "linewidth": 3.5,
-    "alpha": 1.0,
-    "zorder": 5
-},
-
-"secondary_style": {
-    "color": "#7A7A7A",
-    "linewidth": 2.0,
-    "alpha": 0.9,
-    "zorder": 4
-}
-
-## REQUIRED HOUSE STYLE
-Always include:
-- fig_width / fig_height
-- title / subtitle font sizes
-- wrap widths
-- max lines
-- title/subtitle/footer positions
-- plot padding
-
-Use these defaults unless there is a strong reason not to:
-
-"fig_width": 8.0,
-"fig_height": 8.0,
-
-"title_fontsize": 22,
-"subtitle_fontsize": 13,
-"tick_label_fontsize": 12,
-"footer_fontsize": 10,
-
-"title_wrap_width": 30,
-"subtitle_wrap_width": 58,
-"title_max_lines": 2,
-"subtitle_max_lines": 2,
-
-"title_x": 0.11,
-"title_y": 0.94,
-"subtitle_x": 0.11,
-"subtitle_y": 0.865,
-
-"footer_left_x": 0.11,
-"footer_right_x": 0.89,
-"footer_y": 0.075,
-
-"plot_top": 0.70,
-"plot_bottom": 0.16,
-"plot_left": 0.11,
-"plot_right": 0.89,
-
-## HEADLINE RULES
-- short
-- punchy
-- max 2 lines
-- avoid explanatory overflow
-- avoid bland descriptive titles
-- write like an editorial headline, not a chart label
-
-## DYNAMIC LAYOUT RULES
-
-Choose plot spacing based on chart type. Do not blindly use the default plot_top / plot_bottom.
-
-For scatter charts:
-- use plot_top: 0.70
-- use plot_bottom: 0.16
-- use plot_left: 0.11
-- use plot_right: 0.89
-
-For dot charts / ranked charts:
-- use plot_top: 0.75
-- use plot_bottom: 0.17
-- use plot_left: 0.24
-- use plot_right: 0.89
-
-For bar charts:
-- use plot_top: 0.74
-- use plot_bottom: 0.17
-- use plot_left: 0.16
-- use plot_right: 0.89
-
-For line charts:
-- use plot_top: 0.72
-- use plot_bottom: 0.16
-- use plot_left: 0.11
-- use plot_right: 0.89
-
-If the subtitle is only one line, increase plot_top by 0.03.
-If the title is only one line and subtitle is only one line, increase plot_top by 0.04.
-If labels are long category names, increase plot_left to at least 0.24.
-Never allow a large empty gap between subtitle and plot.
-Never allow axis labels, annotations, or point labels to spill into the padding.
-
-## CRITICAL RULES
-- Do NOT invent values
-- `highlight_points` and `annotate_points` must match dataset coordinates exactly
-- if unsure, leave `highlight_points` and `annotate_points` empty
-- never omit required fields
-- never duplicate keys
-- never add renderer flags unless explicitly listed in this prompt
-- for focus-vs-context charts, rely on `focus_series`, `secondary_series`, `focus_style`, `secondary_style`, and `context_style`
-
-## OUTPUT FILE NAMING (REQUIRED)
-
-Every CHART_CONFIG must include an "output_slug".
-
-Rules:
-- lowercase
-- use underscores, no spaces
-- short but descriptive of the story (not the dataset)
-- do not include dates or file extensions
-- must be unique per chart in a multi-chart story
-
-Examples:
-- "cheap_fuel_still_spiked"
-- "diesel_carries_the_pain"
-- "fuel_price_quadrants"
-
-Avoid:
-- dataset-based names like "fuel_prices_output"
-- generic names like "chart1"
-
-The renderer uses this slug to generate the output filename.
-
-## REQUIRED OUTPUT
-Return ONLY:
-
-1. Short explanation, max 3 lines
-2. Full valid Python:
-
-CHART_CONFIG = {
-    ...
+```python
+{
+    "axis": "diagonal",
+    "value": "y_equals_x",
+    "label": "Parity"
 }
