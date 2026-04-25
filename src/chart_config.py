@@ -1,16 +1,16 @@
 CHART_CONFIG = {
-    "data_file": "data/fuel_prices_trimmed_correct_pct_clean.csv",
+    "data_file": "data/fuel_prices_low_low_quadrant.csv",
     "data_format": "wide",
     "chart_type": "scatter",
-    "output_slug": "diesel_rose_harder_than_petrol",
+    "output_slug": "low_quadrant_fuel_stability",
 
     "x_col": "Gasoline_pct_change_y",
     "y_col": "Diesel_pct_change_y",
     "series_col": None,
     "value_col": None,
 
-    "title": "Diesel rose harder",
-    "subtitle": "Most countries sit above parity, showing diesel prices often rose faster than petrol during the shock.",
+    "title": "The stable corner",
+    "subtitle": "Zooming into countries below the median rise for both petrol and diesel reveals where prices barely moved during the shock.",
     "source_text": "Source: GlobalPetrolPrices.com, user-compiled dataset",
     "footer_left": "Adam Green | coffeetableviz",
     "footer_right": "Change from 23 Feb to 20 Apr 2026",
@@ -43,8 +43,8 @@ CHART_CONFIG = {
 
     "point_style": {
         "color": "#1F8FA8",
-        "alpha": 0.55,
-        "size": 42
+        "alpha": 0.60,
+        "size": 48
     },
 
     "highlight_style": {
@@ -85,25 +85,25 @@ CHART_CONFIG = {
     ],
 
     "axis_equal": True,
-    "x_limits": [0, 180],
-    "y_limits": [0, 180],
-    "tick_step": 20,
+    "x_limits": [0, 30],
+    "y_limits": [0, 30],
+    "tick_step": 5,
 
     "highlight_points": [
         {
-            "x": 101.1,
-            "y": 161.4,
-            "label": "Burma (Myanmar)"
+            "x": 0.0,
+            "y": 0.0,
+            "label": "Saudi Arabia"
         },
         {
-            "x": 35.8,
-            "y": 149.7,
-            "label": "Laos"
+            "x": 0.0,
+            "y": 0.0,
+            "label": "Kuwait"
         },
         {
-            "x": 57.6,
-            "y": 118.4,
-            "label": "Philippines"
+            "x": 0.0,
+            "y": 0.0,
+            "label": "Algeria"
         },
         {
             "x": 19.7,
@@ -114,24 +114,10 @@ CHART_CONFIG = {
 
     "annotate_points": [
         {
-            "x": 101.1,
-            "y": 161.4,
-            "text": "Myanmar: diesel +161%",
-            "xytext": [-12, -12],
-            "ha": "right"
-        },
-        {
-            "x": 35.8,
-            "y": 149.7,
-            "text": "Laos: diesel shock",
-            "xytext": [18, 0],
-            "ha": "left"
-        },
-        {
-            "x": 19.7,
-            "y": 35.2,
-            "text": "UK above parity",
-            "xytext": [18, -10],
+            "x": 0.0,
+            "y": 0.0,
+            "text": "Some markets barely moved",
+            "xytext": [18, 12],
             "ha": "left"
         }
     ],
