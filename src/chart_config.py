@@ -2,15 +2,15 @@ CHART_CONFIG = {
     "data_file": "data/fuel_prices_low_low_quadrant.csv",
     "data_format": "wide",
     "chart_type": "scatter",
-    "output_slug": "low_quadrant_fuel_stability",
+    "output_slug": "low_quadrant_policy_shield",
 
     "x_col": "Gasoline_pct_change_y",
     "y_col": "Diesel_pct_change_y",
     "series_col": None,
     "value_col": None,
 
-    "title": "The stable corner",
-    "subtitle": "Zooming into countries below the median rise for both petrol and diesel reveals where prices barely moved during the shock.",
+    "title": "The shielded corner",
+    "subtitle": "A closer look at countries where petrol and diesel rises stayed low during the conflict shock.",
     "source_text": "Source: GlobalPetrolPrices.com, user-compiled dataset",
     "footer_left": "Adam Green | coffeetableviz",
     "footer_right": "Change from 23 Feb to 20 Apr 2026",
@@ -66,8 +66,8 @@ CHART_CONFIG = {
         },
         {
             "axis": "x",
-            "stat": "median",
-            "label": "Median petrol rise",
+            "value": 0,
+            "label": "No petrol change",
             "color": "#B8B8B8",
             "linewidth": 1.0,
             "linestyle": ":",
@@ -75,8 +75,8 @@ CHART_CONFIG = {
         },
         {
             "axis": "y",
-            "stat": "median",
-            "label": "Median diesel rise",
+            "value": 0,
+            "label": "No diesel change",
             "color": "#B8B8B8",
             "linewidth": 1.0,
             "linestyle": ":",
@@ -85,11 +85,16 @@ CHART_CONFIG = {
     ],
 
     "axis_equal": True,
-    "x_limits": [0, 30],
-    "y_limits": [0, 30],
-    "tick_step": 5,
+    "x_limits": [-10, 30],
+    "y_limits": [-10, 30],
+    "tick_step": 10,
 
     "highlight_points": [
+        {
+            "x": 0.0,
+            "y": 0.0,
+            "label": "Algeria"
+        },
         {
             "x": 0.0,
             "y": 0.0,
@@ -101,14 +106,14 @@ CHART_CONFIG = {
             "label": "Kuwait"
         },
         {
-            "x": 0.0,
-            "y": 0.0,
-            "label": "Algeria"
+            "x": -3.9,
+            "y": -4.1,
+            "label": "Madagascar"
         },
         {
-            "x": 19.7,
-            "y": 35.2,
-            "label": "United Kingdom"
+            "x": -8.3,
+            "y": -8.2,
+            "label": "Russia"
         }
     ],
 
@@ -116,8 +121,15 @@ CHART_CONFIG = {
         {
             "x": 0.0,
             "y": 0.0,
-            "text": "Some markets barely moved",
+            "text": "Held at zero",
             "xytext": [18, 12],
+            "ha": "left"
+        },
+        {
+            "x": -8.3,
+            "y": -8.2,
+            "text": "Prices fell",
+            "xytext": [18, -6],
             "ha": "left"
         }
     ],
