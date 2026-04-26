@@ -113,11 +113,11 @@ CHART_CONFIG = {
     "fig_height": 8.0,
     "dpi": 200,
 
-    "title_fontsize": 18,
-    "subtitle_fontsize": 9,
-    "tick_label_fontsize": 7,
-    "axis_label_fontsize": 8,
-    "footer_fontsize": 7,
+    "title_fontsize": 22,
+    "subtitle_fontsize": 12,
+    "tick_label_fontsize": 10,
+    "axis_label_fontsize": 10,
+    "footer_fontsize": 10,
 
     "title_wrap_width": 42,
     "subtitle_wrap_width": 82,
@@ -125,16 +125,16 @@ CHART_CONFIG = {
     "subtitle_max_lines": 2,
 
     "title_x": 0.10,
-    "title_y": 0.86,
+    "title_y": 0.88,
     "subtitle_x": 0.10,
-    "subtitle_y": 0.815,
+    "subtitle_y": 0.825,
 
     "footer_left_x": 0.10,
     "footer_right_x": 0.90,
     "footer_y": 0.08,
 
-    "plot_top": 0.72,
-    "plot_bottom": 0.18,
+    "plot_top": 0.70,
+    "plot_bottom": 0.16,
     "plot_left": 0.18,
     "plot_right": 0.86,
 
