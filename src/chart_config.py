@@ -48,7 +48,7 @@ CHART_CONFIG = {
 
     "x_axis": {
         "min": 1975,
-        "max": 2024,
+        "max": 2027,
         "tick_interval": 10,
         "format": None
     },
