@@ -162,7 +162,7 @@ CHART_CONFIG = {
     "plot_top": 0.70,
     "plot_bottom": 0.16,
     "plot_left": 0.18,
-    "plot_right": 0.90,
+    "plot_right": 0.92,
 
     # ---------------------------
     # OUTPUT
