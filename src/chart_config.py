@@ -2,7 +2,7 @@ CHART_CONFIG = {
     # ---------------------------
     # DATA
     # ---------------------------
-    "data_file": "data/rapeseed-production.csv",
+    "data_file": "data/rapeseed-production-europe-1974-2024.csv",
     "data_format": "long",
     "chart_type": "line",
 
@@ -14,8 +14,8 @@ CHART_CONFIG = {
     # ---------------------------
     # STORY
     # ---------------------------
-    "title": "The UK never closed the rapeseed gap",
-    "subtitle": "While global producers scaled up over time, UK output has stayed relatively flat in comparison.",
+    "title": "The UK lost ground in Europe’s rapeseed race",
+    "subtitle": "While several European producers scaled up production over time, UK output plateaued and fell behind.",
     "source_text": "Source: Our World in Data (rapeseed production)",
     "footer_left": "Adam Green | coffeetableviz",
 
@@ -23,7 +23,6 @@ CHART_CONFIG = {
 
     "focus_series": "United Kingdom",
     "secondary_series": None,
-
     "label_strategy": "focus_only",
 
     # ---------------------------
@@ -33,8 +32,8 @@ CHART_CONFIG = {
     "x_tick_rotation": 0,
 
     "x_axis": {
-        "min": None,
-        "max": None,
+        "min": 1974,
+        "max": 2024,
         "tick_interval": 10,
         "format": None
     },
@@ -76,19 +75,19 @@ CHART_CONFIG = {
     "context_style": {
         "color": "#D9D9D9",
         "linewidth": 1.0,
-        "alpha": 0.25,
+        "alpha": 0.18
     },
 
     "focus_style": {
         "color": "#1F8FA8",
-        "linewidth": 3.2,
-        "alpha": 1.0,
+        "linewidth": 3.4,
+        "alpha": 1.0
     },
 
     "secondary_style": {
         "color": "#7A7A7A",
         "linewidth": 2.0,
-        "alpha": 0.9,
+        "alpha": 0.9
     },
 
     # ---------------------------
@@ -143,5 +142,5 @@ CHART_CONFIG = {
     # OUTPUT
     # ---------------------------
     "dpi": 200,
-    "output_file": "output/uk_rapeseed_trend.png"
+    "output_file": "output/uk_vs_europe_rapeseed.png"
 }
