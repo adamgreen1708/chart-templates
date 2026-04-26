@@ -72,9 +72,9 @@ CHART_CONFIG = {
     },
 
     "context_style": {
-        "color": "#D9D9D9",
+        "color": "#BFC3C7",
         "linewidth": 1.0,
-        "alpha": 0.18
+        "alpha": 0.35
     },
 
     "focus_style": {
