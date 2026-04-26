@@ -75,7 +75,7 @@ def _apply_filters(rows):
 
     filtered = rows
 
-for f in filters:
+    for f in filters:
     col = f["column"]
     op = f["operator"]
     val = f["value"]
