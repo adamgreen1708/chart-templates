@@ -76,42 +76,41 @@ def _apply_filters(rows):
     filtered = rows
 
     for f in filters:
-    col = f["column"]
-    op = f["operator"]
-    val = f["value"]
+        col = f["column"]
+        op = f["operator"]
+        val = f["value"]
 
-    new_filtered = []
+        new_filtered = []
 
-    for r in filtered:
-        try:
-            a = float(r[col])
-            b = float(val)
-        except:
-            a = str(r[col])
-            b = str(val)
+        for r in filtered:
+            try:
+                a = float(r[col])
+                b = float(val)
+            except:
+                a = str(r[col])
+                b = str(val)
 
-        if op == "<=":
-            keep = a <= b
-        elif op == "<":
-            keep = a < b
-        elif op == ">=":
-            keep = a >= b
-        elif op == ">":
-            keep = a > b
-        elif op == "==":
-            keep = a == b
-        elif op == "!=":
-            keep = a != b
-        else:
-            raise ValueError(f"Unsupported filter operator: {op}")
+            if op == "<=":
+                keep = a <= b
+            elif op == "<":
+                keep = a < b
+            elif op == ">=":
+                keep = a >= b
+            elif op == ">":
+                keep = a > b
+            elif op == "==":
+                keep = a == b
+            elif op == "!=":
+                keep = a != b
+            else:
+                raise ValueError(f"Unsupported filter operator: {op}")
 
-        if keep:
-            new_filtered.append(r)
+            if keep:
+                new_filtered.append(r)
 
-    filtered = new_filtered
+        filtered = new_filtered
 
-return filtered
-
+    return filtered
 
 def _apply_sort(rows):
     sort = CHART_CONFIG.get("sort")
