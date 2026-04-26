@@ -527,7 +527,6 @@ def main():
     plt.savefig(
         output_path,
         dpi=CHART_CONFIG.get("dpi", 200),
-        bbox_inches="tight",
         facecolor=fig.get_facecolor(),
     )
 
