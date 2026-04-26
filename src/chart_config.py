@@ -7,7 +7,7 @@ CHART_CONFIG = {
     "chart_type": "line",
 
     "x_col": "Year",
-    "y_col": "rapeseed_production",
+    "y_col": "	Rape or colza seed - Production (tonnes)",
     "series_col": "Entity",
     "value_col": "rapeseed_production",
 
