@@ -193,7 +193,7 @@ def _apply_axis_formatting(ax):
         ax.set_xlabel(CHART_CONFIG.get("x_axis_label"), fontsize=11, color="#4A4A4A")
 
     if CHART_CONFIG.get("y_axis_label"):
-        ax.set_ylabel(CHART_CONFIG.get("y_axis_label"), fontsize=11, color="#4A4A4A")
+        ax.set_ylabel(CHART_CONFIG.get("y_axis_label"), fontsize=9, color="#4A4A4A")
 
 
 def _apply_limits_ticks_and_aspect(ax):
