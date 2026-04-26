@@ -3,26 +3,42 @@ CHART_CONFIG = {
     # DATA
     # ---------------------------
     "data_file": "data/rapeseed-production-europe-1974-2024.csv",
-    "data_format": "long",
-    "chart_type": "line",
+    "data_format": "wide",
+    "chart_type": "bar",
 
     "x_col": "Year",
-    "y_col": "Rape or colza seed - Production (tonnes)",
-    "series_col": "Entity",
-    "value_col": "Rape or colza seed - Production (tonnes)",
+    "y_col": "pct_change_yoy",
+    "series_col": None,
+    "value_col": None,
 
     # ---------------------------
     # STORY
     # ---------------------------
-    "title": "The UK’s rapeseed boom didn’t last",
-    "subtitle": "UK production climbed for decades and peaked around 2011, but has fallen back while several European producers remained higher.",
+    "title": "The fall wasn’t smooth",
+    "subtitle": "UK rapeseed production has swung sharply year to year, with recent drops showing how uneven the decline has been.",
     "source_text": "Source: Our World in Data (rapeseed production)",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "focus_vs_context",
-    "focus_series": "United Kingdom",
+    "story_angle": "single_series_volatility",
+    "focus_series": None,
     "secondary_series": None,
     "label_strategy": "focus_only",
+
+    # ---------------------------
+    # FILTERS
+    # ---------------------------
+    "filters": [
+        {
+            "column": "Entity",
+            "operator": "==",
+            "value": "United Kingdom"
+        },
+        {
+            "column": "Year",
+            "operator": ">",
+            "value": 1974
+        }
+    ],
 
     # ---------------------------
     # AXES
@@ -31,16 +47,16 @@ CHART_CONFIG = {
     "x_tick_rotation": 0,
 
     "x_axis": {
-        "min": 1974,
-        "max": 2029,
+        "min": 1975,
+        "max": 2024,
         "tick_interval": 10,
         "format": None
     },
 
-    "y_axis_min": 0,
-    "y_axis_max": None,
-    "y_tick_interval": 1000000,
-    "y_tick_format": "millions",
+    "y_axis_min": -60,
+    "y_axis_max": 80,
+    "y_tick_interval": 20,
+    "y_tick_format": "percent",
 
     # ---------------------------
     # SORTING
@@ -52,17 +68,16 @@ CHART_CONFIG = {
     # MARKS
     # ---------------------------
     "line_width": 2.6,
-    "marker_size": 0,
-    "show_markers": False,
-    "auto_end_labels": True,
+    "marker_size": 60,
+    "show_markers": True,
+    "auto_end_labels": False,
 
     # ---------------------------
     # STYLING
     # ---------------------------
-    "dot_style": {
+    "bar_style": {
         "color": "#1F8FA8",
-        "size": 60,
-        "alpha": 0.75
+        "alpha": 0.85
     },
 
     "highlight_style": {
@@ -79,7 +94,7 @@ CHART_CONFIG = {
 
     "focus_style": {
         "color": "#1F8FA8",
-        "linewidth": 3.4,
+        "linewidth": 3.2,
         "alpha": 1.0
     },
 
@@ -92,35 +107,28 @@ CHART_CONFIG = {
     # ---------------------------
     # ANNOTATIONS
     # ---------------------------
-    "reference_lines": [],
+    "reference_lines": [
+        {
+            "axis": "y",
+            "value": 0,
+            "label": "No change",
+            "color": "#7A7A7A",
+            "linestyle": "-",
+            "linewidth": 1.0
+        }
+    ],
 
-    "highlight_points": [
-    {
-        "x": 2011,
-        "y": 2758302
-    },
-    {
-        "x": 2024,
-        "y": 823605
-    }
-],
+    "highlight_points": [],
 
-"annotate_points": [
-    {
-        "x": 2011,
-        "y": 2758302,
-        "label": "UK peak",
-        "xytext": [18, 22],
-        "ha": "left"
-    },
-    {
-        "x": 2024,
-        "y": 823605,
-        "label": "2024: below 1M tonnes",
-        "xytext": [-95, -25],
-        "ha": "right"
-    }
-],
+    "annotate_points": [
+        {
+            "x": 2020,
+            "y": -43,
+            "label": "Sharp recent fall",
+            "xytext": [-70, -22],
+            "ha": "right"
+        }
+    ],
 
     "end_labels": [],
 
@@ -162,11 +170,11 @@ CHART_CONFIG = {
     "plot_top": 0.70,
     "plot_bottom": 0.16,
     "plot_left": 0.18,
-    "plot_right": 0.92,
+    "plot_right": 0.90,
 
     # ---------------------------
     # OUTPUT
     # ---------------------------
     "dpi": 200,
-    "output_file": "output/uk_rapeseed_boom_didnt_last.png"
+    "output_file": "output/uk_rapeseed_yoy_swings.png"
 }
