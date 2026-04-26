@@ -49,10 +49,13 @@ def _axis_formatter(fmt):
         return FuncFormatter(lambda x, pos: f"{x:.0f}%")
 
     if fmt == "currency":
-        return FuncFormatter(lambda x, pos: f"${x:.2f}")
+        return FuncFormatter(lambda x, pos: f"${x:,.0f}")
+
+    if fmt == "millions":
+        return FuncFormatter(lambda x, pos: f"{x / 1_000_000:.0f}M")
 
     return FuncFormatter(lambda x, pos: format(x, fmt))
-
+    
 
 def _read_data():
     data_file = REPO_ROOT / CHART_CONFIG["data_file"]
