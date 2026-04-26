@@ -25,7 +25,7 @@ CHART_CONFIG = {
 
     "x_axis": {
         "min": -10,
-        "max": 0,
+        "max": 5,
         "tick_interval": 2,
         "format": "percent"
     },
