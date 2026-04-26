@@ -569,7 +569,7 @@ def main():
 
     _apply_config_template(fig, ax)
 
-    ax.margins(x=0.02)
+    ax.margins(x=0.04)
 
     plt.subplots_adjust(
         left=CHART_CONFIG.get("plot_left", 0.10),
