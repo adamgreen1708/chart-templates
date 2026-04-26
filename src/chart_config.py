@@ -8,8 +8,8 @@ CHART_CONFIG = {
     "series_col": None,
     "value_col": None,
 
-    "title": "Diesel prices where costs didn’t rise",
-    "subtitle": "Countries where diesel prices were flat or falling, ranked by current price per litre.",
+    "title": "Flat isn’t the same as falling",
+    "subtitle": "Among countries where diesel prices didn’t rise, those with no change stand apart from those with actual declines.",
     "source_text": "Source: User-provided fuel price dataset",
     "footer_left": "Adam Green | coffeetableviz",
 
@@ -40,8 +40,24 @@ CHART_CONFIG = {
 
     "dot_style": {
         "color": "#1F8FA8",
-        "size": 70,
-        "alpha": 0.9
+        "size": 65,
+        "alpha": 0.7
+    },
+
+    "highlight_points": [
+        {
+            "label_col": "Country",
+            "match_col": "Diesel_pct_change_y",
+            "match_value": 0,
+            "label": "No change",
+            "color": "#C44E52"
+        }
+    ],
+
+    "highlight_style": {
+        "color": "#C44E52",
+        "size": 85,
+        "alpha": 1.0
     },
 
     "label_style": {
@@ -52,7 +68,5 @@ CHART_CONFIG = {
         "fontsize": 8
     },
 
-    "highlight_points": [],
-
-    "output_file": "outputs/diesel_current_price_no_increase_dot.png"
+    "output_file": "outputs/diesel_current_price_zero_vs_negative_dot.png"
 }
