@@ -1,16 +1,16 @@
 CHART_CONFIG = {
-    "data_file": "fuel_prices_low_low_quadrant.csv",
+    "data_file": "data/fuel_prices_low_low_quadrant.csv",
     "data_format": "wide",
     "chart_type": "scatter",
 
-    "x_col": "Diesel current price",
-    "y_col": "Diesel pct change",
+    "x_col": "diesel_current_price",
+    "y_col": "diesel_pct_change",
     "series_col": None,
     "value_col": None,
 
-    "title": "Diesel’s quiet corner",
-    "subtitle": "Among markets where both petrol and diesel price changes are zero or negative, this shows whether cheaper diesel also came with bigger falls.",
-    "source_text": "Source: User-provided fuel price dataset",
+    "title": "Where diesel is cheapest, falls are sharper",
+    "subtitle": "In markets with flat or falling fuel prices, lower diesel prices tend to coincide with larger percentage declines.",
+    "source_text": "Source: User-provided fuel price dataset (low-low quadrant)",
     "footer_left": "Adam Green | coffeetableviz",
 
     "story_angle": "relationship",
@@ -32,25 +32,17 @@ CHART_CONFIG = {
         "format": "percent"
     },
 
-    "highlight_points": [
-        {
-            "label_col": "Country",
-            "match_col": "Country",
-            "match_value": "United Kingdom",
-            "label": "UK",
-            "color": "#C44E52"
-        }
-    ],
-
     "reference_lines": [
         {
             "axis": "y",
             "value": 0,
-            "label": "No diesel price rise",
+            "label": "No price increase",
             "color": "#7A7A7A",
             "linestyle": "--"
         }
     ],
+
+    "highlight_points": [],
 
     "point_style": {
         "color": "#1F8FA8",
@@ -66,10 +58,10 @@ CHART_CONFIG = {
 
     "label_style": {
         "enabled": True,
-        "label_col": "Country",
-        "auto_label": "highlight_only",
-        "fontsize": 9
+        "label_col": "country",
+        "auto_label": "all",
+        "fontsize": 8
     },
 
-    "output_file": "outputs/diesel-current-price-vs-pct-change.png"
+    "output_file": "outputs/diesel_price_vs_change_low_quadrant.png"
 }
