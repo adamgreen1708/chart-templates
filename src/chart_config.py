@@ -14,13 +14,12 @@ CHART_CONFIG = {
     # ---------------------------
     # STORY
     # ---------------------------
-    "title": "The UK lost ground in Europe’s rapeseed race",
-    "subtitle": "While several European producers scaled up production over time, UK output plateaued and fell behind.",
+    "title": "The UK’s rapeseed boom didn’t last",
+    "subtitle": "UK production climbed for decades and peaked around 2011, but has fallen back while several European producers remained higher.",
     "source_text": "Source: Our World in Data (rapeseed production)",
     "footer_left": "Adam Green | coffeetableviz",
 
     "story_angle": "focus_vs_context",
-
     "focus_series": "United Kingdom",
     "secondary_series": None,
     "label_strategy": "focus_only",
@@ -33,15 +32,15 @@ CHART_CONFIG = {
 
     "x_axis": {
         "min": 1974,
-        "max": 2024,
+        "max": 2029,
         "tick_interval": 10,
         "format": None
     },
 
     "y_axis_min": 0,
     "y_axis_max": None,
-    "y_tick_interval": None,
-    "y_tick_format": None,
+    "y_tick_interval": 1000000,
+    "y_tick_format": "millions",
 
     # ---------------------------
     # SORTING
@@ -94,8 +93,33 @@ CHART_CONFIG = {
     # ANNOTATIONS
     # ---------------------------
     "reference_lines": [],
-    "highlight_points": [],
-    "annotate_points": [],
+
+    "highlight_points": [
+        {
+            "series": "United Kingdom",
+            "x": 2011
+        },
+        {
+            "series": "United Kingdom",
+            "x": 2024
+        }
+    ],
+
+    "annotate_points": [
+        {
+            "series": "United Kingdom",
+            "x": 2011,
+            "text": "UK peak",
+            "xytext": [18, 22]
+        },
+        {
+            "series": "United Kingdom",
+            "x": 2024,
+            "text": "2024: back below 1M tonnes",
+            "xytext": [-105, -28]
+        }
+    ],
+
     "end_labels": [],
 
     "label_style": {
@@ -115,8 +139,8 @@ CHART_CONFIG = {
     "axis_label_fontsize": 11,
     "footer_fontsize": 10,
 
-    "title_wrap_width": 40,
-    "subtitle_wrap_width": 80,
+    "title_wrap_width": 34,
+    "subtitle_wrap_width": 72,
 
     # ---------------------------
     # LAYOUT
@@ -125,9 +149,9 @@ CHART_CONFIG = {
     "fig_height": 8.0,
 
     "title_x": 0.10,
-    "title_y": 0.88,
+    "title_y": 0.91,
     "subtitle_x": 0.10,
-    "subtitle_y": 0.825,
+    "subtitle_y": 0.835,
 
     "footer_left_x": 0.10,
     "footer_right_x": 0.90,
@@ -142,5 +166,5 @@ CHART_CONFIG = {
     # OUTPUT
     # ---------------------------
     "dpi": 200,
-    "output_file": "output/uk_vs_europe_rapeseed.png"
+    "output_file": "output/uk_rapeseed_boom_didnt_last.png"
 }
