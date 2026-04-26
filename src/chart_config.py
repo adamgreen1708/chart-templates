@@ -3,13 +3,13 @@ CHART_CONFIG = {
     "data_format": "wide",
     "chart_type": "dot",
 
-    "x_col": "Diesel_USD_per_litre",
+    "x_col": "Diesel_pct_change_y",
     "y_col": "Country",
     "series_col": None,
     "value_col": None,
 
     "title": "Flat isn’t the same as falling",
-    "subtitle": "Countries where diesel prices did not rise, ranked by current diesel price per litre.",
+    "subtitle": "Countries where diesel prices were flat or falling, ranked by the size of the price change.",
     "source_text": "Source: User-provided fuel price dataset",
     "footer_left": "Adam Green | coffeetableviz",
 
@@ -24,21 +24,18 @@ CHART_CONFIG = {
     ],
 
     "sort": {
-        "by": "Diesel_USD_per_litre",
-        "ascending": False
+        "by": "Diesel_pct_change_y",
+        "ascending": True
     },
 
-    "x_col": "Diesel_USD_per_litre",
-    "y_col": "Country",
-
-    "x_label": "Current diesel price, USD per litre",
+    "x_label": "Diesel price change (%)",
     "y_label": "",
 
     "x_axis": {
-        "min": 0,
-        "max": None,
-        "tick_interval": None,
-        "format": "currency"
+        "min": -10,
+        "max": 0,
+        "tick_interval": 2,
+        "format": "percent"
     },
 
     "dot_style": {
@@ -57,5 +54,5 @@ CHART_CONFIG = {
         "fontsize": 8
     },
 
-    "output_file": "outputs/diesel_current_price_no_increase_dot.png"
+    "output_file": "outputs/diesel_pct_change_no_increase_dot.png"
 }
