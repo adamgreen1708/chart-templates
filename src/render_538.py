@@ -203,7 +203,7 @@ def _plot_reference_lines(ax):
 
             if label:
                 ax.text(
-                    1.01,
+                    0.99,
                     value,
                     label,
                     transform=ax.get_yaxis_transform(),
