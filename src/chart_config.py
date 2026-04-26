@@ -1,5 +1,5 @@
 CHART_CONFIG = {
-    "data_file": "data/low-quadrant-fuel-price-change.csv",
+    "data_file": "fuel_prices_low_low_quadrant.csv",
     "data_format": "wide",
     "chart_type": "scatter",
 
