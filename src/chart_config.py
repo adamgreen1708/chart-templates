@@ -81,5 +81,5 @@ CHART_CONFIG = {
         }
     ],
 
-    "output_file": "outputs/diesel_pct_change_filtered_dot.png"
+    "output_file": "output/diesel_pct_change_filtered_dot.png"
 }
