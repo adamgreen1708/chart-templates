@@ -1,61 +1,57 @@
 CHART_CONFIG = {
     "data_file": "data/fuel_prices_low_low_quadrant.csv",
     "data_format": "wide",
-    "chart_type": "scatter",
+    "chart_type": "bar",
 
-    "x_col": "Diesel_USD_per_litre",
-    "y_col": "Diesel_pct_change_y",
+    "x_col": "Country",
+    "y_col": "Diesel_USD_per_litre",
     "series_col": None,
     "value_col": None,
 
-    "title": "Cheap diesel didn’t mean small falls",
-    "subtitle": "Among countries where both fuel prices fell or stayed flat, current diesel price and diesel percentage change do not move neatly together.",
+    "title": "Where diesel prices did not rise",
+    "subtitle": "Current diesel price in countries where diesel price change was zero or negative.",
     "source_text": "Source: User-provided fuel price dataset",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "relationship",
+    "story_angle": "ranked_comparison",
 
-    "x_label": "Current diesel price, USD per litre",
-    "y_label": "Diesel price change (%)",
+    "filters": [
+        {
+            "column": "Diesel_pct_change_y",
+            "operator": "<=",
+            "value": 0
+        }
+    ],
 
-    "x_axis": {
-        "min": None,
+    "sort": {
+        "by": "Diesel_USD_per_litre",
+        "ascending": False
+    },
+
+    "x_label": "",
+    "y_label": "Current diesel price, USD per litre",
+
+    "y_axis": {
+        "min": 0,
         "max": None,
         "tick_interval": None,
         "format": "currency"
     },
 
-    "y_axis": {
-        "min": -10,
-        "max": 0,
-        "tick_interval": 2,
-        "format": "percent"
-    },
-
-    "reference_lines": [
-        {
-            "axis": "y",
-            "value": 0,
-            "label": "No diesel price increase",
-            "color": "#7A7A7A",
-            "linestyle": "--"
-        }
-    ],
-
-    "highlight_points": [],
-
-    "point_style": {
+    "bar_style": {
         "color": "#1F8FA8",
-        "alpha": 0.75,
-        "size": 55
+        "alpha": 0.9
     },
 
     "label_style": {
         "enabled": True,
-        "label_col": "Country",
-        "auto_label": "all",
+        "label_col": "Diesel_USD_per_litre",
+        "label_format": "${:.2f}",
+        "position": "end",
         "fontsize": 8
     },
 
-    "output_file": "outputs/diesel_price_vs_pct_change_low_quadrant.png"
+    "highlight_points": [],
+
+    "output_file": "outputs/diesel_current_price_no_increase_bar.png"
 }
