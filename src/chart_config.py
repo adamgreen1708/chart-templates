@@ -95,30 +95,32 @@ CHART_CONFIG = {
     "reference_lines": [],
 
     "highlight_points": [
-        {
-            "series": "United Kingdom",
-            "x": 2011
-        },
-        {
-            "series": "United Kingdom",
-            "x": 2024
-        }
-    ],
+    {
+        "x": 2011,
+        "y": 2758302
+    },
+    {
+        "x": 2024,
+        "y": 823605
+    }
+],
 
-    "annotate_points": [
-        {
-            "series": "United Kingdom",
-            "x": 2011,
-            "text": "UK peak",
-            "xytext": [18, 22]
-        },
-        {
-            "series": "United Kingdom",
-            "x": 2024,
-            "text": "2024: back below 1M tonnes",
-            "xytext": [-105, -28]
-        }
-    ],
+"annotate_points": [
+    {
+        "x": 2011,
+        "y": 2758302,
+        "label": "UK peak",
+        "xytext": [18, 22],
+        "ha": "left"
+    },
+    {
+        "x": 2024,
+        "y": 823605,
+        "label": "2024: below 1M tonnes",
+        "xytext": [-95, -25],
+        "ha": "right"
+    }
+],
 
     "end_labels": [],
 
