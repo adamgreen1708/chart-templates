@@ -20,20 +20,21 @@ CHART_CONFIG = {
 
     "x_is_datetime": False,
     "x_tick_rotation": 0,
-    "y_axis_min": None,
-    "y_axis_max": None,
-    "y_tick_interval": None,
-    "y_tick_format": ".0f",
 
     "x_axis": {
         "min": -10,
-        "max": 4,
+        "max": 0.5,
         "tick_interval": 2,
         "format": "percent"
     },
 
+    "y_axis_min": None,
+    "y_axis_max": None,
+    "y_tick_interval": None,
+    "y_tick_format": None,
+
     "line_width": 2.6,
-    "marker_size": 65,
+    "marker_size": 58,
     "show_markers": True,
     "auto_end_labels": False,
     "sort_descending": False,
@@ -50,7 +51,7 @@ CHART_CONFIG = {
             "label": "No change",
             "color": "#7A7A7A",
             "linestyle": "--",
-            "linewidth": 1.2
+            "linewidth": 1.0
         }
     ],
 
@@ -74,13 +75,13 @@ CHART_CONFIG = {
 
     "dot_style": {
         "color": "#1F8FA8",
-        "size": 65,
+        "size": 58,
         "alpha": 0.75
     },
 
     "highlight_style": {
         "color": "#C44E52",
-        "size": 95,
+        "size": 82,
         "alpha": 1.0
     },
 
@@ -110,27 +111,32 @@ CHART_CONFIG = {
 
     "fig_width": 8.0,
     "fig_height": 8.0,
-    "title_fontsize": 22,
-    "subtitle_fontsize": 12,
-    "tick_label_fontsize": 10,
-    "footer_fontsize": 10,
-    "title_wrap_width": 28,
-    "subtitle_wrap_width": 54,
+    "dpi": 200,
+
+    "title_fontsize": 18,
+    "subtitle_fontsize": 9,
+    "tick_label_fontsize": 7,
+    "axis_label_fontsize": 8,
+    "footer_fontsize": 7,
+
+    "title_wrap_width": 42,
+    "subtitle_wrap_width": 82,
     "title_max_lines": 2,
     "subtitle_max_lines": 2,
 
     "title_x": 0.10,
-    "title_y": 0.93,
+    "title_y": 0.86,
     "subtitle_x": 0.10,
-    "subtitle_y": 0.855,
+    "subtitle_y": 0.815,
+
     "footer_left_x": 0.10,
     "footer_right_x": 0.90,
-    "footer_y": 0.075,
+    "footer_y": 0.08,
 
     "plot_top": 0.72,
-    "plot_bottom": 0.15,
-    "plot_left": 0.34,
-    "plot_right": 0.90,
+    "plot_bottom": 0.18,
+    "plot_left": 0.18,
+    "plot_right": 0.86,
 
     "output_file": "output/diesel_pct_change_filtered_dot.png"
 }
