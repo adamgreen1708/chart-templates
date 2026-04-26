@@ -1,174 +1,75 @@
 CHART_CONFIG = {
-    "data_file": "data/fuel_prices_low_low_quadrant.csv",
+    "data_file": "data/low-quadrant-fuel-price-change.csv",
     "data_format": "wide",
     "chart_type": "scatter",
-    "output_slug": "low_quadrant_policy_shield",
 
-    "x_col": "Gasoline_pct_change_y",
-    "y_col": "Diesel_pct_change_y",
+    "x_col": "Diesel current price",
+    "y_col": "Diesel pct change",
     "series_col": None,
     "value_col": None,
 
-    "title": "The shielded corner",
-    "subtitle": "A closer look at countries where petrol and diesel rises stayed low during the conflict shock.",
-    "source_text": "Source: GlobalPetrolPrices.com, user-compiled dataset",
+    "title": "Diesel’s quiet corner",
+    "subtitle": "Among markets where both petrol and diesel price changes are zero or negative, this shows whether cheaper diesel also came with bigger falls.",
+    "source_text": "Source: User-provided fuel price dataset",
     "footer_left": "Adam Green | coffeetableviz",
-    "footer_right": "Change from 23 Feb to 20 Apr 2026",
 
     "story_angle": "relationship",
 
-    "focus_series": None,
-    "secondary_series": None,
+    "x_label": "Current diesel price",
+    "y_label": "Diesel price change (%)",
 
-    "context_style": {
-        "color": "#D9D9D9",
-        "linewidth": 0.8,
-        "alpha": 0.25,
-        "zorder": 1
+    "x_axis": {
+        "min": None,
+        "max": None,
+        "tick_interval": None,
+        "format": "currency"
     },
 
-    "focus_style": {
-        "color": "#1F8FA8",
-        "linewidth": 3.5,
-        "alpha": 1.0,
-        "zorder": 5
+    "y_axis": {
+        "min": -10,
+        "max": 0,
+        "tick_interval": 2,
+        "format": "percent"
     },
 
-    "secondary_style": {
-        "color": "#7A7A7A",
-        "linewidth": 2.0,
-        "alpha": 0.9,
-        "zorder": 4
-    },
+    "highlight_points": [
+        {
+            "label_col": "Country",
+            "match_col": "Country",
+            "match_value": "United Kingdom",
+            "label": "UK",
+            "color": "#C44E52"
+        }
+    ],
+
+    "reference_lines": [
+        {
+            "axis": "y",
+            "value": 0,
+            "label": "No diesel price rise",
+            "color": "#7A7A7A",
+            "linestyle": "--"
+        }
+    ],
 
     "point_style": {
         "color": "#1F8FA8",
-        "alpha": 0.60,
-        "size": 48
+        "alpha": 0.75,
+        "size": 55
     },
 
     "highlight_style": {
         "color": "#C44E52",
         "alpha": 1.0,
-        "size": 95,
-        "zorder": 6
+        "size": 90
     },
 
-    "reference_lines": [
-        {
-            "axis": "diagonal",
-            "value": "y_equals_x",
-            "label": "Diesel = petrol rise",
-            "color": "#7A7A7A",
-            "linewidth": 1.2,
-            "linestyle": "--",
-            "alpha": 0.85
-        },
-        {
-            "axis": "x",
-            "value": 0,
-            "label": "No petrol change",
-            "color": "#B8B8B8",
-            "linewidth": 1.0,
-            "linestyle": ":",
-            "alpha": 0.75
-        },
-        {
-            "axis": "y",
-            "value": 0,
-            "label": "No diesel change",
-            "color": "#B8B8B8",
-            "linewidth": 1.0,
-            "linestyle": ":",
-            "alpha": 0.75
-        }
-    ],
+    "label_style": {
+        "enabled": True,
+        "label_col": "Country",
+        "auto_label": "highlight_only",
+        "fontsize": 9
+    },
 
-    "axis_equal": True,
-    "x_limits": [-10, 30],
-    "y_limits": [-10, 30],
-    "tick_step": 10,
-
-    "highlight_points": [
-        {
-            "x": 0.0,
-            "y": 0.0,
-            "label": "Algeria"
-        },
-        {
-            "x": 0.0,
-            "y": 0.0,
-            "label": "Saudi Arabia"
-        },
-        {
-            "x": 0.0,
-            "y": 0.0,
-            "label": "Kuwait"
-        },
-        {
-            "x": -3.9,
-            "y": -4.1,
-            "label": "Madagascar"
-        },
-        {
-            "x": -8.3,
-            "y": -8.2,
-            "label": "Russia"
-        }
-    ],
-
-    "annotate_points": [
-        {
-            "x": 0.0,
-            "y": 0.0,
-            "text": "Held at zero",
-            "xytext": [18, 12],
-            "ha": "left"
-        },
-        {
-            "x": -8.3,
-            "y": -8.2,
-            "text": "Prices fell",
-            "xytext": [18, -6],
-            "ha": "left"
-        }
-    ],
-
-    "x_axis_label": "Gasoline price change (%)",
-    "y_axis_label": "Diesel price change (%)",
-
-    "x_tick_format": "{x:.0f}%",
-    "y_tick_format": "{x:.0f}%",
-
-    "fig_width": 8.0,
-    "fig_height": 8.0,
-
-    "title_fontsize": 22,
-    "subtitle_fontsize": 13,
-    "tick_label_fontsize": 12,
-    "footer_fontsize": 10,
-
-    "title_wrap_width": 30,
-    "subtitle_wrap_width": 58,
-    "title_max_lines": 2,
-    "subtitle_max_lines": 2,
-
-    "title_x": 0.11,
-    "title_y": 0.94,
-    "subtitle_x": 0.11,
-    "subtitle_y": 0.865,
-
-    "footer_left_x": 0.11,
-    "footer_right_x": 0.89,
-    "footer_y": 0.075,
-
-    "plot_top": 0.70,
-    "plot_bottom": 0.16,
-    "plot_left": 0.11,
-    "plot_right": 0.89,
-
-    "plot_padding": {
-        "x": 0.08,
-        "y": 0.10
-    }
+    "output_file": "outputs/diesel-current-price-vs-pct-change.png"
 }
