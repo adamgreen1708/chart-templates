@@ -569,6 +569,8 @@ def main():
 
     _apply_config_template(fig, ax)
 
+    ax.margins(x=0.02)
+
     plt.subplots_adjust(
         left=CHART_CONFIG.get("plot_left", 0.10),
         right=CHART_CONFIG.get("plot_right", 0.90),
