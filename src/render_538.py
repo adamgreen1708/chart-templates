@@ -1,4 +1,4 @@
-import csv
+see import csv
 import os
 import sys
 from pathlib import Path
@@ -376,13 +376,23 @@ def main():
         bottom=0.13,
     )
 
-    output_file = CHART_CONFIG.get("output_file", "outputs/chart.png")
+    output_file = CHART_CONFIG.get("output_file", "output/chart.png")
+
+    # Force output folder if filename only is supplied
+    if "/" not in output_file:
+        output_file = f"output/{output_file}"
+
     output_path = REPO_ROOT / output_file
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    plt.savefig(output_path, dpi=200, bbox_inches="tight", facecolor=fig.get_facecolor())
-    print(f"Saved chart to {output_path}")
+    plt.savefig(
+        output_path,
+        dpi=200,
+        bbox_inches="tight",
+        facecolor=fig.get_facecolor()
+    )
 
+    print(f"Saved chart to {output_path}")
 
 if __name__ == "__main__":
     main()
