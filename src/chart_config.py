@@ -8,7 +8,7 @@ CHART_CONFIG = {
     "series_col": None,
     "value_col": None,
 
-    "title": "The flat or falling",
+    "title": "The flat or fallen few",
     "subtitle": "Most countries with no diesel price rise saw no change at all, while Russia and Barbados were the clear fallers.",
     "source_text": "Source: User-provided fuel price dataset",
     "footer_left": "Adam Green | coffeetableviz",
