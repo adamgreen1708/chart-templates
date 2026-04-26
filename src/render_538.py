@@ -243,7 +243,7 @@ def _plot_annotations(ax):
             continue
 
         ax.annotate(
-            p.get("label", ""),
+            p.get("label", p.get("text", "")),
             xy=(p["x"], p["y"]),
             xytext=p.get("xytext", (10, 10)),
             textcoords="offset points",
