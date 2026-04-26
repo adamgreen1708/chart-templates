@@ -75,27 +75,42 @@ def _apply_filters(rows):
 
     filtered = rows
 
-    for f in filters:
-        col = f["column"]
-        op = f["operator"]
-        val = f["value"]
+for f in filters:
+    col = f["column"]
+    op = f["operator"]
+    val = f["value"]
+
+    new_filtered = []
+
+    for r in filtered:
+        try:
+            a = float(r[col])
+            b = float(val)
+        except:
+            a = str(r[col])
+            b = str(val)
 
         if op == "<=":
-            filtered = [r for r in filtered if float(r[col]) <= float(val)]
+            keep = a <= b
         elif op == "<":
-            filtered = [r for r in filtered if float(r[col]) < float(val)]
+            keep = a < b
         elif op == ">=":
-            filtered = [r for r in filtered if float(r[col]) >= float(val)]
+            keep = a >= b
         elif op == ">":
-            filtered = [r for r in filtered if float(r[col]) > float(val)]
+            keep = a > b
         elif op == "==":
-            filtered = [r for r in filtered if float(r[col]) == float(val)]
+            keep = a == b
         elif op == "!=":
-            filtered = [r for r in filtered if float(r[col]) != float(val)]
+            keep = a != b
         else:
             raise ValueError(f"Unsupported filter operator: {op}")
 
-    return filtered
+        if keep:
+            new_filtered.append(r)
+
+    filtered = new_filtered
+
+return filtered
 
 
 def _apply_sort(rows):
