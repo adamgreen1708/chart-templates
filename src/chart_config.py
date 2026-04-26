@@ -3,19 +3,19 @@ CHART_CONFIG = {
     "data_format": "wide",
     "chart_type": "scatter",
 
-    "x_col": "diesel_current_price",
-    "y_col": "diesel_pct_change",
+    "x_col": "Diesel_USD_per_litre",
+    "y_col": "Diesel_pct_change_y",
     "series_col": None,
     "value_col": None,
 
-    "title": "Where diesel is cheapest, falls are sharper",
-    "subtitle": "In markets with flat or falling fuel prices, lower diesel prices tend to coincide with larger percentage declines.",
-    "source_text": "Source: User-provided fuel price dataset (low-low quadrant)",
+    "title": "Cheap diesel didn’t mean small falls",
+    "subtitle": "Among countries where both fuel prices fell or stayed flat, current diesel price and diesel percentage change do not move neatly together.",
+    "source_text": "Source: User-provided fuel price dataset",
     "footer_left": "Adam Green | coffeetableviz",
 
     "story_angle": "relationship",
 
-    "x_label": "Current diesel price",
+    "x_label": "Current diesel price, USD per litre",
     "y_label": "Diesel price change (%)",
 
     "x_axis": {
@@ -36,7 +36,7 @@ CHART_CONFIG = {
         {
             "axis": "y",
             "value": 0,
-            "label": "No price increase",
+            "label": "No diesel price increase",
             "color": "#7A7A7A",
             "linestyle": "--"
         }
@@ -50,18 +50,12 @@ CHART_CONFIG = {
         "size": 55
     },
 
-    "highlight_style": {
-        "color": "#C44E52",
-        "alpha": 1.0,
-        "size": 90
-    },
-
     "label_style": {
         "enabled": True,
-        "label_col": "country",
+        "label_col": "Country",
         "auto_label": "all",
         "fontsize": 8
     },
 
-    "output_file": "outputs/diesel_price_vs_change_low_quadrant.png"
+    "output_file": "outputs/diesel_price_vs_pct_change_low_quadrant.png"
 }
