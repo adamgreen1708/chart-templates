@@ -2,7 +2,6 @@ import csv
 import sys
 import textwrap
 from collections import defaultdict
-from datetime import datetime
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -13,7 +12,6 @@ SRC_DIR = REPO_ROOT / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
-from chart_538 import apply_538_template
 from chart_config import CHART_CONFIG
 
 
@@ -41,22 +39,6 @@ def _require_columns(columns, required):
             f"Missing column(s): {', '.join(missing)}\n"
             f"Available columns: {', '.join(columns)}"
         )
-
-
-def _format_tick(value, fmt):
-    if fmt is None:
-        return str(value)
-
-    if fmt == "percent":
-        return f"{value:.0f}%"
-
-    if fmt == "currency":
-        return f"${value:.2f}"
-
-    try:
-        return format(value, fmt)
-    except Exception:
-        return str(value)
 
 
 def _axis_formatter(fmt):
@@ -95,21 +77,18 @@ def _apply_filters(rows):
         op = f["operator"]
         val = f["value"]
 
-        def as_number(x):
-            return float(x)
-
         if op == "<=":
-            filtered = [r for r in filtered if as_number(r[col]) <= as_number(val)]
+            filtered = [r for r in filtered if float(r[col]) <= float(val)]
         elif op == "<":
-            filtered = [r for r in filtered if as_number(r[col]) < as_number(val)]
+            filtered = [r for r in filtered if float(r[col]) < float(val)]
         elif op == ">=":
-            filtered = [r for r in filtered if as_number(r[col]) >= as_number(val)]
+            filtered = [r for r in filtered if float(r[col]) >= float(val)]
         elif op == ">":
-            filtered = [r for r in filtered if as_number(r[col]) > as_number(val)]
+            filtered = [r for r in filtered if float(r[col]) > float(val)]
         elif op == "==":
-            filtered = [r for r in filtered if as_number(r[col]) == as_number(val)]
+            filtered = [r for r in filtered if float(r[col]) == float(val)]
         elif op == "!=":
-            filtered = [r for r in filtered if as_number(r[col]) != as_number(val)]
+            filtered = [r for r in filtered if float(r[col]) != float(val)]
         else:
             raise ValueError(f"Unsupported filter operator: {op}")
 
@@ -118,6 +97,7 @@ def _apply_filters(rows):
 
 def _apply_sort(rows):
     sort = CHART_CONFIG.get("sort")
+
     if sort:
         by = sort["by"]
         ascending = sort.get("ascending", True)
@@ -134,8 +114,8 @@ def _apply_axis_config(ax):
     x_axis = CHART_CONFIG.get("x_axis", {})
     y_axis = CHART_CONFIG.get("y_axis", {})
 
-    x_min = x_axis.get("min", None)
-    x_max = x_axis.get("max", None)
+    x_min = x_axis.get("min")
+    x_max = x_axis.get("max")
 
     if x_min is not None or x_max is not None:
         ax.set_xlim(x_min, x_max)
@@ -147,17 +127,17 @@ def _apply_axis_config(ax):
     if x_formatter:
         ax.xaxis.set_major_formatter(x_formatter)
 
-    y_min = CHART_CONFIG.get("y_axis_min", y_axis.get("min", None))
-    y_max = CHART_CONFIG.get("y_axis_max", y_axis.get("max", None))
+    y_min = CHART_CONFIG.get("y_axis_min", y_axis.get("min"))
+    y_max = CHART_CONFIG.get("y_axis_max", y_axis.get("max"))
 
     if y_min is not None or y_max is not None:
         ax.set_ylim(y_min, y_max)
 
-    y_tick_interval = CHART_CONFIG.get("y_tick_interval", y_axis.get("tick_interval", None))
+    y_tick_interval = CHART_CONFIG.get("y_tick_interval", y_axis.get("tick_interval"))
     if y_tick_interval is not None:
         ax.yaxis.set_major_locator(MultipleLocator(y_tick_interval))
 
-    y_format = CHART_CONFIG.get("y_tick_format", y_axis.get("format", None))
+    y_format = CHART_CONFIG.get("y_tick_format", y_axis.get("format"))
     y_formatter = _axis_formatter(y_format)
     if y_formatter:
         ax.yaxis.set_major_formatter(y_formatter)
@@ -173,7 +153,14 @@ def _plot_reference_lines(ax):
         linewidth = ref.get("linewidth", 1.2)
 
         if axis == "x":
-            ax.axvline(value, color=color, linestyle=linestyle, linewidth=linewidth, zorder=1)
+            ax.axvline(
+                value,
+                color=color,
+                linestyle=linestyle,
+                linewidth=linewidth,
+                zorder=1,
+            )
+
             if label:
                 ax.text(
                     value,
@@ -185,10 +172,18 @@ def _plot_reference_lines(ax):
                     fontsize=8,
                     color=color,
                     rotation=90,
+                    clip_on=False,
                 )
 
         elif axis == "y":
-            ax.axhline(value, color=color, linestyle=linestyle, linewidth=linewidth, zorder=1)
+            ax.axhline(
+                value,
+                color=color,
+                linestyle=linestyle,
+                linewidth=linewidth,
+                zorder=1,
+            )
+
             if label:
                 ax.text(
                     1.01,
@@ -199,6 +194,7 @@ def _plot_reference_lines(ax):
                     va="center",
                     fontsize=8,
                     color=color,
+                    clip_on=False,
                 )
 
 
@@ -266,6 +262,7 @@ def _plot_annotations(ax):
 
 def _plot_labels(ax, rows):
     label_style = CHART_CONFIG.get("label_style", {})
+
     if not label_style.get("enabled", False):
         return
 
@@ -381,6 +378,7 @@ def _plot_line(ax, rows):
         return
 
     grouped = defaultdict(list)
+
     for r in rows:
         grouped[r[series_col]].append(r)
 
@@ -407,7 +405,7 @@ def _plot_line(ax, rows):
         )
 
 
-def _plot_end_labels(ax, rows):
+def _plot_end_labels(ax):
     for label in CHART_CONFIG.get("end_labels", []):
         if "x" not in label or "y" not in label:
             continue
@@ -424,6 +422,77 @@ def _plot_end_labels(ax, rows):
             fontweight=label.get("fontweight", "normal"),
             clip_on=False,
         )
+
+
+def _apply_config_template(fig, ax):
+    bg = "#F3F4F6"
+
+    fig.patch.set_facecolor(bg)
+    ax.set_facecolor(bg)
+
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.spines["left"].set_visible(False)
+    ax.spines["bottom"].set_color("#B5B5B5")
+
+    ax.grid(axis="x", color="#D9D9D9", linewidth=0.8, alpha=0.65)
+    ax.grid(axis="y", color="#D9D9D9", linewidth=0.8, alpha=0.65)
+
+    ax.tick_params(
+        axis="both",
+        labelsize=CHART_CONFIG.get("tick_label_fontsize", 10),
+        colors="#4A4A4A",
+        length=0,
+    )
+
+    title = textwrap.fill(
+        CHART_CONFIG.get("title", ""),
+        width=CHART_CONFIG.get("title_wrap_width", 28),
+    )
+
+    subtitle = textwrap.fill(
+        CHART_CONFIG.get("subtitle", ""),
+        width=CHART_CONFIG.get("subtitle_wrap_width", 56),
+    )
+
+    fig.text(
+        CHART_CONFIG.get("title_x", 0.10),
+        CHART_CONFIG.get("title_y", 0.93),
+        title,
+        fontsize=CHART_CONFIG.get("title_fontsize", 22),
+        fontweight="bold",
+        ha="left",
+        va="top",
+        color="#111111",
+    )
+
+    fig.text(
+        CHART_CONFIG.get("subtitle_x", 0.10),
+        CHART_CONFIG.get("subtitle_y", 0.855),
+        subtitle,
+        fontsize=CHART_CONFIG.get("subtitle_fontsize", 12),
+        ha="left",
+        va="top",
+        color="#555555",
+    )
+
+    fig.text(
+        CHART_CONFIG.get("footer_left_x", 0.10),
+        CHART_CONFIG.get("footer_y", 0.075),
+        CHART_CONFIG.get("footer_left", ""),
+        fontsize=CHART_CONFIG.get("footer_fontsize", 10),
+        ha="left",
+        color="#555555",
+    )
+
+    fig.text(
+        CHART_CONFIG.get("footer_right_x", 0.90),
+        CHART_CONFIG.get("footer_y", 0.075),
+        CHART_CONFIG.get("source_text", ""),
+        fontsize=CHART_CONFIG.get("footer_fontsize", 10),
+        ha="right",
+        color="#555555",
+    )
 
 
 def main():
@@ -481,11 +550,6 @@ def main():
     ax.xaxis.label.set_size(CHART_CONFIG.get("axis_label_fontsize", 9))
     ax.yaxis.label.set_size(CHART_CONFIG.get("axis_label_fontsize", 9))
 
-    ax.tick_params(
-        axis="both",
-        labelsize=CHART_CONFIG.get("tick_label_fontsize", 12),
-    )
-
     if CHART_CONFIG.get("x_tick_rotation", 0):
         plt.setp(
             ax.get_xticklabels(),
@@ -498,16 +562,9 @@ def main():
     _plot_highlights(ax)
     _plot_annotations(ax)
     _plot_labels(ax, rows)
-    _plot_end_labels(ax, rows)
+    _plot_end_labels(ax)
 
-    apply_538_template(
-        fig=fig,
-        ax=ax,
-        title=CHART_CONFIG.get("title", ""),
-        subtitle=CHART_CONFIG.get("subtitle", ""),
-        source_text=CHART_CONFIG.get("source_text", ""),
-        footer_left=CHART_CONFIG.get("footer_left", ""),
-    )
+    _apply_config_template(fig, ax)
 
     plt.subplots_adjust(
         left=CHART_CONFIG.get("plot_left", 0.10),
@@ -535,4 +592,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
