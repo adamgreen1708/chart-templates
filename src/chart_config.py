@@ -1,5 +1,5 @@
 CHART_CONFIG = {
-    "data_file": "data/fuel_prices_low_low_quadrant.csv",
+    "data_file": "data/fuel_prices_diesel_pct_leq_zero.csv",
     "data_format": "wide",
     "chart_type": "dot",
 
@@ -8,20 +8,12 @@ CHART_CONFIG = {
     "series_col": None,
     "value_col": None,
 
-    "title": "Flat isn’t the same as falling",
-    "subtitle": "Countries where diesel prices were flat or falling, ranked by the size of the price change.",
+    "title": "Only a handful of countries saw diesel prices fall",
+    "subtitle": "Most saw no change at all — with just a few experiencing meaningful declines.",
     "source_text": "Source: User-provided fuel price dataset",
     "footer_left": "Adam Green | coffeetableviz",
 
     "story_angle": "ranked_comparison",
-
-    "filters": [
-        {
-            "column": "Diesel_pct_change_y",
-            "operator": "<=",
-            "value": 0
-        }
-    ],
 
     "sort": {
         "by": "Diesel_pct_change_y",
@@ -41,10 +33,35 @@ CHART_CONFIG = {
     "dot_style": {
         "color": "#1F8FA8",
         "size": 65,
-        "alpha": 0.75
+        "alpha": 0.7
     },
 
-    "highlight_points": [],
+    "highlight_points": [
+        {
+            "x": -8.2,
+            "y": "Russia",
+            "label": "Russia: sharpest fall",
+            "color": "#C44E52"
+        },
+        {
+            "x": -3.1,
+            "y": "Barbados",
+            "label": "Barbados: notable drop",
+            "color": "#C44E52"
+        },
+        {
+            "x": 0,
+            "y": "Algeria",
+            "label": "Many countries: no change",
+            "color": "#C44E52"
+        }
+    ],
+
+    "highlight_style": {
+        "color": "#C44E52",
+        "size": 90,
+        "alpha": 1.0
+    },
 
     "label_style": {
         "enabled": True,
@@ -54,5 +71,15 @@ CHART_CONFIG = {
         "fontsize": 8
     },
 
-    "output_file": "outputs/diesel_pct_change_no_increase_dot.png"
+    "reference_lines": [
+        {
+            "axis": "x",
+            "value": 0,
+            "label": "No change",
+            "color": "#7A7A7A",
+            "linestyle": "--"
+        }
+    ],
+
+    "output_file": "outputs/diesel_pct_change_filtered_dot.png"
 }
