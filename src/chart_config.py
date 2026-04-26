@@ -1,15 +1,15 @@
 CHART_CONFIG = {
     "data_file": "data/fuel_prices_low_low_quadrant.csv",
     "data_format": "wide",
-    "chart_type": "bar",
+    "chart_type": "dot",
 
-    "x_col": "Country",
-    "y_col": "Diesel_USD_per_litre",
+    "x_col": "Diesel_USD_per_litre",
+    "y_col": "Country",
     "series_col": None,
     "value_col": None,
 
-    "title": "Where diesel prices did not rise",
-    "subtitle": "Current diesel price in countries where diesel price change was zero or negative.",
+    "title": "Diesel prices where costs didn’t rise",
+    "subtitle": "Countries where diesel prices were flat or falling, ranked by current price per litre.",
     "source_text": "Source: User-provided fuel price dataset",
     "footer_left": "Adam Green | coffeetableviz",
 
@@ -28,18 +28,19 @@ CHART_CONFIG = {
         "ascending": False
     },
 
-    "x_label": "",
-    "y_label": "Current diesel price, USD per litre",
+    "x_label": "Current diesel price, USD per litre",
+    "y_label": "",
 
-    "y_axis": {
+    "x_axis": {
         "min": 0,
         "max": None,
         "tick_interval": None,
         "format": "currency"
     },
 
-    "bar_style": {
+    "dot_style": {
         "color": "#1F8FA8",
+        "size": 70,
         "alpha": 0.9
     },
 
@@ -47,11 +48,11 @@ CHART_CONFIG = {
         "enabled": True,
         "label_col": "Diesel_USD_per_litre",
         "label_format": "${:.2f}",
-        "position": "end",
+        "position": "right",
         "fontsize": 8
     },
 
     "highlight_points": [],
 
-    "output_file": "outputs/diesel_current_price_no_increase_bar.png"
+    "output_file": "outputs/diesel_current_price_no_increase_dot.png"
 }
