@@ -23,7 +23,7 @@ CHART_CONFIG = {
 
     "x_axis": {
         "min": 7.0,
-        "max": 10.3,
+        "max": 10.45,
         "tick_interval": 0.5,
         "format": ".1f"
     },
@@ -33,8 +33,11 @@ CHART_CONFIG = {
     "y_tick_interval": None,
     "y_tick_format": None,
 
-    "sort": "Annual mean temperature (°C)",
-    "sort_descending": True,
+    "sort": {
+        "by": "Annual mean temperature (°C)",
+        "ascending": False
+    },
+    "sort_descending": False,
 
     "line_width": 2.6,
     "marker_size": 60,
@@ -95,9 +98,13 @@ CHART_CONFIG = {
         {
             "x": 10.09,
             "y": 2025,
-            "label": "2025: warmest in the series",
-            "xytext": (12, 0),
-            "ha": "left"
+            "label": "2025: warmest",
+            "xytext": (-8, 0),
+            "ha": "right",
+            "va": "center",
+            "fontsize": 8,
+            "color": "#333333",
+            "arrowprops": None
         }
     ],
 
@@ -118,7 +125,9 @@ CHART_CONFIG = {
     "footer_fontsize": 10,
 
     "title_wrap_width": 40,
-    "subtitle_wrap_width": 80,
+    "subtitle_wrap_width": 74,
+    "title_max_lines": 2,
+    "subtitle_max_lines": 2,
 
     "fig_width": 8.0,
     "fig_height": 8.0,
@@ -135,7 +144,9 @@ CHART_CONFIG = {
     "plot_top": 0.75,
     "plot_bottom": 0.14,
     "plot_left": 0.12,
-    "plot_right": 0.95,
+    "plot_right": 0.90,
+
+    "vertical_gridlines": False,
 
     "dpi": 200,
     "output_file": "output/uk_mean_temperature_ranked.png"
