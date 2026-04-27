@@ -55,7 +55,7 @@ def _axis_formatter(fmt):
         return FuncFormatter(lambda x, pos: f"{x / 1_000_000:.0f}M")
 
     return FuncFormatter(lambda x, pos: format(x, fmt))
-    
+
 
 def _read_data():
     data_file = REPO_ROOT / CHART_CONFIG["data_file"]
@@ -86,7 +86,7 @@ def _apply_filters(rows):
             try:
                 a = float(r[col])
                 b = float(val)
-            except:
+            except Exception:
                 a = str(r[col])
                 b = str(val)
 
@@ -112,19 +112,69 @@ def _apply_filters(rows):
 
     return filtered
 
-def _apply_sort(rows):
+
+def _normalise_sort_config():
+    """
+    Supports:
+    1) New style:
+       "sort": {"by": "Column", "ascending": False}
+
+    2) Old style:
+       "sort": "Column",
+       "sort_descending": True
+
+    3) Legacy fallback:
+       "sort": None,
+       "sort_descending": True
+       -> sorts by y_col descending
+    """
+
     sort = CHART_CONFIG.get("sort")
+    sort_descending = CHART_CONFIG.get("sort_descending", False)
 
-    if sort:
-        by = sort["by"]
-        ascending = sort.get("ascending", True)
-        return sorted(rows, key=lambda r: float(r[by]), reverse=not ascending)
+    if isinstance(sort, dict):
+        return sort.get("by"), sort.get("ascending", not sort_descending)
 
-    if CHART_CONFIG.get("sort_descending"):
-        y_col = CHART_CONFIG.get("y_col")
-        return sorted(rows, key=lambda r: float(r[y_col]), reverse=True)
+    if isinstance(sort, str):
+        return sort, not sort_descending
 
-    return rows
+    if sort_descending:
+        return CHART_CONFIG.get("y_col"), False
+
+    return None, True
+
+
+def _sort_value(value):
+    if value is None or value == "":
+        return float("-inf")
+
+    try:
+        return float(value)
+    except Exception:
+        return str(value).lower()
+
+
+def _apply_sort(rows):
+    sort_by, ascending = _normalise_sort_config()
+
+    if not sort_by:
+        return rows
+
+    if not rows:
+        return rows
+
+    if sort_by not in rows[0]:
+        available = ", ".join(rows[0].keys())
+        raise ValueError(
+            f"Sort column '{sort_by}' not found.\n"
+            f"Available columns: {available}"
+        )
+
+    return sorted(
+        rows,
+        key=lambda r: _sort_value(r.get(sort_by)),
+        reverse=not ascending,
+    )
 
 
 def _apply_axis_config(ax):
@@ -170,13 +220,7 @@ def _plot_reference_lines(ax):
         linewidth = ref.get("linewidth", 1.2)
 
         if axis == "x":
-            ax.axvline(
-                value,
-                color=color,
-                linestyle=linestyle,
-                linewidth=linewidth,
-                zorder=1,
-            )
+            ax.axvline(value, color=color, linestyle=linestyle, linewidth=linewidth, zorder=1)
 
             if label:
                 ax.text(
@@ -193,13 +237,7 @@ def _plot_reference_lines(ax):
                 )
 
         elif axis == "y":
-            ax.axhline(
-                value,
-                color=color,
-                linestyle=linestyle,
-                linewidth=linewidth,
-                zorder=1,
-            )
+            ax.axhline(value, color=color, linestyle=linestyle, linewidth=linewidth, zorder=1)
 
             if label:
                 ax.text(
@@ -215,31 +253,52 @@ def _plot_reference_lines(ax):
                 )
 
 
-def _plot_highlights(ax):
+def _point_matches_row(point, row):
+    for key, value in point.items():
+        if key in ["x", "y", "label", "color", "size", "alpha"]:
+            continue
+        if key not in row:
+            return False
+        if str(row[key]) != str(value):
+            return False
+    return True
+
+
+def _resolve_point_xy(point, rows):
+    if "x" in point and "y" in point:
+        return point["x"], point["y"]
+
+    x_col = CHART_CONFIG["x_col"]
+    y_col = CHART_CONFIG["y_col"]
+
+    for row in rows:
+        if _point_matches_row(point, row):
+            return row[x_col], row[y_col]
+
+    return None, None
+
+
+def _plot_highlights(ax, rows):
     highlight_style = CHART_CONFIG.get("highlight_style", {})
     default_color = highlight_style.get("color", "#C44E52")
-    size = highlight_style.get("size", 90)
-    alpha = highlight_style.get("alpha", 1.0)
+    default_size = highlight_style.get("size", 90)
+    default_alpha = highlight_style.get("alpha", 1.0)
 
     for p in CHART_CONFIG.get("highlight_points", []):
-        if "x" not in p or "y" not in p:
+        x, y = _resolve_point_xy(p, rows)
+        if x is None or y is None:
             continue
 
         color = p.get("color", default_color)
+        size = p.get("size", default_size)
+        alpha = p.get("alpha", default_alpha)
 
-        ax.scatter(
-            p["x"],
-            p["y"],
-            s=size,
-            color=color,
-            alpha=alpha,
-            zorder=5,
-        )
+        ax.scatter(x, y, s=size, color=color, alpha=alpha, zorder=5)
 
         if p.get("label"):
             ax.annotate(
                 p["label"],
-                xy=(p["x"], p["y"]),
+                xy=(x, y),
                 xytext=(8, 0),
                 textcoords="offset points",
                 ha="left",
@@ -403,7 +462,7 @@ def _plot_line(ax, rows):
     secondary_series = CHART_CONFIG.get("secondary_series")
 
     for series, values in grouped.items():
-        values = sorted(values, key=lambda r: r[x_col])
+        values = sorted(values, key=lambda r: _sort_value(r[x_col]))
 
         if focus_series and series == focus_series:
             style = CHART_CONFIG.get("focus_style", {})
@@ -525,24 +584,10 @@ def main():
     for f in CHART_CONFIG.get("filters", []):
         required.append(f.get("column"))
 
-    sort = CHART_CONFIG.get("sort")
-
-    sort_by = None
-    sort_ascending = True
-
-    if isinstance(sort, dict):
-        sort_by = sort.get("by")
-        sort_ascending = sort.get("ascending", True)
-
-    elif isinstance(sort, str):
-        sort_by = sort
-        # fall back to legacy flag if present
-        sort_ascending = not CHART_CONFIG.get("sort_descending", False)
-
-    # apply sorting if defined
+    sort_by, _ = _normalise_sort_config()
     if sort_by:
-        data = sorted(data, key=lambda x: x[sort_by], reverse=not sort_ascending)
-    
+        required.append(sort_by)
+
     label_col = CHART_CONFIG.get("label_style", {}).get("label_col")
     if label_col:
         required.append(label_col)
@@ -590,7 +635,7 @@ def main():
 
     _apply_axis_config(ax)
     _plot_reference_lines(ax)
-    _plot_highlights(ax)
+    _plot_highlights(ax, rows)
     _plot_annotations(ax)
     _plot_labels(ax, rows)
     _plot_end_labels(ax)
