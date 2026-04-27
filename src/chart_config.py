@@ -1,5 +1,5 @@
 CHART_CONFIG = {
-    "data_file": "data/uk-mean-temperature.csv",
+    "data_file": "data/top_20_uk_mean_temperature.csv",
     "data_format": "wide",
     "chart_type": "bar",
 
