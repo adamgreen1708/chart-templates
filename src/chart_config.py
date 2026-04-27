@@ -1,16 +1,16 @@
 CHART_CONFIG = {
-    "data_file": "data/uk-mean-temperature.csv",
+    "data_file": "data/east_anglia_annual_sunshine.csv",
     "data_format": "wide",
     "chart_type": "dot",
 
-    "x_col": "Annual mean temperature (°C)",
-    "y_col": "Year",
+    "x_col": "annual_sunshine_hours",
+    "y_col": "year",
     "series_col": None,
     "value_col": None,
 
-    "title": "The heat is moving up the table",
-    "subtitle": "The UK's ten warmest annual mean temperatures in this dataset all come from 2006 onwards, with 2025 sitting at the top.",
-    "source_text": "Source: User-provided UK mean temperature dataset",
+    "title": "2025 wasn’t just warm — it was bright",
+    "subtitle": "East Anglia recorded 1,989.6 sunshine hours in 2025, the highest annual total in this dataset.",
+    "source_text": "Source: User-provided East Anglia sunshine dataset",
     "footer_left": "Adam Green | coffeetableviz",
 
     "story_angle": "ranked_comparison",
@@ -22,10 +22,10 @@ CHART_CONFIG = {
     "x_tick_rotation": 0,
 
     "x_axis": {
-        "min": 7.0,
-        "max": 10.45,
-        "tick_interval": 0.5,
-        "format": ".1f"
+        "min": 1200,
+        "max": 2050,
+        "tick_interval": 100,
+        "format": ".0f"
     },
 
     "y_axis_min": None,
@@ -34,7 +34,7 @@ CHART_CONFIG = {
     "y_tick_format": None,
 
     "sort": {
-        "by": "Annual mean temperature (°C)",
+        "by": "annual_sunshine_hours",
         "ascending": False
     },
     "sort_descending": False,
@@ -77,8 +77,9 @@ CHART_CONFIG = {
     "reference_lines": [
         {
             "axis": "x",
-            "value": 8.50,
-            "label": "Series average: 8.5°C",
+            "value": 1554,
+            "label": "Series average: 1,554 hrs",
+            "rotation": 0,
             "color": "#7A7A7A",
             "linewidth": 1.0,
             "linestyle": "--",
@@ -87,18 +88,16 @@ CHART_CONFIG = {
     ],
 
     "highlight_points": [
-        {"Year": 2025},
-        {"Year": 2022},
-        {"Year": 2023},
-        {"Year": 2024},
-        {"Year": 2014}
+        {"year": 2025},
+        {"year": 2022},
+        {"year": 2003}
     ],
 
     "annotate_points": [
         {
-            "x": 10.09,
+            "x": 1989.6,
             "y": 2025,
-            "label": "2025: warmest",
+            "label": "2025: sunniest",
             "xytext": (-8, 0),
             "ha": "right",
             "va": "center",
@@ -149,5 +148,5 @@ CHART_CONFIG = {
     "vertical_gridlines": False,
 
     "dpi": 200,
-    "output_file": "output/uk_mean_temperature_ranked.png"
+    "output_file": "output/east_anglia_annual_sunshine_ranked.png"
 }
