@@ -1,20 +1,20 @@
 CHART_CONFIG = {
     "data_file": "data/east_anglia_sunshine_clean.csv",
-    "data_format": "wide",
-    "chart_type": "dot",
+    "data_format": "long",
+    "chart_type": "line",
 
-    "x_col": "sunshine_hours",
-    "y_col": "year",
-    "series_col": None,
-    "value_col": None,
+    "x_col": "month_num",
+    "y_col": "sunshine_hours",
+    "series_col": "year",
+    "value_col": "sunshine_hours",
 
     "title": "2025 wasn’t just warm — it was bright",
-    "subtitle": "East Anglia recorded 1,989.6 sunshine hours in 2025, the highest annual total in this dataset.",
+    "subtitle": "East Anglia’s 2025 sunshine line stands out early, with March and April both setting monthly records in the dataset.",
     "source_text": "Source: User-provided East Anglia sunshine dataset",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "ranked_comparison",
-    "focus_series": None,
+    "story_angle": "focus_vs_context",
+    "focus_series": 2025,
     "secondary_series": None,
     "label_strategy": "focus_only",
 
@@ -22,20 +22,20 @@ CHART_CONFIG = {
     "x_tick_rotation": 0,
 
     "x_axis": {
-        "min": 1200,
-        "max": 2050,
-        "tick_interval": 100,
+        "min": 1,
+        "max": 12,
+        "tick_interval": 1,
         "format": ".0f"
     },
 
-    "y_axis_min": None,
-    "y_axis_max": None,
-    "y_tick_interval": None,
-    "y_tick_format": None,
+    "y_axis_min": 0,
+    "y_axis_max": 330,
+    "y_tick_interval": 50,
+    "y_tick_format": ".0f",
 
     "sort": {
-        "by": "sunshine_hours",
-        "ascending": False
+        "by": "month_num",
+        "ascending": True
     },
     "sort_descending": False,
 
@@ -74,40 +74,48 @@ CHART_CONFIG = {
         "alpha": 0.9,
     },
 
-    "reference_lines": [
-        {
-            "axis": "x",
-            "value": 1554,
-            "label": "Series average: 1,554 hrs",
-            "rotation": 0,
-            "color": "#7A7A7A",
-            "linewidth": 1.0,
-            "linestyle": "--",
-            "alpha": 0.7
-        }
-    ],
+    "reference_lines": [],
 
     "highlight_points": [
-        {"year": 2025},
-        {"year": 2022},
-        {"year": 2003}
+        {"year": 2025, "month_num": 3},
+        {"year": 2025, "month_num": 4}
     ],
 
     "annotate_points": [
         {
-            "x": 1989.6,
-            "y": 2025,
-            "label": "2025: sunniest",
-            "xytext": (-8, 0),
+            "x": 3,
+            "y": 222.0,
+            "label": "March record",
+            "xytext": (-8, 10),
             "ha": "right",
-            "va": "center",
+            "va": "bottom",
+            "fontsize": 8,
+            "color": "#333333",
+            "arrowprops": None
+        },
+        {
+            "x": 4,
+            "y": 269.2,
+            "label": "April record",
+            "xytext": (8, 8),
+            "ha": "left",
+            "va": "bottom",
             "fontsize": 8,
             "color": "#333333",
             "arrowprops": None
         }
     ],
 
-    "end_labels": [],
+    "end_labels": [
+        {
+            "x": 12,
+            "y": 70.8,
+            "label": "2025",
+            "fontsize": 9,
+            "color": "#1F8FA8",
+            "fontweight": "bold"
+        }
+    ],
 
     "label_style": {
         "enabled": False,
@@ -148,5 +156,5 @@ CHART_CONFIG = {
     "vertical_gridlines": False,
 
     "dpi": 200,
-    "output_file": "output/east_anglia_annual_sunshine_ranked.png"
+    "output_file": "output/east_anglia_sunshine_2025_monthly_line.png"
 }
