@@ -342,7 +342,7 @@ def _plot_reference_lines(ax):
                     va="bottom",
                     fontsize=8,
                     color=color,
-                    rotation=90,
+                    rotation=0,
                     clip_on=False,
                 )
 
