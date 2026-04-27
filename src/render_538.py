@@ -13,7 +13,132 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 from chart_config import CHART_CONFIG
-from chart_538 import apply_538_template
+
+
+BG = "#F3F4F6"
+GRID = "#D9D9D9"
+TEXT = "#111111"
+SUBTEXT = "#555555"
+
+
+def _wrap_text(text: str, width: int, max_lines: int | None = None) -> str:
+    if not text:
+        return ""
+
+    wrapped = textwrap.wrap(str(text), width=width)
+
+    if max_lines is not None and len(wrapped) > max_lines:
+        wrapped = wrapped[:max_lines]
+        wrapped[-1] = wrapped[-1].rstrip(" .,;:") + "…"
+
+    return "\n".join(wrapped)
+
+
+def apply_538_template(
+    ax,
+    fig,
+    title="",
+    subtitle="",
+    source_text="",
+    footer_left="",
+    vertical_gridlines=True,
+    fig_bg=BG,
+    plot_bg=BG,
+    text_color=TEXT,
+    subtext_color=SUBTEXT,
+    grid_color=GRID,
+    title_fontsize=22,
+    subtitle_fontsize=13,
+    tick_label_fontsize=12,
+    footer_fontsize=10,
+    title_wrap_width=28,
+    subtitle_wrap_width=56,
+    title_max_lines=2,
+    subtitle_max_lines=2,
+    title_x=0.10,
+    title_y=0.93,
+    subtitle_x=0.10,
+    subtitle_y=0.855,
+    footer_left_x=0.10,
+    footer_right_x=0.90,
+    footer_y=0.075,
+    plot_top=0.72,
+    plot_bottom=0.15,
+    plot_left=0.10,
+    plot_right=0.90,
+):
+    fig.patch.set_facecolor(fig_bg)
+    ax.set_facecolor(plot_bg)
+
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.spines["left"].set_visible(False)
+    ax.spines["bottom"].set_color("#B0B0B0")
+
+    ax.tick_params(axis="x", colors=subtext_color, labelsize=tick_label_fontsize, length=0)
+    ax.tick_params(axis="y", colors=subtext_color, labelsize=tick_label_fontsize, length=0)
+
+    ax.grid(axis="y", color=grid_color, linewidth=0.8)
+
+    if vertical_gridlines:
+        ax.grid(axis="x", color=grid_color, linewidth=0.35, alpha=0.6)
+
+    fig.subplots_adjust(
+        top=plot_top,
+        bottom=plot_bottom,
+        left=plot_left,
+        right=plot_right,
+    )
+
+    wrapped_title = _wrap_text(title, title_wrap_width, title_max_lines)
+    wrapped_subtitle = _wrap_text(subtitle, subtitle_wrap_width, subtitle_max_lines)
+
+    fig.text(
+        title_x,
+        title_y,
+        wrapped_title,
+        ha="left",
+        va="top",
+        fontsize=title_fontsize,
+        fontweight="bold",
+        color=text_color,
+        linespacing=1.08,
+        clip_on=True,
+    )
+
+    fig.text(
+        subtitle_x,
+        subtitle_y,
+        wrapped_subtitle,
+        ha="left",
+        va="top",
+        fontsize=subtitle_fontsize,
+        color=subtext_color,
+        linespacing=1.15,
+        clip_on=True,
+    )
+
+    fig.text(
+        footer_left_x,
+        footer_y,
+        footer_left,
+        ha="left",
+        va="bottom",
+        fontsize=footer_fontsize,
+        color=subtext_color,
+        clip_on=True,
+    )
+
+    fig.text(
+        footer_right_x,
+        footer_y,
+        source_text,
+        ha="right",
+        va="bottom",
+        fontsize=footer_fontsize,
+        color=subtext_color,
+        clip_on=True,
+    )
 
 
 def _coerce_value(value):
@@ -115,21 +240,6 @@ def _apply_filters(rows):
 
 
 def _normalise_sort_config():
-    """
-    Supports:
-    1) New style:
-       "sort": {"by": "Column", "ascending": False}
-
-    2) Old style:
-       "sort": "Column",
-       "sort_descending": True
-
-    3) Legacy fallback:
-       "sort": None,
-       "sort_descending": True
-       -> sorts by y_col descending
-    """
-
     sort = CHART_CONFIG.get("sort")
     sort_descending = CHART_CONFIG.get("sort_descending", False)
 
@@ -158,10 +268,7 @@ def _sort_value(value):
 def _apply_sort(rows):
     sort_by, ascending = _normalise_sort_config()
 
-    if not sort_by:
-        return rows
-
-    if not rows:
+    if not sort_by or not rows:
         return rows
 
     if sort_by not in rows[0]:
@@ -202,11 +309,13 @@ def _apply_axis_config(ax):
         ax.set_ylim(y_min, y_max)
 
     y_tick_interval = CHART_CONFIG.get("y_tick_interval", y_axis.get("tick_interval"))
+
     if y_tick_interval is not None:
         ax.yaxis.set_major_locator(MultipleLocator(y_tick_interval))
 
     y_format = CHART_CONFIG.get("y_tick_format", y_axis.get("format"))
     y_formatter = _axis_formatter(y_format)
+
     if y_formatter:
         ax.yaxis.set_major_formatter(y_formatter)
 
@@ -258,10 +367,13 @@ def _point_matches_row(point, row):
     for key, value in point.items():
         if key in ["x", "y", "label", "color", "size", "alpha"]:
             continue
+
         if key not in row:
             return False
+
         if str(row[key]) != str(value):
             return False
+
     return True
 
 
@@ -287,6 +399,7 @@ def _plot_highlights(ax, rows):
 
     for p in CHART_CONFIG.get("highlight_points", []):
         x, y = _resolve_point_xy(p, rows)
+
         if x is None or y is None:
             continue
 
@@ -344,6 +457,7 @@ def _plot_labels(ax, rows):
         return
 
     label_col = label_style.get("label_col")
+
     if not label_col:
         return
 
@@ -515,10 +629,12 @@ def main():
         required.append(f.get("column"))
 
     sort_by, _ = _normalise_sort_config()
+
     if sort_by:
         required.append(sort_by)
 
     label_col = CHART_CONFIG.get("label_style", {}).get("label_col")
+
     if label_col:
         required.append(label_col)
 
@@ -570,7 +686,6 @@ def main():
     _plot_labels(ax, rows)
     _plot_end_labels(ax)
 
-    # Apply 538 template styling using the reusable function
     apply_538_template(
         ax,
         fig,
@@ -585,6 +700,8 @@ def main():
         footer_fontsize=CHART_CONFIG.get("footer_fontsize", 10),
         title_wrap_width=CHART_CONFIG.get("title_wrap_width", 28),
         subtitle_wrap_width=CHART_CONFIG.get("subtitle_wrap_width", 56),
+        title_max_lines=CHART_CONFIG.get("title_max_lines", 2),
+        subtitle_max_lines=CHART_CONFIG.get("subtitle_max_lines", 2),
         title_x=CHART_CONFIG.get("title_x", 0.10),
         title_y=CHART_CONFIG.get("title_y", 0.93),
         subtitle_x=CHART_CONFIG.get("subtitle_x", 0.10),
@@ -600,7 +717,6 @@ def main():
 
     ax.margins(x=0.04)
 
-    # Apply subplots_adjust AFTER template to enforce padding boundaries
     plt.subplots_adjust(
         left=CHART_CONFIG.get("plot_left", 0.10),
         right=CHART_CONFIG.get("plot_right", 0.90),
