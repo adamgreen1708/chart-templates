@@ -9,7 +9,7 @@ CHART_CONFIG = {
     "value_col": None,
 
     "title": "The heat is moving up the table",
-    "subtitle": "The UK’s ten warmest annual mean temperatures in this dataset all come from 2006 onwards, with 2025 sitting at the top.",
+    "subtitle": "The UK's ten warmest annual mean temperatures in this dataset all come from 2006 onwards, with 2025 sitting at the top.",
     "source_text": "Source: User-provided UK mean temperature dataset",
     "footer_left": "Adam Green | coffeetableviz",
 
@@ -124,18 +124,18 @@ CHART_CONFIG = {
     "fig_height": 8.0,
 
     "title_x": 0.10,
-    "title_y": 0.88,
+    "title_y": 0.92,
     "subtitle_x": 0.10,
-    "subtitle_y": 0.825,
+    "subtitle_y": 0.86,
 
     "footer_left_x": 0.10,
     "footer_right_x": 0.90,
     "footer_y": 0.08,
 
-    "plot_top": 0.70,
-    "plot_bottom": 0.16,
-    "plot_left": 0.18,
-    "plot_right": 0.86,
+    "plot_top": 0.75,
+    "plot_bottom": 0.14,
+    "plot_left": 0.12,
+    "plot_right": 0.95,
 
     "dpi": 200,
     "output_file": "output/uk_mean_temperature_ranked.png"
