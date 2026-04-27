@@ -10,7 +10,7 @@ CHART_CONFIG = {
 
     "title": "2025 wasn’t just warm — it was bright",
     "subtitle": "East Anglia’s 2025 sunshine line stands out early, with March and April both setting monthly records in the dataset.",
-    "source_text": "Source: User-provided East Anglia sunshine dataset",
+    "source_text": "Source: https://www.metoffice.gov.uk | East Anglia sunshine dataset",
     "footer_left": "Adam Green | coffeetableviz",
 
     "story_angle": "focus_vs_context",
