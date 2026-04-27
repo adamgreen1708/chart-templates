@@ -35,7 +35,7 @@ CHART_CONFIG = {
 
     "sort": {
         "by": "Annual mean temperature (°C)",
-        "ascending": False
+        "ascending": True
     },
     "sort_descending": False,
 
