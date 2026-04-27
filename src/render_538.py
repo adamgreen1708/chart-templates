@@ -226,7 +226,7 @@ def _plot_reference_lines(ax):
             if label:
                 ax.text(
                     value,
-                    1.01,
+                    1.02,
                     label,
                     transform=ax.get_xaxis_transform(),
                     ha="center",
@@ -242,11 +242,11 @@ def _plot_reference_lines(ax):
 
             if label:
                 ax.text(
-                    0.99,
+                    -0.02,
                     value,
                     label,
                     transform=ax.get_yaxis_transform(),
-                    ha="left",
+                    ha="right",
                     va="center",
                     fontsize=8,
                     color=color,
@@ -333,7 +333,7 @@ def _plot_annotations(ax):
                     "lw": 0.8,
                 },
             ),
-            clip_on=False,
+            clip_on=True,
         )
 
 
@@ -380,7 +380,7 @@ def _plot_labels(ax, rows):
             va="center",
             fontsize=fontsize,
             color="#4A4A4A",
-            clip_on=False,
+            clip_on=True,
         )
 
 
@@ -497,7 +497,7 @@ def _plot_end_labels(ax):
             fontsize=label.get("fontsize", 9),
             color=label.get("color", "#333333"),
             fontweight=label.get("fontweight", "normal"),
-            clip_on=False,
+            clip_on=True,
         )
 
 
@@ -599,6 +599,14 @@ def main():
     )
 
     ax.margins(x=0.04)
+
+    # Apply subplots_adjust AFTER template to enforce padding boundaries
+    plt.subplots_adjust(
+        left=CHART_CONFIG.get("plot_left", 0.10),
+        right=CHART_CONFIG.get("plot_right", 0.90),
+        top=CHART_CONFIG.get("plot_top", 0.72),
+        bottom=CHART_CONFIG.get("plot_bottom", 0.15),
+    )
 
     output_file = CHART_CONFIG.get("output_file", "output/chart.png")
 
