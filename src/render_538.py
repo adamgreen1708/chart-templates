@@ -13,6 +13,7 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 from chart_config import CHART_CONFIG
+from chart_538 import apply_538_template
 
 
 def _coerce_value(value):
@@ -500,77 +501,6 @@ def _plot_end_labels(ax):
         )
 
 
-def _apply_config_template(fig, ax):
-    bg = "#F3F4F6"
-
-    fig.patch.set_facecolor(bg)
-    ax.set_facecolor(bg)
-
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-    ax.spines["left"].set_visible(False)
-    ax.spines["bottom"].set_color("#B5B5B5")
-
-    ax.grid(axis="x", color="#D9D9D9", linewidth=0.8, alpha=0.65)
-    ax.grid(axis="y", color="#D9D9D9", linewidth=0.8, alpha=0.65)
-
-    ax.tick_params(
-        axis="both",
-        labelsize=CHART_CONFIG.get("tick_label_fontsize", 10),
-        colors="#4A4A4A",
-        length=0,
-    )
-
-    title = textwrap.fill(
-        CHART_CONFIG.get("title", ""),
-        width=CHART_CONFIG.get("title_wrap_width", 28),
-    )
-
-    subtitle = textwrap.fill(
-        CHART_CONFIG.get("subtitle", ""),
-        width=CHART_CONFIG.get("subtitle_wrap_width", 56),
-    )
-
-    fig.text(
-        CHART_CONFIG.get("title_x", 0.10),
-        CHART_CONFIG.get("title_y", 0.93),
-        title,
-        fontsize=CHART_CONFIG.get("title_fontsize", 22),
-        fontweight="bold",
-        ha="left",
-        va="top",
-        color="#111111",
-    )
-
-    fig.text(
-        CHART_CONFIG.get("subtitle_x", 0.10),
-        CHART_CONFIG.get("subtitle_y", 0.855),
-        subtitle,
-        fontsize=CHART_CONFIG.get("subtitle_fontsize", 12),
-        ha="left",
-        va="top",
-        color="#555555",
-    )
-
-    fig.text(
-        CHART_CONFIG.get("footer_left_x", 0.10),
-        CHART_CONFIG.get("footer_y", 0.075),
-        CHART_CONFIG.get("footer_left", ""),
-        fontsize=CHART_CONFIG.get("footer_fontsize", 10),
-        ha="left",
-        color="#555555",
-    )
-
-    fig.text(
-        CHART_CONFIG.get("footer_right_x", 0.90),
-        CHART_CONFIG.get("footer_y", 0.075),
-        CHART_CONFIG.get("source_text", ""),
-        fontsize=CHART_CONFIG.get("footer_fontsize", 10),
-        ha="right",
-        color="#555555",
-    )
-
-
 def main():
     rows, columns = _read_data()
 
@@ -640,16 +570,35 @@ def main():
     _plot_labels(ax, rows)
     _plot_end_labels(ax)
 
-    _apply_config_template(fig, ax)
+    # Apply 538 template styling using the reusable function
+    apply_538_template(
+        ax,
+        fig,
+        title=CHART_CONFIG.get("title", ""),
+        subtitle=CHART_CONFIG.get("subtitle", ""),
+        source_text=CHART_CONFIG.get("source_text", ""),
+        footer_left=CHART_CONFIG.get("footer_left", ""),
+        vertical_gridlines=CHART_CONFIG.get("vertical_gridlines", False),
+        title_fontsize=CHART_CONFIG.get("title_fontsize", 22),
+        subtitle_fontsize=CHART_CONFIG.get("subtitle_fontsize", 13),
+        tick_label_fontsize=CHART_CONFIG.get("tick_label_fontsize", 10),
+        footer_fontsize=CHART_CONFIG.get("footer_fontsize", 10),
+        title_wrap_width=CHART_CONFIG.get("title_wrap_width", 28),
+        subtitle_wrap_width=CHART_CONFIG.get("subtitle_wrap_width", 56),
+        title_x=CHART_CONFIG.get("title_x", 0.10),
+        title_y=CHART_CONFIG.get("title_y", 0.93),
+        subtitle_x=CHART_CONFIG.get("subtitle_x", 0.10),
+        subtitle_y=CHART_CONFIG.get("subtitle_y", 0.855),
+        footer_left_x=CHART_CONFIG.get("footer_left_x", 0.10),
+        footer_right_x=CHART_CONFIG.get("footer_right_x", 0.90),
+        footer_y=CHART_CONFIG.get("footer_y", 0.075),
+        plot_top=CHART_CONFIG.get("plot_top", 0.72),
+        plot_bottom=CHART_CONFIG.get("plot_bottom", 0.15),
+        plot_left=CHART_CONFIG.get("plot_left", 0.10),
+        plot_right=CHART_CONFIG.get("plot_right", 0.90),
+    )
 
     ax.margins(x=0.04)
-
-    plt.subplots_adjust(
-        left=CHART_CONFIG.get("plot_left", 0.10),
-        right=CHART_CONFIG.get("plot_right", 0.90),
-        top=CHART_CONFIG.get("plot_top", 0.72),
-        bottom=CHART_CONFIG.get("plot_bottom", 0.15),
-    )
 
     output_file = CHART_CONFIG.get("output_file", "output/chart.png")
 
