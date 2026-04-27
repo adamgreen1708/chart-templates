@@ -34,7 +34,7 @@ CHART_CONFIG = {
         "min": None,
         "max": None,
         "tick_interval": None,
-        "format": None  # percent | currency | ".1f"
+        "format": None  # percent | currency | millions | ".1f"
     },
 
     "y_axis_min": None,
@@ -45,7 +45,10 @@ CHART_CONFIG = {
     # ---------------------------
     # SORTING
     # ---------------------------
-    "sort": None,
+    "sort": {
+        "by": "x_column",
+        "ascending": False
+    },
     "sort_descending": False,
 
     # ---------------------------
@@ -60,14 +63,14 @@ CHART_CONFIG = {
     # STYLING
     # ---------------------------
     "dot_style": {
-        "color": "#1F8FA8",
-        "size": 60,
-        "alpha": 0.75
+        "color": "#D9D9D9",
+        "size": 48,
+        "alpha": 0.55
     },
 
     "highlight_style": {
         "color": "#C44E52",
-        "size": 85,
+        "size": 90,
         "alpha": 1.0
     },
 
@@ -92,9 +95,42 @@ CHART_CONFIG = {
     # ---------------------------
     # ANNOTATIONS
     # ---------------------------
-    "reference_lines": [],
-    "highlight_points": [],
-    "annotate_points": [],
+    "reference_lines": [
+        # Example:
+        # {
+        #     "axis": "x",
+        #     "value": 0,
+        #     "label": "Reference line",
+        #     "rotation": 0,
+        #     "color": "#7A7A7A",
+        #     "linewidth": 1.0,
+        #     "linestyle": "--",
+        #     "alpha": 0.7
+        # }
+    ],
+
+    "highlight_points": [
+        # Example:
+        # {"Year": 2025}
+        # or
+        # {"x": 10.09, "y": 2025}
+    ],
+
+    "annotate_points": [
+        # Example:
+        # {
+        #     "x": 10.09,
+        #     "y": 2025,
+        #     "label": "2025: warmest",
+        #     "xytext": (-8, 0),
+        #     "ha": "right",
+        #     "va": "center",
+        #     "fontsize": 8,
+        #     "color": "#333333",
+        #     "arrowprops": None
+        # }
+    ],
+
     "end_labels": [],
 
     "label_style": {
@@ -106,7 +142,7 @@ CHART_CONFIG = {
     },
 
     # ---------------------------
-    # TYPOGRAPHY (LOCKED SYSTEM)
+    # TYPOGRAPHY
     # ---------------------------
     "title_fontsize": 22,
     "subtitle_fontsize": 12,
@@ -115,27 +151,31 @@ CHART_CONFIG = {
     "footer_fontsize": 10,
 
     "title_wrap_width": 40,
-    "subtitle_wrap_width": 80,
+    "subtitle_wrap_width": 74,
+    "title_max_lines": 2,
+    "subtitle_max_lines": 2,
 
     # ---------------------------
-    # LAYOUT (CRITICAL - DO NOT BREAK)
+    # LAYOUT
     # ---------------------------
     "fig_width": 8.0,
     "fig_height": 8.0,
 
     "title_x": 0.10,
-    "title_y": 0.88,
+    "title_y": 0.92,
     "subtitle_x": 0.10,
-    "subtitle_y": 0.825,
+    "subtitle_y": 0.86,
 
     "footer_left_x": 0.10,
     "footer_right_x": 0.90,
     "footer_y": 0.08,
 
-    "plot_top": 0.70,
-    "plot_bottom": 0.16,
-    "plot_left": 0.18,
-    "plot_right": 0.86,
+    "plot_top": 0.75,
+    "plot_bottom": 0.14,
+    "plot_left": 0.12,
+    "plot_right": 0.90,
+
+    "vertical_gridlines": False,
 
     # ---------------------------
     # OUTPUT
