@@ -526,9 +526,23 @@ def main():
         required.append(f.get("column"))
 
     sort = CHART_CONFIG.get("sort")
-    if sort:
-        required.append(sort.get("by"))
 
+    sort_by = None
+    sort_ascending = True
+
+    if isinstance(sort, dict):
+    sort_by = sort.get("by")
+    sort_ascending = sort.get("ascending", True)
+
+    elif isinstance(sort, str):
+    sort_by = sort
+    # fall back to legacy flag if present
+    sort_ascending = not CHART_CONFIG.get("sort_descending", False)
+
+    # apply sorting if defined
+    if sort_by:
+    data = sorted(data, key=lambda x: x[sort_by], reverse=not sort_ascending)
+    
     label_col = CHART_CONFIG.get("label_style", {}).get("label_col")
     if label_col:
         required.append(label_col)
