@@ -3,7 +3,7 @@ CHART_CONFIG = {
     "data_format": "wide",
     "chart_type": "dot",
 
-    "x_col": "annual_sunshine_hours",
+    "x_col": "sunshine_hours",
     "y_col": "year",
     "series_col": None,
     "value_col": None,
@@ -34,7 +34,7 @@ CHART_CONFIG = {
     "y_tick_format": None,
 
     "sort": {
-        "by": "annual_sunshine_hours",
+        "by": "sunshine_hours",
         "ascending": False
     },
     "sort_descending": False,
