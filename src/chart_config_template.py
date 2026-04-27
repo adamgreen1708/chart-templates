@@ -95,41 +95,11 @@ CHART_CONFIG = {
     # ---------------------------
     # ANNOTATIONS
     # ---------------------------
-    "reference_lines": [
-        # Example:
-        # {
-        #     "axis": "x",
-        #     "value": 0,
-        #     "label": "Reference line",
-        #     "rotation": 0,
-        #     "color": "#7A7A7A",
-        #     "linewidth": 1.0,
-        #     "linestyle": "--",
-        #     "alpha": 0.7
-        # }
-    ],
+    "reference_lines": [],
 
-    "highlight_points": [
-        # Example:
-        # {"Year": 2025}
-        # or
-        # {"x": 10.09, "y": 2025}
-    ],
+    "highlight_points": [],
 
-    "annotate_points": [
-        # Example:
-        # {
-        #     "x": 10.09,
-        #     "y": 2025,
-        #     "label": "2025: warmest",
-        #     "xytext": (-8, 0),
-        #     "ha": "right",
-        #     "va": "center",
-        #     "fontsize": 8,
-        #     "color": "#333333",
-        #     "arrowprops": None
-        # }
-    ],
+    "annotate_points": [],
 
     "end_labels": [],
 
