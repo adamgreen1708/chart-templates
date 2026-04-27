@@ -1,16 +1,16 @@
 CHART_CONFIG = {
     "data_file": "data/uk-mean-temperature.csv",
     "data_format": "wide",
-    "chart_type": "dot",
+    "chart_type": "bar",
 
-    "x_col": "Annual mean temperature (°C)",
-    "y_col": "Year",
+    "x_col": "Year",
+    "y_col": "Annual mean temperature (°C)",
     "series_col": None,
     "value_col": None,
 
-    "title": "The heat is moving up the table",
-    "subtitle": "The UK's ten warmest annual mean temperatures in this dataset all come from 2006 onwards, with 2025 sitting at the top.",
-    "source_text": "Source: https://www.metoffice.gov.uk",
+    "title": "The UK’s warmest years are all recent",
+    "subtitle": "Ranked by annual mean temperature, the top of the table is dominated by the 21st century, with 2025 the warmest in this dataset.",
+    "source_text": "Source: User-provided UK mean temperature dataset",
     "footer_left": "Adam Green | coffeetableviz",
 
     "story_angle": "ranked_comparison",
@@ -19,19 +19,19 @@ CHART_CONFIG = {
     "label_strategy": "focus_only",
 
     "x_is_datetime": False,
-    "x_tick_rotation": 0,
+    "x_tick_rotation": 90,
 
     "x_axis": {
-        "min": 7.0,
-        "max": 10.45,
-        "tick_interval": 0.5,
-        "format": ".1f"
+        "min": None,
+        "max": None,
+        "tick_interval": None,
+        "format": None
     },
 
-    "y_axis_min": None,
-    "y_axis_max": None,
-    "y_tick_interval": None,
-    "y_tick_format": None,
+    "y_axis_min": 6.5,
+    "y_axis_max": 10.5,
+    "y_tick_interval": 0.5,
+    "y_tick_format": ".1f",
 
     "sort": {
         "by": "Annual mean temperature (°C)",
@@ -41,13 +41,12 @@ CHART_CONFIG = {
 
     "line_width": 2.6,
     "marker_size": 60,
-    "show_markers": True,
+    "show_markers": False,
     "auto_end_labels": False,
 
-    "dot_style": {
+    "bar_style": {
         "color": "#D9D9D9",
-        "size": 48,
-        "alpha": 0.55
+        "alpha": 0.85
     },
 
     "highlight_style": {
@@ -59,26 +58,27 @@ CHART_CONFIG = {
     "context_style": {
         "color": "#D9D9D9",
         "linewidth": 0.8,
-        "alpha": 0.25,
+        "alpha": 0.25
     },
 
     "focus_style": {
         "color": "#1F8FA8",
         "linewidth": 3.2,
-        "alpha": 1.0,
+        "alpha": 1.0
     },
 
     "secondary_style": {
         "color": "#7A7A7A",
         "linewidth": 2.0,
-        "alpha": 0.9,
+        "alpha": 0.9
     },
 
     "reference_lines": [
         {
-            "axis": "x",
-            "value": 8.50,
-            "label": "Series average: 8.5°C",
+            "axis": "y",
+            "value": 8.5,
+            "label": "Series average",
+            "rotation": 0,
             "color": "#7A7A7A",
             "linewidth": 1.0,
             "linestyle": "--",
@@ -90,18 +90,17 @@ CHART_CONFIG = {
         {"Year": 2025},
         {"Year": 2022},
         {"Year": 2023},
-        {"Year": 2024},
-        {"Year": 2014}
+        {"Year": 2024}
     ],
 
     "annotate_points": [
         {
-            "x": 10.09,
-            "y": 2025,
-            "label": "2025: warmest",
-            "xytext": (-8, 0),
-            "ha": "right",
-            "va": "center",
+            "x": 2025,
+            "y": 10.09,
+            "label": "Warmest year",
+            "xytext": (0, 8),
+            "ha": "center",
+            "va": "bottom",
             "fontsize": 8,
             "color": "#333333",
             "arrowprops": None
@@ -120,7 +119,7 @@ CHART_CONFIG = {
 
     "title_fontsize": 22,
     "subtitle_fontsize": 12,
-    "tick_label_fontsize": 10,
+    "tick_label_fontsize": 9,
     "axis_label_fontsize": 10,
     "footer_fontsize": 10,
 
@@ -142,12 +141,12 @@ CHART_CONFIG = {
     "footer_y": 0.08,
 
     "plot_top": 0.75,
-    "plot_bottom": 0.14,
+    "plot_bottom": 0.22,
     "plot_left": 0.12,
     "plot_right": 0.90,
 
     "vertical_gridlines": False,
 
     "dpi": 200,
-    "output_file": "output/uk_mean_temperature_ranked.png"
+    "output_file": "output/uk_temperature_ranked_bar.png"
 }
