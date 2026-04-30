@@ -1,60 +1,71 @@
 CHART_CONFIG = {
-    "data_file": "data/uk_mean_temperature_top20.csv",
+    # ---------------------------
+    # DATA
+    # ---------------------------
+    "data_file": "data/uk-mean-temperature.csv",
     "data_format": "wide",
-    "chart_type": "bar",
+    "chart_type": "line",
 
-    "x_col": "Annual mean temperature (°C)",
-    "y_col": "Year",
+    "x_col": "Year",
+    "y_col": "Annual mean temperature (°C)",
     "series_col": None,
     "value_col": None,
 
-    "title": "The UK’s warmest years are all recent",
-    "subtitle": "The top 10 warmest years by annual mean temperature all come from the 21st century, with 2025 at the top.",
-    "source_text": "Source: https://www.metoffice.gov.uk",
+    # ---------------------------
+    # STORY
+    # ---------------------------
+    "title": "The UK keeps getting warmer",
+    "subtitle": "Annual mean temperature has climbed across the long record, with 2025 reaching the highest value in this dataset at 10.09°C.",
+    "source_text": "Source: UK mean temperature dataset",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "ranked_comparison",
+    "story_angle": "trend",
     "focus_series": None,
     "secondary_series": None,
     "label_strategy": "focus_only",
 
+    # ---------------------------
+    # AXES
+    # ---------------------------
     "x_is_datetime": False,
     "x_tick_rotation": 0,
 
     "x_axis": {
-        "min": 8.5,
-        "max": 10.5,
-        "tick_interval": 0.5,
-        "format": ".1f"
+        "min": 1880,
+        "max": 2030,
+        "tick_interval": 20,
+        "format": ".0f"
     },
 
-    "y_axis_min": None,
-    "y_axis_max": None,
-    "y_tick_interval": None,
-    "y_tick_format": None,
+    "y_axis_min": 7.0,
+    "y_axis_max": 10.5,
+    "y_tick_interval": 0.5,
+    "y_tick_format": "{:,.1f}",
 
+    # ---------------------------
+    # SORTING
+    # ---------------------------
     "sort": {
-        "by": "Annual mean temperature (°C)",
+        "by": "Year",
         "ascending": True
     },
     "sort_descending": False,
 
-    "filters": [
-        {
-            "column": "Rank",
-            "operator": "<=",
-            "value": 10
-        }
-    ],
-
+    # ---------------------------
+    # MARKS
+    # ---------------------------
     "line_width": 2.6,
-    "marker_size": 60,
+    "marker_size": 0,
     "show_markers": False,
     "auto_end_labels": False,
 
-    "bar_style": {
+    # ---------------------------
+    # STYLING
+    # ---------------------------
+    "dot_style": {
         "color": "#D9D9D9",
-        "alpha": 0.85
+        "size": 48,
+        "alpha": 0.55
     },
 
     "highlight_style": {
@@ -66,26 +77,29 @@ CHART_CONFIG = {
     "context_style": {
         "color": "#D9D9D9",
         "linewidth": 0.8,
-        "alpha": 0.25
+        "alpha": 0.25,
     },
 
     "focus_style": {
         "color": "#1F8FA8",
         "linewidth": 3.2,
-        "alpha": 1.0
+        "alpha": 1.0,
     },
 
     "secondary_style": {
         "color": "#7A7A7A",
         "linewidth": 2.0,
-        "alpha": 0.9
+        "alpha": 0.9,
     },
 
+    # ---------------------------
+    # ANNOTATIONS
+    # ---------------------------
     "reference_lines": [
         {
-            "axis": "x",
-            "value": 8.5,
-            "label": "Series average",
+            "axis": "y",
+            "value": 8.50,
+            "label": "Series average: 8.5°C",
             "rotation": 0,
             "color": "#7A7A7A",
             "linewidth": 1.0,
@@ -100,9 +114,9 @@ CHART_CONFIG = {
 
     "annotate_points": [
         {
-            "x": 10.09,
-            "y": 2025,
-            "label": "Warmest year",
+            "x": 2025,
+            "y": 10.09,
+            "label": "2025: 10.09°C",
             "xytext": (-8, 0),
             "ha": "right",
             "va": "center",
@@ -122,6 +136,9 @@ CHART_CONFIG = {
         "fontsize": 8
     },
 
+    # ---------------------------
+    # TYPOGRAPHY
+    # ---------------------------
     "title_fontsize": 22,
     "subtitle_fontsize": 12,
     "tick_label_fontsize": 10,
@@ -133,6 +150,9 @@ CHART_CONFIG = {
     "title_max_lines": 2,
     "subtitle_max_lines": 2,
 
+    # ---------------------------
+    # LAYOUT
+    # ---------------------------
     "fig_width": 8.0,
     "fig_height": 8.0,
 
@@ -147,11 +167,14 @@ CHART_CONFIG = {
 
     "plot_top": 0.75,
     "plot_bottom": 0.14,
-    "plot_left": 0.20,
+    "plot_left": 0.12,
     "plot_right": 0.90,
 
     "vertical_gridlines": False,
 
+    # ---------------------------
+    # OUTPUT
+    # ---------------------------
     "dpi": 200,
-    "output_file": "output/uk_temperature_top10_horizontal_bar.png"
+    "output_file": "output/uk_mean_temperature_trend.png"
 }
