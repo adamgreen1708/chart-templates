@@ -40,7 +40,7 @@ CHART_CONFIG = {
     "y_axis_min": 7.0,
     "y_axis_max": 10.5,
     "y_tick_interval": 0.5,
-    "y_tick_format": "{,.1f}",
+    "y_tick_format": ",.1f",
 
     # ---------------------------
     # SORTING
