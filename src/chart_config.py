@@ -100,7 +100,7 @@ CHART_CONFIG = {
             "axis": "y",
             "value": 8.50,
             "label": "Series average: 8.5°C",
-            "rotation": 0,
+            "rotation": 90,
             "color": "#7A7A7A",
             "linewidth": 1.0,
             "linestyle": "--",
