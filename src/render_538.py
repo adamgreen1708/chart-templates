@@ -633,35 +633,18 @@ def _plot_end_labels(ax):
             continue
 
         x = _parse_date(label["x"]) if CHART_CONFIG.get("x_is_datetime", False) else label["x"]
-        y = label["y"]
-
-        # Detect if point is near right edge
-        xlim = ax.get_xlim()
-        is_right_edge = False
-
-        try:
-            is_right_edge = x >= xlim[1] * 0.98
-        except Exception:
-            pass
-
-        if is_right_edge:
-            offset = (-6, 0)
-            ha = "right"
-        else:
-            offset = (6, 0)
-            ha = "left"
 
         ax.annotate(
             label.get("label", ""),
-            xy=(x, y),
-            xytext=offset,
+            xy=(x, label["y"]),
+            xytext=(10, 0),
             textcoords="offset points",
-            ha=ha,
+            ha="left",
             va="center",
             fontsize=label.get("fontsize", 9),
             color=label.get("color", "#333333"),
             fontweight=label.get("fontweight", "normal"),
-            clip_on=True,
+            clip_on=False,
         )
 
 def main():
@@ -723,12 +706,14 @@ def main():
 
     _apply_axis_config(ax)
 
+    ax.margins(x=0.08)
+
     if CHART_CONFIG.get("x_tick_rotation", 0):
-        plt.setp(
-            ax.get_xticklabels(),
-            rotation=CHART_CONFIG.get("x_tick_rotation", 0),
-            ha="right",
-        )
+    plt.setp(
+        ax.get_xticklabels(),
+        rotation=CHART_CONFIG.get("x_tick_rotation", 0),
+        ha="right",
+    )
 
     _plot_reference_lines(ax)
     _plot_highlights(ax, rows)
@@ -765,7 +750,6 @@ def main():
         plot_right=CHART_CONFIG.get("plot_right", 0.90),
     )
 
-    ax.margins(x=0.04)
 
     plt.subplots_adjust(
         left=CHART_CONFIG.get("plot_left", 0.12),
