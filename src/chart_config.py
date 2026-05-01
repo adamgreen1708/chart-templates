@@ -1,5 +1,5 @@
 CHART_CONFIG = {
-    "data_file": "data/human_vs_ai_content.csv",
+    "data_file": "data/human_vs_ai_content",
     "data_format": "wide",
     "chart_type": "line",
 
