@@ -9,7 +9,7 @@ CHART_CONFIG = {
 
     "title": "AI content crossed the line",
     "subtitle": "AI-created articles moved from a tiny share in 2020 to more than half of detected content by late 2024.",
-    "source_text": "Source: Graphite.io study; user-provided dataset",
+    "source_text": "Source: Graphite.io study",
     "footer_left": "Adam Green | coffeetableviz",
 
     "story_angle": "shift",
