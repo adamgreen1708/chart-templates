@@ -10,7 +10,7 @@ CHART_CONFIG = {
 
     "title": "AI rose as human content fell",
     "subtitle": "Detected AI-created articles climbed from around 2% in 2020 to more than half by late 2024, mirroring the fall in human-created content.",
-    "source_text": "Source: Graphite.io study; user-provided dataset",
+    "source_text": "Source: Graphite.io study",
     "footer_left": "Adam Green | coffeetableviz",
 
     "story_angle": "crossover",
