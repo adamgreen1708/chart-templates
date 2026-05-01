@@ -715,11 +715,11 @@ def main():
         ha="right",
     )
 
-    _plot_reference_lines(ax)
-    _plot_highlights(ax, rows)
-    _plot_annotations(ax)
-    _plot_labels(ax, rows)
-    _plot_end_labels(ax)
+        _plot_reference_lines(ax)
+        _plot_highlights(ax, rows)
+        _plot_annotations(ax)
+        _plot_labels(ax, rows)
+        _plot_end_labels(ax)
 
     apply_538_template(
         ax,
