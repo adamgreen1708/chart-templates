@@ -1,11 +1,12 @@
 CHART_CONFIG = {
-    "data_file": "data/human_vs_ai_content",
-    "data_format": "wide",
-    "chart_type": "line",
+    "data_file": "data/human_vs_ai_content_long.csv",
+    "data_format": "long",
     "x_col": "date",
-    "y_col": "ai_pct",
-    "series_col": None,
-    "value_col": None,
+    "y_col": "pct",
+    "series_col": "type",
+    "value_col": "pct",
+    "focus_series": "AI",
+    "secondary_series": "Human",
 
     "title": "AI content crossed the line",
     "subtitle": "AI-created articles moved from a tiny share in 2020 to more than half of detected content by late 2024.",
