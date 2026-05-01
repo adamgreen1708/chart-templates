@@ -1,5 +1,5 @@
 CHART_CONFIG = {
-    "data_file": "data/human_vs_ai_content",
+    "data_file": "data/human_vs_ai_content.csv",
     "data_format": "wide",
     "chart_type": "line",
 
@@ -25,7 +25,7 @@ CHART_CONFIG = {
         "min": None,
         "max": None,
         "tick_interval": None,
-        "format": None
+        "format": "%Y"
     },
 
     "y_axis_min": 0,
@@ -39,9 +39,9 @@ CHART_CONFIG = {
     },
     "sort_descending": False,
 
-    "line_width": 2.6,
+    "line_width": 2.8,
     "marker_size": 60,
-    "show_markers": True,
+    "show_markers": False,
     "auto_end_labels": False,
 
     "dot_style": {
@@ -78,7 +78,7 @@ CHART_CONFIG = {
         {
             "axis": "y",
             "value": 0.50,
-            "label": "50% threshold",
+            "label": "50%",
             "rotation": 0,
             "color": "#7A7A7A",
             "linewidth": 1.0,
@@ -86,16 +86,17 @@ CHART_CONFIG = {
             "alpha": 0.7
         }
     ],
+
     "highlight_points": [
-        {"date": "2024-11-01"},
-        {"date": "2025-01-01"}
+        {"date": "2024-11-01"}
     ],
+
     "annotate_points": [
         {
             "x": "2024-11-01",
             "y": 0.5108,
             "label": "AI passes 50%",
-            "xytext": (-8, 8),
+            "xytext": (-10, 10),
             "ha": "right",
             "va": "bottom",
             "fontsize": 8,
@@ -103,6 +104,7 @@ CHART_CONFIG = {
             "arrowprops": None
         }
     ],
+
     "end_labels": [],
 
     "label_style": {
