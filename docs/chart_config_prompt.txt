@@ -526,6 +526,35 @@ Output file must be:
 
 Use a clear, lowercase, underscore-separated filename.
 
+## EXECUTION GUARANTEE (CRITICAL)
+
+The output must be immediately runnable Python.
+
+Strict rules:
+- The CHART_CONFIG must be a valid Python dictionary
+- Every key-value pair must end with a comma (except the final closing brace)
+- No missing commas between lines
+- No syntax errors
+- No missing quotes
+- The file must run without modification
+
+Data integrity rules:
+- The "data_file" MUST include the full filename including ".csv"
+- Column names MUST exactly match the dataset (case-sensitive)
+- Do not infer or rename columns
+
+Chart safety rules:
+- If "x_is_datetime": True → ensure the renderer can parse the format
+- Do not use tick_interval for datetime axes unless explicitly required
+- Avoid overcrowded x-axis labels (prefer formatter over dense ticks)
+
+Highlight rules:
+- Highlight ONLY the most important point(s)
+- Do not highlight multiple points unless the story explicitly requires it
+
+Final check before output:
+- The config can be copy-pasted into chart_config.py and run successfully
+- No debugging required by the user
 ---
 
 ## FINAL RESPONSE FORMAT
