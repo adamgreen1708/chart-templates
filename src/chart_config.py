@@ -1,67 +1,49 @@
 CHART_CONFIG = {
-    # ---------------------------
-    # DATA
-    # ---------------------------
-    "data_file": "data/uk-mean-temperature.csv",
+    "data_file": "data/human_vs_ai_content.csv",
     "data_format": "wide",
     "chart_type": "line",
 
-    "x_col": "Year",
-    "y_col": "Annual mean temperature (°C)",
+    "x_col": "date",
+    "y_col": "ai_pct",
     "series_col": None,
     "value_col": None,
 
-    # ---------------------------
-    # STORY
-    # ---------------------------
-    "title": "The UK keeps getting warmer",
-    "subtitle": "Annual mean temperature has climbed across the long record, with 2025 reaching the highest value in this dataset at 10.09°C.",
-    "source_text": "Source: UK mean temperature dataset",
+    "title": "AI content crossed the line",
+    "subtitle": "AI-created articles moved from a tiny share in 2020 to more than half of detected content by late 2024.",
+    "source_text": "Source: Graphite.io study; user-provided dataset",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "trend",
+    "story_angle": "shift",
     "focus_series": None,
     "secondary_series": None,
     "label_strategy": "focus_only",
 
-    # ---------------------------
-    # AXES
-    # ---------------------------
-    "x_is_datetime": False,
+    "x_is_datetime": True,
     "x_tick_rotation": 0,
 
     "x_axis": {
-        "min": 1880,
-        "max": 2030,
-        "tick_interval": 20,
-        "format": ".0f"
+        "min": None,
+        "max": None,
+        "tick_interval": None,
+        "format": None
     },
 
-    "y_axis_min": 7.0,
-    "y_axis_max": 10.5,
-    "y_tick_interval": 0.5,
-    "y_tick_format": ",.1f",
+    "y_axis_min": 0,
+    "y_axis_max": 0.60,
+    "y_tick_interval": 0.10,
+    "y_tick_format": "percent",
 
-    # ---------------------------
-    # SORTING
-    # ---------------------------
     "sort": {
-        "by": "Year",
+        "by": "date",
         "ascending": True
     },
     "sort_descending": False,
 
-    # ---------------------------
-    # MARKS
-    # ---------------------------
     "line_width": 2.6,
-    "marker_size": 0,
-    "show_markers": False,
+    "marker_size": 60,
+    "show_markers": True,
     "auto_end_labels": False,
 
-    # ---------------------------
-    # STYLING
-    # ---------------------------
     "dot_style": {
         "color": "#D9D9D9",
         "size": 48,
@@ -92,40 +74,35 @@ CHART_CONFIG = {
         "alpha": 0.9,
     },
 
-    # ---------------------------
-    # ANNOTATIONS
-    # ---------------------------
     "reference_lines": [
         {
             "axis": "y",
-            "value": 8.50,
-            "label": "",
-            "rotation": 90,
+            "value": 0.50,
+            "label": "50% threshold",
+            "rotation": 0,
             "color": "#7A7A7A",
             "linewidth": 1.0,
             "linestyle": "--",
             "alpha": 0.7
         }
     ],
-
     "highlight_points": [
-        {"Year": 2025}
+        {"date": "2024-11-01"},
+        {"date": "2025-01-01"}
     ],
-
     "annotate_points": [
         {
-            "x": 2025,
-            "y": 10.09,
-            "label": "2025: 10.09°C",
-            "xytext": (-8, 0),
+            "x": "2024-11-01",
+            "y": 0.5108,
+            "label": "AI passes 50%",
+            "xytext": (-8, 8),
             "ha": "right",
-            "va": "center",
+            "va": "bottom",
             "fontsize": 8,
             "color": "#333333",
             "arrowprops": None
         }
     ],
-
     "end_labels": [],
 
     "label_style": {
@@ -136,9 +113,6 @@ CHART_CONFIG = {
         "fontsize": 8
     },
 
-    # ---------------------------
-    # TYPOGRAPHY
-    # ---------------------------
     "title_fontsize": 22,
     "subtitle_fontsize": 12,
     "tick_label_fontsize": 10,
@@ -150,9 +124,6 @@ CHART_CONFIG = {
     "title_max_lines": 2,
     "subtitle_max_lines": 2,
 
-    # ---------------------------
-    # LAYOUT
-    # ---------------------------
     "fig_width": 8.0,
     "fig_height": 8.0,
 
@@ -172,9 +143,6 @@ CHART_CONFIG = {
 
     "vertical_gridlines": False,
 
-    # ---------------------------
-    # OUTPUT
-    # ---------------------------
     "dpi": 200,
-    "output_file": "output/uk_mean_temperature_trend.png"
+    "output_file": "output/ai_content_crossed_the_line.png"
 }
