@@ -709,17 +709,17 @@ def main():
     ax.margins(x=0.08)
 
     if CHART_CONFIG.get("x_tick_rotation", 0):
-    plt.setp(
-        ax.get_xticklabels(),
-        rotation=CHART_CONFIG.get("x_tick_rotation", 0),
-        ha="right",
-    )
+        plt.setp(
+            ax.get_xticklabels(),
+            rotation=CHART_CONFIG.get("x_tick_rotation", 0),
+            ha="right",
+        )
 
-        _plot_reference_lines(ax)
-        _plot_highlights(ax, rows)
-        _plot_annotations(ax)
-        _plot_labels(ax, rows)
-        _plot_end_labels(ax)
+    _plot_reference_lines(ax)
+    _plot_highlights(ax, rows)
+    _plot_annotations(ax)
+    _plot_labels(ax, rows)
+    _plot_end_labels(ax)
 
     apply_538_template(
         ax,
