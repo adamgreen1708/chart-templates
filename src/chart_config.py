@@ -1,21 +1,21 @@
 CHART_CONFIG = {
     "data_file": "data/human_vs_ai_content_long.csv",
     "data_format": "long",
+    "chart_type": "line",
+
     "x_col": "date",
     "y_col": "pct",
     "series_col": "type",
     "value_col": "pct",
-    "focus_series": "AI",
-    "secondary_series": "Human",
 
-    "title": "AI content crossed the line",
-    "subtitle": "AI-created articles moved from a tiny share in 2020 to more than half of detected content by late 2024.",
-    "source_text": "Source: Graphite.io study",
+    "title": "AI rose as human content fell",
+    "subtitle": "Detected AI-created articles climbed from around 2% in 2020 to more than half by late 2024, mirroring the fall in human-created content.",
+    "source_text": "Source: Graphite.io study; user-provided dataset",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "shift",
-    "focus_series": None,
-    "secondary_series": None,
+    "story_angle": "crossover",
+    "focus_series": "AI",
+    "secondary_series": "Human",
     "label_strategy": "focus_only",
 
     "x_is_datetime": True,
@@ -29,8 +29,8 @@ CHART_CONFIG = {
     },
 
     "y_axis_min": 0,
-    "y_axis_max": 0.60,
-    "y_tick_interval": 0.10,
+    "y_axis_max": 1.0,
+    "y_tick_interval": 0.25,
     "y_tick_format": "percent",
 
     "sort": {
@@ -58,8 +58,8 @@ CHART_CONFIG = {
 
     "context_style": {
         "color": "#D9D9D9",
-        "linewidth": 0.8,
-        "alpha": 0.25,
+        "linewidth": 2.6,
+        "alpha": 0.9,
     },
 
     "focus_style": {
@@ -70,7 +70,7 @@ CHART_CONFIG = {
 
     "secondary_style": {
         "color": "#7A7A7A",
-        "linewidth": 2.0,
+        "linewidth": 2.6,
         "alpha": 0.9,
     },
 
@@ -88,14 +88,15 @@ CHART_CONFIG = {
     ],
 
     "highlight_points": [
-        {"date": "2024-11-01"}
+        {"date": "2024-11-01", "type": "AI"},
+        {"date": "2024-11-01", "type": "Human"}
     ],
 
     "annotate_points": [
         {
             "x": "2024-11-01",
             "y": 0.5108,
-            "label": "AI passes 50%",
+            "label": "AI moves ahead",
             "xytext": (-10, 10),
             "ha": "right",
             "va": "bottom",
@@ -105,7 +106,24 @@ CHART_CONFIG = {
         }
     ],
 
-    "end_labels": [],
+    "end_labels": [
+        {
+            "x": "2025-05-01",
+            "y": 0.5172,
+            "label": "AI",
+            "fontsize": 9,
+            "color": "#1F8FA8",
+            "fontweight": "bold"
+        },
+        {
+            "x": "2025-05-01",
+            "y": 0.4828,
+            "label": "Human",
+            "fontsize": 9,
+            "color": "#7A7A7A",
+            "fontweight": "bold"
+        }
+    ],
 
     "label_style": {
         "enabled": False,
@@ -146,5 +164,5 @@ CHART_CONFIG = {
     "vertical_gridlines": False,
 
     "dpi": 200,
-    "output_file": "output/ai_content_crossed_the_line.png"
+    "output_file": "output/human_vs_ai_content_crossover.png"
 }
