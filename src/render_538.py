@@ -633,20 +633,36 @@ def _plot_end_labels(ax):
             continue
 
         x = _parse_date(label["x"]) if CHART_CONFIG.get("x_is_datetime", False) else label["x"]
+        y = label["y"]
+
+        # Detect if point is near right edge
+        xlim = ax.get_xlim()
+        is_right_edge = False
+
+        try:
+            is_right_edge = x >= xlim[1] * 0.98
+        except Exception:
+            pass
+
+        if is_right_edge:
+            offset = (-6, 0)
+            ha = "right"
+        else:
+            offset = (6, 0)
+            ha = "left"
 
         ax.annotate(
             label.get("label", ""),
-            xy=(x, label["y"]),
-            xytext=(6, 0),
+            xy=(x, y),
+            xytext=offset,
             textcoords="offset points",
-            ha="left",
+            ha=ha,
             va="center",
             fontsize=label.get("fontsize", 9),
             color=label.get("color", "#333333"),
             fontweight=label.get("fontweight", "normal"),
             clip_on=True,
         )
-
 
 def main():
     rows, columns = _read_data()
