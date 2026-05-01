@@ -1,7 +1,7 @@
 CHART_CONFIG = {
     "data_file": "data/human_vs_ai_content",
     "data_format": "wide",
-    "chart_type": "line"
+    "chart_type": "line",
     "x_col": "date",
     "y_col": "ai_pct",
     "series_col": None,
