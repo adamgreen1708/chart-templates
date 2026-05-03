@@ -343,6 +343,13 @@ def _apply_sort(rows):
     )
 
 
+def _is_horizontal_bar():
+    return (
+        CHART_CONFIG.get("chart_type") == "bar"
+        and CHART_CONFIG.get("orientation") == "horizontal"
+    )
+
+
 def _clean_numeric_rows(rows, numeric_cols, chart_type):
     if not numeric_cols:
         return rows
@@ -395,6 +402,8 @@ def _prepare_rows_for_chart(rows, chart_type):
         return _clean_numeric_rows(rows, [x_col], chart_type)
 
     if chart_type == "bar":
+        if _is_horizontal_bar():
+            return _clean_numeric_rows(rows, [x_col], chart_type)
         return _clean_numeric_rows(rows, [y_col], chart_type)
 
     if chart_type == "line":
@@ -607,6 +616,13 @@ def _point_matches_row(point, row):
     return True
 
 
+def _row_matches_any_highlight(row):
+    for point in CHART_CONFIG.get("highlight_points", []):
+        if _point_matches_row(point, row):
+            return True
+    return False
+
+
 def _resolve_point_xy(point, rows):
     if "x" in point and "y" in point:
         x = _parse_date(point["x"]) if CHART_CONFIG.get("x_is_datetime", False) else point["x"]
@@ -651,6 +667,7 @@ def _plot_highlights(ax, rows):
                 alpha=p.get("alpha", default_alpha),
                 zorder=5,
             )
+
 
 def _plot_annotations(ax):
     for p in CHART_CONFIG.get("annotate_points", []):
@@ -737,14 +754,34 @@ def _plot_bar(ax, rows):
     y_col = CHART_CONFIG["y_col"]
 
     style = CHART_CONFIG.get("bar_style", {})
+    highlight_style = CHART_CONFIG.get("highlight_style", {})
 
-    ax.bar(
-        [r[x_col] for r in rows],
-        [r[y_col] for r in rows],
-        color=style.get("color", CHART_CONFIG.get("focus_style", {}).get("color", "#1F8FA8")),
-        alpha=style.get("alpha", 0.9),
-        zorder=3,
+    default_color = style.get(
+        "color",
+        CHART_CONFIG.get("focus_style", {}).get("color", "#1F8FA8")
     )
+
+    colors = [
+        highlight_style.get("color", "#C44E52") if _row_matches_any_highlight(r) else default_color
+        for r in rows
+    ]
+
+    if _is_horizontal_bar():
+        ax.barh(
+            [r[y_col] for r in rows],
+            [r[x_col] for r in rows],
+            color=colors,
+            alpha=style.get("alpha", 0.9),
+            zorder=3,
+        )
+    else:
+        ax.bar(
+            [r[x_col] for r in rows],
+            [r[y_col] for r in rows],
+            color=colors,
+            alpha=style.get("alpha", 0.9),
+            zorder=3,
+        )
 
 
 def _plot_scatter(ax, rows):
@@ -905,7 +942,10 @@ def main():
         )
 
     _plot_reference_lines(ax)
-    _plot_highlights(ax, rows)
+
+    if chart_type != "bar":
+        _plot_highlights(ax, rows)
+
     _plot_annotations(ax)
     _plot_labels(ax, rows)
     _plot_end_labels(ax)
