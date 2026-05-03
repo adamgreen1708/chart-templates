@@ -9,7 +9,7 @@ CHART_CONFIG = {
     "value_col": None,
 
     "title": "The Cowboys pulled away",
-    "subtitle": "Dallas was already number one, then added nearly $3bn in a year.",
+    "subtitle": "Most teams rose in value, but Dallas added almost $3bn and stretched the gap.",
     "source_text": "Source: Forbes",
     "footer_left": "Adam Green | coffeetableviz",
 
@@ -21,10 +21,13 @@ CHART_CONFIG = {
     "x_is_datetime": False,
     "x_tick_rotation": 0,
 
+    "x_label": "2024 value, USD billions",
+    "y_label": "2025 value, USD billions",
+
     "x_axis": {
         "min": 4,
-        "max": 11,
-        "tick_interval": 1,
+        "max": 14,
+        "tick_interval": 2,
         "format": None
     },
 
@@ -71,7 +74,27 @@ CHART_CONFIG = {
         "alpha": 0.9,
     },
 
-    "reference_lines": [],
+    "reference_lines": [
+        {
+            "axis": "diagonal",
+            "value": None,
+            "label": "No change",
+            "rotation": 34,
+            "color": "#7A7A7A",
+            "linewidth": 1.0,
+            "linestyle": "--",
+            "alpha": 0.55
+        }
+    ],
+
+    "trend_line": {
+        "enabled": True,
+        "color": "#7A7A7A",
+        "linewidth": 1.4,
+        "linestyle": "-",
+        "alpha": 0.8,
+        "label": "Average relationship"
+    },
 
     "highlight_points": [
         {"Team": "Dallas Cowboys"}
@@ -81,7 +104,7 @@ CHART_CONFIG = {
         {
             "x": 10.1,
             "y": 13.0,
-            "label": "Dallas Cowboys",
+            "label": "Dallas Cowboys: $13bn",
             "xytext": (-8, 0),
             "ha": "right",
             "va": "center",
@@ -125,11 +148,11 @@ CHART_CONFIG = {
     "footer_y": 0.08,
 
     "plot_top": 0.75,
-    "plot_bottom": 0.14,
-    "plot_left": 0.12,
+    "plot_bottom": 0.16,
+    "plot_left": 0.14,
     "plot_right": 0.90,
 
-    "vertical_gridlines": False,
+    "vertical_gridlines": True,
 
     "dpi": 200,
     "output_file": "output/forbes_01_cowboys_pulled_away.png"
