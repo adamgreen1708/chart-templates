@@ -1,15 +1,16 @@
 CHART_CONFIG = {
-    "data_file": "data/forbes_most_valuable_sports_team",
+    "data_file": "data/forbes_most_valuable_sports_team.csv",
     "data_format": "wide",
     "chart_type": "bar",
 
-    "x_col": "Team",
-    "y_col": "Value_USD_Billion",
+    # 🔁 SWAPPED AXES
+    "x_col": "Value_USD_Billion",
+    "y_col": "Team",
     "series_col": None,
     "value_col": None,
 
     "title": "The top 15, stacked at the top",
-    "subtitle": "The most valuable teams are tightly grouped at the top, led clearly by the Dallas Cowboys.",
+    "subtitle": "The most valuable teams are tightly grouped, with the Cowboys clearly ahead.",
     "source_text": "Source: Forbes",
     "footer_left": "Adam Green | coffeetableviz",
 
@@ -19,26 +20,26 @@ CHART_CONFIG = {
     "label_strategy": "focus_only",
 
     "x_is_datetime": False,
-    "x_tick_rotation": 45,
+    "x_tick_rotation": 0,
 
-    "x_label": "",
-    "y_label": "Team value, USD billions",
+    "x_label": "Team value, USD billions",
+    "y_label": "",
 
     "x_axis": {
-        "min": None,
-        "max": None,
-        "tick_interval": None,
-        "format": None
+        "min": 0,
+        "max": 14,
+        "tick_interval": 2,
+        "format": "billions"
     },
 
-    "y_axis_min": 0,
-    "y_axis_max": 14,
-    "y_tick_interval": 2,
-    "y_tick_format": "billions",
+    "y_axis_min": None,
+    "y_axis_max": None,
+    "y_tick_interval": None,
+    "y_tick_format": None,
 
     "sort": {
         "by": "Value_USD_Billion",
-        "ascending": False
+        "ascending": True
     },
     "sort_descending": False,
 
@@ -92,12 +93,12 @@ CHART_CONFIG = {
 
     "annotate_points": [
         {
-            "x": "Dallas Cowboys",
-            "y": 13.0,
+            "x": 13.0,
+            "y": "Dallas Cowboys",
             "label": "$13bn",
-            "xytext": (0, 8),
-            "ha": "center",
-            "va": "bottom",
+            "xytext": (6, 0),
+            "ha": "left",
+            "va": "center",
             "fontsize": 8,
             "color": "#333333",
             "arrowprops": None
@@ -116,7 +117,7 @@ CHART_CONFIG = {
 
     "title_fontsize": 22,
     "subtitle_fontsize": 12,
-    "tick_label_fontsize": 8,
+    "tick_label_fontsize": 9,
     "axis_label_fontsize": 10,
     "footer_fontsize": 10,
 
@@ -138,11 +139,11 @@ CHART_CONFIG = {
     "footer_y": 0.08,
 
     "plot_top": 0.75,
-    "plot_bottom": 0.20,
-    "plot_left": 0.12,
+    "plot_bottom": 0.14,
+    "plot_left": 0.30,
     "plot_right": 0.90,
 
-    "vertical_gridlines": False,
+    "vertical_gridlines": True,
 
     "dpi": 200,
     "output_file": "output/forbes_06_top15_bar.png"
