@@ -7,6 +7,7 @@ from pathlib import Path
 
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
+import numpy as np
 from matplotlib.ticker import FuncFormatter, MultipleLocator
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -152,6 +153,26 @@ def _parse_date(value):
     return value
 
 
+def _to_float(value):
+    if value is None:
+        return None
+
+    if isinstance(value, (int, float)):
+        return float(value)
+
+    value = str(value).strip()
+
+    if value in ("", "NA", "N/A", "null", "None", "-"):
+        return None
+
+    value = value.replace("$", "").replace(",", "").replace("%", "")
+
+    try:
+        return float(value)
+    except Exception:
+        return None
+
+
 def _coerce_value(value):
     if value is None:
         return value
@@ -162,7 +183,7 @@ def _coerce_value(value):
         return value
 
     try:
-        num = float(value)
+        num = float(value.replace("$", "").replace(",", ""))
         return int(num) if num.is_integer() else num
     except Exception:
         return value
@@ -203,6 +224,9 @@ def _axis_formatter(fmt):
 
     if fmt == "currency":
         return FuncFormatter(lambda x, pos: f"${x:,.0f}")
+
+    if fmt == "billions":
+        return FuncFormatter(lambda x, pos: f"${x:,.0f}bn")
 
     if fmt == "millions":
         return FuncFormatter(lambda x, pos: f"{x / 1_000_000:.0f}M")
@@ -319,6 +343,66 @@ def _apply_sort(rows):
     )
 
 
+def _clean_numeric_rows(rows, numeric_cols, chart_type):
+    if not numeric_cols:
+        return rows
+
+    cleaned = []
+    dropped = 0
+
+    for row in rows:
+        new_row = row.copy()
+        valid = True
+
+        for col in numeric_cols:
+            value = _to_float(new_row.get(col))
+
+            if value is None:
+                valid = False
+                break
+
+            new_row[col] = value
+
+        if valid:
+            cleaned.append(new_row)
+        else:
+            dropped += 1
+
+    if dropped:
+        print(
+            f"Warning: dropped {dropped} row(s) for {chart_type} because "
+            f"required numeric column(s) contained blanks or non-numeric values: "
+            f"{', '.join(numeric_cols)}"
+        )
+
+    if not cleaned:
+        raise ValueError(
+            f"No valid rows remain for {chart_type}. "
+            f"Check numeric column(s): {', '.join(numeric_cols)}"
+        )
+
+    return cleaned
+
+
+def _prepare_rows_for_chart(rows, chart_type):
+    x_col = CHART_CONFIG.get("x_col")
+    y_col = CHART_CONFIG.get("y_col")
+
+    if chart_type == "scatter":
+        return _clean_numeric_rows(rows, [x_col, y_col], chart_type)
+
+    if chart_type == "dot":
+        return _clean_numeric_rows(rows, [x_col], chart_type)
+
+    if chart_type == "bar":
+        return _clean_numeric_rows(rows, [y_col], chart_type)
+
+    if chart_type == "line":
+        return _clean_numeric_rows(rows, [y_col], chart_type)
+
+    return rows
+
+
 def _apply_axis_config(ax):
     x_axis = CHART_CONFIG.get("x_axis", {})
     y_axis = CHART_CONFIG.get("y_axis", {})
@@ -366,6 +450,45 @@ def _apply_axis_config(ax):
         ax.yaxis.set_major_formatter(y_formatter)
 
 
+def _plot_diagonal_reference_line(ax, ref):
+    xlim = ax.get_xlim()
+    ylim = ax.get_ylim()
+
+    start = max(xlim[0], ylim[0])
+    end = min(xlim[1], ylim[1])
+
+    color = ref.get("color", "#7A7A7A")
+    linestyle = ref.get("linestyle", "--")
+    linewidth = ref.get("linewidth", 1.0)
+    alpha = ref.get("alpha", 0.7)
+
+    ax.plot(
+        [start, end],
+        [start, end],
+        color=color,
+        linestyle=linestyle,
+        linewidth=linewidth,
+        alpha=alpha,
+        zorder=1,
+    )
+
+    label = ref.get("label", "")
+
+    if label:
+        ax.text(
+            end,
+            end,
+            label,
+            ha="right",
+            va="bottom",
+            fontsize=8,
+            color=color,
+            rotation=ref.get("rotation", 34),
+            alpha=alpha,
+            clip_on=True,
+        )
+
+
 def _plot_reference_lines(ax):
     for ref in CHART_CONFIG.get("reference_lines", []):
         axis = ref.get("axis")
@@ -376,7 +499,10 @@ def _plot_reference_lines(ax):
         linewidth = ref.get("linewidth", 1.0)
         alpha = ref.get("alpha", 0.7)
 
-        if axis == "x":
+        if axis == "diagonal":
+            _plot_diagonal_reference_line(ax, ref)
+
+        elif axis == "x":
             value = _parse_date(value) if CHART_CONFIG.get("x_is_datetime", False) else value
             ax.axvline(value, color=color, linestyle=linestyle, linewidth=linewidth, alpha=alpha, zorder=1)
 
@@ -409,6 +535,57 @@ def _plot_reference_lines(ax):
                     color=color,
                     clip_on=True,
                 )
+
+
+def _plot_scatter_trend_line(ax, rows):
+    trend = CHART_CONFIG.get("trend_line", {})
+
+    if not trend or not trend.get("enabled", False):
+        return
+
+    x_col = CHART_CONFIG["x_col"]
+    y_col = CHART_CONFIG["y_col"]
+
+    points = []
+
+    for row in rows:
+        x = _to_float(row.get(x_col))
+        y = _to_float(row.get(y_col))
+
+        if x is not None and y is not None:
+            points.append((x, y))
+
+    if len(points) < 2:
+        print("Warning: trend_line skipped because fewer than two valid points are available.")
+        return
+
+    xs = np.array([p[0] for p in points], dtype=float)
+    ys = np.array([p[1] for p in points], dtype=float)
+
+    slope, intercept = np.polyfit(xs, ys, 1)
+
+    x_axis = CHART_CONFIG.get("x_axis", {})
+    x_min = x_axis.get("min")
+    x_max = x_axis.get("max")
+
+    if x_min is None:
+        x_min = float(np.nanmin(xs))
+
+    if x_max is None:
+        x_max = float(np.nanmax(xs))
+
+    trend_x = np.array([x_min, x_max], dtype=float)
+    trend_y = slope * trend_x + intercept
+
+    ax.plot(
+        trend_x,
+        trend_y,
+        color=trend.get("color", "#7A7A7A"),
+        linewidth=trend.get("linewidth", 1.4),
+        linestyle=trend.get("linestyle", "-"),
+        alpha=trend.get("alpha", 0.8),
+        zorder=2,
+    )
 
 
 def _point_matches_row(point, row):
@@ -566,7 +743,7 @@ def _plot_scatter(ax, rows):
     x_col = CHART_CONFIG["x_col"]
     y_col = CHART_CONFIG["y_col"]
 
-    style = CHART_CONFIG.get("point_style", {})
+    style = CHART_CONFIG.get("point_style", CHART_CONFIG.get("dot_style", {}))
 
     ax.scatter(
         [r[x_col] for r in rows],
@@ -576,6 +753,8 @@ def _plot_scatter(ax, rows):
         alpha=style.get("alpha", 0.75),
         zorder=3,
     )
+
+    _plot_scatter_trend_line(ax, rows)
 
 
 def _plot_line(ax, rows):
@@ -647,6 +826,7 @@ def _plot_end_labels(ax):
             clip_on=False,
         )
 
+
 def main():
     rows, columns = _read_data()
 
@@ -675,8 +855,11 @@ def main():
     rows = _apply_filters(rows)
     rows = _apply_sort(rows)
 
+    chart_type = CHART_CONFIG.get("chart_type")
+    rows = _prepare_rows_for_chart(rows, chart_type)
+
     if not rows:
-        raise ValueError("No rows remain after filtering.")
+        raise ValueError("No rows remain after filtering and chart preparation.")
 
     fig, ax = plt.subplots(
         figsize=(
@@ -684,8 +867,6 @@ def main():
             CHART_CONFIG.get("fig_height", 8.0),
         )
     )
-
-    chart_type = CHART_CONFIG.get("chart_type")
 
     if chart_type == "dot":
         _plot_dot(ax, rows)
@@ -749,7 +930,6 @@ def main():
         plot_left=CHART_CONFIG.get("plot_left", 0.12),
         plot_right=CHART_CONFIG.get("plot_right", 0.90),
     )
-
 
     plt.subplots_adjust(
         left=CHART_CONFIG.get("plot_left", 0.12),
