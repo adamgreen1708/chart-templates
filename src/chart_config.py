@@ -1,8 +1,5 @@
 CHART_CONFIG = {
-    # ---------------------------
-    # DATA
-    # ---------------------------
-    "data_file": "data/forbes_most_valuable_sports_team",
+    "data_file": "data/forbes_most_valuable_sports_team_clean",
     "data_format": "wide",
     "chart_type": "scatter",
 
@@ -11,11 +8,8 @@ CHART_CONFIG = {
     "series_col": None,
     "value_col": None,
 
-    # ---------------------------
-    # STORY
-    # ---------------------------
     "title": "The Cowboys pulled away",
-    "subtitle": "Dallas was already the most valuable team, then added nearly $3bn in a year.",
+    "subtitle": "Dallas was already number one, then added nearly $3bn in a year.",
     "source_text": "Source: Forbes",
     "footer_left": "Adam Green | coffeetableviz",
 
@@ -24,9 +18,6 @@ CHART_CONFIG = {
     "secondary_series": None,
     "label_strategy": "focus_only",
 
-    # ---------------------------
-    # AXES
-    # ---------------------------
     "x_is_datetime": False,
     "x_tick_rotation": 0,
 
@@ -42,23 +33,14 @@ CHART_CONFIG = {
     "y_tick_interval": 2,
     "y_tick_format": None,
 
-    # ---------------------------
-    # SORTING
-    # ---------------------------
     "sort": None,
     "sort_descending": False,
 
-    # ---------------------------
-    # MARKS
-    # ---------------------------
     "line_width": 2.6,
     "marker_size": 60,
     "show_markers": True,
     "auto_end_labels": False,
 
-    # ---------------------------
-    # STYLING
-    # ---------------------------
     "dot_style": {
         "color": "#D9D9D9",
         "size": 48,
@@ -89,9 +71,6 @@ CHART_CONFIG = {
         "alpha": 0.9,
     },
 
-    # ---------------------------
-    # ANNOTATIONS
-    # ---------------------------
     "reference_lines": [],
 
     "highlight_points": [
@@ -122,9 +101,6 @@ CHART_CONFIG = {
         "fontsize": 8
     },
 
-    # ---------------------------
-    # TYPOGRAPHY
-    # ---------------------------
     "title_fontsize": 22,
     "subtitle_fontsize": 12,
     "tick_label_fontsize": 10,
@@ -136,9 +112,6 @@ CHART_CONFIG = {
     "title_max_lines": 2,
     "subtitle_max_lines": 2,
 
-    # ---------------------------
-    # LAYOUT
-    # ---------------------------
     "fig_width": 8.0,
     "fig_height": 8.0,
 
@@ -158,9 +131,6 @@ CHART_CONFIG = {
 
     "vertical_gridlines": False,
 
-    # ---------------------------
-    # OUTPUT
-    # ---------------------------
     "dpi": 200,
     "output_file": "output/forbes_01_cowboys_pulled_away.png"
 }
