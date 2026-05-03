@@ -162,5 +162,5 @@ CHART_CONFIG = {
     # OUTPUT
     # ---------------------------
     "dpi": 200,
-    "output_file": "output/cowboys_pulled_away.png"
+    "output_file": "output/forbes_01_cowboys_pulled_away.png"
 }
