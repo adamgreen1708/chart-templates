@@ -1,5 +1,5 @@
 CHART_CONFIG = {
-    "data_file": "data/forbes_most_valuable_sports_team_clean",
+    "data_file": "data/forbes_most_valuable_sports_team_clean.csv",
     "data_format": "wide",
     "chart_type": "scatter",
 
