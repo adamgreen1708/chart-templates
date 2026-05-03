@@ -1,49 +1,64 @@
 CHART_CONFIG = {
-    "data_file": "data/human_vs_ai_content_long.csv",
-    "data_format": "long",
-    "chart_type": "line",
+    # ---------------------------
+    # DATA
+    # ---------------------------
+    "data_file": "data/forbes_most_valuable_sports_team.csv",
+    "data_format": "wide",
+    "chart_type": "scatter",
 
-    "x_col": "date",
-    "y_col": "pct",
-    "series_col": "type",
-    "value_col": "pct",
+    "x_col": "Prev_Value_USD_Billion",
+    "y_col": "Value_USD_Billion",
+    "series_col": None,
+    "value_col": None,
 
-    "title": "AI content crossed the line",
-    "subtitle": "Detected AI-created articles climbed from around 2% in 2020 to more than half by late 2024, mirroring the fall in human-created content.",
-    "source_text": "Source: Graphite.io study",
+    # ---------------------------
+    # STORY
+    # ---------------------------
+    "title": "The Cowboys pulled away",
+    "subtitle": "Dallas was already the most valuable team, then added nearly $3bn in a year.",
+    "source_text": "Source: Forbes",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "crossover",
-    "focus_series": "AI",
-    "secondary_series": "Human",
+    "story_angle": "relationship",
+    "focus_series": None,
+    "secondary_series": None,
     "label_strategy": "focus_only",
 
-    "x_is_datetime": True,
+    # ---------------------------
+    # AXES
+    # ---------------------------
+    "x_is_datetime": False,
     "x_tick_rotation": 0,
 
     "x_axis": {
-        "min": None,
-        "max": None,
-        "tick_interval": None,
-        "format": "%Y"
+        "min": 4,
+        "max": 11,
+        "tick_interval": 1,
+        "format": None
     },
 
-    "y_axis_min": 0,
-    "y_axis_max": 1.0,
-    "y_tick_interval": 0.25,
-    "y_tick_format": "percent",
+    "y_axis_min": 4,
+    "y_axis_max": 14,
+    "y_tick_interval": 2,
+    "y_tick_format": None,
 
-    "sort": {
-        "by": "date",
-        "ascending": True
-    },
+    # ---------------------------
+    # SORTING
+    # ---------------------------
+    "sort": None,
     "sort_descending": False,
 
-    "line_width": 2.8,
+    # ---------------------------
+    # MARKS
+    # ---------------------------
+    "line_width": 2.6,
     "marker_size": 60,
-    "show_markers": False,
+    "show_markers": True,
     "auto_end_labels": False,
 
+    # ---------------------------
+    # STYLING
+    # ---------------------------
     "dot_style": {
         "color": "#D9D9D9",
         "size": 48,
@@ -58,8 +73,8 @@ CHART_CONFIG = {
 
     "context_style": {
         "color": "#D9D9D9",
-        "linewidth": 2.6,
-        "alpha": 0.9,
+        "linewidth": 0.8,
+        "alpha": 0.25,
     },
 
     "focus_style": {
@@ -70,60 +85,34 @@ CHART_CONFIG = {
 
     "secondary_style": {
         "color": "#7A7A7A",
-        "linewidth": 2.6,
+        "linewidth": 2.0,
         "alpha": 0.9,
     },
 
-    "reference_lines": [
-        {
-            "axis": "y",
-            "value": 0.50,
-            "label": "50%",
-            "rotation": 0,
-            "color": "#7A7A7A",
-            "linewidth": 1.0,
-            "linestyle": "--",
-            "alpha": 0.7
-        }
-    ],
+    # ---------------------------
+    # ANNOTATIONS
+    # ---------------------------
+    "reference_lines": [],
 
     "highlight_points": [
-        {"date": "2024-11-01", "type": "AI"},
-        {"date": "2024-11-01", "type": "Human"}
+        {"Team": "Dallas Cowboys"}
     ],
 
     "annotate_points": [
         {
-            "x": "2024-11-01",
-            "y": 0.5108,
-            "label": "AI moves ahead",
-            "xytext": (-10, 10),
+            "x": 10.1,
+            "y": 13.0,
+            "label": "Dallas Cowboys",
+            "xytext": (-8, 0),
             "ha": "right",
-            "va": "bottom",
+            "va": "center",
             "fontsize": 8,
             "color": "#333333",
             "arrowprops": None
         }
     ],
 
-    "end_labels": [
-        {
-            "x": "2025-05-01",
-            "y": 0.5172,
-            "label": "AI",
-            "fontsize": 9,
-            "color": "#1F8FA8",
-            "fontweight": "bold"
-        },
-        {
-            "x": "2025-05-01",
-            "y": 0.4828,
-            "label": "Human",
-            "fontsize": 9,
-            "color": "#7A7A7A",
-            "fontweight": "bold"
-        }
-    ],
+    "end_labels": [],
 
     "label_style": {
         "enabled": False,
@@ -133,6 +122,9 @@ CHART_CONFIG = {
         "fontsize": 8
     },
 
+    # ---------------------------
+    # TYPOGRAPHY
+    # ---------------------------
     "title_fontsize": 22,
     "subtitle_fontsize": 12,
     "tick_label_fontsize": 10,
@@ -144,6 +136,9 @@ CHART_CONFIG = {
     "title_max_lines": 2,
     "subtitle_max_lines": 2,
 
+    # ---------------------------
+    # LAYOUT
+    # ---------------------------
     "fig_width": 8.0,
     "fig_height": 8.0,
 
@@ -163,6 +158,9 @@ CHART_CONFIG = {
 
     "vertical_gridlines": False,
 
+    # ---------------------------
+    # OUTPUT
+    # ---------------------------
     "dpi": 200,
-    "output_file": "output/human_vs_ai_content_crossover.png"
+    "output_file": "output/cowboys_pulled_away.png"
 }
