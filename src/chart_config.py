@@ -3,13 +3,13 @@ CHART_CONFIG = {
     "data_format": "wide",
     "chart_type": "dot",
 
-    "x_col": "Rank_Change",
+    "x_col": "Value_Growth_Pct",
     "y_col": "Team",
     "series_col": None,
     "value_col": None,
 
-    "title": "Movement was rare",
-    "subtitle": "Most teams barely shifted, but Kansas City climbed seven places while Barcelona slid 22.",
+    "title": "Rising, but not equally",
+    "subtitle": "Most teams gained value, but the Lakers, Giants and Rams stretched away fastest.",
     "source_text": "Source: Forbes",
     "footer_left": "Adam Green | coffeetableviz",
 
@@ -21,14 +21,14 @@ CHART_CONFIG = {
     "x_is_datetime": False,
     "x_tick_rotation": 0,
 
-    "x_label": "Rank change, places gained or lost",
+    "x_label": "One-year value growth",
     "y_label": "",
 
     "x_axis": {
-        "min": -25,
-        "max": 10,
-        "tick_interval": 5,
-        "format": ".0f"
+        "min": 0,
+        "max": 0.45,
+        "tick_interval": 0.05,
+        "format": "percent"
     },
 
     "y_axis_min": None,
@@ -37,7 +37,7 @@ CHART_CONFIG = {
     "y_tick_format": None,
 
     "sort": {
-        "by": "Rank_Change",
+        "by": "Value_Growth_Pct",
         "ascending": True
     },
     "sort_descending": False,
@@ -77,41 +77,31 @@ CHART_CONFIG = {
         "alpha": 0.9,
     },
 
-    "reference_lines": [
-        {
-            "axis": "x",
-            "value": 0,
-            "label": "No rank change",
-            "rotation": 0,
-            "color": "#7A7A7A",
-            "linewidth": 1.0,
-            "linestyle": "--",
-            "alpha": 0.7
-        }
-    ],
+    "reference_lines": [],
 
     "highlight_points": [
-        {"Team": "Kansas City Chiefs"},
-        {"Team": "FC Barcelona"},
-        {"Team": "Liverpool"}
+        {"Team": "Los Angeles Lakers"},
+        {"Team": "New York Giants"},
+        {"Team": "Los Angeles Rams"},
+        {"Team": "New England Patriots"}
     ],
 
     "annotate_points": [
         {
-            "x": 7,
-            "y": "Kansas City Chiefs",
-            "label": "Chiefs: +7",
-            "xytext": (8, 0),
-            "ha": "left",
+            "x": 0.4085,
+            "y": "Los Angeles Lakers",
+            "label": "Lakers: +41%",
+            "xytext": (-8, 0),
+            "ha": "right",
             "va": "center",
             "fontsize": 8,
             "color": "#333333",
             "arrowprops": None
         },
         {
-            "x": -22,
-            "y": "FC Barcelona",
-            "label": "Barcelona: -22",
+            "x": 0.0,
+            "y": "New England Patriots",
+            "label": "Patriots: flat",
             "xytext": (8, 0),
             "ha": "left",
             "va": "center",
@@ -162,5 +152,5 @@ CHART_CONFIG = {
     "vertical_gridlines": True,
 
     "dpi": 200,
-    "output_file": "output/forbes_03_rank_movement.png"
+    "output_file": "output/forbes_04_value_growth.png"
 }
