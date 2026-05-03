@@ -628,21 +628,29 @@ def _plot_highlights(ax, rows):
     default_size = highlight_style.get("size", 90)
     default_alpha = highlight_style.get("alpha", 1.0)
 
+    x_col = CHART_CONFIG["x_col"]
+    y_col = CHART_CONFIG["y_col"]
+
     for p in CHART_CONFIG.get("highlight_points", []):
-        x, y = _resolve_point_xy(p, rows)
+        matched_rows = []
 
-        if x is None or y is None:
-            continue
+        if "x" in p and "y" in p:
+            x = _parse_date(p["x"]) if CHART_CONFIG.get("x_is_datetime", False) else p["x"]
+            matched_rows.append({x_col: x, y_col: p["y"]})
+        else:
+            for row in rows:
+                if _point_matches_row(p, row):
+                    matched_rows.append(row)
 
-        ax.scatter(
-            x,
-            y,
-            s=p.get("size", default_size),
-            color=p.get("color", default_color),
-            alpha=p.get("alpha", default_alpha),
-            zorder=5,
-        )
-
+        for row in matched_rows:
+            ax.scatter(
+                row[x_col],
+                row[y_col],
+                s=p.get("size", default_size),
+                color=p.get("color", default_color),
+                alpha=p.get("alpha", default_alpha),
+                zorder=5,
+            )
 
 def _plot_annotations(ax):
     for p in CHART_CONFIG.get("annotate_points", []):
