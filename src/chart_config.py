@@ -8,8 +8,8 @@ CHART_CONFIG = {
     "series_col": None,
     "value_col": None,
 
-    "title": "Different sports, different economics",
-    "subtitle": "NFL teams cluster tightly at high values, while football and the NBA show wider spreads and higher ceilings.",
+    "title": "Each sport has its own money shape",
+    "subtitle": "NFL teams dominate the volume, basketball reaches the top end, and global football appears in fewer, more scattered places.",
     "source_text": "Source: Forbes",
     "footer_left": "Adam Green | coffeetableviz",
 
@@ -45,14 +45,14 @@ CHART_CONFIG = {
     "auto_end_labels": False,
 
     "dot_style": {
-        "color": "#D9D9D9",
-        "size": 42,
-        "alpha": 0.55
+        "color": "#1F8FA8",
+        "size": 46,
+        "alpha": 0.70
     },
 
     "highlight_style": {
-        "color": "#1F8FA8",
-        "size": 70,
+        "color": "#C44E52",
+        "size": 72,
         "alpha": 1.0
     },
 
@@ -76,31 +76,27 @@ CHART_CONFIG = {
 
     "reference_lines": [],
 
-    # Highlight sports groups for emphasis
-    "highlight_points": [
-        {"Sport": "American football"},
-        {"Sport": "Basketball"}
-    ],
+    "highlight_points": [],
 
     "annotate_points": [
         {
-            "x": 10.5,
+            "x": 13.0,
             "y": "American football",
-            "label": "NFL: high floor, tight spread",
-            "xytext": (8, 0),
-            "ha": "left",
-            "va": "center",
+            "label": "Dallas lifts the NFL ceiling",
+            "xytext": (-10, 12),
+            "ha": "right",
+            "va": "bottom",
             "fontsize": 8,
             "color": "#333333",
             "arrowprops": None
         },
         {
-            "x": 10.0,
+            "x": 11.0,
             "y": "Basketball",
-            "label": "NBA: higher peaks",
-            "xytext": (8, 0),
-            "ha": "left",
-            "va": "center",
+            "label": "NBA reaches $11bn",
+            "xytext": (-10, -14),
+            "ha": "right",
+            "va": "top",
             "fontsize": 8,
             "color": "#333333",
             "arrowprops": None
@@ -129,7 +125,7 @@ CHART_CONFIG = {
     "subtitle_max_lines": 2,
 
     "fig_width": 8.0,
-    "fig_height": 6.5,
+    "fig_height": 8.0,
 
     "title_x": 0.10,
     "title_y": 0.92,
@@ -141,8 +137,8 @@ CHART_CONFIG = {
     "footer_y": 0.08,
 
     "plot_top": 0.75,
-    "plot_bottom": 0.18,
-    "plot_left": 0.20,
+    "plot_bottom": 0.16,
+    "plot_left": 0.22,
     "plot_right": 0.90,
 
     "vertical_gridlines": True,
