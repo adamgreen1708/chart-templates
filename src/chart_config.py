@@ -9,7 +9,7 @@ CHART_CONFIG = {
     "value_col": None,
 
     "title": "The NFL owns the list",
-    "subtitle": "Thirty of the world’s 50 most valuable sports teams are NFL franchises — 60% of the ranking.",
+    "subtitle": "Thirty of the world’s 50 most valuable teams are NFL franchises — 60% of the ranking.",
     "source_text": "Source: Forbes",
     "footer_left": "Adam Green | coffeetableviz",
 
@@ -50,12 +50,12 @@ CHART_CONFIG = {
     "dot_style": {
         "color": "#D9D9D9",
         "size": 42,
-        "alpha": 0.60
+        "alpha": 0.55
     },
 
     "highlight_style": {
         "color": "#C44E52",
-        "size": 72,
+        "size": 58,
         "alpha": 1.0
     },
 
@@ -79,6 +79,7 @@ CHART_CONFIG = {
 
     "reference_lines": [],
 
+    # 🔴 KEY CHANGE — highlight ALL NFL teams
     "highlight_points": [
         {"League": "NFL"}
     ],
