@@ -1,15 +1,15 @@
 CHART_CONFIG = {
-    "data_file": "data/forbes_most_valuable_sports_team",
+    "data_file": "data/forbes_most_valuable_sports_team_clean.csv",
     "data_format": "wide",
     "chart_type": "dot",
 
-    "x_col": "Value_USD_Billion",
+    "x_col": "Rank_Change",
     "y_col": "Team",
     "series_col": None,
     "value_col": None,
 
-    "title": "The NFL owns the list",
-    "subtitle": "Thirty of the world’s 50 most valuable teams are NFL franchises — 60% of the ranking.",
+    "title": "Movement was rare",
+    "subtitle": "Most teams barely shifted, but Kansas City climbed seven places while Barcelona slid 22.",
     "source_text": "Source: Forbes",
     "footer_left": "Adam Green | coffeetableviz",
 
@@ -21,14 +21,14 @@ CHART_CONFIG = {
     "x_is_datetime": False,
     "x_tick_rotation": 0,
 
-    "x_label": "Team value, USD billions",
+    "x_label": "Rank change, places gained or lost",
     "y_label": "",
 
     "x_axis": {
-        "min": 5,
-        "max": 14,
-        "tick_interval": 1,
-        "format": "billions"
+        "min": -25,
+        "max": 10,
+        "tick_interval": 5,
+        "format": ".0f"
     },
 
     "y_axis_min": None,
@@ -37,7 +37,7 @@ CHART_CONFIG = {
     "y_tick_format": None,
 
     "sort": {
-        "by": "Value_USD_Billion",
+        "by": "Rank_Change",
         "ascending": True
     },
     "sort_descending": False,
@@ -50,12 +50,12 @@ CHART_CONFIG = {
     "dot_style": {
         "color": "#D9D9D9",
         "size": 42,
-        "alpha": 0.55
+        "alpha": 0.60
     },
 
     "highlight_style": {
         "color": "#C44E52",
-        "size": 58,
+        "size": 76,
         "alpha": 1.0
     },
 
@@ -77,20 +77,43 @@ CHART_CONFIG = {
         "alpha": 0.9,
     },
 
-    "reference_lines": [],
+    "reference_lines": [
+        {
+            "axis": "x",
+            "value": 0,
+            "label": "No rank change",
+            "rotation": 0,
+            "color": "#7A7A7A",
+            "linewidth": 1.0,
+            "linestyle": "--",
+            "alpha": 0.7
+        }
+    ],
 
-    # 🔴 KEY CHANGE — highlight ALL NFL teams
     "highlight_points": [
-        {"League": "NFL"}
+        {"Team": "Kansas City Chiefs"},
+        {"Team": "FC Barcelona"},
+        {"Team": "Liverpool"}
     ],
 
     "annotate_points": [
         {
-            "x": 13.0,
-            "y": "Dallas Cowboys",
-            "label": "Dallas Cowboys: $13bn",
-            "xytext": (-8, 0),
-            "ha": "right",
+            "x": 7,
+            "y": "Kansas City Chiefs",
+            "label": "Chiefs: +7",
+            "xytext": (8, 0),
+            "ha": "left",
+            "va": "center",
+            "fontsize": 8,
+            "color": "#333333",
+            "arrowprops": None
+        },
+        {
+            "x": -22,
+            "y": "FC Barcelona",
+            "label": "Barcelona: -22",
+            "xytext": (8, 0),
+            "ha": "left",
             "va": "center",
             "fontsize": 8,
             "color": "#333333",
@@ -120,7 +143,7 @@ CHART_CONFIG = {
     "subtitle_max_lines": 2,
 
     "fig_width": 8.0,
-    "fig_height": 11.0,
+    "fig_height": 10.0,
 
     "title_x": 0.10,
     "title_y": 0.94,
@@ -132,12 +155,12 @@ CHART_CONFIG = {
     "footer_y": 0.06,
 
     "plot_top": 0.80,
-    "plot_bottom": 0.11,
+    "plot_bottom": 0.12,
     "plot_left": 0.34,
     "plot_right": 0.90,
 
     "vertical_gridlines": True,
 
     "dpi": 200,
-    "output_file": "output/forbes_02_nfl_owns_the_list.png"
+    "output_file": "output/forbes_03_rank_movement.png"
 }
