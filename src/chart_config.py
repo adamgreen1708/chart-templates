@@ -9,7 +9,7 @@ CHART_CONFIG = {
     "series_col": None,
     "value_col": None,
 
-    "title": "The top 15, stacked at the top",
+    "title": "The 2025 top 15, stacked at the top",
     "subtitle": "The Cowboys sit clear of a chasing pack packed with NFL and NBA money.",
     "source_text": "Source: Forbes",
     "footer_left": "Adam Green | coffeetableviz",
