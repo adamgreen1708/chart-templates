@@ -1,0 +1,46 @@
+Rank,Country,Team,Sport,League,Value_USD_Billion,Prev_Rank,Prev_Value_USD_Billion,Value_Change_USD_Billion,Value_Growth_Pct,Rank_Change
+48,England,Liverpool,Association football,Premier League,5.4,27,5.37,0.03,0.0056,-21
+48,Canada,Toronto Raptors,Basketball,NBA,5.4,,4.4,1.0,0.2273,
+47,United States,Phoenix Suns,Basketball,NBA,5.425,,4.3,1.125,0.2616,
+46,United States,Philadelphia 76ers,Basketball,NBA,5.45,,4.6,0.85,0.1848,
+45,United States,Arizona Cardinals,American football,NFL,5.5,50,4.3,1.2,0.2791,5
+43,United States,Jacksonville Jaguars,American football,NFL,5.6,43,4.6,1.0,0.2174,0
+43,United States,Brooklyn Nets,Basketball,NBA,5.6,40,4.8,0.8,0.1667,-3
+42,Spain,FC Barcelona,Association football,La Liga,5.65,20,5.6,0.05,0.0089,-22
+40,United States,Carolina Panthers,American football,NFL,5.7,,4.5,1.2,0.2667,
+38,United States,Houston Rockets,Basketball,NBA,5.9,37,4.9,1.0,0.2041,-1
+38,United States,Indianapolis Colts,American football,NFL,5.9,,4.8,1.1,0.2292,
+34,United States,Chicago Bulls,Basketball,NBA,6,,5.0,1.0,0.2000,
+34,United States,Los Angeles Chargers,American football,NFL,6,31,5.1,0.9,0.1765,-3
+33,United States,Baltimore Ravens,American football,NFL,6.1,34,5.0,1.1,0.2200,1
+32,United States,Kansas City Chiefs,American football,NFL,6.2,39,4.85,1.35,0.2784,7
+31,United States,Minnesota Vikings,American football,NFL,6.25,33,5.05,1.2,0.2376,2
+30,United States,Tennessee Titans,American football,NFL,6.3,,4.9,1.4,0.2857,
+29,United States,Atlanta Falcons,American football,NFL,6.35,29,5.2,1.15,0.2212,0
+28,United States,Cleveland Browns,American football,NFL,6.4,30,5.15,1.25,0.2427,2
+26,United States,Pittsburgh Steelers,American football,NFL,6.5,28,5.3,1.2,0.2264,2
+24,England,Manchester United,Association football,Premier League,6.6,14,6.55,0.05,0.0076,-10
+24,United States,Tampa Bay Buccaneers,American football,NFL,6.6,26,5.4,1.2,0.2222,2
+23,United States,Green Bay Packers,American football,NFL,6.65,,5.6,1.05,0.1875,
+21,United States,Boston Celtics,Basketball,NBA,6.7,19,6.0,0.7,0.1167,-2
+21,United States,Seattle Seahawks,American football,NFL,6.7,,5.45,1.25,0.2294,
+20,Spain,Real Madrid,Association football,La Liga,6.75,,6.6,0.15,0.0227,
+18,United States,Denver Broncos,American football,NFL,6.8,22,5.5,1.3,0.2364,4
+18,United States,Los Angeles Dodgers,Baseball,MLB,6.8,24,5.45,1.35,0.2477,6
+17,United States,Houston Texans,American football,NFL,7.4,18,6.1,1.3,0.2131,1
+15,United States,Los Angeles Clippers,Basketball,NBA,7.5,,5.5,2.0,0.3636,
+15,United States,Miami Dolphins,American football,NFL,7.5,17,6.2,1.3,0.2097,2
+14,United States,Washington Commanders,American football,NFL,7.6,16,6.3,1.3,0.2063,2
+13,United States,Las Vegas Raiders,American football,NFL,7.7,11,6.7,1.0,0.1493,-2
+12,United States,New York Jets,American football,NFL,8.1,9,6.9,1.2,0.1739,-3
+10,United States,Chicago Bears,American football,NFL,8.2,15,6.4,1.8,0.2813,5
+10,United States,New York Yankees,Baseball,MLB,8.2,5,7.55,0.65,0.0861,-5
+9,United States,Philadelphia Eagles,American football,NFL,8.3,12,6.6,1.7,0.2576,3
+8,United States,San Francisco 49ers,American football,NFL,8.6,10,6.8,1.8,0.2647,2
+7,United States,New England Patriots,American football,NFL,9,2,9.0,0.0,0.0000,-5
+6,United States,New York Knicks,Basketball,NBA,9.75,6,7.5,2.25,0.3000,0
+5,United States,Los Angeles Lakers,Basketball,NBA,10,8,7.1,2.9,0.4085,3
+4,United States,New York Giants,American football,NFL,10.1,7,7.3,2.8,0.3836,3
+3,United States,Los Angeles Rams,American football,NFL,10.5,4,7.6,2.9,0.3816,1
+2,United States,Golden State Warriors,Basketball,NBA,11,3,8.8,2.2,0.2500,1
+1,United States,Dallas Cowboys,American football,NFL,13,1,10.1,2.9,0.2871,0
