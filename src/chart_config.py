@@ -1,16 +1,16 @@
 CHART_CONFIG = {
-    "data_file": "data/forbes_most_valuable_sports_team",
+    "data_file": "data/forbes_most_valuable_sports_team.csv",
     "data_format": "wide",
     "chart_type": "bar",
+    "orientation": "horizontal",
 
-    # 🔁 SWAPPED AXES
     "x_col": "Value_USD_Billion",
     "y_col": "Team",
     "series_col": None,
     "value_col": None,
 
     "title": "The top 15, stacked at the top",
-    "subtitle": "The most valuable teams are tightly grouped, with the Cowboys clearly ahead.",
+    "subtitle": "The Cowboys sit clear of a chasing pack packed with NFL and NBA money.",
     "source_text": "Source: Forbes",
     "footer_left": "Adam Green | coffeetableviz",
 
@@ -67,37 +67,19 @@ CHART_CONFIG = {
         "alpha": 1.0
     },
 
-    "context_style": {
-        "color": "#D9D9D9",
-        "linewidth": 0.8,
-        "alpha": 0.25,
-    },
-
-    "focus_style": {
-        "color": "#1F8FA8",
-        "linewidth": 3.2,
-        "alpha": 1.0,
-    },
-
-    "secondary_style": {
-        "color": "#7A7A7A",
-        "linewidth": 2.0,
-        "alpha": 0.9,
-    },
-
-    "reference_lines": [],
-
     "highlight_points": [
         {"Team": "Dallas Cowboys"}
     ],
+
+    "reference_lines": [],
 
     "annotate_points": [
         {
             "x": 13.0,
             "y": "Dallas Cowboys",
-            "label": "$13bn",
-            "xytext": (6, 0),
-            "ha": "left",
+            "label": "Dallas Cowboys: $13bn",
+            "xytext": (-8, 0),
+            "ha": "right",
             "va": "center",
             "fontsize": 8,
             "color": "#333333",
@@ -140,7 +122,7 @@ CHART_CONFIG = {
 
     "plot_top": 0.75,
     "plot_bottom": 0.14,
-    "plot_left": 0.30,
+    "plot_left": 0.34,
     "plot_right": 0.90,
 
     "vertical_gridlines": True,
