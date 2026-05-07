@@ -113,25 +113,59 @@ CHART_CONFIG = {
         }
     ],
 
-    "highlight_points": [
-        {"year": 1985},
-        {"year": 1994},
-        {"year": 2002},
-        {"year": 2026}
-    ],
+   "highlight_points": [
+    {"year": 1985},
+    {"year": 1994},
+    {"year": 2002},
+    {"year": 2026},
+],
 
-    "annotate_points": [
-        {
-            "x": 1,
-            "y": 1985,
-            "label": "Black ball final",
-            "xytext": (10, 0),
-            "ha": "left",
-            "va": "center",
-            "fontsize": 8,
-            "color": "#333333",
-            "arrowprops": None
-        }
+"annotate_points": [
+    {
+        "x": 1,
+        "y": 1985,
+        "label": "1985: Taylor 18–17 Davis",
+        "xytext": (10, 0),
+        "ha": "left",
+        "va": "center",
+        "fontsize": 8,
+        "color": "#333333",
+        "arrowprops": None,
+    },
+    {
+        "x": 1,
+        "y": 1994,
+        "label": "1994: Hendry 18–17 White",
+        "xytext": (10, 0),
+        "ha": "left",
+        "va": "center",
+        "fontsize": 8,
+        "color": "#333333",
+        "arrowprops": None,
+    },
+    {
+        "x": 1,
+        "y": 2002,
+        "label": "2002: Ebdon 18–17 Hendry",
+        "xytext": (10, 0),
+        "ha": "left",
+        "va": "center",
+        "fontsize": 8,
+        "color": "#333333",
+        "arrowprops": None,
+    },
+    {
+        "x": 1,
+        "y": 2026,
+        "label": "2026: Wu 18–17 Murphy",
+        "xytext": (10, 0),
+        "ha": "left",
+        "va": "center",
+        "fontsize": 8,
+        "color": "#333333",
+        "arrowprops": None,
+    },
+],
     ],
 
     "end_labels": [],
