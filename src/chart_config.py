@@ -21,7 +21,7 @@ CHART_CONFIG = {
     # ---------------------------
     "title": "The Crucible still loves a cliffhanger",
     "subtitle": "Four finals have been decided by a single frame, including Wu Yize’s dramatic 18–17 win in 2026.",
-    "source_text": "Source: World Snooker Championship winners dataset 1977–2026",
+    "source_text": "Source: World Snooker Championship winners 1977–2026",
     "footer_left": "Adam Green | coffeetableviz",
 
     "story_angle": "outlier",
