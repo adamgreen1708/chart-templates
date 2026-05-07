@@ -1,6 +1,6 @@
 import pandas as pd
 
-BASE_FILE = "data/snooker_world_championship_winners"
+BASE_FILE = "data/snooker_world_championship_winners.csv"
 
 df = pd.read_csv(BASE_FILE)
 
