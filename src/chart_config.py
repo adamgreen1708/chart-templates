@@ -118,9 +118,9 @@ CHART_CONFIG = {
     {"year": 1994},
     {"year": 2002},
     {"year": 2026},
-],
+    ],
 
-"annotate_points": [
+    "annotate_points": [
     {
         "x": 1,
         "y": 1985,
@@ -165,7 +165,7 @@ CHART_CONFIG = {
         "color": "#333333",
         "arrowprops": None,
     },
-],
+    ],
     ],
 
     "end_labels": [],
