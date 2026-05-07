@@ -1,25 +1,30 @@
+# =========================
+# CHART 1
+# Crucible dynasties
+# =========================
+
 CHART_CONFIG = {
     # ---------------------------
     # DATA
     # ---------------------------
-    "data_file": "data/snooker_world_championship_winners",
+    "data_file": "data/snooker_world_titles_by_player",
     "data_format": "wide",
     "chart_type": "dot",
 
-    "x_col": "frame_margin",
-    "y_col": "year",
+    "x_col": "titles",
+    "y_col": "winner",
     "series_col": None,
     "value_col": None,
 
     # ---------------------------
     # STORY
     # ---------------------------
-    "title": "The Crucible still loves a cliffhanger",
-    "subtitle": "Four finals have been decided by a single frame, including Wu Yize’s 18–17 win in 2026.",
-    "source_text": "Source: Crucible-era Championship winners",
+    "title": "The Crucible belonged to a few giants",
+    "subtitle": "Ronnie O’Sullivan, Stephen Hendry and Steve Davis tower above nearly 50 years of champions.",
+    "source_text": "Source: World Snooker Championship winners 1977–2026",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "outlier",
+    "story_angle": "ranked_comparison",
     "focus_series": None,
     "secondary_series": None,
     "label_strategy": "focus_only",
@@ -32,9 +37,9 @@ CHART_CONFIG = {
 
     "x_axis": {
         "min": 0,
-        "max": 16,
-        "tick_interval": 2,
-        "format": ".0f",
+        "max": 9,
+        "tick_interval": 1,
+        "format": ".0f"
     },
 
     "y_axis_min": None,
@@ -46,8 +51,8 @@ CHART_CONFIG = {
     # SORTING
     # ---------------------------
     "sort": {
-        "by": "year",
-        "ascending": True,
+        "by": "titles",
+        "ascending": False
     },
     "sort_descending": False,
 
@@ -65,75 +70,65 @@ CHART_CONFIG = {
     "dot_style": {
         "color": "#D9D9D9",
         "size": 48,
-        "alpha": 0.55,
+        "alpha": 0.55
     },
 
     "highlight_style": {
         "color": "#C44E52",
         "size": 90,
-        "alpha": 1.0,
+        "alpha": 1.0
     },
 
     "context_style": {
         "color": "#D9D9D9",
         "linewidth": 0.8,
-        "alpha": 0.25,
+        "alpha": 0.25
     },
 
     "focus_style": {
         "color": "#1F8FA8",
         "linewidth": 3.2,
-        "alpha": 1.0,
+        "alpha": 1.0
     },
 
     "secondary_style": {
         "color": "#7A7A7A",
         "linewidth": 2.0,
-        "alpha": 0.9,
+        "alpha": 0.9
     },
 
     # ---------------------------
     # ANNOTATIONS
     # ---------------------------
-    "reference_lines": [
-        {
-            "axis": "x",
-            "value": 1,
-            "label": "Single-frame final",
-            "rotation": 0,
-            "color": "#7A7A7A",
-            "linewidth": 1.0,
-            "linestyle": "--",
-            "alpha": 0.7,
-        },
-    ],
+    "reference_lines": [],
     "highlight_points": [
-        {"year": 1985},
-        {"year": 1994},
-        {"year": 2002},
-        {"year": 2026},
+        {"winner": "Ronnie O'Sullivan"},
+        {"winner": "Stephen Hendry"},
+        {"winner": "Steve Davis"}
     ],
+
     "annotate_points": [
         {
-            "x": 1,
-            "y": 2026,
-            "label": "2026: 18–17",
-            "xytext": (8, 0),
-            "ha": "left",
+            "x": 7,
+            "y": "Ronnie O'Sullivan",
+            "label": "Modern king",
+            "xytext": (-10, 0),
+            "ha": "right",
             "va": "center",
             "fontsize": 8,
             "color": "#333333",
-            "arrowprops": None,
-        },
+            "arrowprops": None
+        }
     ],
+
     "end_labels": [],
 
     "label_style": {
-        "enabled": False,
-        "label_col": None,
+        "enabled": True,
+        "label_col": "titles",
         "label_format": "{}",
         "position": "right",
-        "fontsize": 8,
+        "fontsize": 8
     },
 
     # ---------------------------
@@ -167,7 +162,7 @@ CHART_CONFIG = {
 
     "plot_top": 0.75,
     "plot_bottom": 0.14,
-    "plot_left": 0.12,
+    "plot_left": 0.20,
     "plot_right": 0.90,
 
     "vertical_gridlines": False,
@@ -176,5 +171,5 @@ CHART_CONFIG = {
     # OUTPUT
     # ---------------------------
     "dpi": 200,
-    "output_file": "output/snooker_crucible_final_margins.png",
+    "output_file": "output/snooker_crucible_dynasties.png"
 }
