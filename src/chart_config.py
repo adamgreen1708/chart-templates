@@ -1,35 +1,40 @@
 CHART_CONFIG = {
-    "data_file": "data/forbes_most_valuable_sports_team",
+    # ---------------------------
+    # DATA
+    # ---------------------------
+    "data_file": "data/snooker_world_championship_winners",
     "data_format": "wide",
-    "chart_type": "bar",
-    "orientation": "horizontal",
+    "chart_type": "dot",
 
-    "x_col": "Value_USD_Billion",
-    "y_col": "Team",
+    "x_col": "frame_margin",
+    "y_col": "year",
     "series_col": None,
     "value_col": None,
 
-    "title": "The 2025 top 15, stacked at the top",
-    "subtitle": "The Cowboys sit clear of a chasing pack packed with NFL and NBA money.",
-    "source_text": "Source: Forbes",
+    # ---------------------------
+    # STORY
+    # ---------------------------
+    "title": "The Crucible still loves a cliffhanger",
+    "subtitle": "Four finals have been decided by a single frame, including Wu Yize’s 18–17 win in 2026.",
+    "source_text": "Source: User-provided Crucible-era World Snooker Championship dataset",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "ranked_comparison",
+    "story_angle": "outlier",
     "focus_series": None,
     "secondary_series": None,
     "label_strategy": "focus_only",
 
+    # ---------------------------
+    # AXES
+    # ---------------------------
     "x_is_datetime": False,
     "x_tick_rotation": 0,
 
-    "x_label": "Team value, USD billions",
-    "y_label": "",
-
     "x_axis": {
         "min": 0,
-        "max": 14,
+        "max": 16,
         "tick_interval": 2,
-        "format": "billions"
+        "format": ".0f",
     },
 
     "y_axis_min": None,
@@ -37,56 +42,90 @@ CHART_CONFIG = {
     "y_tick_interval": None,
     "y_tick_format": None,
 
+    # ---------------------------
+    # SORTING
+    # ---------------------------
     "sort": {
-        "by": "Value_USD_Billion",
-        "ascending": True
+        "by": "year",
+        "ascending": True,
     },
     "sort_descending": False,
 
-    "filters": [
-        {
-            "column": "Rank",
-            "operator": "<=",
-            "value": 15
-        }
-    ],
-
+    # ---------------------------
+    # MARKS
+    # ---------------------------
     "line_width": 2.6,
     "marker_size": 60,
-    "show_markers": False,
+    "show_markers": True,
     "auto_end_labels": False,
 
-    "bar_style": {
+    # ---------------------------
+    # STYLING
+    # ---------------------------
+    "dot_style": {
         "color": "#D9D9D9",
-        "alpha": 0.9
+        "size": 48,
+        "alpha": 0.55,
     },
 
     "highlight_style": {
         "color": "#C44E52",
         "size": 90,
-        "alpha": 1.0
+        "alpha": 1.0,
     },
 
-    "highlight_points": [
-        {"Team": "Dallas Cowboys"}
+    "context_style": {
+        "color": "#D9D9D9",
+        "linewidth": 0.8,
+        "alpha": 0.25,
+    },
+
+    "focus_style": {
+        "color": "#1F8FA8",
+        "linewidth": 3.2,
+        "alpha": 1.0,
+    },
+
+    "secondary_style": {
+        "color": "#7A7A7A",
+        "linewidth": 2.0,
+        "alpha": 0.9,
+    },
+
+    # ---------------------------
+    # ANNOTATIONS
+    # ---------------------------
+    "reference_lines": [
+        {
+            "axis": "x",
+            "value": 1,
+            "label": "Single-frame final",
+            "rotation": 0,
+            "color": "#7A7A7A",
+            "linewidth": 1.0,
+            "linestyle": "--",
+            "alpha": 0.7,
+        },
     ],
-
-    "reference_lines": [],
-
+    "highlight_points": [
+        {"year": 1985},
+        {"year": 1994},
+        {"year": 2002},
+        {"year": 2026},
+    ],
     "annotate_points": [
         {
-            "x": 13.0,
-            "y": "Dallas Cowboys",
-            "label": "Dallas Cowboys: $13bn",
-            "xytext": (-8, 0),
-            "ha": "right",
+            "x": 1,
+            "y": 2026,
+            "label": "2026: 18–17",
+            "xytext": (8, 0),
+            "ha": "left",
             "va": "center",
             "fontsize": 8,
             "color": "#333333",
-            "arrowprops": None
-        }
+            "arrowprops": None,
+        },
     ],
-
     "end_labels": [],
 
     "label_style": {
@@ -94,12 +133,15 @@ CHART_CONFIG = {
         "label_col": None,
         "label_format": "{}",
         "position": "right",
-        "fontsize": 8
+        "fontsize": 8,
     },
 
+    # ---------------------------
+    # TYPOGRAPHY
+    # ---------------------------
     "title_fontsize": 22,
     "subtitle_fontsize": 12,
-    "tick_label_fontsize": 9,
+    "tick_label_fontsize": 10,
     "axis_label_fontsize": 10,
     "footer_fontsize": 10,
 
@@ -108,6 +150,9 @@ CHART_CONFIG = {
     "title_max_lines": 2,
     "subtitle_max_lines": 2,
 
+    # ---------------------------
+    # LAYOUT
+    # ---------------------------
     "fig_width": 8.0,
     "fig_height": 8.0,
 
@@ -122,11 +167,14 @@ CHART_CONFIG = {
 
     "plot_top": 0.75,
     "plot_bottom": 0.14,
-    "plot_left": 0.34,
+    "plot_left": 0.12,
     "plot_right": 0.90,
 
-    "vertical_gridlines": True,
+    "vertical_gridlines": False,
 
+    # ---------------------------
+    # OUTPUT
+    # ---------------------------
     "dpi": 200,
-    "output_file": "output/forbes_06_top15_bar.png"
+    "output_file": "output/snooker_crucible_final_margins.png",
 }
