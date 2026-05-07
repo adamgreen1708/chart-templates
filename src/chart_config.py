@@ -7,7 +7,7 @@ CHART_CONFIG = {
     # ---------------------------
     # DATA
     # ---------------------------
-    "data_file": "data/snooker_world_titles_by_player",
+    "data_file": "data/snooker_world_titles_by_player.csv",
     "data_format": "wide",
     "chart_type": "dot",
 
