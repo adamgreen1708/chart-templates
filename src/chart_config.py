@@ -1,33 +1,33 @@
 # =========================
-# CHART 2
-# Final margins
+# CHART 3
+# International rise
 # =========================
 
 CHART_CONFIG = {
     # ---------------------------
     # DATA
     # ---------------------------
-    "data_file": "data/snooker_world_championship_winners.csv",
-    "data_format": "wide",
-    "chart_type": "dot",
+    "data_file": "data/snooker_crucible_uk_vs_world.csv",
+    "data_format": "long",
+    "chart_type": "line",
 
-    "x_col": "frame_margin",
-    "y_col": "year",
-    "series_col": None,
-    "value_col": None,
+    "x_col": "year",
+    "y_col": "cumulative_titles",
+    "series_col": "group",
+    "value_col": "cumulative_titles",
 
     # ---------------------------
     # STORY
     # ---------------------------
-    "title": "The Crucible still loves a cliffhanger",
-    "subtitle": "Four finals have been decided by a single frame, including Wu Yize’s dramatic 18–17 win in 2026.",
+    "title": "The world finally broke into Sheffield",
+    "subtitle": "The Crucible began as a UK stronghold, but international champions have accelerated in the modern era.",
     "source_text": "Source: World Snooker Championship winners 1977–2026",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "outlier",
-    "focus_series": None,
-    "secondary_series": None,
-    "label_strategy": "focus_only",
+    "story_angle": "shift",
+    "focus_series": "International",
+    "secondary_series": "UK",
+    "label_strategy": "focus_and_secondary",
 
     # ---------------------------
     # AXES
@@ -36,33 +36,30 @@ CHART_CONFIG = {
     "x_tick_rotation": 0,
 
     "x_axis": {
-        "min": 0,
-        "max": 16,
-        "tick_interval": 2,
-        "format": ".0f",
+        "min": 1977,
+        "max": 2026,
+        "tick_interval": 5,
+        "format": ".0f"
     },
 
-    "y_axis_min": None,
-    "y_axis_max": None,
-    "y_tick_interval": None,
-    "y_tick_format": None,
+    "y_axis_min": 0,
+    "y_axis_max": 40,
+    "y_tick_interval": 5,
+    "y_tick_format": ".0f",
 
     # ---------------------------
     # SORTING
     # ---------------------------
-    "sort": {
-        "by": "year",
-        "ascending": True,
-    },
+    "sort": None,
     "sort_descending": False,
 
     # ---------------------------
     # MARKS
     # ---------------------------
     "line_width": 2.6,
-    "marker_size": 60,
-    "show_markers": True,
-    "auto_end_labels": False,
+    "marker_size": 40,
+    "show_markers": False,
+    "auto_end_labels": True,
 
     # ---------------------------
     # STYLING
@@ -70,101 +67,56 @@ CHART_CONFIG = {
     "dot_style": {
         "color": "#D9D9D9",
         "size": 48,
-        "alpha": 0.55,
+        "alpha": 0.55
     },
 
     "highlight_style": {
         "color": "#C44E52",
         "size": 90,
-        "alpha": 1.0,
+        "alpha": 1.0
     },
 
     "context_style": {
         "color": "#D9D9D9",
-        "linewidth": 0.8,
-        "alpha": 0.25,
+        "linewidth": 1.4,
+        "alpha": 0.35
     },
 
     "focus_style": {
         "color": "#1F8FA8",
-        "linewidth": 3.2,
-        "alpha": 1.0,
+        "linewidth": 3.4,
+        "alpha": 1.0
     },
 
     "secondary_style": {
         "color": "#7A7A7A",
-        "linewidth": 2.0,
-        "alpha": 0.9,
+        "linewidth": 2.2,
+        "alpha": 0.9
     },
 
     # ---------------------------
     # ANNOTATIONS
     # ---------------------------
-    "reference_lines": [
-        {
-            "axis": "x",
-            "value": 1,
-            "label": "Single-frame final",
-            "rotation": 0,
-            "color": "#7A7A7A",
-            "linewidth": 1.0,
-            "linestyle": "--",
-            "alpha": 0.7,
-        },
-    ],
+    "reference_lines": [],
 
     "highlight_points": [
-        {"year": 1985},
-        {"year": 1994},
-        {"year": 2002},
-        {"year": 2026},
+        {"year": 2023},
+        {"year": 2025},
+        {"year": 2026}
     ],
 
     "annotate_points": [
         {
-            "x": 1,
-            "y": 1985,
-            "label": "1985: Taylor 18–17 Davis",
-            "xytext": (10, 0),
-            "ha": "left",
-            "va": "center",
+            "x": 2025,
+            "y": 12,
+            "label": "China arrives",
+            "xytext": (-12, -10),
+            "ha": "right",
+            "va": "top",
             "fontsize": 8,
             "color": "#333333",
-            "arrowprops": None,
-        },
-        {
-            "x": 1,
-            "y": 1994,
-            "label": "1994: Hendry 18–17 White",
-            "xytext": (10, 0),
-            "ha": "left",
-            "va": "center",
-            "fontsize": 8,
-            "color": "#333333",
-            "arrowprops": None,
-        },
-        {
-            "x": 1,
-            "y": 2002,
-            "label": "2002: Ebdon 18–17 Hendry",
-            "xytext": (10, 0),
-            "ha": "left",
-            "va": "center",
-            "fontsize": 8,
-            "color": "#333333",
-            "arrowprops": None,
-        },
-        {
-            "x": 1,
-            "y": 2026,
-            "label": "2026: Wu 18–17 Murphy",
-            "xytext": (10, 0),
-            "ha": "left",
-            "va": "center",
-            "fontsize": 8,
-            "color": "#333333",
-            "arrowprops": None,
-        },
+            "arrowprops": None
+        }
     ],
 
     "end_labels": [],
@@ -174,7 +126,7 @@ CHART_CONFIG = {
         "label_col": None,
         "label_format": "{}",
         "position": "right",
-        "fontsize": 8,
+        "fontsize": 8
     },
 
     # ---------------------------
@@ -217,5 +169,5 @@ CHART_CONFIG = {
     # OUTPUT
     # ---------------------------
     "dpi": 200,
-    "output_file": "output/snooker_crucible_final_margins.png",
+    "output_file": "output/snooker_world_vs_uk.png"
 }
