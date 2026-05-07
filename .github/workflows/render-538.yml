@@ -27,6 +27,15 @@ jobs:
       - name: Create derived snooker datasets
         run: python scripts/create_snooker_derived_files.py
       
+      - name: Commit derived snooker datasets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/snooker_world_titles_by_player.csv data/snooker_crucible_uk_vs_world.csv
+          git commit -m "Create derived snooker datasets" || echo "No changes to commit"
+          git push
+
+
       - name: Build filtered quadrant dataset
         run: python scripts/build_quadrants.py
 
