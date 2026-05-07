@@ -39,7 +39,7 @@ CHART_CONFIG = {
         "min": 0,
         "max": 16,
         "tick_interval": 2,
-        "format": ".0f"
+        "format": ".0f",
     },
 
     "y_axis_min": None,
@@ -52,7 +52,7 @@ CHART_CONFIG = {
     # ---------------------------
     "sort": {
         "by": "year",
-        "ascending": True
+        "ascending": True,
     },
     "sort_descending": False,
 
@@ -70,31 +70,31 @@ CHART_CONFIG = {
     "dot_style": {
         "color": "#D9D9D9",
         "size": 48,
-        "alpha": 0.55
+        "alpha": 0.55,
     },
 
     "highlight_style": {
         "color": "#C44E52",
         "size": 90,
-        "alpha": 1.0
+        "alpha": 1.0,
     },
 
     "context_style": {
         "color": "#D9D9D9",
         "linewidth": 0.8,
-        "alpha": 0.25
+        "alpha": 0.25,
     },
 
     "focus_style": {
         "color": "#1F8FA8",
         "linewidth": 3.2,
-        "alpha": 1.0
+        "alpha": 1.0,
     },
 
     "secondary_style": {
         "color": "#7A7A7A",
         "linewidth": 2.0,
-        "alpha": 0.9
+        "alpha": 0.9,
     },
 
     # ---------------------------
@@ -109,63 +109,62 @@ CHART_CONFIG = {
             "color": "#7A7A7A",
             "linewidth": 1.0,
             "linestyle": "--",
-            "alpha": 0.7
-        }
+            "alpha": 0.7,
+        },
     ],
 
-   "highlight_points": [
-    {"year": 1985},
-    {"year": 1994},
-    {"year": 2002},
-    {"year": 2026},
+    "highlight_points": [
+        {"year": 1985},
+        {"year": 1994},
+        {"year": 2002},
+        {"year": 2026},
     ],
 
     "annotate_points": [
-    {
-        "x": 1,
-        "y": 1985,
-        "label": "1985: Taylor 18–17 Davis",
-        "xytext": (10, 0),
-        "ha": "left",
-        "va": "center",
-        "fontsize": 8,
-        "color": "#333333",
-        "arrowprops": None,
-    },
-    {
-        "x": 1,
-        "y": 1994,
-        "label": "1994: Hendry 18–17 White",
-        "xytext": (10, 0),
-        "ha": "left",
-        "va": "center",
-        "fontsize": 8,
-        "color": "#333333",
-        "arrowprops": None,
-    },
-    {
-        "x": 1,
-        "y": 2002,
-        "label": "2002: Ebdon 18–17 Hendry",
-        "xytext": (10, 0),
-        "ha": "left",
-        "va": "center",
-        "fontsize": 8,
-        "color": "#333333",
-        "arrowprops": None,
-    },
-    {
-        "x": 1,
-        "y": 2026,
-        "label": "2026: Wu 18–17 Murphy",
-        "xytext": (10, 0),
-        "ha": "left",
-        "va": "center",
-        "fontsize": 8,
-        "color": "#333333",
-        "arrowprops": None,
-    },
-    ],
+        {
+            "x": 1,
+            "y": 1985,
+            "label": "1985: Taylor 18–17 Davis",
+            "xytext": (10, 0),
+            "ha": "left",
+            "va": "center",
+            "fontsize": 8,
+            "color": "#333333",
+            "arrowprops": None,
+        },
+        {
+            "x": 1,
+            "y": 1994,
+            "label": "1994: Hendry 18–17 White",
+            "xytext": (10, 0),
+            "ha": "left",
+            "va": "center",
+            "fontsize": 8,
+            "color": "#333333",
+            "arrowprops": None,
+        },
+        {
+            "x": 1,
+            "y": 2002,
+            "label": "2002: Ebdon 18–17 Hendry",
+            "xytext": (10, 0),
+            "ha": "left",
+            "va": "center",
+            "fontsize": 8,
+            "color": "#333333",
+            "arrowprops": None,
+        },
+        {
+            "x": 1,
+            "y": 2026,
+            "label": "2026: Wu 18–17 Murphy",
+            "xytext": (10, 0),
+            "ha": "left",
+            "va": "center",
+            "fontsize": 8,
+            "color": "#333333",
+            "arrowprops": None,
+        },
     ],
 
     "end_labels": [],
@@ -175,7 +174,7 @@ CHART_CONFIG = {
         "label_col": None,
         "label_format": "{}",
         "position": "right",
-        "fontsize": 8
+        "fontsize": 8,
     },
 
     # ---------------------------
@@ -218,5 +217,5 @@ CHART_CONFIG = {
     # OUTPUT
     # ---------------------------
     "dpi": 200,
-    "output_file": "output/snooker_crucible_final_margins.png"
+    "output_file": "output/snooker_crucible_final_margins.png",
 }
