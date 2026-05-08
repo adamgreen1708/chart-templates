@@ -1,72 +1,212 @@
+# =========================
+# CHART 3
+# International champions timeline
+# =========================
+
 CHART_CONFIG = {
+    # ---------------------------
+    # DATA
+    # ---------------------------
     "data_file": "data/snooker_world_championship_winners.csv",
     "data_format": "wide",
     "chart_type": "dot",
 
     "x_col": "year",
     "y_col": "winner",
-
     "series_col": None,
     "value_col": None,
 
-    "title": "The Crucible opened the door",
-    "subtitle": (
-        "Six overseas champions broke through during a Crucible era otherwise "
-        "dominated by UK winners."
-    ),
-
+    # ---------------------------
+    # STORY
+    # ---------------------------
+    "title": "The Crucible’s world map is widening",
+    "subtitle": "Canada, Ireland, Australia, Belgium and China have all broken through at Sheffield.",
     "source_text": "Source: World Snooker Championship winners 1977–2026",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "outlier",
+    "story_angle": "shift",
+    "focus_series": None,
+    "secondary_series": None,
+    "label_strategy": "focus_only",
 
-    "figure_size": (12, 8.5),
-    "output_file": "output/crucible_non_uk_winners.png",
+    # ---------------------------
+    # AXES
+    # ---------------------------
+    "x_is_datetime": False,
+    "x_tick_rotation": 0,
 
     "x_axis": {
-        "label": "",
-        "min": 1977,
-        "max": 2026,
-        "tick_interval": 5
+        "min": 1976,
+        "max": 2027,
+        "tick_interval": 5,
+        "format": ".0f",
     },
 
-    "y_axis": {
-        "label": ""
+    "y_axis_min": None,
+    "y_axis_max": None,
+    "y_tick_interval": None,
+    "y_tick_format": None,
+
+    # ---------------------------
+    # SORTING
+    # ---------------------------
+    "sort": {
+        "by": "year",
+        "ascending": True,
     },
+    "sort_descending": False,
+
+    # ---------------------------
+    # MARKS
+    # ---------------------------
+    "line_width": 2.6,
+    "marker_size": 70,
+    "show_markers": True,
+    "auto_end_labels": False,
+
+    # ---------------------------
+    # STYLING
+    # ---------------------------
+    "dot_style": {
+        "color": "#D9D9D9",
+        "size": 44,
+        "alpha": 0.45,
+    },
+
+    "highlight_style": {
+        "color": "#C44E52",
+        "size": 100,
+        "alpha": 1.0,
+    },
+
+    "context_style": {
+        "color": "#D9D9D9",
+        "linewidth": 0.8,
+        "alpha": 0.25,
+    },
+
+    "focus_style": {
+        "color": "#1F8FA8",
+        "linewidth": 3.2,
+        "alpha": 1.0,
+    },
+
+    "secondary_style": {
+        "color": "#7A7A7A",
+        "linewidth": 2.0,
+        "alpha": 0.9,
+    },
+
+    # ---------------------------
+    # ANNOTATIONS
+    # ---------------------------
+    "reference_lines": [],
 
     "highlight_points": [
-        {"x": 1979, "y": "Cliff Thorburn", "label": ""},
-        {"x": 1997, "y": "Ken Doherty", "label": ""},
-        {"x": 2010, "y": "Neil Robertson", "label": ""},
-        {"x": 2023, "y": "Luca Brecel", "label": ""},
-        {"x": 2025, "y": "Zhao Xintong", "label": ""},
-        {"x": 2026, "y": "Wu Yize", "label": ""}
+        {"winner": "Cliff Thorburn"},
+        {"winner": "Ken Doherty"},
+        {"winner": "Neil Robertson"},
+        {"winner": "Luca Brecel"},
+        {"winner": "Zhao Xintong"},
+        {"winner": "Wu Yize"},
     ],
 
-    "label_strategy": "none",
+    "annotate_points": [
+        {
+            "x": 1980,
+            "y": "Cliff Thorburn",
+            "label": "Canada arrives",
+            "xytext": (10, 0),
+            "ha": "left",
+            "va": "center",
+            "fontsize": 8,
+            "color": "#333333",
+            "arrowprops": None,
+        },
+        {
+            "x": 1997,
+            "y": "Ken Doherty",
+            "label": "Ireland breaks through",
+            "xytext": (10, 0),
+            "ha": "left",
+            "va": "center",
+            "fontsize": 8,
+            "color": "#333333",
+            "arrowprops": None,
+        },
+        {
+            "x": 2010,
+            "y": "Neil Robertson",
+            "label": "Australia joins",
+            "xytext": (10, 0),
+            "ha": "left",
+            "va": "center",
+            "fontsize": 8,
+            "color": "#333333",
+            "arrowprops": None,
+        },
+        {
+            "x": 2026,
+            "y": "Wu Yize",
+            "label": "China goes back-to-back",
+            "xytext": (-10, 0),
+            "ha": "right",
+            "va": "center",
+            "fontsize": 8,
+            "color": "#333333",
+            "arrowprops": None,
+        },
+    ],
 
-    "style": {
-        "context_colour": "#1F8FA8",
-        "focus_colour": "#C44E52",
+    "end_labels": [],
 
-        "point_size": 52,
-        "highlight_point_size": 86,
-
-        "alpha": 0.85,
-        "highlight_alpha": 1.0
+    "label_style": {
+        "enabled": False,
+        "label_col": None,
+        "label_format": "{}",
+        "position": "right",
+        "fontsize": 8,
     },
 
-    "show_grid": True,
-    "show_x_grid": True,
-    "show_y_grid": True,
+    # ---------------------------
+    # TYPOGRAPHY
+    # ---------------------------
+    "title_fontsize": 22,
+    "subtitle_fontsize": 12,
+    "tick_label_fontsize": 10,
+    "axis_label_fontsize": 10,
+    "footer_fontsize": 10,
 
-    "title_wrap_width": 38,
-    "subtitle_wrap_width": 78,
+    "title_wrap_width": 40,
+    "subtitle_wrap_width": 74,
+    "title_max_lines": 2,
+    "subtitle_max_lines": 2,
 
-    "layout": {
-        "left": 0.30,
-        "right": 0.94,
-        "top": 0.80,
-        "bottom": 0.16
-    }
+    # ---------------------------
+    # LAYOUT
+    # ---------------------------
+    "fig_width": 8.0,
+    "fig_height": 8.0,
+
+    "title_x": 0.10,
+    "title_y": 0.92,
+    "subtitle_x": 0.10,
+    "subtitle_y": 0.86,
+
+    "footer_left_x": 0.10,
+    "footer_right_x": 0.90,
+    "footer_y": 0.08,
+
+    "plot_top": 0.75,
+    "plot_bottom": 0.14,
+    "plot_left": 0.22,
+    "plot_right": 0.92,
+
+    "vertical_gridlines": True,
+
+    # ---------------------------
+    # OUTPUT
+    # ---------------------------
+    "dpi": 200,
+    "output_file": "output/snooker_crucible_international_timeline.png",
 }
