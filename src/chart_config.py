@@ -1,5 +1,5 @@
 CHART_CONFIG = {
-    "data_file": "data/crucible_world_championship_winners.csv",
+    "data_file": "data/snooker_world_championship_winners.csv",
     "data_format": "wide",
     "chart_type": "scatter",
 
