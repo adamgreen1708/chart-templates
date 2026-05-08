@@ -1,4 +1,7 @@
 CHART_CONFIG = {
+    # =========================
+    # DATA
+    # =========================
     "data_file": "data/snooker_world_championship_winners.csv",
     "data_format": "wide",
     "chart_type": "dot",
@@ -9,82 +12,145 @@ CHART_CONFIG = {
     "series_col": None,
     "value_col": None,
 
-    "title": "The Crucible usually stayed close to home",
+    # =========================
+    # EDITORIAL
+    # =========================
+    "title": "The Crucible occasionally opened the door",
     "subtitle": (
-        "Most champions came from England, Scotland, Wales or Northern Ireland, "
-        "with overseas winners appearing only occasionally across nearly 50 years."
+        "The World Championship has mostly stayed with UK winners, "
+        "but five overseas champions broke through across the Crucible era."
     ),
-
-    "source_text": "Source: World Snooker Championship results, 1977–2026",
-    "footer_left": "Adam Green | coffeetableviz",
 
     "story_angle": "outlier",
 
+    # =========================
+    # FOOTER
+    # =========================
+    "source_text": "Source: World Snooker Championship winners 1977–2026",
+    "footer_left": "Adam Green | coffeetableviz",
+
+    # =========================
+    # EXPORT
+    # =========================
     "output_file": "output/crucible_non_uk_winners.png",
 
+    # =========================
+    # AXES
+    # =========================
     "x_axis": {
-        "label": "Year",
+        "label": "",
         "min": 1977,
         "max": 2026,
         "tick_interval": 5
     },
 
     "y_axis": {
-        "label": "Champion"
+        "label": ""
     },
 
-    "label_strategy": "highlight_only",
-
+    # =========================
+    # HIGHLIGHTS
+    # IMPORTANT:
+    # This mirrors the working chart structure:
+    # explicit x/y point references, not match wrappers.
+    # =========================
     "highlight_points": [
         {
-            "match": {"year": 1980, "winner": "Cliff Thorburn"},
-            "label": "Thorburn"
+            "x": 1980,
+            "y": "Cliff Thorburn",
+            "label": "Canada"
         },
         {
-            "match": {"year": 1997, "winner": "Ken Doherty"},
-            "label": "Doherty"
+            "x": 1997,
+            "y": "Ken Doherty",
+            "label": "Ireland"
         },
         {
-            "match": {"year": 2010, "winner": "Neil Robertson"},
-            "label": "Robertson"
+            "x": 2010,
+            "y": "Neil Robertson",
+            "label": "Australia"
         },
         {
-            "match": {"year": 2023, "winner": "Luca Brecel"},
-            "label": "Brecel"
+            "x": 2023,
+            "y": "Luca Brecel",
+            "label": "Belgium"
         },
         {
-            "match": {"year": 2025, "winner": "Zhao Xintong"},
-            "label": "Zhao"
+            "x": 2025,
+            "y": "Zhao Xintong",
+            "label": "China"
         }
     ],
 
-    "style": {
-        "context_colour": "#B8B8B8",
-        "focus_colour": "#C44E52",
-        "point_size": 45,
-        "highlight_point_size": 85,
-        "alpha": 0.65,
-        "highlight_alpha": 1.0
-    },
+    # =========================
+    # ANNOTATIONS
+    # =========================
+    "annotate_points": [
+        {
+            "x": 1980,
+            "y": "Cliff Thorburn",
+            "label": "First overseas Crucible champion",
+            "x_offset": 1.2,
+            "y_offset": -0.35
+        },
+        {
+            "x": 2025,
+            "y": "Zhao Xintong",
+            "label": "Latest overseas breakthrough",
+            "x_offset": -8.5,
+            "y_offset": 0.4
+        }
+    ],
+
+    # =========================
+    # LABELS
+    # =========================
+    "label_strategy": "highlight_only",
 
     "label_settings": {
-        "font_size": 9,
+        "font_size": 10,
         "x_offset": 0.5,
         "y_offset": 0,
         "avoid_overlap": True
     },
 
+    # =========================
+    # STYLE
+    # =========================
+    "style": {
+        "context_colour": "#D7D7D7",
+        "focus_colour": "#C44E52",
+
+        "point_size": 46,
+        "highlight_point_size": 92,
+
+        "alpha": 0.55,
+        "highlight_alpha": 1.0,
+
+        "label_colour": "#333333",
+        "highlight_label_colour": "#333333"
+    },
+
+    # =========================
+    # GRID
+    # =========================
     "show_grid": True,
     "show_x_grid": True,
     "show_y_grid": True,
 
-    "title_wrap_width": 38,
-    "subtitle_wrap_width": 92,
+    # =========================
+    # TEXT WRAP
+    # =========================
+    "title_wrap_width": 42,
+    "subtitle_wrap_width": 82,
 
+    # =========================
+    # LAYOUT
+    # =========================
     "layout": {
-        "left": 0.14,
-        "right": 0.96,
-        "top": 0.86,
-        "bottom": 0.16
+        "left": 0.18,
+        "right": 0.94,
+        "top": 0.82,
+        "bottom": 0.14
     }
 }
