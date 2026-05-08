@@ -67,7 +67,6 @@ CHART_CONFIG = {
     # ---------------------------
     # STYLING
     # ---------------------------
-    "background_color": "#F3F4F6",
 
     "dot_style": {
         "color": "#BDBDBD",
