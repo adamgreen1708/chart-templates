@@ -19,7 +19,7 @@ if str(SRC_DIR) not in sys.path:
 from chart_config import CHART_CONFIG
 
 
-BG = "#F2E04E"
+BG = "#F3F4F6"
 GRID = "#D9D9D9"
 TEXT = "#111111"
 SUBTEXT = "#555555"
