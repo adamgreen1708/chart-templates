@@ -1,6 +1,6 @@
 import textwrap
 
-BG = "#F2E04E"
+BG = "#F3F4F6"
 GRID = "#D9D9D9"
 TEXT = "#111111"
 SUBTEXT = "#555555"
