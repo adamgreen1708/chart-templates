@@ -1,198 +1,71 @@
-# =========================
-# CHART 1
-# Crucible dynasties timeline
-# =========================
-
 CHART_CONFIG = {
-    # ---------------------------
-    # DATA
-    # ---------------------------
-    "data_file": "data/snooker_world_championship_winners.csv",
+    "data_file": "data/crucible_world_championship_winners.csv",
     "data_format": "wide",
-    "chart_type": "dot",
+    "chart_type": "scatter",
 
-    "x_col": "year",
-    "y_col": "winner",
+    "x_col": "Year",
+    "y_col": "Winner",
     "series_col": None,
     "value_col": None,
 
-    # ---------------------------
-    # STORY
-    # ---------------------------
-    "title": "The Crucible belonged to a few giants",
-    "subtitle": "Steve Davis, Stephen Hendry and Ronnie O’Sullivan dominated entire eras of snooker history.",
-    "source_text": "Source: World Snooker Championship winners 1977–2026",
+    "title": "The Crucible usually stayed close to home",
+    "subtitle": "Plotting every champion by year shows long UK-dominated eras, with non-UK winners cutting through as rarer breaks in the pattern.",
+    "source_text": "Source: World Snooker Championship results, 1977–2026",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "concentration",
-    "focus_series": None,
-    "secondary_series": None,
-    "label_strategy": "focus_only",
-
-    # ---------------------------
-    # AXES
-    # ---------------------------
-    "x_is_datetime": False,
-    "x_tick_rotation": 0,
+    "story_angle": "category_timeline",
 
     "x_axis": {
-        "min": 1976,
-        "max": 2027,
+        "min": 1977,
+        "max": 2026,
         "tick_interval": 5,
-        "format": ".0f",
+        "label": "Year"
     },
 
-    "y_axis_min": None,
-    "y_axis_max": None,
-    "y_tick_interval": None,
-    "y_tick_format": None,
-
-    # ---------------------------
-    # SORTING
-    # ---------------------------
-    "sort": {
-        "by": "year",
-        "ascending": True,
-    },
-    "sort_descending": False,
-
-    # ---------------------------
-    # MARKS
-    # ---------------------------
-    "line_width": 2.6,
-    "marker_size": 70,
-    "show_markers": True,
-    "auto_end_labels": False,
-
-    # ---------------------------
-    # STYLING
-    # ---------------------------
-    "dot_style": {
-        "color": "#D9D9D9",
-        "size": 44,
-        "alpha": 0.45,
+    "y_axis": {
+        "label": "Champion"
     },
 
-    "highlight_style": {
-        "color": "#C44E52",
-        "size": 100,
-        "alpha": 1.0,
+    "highlight_rules": {
+        "column": "Winner_Nation_Group",
+        "highlight_value": "Non-UK",
+        "label_highlighted": True,
+        "label_column": "Winner",
+        "highlight_colour": "#C44E52",
+        "context_colour": "#B8B8B8"
     },
-
-    "context_style": {
-        "color": "#D9D9D9",
-        "linewidth": 0.8,
-        "alpha": 0.25,
-    },
-
-    "focus_style": {
-        "color": "#1F8FA8",
-        "linewidth": 3.2,
-        "alpha": 1.0,
-    },
-
-    "secondary_style": {
-        "color": "#7A7A7A",
-        "linewidth": 2.0,
-        "alpha": 0.9,
-    },
-
-    # ---------------------------
-    # ANNOTATIONS
-    # ---------------------------
-    "reference_lines": [],
 
     "highlight_points": [
-        {"winner": "Steve Davis"},
-        {"winner": "Stephen Hendry"},
-        {"winner": "Ronnie O'Sullivan"},
+        {
+            "match": {"Winner_Nation_Group": "Non-UK"},
+            "label": "{Winner}",
+            "colour": "#C44E52",
+            "size": 70,
+            "alpha": 1.0
+        }
     ],
 
-    "annotate_points": [
-        {
-            "x": 1989,
-            "y": "Steve Davis",
-            "label": "1980s dominance",
-            "xytext": (0, -12),
-            "ha": "center",
-            "va": "top",
-            "fontsize": 8,
-            "color": "#333333",
-            "arrowprops": None,
-        },
-        {
-            "x": 1996,
-            "y": "Stephen Hendry",
-            "label": "1990s dynasty",
-            "xytext": (0, -12),
-            "ha": "center",
-            "va": "top",
-            "fontsize": 8,
-            "color": "#333333",
-            "arrowprops": None,
-        },
-        {
-            "x": 2022,
-            "y": "Ronnie O'Sullivan",
-            "label": "Longevity era",
-            "xytext": (-10, -12),
-            "ha": "right",
-            "va": "top",
-            "fontsize": 8,
-            "color": "#333333",
-            "arrowprops": None,
-        },
-    ],
+    "label_strategy": "highlight_only",
 
-    "end_labels": [],
-
-    "label_style": {
-        "enabled": False,
-        "label_col": None,
-        "label_format": "{}",
-        "position": "right",
-        "fontsize": 8,
+    "label_settings": {
+        "label_col": "Winner",
+        "only_label_where": {
+            "Winner_Nation_Group": "Non-UK"
+        },
+        "font_size": 9,
+        "x_offset": 0.4,
+        "y_offset": 0,
+        "avoid_overlap": True
     },
 
-    # ---------------------------
-    # TYPOGRAPHY
-    # ---------------------------
-    "title_fontsize": 22,
-    "subtitle_fontsize": 12,
-    "tick_label_fontsize": 10,
-    "axis_label_fontsize": 10,
-    "footer_fontsize": 10,
+    "style": {
+        "context_colour": "#B8B8B8",
+        "focus_colour": "#C44E52",
+        "point_size": 45,
+        "highlight_point_size": 75,
+        "alpha": 0.65,
+        "highlight_alpha": 1.0
+    },
 
-    "title_wrap_width": 40,
-    "subtitle_wrap_width": 74,
-    "title_max_lines": 2,
-    "subtitle_max_lines": 2,
-
-    # ---------------------------
-    # LAYOUT
-    # ---------------------------
-    "fig_width": 8.0,
-    "fig_height": 8.0,
-
-    "title_x": 0.10,
-    "title_y": 0.92,
-    "subtitle_x": 0.10,
-    "subtitle_y": 0.86,
-
-    "footer_left_x": 0.10,
-    "footer_right_x": 0.90,
-    "footer_y": 0.08,
-
-    "plot_top": 0.75,
-    "plot_bottom": 0.14,
-    "plot_left": 0.22,
-    "plot_right": 0.92,
-
-    "vertical_gridlines": True,
-
-    # ---------------------------
-    # OUTPUT
-    # ---------------------------
-    "dpi": 200,
-    "output_file": "output/snooker_crucible_dynasty_timeline.png",
+    "notes": "Requires a Winner_Nation_Group column with UK / Non-UK classification. UK should include England, Scotland, Wales and Northern Ireland."
 }
