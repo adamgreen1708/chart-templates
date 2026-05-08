@@ -67,26 +67,28 @@ CHART_CONFIG = {
     # ---------------------------
     # STYLING
     # ---------------------------
+    "background_color": "#F2E04E",
+
     "dot_style": {
-        "color": "#D9D9D9",
+        "color": "#BDBDBD",
         "size": 44,
         "alpha": 0.45,
     },
 
     "highlight_style": {
-        "color": "#C44E52",
+        "color": "#111111",
         "size": 100,
         "alpha": 1.0,
     },
 
     "context_style": {
-        "color": "#D9D9D9",
+        "color": "#BDBDBD",
         "linewidth": 0.8,
         "alpha": 0.25,
     },
 
     "focus_style": {
-        "color": "#1F8FA8",
+        "color": "#111111",
         "linewidth": 3.2,
         "alpha": 1.0,
     },
@@ -120,7 +122,7 @@ CHART_CONFIG = {
             "ha": "left",
             "va": "center",
             "fontsize": 8,
-            "color": "#333333",
+            "color": "#111111",
             "arrowprops": None,
         },
         {
@@ -131,7 +133,7 @@ CHART_CONFIG = {
             "ha": "left",
             "va": "center",
             "fontsize": 8,
-            "color": "#333333",
+            "color": "#111111",
             "arrowprops": None,
         },
         {
@@ -142,7 +144,7 @@ CHART_CONFIG = {
             "ha": "left",
             "va": "center",
             "fontsize": 8,
-            "color": "#333333",
+            "color": "#111111",
             "arrowprops": None,
         },
         {
@@ -153,7 +155,7 @@ CHART_CONFIG = {
             "ha": "right",
             "va": "center",
             "fontsize": 8,
-            "color": "#333333",
+            "color": "#111111",
             "arrowprops": None,
         },
     ],
