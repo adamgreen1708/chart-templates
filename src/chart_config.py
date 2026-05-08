@@ -1,6 +1,6 @@
 # =========================
-# CHART 3
-# International winners
+# CHART 1
+# Crucible dynasties timeline
 # =========================
 
 CHART_CONFIG = {
@@ -11,20 +11,20 @@ CHART_CONFIG = {
     "data_format": "wide",
     "chart_type": "dot",
 
-    "x_col": "frame_margin",
-    "y_col": "year",
+    "x_col": "year",
+    "y_col": "winner",
     "series_col": None,
     "value_col": None,
 
     # ---------------------------
     # STORY
     # ---------------------------
-    "title": "The Crucible’s world map is widening",
-    "subtitle": "Champions from Canada, Ireland, Australia, Belgium and China have slowly reshaped snooker’s biggest stage.",
+    "title": "The Crucible belonged to a few giants",
+    "subtitle": "Steve Davis, Stephen Hendry and Ronnie O’Sullivan dominated entire eras of snooker history.",
     "source_text": "Source: World Snooker Championship winners 1977–2026",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "shift",
+    "story_angle": "concentration",
     "focus_series": None,
     "secondary_series": None,
     "label_strategy": "focus_only",
@@ -36,9 +36,9 @@ CHART_CONFIG = {
     "x_tick_rotation": 0,
 
     "x_axis": {
-        "min": 0,
-        "max": 16,
-        "tick_interval": 2,
+        "min": 1976,
+        "max": 2027,
+        "tick_interval": 5,
         "format": ".0f",
     },
 
@@ -60,7 +60,7 @@ CHART_CONFIG = {
     # MARKS
     # ---------------------------
     "line_width": 2.6,
-    "marker_size": 60,
+    "marker_size": 70,
     "show_markers": True,
     "auto_end_labels": False,
 
@@ -69,13 +69,13 @@ CHART_CONFIG = {
     # ---------------------------
     "dot_style": {
         "color": "#D9D9D9",
-        "size": 48,
-        "alpha": 0.55,
+        "size": 44,
+        "alpha": 0.45,
     },
 
     "highlight_style": {
         "color": "#C44E52",
-        "size": 90,
+        "size": 100,
         "alpha": 1.0,
     },
 
@@ -103,77 +103,41 @@ CHART_CONFIG = {
     "reference_lines": [],
 
     "highlight_points": [
-        {"year": 1980},
-        {"year": 1997},
-        {"year": 2010},
-        {"year": 2023},
-        {"year": 2025},
-        {"year": 2026},
+        {"winner": "Steve Davis"},
+        {"winner": "Stephen Hendry"},
+        {"winner": "Ronnie O'Sullivan"},
     ],
 
     "annotate_points": [
         {
-            "x": 2,
-            "y": 1980,
-            "label": "1980: Thorburn (Canada)",
-            "xytext": (10, 0),
-            "ha": "left",
-            "va": "center",
+            "x": 1989,
+            "y": "Steve Davis",
+            "label": "1980s dominance",
+            "xytext": (0, -12),
+            "ha": "center",
+            "va": "top",
             "fontsize": 8,
             "color": "#333333",
             "arrowprops": None,
         },
         {
-            "x": 6,
-            "y": 1997,
-            "label": "1997: Doherty (Ireland)",
-            "xytext": (10, 0),
-            "ha": "left",
-            "va": "center",
+            "x": 1996,
+            "y": "Stephen Hendry",
+            "label": "1990s dynasty",
+            "xytext": (0, -12),
+            "ha": "center",
+            "va": "top",
             "fontsize": 8,
             "color": "#333333",
             "arrowprops": None,
         },
         {
-            "x": 5,
-            "y": 2010,
-            "label": "2010: Robertson (Australia)",
-            "xytext": (10, 0),
-            "ha": "left",
-            "va": "center",
-            "fontsize": 8,
-            "color": "#333333",
-            "arrowprops": None,
-        },
-        {
-            "x": 3,
-            "y": 2023,
-            "label": "2023: Brecel (Belgium)",
-            "xytext": (10, 0),
-            "ha": "left",
-            "va": "center",
-            "fontsize": 8,
-            "color": "#333333",
-            "arrowprops": None,
-        },
-        {
-            "x": 6,
-            "y": 2025,
-            "label": "2025: Zhao (China)",
-            "xytext": (10, 0),
-            "ha": "left",
-            "va": "center",
-            "fontsize": 8,
-            "color": "#333333",
-            "arrowprops": None,
-        },
-        {
-            "x": 1,
-            "y": 2026,
-            "label": "2026: Wu (China)",
-            "xytext": (10, 0),
-            "ha": "left",
-            "va": "center",
+            "x": 2022,
+            "y": "Ronnie O'Sullivan",
+            "label": "Longevity era",
+            "xytext": (-10, -12),
+            "ha": "right",
+            "va": "top",
             "fontsize": 8,
             "color": "#333333",
             "arrowprops": None,
@@ -221,14 +185,14 @@ CHART_CONFIG = {
 
     "plot_top": 0.75,
     "plot_bottom": 0.14,
-    "plot_left": 0.12,
-    "plot_right": 0.90,
+    "plot_left": 0.22,
+    "plot_right": 0.92,
 
-    "vertical_gridlines": False,
+    "vertical_gridlines": True,
 
     # ---------------------------
     # OUTPUT
     # ---------------------------
     "dpi": 200,
-    "output_file": "output/snooker_crucible_world_map.png",
+    "output_file": "output/snooker_crucible_dynasty_timeline.png",
 }
