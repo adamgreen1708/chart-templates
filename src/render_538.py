@@ -908,8 +908,8 @@ def main():
 
     fig, ax = plt.subplots(
         figsize=(
-            CHART_CONFIG.get("fig_width", 8.0),
-            CHART_CONFIG.get("fig_height", 8.0),
+            CHART_CONFIG.get("fig_width", 12.0),
+            CHART_CONFIG.get("fig_height", 8.5),
         )
     )
 
