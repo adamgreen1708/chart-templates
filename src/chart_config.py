@@ -1,43 +1,44 @@
 CHART_CONFIG = {
-    "data_file": "data/scotch_whisky_flavours_enriched.csv",
+    "data_file": "data/scotch_whisky_flavour_distribution.csv",
     "data_format": "wide",
-    "chart_type": "dot",
+    "chart_type": "scatter",
 
-    "x_col": "Peat_Index",
-    "y_col": "Distillery",
+    "x_col": "Score",
+    "y_col": "Flavour",
 
     "series_col": None,
     "value_col": None,
 
-    "title": "The peat monsters",
-    "subtitle": "Ardbeg, Lagavulin and Laphroig sit at the smoky, medicinal end of Scotland’s whisky flavour map.",
+    "title": "Scotch is sweeter than its reputation",
+    "subtitle": "Most flavour scores cluster around sweet, fruity and malty notes, while medicinal and tobacco-heavy profiles are much rarer.",
 
     "source_text": "Source: Kaggle Scotch Whisky Flavour Dataset",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "ranking",
+    "story_angle": "distribution",
 
-    "x_label": "Peat index",
+    "x_label": "Flavour score, 0–4",
     "y_label": "",
 
-    "x_min": 0,
-    "x_max": 10,
+    "x_min": -0.25,
+    "x_max": 4.25,
 
-    "sort_by": "Peat_Index",
-    "sort_order": "desc",
+    "show_grid": True,
 
-    "top_n": 20,
+    "point_size_col": "Whiskies",
+    "point_size_min": 60,
+    "point_size_max": 420,
+
+    "default_colour": "#1F8FA8",
+    "default_alpha": 0.55,
 
     "highlight_points": [
-        {"target": "Ardbeg", "column": "Distillery"},
-        {"target": "Lagavulin", "column": "Distillery"},
-        {"target": "Laphroig", "column": "Distillery"},
-        {"target": "Caol Ila", "column": "Distillery"},
-        {"target": "Clynelish", "column": "Distillery"},
-        {"target": "Talisker", "column": "Distillery"}
+        {"target": "Sweetness", "column": "Flavour"},
+        {"target": "Fruity", "column": "Flavour"},
+        {"target": "Malty", "column": "Flavour"},
+        {"target": "Smoky", "column": "Flavour"}
     ],
 
-    "default_colour": "#B8B8B8",
     "highlight_colour": "#C44E52",
 
     "figure_size": (12, 8.5)
