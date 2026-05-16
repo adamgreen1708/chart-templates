@@ -30,32 +30,41 @@ CHART_CONFIG = {
 
     "figure_size": (12, 8.5),
 
-    "default_colour": "#B8B8B8",
+    "default_colour": "#1F8FA8",
+    "default_alpha": 0.35,
+
     "highlight_colour": "#C44E52",
 
-    "point_size": 90,
-    "highlight_point_size": 180,
+    "point_size": 70,
+    "highlight_point_size": 240,
+
+    "jitter": 0.12,
 
     "highlight_points": [
         {
             "target": "Ardbeg",
-            "column": "Distillery"
+            "column": "Distillery",
+            "label": "Ardbeg"
         },
         {
             "target": "Lagavulin",
-            "column": "Distillery"
+            "column": "Distillery",
+            "label": "Lagavulin"
         },
         {
             "target": "Laphroig",
-            "column": "Distillery"
+            "column": "Distillery",
+            "label": "Laphroaig"
         },
         {
             "target": "Caol Ila",
-            "column": "Distillery"
+            "column": "Distillery",
+            "label": "Caol Ila"
         },
         {
             "target": "Bowmore",
-            "column": "Distillery"
+            "column": "Distillery",
+            "label": "Bowmore"
         }
     ],
 
@@ -64,25 +73,19 @@ CHART_CONFIG = {
             "target": "Ardbeg",
             "column": "Distillery",
             "text": "Smoke monster",
-            "xytext": (-40, 20)
+            "xytext": (-50, 20)
         },
         {
             "target": "Lagavulin",
             "column": "Distillery",
-            "text": "Classic Islay profile",
-            "xytext": (-20, -25)
+            "text": "Classic Islay",
+            "xytext": (-40, -25)
         },
         {
             "target": "Glenfarclas",
             "column": "Distillery",
-            "text": "Sweet Speyside outlier",
+            "text": "Sweet Speyside",
             "xytext": (20, 10)
-        },
-        {
-            "target": "Auchentoshan",
-            "column": "Distillery",
-            "text": "Low-smoke extreme",
-            "xytext": (15, -20)
         }
     ]
 }
