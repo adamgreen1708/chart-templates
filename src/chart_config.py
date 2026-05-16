@@ -1,7 +1,7 @@
 CHART_CONFIG = {
     "data_file": "data/scotch_whisky_flavour_distribution.csv",
     "data_format": "wide",
-    "chart_type": "scatter",
+    "chart_type": "dot",
 
     "x_col": "Score",
     "y_col": "Flavour",
@@ -25,21 +25,8 @@ CHART_CONFIG = {
 
     "show_grid": True,
 
-    "point_size_col": "Whiskies",
-    "point_size_min": 60,
-    "point_size_max": 420,
-
     "default_colour": "#1F8FA8",
     "default_alpha": 0.55,
-
-    "highlight_points": [
-        {"target": "Sweetness", "column": "Flavour"},
-        {"target": "Fruity", "column": "Flavour"},
-        {"target": "Malty", "column": "Flavour"},
-        {"target": "Smoky", "column": "Flavour"}
-    ],
-
-    "highlight_colour": "#C44E52",
 
     "figure_size": (12, 8.5)
 }
