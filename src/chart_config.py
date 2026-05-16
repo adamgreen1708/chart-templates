@@ -1,91 +1,44 @@
 CHART_CONFIG = {
     "data_file": "data/scotch_whisky_flavours_enriched.csv",
     "data_format": "wide",
-    "chart_type": "scatter",
+    "chart_type": "dot",
 
-    "x_col": "Sweetness",
-    "y_col": "Smoky",
+    "x_col": "Peat_Index",
+    "y_col": "Distillery",
 
     "series_col": None,
     "value_col": None,
 
-    "title": "Smoke has a postcode",
-    "subtitle": "Scotland’s smokiest whiskies cluster hard on the islands, while sweeter drams dominate Speyside and the Highlands.",
+    "title": "The peat monsters",
+    "subtitle": "Ardbeg, Lagavulin and Laphroig sit at the smoky, medicinal end of Scotland’s whisky flavour map.",
 
     "source_text": "Source: Kaggle Scotch Whisky Flavour Dataset",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "relationship",
+    "story_angle": "ranking",
 
-    "x_label": "Sweetness",
-    "y_label": "Smokiness",
+    "x_label": "Peat index",
+    "y_label": "",
 
     "x_min": 0,
-    "x_max": 4.5,
+    "x_max": 10,
 
-    "y_min": 0,
-    "y_max": 4.5,
+    "sort_by": "Peat_Index",
+    "sort_order": "desc",
 
-    "show_grid": True,
-
-    "figure_size": (12, 8.5),
-
-    "default_colour": "#1F8FA8",
-    "default_alpha": 0.35,
-
-    "highlight_colour": "#C44E52",
-
-    "point_size": 70,
-    "highlight_point_size": 240,
-
-    "jitter": 0.12,
+    "top_n": 20,
 
     "highlight_points": [
-        {
-            "target": "Ardbeg",
-            "column": "Distillery",
-            "label": "Ardbeg"
-        },
-        {
-            "target": "Lagavulin",
-            "column": "Distillery",
-            "label": "Lagavulin"
-        },
-        {
-            "target": "Laphroig",
-            "column": "Distillery",
-            "label": "Laphroaig"
-        },
-        {
-            "target": "Caol Ila",
-            "column": "Distillery",
-            "label": "Caol Ila"
-        },
-        {
-            "target": "Bowmore",
-            "column": "Distillery",
-            "label": "Bowmore"
-        }
+        {"target": "Ardbeg", "column": "Distillery"},
+        {"target": "Lagavulin", "column": "Distillery"},
+        {"target": "Laphroig", "column": "Distillery"},
+        {"target": "Caol Ila", "column": "Distillery"},
+        {"target": "Clynelish", "column": "Distillery"},
+        {"target": "Talisker", "column": "Distillery"}
     ],
 
-    "annotate_points": [
-        {
-            "target": "Ardbeg",
-            "column": "Distillery",
-            "text": "Smoke monster",
-            "xytext": (-50, 20)
-        },
-        {
-            "target": "Lagavulin",
-            "column": "Distillery",
-            "text": "Classic Islay",
-            "xytext": (-40, -25)
-        },
-        {
-            "target": "Glenfarclas",
-            "column": "Distillery",
-            "text": "Sweet Speyside",
-            "xytext": (20, 10)
-        }
-    ]
+    "default_colour": "#B8B8B8",
+    "highlight_colour": "#C44E52",
+
+    "figure_size": (12, 8.5)
 }
