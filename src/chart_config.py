@@ -1,32 +1,41 @@
 CHART_CONFIG = {
-    "data_file": "data/scotch_whisky_flavour_distribution.csv",
+    "data_file": "data/scotch_whisky_flavour_averages.csv",
     "data_format": "wide",
     "chart_type": "dot",
 
-    "x_col": "Score",
+    "x_col": "Average_Score",
     "y_col": "Flavour",
 
     "series_col": None,
     "value_col": None,
 
     "title": "Scotch is sweeter than its reputation",
-    "subtitle": "Most flavour scores cluster around sweet, fruity and malty notes, while medicinal and tobacco-heavy profiles are much rarer.",
+    "subtitle": "Sweet, malty and fruity notes sit above smoke, while medicinal and tobacco-heavy flavours remain relatively rare.",
 
     "source_text": "Source: Kaggle Scotch Whisky Flavour Dataset",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "distribution",
+    "story_angle": "ranking",
 
-    "x_label": "Flavour score, 0–4",
+    "x_label": "Average flavour score, 0–4",
     "y_label": "",
 
-    "x_min": -0.25,
-    "x_max": 4.25,
+    "x_min": 0,
+    "x_max": 4,
 
-    "show_grid": True,
+    "sort_by": "Average_Score",
+    "sort_order": "desc",
 
-    "default_colour": "#1F8FA8",
-    "default_alpha": 0.55,
+    "default_colour": "#B8B8B8",
+    "highlight_colour": "#C44E52",
+
+    "highlight_points": [
+        {"target": "Sweetness", "column": "Flavour"},
+        {"target": "Fruity", "column": "Flavour"},
+        {"target": "Malty", "column": "Flavour"},
+        {"target": "Smoky", "column": "Flavour"},
+        {"target": "Medicinal", "column": "Flavour"}
+    ],
 
     "figure_size": (12, 8.5)
 }
