@@ -48,7 +48,8 @@ RowID,Distillery,Body,Sweetness,Smoky,Medicinal,Tobacco,Honey,Spicy,Winey,Nutty,
 47,Glengoyne,1,2,0,0,0,1,1,1,2,2,3,2,G63 9LB,252810,682750
 48,Glenkinchie,1,2,1,0,0,1,2,0,0,2,2,2,EH34 5ET,344380,666690
 49,Glenlivet,2,3,1,0,0,2,2,2,1,2,2,3,AB37 9DB,319560,828780
-50,Glenlossie,1,2,1,0,0,1,2,0,1,2,2,2,IV30 3SS,322640,86104051,Glenmorangie,2,2,1,1,0,1,2,0,2,1,2,2,IV19 1PZ,276750,883450
+50,Glenlossie,1,2,1,0,0,1,2,0,1,2,2,2,IV30 3SS,322640,861040
+51,Glenmorangie,2,2,1,1,0,1,2,0,2,1,2,2,IV19 1PZ,276750,883450
 52,Glenrothes,2,3,1,0,0,1,1,2,1,2,2,0,AB38 7AA,327650,849170
 53,Glenturret,2,3,1,0,0,2,2,2,2,2,1,2,PH7 4HA,285630,723580
 54,Highland Park,2,2,3,1,0,2,1,1,1,2,1,1,KW15 1SU,345340,1009260
