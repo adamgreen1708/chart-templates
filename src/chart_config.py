@@ -29,5 +29,5 @@ CHART_CONFIG = {
     "default_colour": "#B8B8B8",
     "highlight_colour": "#C44E52",
 
-    "figure_size": (12, 8.5)
+    "figure_size": (12, 22)
 }
