@@ -3,6 +3,9 @@ name: Build whisky dataset
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -10,6 +13,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -29,6 +34,6 @@ jobs:
 
           git add data/scotch_whisky_flavours_enriched.csv
 
-          git commit -m "Build enriched whisky dataset" || echo "No changes"
+          git commit -m "Build enriched whisky dataset" || echo "No changes to commit"
 
           git push
