@@ -983,7 +983,7 @@ def main():
         left=CHART_CONFIG.get("plot_left", 0.12),
         right=CHART_CONFIG.get("plot_right", 0.90),
         top=CHART_CONFIG.get("plot_top", 0.75),
-        bottom=CHART_CONFIG.get("plot_bottom", 0.14),
+        bottom=CHART_CONFIG.get("plot_bottom", 0.18),
     )
 
     output_file = CHART_CONFIG.get("output_file", "output/chart.png")
