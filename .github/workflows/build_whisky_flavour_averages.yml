@@ -1,0 +1,39 @@
+name: Build whisky flavour averages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install pandas
+        run: pip install pandas
+
+      - name: Generate flavour averages
+        run: python src/build_whisky_flavour_averages.py
+
+      - name: Commit CSV
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+
+          git add data/scotch_whisky_flavour_averages.csv
+
+          git commit -m "Build whisky flavour averages" || echo "No changes"
+
+          git push
