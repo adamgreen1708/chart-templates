@@ -1,0 +1,39 @@
+name: Build whisky smoky distribution
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install pandas
+        run: pip install pandas
+
+      - name: Generate smoky distribution
+        run: python src/build_whisky_smoky_distribution.py
+
+      - name: Commit CSV
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+
+          git add data/scotch_whisky_smoky_distribution.csv
+
+          git commit -m "Build whisky smoky distribution" || echo "No changes"
+
+          git push
