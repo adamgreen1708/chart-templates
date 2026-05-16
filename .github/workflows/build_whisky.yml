@@ -1,0 +1,34 @@
+name: Build whisky dataset
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install pandas
+        run: pip install pandas
+
+      - name: Run enrichment script
+        run: python src/build_whisky_features.py
+
+      - name: Commit enriched dataset
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+
+          git add data/scotch_whisky_flavours_enriched.csv
+
+          git commit -m "Build enriched whisky dataset" || echo "No changes"
+
+          git push
