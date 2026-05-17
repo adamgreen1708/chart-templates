@@ -54,9 +54,9 @@ CHART_CONFIG = {
         }
     ],
 
-    "figure_size": (12, 8.5),
+    "figure_size": (10, 8.5),
     "plot_top": 0.74,
     "plot_bottom": 0.18,
-    "plot_left": 0.14,
-    "plot_right": 0.92,
+    "plot_left": 0.16,
+    "plot_right": 0.88,
 }
