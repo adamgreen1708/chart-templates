@@ -1,62 +1,92 @@
 CHART_CONFIG = {
-    "data_file": "data/scotch_whisky_region_profiles.csv",
-    "data_format": "long",
+    "data_file": "data/scotch_whisky_peat_avoider_score.csv",
+    "data_format": "wide",
     "chart_type": "dot",
 
-    "x_col": "Average_Score",
-    "y_col": "Flavour",
-    "series_col": "Region",
-    "value_col": "Average_Score",
+    "x_col": "Peat_Avoider_Score",
+    "y_col": "Distillery",
 
-    "title": "Islay is the outlier, not the standard",
-    "subtitle": "Most Scotch regions lean sweet, fruity and malty. Islay separates itself through smoke and medicinal intensity.",
+    "series_col": None,
+    "value_col": None,
+
+    "title": "A whisky map for peat avoiders",
+    "subtitle": "Sweet, fruity, malty and honeyed profiles rise to the top once smoky and medicinal notes are penalised.",
 
     "source_text": "Source: Kaggle Scotch Whisky Flavour Dataset",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "comparison",
+    "story_angle": "ranking",
 
-    "x_label": "Average flavour score, 0–4",
+    "x_label": "Peat avoider score",
     "y_label": "",
 
-    "x_axis": {"min": 0, "max": 4},
-
-    "focus_series": "Islay",
-
-    "context_style": {
-        "color": "#B8B8B8",
-        "alpha": 0.50,
-        "size": 70,
+    "x_axis": {
+        "min": -6,
+        "max": 13
     },
 
-    "focus_style": {
-        "color": "#C44E52",
-        "alpha": 1.0,
-        "size": 130,
-    },
+    "sort_by": "Peat_Avoider_Score",
+    "sort_order": "desc",
 
-    "annotate_points": [
+    "reference_lines": [
         {
-            "target": "Smoky",
-            "column": "Flavour",
-            "series": "Islay",
-            "text": "Islay dominates smoke",
-            "xytext": (24, -10),
-            "color": "#C44E52",
-        },
-        {
-            "target": "Medicinal",
-            "column": "Flavour",
-            "series": "Islay",
-            "text": "Medicinal is another Islay signature",
-            "xytext": (24, 12),
-            "color": "#C44E52",
+            "axis": "x",
+            "value": 0,
+            "label": "neutral",
+            "color": "#777777",
+            "linestyle": "--",
+            "linewidth": 1.0,
+            "alpha": 0.7
         }
     ],
 
-    "figure_size": (8.5, 8.5),
-    "plot_top": 0.74,
-    "plot_bottom": 0.18,
-    "plot_left": 0.16,
-    "plot_right": 0.88,
+    "highlight_points": [
+        {"target": "Aberlour", "column": "Distillery"},
+        {"target": "Glenturret", "column": "Distillery"},
+        {"target": "Glenmorangie", "column": "Distillery"},
+        {"target": "Glenlivet", "column": "Distillery"},
+        {"target": "Macallan", "column": "Distillery"},
+        {"target": "Laphroig", "column": "Distillery"},
+        {"target": "Lagavulin", "column": "Distillery"},
+        {"target": "Ardbeg", "column": "Distillery"}
+    ],
+
+    "highlight_colour": "#C44E52",
+
+    "annotate_points": [
+        {
+            "target": "Aberlour",
+            "column": "Distillery",
+            "text": "sweet/fruity comfort zone",
+            "xytext": (-110, 0),
+            "ha": "right",
+            "color": "#C44E52"
+        },
+        {
+            "target": "Laphroig",
+            "column": "Distillery",
+            "text": "peat-heavy avoid zone",
+            "xytext": (30, 0),
+            "ha": "left",
+            "color": "#C44E52"
+        }
+    ],
+
+    "dot_style": {
+        "color": "#1F8FA8",
+        "alpha": 0.75,
+        "size": 55
+    },
+
+    "figure_size": (10, 18),
+
+    "plot_left": 0.20,
+    "plot_right": 0.90,
+    "plot_top": 0.82,
+    "plot_bottom": 0.12,
+
+    "tick_label_fontsize": 7,
+    "axis_label_fontsize": 10,
+    "title_fontsize": 24,
+    "subtitle_fontsize": 12
 }
