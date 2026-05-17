@@ -1,0 +1,39 @@
+name: Create whisky flavour quadrants dataset
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install pandas
+        run: pip install pandas
+
+      - name: Generate flavour quadrants dataset
+        run: python src/create_whisky_flavour_quadrants.py
+
+      - name: Commit generated dataset
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add data/scotch_whisky_flavour_quadrants.csv
+
+          git commit -m "Generate whisky flavour quadrants dataset" || echo "No changes"
+
+          git push
