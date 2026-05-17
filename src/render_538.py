@@ -304,6 +304,10 @@ def _normalise_sort_config():
     if isinstance(sort, str):
         return sort, not sort_descending
 
+    if CHART_CONFIG.get("sort_by"):
+        sort_order = CHART_CONFIG.get("sort_order", "asc")
+        return CHART_CONFIG.get("sort_by"), sort_order != "desc"
+
     if sort_descending:
         return CHART_CONFIG.get("y_col"), False
 
@@ -429,8 +433,8 @@ def _apply_axis_config(ax):
     if x_formatter and not CHART_CONFIG.get("x_is_datetime", False):
         ax.xaxis.set_major_formatter(x_formatter)
 
-    x_min = x_axis.get("min")
-    x_max = x_axis.get("max")
+    x_min = CHART_CONFIG.get("x_min", x_axis.get("min"))
+    x_max = CHART_CONFIG.get("x_max", x_axis.get("max"))
 
     if x_min is not None:
         x_min = _parse_date(x_min) if CHART_CONFIG.get("x_is_datetime", False) else x_min
@@ -441,8 +445,8 @@ def _apply_axis_config(ax):
     if x_min is not None or x_max is not None:
         ax.set_xlim(x_min, x_max)
 
-    y_min = CHART_CONFIG.get("y_axis_min", y_axis.get("min"))
-    y_max = CHART_CONFIG.get("y_axis_max", y_axis.get("max"))
+    y_min = CHART_CONFIG.get("y_min", CHART_CONFIG.get("y_axis_min", y_axis.get("min")))
+    y_max = CHART_CONFIG.get("y_max", CHART_CONFIG.get("y_axis_max", y_axis.get("max")))
 
     if y_min is not None or y_max is not None:
         ax.set_ylim(y_min, y_max)
@@ -574,8 +578,8 @@ def _plot_scatter_trend_line(ax, rows):
     slope, intercept = np.polyfit(xs, ys, 1)
 
     x_axis = CHART_CONFIG.get("x_axis", {})
-    x_min = x_axis.get("min")
-    x_max = x_axis.get("max")
+    x_min = CHART_CONFIG.get("x_min", x_axis.get("min"))
+    x_max = CHART_CONFIG.get("x_max", x_axis.get("max"))
 
     if x_min is None:
         x_min = float(np.nanmin(xs))
@@ -598,8 +602,20 @@ def _plot_scatter_trend_line(ax, rows):
 
 
 def _point_matches_row(point, row):
+    if "target" in point and "column" in point:
+        col = point["column"]
+        if col not in row:
+            return False
+        return str(row[col]) == str(point["target"])
+
+    ignored = {
+        "x", "y", "label", "text", "color", "colour", "size", "alpha",
+        "xytext", "ha", "va", "fontsize", "arrowprops", "column", "target",
+        "series", "fontweight"
+    }
+
     for key, value in point.items():
-        if key in ["x", "y", "label", "color", "size", "alpha"]:
+        if key in ignored:
             continue
 
         if key not in row:
@@ -623,25 +639,10 @@ def _row_matches_any_highlight(row):
     return False
 
 
-def _resolve_point_xy(point, rows):
-    if "x" in point and "y" in point:
-        x = _parse_date(point["x"]) if CHART_CONFIG.get("x_is_datetime", False) else point["x"]
-        return x, point["y"]
-
-    x_col = CHART_CONFIG["x_col"]
-    y_col = CHART_CONFIG["y_col"]
-
-    for row in rows:
-        if _point_matches_row(point, row):
-            return row[x_col], row[y_col]
-
-    return None, None
-
-
 def _plot_highlights(ax, rows):
     highlight_style = CHART_CONFIG.get("highlight_style", {})
-    default_color = highlight_style.get("color", "#C44E52")
-    default_size = highlight_style.get("size", 90)
+    default_color = highlight_style.get("color", CHART_CONFIG.get("highlight_colour", "#C44E52"))
+    default_size = highlight_style.get("size", CHART_CONFIG.get("highlight_point_size", 90))
     default_alpha = highlight_style.get("alpha", 1.0)
 
     x_col = CHART_CONFIG["x_col"]
@@ -656,6 +657,9 @@ def _plot_highlights(ax, rows):
         else:
             for row in rows:
                 if _point_matches_row(p, row):
+                    if "series" in p and CHART_CONFIG.get("series_col"):
+                        if str(row.get(CHART_CONFIG["series_col"])) != str(p["series"]):
+                            continue
                     matched_rows.append(row)
 
         for row in matched_rows:
@@ -663,30 +667,63 @@ def _plot_highlights(ax, rows):
                 row[x_col],
                 row[y_col],
                 s=p.get("size", default_size),
-                color=p.get("color", default_color),
+                color=p.get("color", p.get("colour", default_color)),
                 alpha=p.get("alpha", default_alpha),
-                zorder=5,
+                zorder=6,
             )
 
 
-def _plot_annotations(ax):
-    for p in CHART_CONFIG.get("annotate_points", []):
-        if "x" not in p or "y" not in p:
-            continue
+def _plot_annotations(ax, rows=None):
+    if rows is None:
+        rows = []
 
-        x = _parse_date(p["x"]) if CHART_CONFIG.get("x_is_datetime", False) else p["x"]
+    x_col = CHART_CONFIG["x_col"]
+    y_col = CHART_CONFIG["y_col"]
+
+    for p in CHART_CONFIG.get("annotate_points", []):
+        x = None
+        y = None
+
+        if "x" in p and "y" in p:
+            x = _parse_date(p["x"]) if CHART_CONFIG.get("x_is_datetime", False) else p["x"]
+            y = p["y"]
+        else:
+            matched = [r for r in rows if _point_matches_row(p, r)]
+
+            if "series" in p and CHART_CONFIG.get("series_col"):
+                series_col = CHART_CONFIG.get("series_col")
+                matched = [
+                    r for r in matched
+                    if str(r.get(series_col)) == str(p["series"])
+                ]
+
+            if matched:
+                row = matched[0]
+                x = row[x_col]
+                y = row[y_col]
+
+        if x is None or y is None:
+            continue
 
         ax.annotate(
             p.get("label", p.get("text", "")),
-            xy=(x, p["y"]),
+            xy=(x, y),
             xytext=p.get("xytext", (10, 10)),
             textcoords="offset points",
             ha=p.get("ha", "left"),
             va=p.get("va", "center"),
-            fontsize=p.get("fontsize", 8),
-            color=p.get("color", "#333333"),
-            arrowprops=p.get("arrowprops", None),
-            clip_on=True,
+            fontsize=p.get("fontsize", 9),
+            color=p.get("color", p.get("colour", "#333333")),
+            fontweight=p.get("fontweight", "normal"),
+            arrowprops=p.get(
+                "arrowprops",
+                {
+                    "arrowstyle": "->",
+                    "color": p.get("color", p.get("colour", "#333333")),
+                    "lw": 1.2,
+                }
+            ),
+            clip_on=False,
         )
 
 
@@ -706,8 +743,15 @@ def _plot_labels(ax, rows):
     label_format = label_style.get("label_format", "{}")
     fontsize = label_style.get("fontsize", 8)
     position = label_style.get("position", "right")
+    strategy = CHART_CONFIG.get("label_strategy", "all")
+    focus_series = CHART_CONFIG.get("focus_series")
+    series_col = CHART_CONFIG.get("series_col")
 
     for r in rows:
+        if strategy == "focus_only" and series_col and focus_series:
+            if str(r.get(series_col)) != str(focus_series):
+                continue
+
         x = r[x_col]
         y = r[y_col]
         val = r[label_col]
@@ -728,23 +772,62 @@ def _plot_labels(ax, rows):
             ha=ha,
             va="center",
             fontsize=fontsize,
-            color="#4A4A4A",
-            clip_on=True,
+            color=label_style.get("color", "#4A4A4A"),
+            clip_on=False,
         )
 
 
 def _plot_dot(ax, rows):
     x_col = CHART_CONFIG["x_col"]
     y_col = CHART_CONFIG["y_col"]
+    series_col = CHART_CONFIG.get("series_col")
 
     style = CHART_CONFIG.get("dot_style", {})
+    context_style = CHART_CONFIG.get("context_style", {})
+    focus_style = CHART_CONFIG.get("focus_style", {})
+    focus_series = CHART_CONFIG.get("focus_series")
+
+    default_size = style.get("size", CHART_CONFIG.get("marker_size", 65))
+
+    if series_col and focus_series:
+        context_rows = [r for r in rows if str(r.get(series_col)) != str(focus_series)]
+        focus_rows = [r for r in rows if str(r.get(series_col)) == str(focus_series)]
+
+        if context_rows:
+            ax.scatter(
+                [r[x_col] for r in context_rows],
+                [r[y_col] for r in context_rows],
+                s=context_style.get("size", default_size),
+                color=context_style.get("color", "#B8B8B8"),
+                alpha=context_style.get("alpha", 0.55),
+                zorder=3,
+            )
+
+        if focus_rows:
+            ax.scatter(
+                [r[x_col] for r in focus_rows],
+                [r[y_col] for r in focus_rows],
+                s=focus_style.get("size", default_size + 35),
+                color=focus_style.get("color", CHART_CONFIG.get("highlight_colour", "#C44E52")),
+                alpha=focus_style.get("alpha", 1.0),
+                zorder=5,
+                label=str(focus_series),
+            )
+
+        return
+
+    colors = [
+        CHART_CONFIG.get("highlight_colour", "#C44E52") if _row_matches_any_highlight(r)
+        else style.get("color", CHART_CONFIG.get("default_colour", "#1F8FA8"))
+        for r in rows
+    ]
 
     ax.scatter(
         [r[x_col] for r in rows],
         [r[y_col] for r in rows],
         s=style.get("size", CHART_CONFIG.get("marker_size", 65)),
-        color=style.get("color", "#1F8FA8"),
-        alpha=style.get("alpha", 0.8),
+        color=colors,
+        alpha=style.get("alpha", CHART_CONFIG.get("default_alpha", 0.8)),
         zorder=3,
     )
 
@@ -790,12 +873,18 @@ def _plot_scatter(ax, rows):
 
     style = CHART_CONFIG.get("point_style", CHART_CONFIG.get("dot_style", {}))
 
+    colors = [
+        CHART_CONFIG.get("highlight_colour", "#C44E52") if _row_matches_any_highlight(r)
+        else style.get("color", CHART_CONFIG.get("default_colour", "#1F8FA8"))
+        for r in rows
+    ]
+
     ax.scatter(
         [r[x_col] for r in rows],
         [r[y_col] for r in rows],
         s=style.get("size", CHART_CONFIG.get("marker_size", 55)),
-        color=style.get("color", CHART_CONFIG.get("focus_style", {}).get("color", "#1F8FA8")),
-        alpha=style.get("alpha", 0.75),
+        color=colors,
+        alpha=style.get("alpha", CHART_CONFIG.get("default_alpha", 0.75)),
         zorder=3,
     )
 
@@ -906,12 +995,17 @@ def main():
     if not rows:
         raise ValueError("No rows remain after filtering and chart preparation.")
 
-    fig, ax = plt.subplots(
-        figsize=(
+    figure_size = CHART_CONFIG.get("figure_size")
+
+    if figure_size:
+        figsize = tuple(figure_size)
+    else:
+        figsize = (
             CHART_CONFIG.get("fig_width", 8.0),
-            CHART_CONFIG.get("fig_height",8.0),
+            CHART_CONFIG.get("fig_height", 8.0),
         )
-    )
+
+    fig, ax = plt.subplots(figsize=figsize)
 
     if chart_type == "dot":
         _plot_dot(ax, rows)
@@ -932,7 +1026,7 @@ def main():
 
     _apply_axis_config(ax)
 
-    ax.margins(x=0.08)
+    ax.margins(x=CHART_CONFIG.get("x_margin", 0.08))
 
     if CHART_CONFIG.get("x_tick_rotation", 0):
         plt.setp(
@@ -946,7 +1040,7 @@ def main():
     if chart_type != "bar":
         _plot_highlights(ax, rows)
 
-    _plot_annotations(ax)
+    _plot_annotations(ax, rows)
     _plot_labels(ax, rows)
     _plot_end_labels(ax)
 
