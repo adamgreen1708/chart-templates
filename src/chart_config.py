@@ -1,13 +1,12 @@
 CHART_CONFIG = {
     "data_file": "data/scotch_whisky_region_profiles.csv",
-    "data_format": "wide",
+    "data_format": "long",
     "chart_type": "dot",
 
     "x_col": "Average_Score",
     "y_col": "Flavour",
-
-    "series_col": None,
-    "value_col": None,
+    "series_col": "Region",
+    "value_col": "Average_Score",
 
     "title": "Islay is the outlier, not the standard",
     "subtitle": "Most Scotch regions lean sweet, fruity and malty. Islay separates itself through smoke and medicinal intensity.",
@@ -20,20 +19,44 @@ CHART_CONFIG = {
     "x_label": "Average flavour score, 0–4",
     "y_label": "",
 
-    "x_min": 0,
-    "x_max": 4,
+    "x_axis": {"min": 0, "max": 4},
 
-    "sort_by": "Flavour",
-    "sort_order": "desc",
+    "focus_series": "Islay",
 
-    "default_colour": "#B8B8B8",
-    "highlight_colour": "#C44E52",
+    "context_style": {
+        "color": "#B8B8B8",
+        "alpha": 0.50,
+        "size": 70,
+    },
 
-    "highlight_points": [
-        {"target": "Smoky", "column": "Flavour"},
-        {"target": "Medicinal", "column": "Flavour"}
+    "focus_style": {
+        "color": "#C44E52",
+        "alpha": 1.0,
+        "size": 130,
+    },
+
+    "annotate_points": [
+        {
+            "target": "Smoky",
+            "column": "Flavour",
+            "series": "Islay",
+            "text": "Islay dominates smoke",
+            "xytext": (24, -10),
+            "color": "#C44E52",
+        },
+        {
+            "target": "Medicinal",
+            "column": "Flavour",
+            "series": "Islay",
+            "text": "Medicinal is another Islay signature",
+            "xytext": (24, 12),
+            "color": "#C44E52",
+        }
     ],
 
     "figure_size": (12, 8.5),
-    "show_grid": True
+    "plot_top": 0.74,
+    "plot_bottom": 0.18,
+    "plot_left": 0.14,
+    "plot_right": 0.92,
 }
