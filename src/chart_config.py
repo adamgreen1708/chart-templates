@@ -36,20 +36,27 @@ CHART_CONFIG = {
             "color": "#777777",
             "linestyle": "--",
             "linewidth": 1.0,
-            "alpha": 0.7
+            "alpha": 0.55
         }
     ],
 
     "highlight_points": [
         {"target": "Aberlour", "column": "Distillery"},
+        {"target": "Glenfarclas", "column": "Distillery"},
+        {"target": "Macallan", "column": "Distillery"},
         {"target": "Glenturret", "column": "Distillery"},
         {"target": "Glenmorangie", "column": "Distillery"},
         {"target": "Glenlivet", "column": "Distillery"},
-        {"target": "Macallan", "column": "Distillery"},
         {"target": "Laphroig", "column": "Distillery"},
         {"target": "Lagavulin", "column": "Distillery"},
         {"target": "Ardbeg", "column": "Distillery"}
     ],
+
+    "highlight_style": {
+        "color": "#C44E52",
+        "size": 120,
+        "alpha": 1.0
+    },
 
     "highlight_colour": "#C44E52",
 
@@ -57,36 +64,41 @@ CHART_CONFIG = {
         {
             "target": "Aberlour",
             "column": "Distillery",
-            "text": "sweet/fruity comfort zone",
-            "xytext": (-110, 0),
+            "text": "sweet-spot Scotch",
+            "xytext": (-85, 0),
             "ha": "right",
-            "color": "#C44E52"
+            "color": "#C44E52",
+            "fontsize": 9
         },
         {
             "target": "Laphroig",
             "column": "Distillery",
-            "text": "peat-heavy avoid zone",
-            "xytext": (30, 0),
+            "text": "peat-heavy outlier",
+            "xytext": (28, 0),
             "ha": "left",
-            "color": "#C44E52"
+            "color": "#C44E52",
+            "fontsize": 9
         }
     ],
 
     "dot_style": {
         "color": "#1F8FA8",
-        "alpha": 0.75,
-        "size": 55
+        "alpha": 0.45,
+        "size": 48
     },
 
     "figure_size": (10, 18),
 
     "plot_left": 0.20,
     "plot_right": 0.90,
-    "plot_top": 0.82,
-    "plot_bottom": 0.12,
+    "plot_top": 0.80,
+    "plot_bottom": 0.10,
 
-    "tick_label_fontsize": 7,
+    "tick_label_fontsize": 6.5,
     "axis_label_fontsize": 10,
     "title_fontsize": 24,
-    "subtitle_fontsize": 12
+    "subtitle_fontsize": 12,
+
+    "title_wrap_width": 42,
+    "subtitle_wrap_width": 78
 }
