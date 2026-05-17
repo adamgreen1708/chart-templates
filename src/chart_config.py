@@ -1,4 +1,4 @@
-CHART_CONFIG = {
+No CHART_CONFIG = {
     "data_file": "data/scotch_whisky_flavour_averages.csv",
     "data_format": "wide",
     "chart_type": "dot",
@@ -36,5 +36,5 @@ CHART_CONFIG = {
         {"target": "Smoky", "column": "Flavour"}
     ],
 
-    "figure_size": (12, 8.5)
+    "figure_size": (8,8)
 }
