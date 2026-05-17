@@ -52,7 +52,7 @@ CHART_CONFIG = {
 
     "highlight_style": {
         "color": "#C44E52",
-        "size": 120,
+        "size": 110,
         "alpha": 1.0
     },
 
@@ -73,15 +73,19 @@ CHART_CONFIG = {
     "dot_style": {
         "color": "#1F8FA8",
         "alpha": 0.40,
-        "size": 48
+        "size": 45
     },
 
     "figure_size": (10, 18),
 
+    "title_y": 0.93,
+    "subtitle_y": 0.885,
+    "footer_y": 0.055,
+
     "plot_left": 0.22,
     "plot_right": 0.90,
-    "plot_top": 0.80,
-    "plot_bottom": 0.10,
+    "plot_top": 0.79,
+    "plot_bottom": 0.14,
 
     "tick_label_fontsize": 6.5,
     "axis_label_fontsize": 10,
