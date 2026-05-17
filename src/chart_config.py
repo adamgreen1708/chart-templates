@@ -10,7 +10,7 @@ CHART_CONFIG = {
     "value_col": None,
 
     "title": "A whisky map for peat avoiders",
-    "subtitle": "Sweet, fruity, malty and honeyed profiles rise to the top once smoky and medicinal notes are penalised.",
+    "subtitle": "Most Scotch sits comfortably away from the smoky Islay extreme once medicinal and peaty notes are penalised.",
 
     "source_text": "Source: Kaggle Scotch Whisky Flavour Dataset",
     "footer_left": "Adam Green | coffeetableviz",
@@ -41,15 +41,13 @@ CHART_CONFIG = {
     ],
 
     "highlight_points": [
-        {"target": "Aberlour", "column": "Distillery"},
-        {"target": "Glenfarclas", "column": "Distillery"},
-        {"target": "Macallan", "column": "Distillery"},
-        {"target": "Glenturret", "column": "Distillery"},
-        {"target": "Glenmorangie", "column": "Distillery"},
-        {"target": "Glenlivet", "column": "Distillery"},
-        {"target": "Laphroig", "column": "Distillery"},
+        {"target": "Ardbeg", "column": "Distillery"},
         {"target": "Lagavulin", "column": "Distillery"},
-        {"target": "Ardbeg", "column": "Distillery"}
+        {"target": "Laphroig", "column": "Distillery"},
+        {"target": "Caol Ila", "column": "Distillery"},
+        {"target": "Bowmore", "column": "Distillery"},
+        {"target": "Bruichladdich", "column": "Distillery"},
+        {"target": "Bunnahabhain", "column": "Distillery"}
     ],
 
     "highlight_style": {
@@ -62,34 +60,25 @@ CHART_CONFIG = {
 
     "annotate_points": [
         {
-            "target": "Aberlour",
-            "column": "Distillery",
-            "text": "sweet-spot Scotch",
-            "xytext": (-85, 0),
-            "ha": "right",
-            "color": "#C44E52",
-            "fontsize": 9
-        },
-        {
             "target": "Laphroig",
             "column": "Distillery",
-            "text": "peat-heavy outlier",
+            "text": "Islay dominates the smoky stereotype",
             "xytext": (28, 0),
             "ha": "left",
-            "color": "#C44E52",
+            "color": "#555555",
             "fontsize": 9
         }
     ],
 
     "dot_style": {
         "color": "#1F8FA8",
-        "alpha": 0.45,
+        "alpha": 0.40,
         "size": 48
     },
 
     "figure_size": (10, 18),
 
-    "plot_left": 0.20,
+    "plot_left": 0.22,
     "plot_right": 0.90,
     "plot_top": 0.80,
     "plot_bottom": 0.10,
