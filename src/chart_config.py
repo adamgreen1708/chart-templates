@@ -23,14 +23,45 @@ CHART_CONFIG = {
     "x_min": 0,
     "x_max": 4,
 
+    "focus_series": "Islay",
+
     "default_colour": "#B8B8B8",
     "highlight_colour": "#C44E52",
 
-    "focus_series": "Islay",
-
     "figure_size": (12, 10),
 
-    "show_grid": True,
+    "label_strategy": "focus_only",
 
-    "label_strategy": "focus_only"
+    "annotate_points": [
+        {
+            "series": "Islay",
+            "x": "latest",
+            "target": "Smoky",
+            "label": "Islay dominates smoke",
+            "colour": "#C44E52"
+        },
+        {
+            "series": "Islay",
+            "x": "latest",
+            "target": "Medicinal",
+            "label": "Medicinal notes cluster here",
+            "colour": "#C44E52"
+        },
+        {
+            "series": "Speyside",
+            "x": "latest",
+            "target": "Sweetness",
+            "label": "Speyside leans sweeter",
+            "colour": "#1F8FA8"
+        },
+        {
+            "series": "Speyside",
+            "x": "latest",
+            "target": "Fruity",
+            "label": "Fruit-forward profile",
+            "colour": "#1F8FA8"
+        }
+    ],
+
+    "show_grid": True
 }
