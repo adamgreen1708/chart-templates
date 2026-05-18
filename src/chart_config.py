@@ -1,5 +1,5 @@
 CHART_CONFIG = {
-    "data_file": "data/region_quadrants/scotch_whisky_quadrants_islay.csv",
+    "data_file": "data/region_quadrants/scotch_whisky_quadrants_highlands.csv",
 
     "data_format": "wide",
     "chart_type": "scatter",
@@ -10,8 +10,8 @@ CHART_CONFIG = {
     "series_col": None,
     "value_col": None,
 
-    "title": "Islay sits in Scotch’s peat corner",
-    "subtitle": "Unlike Speyside, Islay whiskies cluster around smoky and medicinal notes rather than sweet, fruity profiles.",
+    "title": "The Highlands span almost the full flavour map",
+    "subtitle": "Unlike tightly clustered Speyside or peat-heavy Islay, Highland whiskies spread across a much broader flavour landscape.",
 
     "source_text": "Source: Kaggle Scotch Whisky Flavour Dataset",
     "footer_left": "Adam Green | coffeetableviz",
@@ -53,17 +53,52 @@ CHART_CONFIG = {
     ],
 
     "label_style": {
-        "enabled": True,
-        "label_col": "Distillery",
-        "fontsize": 8,
-        "position": "right",
-        "label_format": "{}"
+        "enabled": False
     },
+
+    "annotate_points": [
+        {
+            "target": "Glenmorangie",
+            "column": "Distillery",
+            "text": "Glenmorangie",
+            "xytext": (8, 0),
+            "ha": "left",
+            "fontsize": 8,
+            "color": "#555555"
+        },
+        {
+            "target": "Oban",
+            "column": "Distillery",
+            "text": "Oban",
+            "xytext": (8, -10),
+            "ha": "left",
+            "fontsize": 8,
+            "color": "#555555"
+        },
+        {
+            "target": "Old Pulteney",
+            "column": "Distillery",
+            "text": "Old Pulteney",
+            "xytext": (8, 8),
+            "ha": "left",
+            "fontsize": 8,
+            "color": "#555555"
+        },
+        {
+            "target": "Dalmore",
+            "column": "Distillery",
+            "text": "Dalmore",
+            "xytext": (-10, 12),
+            "ha": "right",
+            "fontsize": 8,
+            "color": "#555555"
+        }
+    ],
 
     "dot_style": {
         "color": "#1F8FA8",
-        "alpha": 0.80,
-        "size": 80
+        "alpha": 0.75,
+        "size": 75
     },
 
     "figure_size": (10, 10),
