@@ -1,5 +1,5 @@
 CHART_CONFIG = {
-    "data_file": "data/region_quadrants/scotch_whisky_quadrants_speyside.csv",
+    "data_file": "data/region_quadrants/scotch_whisky_quadrants_islay.csv",
 
     "data_format": "wide",
     "chart_type": "scatter",
@@ -10,8 +10,8 @@ CHART_CONFIG = {
     "series_col": None,
     "value_col": None,
 
-    "title": "Speyside lives far from the peat extreme",
-    "subtitle": "Most Speyside whiskies cluster around sweeter, fruitier and more approachable flavour profiles.",
+    "title": "Islay sits in Scotch’s peat corner",
+    "subtitle": "Unlike Speyside, Islay whiskies cluster around smoky and medicinal notes rather than sweet, fruity profiles.",
 
     "source_text": "Source: Kaggle Scotch Whisky Flavour Dataset",
     "footer_left": "Adam Green | coffeetableviz",
@@ -21,15 +21,8 @@ CHART_CONFIG = {
     "x_label": "Peat index (smoky + medicinal)",
     "y_label": "Approachable index (sweet + fruity + honey)",
 
-    "x_axis": {
-        "min": 0,
-        "max": 11
-    },
-
-    "y_axis": {
-        "min": 0,
-        "max": 11
-    },
+    "x_axis": {"min": 0, "max": 11},
+    "y_axis": {"min": 0, "max": 11},
 
     "reference_lines": [
         {
@@ -52,51 +45,40 @@ CHART_CONFIG = {
         }
     ],
 
-    "label_style": {
-        "enabled": False
-    },
+    "label_style": {"enabled": False},
 
     "annotate_points": [
         {
-            "target": "Aberlour",
+            "target": "Ardbeg",
             "column": "Distillery",
-            "text": "Aberlour",
+            "text": "Ardbeg",
             "xytext": (8, 0),
             "ha": "left",
             "fontsize": 8,
             "color": "#555555"
         },
         {
-            "target": "Macallan",
+            "target": "Lagavulin",
             "column": "Distillery",
-            "text": "Macallan",
-            "xytext": (8, 0),
+            "text": "Lagavulin",
+            "xytext": (8, -8),
             "ha": "left",
             "fontsize": 8,
             "color": "#555555"
         },
         {
-            "target": "Benrinnes",
+            "target": "Laphroig",
             "column": "Distillery",
-            "text": "Benrinnes",
-            "xytext": (8, 0),
+            "text": "Laphroig",
+            "xytext": (8, 8),
             "ha": "left",
             "fontsize": 8,
             "color": "#555555"
         },
         {
-            "target": "Mortlach",
+            "target": "Caol Ila",
             "column": "Distillery",
-            "text": "Mortlach",
-            "xytext": (8, 0),
-            "ha": "left",
-            "fontsize": 8,
-            "color": "#555555"
-        },
-        {
-            "target": "Craigganmore",
-            "column": "Distillery",
-            "text": "Craigganmore",
+            "text": "Caol Ila",
             "xytext": (8, 0),
             "ha": "left",
             "fontsize": 8,
@@ -105,9 +87,9 @@ CHART_CONFIG = {
     ],
 
     "dot_style": {
-        "color": "#1F8FA8",
-        "alpha": 0.75,
-        "size": 75
+        "color": "#C44E52",
+        "alpha": 0.80,
+        "size": 80
     },
 
     "figure_size": (10, 10),
