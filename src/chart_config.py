@@ -53,12 +53,56 @@ CHART_CONFIG = {
     ],
 
     "label_style": {
-        "enabled": True,
-        "label_col": "Distillery",
-        "fontsize": 7,
-        "position": "right",
-        "label_format": "{}"
+        "enabled": False
     },
+
+    "annotate_points": [
+        {
+            "target": "Aberlour",
+            "column": "Distillery",
+            "text": "Aberlour",
+            "xytext": (8, 0),
+            "ha": "left",
+            "fontsize": 8,
+            "color": "#555555"
+        },
+        {
+            "target": "Macallan",
+            "column": "Distillery",
+            "text": "Macallan",
+            "xytext": (8, 0),
+            "ha": "left",
+            "fontsize": 8,
+            "color": "#555555"
+        },
+        {
+            "target": "Benrinnes",
+            "column": "Distillery",
+            "text": "Benrinnes",
+            "xytext": (8, 0),
+            "ha": "left",
+            "fontsize": 8,
+            "color": "#555555"
+        },
+        {
+            "target": "Mortlach",
+            "column": "Distillery",
+            "text": "Mortlach",
+            "xytext": (8, 0),
+            "ha": "left",
+            "fontsize": 8,
+            "color": "#555555"
+        },
+        {
+            "target": "Craigganmore",
+            "column": "Distillery",
+            "text": "Craigganmore",
+            "xytext": (8, 0),
+            "ha": "left",
+            "fontsize": 8,
+            "color": "#555555"
+        }
+    ],
 
     "dot_style": {
         "color": "#1F8FA8",
