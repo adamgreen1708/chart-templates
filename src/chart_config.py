@@ -87,9 +87,9 @@ CHART_CONFIG = {
     ],
 
     "dot_style": {
-        "color": "#C44E52",
-        "alpha": 0.80,
-        "size": 80
+        "color": "#1F8FA8",
+        "alpha": 0.75,
+        "size": 75
     },
 
     "figure_size": (10, 10),
