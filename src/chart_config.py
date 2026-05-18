@@ -23,12 +23,12 @@ CHART_CONFIG = {
 
     "x_axis": {
         "min": 0,
-        "max": 8
+        "max": 11
     },
 
     "y_axis": {
         "min": 0,
-        "max": 10
+        "max": 11
     },
 
     "reference_lines": [
@@ -52,43 +52,18 @@ CHART_CONFIG = {
         }
     ],
 
-    "highlight_points": [
-        {"target": "Macallan", "column": "Distillery"},
-        {"target": "Glenlivet", "column": "Distillery"},
-        {"target": "Aberlour", "column": "Distillery"}
-    ],
-
-    "highlight_style": {
-        "color": "#C44E52",
-        "size": 130,
-        "alpha": 1.0
+    "label_style": {
+        "enabled": True,
+        "label_col": "Distillery",
+        "fontsize": 7,
+        "position": "right",
+        "label_format": "{}"
     },
-
-    "annotate_points": [
-        {
-            "target": "Macallan",
-            "column": "Distillery",
-            "text": "rich and approachable",
-            "xytext": (-25, 20),
-            "ha": "right",
-            "color": "#555555",
-            "fontsize": 9
-        },
-        {
-            "target": "Glenlivet",
-            "column": "Distillery",
-            "text": "classic easy-drinking Speyside",
-            "xytext": (15, -18),
-            "ha": "left",
-            "color": "#555555",
-            "fontsize": 9
-        }
-    ],
 
     "dot_style": {
         "color": "#1F8FA8",
-        "alpha": 0.55,
-        "size": 70
+        "alpha": 0.75,
+        "size": 75
     },
 
     "figure_size": (10, 10),
