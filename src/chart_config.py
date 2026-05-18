@@ -1,5 +1,5 @@
 CHART_CONFIG = {
-    "data_file": "data/region_quadrants/scotch_whisky_quadrants_highlands.csv",
+    "data_file": "data/region_quadrants/scotch_whisky_quadrants_islands.csv",
 
     "data_format": "wide",
     "chart_type": "scatter",
@@ -10,8 +10,8 @@ CHART_CONFIG = {
     "series_col": None,
     "value_col": None,
 
-    "title": "The Highlands span the map",
-    "subtitle": "Unlike tightly clustered Speyside or peat-heavy Islay, Highland whiskies spread across a much broader flavour landscape.",
+    "title": "The Islands sit between comfort and smoke",
+    "subtitle": "Island whiskies spread across the middle of the map, with Talisker pulling furthest towards the peaty edge.",
 
     "source_text": "Source: Kaggle Scotch Whisky Flavour Dataset",
     "footer_left": "Adam Green | coffeetableviz",
@@ -21,15 +21,8 @@ CHART_CONFIG = {
     "x_label": "Peat index (smoky + medicinal)",
     "y_label": "Approachable index (sweet + fruity + honey)",
 
-    "x_axis": {
-        "min": 0,
-        "max": 11
-    },
-
-    "y_axis": {
-        "min": 0,
-        "max": 11
-    },
+    "x_axis": {"min": 0, "max": 11},
+    "y_axis": {"min": 0, "max": 11},
 
     "reference_lines": [
         {
@@ -53,74 +46,12 @@ CHART_CONFIG = {
     ],
 
     "label_style": {
-        "enabled": False
+        "enabled": True,
+        "label_col": "Distillery",
+        "fontsize": 8,
+        "position": "right",
+        "label_format": "{}"
     },
-
-    "annotate_points": [
-        {
-            "target": "Glenmorangie",
-            "column": "Distillery",
-            "text": "Glenmorangie",
-            "xytext": (8, 0),
-            "ha": "left",
-            "fontsize": 8,
-            "color": "#555555"
-        },
-        {
-            "target": "Oban",
-            "column": "Distillery",
-            "text": "Oban",
-            "xytext": (8, -10),
-            "ha": "left",
-            "fontsize": 8,
-            "color": "#555555"
-        },
-        {
-            "target": "Dalmore",
-            "column": "Distillery",
-            "text": "Dalmore",
-            "xytext": (-10, 12),
-            "ha": "right",
-            "fontsize": 8,
-            "color": "#555555"
-        },
-        {
-            "target": "Clynelish",
-            "column": "Distillery",
-            "text": "Clynelish",
-            "xytext": (8, -8),
-            "ha": "left",
-            "fontsize": 8,
-            "color": "#555555"
-        },
-        {
-            "target": "Deanston",
-            "column": "Distillery",
-            "text": "Deanston",
-            "xytext": (8, 8),
-            "ha": "left",
-            "fontsize": 8,
-            "color": "#555555"
-        },
-        {
-            "target": "Blair Athol",
-            "column": "Distillery",
-            "text": "Blair Athol",
-            "xytext": (-8, -10),
-            "ha": "right",
-            "fontsize": 8,
-            "color": "#555555"
-        },
-        {
-            "target": "Teaninich",
-            "column": "Distillery",
-            "text": "Teaninich",
-            "xytext": (8, 10),
-            "ha": "left",
-            "fontsize": 8,
-            "color": "#555555"
-        }
-    ],
 
     "dot_style": {
         "color": "#1F8FA8",
