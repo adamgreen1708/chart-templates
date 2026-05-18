@@ -1,5 +1,5 @@
 CHART_CONFIG = {
-    "data_file": "data/region_quadrants/scotch_whisky_quadrants_islands.csv",
+    "data_file": "data/region_quadrants/scotch_whisky_quadrants_lowlands.csv",
 
     "data_format": "wide",
     "chart_type": "scatter",
@@ -10,8 +10,8 @@ CHART_CONFIG = {
     "series_col": None,
     "value_col": None,
 
-    "title": "The Islands sit between comfort and smoke",
-    "subtitle": "Island whiskies spread across the middle of the map, with Talisker pulling furthest towards the peaty edge.",
+    "title": "Lowlands stay firmly in the approachable zone",
+    "subtitle": "Lowland whiskies cluster around lighter, softer and less smoky flavour profiles than most other Scotch regions.",
 
     "source_text": "Source: Kaggle Scotch Whisky Flavour Dataset",
     "footer_left": "Adam Green | coffeetableviz",
@@ -21,8 +21,15 @@ CHART_CONFIG = {
     "x_label": "Peat index (smoky + medicinal)",
     "y_label": "Approachable index (sweet + fruity + honey)",
 
-    "x_axis": {"min": 0, "max": 11},
-    "y_axis": {"min": 0, "max": 11},
+    "x_axis": {
+        "min": 0,
+        "max": 11
+    },
+
+    "y_axis": {
+        "min": 0,
+        "max": 11
+    },
 
     "reference_lines": [
         {
