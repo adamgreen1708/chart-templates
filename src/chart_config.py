@@ -76,15 +76,6 @@ CHART_CONFIG = {
             "color": "#555555"
         },
         {
-            "target": "Old Pulteney",
-            "column": "Distillery",
-            "text": "Old Pulteney",
-            "xytext": (8, 8),
-            "ha": "left",
-            "fontsize": 8,
-            "color": "#555555"
-        },
-        {
             "target": "Dalmore",
             "column": "Distillery",
             "text": "Dalmore",
