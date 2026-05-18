@@ -10,7 +10,7 @@ CHART_CONFIG = {
     "series_col": None,
     "value_col": None,
 
-    "title": "The Highlands span almost the full flavour map",
+    "title": "The Highlands span the map",
     "subtitle": "Unlike tightly clustered Speyside or peat-heavy Islay, Highland whiskies spread across a much broader flavour landscape.",
 
     "source_text": "Source: Kaggle Scotch Whisky Flavour Dataset",
@@ -90,6 +90,51 @@ CHART_CONFIG = {
             "text": "Dalmore",
             "xytext": (-10, 12),
             "ha": "right",
+            "fontsize": 8,
+            "color": "#555555"
+        },
+        {
+            "target": "Clynelish",
+            "column": "Distillery",
+            "text": "Clynelish",
+            "xytext": (8, -8),
+            "ha": "left",
+            "fontsize": 8,
+            "color": "#555555"
+        },
+        {
+            "target": "Deanston",
+            "column": "Distillery",
+            "text": "Deanston",
+            "xytext": (8, 8),
+            "ha": "left",
+            "fontsize": 8,
+            "color": "#555555"
+        },
+        {
+            "target": "Blair Athol",
+            "column": "Distillery",
+            "text": "Blair Athol",
+            "xytext": (-8, -10),
+            "ha": "right",
+            "fontsize": 8,
+            "color": "#555555"
+        },
+        {
+            "target": "Tomatin",
+            "column": "Distillery",
+            "text": "Tomatin",
+            "xytext": (10, 0),
+            "ha": "left",
+            "fontsize": 8,
+            "color": "#555555"
+        },
+        {
+            "target": "Teaninich",
+            "column": "Distillery",
+            "text": "Teaninich",
+            "xytext": (8, 10),
+            "ha": "left",
             "fontsize": 8,
             "color": "#555555"
         }
