@@ -1,6 +1,5 @@
 CHART_CONFIG = {
     "data_file": "data/region_quadrants/scotch_whisky_quadrants_campbeltown.csv",
-
     "data_format": "wide",
     "chart_type": "scatter",
 
@@ -10,8 +9,8 @@ CHART_CONFIG = {
     "series_col": None,
     "value_col": None,
 
-    "title": "Campbeltown punches above its footprint",
-    "subtitle": "Scotland’s smallest whisky region still spans a surprisingly broad flavour range between approachable and smoky styles.",
+    "title": "Campbeltown sits right on the boundary",
+    "subtitle": "With only two distilleries in this dataset, Campbeltown lands almost exactly between peat and approachability.",
 
     "source_text": "Source: Kaggle Scotch Whisky Flavour Dataset",
     "footer_left": "Adam Green | coffeetableviz",
@@ -21,53 +20,24 @@ CHART_CONFIG = {
     "x_label": "Peat index (smoky + medicinal)",
     "y_label": "Approachable index (sweet + fruity + honey)",
 
-    "x_axis": {
-        "min": 0,
-        "max": 11
-    },
-
-    "y_axis": {
-        "min": 0,
-        "max": 11
-    },
+    "x_axis": {"min": 0, "max": 11},
+    "y_axis": {"min": 0, "max": 11},
 
     "reference_lines": [
-        {
-            "axis": "x",
-            "value": 4,
-            "label": "high peat",
-            "color": "#999999",
-            "linestyle": "--",
-            "linewidth": 1.0,
-            "alpha": 0.5
-        },
-        {
-            "axis": "y",
-            "value": 5,
-            "label": "more approachable",
-            "color": "#999999",
-            "linestyle": "--",
-            "linewidth": 1.0,
-            "alpha": 0.5
-        }
+        {"axis": "x", "value": 4, "label": "high peat", "color": "#999999", "linestyle": "--", "linewidth": 1.0, "alpha": 0.5},
+        {"axis": "y", "value": 5, "label": "more approachable", "color": "#999999", "linestyle": "--", "linewidth": 1.0, "alpha": 0.5}
     ],
 
-    "label_style": {
-        "enabled": True,
-        "label_col": "Distillery",
-        "fontsize": 8,
-        "position": "right",
-        "label_format": "{}"
-    },
+    "label_style": {"enabled": False},
 
-    "dot_style": {
-        "color": "#1F8FA8",
-        "alpha": 0.75,
-        "size": 75
-    },
+    "annotate_points": [
+        {"target": "GlenScotia", "column": "Distillery", "text": "Glen Scotia", "xytext": (10, -10), "ha": "left", "fontsize": 8, "color": "#555555"},
+        {"target": "Springbank", "column": "Distillery", "text": "Springbank", "xytext": (10, 10), "ha": "left", "fontsize": 8, "color": "#555555"}
+    ],
+
+    "dot_style": {"color": "#1F8FA8", "alpha": 0.75, "size": 85},
 
     "figure_size": (10, 10),
-
     "plot_left": 0.14,
     "plot_right": 0.92,
     "plot_top": 0.80,
