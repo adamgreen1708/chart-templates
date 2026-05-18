@@ -21,8 +21,15 @@ CHART_CONFIG = {
     "x_label": "Peat index (smoky + medicinal)",
     "y_label": "Approachable index (sweet + fruity + honey)",
 
-    "x_axis": {"min": 0, "max": 11},
-    "y_axis": {"min": 0, "max": 11},
+    "x_axis": {
+        "min": 0,
+        "max": 11
+    },
+
+    "y_axis": {
+        "min": 0,
+        "max": 11
+    },
 
     "reference_lines": [
         {
@@ -45,51 +52,18 @@ CHART_CONFIG = {
         }
     ],
 
-    "label_style": {"enabled": False},
-
-    "annotate_points": [
-        {
-            "target": "Ardbeg",
-            "column": "Distillery",
-            "text": "Ardbeg",
-            "xytext": (8, 0),
-            "ha": "left",
-            "fontsize": 8,
-            "color": "#555555"
-        },
-        {
-            "target": "Lagavulin",
-            "column": "Distillery",
-            "text": "Lagavulin",
-            "xytext": (8, -8),
-            "ha": "left",
-            "fontsize": 8,
-            "color": "#555555"
-        },
-        {
-            "target": "Laphroig",
-            "column": "Distillery",
-            "text": "Laphroig",
-            "xytext": (8, 8),
-            "ha": "left",
-            "fontsize": 8,
-            "color": "#555555"
-        },
-        {
-            "target": "Caol Ila",
-            "column": "Distillery",
-            "text": "Caol Ila",
-            "xytext": (8, 0),
-            "ha": "left",
-            "fontsize": 8,
-            "color": "#555555"
-        }
-    ],
+    "label_style": {
+        "enabled": True,
+        "label_col": "Distillery",
+        "fontsize": 8,
+        "position": "right",
+        "label_format": "{}"
+    },
 
     "dot_style": {
         "color": "#1F8FA8",
-        "alpha": 0.75,
-        "size": 75
+        "alpha": 0.80,
+        "size": 80
     },
 
     "figure_size": (10, 10),
