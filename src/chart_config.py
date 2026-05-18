@@ -1,5 +1,5 @@
 CHART_CONFIG = {
-    "data_file": "data/region_quadrants/scotch_whisky_quadrants_lowlands.csv",
+    "data_file": "data/region_quadrants/scotch_whisky_quadrants_campbeltown.csv",
 
     "data_format": "wide",
     "chart_type": "scatter",
@@ -10,8 +10,8 @@ CHART_CONFIG = {
     "series_col": None,
     "value_col": None,
 
-    "title": "Lowlands stay firmly approachable",
-    "subtitle": "Lowland whiskies cluster around lighter, softer and less smoky flavour profiles than most other Scotch regions.",
+    "title": "Campbeltown punches above its footprint",
+    "subtitle": "Scotland’s smallest whisky region still spans a surprisingly broad flavour range between approachable and smoky styles.",
 
     "source_text": "Source: Kaggle Scotch Whisky Flavour Dataset",
     "footer_left": "Adam Green | coffeetableviz",
