@@ -10,7 +10,7 @@ CHART_CONFIG = {
     "series_col": None,
     "value_col": None,
 
-    "title": "Lowlands stay firmly in the approachable zone",
+    "title": "Lowlands stay firmly approachable",
     "subtitle": "Lowland whiskies cluster around lighter, softer and less smoky flavour profiles than most other Scotch regions.",
 
     "source_text": "Source: Kaggle Scotch Whisky Flavour Dataset",
