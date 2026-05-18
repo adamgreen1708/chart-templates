@@ -1,5 +1,6 @@
 CHART_CONFIG = {
-    "data_file": "data/scotch_whisky_flavour_quadrants.csv",
+    "data_file": "data/region_quadrants/scotch_whisky_quadrants_speyside.csv",
+
     "data_format": "wide",
     "chart_type": "scatter",
 
@@ -9,8 +10,8 @@ CHART_CONFIG = {
     "series_col": None,
     "value_col": None,
 
-    "title": "Most Scotch sits nowhere near the peat extreme",
-    "subtitle": "Sweetness, fruit and honey dominate much of the Scotch landscape once smoky and medicinal notes are isolated.",
+    "title": "Speyside lives far from the peat extreme",
+    "subtitle": "Most Speyside whiskies cluster around sweeter, fruitier and more approachable flavour profiles.",
 
     "source_text": "Source: Kaggle Scotch Whisky Flavour Dataset",
     "footer_left": "Adam Green | coffeetableviz",
@@ -35,26 +36,23 @@ CHART_CONFIG = {
             "axis": "x",
             "value": 4,
             "label": "high peat",
-            "color": "#777777",
+            "color": "#999999",
             "linestyle": "--",
             "linewidth": 1.0,
-            "alpha": 0.6
+            "alpha": 0.5
         },
         {
             "axis": "y",
             "value": 5,
             "label": "more approachable",
-            "color": "#777777",
+            "color": "#999999",
             "linestyle": "--",
             "linewidth": 1.0,
-            "alpha": 0.6
+            "alpha": 0.5
         }
     ],
 
     "highlight_points": [
-        {"target": "Ardbeg", "column": "Distillery"},
-        {"target": "Lagavulin", "column": "Distillery"},
-        {"target": "Laphroig", "column": "Distillery"},
         {"target": "Macallan", "column": "Distillery"},
         {"target": "Glenlivet", "column": "Distillery"},
         {"target": "Aberlour", "column": "Distillery"}
@@ -62,28 +60,26 @@ CHART_CONFIG = {
 
     "highlight_style": {
         "color": "#C44E52",
-        "size": 140,
+        "size": 130,
         "alpha": 1.0
     },
 
-    "highlight_colour": "#C44E52",
-
     "annotate_points": [
         {
-            "target": "Laphroig",
+            "target": "Macallan",
             "column": "Distillery",
-            "text": "classic peat monster",
-            "xytext": (20, 0),
-            "ha": "left",
+            "text": "rich and approachable",
+            "xytext": (-25, 20),
+            "ha": "right",
             "color": "#555555",
             "fontsize": 9
         },
         {
-            "target": "Macallan",
+            "target": "Glenlivet",
             "column": "Distillery",
-            "text": "rich but approachable",
-            "xytext": (-30, 20),
-            "ha": "right",
+            "text": "classic easy-drinking Speyside",
+            "xytext": (15, -18),
+            "ha": "left",
             "color": "#555555",
             "fontsize": 9
         }
@@ -91,8 +87,8 @@ CHART_CONFIG = {
 
     "dot_style": {
         "color": "#1F8FA8",
-        "alpha": 0.45,
-        "size": 60
+        "alpha": 0.55,
+        "size": 70
     },
 
     "figure_size": (10, 10),
@@ -109,5 +105,8 @@ CHART_CONFIG = {
     "tick_label_fontsize": 9,
     "axis_label_fontsize": 10,
     "title_fontsize": 24,
-    "subtitle_fontsize": 12
+    "subtitle_fontsize": 12,
+
+    "title_wrap_width": 42,
+    "subtitle_wrap_width": 78
 }
