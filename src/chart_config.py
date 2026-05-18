@@ -112,15 +112,6 @@ CHART_CONFIG = {
             "color": "#555555"
         },
         {
-            "target": "Tomatin",
-            "column": "Distillery",
-            "text": "Tomatin",
-            "xytext": (10, 0),
-            "ha": "left",
-            "fontsize": 8,
-            "color": "#555555"
-        },
-        {
             "target": "Teaninich",
             "column": "Distillery",
             "text": "Teaninich",
