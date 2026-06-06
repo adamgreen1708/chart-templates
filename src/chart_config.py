@@ -36,8 +36,8 @@ CHART_CONFIG = {
 
     "x_axis": {
         "min": 0,
-        "max": 145,
-        "tick_interval": 25,
+        "max": 160,
+        "tick_interval": 20,
         "format": "currency"
     },
 
