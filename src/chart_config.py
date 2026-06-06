@@ -4,25 +4,29 @@ CHART_CONFIG = {
     # ---------------------------
     "data_file": "data/athlete_earnings_top50_cleaned.csv",
     "data_format": "wide",
-    "chart_type": "scatter",
+    "chart_type": "dot",
 
-    "x_col": "on_field_earnings_usd_m",
-    "y_col": "off_field_earnings_usd_m",
+    "x_col": "off_field_earnings_usd_m",
+    "y_col": "name",
     "series_col": None,
     "value_col": None,
+
+    "filters": [
+        {"column": "off_field_earnings_usd_m", "operator": ">=", "value": 30}
+    ],
 
     # ---------------------------
     # STORY
     # ---------------------------
-    "title": "Most fortunes still made in comp",
-    "subtitle": "Only six of the top 50 earn more off the field (vertical axis) than they do from salary, winnings or prize money (horizontal axis).",
+    "title": "Ohtani has turned fame into the main event",
+    "subtitle": "His estimated $125m away from baseball is $40m more than anyone else in the top 50.",
     "source_text": "Source: Forbes, 2026",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "relationship",
+    "story_angle": "ranked_comparison",
     "focus_series": None,
     "secondary_series": None,
-    "label_strategy": "focus_only",
+    "label_strategy": "all",
 
     # ---------------------------
     # AXES
@@ -32,20 +36,23 @@ CHART_CONFIG = {
 
     "x_axis": {
         "min": 0,
-        "max": 250,
-        "tick_interval": 50,
+        "max": 145,
+        "tick_interval": 25,
         "format": "currency"
     },
 
-    "y_axis_min": 0,
-    "y_axis_max": 250,
-    "y_tick_interval": 50,
-    "y_tick_format": "currency",
+    "y_axis_min": None,
+    "y_axis_max": None,
+    "y_tick_interval": None,
+    "y_tick_format": None,
 
     # ---------------------------
     # SORTING
     # ---------------------------
-    "sort": None,
+    "sort": {
+        "by": "off_field_earnings_usd_m",
+        "ascending": True
+    },
     "sort_descending": False,
     # ---------------------------
     # MARKS
@@ -119,7 +126,7 @@ CHART_CONFIG = {
 
     "plot_top": 0.74,
     "plot_bottom": 0.13,
-    "plot_left": 0.14,
+    "plot_left": 0.27,
     "plot_right": 0.90,
 
     "vertical_gridlines": False,
@@ -128,62 +135,32 @@ CHART_CONFIG = {
     # OUTPUT
     # ---------------------------
     "dpi": 200,
-    "reference_lines": [
-        {
-            "axis": "diagonal",
-            "label": "Equal on- and off-field earnings",
-            "color": "#7A7A7A",
-            "linestyle": "--",
-            "linewidth": 1.0,
-            "alpha": 0.7,
-            "rotation": 29
-        }
-    ],
+    "reference_lines": [],
 
     "highlight_points": [
-        {"column": "name", "target": "Shohei Ohtani"},
-        {"column": "name", "target": "LeBron James"},
-        {"column": "name", "target": "Rory McIlroy"},
-        {"column": "name", "target": "Carlos Alcaraz"},
-        {"column": "name", "target": "Jannik Sinner"},
-        {"column": "name", "target": "Stephen Curry"}
+        {"column": "name", "target": "Shohei Ohtani"}
     ],
 
     "annotate_points": [
         {
             "column": "name",
             "target": "Shohei Ohtani",
-            "label": "Ohtani\n$2.6m on, 125m off",
-            "xytext": (14, -4),
+            "label": "$125m",
+            "xytext": (8, 0),
             "ha": "left",
             "va": "center",
             "fontsize": 9,
             "color": "#C44E52",
             "fontweight": "bold",
-            "arrowprops": {
-                "arrowstyle": "->",
-                "color": "#C44E52",
-                "lw": 1.0
-            }
-        },
-        {
-            "column": "name",
-            "target": "LeBron James",
-            "label": "LeBron",
-            "xytext": (10, 10),
-            "ha": "left",
-            "va": "bottom",
-            "fontsize": 8,
-            "color": "#555555",
             "arrowprops": None
         },
         {
             "column": "name",
-            "target": "Rory McIlroy",
-            "label": "McIlroy",
-            "xytext": (10, 7),
+            "target": "LeBron James",
+            "label": "$85m",
+            "xytext": (8, 0),
             "ha": "left",
-            "va": "bottom",
+            "va": "center",
             "fontsize": 8,
             "color": "#555555",
             "arrowprops": None
@@ -200,5 +177,5 @@ CHART_CONFIG = {
         "fontsize": 8
     },
 
-    "output_file": "output/athlete_earnings_02_on_vs_off.png"
+    "output_file": "output/athlete_earnings_03_off_field.png"
 }
