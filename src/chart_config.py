@@ -14,7 +14,7 @@ CHART_CONFIG = {
     # ---------------------------
     # STORY
     # ---------------------------
-    "title": "Most fortunes are still made in competition",
+    "title": "Most fortunes still made in comp",
     "subtitle": "Only six of the top 50 earn more off the field than they do from salary, winnings or prize money.",
     "source_text": "Source: Forbes, 2026",
     "footer_left": "Adam Green | coffeetableviz",
@@ -38,8 +38,8 @@ CHART_CONFIG = {
     },
 
     "y_axis_min": 0,
-    "y_axis_max": 140,
-    "y_tick_interval": 20,
+    "y_axis_max": 250,
+    "y_tick_interval": 50,
     "y_tick_format": "currency",
 
     # ---------------------------
@@ -153,7 +153,7 @@ CHART_CONFIG = {
         {
             "column": "name",
             "target": "Shohei Ohtani",
-            "label": "Ohtani\n$2.6m on Â· $125m off",
+            "label": "Ohtani\n$2.6m on, 125m off",
             "xytext": (14, -4),
             "ha": "left",
             "va": "center",
