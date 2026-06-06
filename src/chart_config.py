@@ -19,7 +19,7 @@ CHART_CONFIG = {
     # STORY
     # ---------------------------
     "title": "Ohtani turned fame into the main event",
-    "subtitle": "His estimated $125m off the baseball field is $40m more than anyone else in the top 50.",
+    "subtitle": "His est. $125m off the baseball field is $40m more than anyone else in the top50.",
     "source_text": "Source: Forbes, 2026",
     "footer_left": "Adam Green | coffeetableviz",
 
