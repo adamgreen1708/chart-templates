@@ -19,7 +19,7 @@ CHART_CONFIG = {
     # STORY
     # ---------------------------
     "title": "Ronaldo is in a league of his own",
-    "subtitle": "His $300m total is a whopping $150m clear of second place in the 2026 top-earners list.",
+    "subtitle": "His total is a whopping $150m clear of 2nd place in the 2026 top-earners list.",
     "source_text": "Source: Forbes, 2026",
     "footer_left": "Adam Green | coffeetableviz",
 
