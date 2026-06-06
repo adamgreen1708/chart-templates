@@ -19,7 +19,7 @@ CHART_CONFIG = {
     # STORY
     # ---------------------------
     "title": "Ohtani has turned his sporting fame into the $ main event",
-    "subtitle": "His $125m off field is $40m more than anyone else in the top50.",
+    "subtitle": "His $125m off field is $40m clear of the top 50.",
     "source_text": "Source: Forbes, 2026",
     "footer_left": "Adam Green | coffeetableviz",
 
