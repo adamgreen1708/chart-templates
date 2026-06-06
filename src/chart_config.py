@@ -1,57 +1,181 @@
 CHART_CONFIG = {
-    "data_file": "data/region_quadrants/scotch_whisky_quadrants_campbeltown.csv",
+    # ---------------------------
+    # DATA
+    # ---------------------------
+    "data_file": "data/athlete_earnings_top50_cleaned.csv",
     "data_format": "wide",
-    "chart_type": "scatter",
+    "chart_type": "dot",
 
-    "x_col": "Peat_Index",
-    "y_col": "Approachable_Index",
-
+    "x_col": "total_earnings_usd_m",
+    "y_col": "name",
     "series_col": None,
     "value_col": None,
 
-    "title": "Campbeltown sits right on the boundary",
-    "subtitle": "With only two distilleries in this dataset, Campbeltown lands almost exactly between peat and approachability.",
+    "filters": [
+        {"column": "rank", "operator": "<=", "value": 15}
+    ],
 
-    "source_text": "Source: Kaggle Scotch Whisky Flavour Dataset",
+    # ---------------------------
+    # STORY
+    # ---------------------------
+    "title": "Ronaldo is in a league of his own",
+    "subtitle": "His estimated $300m total is $130m clear of second place in the 2026 top-earners list.",
+    "source_text": "Source: Forbes, 2026",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "relationship",
+    "story_angle": "ranked_comparison",
+    "focus_series": None,
+    "secondary_series": None,
+    "label_strategy": "all",
 
-    "x_label": "Peat index (smoky + medicinal)",
-    "y_label": "Approachable index (sweet + fruity + honey)",
+    # ---------------------------
+    # AXES
+    # ---------------------------
+    "x_is_datetime": False,
+    "x_tick_rotation": 0,
 
-    "x_axis": {"min": 0, "max": 11},
-    "y_axis": {"min": 0, "max": 11},
+    "x_axis": {
+        "min": 0,
+        "max": 330,
+        "tick_interval": 50,
+        "format": "currency"
+    },
 
-    "reference_lines": [
-        {"axis": "x", "value": 4, "label": "high peat", "color": "#999999", "linestyle": "--", "linewidth": 1.0, "alpha": 0.5},
-        {"axis": "y", "value": 5, "label": "more approachable", "color": "#999999", "linestyle": "--", "linewidth": 1.0, "alpha": 0.5}
-    ],
+    "y_axis_min": None,
+    "y_axis_max": None,
+    "y_tick_interval": None,
+    "y_tick_format": None,
 
-    "label_style": {"enabled": False},
+    # ---------------------------
+    # SORTING
+    # ---------------------------
+    "sort": {
+        "by": "total_earnings_usd_m",
+        "ascending": True
+    },
+    "sort_descending": False,
+    # ---------------------------
+    # MARKS
+    # ---------------------------
+    "line_width": 2.6,
+    "marker_size": 60,
+    "show_markers": True,
+    "auto_end_labels": False,
 
-    "annotate_points": [
-        {"target": "GlenScotia", "column": "Distillery", "text": "Glen Scotia", "xytext": (10, -10), "ha": "left", "fontsize": 8, "color": "#555555"},
-        {"target": "Springbank", "column": "Distillery", "text": "Springbank", "xytext": (10, 10), "ha": "left", "fontsize": 8, "color": "#555555"}
-    ],
+    # ---------------------------
+    # STYLING
+    # ---------------------------
+    "dot_style": {
+        "color": "#D9D9D9",
+        "size": 48,
+        "alpha": 0.55
+    },
 
-    "dot_style": {"color": "#1F8FA8", "alpha": 0.75, "size": 85},
+    "highlight_style": {
+        "color": "#C44E52",
+        "size": 90,
+        "alpha": 1.0
+    },
 
-    "figure_size": (10, 10),
-    "plot_left": 0.14,
-    "plot_right": 0.92,
-    "plot_top": 0.80,
-    "plot_bottom": 0.14,
+    "context_style": {
+        "color": "#D9D9D9",
+        "linewidth": 0.8,
+        "alpha": 0.25,
+    },
 
+    "focus_style": {
+        "color": "#1F8FA8",
+        "linewidth": 3.2,
+        "alpha": 1.0,
+    },
+
+    "secondary_style": {
+        "color": "#7A7A7A",
+        "linewidth": 2.0,
+        "alpha": 0.9,
+    },
+
+    # ---------------------------
+    # TYPOGRAPHY
+    # ---------------------------
+    "title_fontsize": 22,
+    "subtitle_fontsize": 12,
+    "tick_label_fontsize": 10,
+    "axis_label_fontsize": 10,
+    "footer_fontsize": 9,
+
+    "title_wrap_width": 38,
+    "subtitle_wrap_width": 68,
+    "title_max_lines": 2,
+    "subtitle_max_lines": 2,
+
+    # ---------------------------
+    # LAYOUT
+    # ---------------------------
+    "fig_width": 8.0,
+    "fig_height": 8.0,
+
+    "title_x": 0.10,
     "title_y": 0.93,
-    "subtitle_y": 0.885,
+    "subtitle_x": 0.10,
+    "subtitle_y": 0.855,
+
+    "footer_left_x": 0.10,
+    "footer_right_x": 0.90,
     "footer_y": 0.055,
 
-    "tick_label_fontsize": 9,
-    "axis_label_fontsize": 10,
-    "title_fontsize": 24,
-    "subtitle_fontsize": 12,
+    "plot_top": 0.74,
+    "plot_bottom": 0.13,
+    "plot_left": 0.27,
+    "plot_right": 0.90,
 
-    "title_wrap_width": 42,
-    "subtitle_wrap_width": 78
+    "vertical_gridlines": False,
+
+    # ---------------------------
+    # OUTPUT
+    # ---------------------------
+    "dpi": 200,
+    "highlight_points": [
+        {"column": "name", "target": "Cristiano Ronaldo"}
+    ],
+
+    "reference_lines": [],
+
+    "annotate_points": [
+        {
+            "column": "name",
+            "target": "Cristiano Ronaldo",
+            "label": "$300m",
+            "xytext": (-8, 14),
+            "ha": "right",
+            "va": "bottom",
+            "fontsize": 9,
+            "color": "#C44E52",
+            "fontweight": "bold",
+            "arrowprops": None
+        },
+        {
+            "column": "name",
+            "target": "Canelo Alvarez",
+            "label": "$170m",
+            "xytext": (8, 0),
+            "ha": "left",
+            "va": "center",
+            "fontsize": 8,
+            "color": "#555555",
+            "arrowprops": None
+        }
+    ],
+
+    "end_labels": [],
+
+    "label_style": {
+        "enabled": False,
+        "label_col": None,
+        "label_format": "{}",
+        "position": "right",
+        "fontsize": 8
+    },
+
+    "output_file": "output/athlete_earnings_01_total_top15.png"
 }
