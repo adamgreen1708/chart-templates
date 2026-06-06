@@ -105,7 +105,7 @@ CHART_CONFIG = {
     "footer_fontsize": 9,
 
     "title_wrap_width": 38,
-    "subtitle_wrap_width": 68,
+    "subtitle_wrap_width": 85,
     "title_max_lines": 2,
     "subtitle_max_lines": 2,
 
