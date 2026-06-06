@@ -15,7 +15,7 @@ CHART_CONFIG = {
     # STORY
     # ---------------------------
     "title": "Most fortunes still made in comp",
-    "subtitle": "Only six of the top 50 earn more off the field than they do from salary, winnings or prize money.",
+    "subtitle": "Only six of the top 50 earn more off the field (vertical axis) than they do from salary, winnings or prize money (horizontal axis).",
     "source_text": "Source: Forbes, 2026",
     "footer_left": "Adam Green | coffeetableviz",
 
