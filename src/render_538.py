@@ -114,7 +114,7 @@ def apply_538_template(
         va="top",
         fontsize=subtitle_fontsize,
         color=subtext_color,
-        linespacing=1.15,
+        linespacing=1.25,
     )
 
     fig.text(
