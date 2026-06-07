@@ -15,7 +15,7 @@ CHART_CONFIG = {
     # STORY
     # ---------------------------
     "title": "Every sport has stars. Football has Ronaldo.",
-    "subtitle": "Each dot is one of the world’s 50 highest-paid athletes; Ronaldo sits far beyond every other player.",
+    "subtitle": "Each dot is one of the world’s 50 highest-paid athletes; labels show the leading earner in each sport.",
     "source_text": "Source: Forbes, 2026",
     "footer_left": "Adam Green | coffeetableviz",
 
@@ -32,7 +32,7 @@ CHART_CONFIG = {
 
     "x_axis": {
         "min": 50,
-        "max": 330,
+        "max": 335,
         "tick_interval": 50,
         "format": "currency"
     },
@@ -125,20 +125,80 @@ CHART_CONFIG = {
             "ha": "left",
             "va": "center",
             "fontsize": 8,
-            "color": "#555555",
-            "fontweight": "normal",
+            "color": "#333333",
+            "fontweight": "bold",
+            "arrowprops": None
+        },
+        {
+            "column": "name",
+            "target": "LeBron James",
+            "label": "LeBron James · $137.8m",
+            "xytext": (8, 0),
+            "ha": "left",
+            "va": "center",
+            "fontsize": 8,
+            "color": "#333333",
+            "fontweight": "bold",
             "arrowprops": None
         },
         {
             "column": "name",
             "target": "Shohei Ohtani",
             "label": "Shohei Ohtani · $127.6m",
-            "xytext": (8, -10),
+            "xytext": (8, 0),
             "ha": "left",
-            "va": "top",
+            "va": "center",
             "fontsize": 8,
-            "color": "#555555",
-            "fontweight": "normal",
+            "color": "#333333",
+            "fontweight": "bold",
+            "arrowprops": None
+        },
+        {
+            "column": "name",
+            "target": "Jon Rahm",
+            "label": "Jon Rahm · $107m",
+            "xytext": (8, 0),
+            "ha": "left",
+            "va": "center",
+            "fontsize": 8,
+            "color": "#333333",
+            "fontweight": "bold",
+            "arrowprops": None
+        },
+        {
+            "column": "name",
+            "target": "Lewis Hamilton",
+            "label": "Lewis Hamilton · $100m",
+            "xytext": (8, 0),
+            "ha": "left",
+            "va": "center",
+            "fontsize": 8,
+            "color": "#333333",
+            "fontweight": "bold",
+            "arrowprops": None
+        },
+        {
+            "column": "name",
+            "target": "Micah Parsons",
+            "label": "Micah Parsons · $86.4m",
+            "xytext": (8, 0),
+            "ha": "left",
+            "va": "center",
+            "fontsize": 8,
+            "color": "#333333",
+            "fontweight": "bold",
+            "arrowprops": None
+        },
+        {
+            "column": "name",
+            "target": "Carlos Alcaraz",
+            "label": "Carlos Alcaraz · $61.5m",
+            "xytext": (8, 0),
+            "ha": "left",
+            "va": "center",
+            "fontsize": 8,
+            "color": "#333333",
+            "fontweight": "bold",
             "arrowprops": None
         }
     ],
