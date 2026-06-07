@@ -5,10 +5,17 @@ from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
 
+import matplotlib as mpl
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.ticker import FuncFormatter, MultipleLocator
+
+
+# Prevent currency symbols in titles, subtitles and labels
+# from being interpreted as Matplotlib MathText.
+mpl.rcParams["text.parse_math"] = False
+mpl.rcParams["text.usetex"] = False
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SRC_DIR = REPO_ROOT / "src"
