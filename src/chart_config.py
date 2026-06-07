@@ -6,27 +6,23 @@ CHART_CONFIG = {
     "data_format": "wide",
     "chart_type": "dot",
 
-    "x_col": "off_field_earnings_usd_m",
-    "y_col": "name",
+    "x_col": "total_earnings_usd_m",
+    "y_col": "sport",
     "series_col": None,
     "value_col": None,
-
-    "filters": [
-        {"column": "off_field_earnings_usd_m", "operator": ">=", "value": 30}
-    ],
 
     # ---------------------------
     # STORY
     # ---------------------------
-    "title": "Ohtani has turned his sporting fame into the $ main event",
-    "subtitle": "His estimated $125m off the baseball field is $40m clear of the top 50.",
+    "title": "Every sport has stars. Football has Ronaldo.",
+    "subtitle": "Each dot is one of the world’s 50 highest-paid athletes; Ronaldo sits far beyond every other player.",
     "source_text": "Source: Forbes, 2026",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "ranked_comparison",
+    "story_angle": "distribution",
     "focus_series": None,
     "secondary_series": None,
-    "label_strategy": "all",
+    "label_strategy": "focus_only",
 
     # ---------------------------
     # AXES
@@ -35,9 +31,9 @@ CHART_CONFIG = {
     "x_tick_rotation": 0,
 
     "x_axis": {
-        "min": 0,
-        "max": 160,
-        "tick_interval": 20,
+        "min": 50,
+        "max": 330,
+        "tick_interval": 50,
         "format": "currency"
     },
 
@@ -50,10 +46,11 @@ CHART_CONFIG = {
     # SORTING
     # ---------------------------
     "sort": {
-        "by": "off_field_earnings_usd_m",
+        "by": "total_earnings_usd_m",
         "ascending": True
     },
     "sort_descending": False,
+
     # ---------------------------
     # MARKS
     # ---------------------------
@@ -66,33 +63,94 @@ CHART_CONFIG = {
     # STYLING
     # ---------------------------
     "dot_style": {
-        "color": "#D9D9D9",
-        "size": 48,
-        "alpha": 0.55
+        "color": "#1F8FA8",
+        "size": 54,
+        "alpha": 0.72
     },
 
     "highlight_style": {
         "color": "#C44E52",
-        "size": 90,
+        "size": 110,
         "alpha": 1.0
     },
 
     "context_style": {
         "color": "#D9D9D9",
         "linewidth": 0.8,
-        "alpha": 0.25,
+        "alpha": 0.25
     },
 
     "focus_style": {
         "color": "#1F8FA8",
         "linewidth": 3.2,
-        "alpha": 1.0,
+        "alpha": 1.0
     },
 
     "secondary_style": {
         "color": "#7A7A7A",
         "linewidth": 2.0,
-        "alpha": 0.9,
+        "alpha": 0.9
+    },
+
+    # ---------------------------
+    # ANNOTATIONS
+    # ---------------------------
+    "reference_lines": [],
+
+    "highlight_points": [
+        {
+            "column": "name",
+            "target": "Cristiano Ronaldo"
+        }
+    ],
+
+    "annotate_points": [
+        {
+            "column": "name",
+            "target": "Cristiano Ronaldo",
+            "label": "Cristiano Ronaldo · $300m",
+            "xytext": (-8, 14),
+            "ha": "right",
+            "va": "bottom",
+            "fontsize": 9,
+            "color": "#C44E52",
+            "fontweight": "bold",
+            "arrowprops": None
+        },
+        {
+            "column": "name",
+            "target": "Canelo Alvarez",
+            "label": "Canelo Álvarez · $170m",
+            "xytext": (8, 0),
+            "ha": "left",
+            "va": "center",
+            "fontsize": 8,
+            "color": "#555555",
+            "fontweight": "normal",
+            "arrowprops": None
+        },
+        {
+            "column": "name",
+            "target": "Shohei Ohtani",
+            "label": "Shohei Ohtani · $127.6m",
+            "xytext": (8, -10),
+            "ha": "left",
+            "va": "top",
+            "fontsize": 8,
+            "color": "#555555",
+            "fontweight": "normal",
+            "arrowprops": None
+        }
+    ],
+
+    "end_labels": [],
+
+    "label_style": {
+        "enabled": False,
+        "label_col": None,
+        "label_format": "{}",
+        "position": "right",
+        "fontsize": 8
     },
 
     # ---------------------------
@@ -105,7 +163,7 @@ CHART_CONFIG = {
     "footer_fontsize": 9,
 
     "title_wrap_width": 38,
-    "subtitle_wrap_width": 85,
+    "subtitle_wrap_width": 68,
     "title_max_lines": 2,
     "subtitle_max_lines": 2,
 
@@ -126,7 +184,7 @@ CHART_CONFIG = {
 
     "plot_top": 0.74,
     "plot_bottom": 0.13,
-    "plot_left": 0.27,
+    "plot_left": 0.20,
     "plot_right": 0.90,
 
     "vertical_gridlines": False,
@@ -135,47 +193,5 @@ CHART_CONFIG = {
     # OUTPUT
     # ---------------------------
     "dpi": 200,
-    "reference_lines": [],
-
-    "highlight_points": [
-        {"column": "name", "target": "Shohei Ohtani"}
-    ],
-
-    "annotate_points": [
-        {
-            "column": "name",
-            "target": "Shohei Ohtani",
-            "label": "$125m",
-            "xytext": (8, 0),
-            "ha": "left",
-            "va": "center",
-            "fontsize": 9,
-            "color": "#C44E52",
-            "fontweight": "bold",
-            "arrowprops": None
-        },
-        {
-            "column": "name",
-            "target": "LeBron James",
-            "label": "$85m",
-            "xytext": (8, 0),
-            "ha": "left",
-            "va": "center",
-            "fontsize": 8,
-            "color": "#555555",
-            "arrowprops": None
-        }
-    ],
-
-    "end_labels": [],
-
-    "label_style": {
-        "enabled": False,
-        "label_col": None,
-        "label_format": "{}",
-        "position": "right",
-        "fontsize": 8
-    },
-
-    "output_file": "output/athlete_earnings_03_off_field.png"
+    "output_file": "output/athlete_earnings_04_players_by_sport.png"
 }
