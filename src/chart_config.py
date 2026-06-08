@@ -9,7 +9,7 @@ CHART_CONFIG = {
     "value_col": None,
 
     "title": "Arsenal’s big games were uneven",
-    "subtitle": "They swept Newcastle and took four from Chelsea, but managed only one point from both City and Liverpool.",
+    "subtitle": "They swept Newcastle, but took only one point from both Manchester City and Liverpool.",
     "source_text": "Source: Football-Data.co.uk, Premier League 2025/26 results",
     "footer_left": "Adam Green | coffeetableviz",
 
@@ -37,7 +37,7 @@ CHART_CONFIG = {
         "by": "Points",
         "ascending": False
     },
-    "sort_descending": False,
+    "sort_descending": true,
 
     "line_width": 2.6,
     "marker_size": 60,
@@ -59,19 +59,19 @@ CHART_CONFIG = {
     "context_style": {
         "color": "#D9D9D9",
         "linewidth": 0.8,
-        "alpha": 0.25,
+        "alpha": 0.25
     },
 
     "focus_style": {
         "color": "#1F8FA8",
         "linewidth": 3.2,
-        "alpha": 1.0,
+        "alpha": 1.0
     },
 
     "secondary_style": {
         "color": "#7A7A7A",
         "linewidth": 2.0,
-        "alpha": 0.9,
+        "alpha": 0.9
     },
 
     "reference_lines": [],
