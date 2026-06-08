@@ -2,24 +2,24 @@ CHART_CONFIG = {
     # ---------------------------
     # DATA
     # ---------------------------
-    "data_file": "data/goals_against_by_team.csv",
+    "data_file": "data/arsenal_2025_26_matches.csv",
     "data_format": "wide",
-    "chart_type": "dot",
+    "chart_type": "line",
 
-    "x_col": "GA",
-    "y_col": "Team",
+    "x_col": "Matchweek",
+    "y_col": "CumulativePoints",
     "series_col": None,
     "value_col": None,
 
     # ---------------------------
     # STORY
     # ---------------------------
-    "title": "Nobody could score against Arsenal",
-    "subtitle": "The champions conceded just 27 goals, eight fewer than Manchester City and well clear of the rest.",
+    "title": "The title was built before April",
+    "subtitle": "Arsenal hit 70 points by matchweek 31, then survived back-to-back defeats before finishing seven points clear.",
     "source_text": "Source: Football-Data.co.uk, Premier League 2025/26 results",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "ranked_comparison",
+    "story_angle": "time_trend",
     "focus_series": None,
     "secondary_series": None,
     "label_strategy": "focus_only",
@@ -31,31 +31,31 @@ CHART_CONFIG = {
     "x_tick_rotation": 0,
 
     "x_axis": {
-        "min": 20,
-        "max": 80,
-        "tick_interval": 10,
+        "min": 1,
+        "max": 38,
+        "tick_interval": 5,
         "format": None
     },
 
-    "y_axis_min": None,
-    "y_axis_max": None,
-    "y_tick_interval": None,
+    "y_axis_min": 0,
+    "y_axis_max": 90,
+    "y_tick_interval": 10,
     "y_tick_format": None,
 
     # ---------------------------
     # SORTING
     # ---------------------------
     "sort": {
-        "by": "GA",
-        "ascending": False
+        "by": "Matchweek",
+        "ascending": True
     },
     "sort_descending": False,
 
     # ---------------------------
     # MARKS
     # ---------------------------
-    "line_width": 2.6,
-    "marker_size": 60,
+    "line_width": 3.0,
+    "marker_size": 44,
     "show_markers": True,
     "auto_end_labels": False,
 
@@ -95,27 +95,60 @@ CHART_CONFIG = {
     # ---------------------------
     # ANNOTATIONS
     # ---------------------------
-    "reference_lines": [],
-
-    "highlight_points": [
+    "reference_lines": [
         {
-            "column": "Team",
-            "value": "Arsenal"
-        },
-        {
-            "column": "Team",
-            "value": "Man City"
+            "axis": "x",
+            "value": 31,
+            "label": "70 pts before April",
+            "color": "#7A7A7A",
+            "linestyle": "--",
+            "linewidth": 1.0,
+            "alpha": 0.75
         }
     ],
 
-    "annotate_points": [],
+    "highlight_points": [
+        {
+            "column": "Matchweek",
+            "value": 31
+        },
+        {
+            "column": "Matchweek",
+            "value": 32
+        },
+        {
+            "column": "Matchweek",
+            "value": 33
+        },
+        {
+            "column": "Matchweek",
+            "value": 38
+        }
+    ],
+
+    "annotate_points": [
+        {
+            "column": "Matchweek",
+            "value": 31,
+            "text": "70 points",
+            "xytext": [8, 12],
+            "fontsize": 8
+        },
+        {
+            "column": "Matchweek",
+            "value": 38,
+            "text": "Champions: 85",
+            "xytext": [-68, 8],
+            "fontsize": 8
+        }
+    ],
 
     "end_labels": [],
 
     "label_style": {
-        "enabled": True,
-        "label_col": "GA",
-        "label_format": "{:.0f}",
+        "enabled": False,
+        "label_col": None,
+        "label_format": "{}",
         "position": "right",
         "fontsize": 8
     },
@@ -151,7 +184,7 @@ CHART_CONFIG = {
 
     "plot_top": 0.75,
     "plot_bottom": 0.14,
-    "plot_left": 0.22,
+    "plot_left": 0.12,
     "plot_right": 0.90,
 
     "vertical_gridlines": False,
