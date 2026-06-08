@@ -12,8 +12,6 @@ import numpy as np
 from matplotlib.ticker import FuncFormatter, MultipleLocator
 
 
-# Prevent currency symbols in titles, subtitles and labels
-# from being interpreted as Matplotlib MathText.
 mpl.rcParams["text.parse_math"] = False
 mpl.rcParams["text.usetex"] = False
 
@@ -35,13 +33,10 @@ SUBTEXT = "#555555"
 def _wrap_text(text: str, width: int, max_lines: int | None = None) -> str:
     if not text:
         return ""
-
     wrapped = textwrap.wrap(str(text), width=width)
-
     if max_lines is not None and len(wrapped) > max_lines:
         wrapped = wrapped[:max_lines]
         wrapped[-1] = wrapped[-1].rstrip(" .,;:") + "…"
-
     return "\n".join(wrapped)
 
 
@@ -609,16 +604,19 @@ def _plot_scatter_trend_line(ax, rows):
 
 
 def _point_matches_row(point, row):
-    if "target" in point and "column" in point:
+    if "column" in point and ("target" in point or "value" in point):
         col = point["column"]
+        target = point.get("target", point.get("value"))
+
         if col not in row:
             return False
-        return str(row[col]) == str(point["target"])
+
+        return str(row[col]) == str(target)
 
     ignored = {
         "x", "y", "label", "text", "color", "colour", "size", "alpha",
-        "xytext", "ha", "va", "fontsize", "arrowprops", "column", "target",
-        "series", "fontweight"
+        "xytext", "ha", "va", "fontsize", "arrowprops", "column",
+        "target", "value", "series", "fontweight"
     }
 
     for key, value in point.items():
@@ -781,6 +779,7 @@ def _plot_labels(ax, rows):
             fontsize=fontsize,
             color=label_style.get("color", "#4A4A4A"),
             clip_on=False,
+            zorder=7,
         )
 
 
@@ -792,6 +791,7 @@ def _plot_dot(ax, rows):
     style = CHART_CONFIG.get("dot_style", {})
     context_style = CHART_CONFIG.get("context_style", {})
     focus_style = CHART_CONFIG.get("focus_style", {})
+    highlight_style = CHART_CONFIG.get("highlight_style", {})
     focus_series = CHART_CONFIG.get("focus_series")
 
     default_size = style.get("size", CHART_CONFIG.get("marker_size", 65))
@@ -823,20 +823,28 @@ def _plot_dot(ax, rows):
 
         return
 
-    colors = [
-        CHART_CONFIG.get("highlight_colour", "#C44E52") if _row_matches_any_highlight(r)
-        else style.get("color", CHART_CONFIG.get("default_colour", "#1F8FA8"))
-        for r in rows
-    ]
+    context_rows = [r for r in rows if not _row_matches_any_highlight(r)]
+    highlight_rows = [r for r in rows if _row_matches_any_highlight(r)]
 
-    ax.scatter(
-        [r[x_col] for r in rows],
-        [r[y_col] for r in rows],
-        s=style.get("size", CHART_CONFIG.get("marker_size", 65)),
-        color=colors,
-        alpha=style.get("alpha", CHART_CONFIG.get("default_alpha", 0.8)),
-        zorder=3,
-    )
+    if context_rows:
+        ax.scatter(
+            [r[x_col] for r in context_rows],
+            [r[y_col] for r in context_rows],
+            s=style.get("size", CHART_CONFIG.get("marker_size", 65)),
+            color=style.get("color", CHART_CONFIG.get("default_colour", "#1F8FA8")),
+            alpha=style.get("alpha", CHART_CONFIG.get("default_alpha", 0.8)),
+            zorder=3,
+        )
+
+    if highlight_rows:
+        ax.scatter(
+            [r[x_col] for r in highlight_rows],
+            [r[y_col] for r in highlight_rows],
+            s=highlight_style.get("size", CHART_CONFIG.get("highlight_point_size", 90)),
+            color=highlight_style.get("color", CHART_CONFIG.get("highlight_colour", "#C44E52")),
+            alpha=highlight_style.get("alpha", 1.0),
+            zorder=6,
+        )
 
 
 def _plot_bar(ax, rows):
@@ -879,21 +887,30 @@ def _plot_scatter(ax, rows):
     y_col = CHART_CONFIG["y_col"]
 
     style = CHART_CONFIG.get("point_style", CHART_CONFIG.get("dot_style", {}))
+    highlight_style = CHART_CONFIG.get("highlight_style", {})
 
-    colors = [
-        CHART_CONFIG.get("highlight_colour", "#C44E52") if _row_matches_any_highlight(r)
-        else style.get("color", CHART_CONFIG.get("default_colour", "#1F8FA8"))
-        for r in rows
-    ]
+    context_rows = [r for r in rows if not _row_matches_any_highlight(r)]
+    highlight_rows = [r for r in rows if _row_matches_any_highlight(r)]
 
-    ax.scatter(
-        [r[x_col] for r in rows],
-        [r[y_col] for r in rows],
-        s=style.get("size", CHART_CONFIG.get("marker_size", 55)),
-        color=colors,
-        alpha=style.get("alpha", CHART_CONFIG.get("default_alpha", 0.75)),
-        zorder=3,
-    )
+    if context_rows:
+        ax.scatter(
+            [r[x_col] for r in context_rows],
+            [r[y_col] for r in context_rows],
+            s=style.get("size", CHART_CONFIG.get("marker_size", 55)),
+            color=style.get("color", CHART_CONFIG.get("default_colour", "#1F8FA8")),
+            alpha=style.get("alpha", CHART_CONFIG.get("default_alpha", 0.75)),
+            zorder=3,
+        )
+
+    if highlight_rows:
+        ax.scatter(
+            [r[x_col] for r in highlight_rows],
+            [r[y_col] for r in highlight_rows],
+            s=highlight_style.get("size", CHART_CONFIG.get("highlight_point_size", 90)),
+            color=highlight_style.get("color", CHART_CONFIG.get("highlight_colour", "#C44E52")),
+            alpha=highlight_style.get("alpha", 1.0),
+            zorder=6,
+        )
 
     _plot_scatter_trend_line(ax, rows)
 
@@ -1043,10 +1060,6 @@ def main():
         )
 
     _plot_reference_lines(ax)
-
-    if chart_type != "bar":
-        _plot_highlights(ax, rows)
-
     _plot_annotations(ax, rows)
     _plot_labels(ax, rows)
     _plot_end_labels(ax)
