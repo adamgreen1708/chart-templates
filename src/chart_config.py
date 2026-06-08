@@ -37,7 +37,7 @@ CHART_CONFIG = {
         "by": "Points",
         "ascending": False
     },
-    "sort_descending": true,
+    "sort_descending": False,
 
     "line_width": 2.6,
     "marker_size": 60,
