@@ -15,7 +15,7 @@ CHART_CONFIG = {
     # STORY
     # ---------------------------
     "title": "Nobody could score against Arsenal",
-    "subtitle": "The champions conceded just 27 goals, eight fewer than Manchester City and miles clear of the rest.",
+    "subtitle": "The champions conceded just 27 goals, eight fewer than Manchester City and well clear of the rest.",
     "source_text": "Source: Football-Data.co.uk, Premier League 2025/26 results",
     "footer_left": "Adam Green | coffeetableviz",
 
@@ -47,7 +47,7 @@ CHART_CONFIG = {
     # ---------------------------
     "sort": {
         "by": "GA",
-        "ascending": True
+        "ascending": False
     },
     "sort_descending": False,
 
@@ -108,25 +108,14 @@ CHART_CONFIG = {
         }
     ],
 
-    "annotate_points": [
-        {
-            "x": 27,
-            "y": "Arsenal",
-            "text": "Arsenal: 27"
-        },
-        {
-            "x": 35,
-            "y": "Man City",
-            "text": "Next best: 35"
-        }
-    ],
+    "annotate_points": [],
 
     "end_labels": [],
 
     "label_style": {
         "enabled": True,
         "label_col": "GA",
-        "label_format": "{}",
+        "label_format": "{:.0f}",
         "position": "right",
         "fontsize": 8
     },
@@ -140,7 +129,7 @@ CHART_CONFIG = {
     "axis_label_fontsize": 10,
     "footer_fontsize": 10,
 
-    "title_wrap_width": 36,
+    "title_wrap_width": 40,
     "subtitle_wrap_width": 72,
     "title_max_lines": 2,
     "subtitle_max_lines": 2,
@@ -163,7 +152,7 @@ CHART_CONFIG = {
     "plot_top": 0.75,
     "plot_bottom": 0.14,
     "plot_left": 0.22,
-    "plot_right": 0.88,
+    "plot_right": 0.90,
 
     "vertical_gridlines": False,
 
@@ -171,5 +160,5 @@ CHART_CONFIG = {
     # OUTPUT
     # ---------------------------
     "dpi": 200,
-    "output_file": "output/arsenal_01_goals_against.png"
+    "output_file": "output/chart.png"
 }
