@@ -1,21 +1,15 @@
 CHART_CONFIG = {
-    # ---------------------------
-    # DATA
-    # ---------------------------
-    "data_file": "data/arsenal_monthly_form.csv",
+    "data_file": "data/arsenal_vs_contenders.csv",
     "data_format": "wide",
     "chart_type": "dot",
 
-    "x_col": "PPG",
-    "y_col": "Month",
+    "x_col": "Points",
+    "y_col": "Opponent",
     "series_col": None,
     "value_col": None,
 
-    # ---------------------------
-    # STORY
-    # ---------------------------
-    "title": "One bad month wasn’t enough",
-    "subtitle": "April was Arsenal’s only poor month, but the champions were consistent enough either side of it.",
+    "title": "The contender table was uneven",
+    "subtitle": "Arsenal swept Newcastle, took four from Chelsea, but only one point from both City and Liverpool.",
     "source_text": "Source: Football-Data.co.uk, Premier League 2025/26 results",
     "footer_left": "Adam Green | coffeetableviz",
 
@@ -24,17 +18,14 @@ CHART_CONFIG = {
     "secondary_series": None,
     "label_strategy": "focus_only",
 
-    # ---------------------------
-    # AXES
-    # ---------------------------
     "x_is_datetime": False,
     "x_tick_rotation": 0,
 
     "x_axis": {
         "min": 0,
-        "max": 3,
-        "tick_interval": 0.5,
-        "format": ".1f"
+        "max": 6,
+        "tick_interval": 1,
+        "format": None
     },
 
     "y_axis_min": None,
@@ -42,26 +33,17 @@ CHART_CONFIG = {
     "y_tick_interval": None,
     "y_tick_format": None,
 
-    # ---------------------------
-    # SORTING
-    # ---------------------------
     "sort": {
-        "by": "Month",
+        "by": "Points",
         "ascending": False
     },
     "sort_descending": False,
 
-    # ---------------------------
-    # MARKS
-    # ---------------------------
     "line_width": 2.6,
     "marker_size": 60,
     "show_markers": True,
     "auto_end_labels": False,
 
-    # ---------------------------
-    # STYLING
-    # ---------------------------
     "dot_style": {
         "color": "#D9D9D9",
         "size": 48,
@@ -92,26 +74,13 @@ CHART_CONFIG = {
         "alpha": 0.9,
     },
 
-    # ---------------------------
-    # ANNOTATIONS
-    # ---------------------------
-    "reference_lines": [
-        {
-            "axis": "x",
-            "value": 2,
-            "label": "Title pace",
-            "color": "#7A7A7A",
-            "linestyle": "--",
-            "linewidth": 1.0,
-            "alpha": 0.7
-        }
-    ],
+    "reference_lines": [],
 
     "highlight_points": [
-        {
-            "column": "Month",
-            "value": "2026-04"
-        }
+        {"column": "Opponent", "value": "Newcastle United"},
+        {"column": "Opponent", "value": "Chelsea"},
+        {"column": "Opponent", "value": "Manchester City"},
+        {"column": "Opponent", "value": "Liverpool"}
     ],
 
     "annotate_points": [],
@@ -120,15 +89,12 @@ CHART_CONFIG = {
 
     "label_style": {
         "enabled": True,
-        "label_col": "PPG",
-        "label_format": "{:.2f}",
+        "label_col": "Points",
+        "label_format": "{:.0f}",
         "position": "right",
         "fontsize": 8
     },
 
-    # ---------------------------
-    # TYPOGRAPHY
-    # ---------------------------
     "title_fontsize": 22,
     "subtitle_fontsize": 12,
     "tick_label_fontsize": 10,
@@ -140,9 +106,6 @@ CHART_CONFIG = {
     "title_max_lines": 2,
     "subtitle_max_lines": 2,
 
-    # ---------------------------
-    # LAYOUT
-    # ---------------------------
     "fig_width": 8.0,
     "fig_height": 8.0,
 
@@ -157,14 +120,11 @@ CHART_CONFIG = {
 
     "plot_top": 0.75,
     "plot_bottom": 0.14,
-    "plot_left": 0.18,
+    "plot_left": 0.26,
     "plot_right": 0.88,
 
     "vertical_gridlines": False,
 
-    # ---------------------------
-    # OUTPUT
-    # ---------------------------
     "dpi": 200,
     "output_file": "output/chart.png"
 }
