@@ -9,7 +9,7 @@ CHART_CONFIG = {
     "value_col": None,
 
     "title": "Arsenal’s big games were uneven",
-    "subtitle": "Against the sides nearest them in the final table, Arsenal swept Newcastle but took just one point from Liverpool.",
+    "subtitle": "They swept Newcastle and took four from Chelsea, but managed only one point from both City and Liverpool.",
     "source_text": "Source: Football-Data.co.uk, Premier League 2025/26 results",
     "footer_left": "Adam Green | coffeetableviz",
 
@@ -33,9 +33,8 @@ CHART_CONFIG = {
     "y_tick_interval": None,
     "y_tick_format": None,
 
-    # Requires arsenal_vs_contenders.csv to contain FinalPosition
     "sort": {
-        "by": "FinalPosition",
+        "by": "Points",
         "ascending": False
     },
     "sort_descending": False,
@@ -79,6 +78,7 @@ CHART_CONFIG = {
 
     "highlight_points": [
         {"column": "Opponent", "value": "Newcastle United"},
+        {"column": "Opponent", "value": "Manchester City"},
         {"column": "Opponent", "value": "Liverpool"}
     ],
 
