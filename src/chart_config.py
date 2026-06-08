@@ -2,24 +2,24 @@ CHART_CONFIG = {
     # ---------------------------
     # DATA
     # ---------------------------
-    "data_file": "data/athlete_earnings_top50_cleaned.csv",
+    "data_file": "data/goals_against_by_team.csv",
     "data_format": "wide",
     "chart_type": "dot",
 
-    "x_col": "total_earnings_usd_m",
-    "y_col": "sport",
+    "x_col": "GA",
+    "y_col": "Team",
     "series_col": None,
     "value_col": None,
 
     # ---------------------------
     # STORY
     # ---------------------------
-    "title": "Every sport has stars. Football has Ronaldo.",
-    "subtitle": "Each dot is one of the world’s 50 highest-paid athletes; labels show the leading earner in each sport.",
-    "source_text": "Source: Forbes, 2026",
+    "title": "Nobody could score against Arsenal",
+    "subtitle": "The champions conceded just 27 goals, eight fewer than Manchester City and miles clear of the rest.",
+    "source_text": "Source: Football-Data.co.uk, Premier League 2025/26 results",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "distribution",
+    "story_angle": "ranked_comparison",
     "focus_series": None,
     "secondary_series": None,
     "label_strategy": "focus_only",
@@ -31,10 +31,10 @@ CHART_CONFIG = {
     "x_tick_rotation": 0,
 
     "x_axis": {
-        "min": 50,
-        "max": 335,
-        "tick_interval": 50,
-        "format": "currency"
+        "min": 20,
+        "max": 80,
+        "tick_interval": 10,
+        "format": None
     },
 
     "y_axis_min": None,
@@ -46,7 +46,7 @@ CHART_CONFIG = {
     # SORTING
     # ---------------------------
     "sort": {
-        "by": "total_earnings_usd_m",
+        "by": "GA",
         "ascending": True
     },
     "sort_descending": False,
@@ -63,33 +63,33 @@ CHART_CONFIG = {
     # STYLING
     # ---------------------------
     "dot_style": {
-        "color": "#1F8FA8",
-        "size": 54,
-        "alpha": 0.72
+        "color": "#D9D9D9",
+        "size": 48,
+        "alpha": 0.55
     },
 
     "highlight_style": {
         "color": "#C44E52",
-        "size": 110,
+        "size": 90,
         "alpha": 1.0
     },
 
     "context_style": {
         "color": "#D9D9D9",
         "linewidth": 0.8,
-        "alpha": 0.25
+        "alpha": 0.25,
     },
 
     "focus_style": {
         "color": "#1F8FA8",
         "linewidth": 3.2,
-        "alpha": 1.0
+        "alpha": 1.0,
     },
 
     "secondary_style": {
         "color": "#7A7A7A",
         "linewidth": 2.0,
-        "alpha": 0.9
+        "alpha": 0.9,
     },
 
     # ---------------------------
@@ -99,115 +99,33 @@ CHART_CONFIG = {
 
     "highlight_points": [
         {
-            "column": "name",
-            "target": "Cristiano Ronaldo"
+            "column": "Team",
+            "value": "Arsenal"
+        },
+        {
+            "column": "Team",
+            "value": "Man City"
         }
     ],
 
     "annotate_points": [
         {
-            "column": "name",
-            "target": "Cristiano Ronaldo",
-            "label": "Cristiano Ronaldo · $300m",
-            "xytext": (-8, 14),
-            "ha": "right",
-            "va": "bottom",
-            "fontsize": 9,
-            "color": "#C44E52",
-            "fontweight": "bold",
-            "arrowprops": None
+            "x": 27,
+            "y": "Arsenal",
+            "text": "Arsenal: 27"
         },
         {
-            "column": "name",
-            "target": "Canelo Alvarez",
-            "label": "Canelo Álvarez · $170m",
-            "xytext": (8, 0),
-            "ha": "left",
-            "va": "center",
-            "fontsize": 8,
-            "color": "#333333",
-            "fontweight": "bold",
-            "arrowprops": None
-        },
-        {
-            "column": "name",
-            "target": "LeBron James",
-            "label": "LeBron James · $137.8m",
-            "xytext": (8, 0),
-            "ha": "left",
-            "va": "center",
-            "fontsize": 8,
-            "color": "#333333",
-            "fontweight": "bold",
-            "arrowprops": None
-        },
-        {
-            "column": "name",
-            "target": "Shohei Ohtani",
-            "label": "Shohei Ohtani · $127.6m",
-            "xytext": (8, 0),
-            "ha": "left",
-            "va": "center",
-            "fontsize": 8,
-            "color": "#333333",
-            "fontweight": "bold",
-            "arrowprops": None
-        },
-        {
-            "column": "name",
-            "target": "Jon Rahm",
-            "label": "Jon Rahm · $107m",
-            "xytext": (8, 0),
-            "ha": "left",
-            "va": "center",
-            "fontsize": 8,
-            "color": "#333333",
-            "fontweight": "bold",
-            "arrowprops": None
-        },
-        {
-            "column": "name",
-            "target": "Lewis Hamilton",
-            "label": "Lewis Hamilton · $100m",
-            "xytext": (8, 0),
-            "ha": "left",
-            "va": "center",
-            "fontsize": 8,
-            "color": "#333333",
-            "fontweight": "bold",
-            "arrowprops": None
-        },
-        {
-            "column": "name",
-            "target": "Micah Parsons",
-            "label": "Micah Parsons · $86.4m",
-            "xytext": (8, 0),
-            "ha": "left",
-            "va": "center",
-            "fontsize": 8,
-            "color": "#333333",
-            "fontweight": "bold",
-            "arrowprops": None
-        },
-        {
-            "column": "name",
-            "target": "Carlos Alcaraz",
-            "label": "Carlos Alcaraz · $61.5m",
-            "xytext": (8, 0),
-            "ha": "left",
-            "va": "center",
-            "fontsize": 8,
-            "color": "#333333",
-            "fontweight": "bold",
-            "arrowprops": None
+            "x": 35,
+            "y": "Man City",
+            "text": "Next best: 35"
         }
     ],
 
     "end_labels": [],
 
     "label_style": {
-        "enabled": False,
-        "label_col": None,
+        "enabled": True,
+        "label_col": "GA",
         "label_format": "{}",
         "position": "right",
         "fontsize": 8
@@ -220,10 +138,10 @@ CHART_CONFIG = {
     "subtitle_fontsize": 12,
     "tick_label_fontsize": 10,
     "axis_label_fontsize": 10,
-    "footer_fontsize": 9,
+    "footer_fontsize": 10,
 
-    "title_wrap_width": 38,
-    "subtitle_wrap_width": 68,
+    "title_wrap_width": 36,
+    "subtitle_wrap_width": 72,
     "title_max_lines": 2,
     "subtitle_max_lines": 2,
 
@@ -234,18 +152,18 @@ CHART_CONFIG = {
     "fig_height": 8.0,
 
     "title_x": 0.10,
-    "title_y": 0.93,
+    "title_y": 0.92,
     "subtitle_x": 0.10,
-    "subtitle_y": 0.855,
+    "subtitle_y": 0.86,
 
     "footer_left_x": 0.10,
     "footer_right_x": 0.90,
-    "footer_y": 0.055,
+    "footer_y": 0.08,
 
-    "plot_top": 0.74,
-    "plot_bottom": 0.13,
-    "plot_left": 0.20,
-    "plot_right": 0.90,
+    "plot_top": 0.75,
+    "plot_bottom": 0.14,
+    "plot_left": 0.22,
+    "plot_right": 0.88,
 
     "vertical_gridlines": False,
 
@@ -253,5 +171,5 @@ CHART_CONFIG = {
     # OUTPUT
     # ---------------------------
     "dpi": 200,
-    "output_file": "output/athlete_earnings_04_players_by_sport.png"
+    "output_file": "output/arsenal_01_goals_against.png"
 }
