@@ -35,7 +35,7 @@ CHART_CONFIG = {
 
     "sort": {
         "by": "Points",
-        "ascending": False
+        "descending": True
     },
     "sort_descending": False,
 
