@@ -9,7 +9,7 @@ CHART_CONFIG = {
     "value_col": None,
 
     "title": "Arsenal handled the top half unevenly",
-    "subtitle": "Ordered by final league position, Arsenal’s return ranged from six points against Brighton to one against Manchester City and Liverpool.",
+    "subtitle": "Ordered by final league position, Arsenal took six points from Brighton but only one from City and Liverpool.",
     "source_text": "Source: Football-Data.co.uk, Premier League 2025/26 results",
     "footer_left": "Adam Green | coffeetableviz",
 
