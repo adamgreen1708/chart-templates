@@ -796,13 +796,11 @@ def _plot_dot(ax, rows):
 
     default_size = style.get("size", CHART_CONFIG.get("marker_size", 65))
 
-    # Preserve sorted row order explicitly.
-    # First row should appear at the top of the chart.
     y_positions = list(range(len(rows)))
-    y_lookup = {
-        str(r[y_col]): y_positions[i]
-        for i, r in enumerate(rows)
-    }
+    y_lookup = {str(r[y_col]): y_positions[i] for i, r in enumerate(rows)}
+
+    ax._ctv_y_lookup = y_lookup
+    ax._ctv_y_col = y_col
 
     ax.set_yticks(y_positions)
     ax.set_yticklabels([r[y_col] for r in rows])
