@@ -25,6 +25,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas
 
+      - name: Build Arsenal vs top 10 dataset
+        run: |
+          python scripts/build_arsenal_vs_top10.py
+
       - name: Build Arsenal rivals dataset
         run: |
           python scripts/build_arsenal_rivals_results.py
