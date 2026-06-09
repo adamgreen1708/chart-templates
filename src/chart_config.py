@@ -35,7 +35,7 @@ CHART_CONFIG = {
 
     "sort": {
         "by": "FinalPosition",
-        "ascending": False
+        "ascending": True
     },
     "sort_descending": False,
 
