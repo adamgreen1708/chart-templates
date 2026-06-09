@@ -752,13 +752,20 @@ def _plot_labels(ax, rows):
     focus_series = CHART_CONFIG.get("focus_series")
     series_col = CHART_CONFIG.get("series_col")
 
+    y_lookup = getattr(ax, "_ctv_y_lookup", None)
+
     for r in rows:
         if strategy == "focus_only" and series_col and focus_series:
             if str(r.get(series_col)) != str(focus_series):
                 continue
 
         x = r[x_col]
-        y = r[y_col]
+
+        if y_lookup is not None:
+            y = y_lookup[str(r[y_col])]
+        else:
+            y = r[y_col]
+
         val = r[label_col]
 
         try:
