@@ -1,19 +1,19 @@
 CHART_CONFIG = {
-    "data_file": "data/arsenal_vs_top10.csv",
+    "data_file": "data/arsenal_2025_26_matches.csv",
     "data_format": "wide",
-    "chart_type": "dot",
+    "chart_type": "line",
 
-    "x_col": "Points",
-    "y_col": "Opponent",
+    "x_col": "Matchweek",
+    "y_col": "CumulativePoints",
     "series_col": None,
     "value_col": None,
 
-    "title": "Arsenal handled the top half unevenly",
-    "subtitle": "Ordered by final league position, Arsenal took six points from Brighton but only one from City and Liverpool.",
+    "title": "Even April couldn’t stop them",
+    "subtitle": "Back-to-back defeats briefly stalled Arsenal on 70 points, before five wins from the final six sealed the title.",
     "source_text": "Source: Football-Data.co.uk, Premier League 2025/26 results",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "ranked_comparison",
+    "story_angle": "time_trend",
     "focus_series": None,
     "secondary_series": None,
     "label_strategy": "focus_only",
@@ -22,25 +22,25 @@ CHART_CONFIG = {
     "x_tick_rotation": 0,
 
     "x_axis": {
-        "min": 0,
-        "max": 7,
-        "tick_interval": 1,
+        "min": 1,
+        "max": 38,
+        "tick_interval": 5,
         "format": None
     },
 
-    "y_axis_min": None,
-    "y_axis_max": None,
-    "y_tick_interval": None,
+    "y_axis_min": 0,
+    "y_axis_max": 90,
+    "y_tick_interval": 10,
     "y_tick_format": None,
 
     "sort": {
-        "by": "FinalPosition",
+        "by": "Matchweek",
         "ascending": True
     },
     "sort_descending": False,
 
-    "line_width": 2.6,
-    "marker_size": 60,
+    "line_width": 3.2,
+    "marker_size": 44,
     "show_markers": True,
     "auto_end_labels": False,
 
@@ -74,22 +74,50 @@ CHART_CONFIG = {
         "alpha": 0.9
     },
 
-    "reference_lines": [],
-
-    "highlight_points": [
-        {"column": "Opponent", "value": "Manchester City"},
-        {"column": "Opponent", "value": "Liverpool"},
-        {"column": "Opponent", "value": "Brighton & Hove Albion"}
+    "reference_lines": [
+        {
+            "axis": "x",
+            "value": 32,
+            "label": "April wobble",
+            "color": "#7A7A7A",
+            "linestyle": "--",
+            "linewidth": 1.0,
+            "alpha": 0.7
+        }
     ],
 
-    "annotate_points": [],
+    "highlight_points": [],
+
+    "annotate_points": [
+        {
+            "column": "Matchweek",
+            "value": 31,
+            "text": "70 pts before the wobble",
+            "xytext": [8, -18],
+            "fontsize": 8
+        },
+        {
+            "column": "Matchweek",
+            "value": 33,
+            "text": "Two straight defeats",
+            "xytext": [-80, 18],
+            "fontsize": 8
+        },
+        {
+            "column": "Matchweek",
+            "value": 38,
+            "text": "85 pts",
+            "xytext": [-42, 10],
+            "fontsize": 8
+        }
+    ],
 
     "end_labels": [],
 
     "label_style": {
-        "enabled": True,
-        "label_col": "Points",
-        "label_format": "{:.0f}",
+        "enabled": False,
+        "label_col": None,
+        "label_format": "{}",
         "position": "right",
         "fontsize": 8
     },
@@ -119,8 +147,8 @@ CHART_CONFIG = {
 
     "plot_top": 0.75,
     "plot_bottom": 0.14,
-    "plot_left": 0.30,
-    "plot_right": 0.88,
+    "plot_left": 0.12,
+    "plot_right": 0.90,
 
     "vertical_gridlines": False,
 
