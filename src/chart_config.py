@@ -1,5 +1,5 @@
 CHART_CONFIG = {
-    "data_file": "data/arsenal_vs_contenders.csv",
+    "data_file": "data/arsenal_vs_top10.csv",
     "data_format": "wide",
     "chart_type": "dot",
 
@@ -8,8 +8,8 @@ CHART_CONFIG = {
     "series_col": None,
     "value_col": None,
 
-    "title": "Arsenal’s big games were uneven",
-    "subtitle": "They swept Newcastle, but took only one point from both Manchester City and Liverpool.",
+    "title": "Arsenal handled the top half unevenly",
+    "subtitle": "Ordered by final league position, Arsenal’s return ranged from six points against Brighton to one against Manchester City and Liverpool.",
     "source_text": "Source: Football-Data.co.uk, Premier League 2025/26 results",
     "footer_left": "Adam Green | coffeetableviz",
 
@@ -34,8 +34,8 @@ CHART_CONFIG = {
     "y_tick_format": None,
 
     "sort": {
-        "by": "Points",
-        "descending": True
+        "by": "FinalPosition",
+        "ascending": False
     },
     "sort_descending": False,
 
@@ -77,9 +77,9 @@ CHART_CONFIG = {
     "reference_lines": [],
 
     "highlight_points": [
-        {"column": "Opponent", "value": "Newcastle United"},
         {"column": "Opponent", "value": "Manchester City"},
-        {"column": "Opponent", "value": "Liverpool"}
+        {"column": "Opponent", "value": "Liverpool"},
+        {"column": "Opponent", "value": "Brighton & Hove Albion"}
     ],
 
     "annotate_points": [],
@@ -119,7 +119,7 @@ CHART_CONFIG = {
 
     "plot_top": 0.75,
     "plot_bottom": 0.14,
-    "plot_left": 0.26,
+    "plot_left": 0.30,
     "plot_right": 0.88,
 
     "vertical_gridlines": False,
