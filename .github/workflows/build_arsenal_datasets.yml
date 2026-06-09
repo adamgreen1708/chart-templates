@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -25,10 +24,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas
 
-      - name: Build Arsenal vs top 10 dataset
-        run: |
-          python scripts/build_arsenal_vs_top10.py
-
       - name: Build Arsenal rivals dataset
         run: |
           python scripts/build_arsenal_rivals_results.py
@@ -36,6 +31,10 @@ jobs:
       - name: Build goals against dataset
         run: |
           python scripts/build_goals_against_by_team.py
+
+      - name: Build Arsenal vs top 10 dataset
+        run: |
+          python scripts/build_arsenal_vs_top10.py
 
       - name: Show generated files
         run: |
@@ -46,15 +45,9 @@ jobs:
 
           echo ""
           echo "=============================="
-          echo "ARSENAL RIVALS"
+          echo "ARSENAL VS TOP 10"
           echo "=============================="
-          cat data/arsenal_rivals_results.csv
-
-          echo ""
-          echo "=============================="
-          echo "GOALS AGAINST"
-          echo "=============================="
-          cat data/goals_against_by_team.csv
+          cat data/arsenal_vs_top10.csv
 
       - name: Commit generated datasets
         run: |
@@ -63,10 +56,11 @@ jobs:
 
           git add data/arsenal_rivals_results.csv
           git add data/goals_against_by_team.csv
+          git add data/arsenal_vs_top10.csv
 
           if git diff --cached --quiet; then
             echo "No changes detected."
           else
-            git commit -m "Generate Arsenal datasets"
+            git commit -m "Generate Arsenal top 10 dataset"
             git push
           fi
