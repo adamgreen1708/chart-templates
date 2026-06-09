@@ -796,6 +796,18 @@ def _plot_dot(ax, rows):
 
     default_size = style.get("size", CHART_CONFIG.get("marker_size", 65))
 
+    # Preserve sorted row order explicitly.
+    # First row should appear at the top of the chart.
+    y_positions = list(range(len(rows)))
+    y_lookup = {
+        str(r[y_col]): y_positions[i]
+        for i, r in enumerate(rows)
+    }
+
+    ax.set_yticks(y_positions)
+    ax.set_yticklabels([r[y_col] for r in rows])
+    ax.invert_yaxis()
+
     if series_col and focus_series:
         context_rows = [r for r in rows if str(r.get(series_col)) != str(focus_series)]
         focus_rows = [r for r in rows if str(r.get(series_col)) == str(focus_series)]
@@ -803,7 +815,7 @@ def _plot_dot(ax, rows):
         if context_rows:
             ax.scatter(
                 [r[x_col] for r in context_rows],
-                [r[y_col] for r in context_rows],
+                [y_lookup[str(r[y_col])] for r in context_rows],
                 s=context_style.get("size", default_size),
                 color=context_style.get("color", "#B8B8B8"),
                 alpha=context_style.get("alpha", 0.55),
@@ -813,7 +825,7 @@ def _plot_dot(ax, rows):
         if focus_rows:
             ax.scatter(
                 [r[x_col] for r in focus_rows],
-                [r[y_col] for r in focus_rows],
+                [y_lookup[str(r[y_col])] for r in focus_rows],
                 s=focus_style.get("size", default_size + 35),
                 color=focus_style.get("color", CHART_CONFIG.get("highlight_colour", "#C44E52")),
                 alpha=focus_style.get("alpha", 1.0),
@@ -829,7 +841,7 @@ def _plot_dot(ax, rows):
     if context_rows:
         ax.scatter(
             [r[x_col] for r in context_rows],
-            [r[y_col] for r in context_rows],
+            [y_lookup[str(r[y_col])] for r in context_rows],
             s=style.get("size", CHART_CONFIG.get("marker_size", 65)),
             color=style.get("color", CHART_CONFIG.get("default_colour", "#1F8FA8")),
             alpha=style.get("alpha", CHART_CONFIG.get("default_alpha", 0.8)),
@@ -839,7 +851,7 @@ def _plot_dot(ax, rows):
     if highlight_rows:
         ax.scatter(
             [r[x_col] for r in highlight_rows],
-            [r[y_col] for r in highlight_rows],
+            [y_lookup[str(r[y_col])] for r in highlight_rows],
             s=highlight_style.get("size", CHART_CONFIG.get("highlight_point_size", 90)),
             color=highlight_style.get("color", CHART_CONFIG.get("highlight_colour", "#C44E52")),
             alpha=highlight_style.get("alpha", 1.0),
