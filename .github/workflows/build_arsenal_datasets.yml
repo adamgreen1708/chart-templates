@@ -61,6 +61,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes detected."
           else
-            git commit -m "Generate Arsenal top 10 dataset"
+            git commit -m "Generate Arsenal story datasets"
             git push
           fi
