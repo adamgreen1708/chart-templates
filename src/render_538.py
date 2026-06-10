@@ -1065,7 +1065,10 @@ def main():
     ax.xaxis.label.set_size(CHART_CONFIG.get("axis_label_fontsize", 10))
     ax.yaxis.label.set_size(CHART_CONFIG.get("axis_label_fontsize", 10))
 
-    _apply_axis_config(ax)
+        _apply_axis_config(ax)
+
+    if chart_type == "line" and CHART_CONFIG.get("highlight_points"):
+        _plot_highlights(ax, rows)
 
     ax.margins(x=CHART_CONFIG.get("x_margin", 0.08))
 
