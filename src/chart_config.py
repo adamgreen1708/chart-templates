@@ -4,22 +4,22 @@ CHART_CONFIG = {
     # ---------------------------
     "data_file": "data/world_cup_chart_03_home_winners.csv",
     "data_format": "wide",
-    "chart_type": "scatter",
+    "chart_type": "line",  # line | bar | dot | scatter
 
     "x_col": "year",
-    "y_col": "host_winner",
+    "y_col": "cumulative_host_wins",
     "series_col": None,
     "value_col": None,
 
     # ---------------------------
     # STORY
     # ---------------------------
-    "title": "Home advantage is rare, but it sticks",
-    "subtitle": "Only six World Cup finals ended with the host nation lifting the trophy.",
+    "title": "Home glory has gone quiet",
+    "subtitle": "Six host nations have won the World Cup final, but none since France in 1998.",
     "source_text": "Source: Wikipedia- List of FIFA World Cup finals",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "relationship",
+    "story_angle": "time_trend",
     "focus_series": None,
     "secondary_series": None,
     "label_strategy": "focus_only",
@@ -30,17 +30,17 @@ CHART_CONFIG = {
     "x_is_datetime": False,
     "x_tick_rotation": 0,
     "x_label": "World Cup year",
-    "y_label": "Host nation lifted the trophy (1=yes)",
+    "y_label": "Cumulative host-nation wins",
 
     "x_axis": {
-        "min": 1928,
-        "max": 2024,
+        "min": 1930,
+        "max": 2022,
         "tick_interval": 8,
         "format": None
     },
 
-    "y_axis_min": -0.15,
-    "y_axis_max": 1.15,
+    "y_axis_min": 0,
+    "y_axis_max": 7,
     "y_tick_interval": 1,
     "y_tick_format": None,
 
@@ -56,7 +56,7 @@ CHART_CONFIG = {
     # ---------------------------
     # MARKS
     # ---------------------------
-    "line_width": 2.6,
+    "line_width": 3.2,
     "marker_size": 60,
     "show_markers": True,
     "auto_end_labels": False,
@@ -66,13 +66,13 @@ CHART_CONFIG = {
     # ---------------------------
     "dot_style": {
         "color": "#D9D9D9",
-        "size": 52,
-        "alpha": 0.75
+        "size": 48,
+        "alpha": 0.55
     },
 
     "highlight_style": {
         "color": "#C44E52",
-        "size": 92,
+        "size": 90,
         "alpha": 1.0
     },
 
@@ -99,70 +99,59 @@ CHART_CONFIG = {
     # ---------------------------
     "reference_lines": [
         {
-            "axis": "y",
-            "value": 0,
-            "label": "No",
-            "color": "#B0B0B0",
+            "axis": "x",
+            "value": 1998,
+            "label": "Last host winner",
+            "color": "#7A7A7A",
             "linestyle": "--",
-            "linewidth": 0.8,
-            "alpha": 0.8
-        },
-        {
-            "axis": "y",
-            "value": 1,
-            "label": "Yes",
-            "color": "#B0B0B0",
-            "linestyle": "--",
-            "linewidth": 0.8,
-            "alpha": 0.8
+            "linewidth": 1.0,
+            "alpha": 0.7
         }
     ],
 
-    "highlight_points": [
-        {"column": "host_winner", "value": 1}
-    ],
+    "highlight_points": [],
 
     "annotate_points": [
         {
             "x": 1930,
             "y": 1,
             "text": "Uruguay",
-            "xytext": (6, 10),
+            "xytext": (6, -14),
             "fontsize": 8
         },
         {
             "x": 1934,
-            "y": 1,
+            "y": 2,
             "text": "Italy",
-            "xytext": (6, -14),
+            "xytext": (6, 10),
             "fontsize": 8
         },
         {
             "x": 1966,
-            "y": 1,
+            "y": 3,
             "text": "England",
-            "xytext": (6, 10),
+            "xytext": (6, -14),
             "fontsize": 8
         },
         {
             "x": 1974,
-            "y": 1,
+            "y": 4,
             "text": "West Germany",
-            "xytext": (6, -14),
-            "fontsize": 8
-        },
-        {
-            "x": 1978,
-            "y": 1,
-            "text": "Argentina",
             "xytext": (6, 10),
             "fontsize": 8
         },
         {
-            "x": 1998,
-            "y": 1,
-            "text": "France",
+            "x": 1978,
+            "y": 5,
+            "text": "Argentina",
             "xytext": (6, -14),
+            "fontsize": 8
+        },
+        {
+            "x": 1998,
+            "y": 6,
+            "text": "France",
+            "xytext": (6, 10),
             "fontsize": 8
         }
     ],
