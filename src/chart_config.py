@@ -152,17 +152,17 @@ CHART_CONFIG = {
     ],
 
     "highlight_points": [
-        {"column": "year", "value": "1994"},
-        {"column": "year", "value": "2006"},
-        {"column": "year", "value": "2010"},
-        {"column": "year", "value": "2014"},
-        {"column": "year", "value": "2022"}
+        {"x": 1994, "y": 3},
+        {"x": 2006, "y": 3},
+        {"x": 2010, "y": 2},
+        {"x": 2014, "y": 2},
+        {"x": 2022, "y": 3}
     ],
 
     "annotate_points": [
         {
-            "column": "year",
-            "value": "1994",
+            "x": 1994,
+            "y": 3,
             "text": "Brazil\n(pens)",
             "xytext": [-44, 24],
             "fontsize": 8,
@@ -170,8 +170,8 @@ CHART_CONFIG = {
             "color": "#111111"
         },
         {
-            "column": "year",
-            "value": "2006",
+            "x": 2006,
+            "y": 3,
             "text": "Italy\n(pens)",
             "xytext": [-36, 28],
             "fontsize": 8,
@@ -179,8 +179,8 @@ CHART_CONFIG = {
             "color": "#111111"
         },
         {
-            "column": "year",
-            "value": "2010",
+            "x": 2010,
+            "y": 2,
             "text": "Spain\n(extra time)",
             "xytext": [-70, -28],
             "fontsize": 8,
@@ -188,8 +188,8 @@ CHART_CONFIG = {
             "color": "#111111"
         },
         {
-            "column": "year",
-            "value": "2014",
+            "x": 2014,
+            "y": 2,
             "text": "Germany\n(extra time)",
             "xytext": [10, -30],
             "fontsize": 8,
@@ -197,8 +197,8 @@ CHART_CONFIG = {
             "color": "#111111"
         },
         {
-            "column": "year",
-            "value": "2022",
+            "x": 2022,
+            "y": 3,
             "text": "Argentina\n(pens)",
             "xytext": [-76, 28],
             "fontsize": 8,
