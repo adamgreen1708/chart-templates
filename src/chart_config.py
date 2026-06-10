@@ -16,7 +16,7 @@ CHART_CONFIG = {
     # ---------------------------
     "title": "Home advantage is rare, but it sticks",
     "subtitle": "Only six World Cup finals in this dataset ended with the host nation lifting the trophy.",
-    "source_text": "Source: Wikipedia - List of FIFA World Cup Finals",
+    "source_text": "Source: Wikipedia- List of FIFA World Cup finals",
     "footer_left": "Adam Green | coffeetableviz",
 
     "story_angle": "timeline_highlight",
@@ -72,7 +72,7 @@ CHART_CONFIG = {
 
     "highlight_style": {
         "color": "#C44E52",
-        "size": 90,
+        "size": 92,
         "alpha": 1.0
     },
 
@@ -106,22 +106,10 @@ CHART_CONFIG = {
         }
     ],
 
-    "annotate_points": [
-        {
-            "column": "winner",
-            "value": "England",
-            "text": "England 1966",
-            "xytext": [10, -14],
-            "fontsize": 8
-        },
-        {
-            "column": "winner",
-            "value": "France",
-            "text": "France 1998",
-            "xytext": [-64, 14],
-            "fontsize": 8
-        }
-    ],
+    # Keep annotations empty for this chart.
+    # The renderer plots dot-chart categories on numeric y positions, so annotations
+    # that use categorical y values can trigger Matplotlib category conversion errors.
+    "annotate_points": [],
 
     "end_labels": [],
 
@@ -164,8 +152,8 @@ CHART_CONFIG = {
 
     "plot_top": 0.74,
     "plot_bottom": 0.18,
-    "plot_left": 0.26,
-    "plot_right": 0.86,
+    "plot_left": 0.28,
+    "plot_right": 0.88,
 
     "vertical_gridlines": False,
 
