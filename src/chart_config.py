@@ -15,8 +15,8 @@ CHART_CONFIG = {
     # STORY
     # ---------------------------
     "title": "Finals are getting harder to settle",
-    "subtitle": "Extra time and penalties have become part of the World Cup final’s modern rhythm, after a timeline broken by war.",
-    "source_text": "Source: Wikipedia - List of FIFA World Cup Finals",
+    "subtitle": "Since 1994, five World Cup finals have gone beyond normal time, with three settled by penalties.",
+    "source_text": "Source: Wikipedia- List of FIFA World Cup finals",
     "footer_left": "Adam Green | coffeetableviz",
 
     "story_angle": "time_trend",
@@ -30,7 +30,7 @@ CHART_CONFIG = {
     "x_is_datetime": False,
     "x_tick_rotation": 0,
     "x_label": "World Cup year",
-    "y_label": "Outcome band",
+    "y_label": "Final outcome",
 
     "x_axis": {
         "min": 1928,
@@ -72,7 +72,7 @@ CHART_CONFIG = {
 
     "highlight_style": {
         "color": "#C44E52",
-        "size": 90,
+        "size": 105,
         "alpha": 1.0
     },
 
@@ -95,9 +95,9 @@ CHART_CONFIG = {
     },
 
     "point_style": {
-        "color": "#1F8FA8",
-        "size": 62,
-        "alpha": 0.7
+        "color": "#D9D9D9",
+        "size": 58,
+        "alpha": 0.65
     },
 
     # ---------------------------
@@ -111,7 +111,7 @@ CHART_CONFIG = {
             "color": "#7A7A7A",
             "linestyle": "--",
             "linewidth": 0.8,
-            "alpha": 0.65
+            "alpha": 0.55
         },
         {
             "axis": "y",
@@ -120,7 +120,7 @@ CHART_CONFIG = {
             "color": "#7A7A7A",
             "linestyle": "--",
             "linewidth": 0.8,
-            "alpha": 0.45
+            "alpha": 0.40
         },
         {
             "axis": "y",
@@ -129,7 +129,7 @@ CHART_CONFIG = {
             "color": "#7A7A7A",
             "linestyle": "--",
             "linewidth": 0.8,
-            "alpha": 0.45
+            "alpha": 0.40
         },
         {
             "axis": "y",
@@ -138,7 +138,7 @@ CHART_CONFIG = {
             "color": "#7A7A7A",
             "linestyle": "--",
             "linewidth": 0.8,
-            "alpha": 0.45
+            "alpha": 0.40
         },
         {
             "axis": "y",
@@ -147,40 +147,63 @@ CHART_CONFIG = {
             "color": "#7A7A7A",
             "linestyle": "--",
             "linewidth": 0.8,
-            "alpha": 0.65
+            "alpha": 0.55
         }
     ],
 
     "highlight_points": [
-        {"column": "year", "value": "1942"},
-        {"column": "year", "value": "1946"},
         {"column": "year", "value": "1994"},
         {"column": "year", "value": "2006"},
-        {"column": "year", "value": "2022"},
-        {"column": "year", "value": "2026"}
+        {"column": "year", "value": "2010"},
+        {"column": "year", "value": "2014"},
+        {"column": "year", "value": "2022"}
     ],
 
     "annotate_points": [
         {
             "column": "year",
-            "value": "1942",
-            "text": "World War II gap",
-            "xytext": [8, -18],
-            "fontsize": 8
-        },
-        {
-            "column": "year",
             "value": "1994",
-            "text": "First penalty final",
-            "xytext": [-70, 18],
-            "fontsize": 8
+            "text": "Brazil\n(pens)",
+            "xytext": [-44, 24],
+            "fontsize": 8,
+            "fontweight": "bold",
+            "color": "#111111"
         },
         {
             "column": "year",
-            "value": "2026",
-            "text": "2026 final scheduled",
-            "xytext": [-92, 18],
-            "fontsize": 8
+            "value": "2006",
+            "text": "Italy\n(pens)",
+            "xytext": [-36, 28],
+            "fontsize": 8,
+            "fontweight": "bold",
+            "color": "#111111"
+        },
+        {
+            "column": "year",
+            "value": "2010",
+            "text": "Spain\n(extra time)",
+            "xytext": [-70, -28],
+            "fontsize": 8,
+            "fontweight": "bold",
+            "color": "#111111"
+        },
+        {
+            "column": "year",
+            "value": "2014",
+            "text": "Germany\n(extra time)",
+            "xytext": [10, -30],
+            "fontsize": 8,
+            "fontweight": "bold",
+            "color": "#111111"
+        },
+        {
+            "column": "year",
+            "value": "2022",
+            "text": "Argentina\n(pens)",
+            "xytext": [-76, 28],
+            "fontsize": 8,
+            "fontweight": "bold",
+            "color": "#111111"
         }
     ],
 
@@ -204,7 +227,7 @@ CHART_CONFIG = {
     "footer_fontsize": 8,
 
     "title_wrap_width": 42,
-    "subtitle_wrap_width": 72,
+    "subtitle_wrap_width": 76,
     "title_max_lines": 2,
     "subtitle_max_lines": 2,
 
