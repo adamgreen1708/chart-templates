@@ -72,7 +72,7 @@ CHART_CONFIG = {
 
     "highlight_style": {
         "color": "#C44E52",
-        "size": 90,
+        "size": 100,
         "alpha": 1.0
     },
 
@@ -109,49 +109,57 @@ CHART_CONFIG = {
         }
     ],
 
-    "highlight_points": [],
+    "highlight_points": [
+        {
+            "column": "host_winner",
+            "value": 1,
+            "color": "#C44E52",
+            "size": 100,
+            "alpha": 1.0
+        }
+    ],
 
     "annotate_points": [
         {
             "x": 1930,
             "y": 1,
-            "text": "Uruguay",
+            "text": "Uruguay (1930)",
             "xytext": (6, -14),
             "fontsize": 8
         },
         {
             "x": 1934,
             "y": 2,
-            "text": "Italy",
+            "text": "Italy (1934)",
             "xytext": (6, 10),
             "fontsize": 8
         },
         {
             "x": 1966,
             "y": 3,
-            "text": "England",
+            "text": "England (1966)",
             "xytext": (6, -14),
             "fontsize": 8
         },
         {
             "x": 1974,
             "y": 4,
-            "text": "West Germany",
+            "text": "West Germany (1974)",
             "xytext": (6, 10),
             "fontsize": 8
         },
         {
             "x": 1978,
             "y": 5,
-            "text": "Argentina",
+            "text": "Argentina (1978)",
             "xytext": (6, -14),
             "fontsize": 8
         },
         {
             "x": 1998,
             "y": 6,
-            "text": "France",
-            "xytext": (6, 10),
+            "text": "France (1998)",
+            "xytext": (8, 10),
             "fontsize": 8
         }
     ],
@@ -193,10 +201,10 @@ CHART_CONFIG = {
 
     "footer_left_x": 0.10,
     "footer_right_x": 0.90,
-    "footer_y": 0.08,
+    "footer_y": 0.045,
 
     "plot_top": 0.75,
-    "plot_bottom": 0.14,
+    "plot_bottom": 0.19,
     "plot_left": 0.12,
     "plot_right": 0.90,
 
