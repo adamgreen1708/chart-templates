@@ -1,7 +1,23 @@
-﻿year,winner,score,runner_up,host_country,venue,attendance,home_win_label,timeline_label,highlight,source_url
-1930,Uruguay,4–2,Argentina,Uruguay,Estadio Centenario,68346,1930 · Uruguay,Uruguay beat Argentina 4–2,TRUE,https://en.wikipedia.org/wiki/List_of_FIFA_World_Cup_finals
-1934,Italy,2–1 (a.e.t.),Czechoslovakia,Italy,Stadio Nazionale PNF,55000,1934 · Italy,Italy beat Czechoslovakia 2–1 (a.e.t.),TRUE,https://en.wikipedia.org/wiki/List_of_FIFA_World_Cup_finals
-1966,England,4–2 (a.e.t.),West Germany,England,Wembley Stadium,96924,1966 · England,England beat West Germany 4–2 (a.e.t.),TRUE,https://en.wikipedia.org/wiki/List_of_FIFA_World_Cup_finals
-1974,West Germany,2–1,Netherlands,West Germany,Olympiastadion,78200,1974 · West Germany,West Germany beat Netherlands 2–1,TRUE,https://en.wikipedia.org/wiki/List_of_FIFA_World_Cup_finals
-1978,Argentina,3–1 (a.e.t.),Netherlands,Argentina,Estadio Monumental,71483,1978 · Argentina,Argentina beat Netherlands 3–1 (a.e.t.),TRUE,https://en.wikipedia.org/wiki/List_of_FIFA_World_Cup_finals
-1998,France,3–0,Brazil,France,Stade de France,80000,1998 · France,France beat Brazil 3–0,TRUE,https://en.wikipedia.org/wiki/List_of_FIFA_World_Cup_finals
+year,winner,host_winner
+1930,Uruguay,1
+1934,Italy,1
+1938,Italy,0
+1950,Uruguay,0
+1954,West Germany,0
+1958,Brazil,0
+1962,Brazil,0
+1966,England,1
+1970,Brazil,0
+1974,West Germany,1
+1978,Argentina,1
+1982,Italy,0
+1986,Argentina,0
+1990,West Germany,0
+1994,Brazil,0
+1998,France,1
+2002,Brazil,0
+2006,Italy,0
+2010,Spain,0
+2014,Germany,0
+2018,France,0
+2022,Argentina,0
