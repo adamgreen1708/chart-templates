@@ -2,24 +2,24 @@ CHART_CONFIG = {
     # ---------------------------
     # DATA
     # ---------------------------
-    "data_file": "data/world_cup_chart_02_final_timeline.csv",
+    "data_file": "data/world_cup_chart_03_home_winners.csv",
     "data_format": "wide",
-    "chart_type": "scatter",  # line | bar | dot | scatter
+    "chart_type": "dot",  # line | bar | dot | scatter
 
     "x_col": "year",
-    "y_col": "outcome_score",
+    "y_col": "home_win_label",
     "series_col": None,
     "value_col": None,
 
     # ---------------------------
     # STORY
     # ---------------------------
-    "title": "Finals are getting harder to settle",
-    "subtitle": "Since 1994, five World Cup finals have gone beyond normal time, with three settled by penalties.",
-    "source_text": "Source: Wikipedia- List of FIFA World Cup finals",
+    "title": "Home advantage is rare, but it sticks",
+    "subtitle": "Only six World Cup finals in this dataset ended with the host nation lifting the trophy.",
+    "source_text": "Source: Wikipedia - List of FIFA World Cup Finals",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "time_trend",
+    "story_angle": "timeline_highlight",
     "focus_series": None,
     "secondary_series": None,
     "label_strategy": "focus_only",
@@ -30,19 +30,19 @@ CHART_CONFIG = {
     "x_is_datetime": False,
     "x_tick_rotation": 0,
     "x_label": "World Cup year",
-    "y_label": "Final outcome",
+    "y_label": "Host nation winners",
 
     "x_axis": {
         "min": 1928,
-        "max": 2028,
+        "max": 2002,
         "tick_interval": 12,
         "format": ".0f"  # percent | currency | millions | ".1f"
     },
 
-    "y_axis_min": -0.4,
-    "y_axis_max": 4.4,
-    "y_tick_interval": 1,
-    "y_tick_format": ".0f",
+    "y_axis_min": None,
+    "y_axis_max": None,
+    "y_tick_interval": None,
+    "y_tick_format": None,
 
     # ---------------------------
     # SORTING
@@ -72,7 +72,7 @@ CHART_CONFIG = {
 
     "highlight_style": {
         "color": "#C44E52",
-        "size": 105,
+        "size": 90,
         "alpha": 1.0
     },
 
@@ -94,116 +94,32 @@ CHART_CONFIG = {
         "alpha": 0.9,
     },
 
-    "point_style": {
-        "color": "#D9D9D9",
-        "size": 58,
-        "alpha": 0.65
-    },
-
     # ---------------------------
     # ANNOTATIONS
     # ---------------------------
-    "reference_lines": [
-        {
-            "axis": "y",
-            "value": 0,
-            "label": "Not played (WWII)",
-            "color": "#7A7A7A",
-            "linestyle": "--",
-            "linewidth": 0.8,
-            "alpha": 0.55
-        },
-        {
-            "axis": "y",
-            "value": 1,
-            "label": "Settled in play",
-            "color": "#7A7A7A",
-            "linestyle": "--",
-            "linewidth": 0.8,
-            "alpha": 0.40
-        },
-        {
-            "axis": "y",
-            "value": 2,
-            "label": "Extra time",
-            "color": "#7A7A7A",
-            "linestyle": "--",
-            "linewidth": 0.8,
-            "alpha": 0.40
-        },
-        {
-            "axis": "y",
-            "value": 3,
-            "label": "Penalties",
-            "color": "#7A7A7A",
-            "linestyle": "--",
-            "linewidth": 0.8,
-            "alpha": 0.40
-        },
-        {
-            "axis": "y",
-            "value": 4,
-            "label": "Scheduled",
-            "color": "#7A7A7A",
-            "linestyle": "--",
-            "linewidth": 0.8,
-            "alpha": 0.55
-        }
-    ],
+    "reference_lines": [],
 
     "highlight_points": [
-        {"x": 1994, "y": 3},
-        {"x": 2006, "y": 3},
-        {"x": 2010, "y": 2},
-        {"x": 2014, "y": 2},
-        {"x": 2022, "y": 3}
+        {
+            "column": "highlight",
+            "value": "TRUE"
+        }
     ],
 
     "annotate_points": [
         {
-            "x": 1994,
-            "y": 3,
-            "text": "Brazil\n(pens)",
-            "xytext": [-44, 24],
-            "fontsize": 8,
-            "fontweight": "bold",
-            "color": "#111111"
+            "column": "winner",
+            "value": "England",
+            "text": "England 1966",
+            "xytext": [10, -14],
+            "fontsize": 8
         },
         {
-            "x": 2006,
-            "y": 3,
-            "text": "Italy\n(pens)",
-            "xytext": [-36, 28],
-            "fontsize": 8,
-            "fontweight": "bold",
-            "color": "#111111"
-        },
-        {
-            "x": 2010,
-            "y": 2,
-            "text": "Spain\n(extra time)",
-            "xytext": [-70, -28],
-            "fontsize": 8,
-            "fontweight": "bold",
-            "color": "#111111"
-        },
-        {
-            "x": 2014,
-            "y": 2,
-            "text": "Germany\n(extra time)",
-            "xytext": [10, -30],
-            "fontsize": 8,
-            "fontweight": "bold",
-            "color": "#111111"
-        },
-        {
-            "x": 2022,
-            "y": 3,
-            "text": "Argentina\n(pens)",
-            "xytext": [-76, 28],
-            "fontsize": 8,
-            "fontweight": "bold",
-            "color": "#111111"
+            "column": "winner",
+            "value": "France",
+            "text": "France 1998",
+            "xytext": [-64, 14],
+            "fontsize": 8
         }
     ],
 
@@ -220,14 +136,14 @@ CHART_CONFIG = {
     # ---------------------------
     # TYPOGRAPHY
     # ---------------------------
-    "title_fontsize": 21,
+    "title_fontsize": 22,
     "subtitle_fontsize": 12,
     "tick_label_fontsize": 9,
     "axis_label_fontsize": 10,
     "footer_fontsize": 8,
 
-    "title_wrap_width": 42,
-    "subtitle_wrap_width": 76,
+    "title_wrap_width": 38,
+    "subtitle_wrap_width": 72,
     "title_max_lines": 2,
     "subtitle_max_lines": 2,
 
@@ -248,14 +164,14 @@ CHART_CONFIG = {
 
     "plot_top": 0.74,
     "plot_bottom": 0.18,
-    "plot_left": 0.16,
-    "plot_right": 0.88,
+    "plot_left": 0.26,
+    "plot_right": 0.86,
 
-    "vertical_gridlines": True,
+    "vertical_gridlines": False,
 
     # ---------------------------
     # OUTPUT
     # ---------------------------
     "dpi": 200,
-    "output_file": "output/world_cup_chart_02_final_timeline.png"
+    "output_file": "output/world_cup_chart_03_home_winners.png"
 }
