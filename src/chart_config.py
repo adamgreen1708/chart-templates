@@ -4,10 +4,10 @@ CHART_CONFIG = {
     # ---------------------------
     "data_file": "data/world_cup_chart_03_home_winners.csv",
     "data_format": "wide",
-    "chart_type": "dot",  # line | bar | dot | scatter
+    "chart_type": "scatter",
 
     "x_col": "year",
-    "y_col": "home_win_label",
+    "y_col": "host_winner",
     "series_col": None,
     "value_col": None,
 
@@ -15,11 +15,11 @@ CHART_CONFIG = {
     # STORY
     # ---------------------------
     "title": "Home advantage is rare, but it sticks",
-    "subtitle": "Only six World Cup finals in this dataset ended with the host nation lifting the trophy.",
+    "subtitle": "Only six World Cup finals ended with the host nation lifting the trophy.",
     "source_text": "Source: Wikipedia- List of FIFA World Cup finals",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "timeline_highlight",
+    "story_angle": "relationship",
     "focus_series": None,
     "secondary_series": None,
     "label_strategy": "focus_only",
@@ -30,18 +30,18 @@ CHART_CONFIG = {
     "x_is_datetime": False,
     "x_tick_rotation": 0,
     "x_label": "World Cup year",
-    "y_label": "Host nation winners",
+    "y_label": "Host nation lifted the trophy (1=yes)",
 
     "x_axis": {
         "min": 1928,
-        "max": 2002,
-        "tick_interval": 12,
-        "format": ".0f"  # percent | currency | millions | ".1f"
+        "max": 2024,
+        "tick_interval": 8,
+        "format": None
     },
 
-    "y_axis_min": None,
-    "y_axis_max": None,
-    "y_tick_interval": None,
+    "y_axis_min": -0.15,
+    "y_axis_max": 1.15,
+    "y_tick_interval": 1,
     "y_tick_format": None,
 
     # ---------------------------
@@ -66,8 +66,8 @@ CHART_CONFIG = {
     # ---------------------------
     "dot_style": {
         "color": "#D9D9D9",
-        "size": 48,
-        "alpha": 0.55
+        "size": 52,
+        "alpha": 0.75
     },
 
     "highlight_style": {
@@ -97,19 +97,75 @@ CHART_CONFIG = {
     # ---------------------------
     # ANNOTATIONS
     # ---------------------------
-    "reference_lines": [],
-
-    "highlight_points": [
+    "reference_lines": [
         {
-            "column": "highlight",
-            "value": "TRUE"
+            "axis": "y",
+            "value": 0,
+            "label": "No",
+            "color": "#B0B0B0",
+            "linestyle": "--",
+            "linewidth": 0.8,
+            "alpha": 0.8
+        },
+        {
+            "axis": "y",
+            "value": 1,
+            "label": "Yes",
+            "color": "#B0B0B0",
+            "linestyle": "--",
+            "linewidth": 0.8,
+            "alpha": 0.8
         }
     ],
 
-    # Keep annotations empty for this chart.
-    # The renderer plots dot-chart categories on numeric y positions, so annotations
-    # that use categorical y values can trigger Matplotlib category conversion errors.
-    "annotate_points": [],
+    "highlight_points": [
+        {"column": "host_winner", "value": 1}
+    ],
+
+    "annotate_points": [
+        {
+            "x": 1930,
+            "y": 1,
+            "text": "Uruguay",
+            "xytext": (6, 10),
+            "fontsize": 8
+        },
+        {
+            "x": 1934,
+            "y": 1,
+            "text": "Italy",
+            "xytext": (6, -14),
+            "fontsize": 8
+        },
+        {
+            "x": 1966,
+            "y": 1,
+            "text": "England",
+            "xytext": (6, 10),
+            "fontsize": 8
+        },
+        {
+            "x": 1974,
+            "y": 1,
+            "text": "West Germany",
+            "xytext": (6, -14),
+            "fontsize": 8
+        },
+        {
+            "x": 1978,
+            "y": 1,
+            "text": "Argentina",
+            "xytext": (6, 10),
+            "fontsize": 8
+        },
+        {
+            "x": 1998,
+            "y": 1,
+            "text": "France",
+            "xytext": (6, -14),
+            "fontsize": 8
+        }
+    ],
 
     "end_labels": [],
 
@@ -126,11 +182,11 @@ CHART_CONFIG = {
     # ---------------------------
     "title_fontsize": 22,
     "subtitle_fontsize": 12,
-    "tick_label_fontsize": 9,
+    "tick_label_fontsize": 10,
     "axis_label_fontsize": 10,
-    "footer_fontsize": 8,
+    "footer_fontsize": 10,
 
-    "title_wrap_width": 38,
+    "title_wrap_width": 40,
     "subtitle_wrap_width": 72,
     "title_max_lines": 2,
     "subtitle_max_lines": 2,
@@ -144,16 +200,16 @@ CHART_CONFIG = {
     "title_x": 0.10,
     "title_y": 0.92,
     "subtitle_x": 0.10,
-    "subtitle_y": 0.855,
+    "subtitle_y": 0.86,
 
     "footer_left_x": 0.10,
     "footer_right_x": 0.90,
-    "footer_y": 0.075,
+    "footer_y": 0.08,
 
-    "plot_top": 0.74,
-    "plot_bottom": 0.18,
-    "plot_left": 0.28,
-    "plot_right": 0.88,
+    "plot_top": 0.75,
+    "plot_bottom": 0.14,
+    "plot_left": 0.12,
+    "plot_right": 0.90,
 
     "vertical_gridlines": False,
 
@@ -161,5 +217,5 @@ CHART_CONFIG = {
     # OUTPUT
     # ---------------------------
     "dpi": 200,
-    "output_file": "output/world_cup_chart_03_home_winners.png"
+    "output_file": "output/chart.png"
 }
