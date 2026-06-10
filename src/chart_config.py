@@ -14,9 +14,9 @@ CHART_CONFIG = {
     # ---------------------------
     # STORY
     # ---------------------------
-    "title": "The final has become harder to kill off",
-    "subtitle": "The modern World Cup final has drifted towards extra time and penalties, after a timeline broken by war.",
-    "source_text": "Source: Wikipedia - List of FIFA World Cup finals",
+    "title": "Finals are getting harder to settle",
+    "subtitle": "Extra time and penalties have become part of the World Cup final’s modern rhythm, after a timeline broken by war.",
+    "source_text": "Source: Wikipedia - List of FIFA World Cup Finals",
     "footer_left": "Adam Green | coffeetableviz",
 
     "story_angle": "time_trend",
@@ -30,7 +30,7 @@ CHART_CONFIG = {
     "x_is_datetime": False,
     "x_tick_rotation": 0,
     "x_label": "World Cup year",
-    "y_label": "Final outcome type",
+    "y_label": "Outcome band",
 
     "x_axis": {
         "min": 1928,
@@ -39,8 +39,8 @@ CHART_CONFIG = {
         "format": ".0f"  # percent | currency | millions | ".1f"
     },
 
-    "y_axis_min": -0.3,
-    "y_axis_max": 4.3,
+    "y_axis_min": -0.4,
+    "y_axis_max": 4.4,
     "y_tick_interval": 1,
     "y_tick_format": ".0f",
 
@@ -103,7 +103,53 @@ CHART_CONFIG = {
     # ---------------------------
     # ANNOTATIONS
     # ---------------------------
-    "reference_lines": [],
+    "reference_lines": [
+        {
+            "axis": "y",
+            "value": 0,
+            "label": "Not played (WWII)",
+            "color": "#7A7A7A",
+            "linestyle": "--",
+            "linewidth": 0.8,
+            "alpha": 0.65
+        },
+        {
+            "axis": "y",
+            "value": 1,
+            "label": "Settled in play",
+            "color": "#7A7A7A",
+            "linestyle": "--",
+            "linewidth": 0.8,
+            "alpha": 0.45
+        },
+        {
+            "axis": "y",
+            "value": 2,
+            "label": "Extra time",
+            "color": "#7A7A7A",
+            "linestyle": "--",
+            "linewidth": 0.8,
+            "alpha": 0.45
+        },
+        {
+            "axis": "y",
+            "value": 3,
+            "label": "Penalties",
+            "color": "#7A7A7A",
+            "linestyle": "--",
+            "linewidth": 0.8,
+            "alpha": 0.45
+        },
+        {
+            "axis": "y",
+            "value": 4,
+            "label": "Scheduled",
+            "color": "#7A7A7A",
+            "linestyle": "--",
+            "linewidth": 0.8,
+            "alpha": 0.65
+        }
+    ],
 
     "highlight_points": [
         {"column": "year", "value": "1942"},
@@ -151,13 +197,13 @@ CHART_CONFIG = {
     # ---------------------------
     # TYPOGRAPHY
     # ---------------------------
-    "title_fontsize": 22,
+    "title_fontsize": 21,
     "subtitle_fontsize": 12,
     "tick_label_fontsize": 9,
     "axis_label_fontsize": 10,
     "footer_fontsize": 8,
 
-    "title_wrap_width": 38,
+    "title_wrap_width": 42,
     "subtitle_wrap_width": 72,
     "title_max_lines": 2,
     "subtitle_max_lines": 2,
