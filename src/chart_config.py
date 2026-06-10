@@ -2,53 +2,53 @@ CHART_CONFIG = {
     # ---------------------------
     # DATA
     # ---------------------------
-    "data_file": "data/world_cup_chart_01_titles_by_winner.csv",
+    "data_file": "data/world_cup_chart_02_final_timeline.csv",
     "data_format": "wide",
-    "chart_type": "bar",  # line | bar | dot | scatter
+    "chart_type": "scatter",  # line | bar | dot | scatter
 
-    "x_col": "titles",
-    "y_col": "winner",
+    "x_col": "year",
+    "y_col": "outcome_score",
     "series_col": None,
     "value_col": None,
 
     # ---------------------------
     # STORY
     # ---------------------------
-    "title": "The World Cup has a tiny winners club",
-    "subtitle": "Across nearly a century of finals, the trophy has still only been lifted by a small group of countries.",
+    "title": "The final has become harder to kill off",
+    "subtitle": "The modern World Cup final has drifted towards extra time and penalties, after a timeline broken by war.",
     "source_text": "Source: Wikipedia - List of FIFA World Cup finals",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "ranked_comparison",
+    "story_angle": "time_trend",
     "focus_series": None,
     "secondary_series": None,
-    "label_strategy": "all",
+    "label_strategy": "focus_only",
 
     # ---------------------------
     # AXES
     # ---------------------------
     "x_is_datetime": False,
     "x_tick_rotation": 0,
-    "x_label": "World Cup final wins",
-    "y_label": "Winner",
+    "x_label": "World Cup year",
+    "y_label": "Final outcome type",
 
     "x_axis": {
-        "min": 0,
-        "max": 5.5,
-        "tick_interval": 1,
-        "format": None  # percent | currency | millions | ".1f"
+        "min": 1928,
+        "max": 2028,
+        "tick_interval": 12,
+        "format": ".0f"  # percent | currency | millions | ".1f"
     },
 
-    "y_axis_min": None,
-    "y_axis_max": None,
-    "y_tick_interval": None,
-    "y_tick_format": None,
+    "y_axis_min": -0.3,
+    "y_axis_max": 4.3,
+    "y_tick_interval": 1,
+    "y_tick_format": ".0f",
 
     # ---------------------------
     # SORTING
     # ---------------------------
     "sort": {
-        "by": "titles",
+        "by": "year",
         "ascending": True
     },
     "sort_descending": False,
@@ -94,9 +94,10 @@ CHART_CONFIG = {
         "alpha": 0.9,
     },
 
-    "bar_style": {
+    "point_style": {
         "color": "#1F8FA8",
-        "alpha": 0.9
+        "size": 62,
+        "alpha": 0.7
     },
 
     # ---------------------------
@@ -105,18 +106,34 @@ CHART_CONFIG = {
     "reference_lines": [],
 
     "highlight_points": [
-        {
-            "column": "winner",
-            "value": "Brazil"
-        }
+        {"column": "year", "value": "1942"},
+        {"column": "year", "value": "1946"},
+        {"column": "year", "value": "1994"},
+        {"column": "year", "value": "2006"},
+        {"column": "year", "value": "2022"},
+        {"column": "year", "value": "2026"}
     ],
 
     "annotate_points": [
         {
-            "column": "winner",
-            "value": "Brazil",
-            "text": "Brazil set the benchmark",
-            "xytext": [-98, -14],
+            "column": "year",
+            "value": "1942",
+            "text": "World War II gap",
+            "xytext": [8, -18],
+            "fontsize": 8
+        },
+        {
+            "column": "year",
+            "value": "1994",
+            "text": "First penalty final",
+            "xytext": [-70, 18],
+            "fontsize": 8
+        },
+        {
+            "column": "year",
+            "value": "2026",
+            "text": "2026 final scheduled",
+            "xytext": [-92, 18],
             "fontsize": 8
         }
     ],
@@ -124,9 +141,9 @@ CHART_CONFIG = {
     "end_labels": [],
 
     "label_style": {
-        "enabled": True,
-        "label_col": "titles",
-        "label_format": "{:.0f}",
+        "enabled": False,
+        "label_col": None,
+        "label_format": "{}",
         "position": "right",
         "fontsize": 8
     },
@@ -161,16 +178,15 @@ CHART_CONFIG = {
     "footer_y": 0.075,
 
     "plot_top": 0.74,
-    "plot_bottom": 0.16,
-    "plot_left": 0.24,
-    "plot_right": 0.86,
+    "plot_bottom": 0.18,
+    "plot_left": 0.16,
+    "plot_right": 0.88,
 
-    "vertical_gridlines": False,
-    "orientation": "horizontal",
+    "vertical_gridlines": True,
 
     # ---------------------------
     # OUTPUT
     # ---------------------------
     "dpi": 200,
-    "output_file": "output/world_cup_chart_01_titles_by_winner.png"
+    "output_file": "output/world_cup_chart_02_final_timeline.png"
 }
