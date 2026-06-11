@@ -35,7 +35,7 @@ archive/projects/YYYY-MM-project-name/content/
 
 For active work, files can temporarily live in active paths only when required by the renderer or workflow.
 
-## 3. Dataset creation
+## 3. Dataset creation and inspection
 
 Use real data only.
 
@@ -53,9 +53,17 @@ Check:
 
 If a script is needed, create it in the repo rather than requiring Adam to copy/paste from chat.
 
-## 4. Chart planning
+## 4. Story discovery and 3-chart planning
 
-Select one clear story:
+Before creating chart configs for a blog/data story, run the story discovery step in `docs/story_discovery_and_3_chart_flow.md`.
+
+The default path is:
+
+```text
+dataset -> story discovery -> 3-chart editorial plan -> derived datasets -> chart configs
+```
+
+Scan the inspected dataset for:
 
 - ranking;
 - outlier;
@@ -64,15 +72,40 @@ Select one clear story:
 - concentration;
 - gap;
 - shift;
-- relationship.
+- relationship;
+- surprising absence;
+- misleading first impression;
+- strongest single takeaway.
 
-Avoid generic chart titles.
+Then present a recommended 3-chart story:
+
+| Chart | Role | Purpose |
+|---|---|---|
+| Chart 1 | Set the scene | Establish the broad pattern or starting point. |
+| Chart 2 | Build the tension | Reveal the shift, gap, concentration, outlier, contradiction, or breakdown. |
+| Chart 3 | Land the aha moment | Deliver the clearest takeaway the post should leave behind. |
+
+For each chart, present:
+
+```text
+Chart title:
+Story question:
+Chart type:
+Data needed:
+Key stat:
+Why this chart matters:
+Potential issue / QA risk:
+```
+
+Only move to chart configs after the editorial route is clear or strongly recommended.
 
 ## 5. Chart config
 
 Use `docs/chart_config_prompt.txt` as the locked config generation guide.
 
 Before creating or updating a config, inspect the dataset columns and match names exactly.
+
+Do not treat `CHART_CONFIG` creation as the first analytical step for blog/data-story work.
 
 ## 6. Render and QA
 
