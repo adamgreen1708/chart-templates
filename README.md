@@ -1,8 +1,13 @@
-# chart-templates
+# Chart Templates
 
-A repo for producing coffeetableviz data stories: datasets, chart configuration, rendering workflows, and archived project assets.
+This repo stores locked chart design systems and supports the coffeetableviz chart production workflow.
 
-The repo now works as a small production system rather than a file dump. Active files should stay lean. Project-specific files should live with the project that created them.
+The repo is the single source of truth for chart templates, renderer behaviour, dataset assets, GitHub workflows, and archived project work.
+
+## Templates
+
+- 538 Template → `spec/538_template_rules.md`
+- CHART_CONFIG prompt → `docs/chart_config_prompt.txt`
 
 ## Active areas
 
@@ -31,9 +36,16 @@ archive/projects/YYYY-MM-project-name/output/
 archive/projects/YYYY-MM-project-name/content/
 ```
 
+## Workflow
+
+- Rules are defined in `spec/` and `docs/` files.
+- Implementation is handled through Python, GitHub Actions, and repo-aware ChatGPT support.
+- Project-specific files should be archived with the project that created them.
+- The active repo should stay ready for the next chart.
+
 ## Core principle
 
-Keep the active repo ready for the next chart. Move old project machinery into the archive once it has served its purpose.
+Keep the active repo lean. Move old project machinery into the archive once it has served its purpose.
 
 ## Key docs
 
