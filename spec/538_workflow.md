@@ -1,21 +1,49 @@
 # 538 Workflow
 
 ## Source of truth
+
 The file `spec/538_template_rules.md` is the master definition of the 538 chart template.
 
-## Intended implementation
-A reusable Python chart styling system should eventually live in:
+## Current implementation
+
+The reusable Python chart styling and rendering system lives in:
 
 - `src/chart_538.py`
 - `src/render_538.py`
+- `src/chart_config_template.py`
+- `docs/chart_config_prompt.txt`
 
-## Rules for implementation
-- Follow `spec/538_template_rules.md` exactly
-- Do not introduce white plot backgrounds
-- Preserve locked canvas ratio
-- Preserve padding rules
-- Keep title/subtitle inside safe bounds
-- Only add vertical gridlines when explicitly requested
+## Implementation rules
+
+- Follow `spec/538_template_rules.md` exactly.
+- Do not introduce white plot backgrounds.
+- Preserve the square 8.0 x 8.0 production canvas unless explicitly changed.
+- Preserve padding rules and safe margins.
+- Keep title/subtitle inside safe bounds.
+- Use explicit axis labels when they reduce ambiguity.
+- Add axis breathing room where labels, markers, or annotations risk clipping.
+- Only add vertical gridlines when explicitly requested or clearly useful.
+
+## Project lesson rule
+
+When a live project exposes a reusable renderer/config lesson, update the template system rather than leaving the fix trapped in one chart config.
+
+Examples:
+
+- axis labels needed for interpretability;
+- wider plot margins needed to prevent clipping;
+- annotation offset patterns that avoid edge collisions;
+- output naming rules;
+- recurring chart type patterns.
 
 ## Change control
-Any change to the 538 template must be made in `spec/538_template_rules.md` first before implementation is updated.
+
+Any reusable change should update all relevant files in one PR:
+
+1. `spec/538_template_rules.md`
+2. `src/chart_config_template.py`
+3. `docs/chart_config_prompt.txt`
+4. `AGENTS.md` if agent behaviour changes
+5. tests where applicable
+
+If implementation conflicts with the spec, resolve the conflict immediately. The repo should not knowingly hold stale template rules.

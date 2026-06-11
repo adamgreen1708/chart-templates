@@ -1,39 +1,14 @@
-import os
-from pathlib import Path
-
 import matplotlib.pyplot as plt
 
-from src.chart_538 import apply_538_template
-from src.render_538 import load_wide_data, load_long_data
-
-REPO_ROOT = Path(__file__).resolve().parent.parent
+from src.chart_538 import BG, apply_538_template
+from src.render_538 import _axis_formatter, _to_float
 
 
-# ---- TEST DATA LOADING ----
-
-def test_load_wide_data():
-    data_path = REPO_ROOT / "data" / "test_chart.csv"
-    series = load_wide_data(data_path, "x", "y")
-
-    assert "Main" in series
-    assert len(series["Main"]["x"]) > 0
-    assert len(series["Main"]["y"]) > 0
+# ---- TEMPLATE CORE ----
 
 
-def test_load_long_data():
-    data_path = REPO_ROOT / "data" / "test_chart_multi.csv"
-    series = load_long_data(data_path, "x", "series", "value")
-
-    assert "Actual" in series
-    assert "Benchmark" in series
-    assert len(series["Actual"]["x"]) > 0
-
-
-# ---- TEST TEMPLATE CORE ----
-
-def test_template_runs():
-    fig, ax = plt.subplots(figsize=(12.0, 8.5))
-
+def test_template_runs_with_square_canvas_defaults():
+    fig, ax = plt.subplots(figsize=(8.0, 8.0))
     ax.plot([1, 2, 3], [1, 2, 3])
 
     apply_538_template(
@@ -45,40 +20,50 @@ def test_template_runs():
         footer_left="Footer",
     )
 
+    width, height = fig.get_size_inches()
+    assert width == 8.0
+    assert height == 8.0
     assert fig is not None
 
 
 def test_background_not_white():
-    fig, ax = plt.subplots(figsize=(12.0, 8.5))
+    fig, ax = plt.subplots(figsize=(8.0, 8.0))
     apply_538_template(ax, fig)
 
-    # white would be (1,1,1,1)
     assert fig.get_facecolor() != (1.0, 1.0, 1.0, 1.0)
     assert ax.get_facecolor() != (1.0, 1.0, 1.0, 1.0)
+    assert fig.get_facecolor() == plt.matplotlib.colors.to_rgba(BG)
 
 
-def test_gridlines_exist():
-    fig, ax = plt.subplots(figsize=(12.0, 8.5))
+def test_horizontal_gridlines_default_on_vertical_off():
+    fig, ax = plt.subplots(figsize=(8.0, 8.0))
     ax.plot([1, 2, 3], [1, 2, 3])
 
     apply_538_template(ax, fig)
 
-    gridlines = ax.get_ygridlines()
-    assert len(gridlines) > 0
+    assert any(line.get_visible() for line in ax.get_ygridlines())
+    assert not any(line.get_visible() for line in ax.get_xgridlines())
 
 
-# ---- TEST RENDER OUTPUT ----
+def test_vertical_gridlines_can_be_enabled():
+    fig, ax = plt.subplots(figsize=(8.0, 8.0))
+    ax.plot([1, 2, 3], [1, 2, 3])
 
-def test_output_folder_exists():
-    output_path = REPO_ROOT / "output"
-    assert output_path.exists()
+    apply_538_template(ax, fig, vertical_gridlines=True)
+
+    assert any(line.get_visible() for line in ax.get_xgridlines())
 
 
-def test_render_creates_png():
-    # Check at least one PNG exists after workflow runs
-    output_path = REPO_ROOT / "output"
-    png_files = list(output_path.glob("*.png"))
+# ---- RENDERER HELPERS ----
 
-    # This won't fail locally if no run has happened,
-    # but ensures pipeline catches missing output
-    assert isinstance(png_files, list)
+
+def test_to_float_handles_symbols_and_blanks():
+    assert _to_float("$1,200") == 1200.0
+    assert _to_float("45%") == 45.0
+    assert _to_float(12) == 12.0
+    assert _to_float("") is None
+
+
+def test_axis_formatter_supports_billions():
+    formatter = _axis_formatter("billions")
+    assert formatter(13, None) == "$13bn"

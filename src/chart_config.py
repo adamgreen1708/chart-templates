@@ -2,7 +2,7 @@ CHART_CONFIG = {
     # ---------------------------
     # DATA
     # ---------------------------
-    "data_file": "data/world_cup_chart_03_home_winners.csv",
+    "data_file": "archive/projects/2026-05-world-cup-finals/data/world_cup_chart_03_home_winners.csv",
     "data_format": "wide",
     "chart_type": "line",  # line | bar | dot | scatter
 
@@ -31,6 +31,7 @@ CHART_CONFIG = {
     "x_tick_rotation": 0,
     "x_label": "World Cup year",
     "y_label": "Cumulative host-nation wins",
+    "x_margin": 0.08,
 
     "x_axis": {
         "min": 1930,
