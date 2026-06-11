@@ -21,12 +21,13 @@ For this task, identify whether the best route is:
 
 1. source research and data acquisition;
 2. dataset creation or cleanup;
-3. chart config creation;
-4. renderer/template improvement;
-5. workflow automation;
-6. blog/social content package;
-7. archive/cleanup;
-8. or a better alternative route I have not explicitly asked for.
+3. story discovery and a 3-chart editorial plan;
+4. chart config creation;
+5. renderer/template improvement;
+6. workflow automation;
+7. blog/social content package;
+8. archive/cleanup;
+9. or a better alternative route I have not explicitly asked for.
 
 Before doing the work, briefly state the recommended route and any optimisation you suggest.
 
@@ -35,7 +36,9 @@ Rules:
 - Use real data only.
 - Do not invent columns, values, filenames, or sources.
 - Prefer direct GitHub branches/PRs when that reduces mobile copy/paste.
-- Use `docs/chart_config_prompt.txt` and `src/chart_config_template.py` for chart configs.
+- For blog/data-story work, do not jump from dataset inspection straight to chart config.
+- Use `docs/story_discovery_and_3_chart_flow.md` to find the story and present the recommended 3-chart editorial plan before creating configs.
+- Use `docs/chart_config_prompt.txt` and `src/chart_config_template.py` for chart configs after the story route is clear.
 - Use `docs/chart_qa_checklist.md` before saying a chart is ready.
 - Use `spec/538_template_rules.md` as the chart template source of truth.
 - If a live project reveals a reusable improvement, actively suggest and update the template/control files rather than leaving the fix in one chart config.
@@ -48,6 +51,7 @@ Rules:
 For chart work, prioritise:
 
 - one clear story;
+- a recommended 3-chart editorial sequence where appropriate;
 - short message-led title;
 - explanatory subtitle;
 - correct axis labels where they reduce ambiguity;
@@ -72,7 +76,7 @@ Now review the task I give you and either proceed with the best route or suggest
 ## Short kickoff prompt
 
 ```text
-Use my `adamgreen1708/chart-templates` repo operating model. Inspect the repo, suggest the best route, reduce my manual steps, use real data only, create GitHub branches/PRs where useful, QA before handback, update templates if a reusable lesson appears, and archive project-specific files when done.
+Use my `adamgreen1708/chart-templates` repo operating model. Inspect the repo, suggest the best route, reduce my manual steps, use real data only, find the story and present a 3-chart editorial plan before creating configs where appropriate, create GitHub branches/PRs where useful, QA before handback, update templates if a reusable lesson appears, and archive project-specific files when done.
 ```
 
 ---
@@ -84,6 +88,7 @@ Use this when starting:
 - a new data story;
 - a chart build;
 - a dataset generation task;
+- a story discovery and 3-chart planning task;
 - a renderer/template improvement;
 - a WordPress/social content package;
 - a repo cleanup;
@@ -96,13 +101,16 @@ ChatGPT should:
 
 1. inspect the repo;
 2. identify the task type;
-3. recommend the best route;
-4. suggest time-saving improvements;
-5. work directly in GitHub where useful;
-6. QA the work before handback;
-7. keep active repo areas clean;
-8. update templates when reusable improvements appear;
-9. summarise clearly at the end.
+3. inspect or retrieve the dataset where relevant;
+4. find the strongest story route before building charts;
+5. present a 3-chart editorial plan for blog/data-story work;
+6. recommend the best route;
+7. suggest time-saving improvements;
+8. work directly in GitHub where useful;
+9. QA the work before handback;
+10. keep active repo areas clean;
+11. update templates when reusable improvements appear;
+12. summarise clearly at the end.
 
 ## Optional add-ons
 
@@ -117,7 +125,7 @@ Prioritise robustness: build reusable scripts/workflows and document assumptions
 ```
 
 ```text
-Prioritise publication: produce the chart plus WordPress, excerpt, LinkedIn, Instagram, and cartoon prompt assets.
+Prioritise publication: produce the story route, 3-chart plan, chart plus WordPress, excerpt, LinkedIn, Instagram, and cartoon prompt assets.
 ```
 
 ```text

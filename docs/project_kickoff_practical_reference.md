@@ -8,7 +8,7 @@ You only need to provide three things:
 2. the dataset location;
 3. the intended output.
 
-ChatGPT should then inspect the repo, suggest the best route, and drive the production flow.
+ChatGPT should then inspect the repo, inspect the dataset, find the story, present the recommended 3-chart editorial plan, and drive the production flow.
 
 ## Copy/paste prompt
 
@@ -28,7 +28,7 @@ Dataset:
 My intended outcome:
 [chart, dataset, WordPress blog post, LinkedIn post, Instagram copy, cartoon prompt, repo cleanup, etc.]
 
-Please inspect the repo context first, suggest the best route, and proceed with the most efficient approach.
+Please inspect the repo context first, inspect the dataset, find the strongest story, present the recommended 3-chart editorial plan, and then proceed with the most efficient build route.
 ```
 
 ## What should happen next
@@ -37,13 +37,16 @@ ChatGPT should:
 
 1. inspect the repo context;
 2. inspect or retrieve the dataset;
-3. identify the best route;
-4. suggest any more efficient alternative;
-5. create or update data/scripts/configs in GitHub where useful;
-6. QA the chart/story before handback;
-7. update templates if a reusable lesson appears;
-8. produce the requested publication package;
-9. archive project-specific files when complete or parked.
+3. check source, rows, columns, data types, missing values, units, dates, and useful derived fields;
+4. scan for rankings, outliers, trends, comparisons, concentration, gaps, shifts, relationships, surprising absences, and misleading first impressions;
+5. present the strongest story route and recommended 3-chart editorial plan;
+6. identify the best build route;
+7. suggest any more efficient alternative;
+8. create or update data/scripts/configs in GitHub where useful;
+9. QA the chart/story before handback;
+10. update templates if a reusable lesson appears;
+11. produce the requested publication package;
+12. archive project-specific files when complete or parked.
 
 ## Useful outcome examples
 
@@ -54,7 +57,12 @@ One chart, WordPress blog post, excerpt, LinkedIn post, Instagram post, cartoon 
 
 ```text
 My intended outcome:
-A cleaned dataset and first-pass chart config only.
+A cleaned dataset and first-pass 3-chart story plan only.
+```
+
+```text
+My intended outcome:
+A cleaned dataset, recommended 3-chart story, and chart configs.
 ```
 
 ```text

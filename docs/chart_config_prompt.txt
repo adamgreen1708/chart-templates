@@ -15,13 +15,39 @@ Use only columns that exist in the dataset.
 
 ---
 
+## STORY DISCOVERY PRECONDITION
+
+For blog/data-story work, `CHART_CONFIG` creation is not the first analytical step.
+
+The default process is:
+
+```text
+dataset -> story discovery -> 3-chart editorial plan -> derived datasets -> chart configs
+```
+
+Use `docs/story_discovery_and_3_chart_flow.md` before creating configs unless the user explicitly asks for a config-only task or the story route is already agreed.
+
+If the story route is not yet clear, first present:
+
+```text
+Recommended story route:
+Why this is the strongest route:
+3-chart story:
+Next build step:
+```
+
+Only generate `CHART_CONFIG` once the chart being built has a clear editorial role in the story.
+
+---
+
 ## INPUT
 
 The user will provide or identify:
 
 - a CSV file;
 - its repo path;
-- the intended story or topic if known.
+- the intended story or topic if known;
+- the agreed chart role if this is part of a 3-chart story.
 
 You must inspect the dataset structure before creating the config.
 
@@ -40,7 +66,8 @@ Identify:
 - whether `value_col` is needed;
 - available numeric columns;
 - appropriate chart type;
-- strongest single editorial story.
+- strongest single editorial story;
+- how this chart fits the agreed story route.
 
 ### 2. Classify data format
 
@@ -258,7 +285,6 @@ Preferred row-matching format:
 ```python
 "highlight_points": [
     {"Country": "United Kingdom"},
-    {"Year": 2025}
 ]
 ```
 
@@ -356,6 +382,7 @@ Final check before output:
 - `data_file` includes the full filename and extension;
 - column names match the dataset exactly;
 - the chart type matches the data;
+- the chart has a clear role in the agreed story route;
 - the output path is valid;
 - axis labels are present where they reduce ambiguity;
 - labels and annotations should not clip.

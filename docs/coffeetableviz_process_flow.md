@@ -19,7 +19,7 @@ flowchart TD
 
     D -->|New data story| E[Frame story and source needs]
     D -->|Dataset task| F[Create or validate dataset]
-    D -->|Chart task| G[Inspect data and create/update CHART_CONFIG]
+    D -->|Chart task| G0{Is this blog/data-story work?}
     D -->|Renderer/template issue| H[Assess reusable system change]
     D -->|Blog/social package| I[Create publication assets]
     D -->|Cleanup/archive| J[Classify active vs project-specific files]
@@ -32,8 +32,20 @@ flowchart TD
     F1 --> F2[Check rows, columns, types, missing values, units, dates]
     F2 --> F3{Script or workflow needed?}
     F3 -->|Yes| F4[Create repo script/workflow on branch]
-    F3 -->|No| G
-    F4 --> G
+    F3 -->|No| S0[Run story discovery]
+    F4 --> S0
+
+    G0 -->|Yes| S0
+    G0 -->|No: config-only task| G[Inspect data and create/update CHART_CONFIG]
+
+    S0 --> S1[Scan for ranking, outlier, trend, comparison, concentration, gap, shift, relationship]
+    S1 --> S2[Present strongest story options]
+    S2 --> S3[Recommend 3-chart editorial plan]
+    S3 --> S4{Story route clear?}
+    S4 -->|No| S5[Ask Adam to choose or refine route]
+    S5 --> S4
+    S4 -->|Yes| S6[Create derived datasets needed for chosen charts]
+    S6 --> G
 
     G --> G1[Use docs/chart_config_prompt.txt and src/chart_config_template.py]
     G1 --> G2[Set x_col, y_col, labels, axis ranges, highlights, annotations]
@@ -66,7 +78,7 @@ flowchart TD
     P -->|Yes| Q[Merge PR]
 
     Q --> R[Verify key files on main]
-    R --> S[Summarise changes, checks, and next sensible improvement]
+    R --> T[Summarise changes, checks, and next sensible improvement]
 ```
 
 ## Operating principles
@@ -76,9 +88,11 @@ flowchart TD
 3. Prefer direct GitHub file work when it saves Adam manual effort.
 4. Keep active repo areas lean.
 5. Do not leave reusable fixes trapped in one project config.
-6. Compare before PR and merge.
-7. Verify after merge.
-8. End with a clear summary and next suggested improvement.
+6. Do not jump from dataset inspection straight to chart config for blog/data-story work.
+7. Present the strongest story route and 3-chart editorial plan before building configs.
+8. Compare before PR and merge.
+9. Verify after merge.
+10. End with a clear summary and next suggested improvement.
 
 ## Key decision points
 
@@ -93,6 +107,14 @@ If it improves future charts, update the relevant template/control files:
 - `docs/chart_config_prompt.txt`
 - `tests/test_538_rules.py`
 - `AGENTS.md` if agent behaviour changes
+
+### Does this need story discovery before config?
+
+For blog/data-story work, yes.
+
+Use `docs/story_discovery_and_3_chart_flow.md` before creating configs. The assistant should inspect the dataset, find the story, present the strongest options, recommend a 3-chart editorial plan, and only then build derived datasets and chart configs.
+
+For a narrow config-only request, the assistant can proceed straight to `CHART_CONFIG` creation after inspecting the dataset.
 
 ### Does this belong in the active repo or archive?
 
