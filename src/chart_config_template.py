@@ -5,11 +5,14 @@ CHART_CONFIG = {
     "data_file": "data/your_file.csv",
     "data_format": "wide",
     "chart_type": "dot",  # line | bar | dot | scatter
+    "orientation": None,  # None | horizontal for bar charts
 
     "x_col": "x_column",
     "y_col": "y_column",
     "series_col": None,
     "value_col": None,
+
+    "filters": [],
 
     # ---------------------------
     # STORY
@@ -29,14 +32,23 @@ CHART_CONFIG = {
     # ---------------------------
     "x_is_datetime": False,
     "x_tick_rotation": 0,
+    "x_label": "",
+    "y_label": "",
+    "x_margin": 0.08,
 
     "x_axis": {
         "min": None,
         "max": None,
         "tick_interval": None,
-        "format": None  # percent | currency | millions | ".1f"
+        "format": None  # percent | currency | millions | billions | ".1f" | "%Y"
     },
 
+    "y_axis": {
+        "min": None,
+        "max": None,
+        "tick_interval": None,
+        "format": None
+    },
     "y_axis_min": None,
     "y_axis_max": None,
     "y_tick_interval": None,
@@ -68,6 +80,17 @@ CHART_CONFIG = {
         "alpha": 0.55
     },
 
+    "point_style": {
+        "color": "#D9D9D9",
+        "size": 48,
+        "alpha": 0.55
+    },
+
+    "bar_style": {
+        "color": "#1F8FA8",
+        "alpha": 0.9
+    },
+
     "highlight_style": {
         "color": "#C44E52",
         "size": 90,
@@ -93,14 +116,23 @@ CHART_CONFIG = {
     },
 
     # ---------------------------
-    # ANNOTATIONS
+    # REFERENCE LINES / TREND
     # ---------------------------
     "reference_lines": [],
 
+    "trend_line": {
+        "enabled": False,
+        "color": "#7A7A7A",
+        "linewidth": 1.4,
+        "linestyle": "-",
+        "alpha": 0.8
+    },
+
+    # ---------------------------
+    # ANNOTATIONS
+    # ---------------------------
     "highlight_points": [],
-
     "annotate_points": [],
-
     "end_labels": [],
 
     "label_style": {
