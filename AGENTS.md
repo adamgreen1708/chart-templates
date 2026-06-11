@@ -7,6 +7,7 @@ This repository contains locked chart template systems and a repo-aware coffeeta
 - The source of truth is `spec/538_template_rules.md`.
 - Workflow guidance is in `spec/538_workflow.md`.
 - CHART_CONFIG prompting rules are in `docs/chart_config_prompt.txt`.
+- Story discovery and 3-chart planning rules are in `docs/story_discovery_and_3_chart_flow.md`.
 - The reusable config template is `src/chart_config_template.py`.
 - Implementation must follow the spec exactly.
 - Do not introduce a white plot area.
@@ -21,6 +22,8 @@ This repository contains locked chart template systems and a repo-aware coffeeta
 - Do not change renderer behaviour for one project without considering whether the template/spec should also be updated.
 - If a live project reveals a reusable lesson, actively suggest and update the template files.
 - If implementation conflicts with spec, fix the drift in the same branch.
+- For blog/data-story work, do not jump from dataset inspection straight to chart config.
+- First inspect the dataset, find the strongest story route, and present a recommended 3-chart editorial plan unless Adam explicitly asks for a config-only task.
 
 ## Protected active files
 
