@@ -18,7 +18,7 @@ CHART_CONFIG = {
     # STORY
     # ---------------------------
     "title": "Fincher gets the best-rated Pitt",
-    "subtitle": "Among six directors with 2+ films in this IMDb list, David Fincher's three average 8.4.",
+    "subtitle": "Six directors have 2+ films in this IMDb list. Fincher's three average 8.4 — the highest.",
     "source_text": "Source: IMDb list export",
     "footer_left": "Adam Green | coffeetableviz",
 
@@ -175,10 +175,10 @@ CHART_CONFIG = {
     "footer_right_x": 0.90,
     "footer_y": 0.08,
 
-    "plot_top": 0.74,
+    "plot_top": 0.75,
     "plot_bottom": 0.14,
-    "plot_left": 0.39,
-    "plot_right": 0.92,
+    "plot_left": 0.31,
+    "plot_right": 0.90,
 
     "vertical_gridlines": False,
 
