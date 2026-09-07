@@ -2,24 +2,27 @@ CHART_CONFIG = {
     # ---------------------------
     # DATA
     # ---------------------------
-    "data_file": "archive/projects/2026-05-world-cup-finals/data/world_cup_chart_03_home_winners.csv",
+    "data_file": "archive/projects/2026-09-brad-pitt-imdb-list/data/brad_pitt_imdb_films.csv",
     "data_format": "wide",
-    "chart_type": "line",  # line | bar | dot | scatter
+    "chart_type": "scatter",
+    "orientation": None,
 
-    "x_col": "year",
-    "y_col": "cumulative_host_wins",
+    "x_col": "Runtime (mins)",
+    "y_col": "IMDb Rating",
     "series_col": None,
     "value_col": None,
+
+    "filters": [],
 
     # ---------------------------
     # STORY
     # ---------------------------
-    "title": "Home glory has gone quiet",
-    "subtitle": "Six host nations have won the World Cup final, but none since France in 1998.",
-    "source_text": "Source: Wikipedia- List of FIFA World Cup finals",
+    "title": "Brad Pitt films reward patience",
+    "subtitle": "In this 54-film IMDb list, films at 130+ minutes average 7.6; those under 110 minutes average 6.1.",
+    "source_text": "Source: IMDb list export",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "time_trend",
+    "story_angle": "relationship",
     "focus_series": None,
     "secondary_series": None,
     "label_strategy": "focus_only",
@@ -29,35 +32,38 @@ CHART_CONFIG = {
     # ---------------------------
     "x_is_datetime": False,
     "x_tick_rotation": 0,
-    "x_label": "World Cup year",
-    "y_label": "Cumulative host-nation wins",
+    "x_label": "Runtime (minutes)",
+    "y_label": "IMDb rating",
     "x_margin": 0.08,
 
     "x_axis": {
-        "min": 1930,
-        "max": 2022,
-        "tick_interval": 8,
-        "format": None
+        "min": 80,
+        "max": 195,
+        "tick_interval": 20,
+        "format": ".0f"
     },
 
-    "y_axis_min": 0,
-    "y_axis_max": 7,
+    "y_axis": {
+        "min": 4,
+        "max": 9,
+        "tick_interval": 1,
+        "format": ".1f"
+    },
+    "y_axis_min": 4,
+    "y_axis_max": 9,
     "y_tick_interval": 1,
-    "y_tick_format": None,
+    "y_tick_format": ".1f",
 
     # ---------------------------
     # SORTING
     # ---------------------------
-    "sort": {
-        "by": "year",
-        "ascending": True
-    },
+    "sort": None,
     "sort_descending": False,
 
     # ---------------------------
     # MARKS
     # ---------------------------
-    "line_width": 3.2,
+    "line_width": 2.6,
     "marker_size": 60,
     "show_markers": True,
     "auto_end_labels": False,
@@ -71,9 +77,20 @@ CHART_CONFIG = {
         "alpha": 0.55
     },
 
+    "point_style": {
+        "color": "#D9D9D9",
+        "size": 58,
+        "alpha": 0.70
+    },
+
+    "bar_style": {
+        "color": "#1F8FA8",
+        "alpha": 0.9
+    },
+
     "highlight_style": {
         "color": "#C44E52",
-        "size": 100,
+        "size": 95,
         "alpha": 1.0
     },
 
@@ -96,73 +113,65 @@ CHART_CONFIG = {
     },
 
     # ---------------------------
+    # REFERENCE LINES / TREND
+    # ---------------------------
+    "reference_lines": [],
+
+    "trend_line": {
+        "enabled": True,
+        "color": "#7A7A7A",
+        "linewidth": 1.4,
+        "linestyle": "-",
+        "alpha": 0.8
+    },
+
+    # ---------------------------
     # ANNOTATIONS
     # ---------------------------
-    "reference_lines": [
-        {
-            "axis": "x",
-            "value": 1998,
-            "label": "Last host winner",
-            "color": "#7A7A7A",
-            "linestyle": "--",
-            "linewidth": 1.0,
-            "alpha": 0.7
-        }
-    ],
-
     "highlight_points": [
-        {
-            "column": "host_winner",
-            "value": 1,
-            "color": "#C44E52",
-            "size": 100,
-            "alpha": 1.0
-        }
+        {"Title": "Fight Club"},
+        {"Title": "Snatch"},
+        {"Title": "Babylon"},
+        {"Title": "Cutting Class"},
     ],
 
     "annotate_points": [
         {
-            "x": 1930,
-            "y": 1,
-            "text": "Uruguay (1930)",
-            "xytext": (6, -14),
-            "fontsize": 8
+            "Title": "Fight Club",
+            "text": "Fight Club · 8.8",
+            "xytext": (7, -10),
+            "ha": "left",
+            "va": "top",
+            "fontsize": 8,
+            "arrowprops": None,
         },
         {
-            "x": 1934,
-            "y": 2,
-            "text": "Italy (1934)",
-            "xytext": (6, 10),
-            "fontsize": 8
+            "Title": "Snatch",
+            "text": "Snatch · 104 mins, 8.2",
+            "xytext": (7, 8),
+            "ha": "left",
+            "va": "bottom",
+            "fontsize": 8,
+            "arrowprops": None,
         },
         {
-            "x": 1966,
-            "y": 3,
-            "text": "England (1966)",
-            "xytext": (6, -14),
-            "fontsize": 8
+            "Title": "Babylon",
+            "text": "Babylon · 189 mins",
+            "xytext": (-7, 9),
+            "ha": "right",
+            "va": "bottom",
+            "fontsize": 8,
+            "arrowprops": None,
         },
         {
-            "x": 1974,
-            "y": 4,
-            "text": "West Germany (1974)",
-            "xytext": (6, 10),
-            "fontsize": 8
+            "Title": "Cutting Class",
+            "text": "Cutting Class · 4.6",
+            "xytext": (7, 8),
+            "ha": "left",
+            "va": "bottom",
+            "fontsize": 8,
+            "arrowprops": None,
         },
-        {
-            "x": 1978,
-            "y": 5,
-            "text": "Argentina (1978)",
-            "xytext": (6, -14),
-            "fontsize": 8
-        },
-        {
-            "x": 1998,
-            "y": 6,
-            "text": "France (1998)",
-            "xytext": (8, 10),
-            "fontsize": 8
-        }
     ],
 
     "end_labels": [],
@@ -185,7 +194,7 @@ CHART_CONFIG = {
     "footer_fontsize": 10,
 
     "title_wrap_width": 40,
-    "subtitle_wrap_width": 72,
+    "subtitle_wrap_width": 74,
     "title_max_lines": 2,
     "subtitle_max_lines": 2,
 
@@ -202,10 +211,10 @@ CHART_CONFIG = {
 
     "footer_left_x": 0.10,
     "footer_right_x": 0.90,
-    "footer_y": 0.045,
+    "footer_y": 0.08,
 
     "plot_top": 0.75,
-    "plot_bottom": 0.19,
+    "plot_bottom": 0.14,
     "plot_left": 0.12,
     "plot_right": 0.90,
 
@@ -215,5 +224,5 @@ CHART_CONFIG = {
     # OUTPUT
     # ---------------------------
     "dpi": 200,
-    "output_file": "output/chart.png"
+    "output_file": "output/brad_pitt_runtime_vs_imdb.png"
 }
