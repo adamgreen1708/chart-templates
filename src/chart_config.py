@@ -2,13 +2,13 @@ CHART_CONFIG = {
     # ---------------------------
     # DATA
     # ---------------------------
-    "data_file": "archive/projects/2026-09-brad-pitt-imdb-list/data/brad_pitt_chart_02_repeat_directors.csv",
+    "data_file": "archive/projects/2026-09-brad-pitt-imdb-list/data/brad_pitt_chart_03_timeline.csv",
     "data_format": "wide",
-    "chart_type": "dot",
+    "chart_type": "scatter",
     "orientation": None,
 
-    "x_col": "Average IMDb Rating",
-    "y_col": "Director",
+    "x_col": "Year",
+    "y_col": "IMDb Rating",
     "series_col": None,
     "value_col": None,
 
@@ -17,49 +17,49 @@ CHART_CONFIG = {
     # ---------------------------
     # STORY
     # ---------------------------
-    "title": "Fincher gets the best-rated Pitt",
-    "subtitle": "Six directors have 2+ films in this IMDb list. Fincher's three average 8.4: Seven 8.6, Fight Club 8.8, Benjamin Button 7.8.",
+    "title": "From 4.6 to 8.8",
+    "subtitle": "The 54-film list spans 4.2 rating points; 1995–99 is its strongest five-year run, averaging 7.63 across seven films.",
     "source_text": "Source: IMDb list export",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "ranked_comparison",
+    "story_angle": "time_relationship",
     "focus_series": None,
     "secondary_series": None,
-    "label_strategy": "all",
+    "label_strategy": "focus_only",
 
     # ---------------------------
     # AXES
     # ---------------------------
     "x_is_datetime": False,
     "x_tick_rotation": 0,
-    "x_label": "Average IMDb rating",
-    "y_label": "",
+    "x_label": "Film year",
+    "y_label": "IMDb rating",
     "x_margin": 0.08,
 
     "x_axis": {
-        "min": 6.2,
-        "max": 9.15,
-        "tick_interval": 0.5,
-        "format": ".1f"
+        "min": 1986,
+        "max": 2027,
+        "tick_interval": 5,
+        "format": ".0f"
     },
 
     "y_axis": {
-        "min": None,
-        "max": None,
-        "tick_interval": None,
-        "format": None
+        "min": 4.2,
+        "max": 9.1,
+        "tick_interval": 1,
+        "format": ".1f"
     },
-    "y_axis_min": None,
-    "y_axis_max": None,
-    "y_tick_interval": None,
-    "y_tick_format": None,
+    "y_axis_min": 4.2,
+    "y_axis_max": 9.1,
+    "y_tick_interval": 1,
+    "y_tick_format": ".1f",
 
     # ---------------------------
     # SORTING
     # ---------------------------
     "sort": {
-        "by": "Average IMDb Rating",
-        "ascending": False
+        "by": "Year",
+        "ascending": True
     },
     "sort_descending": False,
 
@@ -67,7 +67,7 @@ CHART_CONFIG = {
     # MARKS
     # ---------------------------
     "line_width": 2.6,
-    "marker_size": 60,
+    "marker_size": 58,
     "show_markers": True,
     "auto_end_labels": False,
 
@@ -76,14 +76,14 @@ CHART_CONFIG = {
     # ---------------------------
     "dot_style": {
         "color": "#D9D9D9",
-        "size": 65,
-        "alpha": 0.75
+        "size": 48,
+        "alpha": 0.55
     },
 
     "point_style": {
         "color": "#D9D9D9",
-        "size": 48,
-        "alpha": 0.55
+        "size": 58,
+        "alpha": 0.70
     },
 
     "bar_style": {
@@ -93,7 +93,7 @@ CHART_CONFIG = {
 
     "highlight_style": {
         "color": "#C44E52",
-        "size": 105,
+        "size": 90,
         "alpha": 1.0
     },
 
@@ -118,7 +118,18 @@ CHART_CONFIG = {
     # ---------------------------
     # REFERENCE LINES / TREND
     # ---------------------------
-    "reference_lines": [],
+    "reference_lines": [
+        {
+            "axis": "y",
+            "value": 7.1,
+            "label": "List median 7.1",
+            "rotation": 0,
+            "color": "#7A7A7A",
+            "linewidth": 1.0,
+            "linestyle": "--",
+            "alpha": 0.7
+        }
+    ],
 
     "trend_line": {
         "enabled": False,
@@ -132,15 +143,35 @@ CHART_CONFIG = {
     # ANNOTATIONS
     # ---------------------------
     "highlight_points": [
-        {"Director": "David Fincher"},
+        {"column": "Peak 1995-99", "value": 1},
     ],
 
-    "annotate_points": [],
+    "annotate_points": [
+        {
+            "Title": "Fight Club",
+            "text": "Fight Club · 8.8",
+            "xytext": (7, -10),
+            "ha": "left",
+            "va": "top",
+            "fontsize": 8,
+            "arrowprops": None,
+        },
+        {
+            "Title": "Cutting Class",
+            "text": "Cutting Class · 4.6",
+            "xytext": (7, 8),
+            "ha": "left",
+            "va": "bottom",
+            "fontsize": 8,
+            "arrowprops": None,
+        },
+    ],
+
     "end_labels": [],
 
     "label_style": {
-        "enabled": True,
-        "label_col": "Detail Label",
+        "enabled": False,
+        "label_col": None,
         "label_format": "{}",
         "position": "right",
         "fontsize": 8
@@ -177,7 +208,7 @@ CHART_CONFIG = {
 
     "plot_top": 0.75,
     "plot_bottom": 0.14,
-    "plot_left": 0.23,
+    "plot_left": 0.12,
     "plot_right": 0.90,
 
     "vertical_gridlines": False,
@@ -186,5 +217,5 @@ CHART_CONFIG = {
     # OUTPUT
     # ---------------------------
     "dpi": 200,
-    "output_file": "output/brad_pitt_repeat_directors.png"
+    "output_file": "output/brad_pitt_timeline_ratings.png"
 }
