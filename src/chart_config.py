@@ -2,13 +2,13 @@ CHART_CONFIG = {
     # ---------------------------
     # DATA
     # ---------------------------
-    "data_file": "archive/projects/2026-09-brad-pitt-imdb-list/data/brad_pitt_imdb_films.csv",
+    "data_file": "archive/projects/2026-09-brad-pitt-imdb-list/data/brad_pitt_chart_02_repeat_directors.csv",
     "data_format": "wide",
-    "chart_type": "scatter",
+    "chart_type": "dot",
     "orientation": None,
 
-    "x_col": "Runtime (mins)",
-    "y_col": "IMDb Rating",
+    "x_col": "Average IMDb Rating",
+    "y_col": "Director",
     "series_col": None,
     "value_col": None,
 
@@ -17,47 +17,50 @@ CHART_CONFIG = {
     # ---------------------------
     # STORY
     # ---------------------------
-    "title": "Brad Pitt films reward patience",
-    "subtitle": "In this 54-film IMDb list, films at 130+ minutes average 7.6; those under 110 minutes average 6.1.",
+    "title": "Fincher gets the best-rated Pitt",
+    "subtitle": "Among six directors with 2+ films in this IMDb list, David Fincher's three average 8.4.",
     "source_text": "Source: IMDb list export",
     "footer_left": "Adam Green | coffeetableviz",
 
-    "story_angle": "relationship",
+    "story_angle": "ranked_comparison",
     "focus_series": None,
     "secondary_series": None,
-    "label_strategy": "focus_only",
+    "label_strategy": "all",
 
     # ---------------------------
     # AXES
     # ---------------------------
     "x_is_datetime": False,
     "x_tick_rotation": 0,
-    "x_label": "Runtime (minutes)",
-    "y_label": "IMDb rating",
+    "x_label": "Average IMDb rating",
+    "y_label": "",
     "x_margin": 0.08,
 
     "x_axis": {
-        "min": 80,
-        "max": 195,
-        "tick_interval": 20,
-        "format": ".0f"
+        "min": 6.2,
+        "max": 8.8,
+        "tick_interval": 0.5,
+        "format": ".1f"
     },
 
     "y_axis": {
-        "min": 4,
-        "max": 9,
-        "tick_interval": 1,
-        "format": ".1f"
+        "min": None,
+        "max": None,
+        "tick_interval": None,
+        "format": None
     },
-    "y_axis_min": 4,
-    "y_axis_max": 9,
-    "y_tick_interval": 1,
-    "y_tick_format": ".1f",
+    "y_axis_min": None,
+    "y_axis_max": None,
+    "y_tick_interval": None,
+    "y_tick_format": None,
 
     # ---------------------------
     # SORTING
     # ---------------------------
-    "sort": None,
+    "sort": {
+        "by": "Average IMDb Rating",
+        "ascending": False
+    },
     "sort_descending": False,
 
     # ---------------------------
@@ -73,14 +76,14 @@ CHART_CONFIG = {
     # ---------------------------
     "dot_style": {
         "color": "#D9D9D9",
-        "size": 48,
-        "alpha": 0.55
+        "size": 65,
+        "alpha": 0.75
     },
 
     "point_style": {
         "color": "#D9D9D9",
-        "size": 58,
-        "alpha": 0.70
+        "size": 48,
+        "alpha": 0.55
     },
 
     "bar_style": {
@@ -90,7 +93,7 @@ CHART_CONFIG = {
 
     "highlight_style": {
         "color": "#C44E52",
-        "size": 95,
+        "size": 105,
         "alpha": 1.0
     },
 
@@ -118,7 +121,7 @@ CHART_CONFIG = {
     "reference_lines": [],
 
     "trend_line": {
-        "enabled": True,
+        "enabled": False,
         "color": "#7A7A7A",
         "linewidth": 1.4,
         "linestyle": "-",
@@ -129,57 +132,16 @@ CHART_CONFIG = {
     # ANNOTATIONS
     # ---------------------------
     "highlight_points": [
-        {"Title": "Fight Club"},
-        {"Title": "Snatch"},
-        {"Title": "Babylon"},
-        {"Title": "Cutting Class"},
+        {"Director": "David Fincher"},
     ],
 
-    "annotate_points": [
-        {
-            "Title": "Fight Club",
-            "text": "Fight Club · 8.8",
-            "xytext": (7, -10),
-            "ha": "left",
-            "va": "top",
-            "fontsize": 8,
-            "arrowprops": None,
-        },
-        {
-            "Title": "Snatch",
-            "text": "Snatch · 104 mins, 8.2",
-            "xytext": (7, 8),
-            "ha": "left",
-            "va": "bottom",
-            "fontsize": 8,
-            "arrowprops": None,
-        },
-        {
-            "Title": "Babylon",
-            "text": "Babylon · 189 mins",
-            "xytext": (-7, 9),
-            "ha": "right",
-            "va": "bottom",
-            "fontsize": 8,
-            "arrowprops": None,
-        },
-        {
-            "Title": "Cutting Class",
-            "text": "Cutting Class · 4.6",
-            "xytext": (7, 8),
-            "ha": "left",
-            "va": "bottom",
-            "fontsize": 8,
-            "arrowprops": None,
-        },
-    ],
-
+    "annotate_points": [],
     "end_labels": [],
 
     "label_style": {
-        "enabled": False,
-        "label_col": None,
-        "label_format": "{}",
+        "enabled": True,
+        "label_col": "Film Count",
+        "label_format": "{:.0f} films",
         "position": "right",
         "fontsize": 8
     },
@@ -215,7 +177,7 @@ CHART_CONFIG = {
 
     "plot_top": 0.75,
     "plot_bottom": 0.14,
-    "plot_left": 0.12,
+    "plot_left": 0.22,
     "plot_right": 0.90,
 
     "vertical_gridlines": False,
@@ -224,5 +186,5 @@ CHART_CONFIG = {
     # OUTPUT
     # ---------------------------
     "dpi": 200,
-    "output_file": "output/brad_pitt_runtime_vs_imdb.png"
+    "output_file": "output/brad_pitt_repeat_directors.png"
 }
