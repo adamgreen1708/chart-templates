@@ -8,7 +8,7 @@ CHART_CONFIG = {
     "orientation": None,
 
     "x_col": "Average IMDb Rating",
-    "y_col": "Director Label",
+    "y_col": "Director",
     "series_col": None,
     "value_col": None,
 
@@ -18,7 +18,7 @@ CHART_CONFIG = {
     # STORY
     # ---------------------------
     "title": "Fincher gets the best-rated Pitt",
-    "subtitle": "Six directors have 2+ films in this IMDb list. Fincher's three average 8.4 — the highest.",
+    "subtitle": "Six directors have 2+ films in this IMDb list. Fincher's three average 8.4: Seven 8.6, Fight Club 8.8, Benjamin Button 7.8.",
     "source_text": "Source: IMDb list export",
     "footer_left": "Adam Green | coffeetableviz",
 
@@ -151,7 +151,7 @@ CHART_CONFIG = {
     # ---------------------------
     "title_fontsize": 22,
     "subtitle_fontsize": 12,
-    "tick_label_fontsize": 9,
+    "tick_label_fontsize": 10,
     "axis_label_fontsize": 10,
     "footer_fontsize": 10,
 
@@ -177,7 +177,7 @@ CHART_CONFIG = {
 
     "plot_top": 0.75,
     "plot_bottom": 0.14,
-    "plot_left": 0.31,
+    "plot_left": 0.23,
     "plot_right": 0.90,
 
     "vertical_gridlines": False,
