@@ -7,10 +7,20 @@ SOURCE = PROJECT_ROOT / "data" / "brad_pitt_imdb_films.csv"
 CHART_02 = PROJECT_ROOT / "data" / "brad_pitt_chart_02_repeat_directors.csv"
 CHART_03 = PROJECT_ROOT / "data" / "brad_pitt_chart_03_timeline.csv"
 
+DISPLAY_TITLE_OVERRIDES = {
+    "The Curious Case of Benjamin Button": "Benjamin Button",
+    "Once Upon a Time... in Hollywood": "Once Upon a Time... in Hollywood",
+    "The Assassination of Jesse James by the Coward Robert Ford": "Jesse James",
+}
+
 
 def read_rows():
     with SOURCE.open(newline="", encoding="utf-8-sig") as f:
         return list(csv.DictReader(f))
+
+
+def display_title(title):
+    return DISPLAY_TITLE_OVERRIDES.get(title, title)
 
 
 def build_repeat_directors(rows):
@@ -26,10 +36,18 @@ def build_repeat_directors(rows):
     for director, films in credits.items():
         if len(films) < 2:
             continue
+
+        avg_rating = round(sum(r for _, r in films) / len(films), 2)
+        film_labels = [display_title(title) for title, _ in films]
+        director_label = director + "\n" + " · ".join(film_labels)
+        detail_label = f"{avg_rating:.2f} · {len(films)} films"
+
         output.append({
             "Director": director,
+            "Director Label": director_label,
             "Film Count": len(films),
-            "Average IMDb Rating": round(sum(r for _, r in films) / len(films), 2),
+            "Average IMDb Rating": avg_rating,
+            "Detail Label": detail_label,
             "Films": " | ".join(title for title, _ in films),
         })
 
@@ -38,7 +56,14 @@ def build_repeat_directors(rows):
     with CHART_02.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(
             f,
-            fieldnames=["Director", "Film Count", "Average IMDb Rating", "Films"],
+            fieldnames=[
+                "Director",
+                "Director Label",
+                "Film Count",
+                "Average IMDb Rating",
+                "Detail Label",
+                "Films",
+            ],
         )
         writer.writeheader()
         writer.writerows(output)
