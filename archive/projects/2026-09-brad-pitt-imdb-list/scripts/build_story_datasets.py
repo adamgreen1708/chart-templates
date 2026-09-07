@@ -9,8 +9,10 @@ CHART_03 = PROJECT_ROOT / "data" / "brad_pitt_chart_03_timeline.csv"
 
 DISPLAY_TITLE_OVERRIDES = {
     "The Curious Case of Benjamin Button": "Benjamin Button",
-    "Once Upon a Time... in Hollywood": "Once Upon a Time... in Hollywood",
+    "Once Upon a Time... in Hollywood": "Once Upon... Hollywood",
     "The Assassination of Jesse James by the Coward Robert Ford": "Jesse James",
+    "Ocean's Twelve": "Twelve",
+    "Ocean's Thirteen": "Thirteen",
 }
 
 
@@ -29,16 +31,18 @@ def build_repeat_directors(rows):
     for row in rows:
         title = row["Title"]
         rating = float(row["IMDb Rating"])
+        year = int(row["Year"])
         for director in [d.strip() for d in row["Directors"].split(",") if d.strip()]:
-            credits[director].append((title, rating))
+            credits[director].append((title, rating, year))
 
     output = []
     for director, films in credits.items():
         if len(films) < 2:
             continue
 
-        avg_rating = round(sum(r for _, r in films) / len(films), 2)
-        film_labels = [display_title(title) for title, _ in films]
+        films = sorted(films, key=lambda item: (item[2], item[0]))
+        avg_rating = round(sum(rating for _, rating, _ in films) / len(films), 2)
+        film_labels = [display_title(title) for title, _, _ in films]
         director_label = director + "\n" + " · ".join(film_labels)
         detail_label = f"{avg_rating:.2f} · {len(films)} films"
 
@@ -48,7 +52,7 @@ def build_repeat_directors(rows):
             "Film Count": len(films),
             "Average IMDb Rating": avg_rating,
             "Detail Label": detail_label,
-            "Films": " | ".join(title for title, _ in films),
+            "Films": " | ".join(title for title, _, _ in films),
         })
 
     output.sort(key=lambda r: (-float(r["Average IMDb Rating"]), r["Director"]))
