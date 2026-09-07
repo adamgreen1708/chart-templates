@@ -8,7 +8,7 @@ CHART_CONFIG = {
     "orientation": None,
 
     "x_col": "Average IMDb Rating",
-    "y_col": "Director",
+    "y_col": "Director Label",
     "series_col": None,
     "value_col": None,
 
@@ -38,7 +38,7 @@ CHART_CONFIG = {
 
     "x_axis": {
         "min": 6.2,
-        "max": 8.8,
+        "max": 9.15,
         "tick_interval": 0.5,
         "format": ".1f"
     },
@@ -140,8 +140,8 @@ CHART_CONFIG = {
 
     "label_style": {
         "enabled": True,
-        "label_col": "Film Count",
-        "label_format": "{:.0f} films",
+        "label_col": "Detail Label",
+        "label_format": "{}",
         "position": "right",
         "fontsize": 8
     },
@@ -151,7 +151,7 @@ CHART_CONFIG = {
     # ---------------------------
     "title_fontsize": 22,
     "subtitle_fontsize": 12,
-    "tick_label_fontsize": 10,
+    "tick_label_fontsize": 9,
     "axis_label_fontsize": 10,
     "footer_fontsize": 10,
 
@@ -175,10 +175,10 @@ CHART_CONFIG = {
     "footer_right_x": 0.90,
     "footer_y": 0.08,
 
-    "plot_top": 0.75,
+    "plot_top": 0.74,
     "plot_bottom": 0.14,
-    "plot_left": 0.22,
-    "plot_right": 0.90,
+    "plot_left": 0.39,
+    "plot_right": 0.92,
 
     "vertical_gridlines": False,
 
