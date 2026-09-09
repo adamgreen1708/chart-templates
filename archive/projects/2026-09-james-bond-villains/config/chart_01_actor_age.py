@@ -11,7 +11,7 @@ CHART_CONFIG = {
 
     "filters": [],
 
-    "title": "Bond villains have been cast from 32 to 65",
+    "title": "Bond villains range from 32 to 65",
     "subtitle": "Lotte Lenya's Rosa Klebb was almost 65 at UK release. Will Yun Lee was 31.7 as Colonel Moon in Die Another Day.",
     "source_text": "Source: 007.com; Wikipedia actor biographies",
     "footer_left": "Adam Green | coffeetableviz",

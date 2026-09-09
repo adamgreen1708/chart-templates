@@ -98,7 +98,7 @@ CHART_CONFIG = {
         {
             "axis": "diagonal",
             "value": 0,
-            "label": "Same age",
+            "label": "",
             "rotation": 34,
             "color": "#7A7A7A",
             "linewidth": 1.0,
@@ -143,9 +143,9 @@ CHART_CONFIG = {
         {
             "bond_actor": "Roger Moore",
             "text": "Moore −2.2",
-            "xytext": (-7, 0),
+            "xytext": (-7, -8),
             "ha": "right",
-            "va": "center",
+            "va": "top",
             "fontsize": 8,
             "arrowprops": None
         },
@@ -172,6 +172,16 @@ CHART_CONFIG = {
             "text": "Craig +0.4",
             "xytext": (7, 8),
             "ha": "left",
+            "va": "bottom",
+            "fontsize": 8,
+            "arrowprops": None
+        },
+        {
+            "x": 49.0,
+            "y": 49.0,
+            "text": "Same age",
+            "xytext": (-4, 7),
+            "ha": "right",
             "va": "bottom",
             "fontsize": 8,
             "arrowprops": None
