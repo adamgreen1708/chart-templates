@@ -1,7 +1,0 @@
-era_order,bond_actor,films_in_eon_tenure,films_used_in_age_analysis,avg_bond_age,avg_villain_age,avg_age_gap_years,villain_relative_to_bond_on_average,excluded_note
-1,Sean Connery,6,6,35.47,49.23,13.77,Older,
-2,George Lazenby,1,1,30.29,47.91,17.62,Older,
-3,Roger Moore,7,7,51.63,49.47,-2.15,Younger,
-4,Timothy Dalton,2,2,42.25,40.27,-1.98,Younger,
-5,Pierce Brosnan,4,3,44.55,40.05,-4.49,Younger,Die Another Day excluded (dual portrayal).
-6,Daniel Craig,5,5,45.05,45.42,0.37,Older,
