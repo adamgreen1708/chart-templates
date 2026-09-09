@@ -684,6 +684,12 @@ def _plot_annotations(ax, rows=None):
 
     x_col = CHART_CONFIG["x_col"]
     y_col = CHART_CONFIG["y_col"]
+    y_lookup = getattr(ax, "_ctv_y_lookup", None)
+
+    def resolve_y(value):
+        if y_lookup is not None and str(value) in y_lookup:
+            return y_lookup[str(value)]
+        return value
 
     for p in CHART_CONFIG.get("annotate_points", []):
         x = None
@@ -691,7 +697,7 @@ def _plot_annotations(ax, rows=None):
 
         if "x" in p and "y" in p:
             x = _parse_date(p["x"]) if CHART_CONFIG.get("x_is_datetime", False) else p["x"]
-            y = p["y"]
+            y = resolve_y(p["y"])
         else:
             matched = [r for r in rows if _point_matches_row(p, r)]
 
@@ -705,7 +711,7 @@ def _plot_annotations(ax, rows=None):
             if matched:
                 row = matched[0]
                 x = row[x_col]
-                y = row[y_col]
+                y = resolve_y(row[y_col])
 
         if x is None or y is None:
             continue

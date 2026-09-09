@@ -2,7 +2,7 @@
 
 ## Status
 
-- Status: Render QA passed / archive closeout in progress
+- Status: Branch render QA passed / main merge pending
 - Started: 9 September 2026
 - Last updated: 10 September 2026
 - Owner: Adam Green
@@ -48,7 +48,7 @@
 | File | Chart | Output | QA status |
 |---|---|---|---|
 | `config/chart_01_actor_age.py` | Bond villains range from 32 to 65 | `bond_villains_actor_age.png` | Real renderer visual QA passed after title/subtitle fix |
-| `config/chart_02_age_gap.py` | Bond used to fight his elders | `bond_villains_age_gap.png` | Real renderer visual QA passed with no config change required |
+| `config/chart_02_age_gap.py` | Bond used to fight his elders | `bond_villains_age_gap.png` | Real renderer visual QA passed; categorical annotation renderer fix verified in Actions run #4 |
 | `config/chart_03_era_age.py` | Bond grew into his villains | `bond_villains_era_age.png` | Real renderer visual QA passed after same-age-label and annotation fixes |
 
 ## Story findings
@@ -72,22 +72,25 @@
 | `requirements-render.txt` | Pins the renderer stack used by GitHub Actions so production renders do not change when upstream libraries release new versions |
 | `.github/workflows/render-538.yml` | Existing single-active-config renderer retained; updated to use the pinned renderer requirements |
 | `.github/workflows/render-chart.yml` | Generated-config workflow updated to use the same pinned renderer requirements |
-| `.github/workflows/render-archived-project.yml` | Archived-project renderer retained; updated to use the same pinned renderer requirements |
-| `output/` inside this project | Still pending. First automated archive run failed on Chart 2 under newly released Matplotlib 3.11.1; rerender is required after dependency pinning |
+| `.github/workflows/render-archived-project.yml` | Archived-project renderer retained; uses the pinned renderer requirements and is restored to `main` push triggering only |
+| `output/` inside this project | All three PNGs generated and committed on the renderer-fix branch by Actions run #4; final `main` verification required after merge |
 
 ## QA notes
 
 - Data paths and config columns checked against the archived CSVs.
 - Config syntax checked.
-- Charts rendered against the current `src/render_538.py` path.
 - Visual QA covered title/subtitle spacing, safe margins, clipping, annotations, reference lines, axes and footers.
 - Chart 1 required a title/subtitle spacing fix.
-- Chart 2 passed visual QA unchanged under the tested renderer stack.
+- Chart 2 passed visual QA unchanged at config level.
 - Chart 3 required moving the `Same age` label inside the plotting area and adjusting the Roger Moore annotation.
 - PR #21 duplicate/older files were removed by cleanup PR #23; PR #22 remains the canonical analytical version.
 - Automated archived-project run #1 selected the correct Bond project and rendered Chart 1, then failed while saving Chart 2 because Matplotlib 3.11.1 rejected the categorical y-value used by the row-matched annotation.
-- The successful local QA stack was NumPy 2.3.5, pandas 2.2.3 and Matplotlib 3.10.8; these are now pinned in `requirements-render.txt` for reproducible production rendering.
-- Post-fix gate: the archived-project workflow must complete successfully and all three PNGs must be verified in `main` before publication content is treated as final.
+- Automated archived-project run #2 reproduced the same Chart 2 failure under the pinned QA stack, proving dependency drift was not the root cause.
+- Renderer fix: `_plot_annotations` now resolves categorical dot y-values through the same numeric y-position lookup used by `_plot_dot` and `_plot_labels`.
+- Actions branch QA run #4 (`34417695088`) completed successfully: all three configs rendered, archived output listing passed, artifact upload passed and output commit-back passed.
+- The run #4 artifact was visually inspected: Chart 1 title/subtitle and category labels fit; Chart 2 Klebb and Graves/Moon annotations render correctly with no clipping; Chart 3 equal-age diagonal and era labels remain clear and unclipped.
+- The production stack remains pinned at NumPy 2.3.5, pandas 2.2.3 and Matplotlib 3.10.8 for reproducible rendering.
+- Final gate: merge the renderer-fix PR and verify the three PNGs in `main` before publication content is treated as final.
 
 ## Content package
 
@@ -97,6 +100,6 @@
 ## Closeout
 
 - Published URL: TBC
-- Final archive/output PR: pending dependency-fix PR and successful rerender
+- Final archive/output PR: renderer-fix PR pending
 - Final merge commit: TBC
-- Archive complete: No — wait for automated archived-project rerender and post-merge verification.
+- Archive complete: No — branch QA is complete; wait for merge and `main` output verification.
