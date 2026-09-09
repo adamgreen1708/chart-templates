@@ -69,9 +69,11 @@
 
 | Item | Status |
 |---|---|
-| `.github/workflows/render-538.yml` | Existing single-active-config renderer retained unchanged |
-| `.github/workflows/render-archived-project.yml` | Added in this closeout branch to render all configs in an archived project and commit PNGs into that project's `output/` folder |
-| `output/` inside this project | Expected to be populated automatically when this closeout PR is merged; verify the workflow run and files before marking archive complete |
+| `requirements-render.txt` | Pins the renderer stack used by GitHub Actions so production renders do not change when upstream libraries release new versions |
+| `.github/workflows/render-538.yml` | Existing single-active-config renderer retained; updated to use the pinned renderer requirements |
+| `.github/workflows/render-chart.yml` | Generated-config workflow updated to use the same pinned renderer requirements |
+| `.github/workflows/render-archived-project.yml` | Archived-project renderer retained; updated to use the same pinned renderer requirements |
+| `output/` inside this project | Still pending. First automated archive run failed on Chart 2 under newly released Matplotlib 3.11.1; rerender is required after dependency pinning |
 
 ## QA notes
 
@@ -80,9 +82,12 @@
 - Charts rendered against the current `src/render_538.py` path.
 - Visual QA covered title/subtitle spacing, safe margins, clipping, annotations, reference lines, axes and footers.
 - Chart 1 required a title/subtitle spacing fix.
-- Chart 2 passed visual QA unchanged.
+- Chart 2 passed visual QA unchanged under the tested renderer stack.
 - Chart 3 required moving the `Same age` label inside the plotting area and adjusting the Roger Moore annotation.
 - PR #21 duplicate/older files were removed by cleanup PR #23; PR #22 remains the canonical analytical version.
+- Automated archived-project run #1 selected the correct Bond project and rendered Chart 1, then failed while saving Chart 2 because Matplotlib 3.11.1 rejected the categorical y-value used by the row-matched annotation.
+- The successful local QA stack was NumPy 2.3.5, pandas 2.2.3 and Matplotlib 3.10.8; these are now pinned in `requirements-render.txt` for reproducible production rendering.
+- Post-fix gate: the archived-project workflow must complete successfully and all three PNGs must be verified in `main` before publication content is treated as final.
 
 ## Content package
 
@@ -92,6 +97,6 @@
 ## Closeout
 
 - Published URL: TBC
-- Final archive/output PR: this closeout branch
+- Final archive/output PR: pending dependency-fix PR and successful rerender
 - Final merge commit: TBC
-- Archive complete: No — wait for automated archived-project render and post-merge verification.
+- Archive complete: No — wait for automated archived-project rerender and post-merge verification.
