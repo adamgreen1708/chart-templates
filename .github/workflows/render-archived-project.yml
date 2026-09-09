@@ -1,0 +1,158 @@
+name: Render archived project
+
+on:
+  workflow_dispatch:
+    inputs:
+      project_dir:
+        description: "Archive project directory, e.g. archive/projects/2026-09-james-bond-villains"
+        required: true
+        type: string
+  push:
+    branches:
+      - main
+    paths:
+      - "archive/projects/**/config/*.py"
+      - "archive/projects/**/data/*.csv"
+      - "archive/projects/**/project_manifest.md"
+      - ".github/workflows/render-archived-project.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: render-archived-project
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy pandas matplotlib
+
+      - name: Resolve project directories
+        shell: bash
+        run: |
+          set -euo pipefail
+          : > /tmp/project_dirs.txt
+
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            printf '%s\n' "${{ inputs.project_dir }}" >> /tmp/project_dirs.txt
+          else
+            git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" \
+              | awk -F/ '$1=="archive" && $2=="projects" && ($4=="config" || $4=="data" || $4=="project_manifest.md") {print $1"/"$2"/"$3}' \
+              | sort -u >> /tmp/project_dirs.txt
+          fi
+
+          echo "Projects selected for render:"
+          cat /tmp/project_dirs.txt || true
+
+      - name: Render all configs into project archives
+        shell: bash
+        run: |
+          set -euo pipefail
+          rendered_any=0
+
+          while IFS= read -r project_dir; do
+            [[ -z "$project_dir" ]] && continue
+
+            case "$project_dir" in
+              archive/projects/*) ;;
+              *)
+                echo "Invalid project path: $project_dir"
+                exit 1
+                ;;
+            esac
+
+            if [[ ! -d "$project_dir/config" ]]; then
+              echo "Config directory not found: $project_dir/config"
+              exit 1
+            fi
+
+            shopt -s nullglob
+            configs=("$project_dir"/config/*.py)
+            shopt -u nullglob
+
+            if (( ${#configs[@]} == 0 )); then
+              echo "No chart configs found in $project_dir/config"
+              exit 1
+            fi
+
+            mkdir -p "$project_dir/output"
+            rm -f "$project_dir"/output/*.png
+
+            for config in "${configs[@]}"; do
+              echo "Rendering $config"
+              cp "$config" src/chart_config.py
+              rm -rf output
+              mkdir -p output
+              python src/render_538.py
+
+              shopt -s nullglob
+              pngs=(output/*.png)
+              shopt -u nullglob
+
+              if (( ${#pngs[@]} == 0 )); then
+                echo "Renderer produced no PNG for $config"
+                exit 1
+              fi
+
+              cp "${pngs[@]}" "$project_dir/output/"
+              rendered_any=1
+            done
+          done < /tmp/project_dirs.txt
+
+          git checkout -- src/chart_config.py
+
+          if (( rendered_any == 0 )); then
+            echo "No archived project required rendering for this event."
+          fi
+
+      - name: List archived outputs
+        shell: bash
+        run: |
+          while IFS= read -r project_dir; do
+            [[ -z "$project_dir" ]] && continue
+            echo "Output files for $project_dir:"
+            ls -lah "$project_dir/output" || true
+          done < /tmp/project_dirs.txt
+
+      - name: Upload rendered charts
+        uses: actions/upload-artifact@v4
+        with:
+          name: archived-project-render
+          path: archive/projects/**/output/*.png
+          if-no-files-found: ignore
+
+      - name: Commit archived outputs back to repo
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          while IFS= read -r project_dir; do
+            [[ -z "$project_dir" ]] && continue
+            git add "$project_dir/output" || true
+          done < /tmp/project_dirs.txt
+
+          if git diff --staged --quiet; then
+            echo "No rendered output changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Archive rendered project charts"
+          git push
