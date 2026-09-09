@@ -16,8 +16,8 @@ CHART_CONFIG = {
     # STORY
     # ---------------------------
     "title": "A Bond villain is usually in their forties",
-    "subtitle": "Across 24 comparable Eon films, the first-listed villain actor averages 46.6 years old at UK release.",
-    "source_text": "Sources: Wikipedia actor DOBs; UK public release dates. Die Another Day excluded from age analysis.",
+    "subtitle": "Thirteen of 24 comparable first-listed villain actors were in their 40s at UK release; average age 46.6.",
+    "source_text": "Sources: Wikipedia; 007 Under the Mango Tree. DAD excluded.",
     "footer_left": "Adam Green | coffeetableviz",
     "story_angle": "ranked_comparison",
     "focus_series": None,
