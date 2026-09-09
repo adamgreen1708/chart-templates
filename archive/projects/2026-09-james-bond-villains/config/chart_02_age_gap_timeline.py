@@ -17,7 +17,7 @@ CHART_CONFIG = {
     # ---------------------------
     "title": "Bond used to fight his elders",
     "subtitle": "From 1962–71, first-listed villains were 14.3 years older than Bond on average; after that, 1.8 years younger.",
-    "source_text": "Sources: Wikipedia; 007 Under the Mango Tree. DAD excluded.",
+    "source_text": "Sources: Wikipedia; UK release dates. DAD excluded.",
     "footer_left": "Adam Green | coffeetableviz",
     "story_angle": "shift",
     "focus_series": None,
@@ -135,7 +135,7 @@ CHART_CONFIG = {
     "subtitle_fontsize": 12,
     "tick_label_fontsize": 10,
     "axis_label_fontsize": 10,
-    "footer_fontsize": 10,
+    "footer_fontsize": 9,
     "title_wrap_width": 40,
     "subtitle_wrap_width": 74,
     "title_max_lines": 2,
