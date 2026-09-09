@@ -19,7 +19,7 @@ CHART_CONFIG = {
     "story_angle": "relationship",
     "focus_series": None,
     "secondary_series": None,
-    "label_strategy": "all",
+    "label_strategy": "focus_only",
 
     "x_is_datetime": False,
     "x_tick_rotation": 0,
@@ -35,12 +35,12 @@ CHART_CONFIG = {
     },
 
     "y_axis": {
-        "min": 35,
+        "min": 27,
         "max": 55,
         "tick_interval": 5,
         "format": ".0f"
     },
-    "y_axis_min": 35,
+    "y_axis_min": 27,
     "y_axis_max": 55,
     "y_tick_interval": 5,
     "y_tick_format": ".0f",
@@ -123,11 +123,38 @@ CHART_CONFIG = {
 
     "annotate_points": [
         {
+            "bond_actor": "George Lazenby",
+            "text": "Lazenby +17.6",
+            "xytext": (7, 0),
+            "ha": "left",
+            "va": "center",
+            "fontsize": 8,
+            "arrowprops": None
+        },
+        {
             "bond_actor": "Sean Connery",
             "text": "Connery +13.8",
             "xytext": (7, 8),
             "ha": "left",
             "va": "bottom",
+            "fontsize": 8,
+            "arrowprops": None
+        },
+        {
+            "bond_actor": "Roger Moore",
+            "text": "Moore −2.2",
+            "xytext": (-7, 0),
+            "ha": "right",
+            "va": "center",
+            "fontsize": 8,
+            "arrowprops": None
+        },
+        {
+            "bond_actor": "Timothy Dalton",
+            "text": "Dalton −2.0",
+            "xytext": (-7, -4),
+            "ha": "right",
+            "va": "top",
             "fontsize": 8,
             "arrowprops": None
         },
@@ -153,8 +180,8 @@ CHART_CONFIG = {
     "end_labels": [],
 
     "label_style": {
-        "enabled": True,
-        "label_col": "bond_actor",
+        "enabled": False,
+        "label_col": None,
         "label_format": "{}",
         "position": "right",
         "fontsize": 8
