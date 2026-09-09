@@ -73,7 +73,7 @@
 | `.github/workflows/render-538.yml` | Existing single-active-config renderer retained; updated to use the pinned renderer requirements |
 | `.github/workflows/render-chart.yml` | Generated-config workflow updated to use the same pinned renderer requirements |
 | `.github/workflows/render-archived-project.yml` | Archived-project renderer retained; updated to use the same pinned renderer requirements |
-| `output/` inside this project | Still pending. First automated archive run failed on Chart 2 under newly released Matplotlib 3.11.1; rerender is required after dependency pinning |
+| `output/` inside this project | Still pending. Automated archive runs #1 and #2 failed on Chart 2 because row-matched annotations used the categorical y-label instead of the dot renderer's numeric y-position. |
 
 ## QA notes
 
@@ -86,8 +86,10 @@
 - Chart 3 required moving the `Same age` label inside the plotting area and adjusting the Roger Moore annotation.
 - PR #21 duplicate/older files were removed by cleanup PR #23; PR #22 remains the canonical analytical version.
 - Automated archived-project run #1 selected the correct Bond project and rendered Chart 1, then failed while saving Chart 2 because Matplotlib 3.11.1 rejected the categorical y-value used by the row-matched annotation.
-- The successful local QA stack was NumPy 2.3.5, pandas 2.2.3 and Matplotlib 3.10.8; these are now pinned in `requirements-render.txt` for reproducible production rendering.
-- Post-fix gate: the archived-project workflow must complete successfully and all three PNGs must be verified in `main` before publication content is treated as final.
+- Automated archived-project run #2 reproduced the same Chart 2 failure under the pinned QA stack, proving dependency drift was not the root cause.
+- Renderer fix under test: `_plot_annotations` now resolves categorical dot y-values through the same numeric y-position lookup used by `_plot_dot` and `_plot_labels`.
+- The production stack remains pinned at NumPy 2.3.5, pandas 2.2.3 and Matplotlib 3.10.8 for reproducible rendering.
+- Post-fix gate: the archived-project workflow must complete successfully and all three PNGs must be verified before publication content is treated as final.
 
 ## Content package
 
@@ -97,6 +99,6 @@
 ## Closeout
 
 - Published URL: TBC
-- Final archive/output PR: pending dependency-fix PR and successful rerender
+- Final archive/output PR: pending renderer-fix PR and successful rerender
 - Final merge commit: TBC
 - Archive complete: No — wait for automated archived-project rerender and post-merge verification.
