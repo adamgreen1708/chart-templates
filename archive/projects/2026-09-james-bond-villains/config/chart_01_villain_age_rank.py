@@ -15,9 +15,9 @@ CHART_CONFIG = {
     # ---------------------------
     # STORY
     # ---------------------------
-    "title": "A Bond villain is usually in their forties",
+    "title": "Most Bond villains are in their forties",
     "subtitle": "Thirteen of 24 comparable first-listed villain actors were in their 40s at UK release; average age 46.6.",
-    "source_text": "Sources: Wikipedia; 007 Under the Mango Tree. DAD excluded.",
+    "source_text": "Sources: Wikipedia; UK release dates. DAD excluded.",
     "footer_left": "Adam Green | coffeetableviz",
     "story_angle": "ranked_comparison",
     "focus_series": None,
@@ -86,7 +86,7 @@ CHART_CONFIG = {
     "subtitle_fontsize": 12,
     "tick_label_fontsize": 8,
     "axis_label_fontsize": 10,
-    "footer_fontsize": 10,
+    "footer_fontsize": 9,
     "title_wrap_width": 40,
     "subtitle_wrap_width": 74,
     "title_max_lines": 2,
