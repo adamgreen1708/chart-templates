@@ -17,7 +17,7 @@ CHART_CONFIG = {
     # ---------------------------
     "title": "Bond grew into his villains",
     "subtitle": "Connery and Lazenby faced much older villains; from Moore onward, the average age gap mostly disappears.",
-    "source_text": "Sources: Wikipedia actor DOBs; UK public release dates. Brosnan average excludes Die Another Day.",
+    "source_text": "Sources: Wikipedia; 007 Under the Mango Tree. DAD excluded.",
     "footer_left": "Adam Green | coffeetableviz",
     "story_angle": "comparison",
     "focus_series": None,
