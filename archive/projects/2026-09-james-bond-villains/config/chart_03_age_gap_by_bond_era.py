@@ -17,7 +17,7 @@ CHART_CONFIG = {
     # ---------------------------
     "title": "Bond grew into his villains",
     "subtitle": "Connery and Lazenby faced much older villains; from Moore onward, the average age gap mostly disappears.",
-    "source_text": "Sources: Wikipedia; 007 Under the Mango Tree. DAD excluded.",
+    "source_text": "Sources: Wikipedia; UK release dates. DAD excluded.",
     "footer_left": "Adam Green | coffeetableviz",
     "story_angle": "comparison",
     "focus_series": None,
@@ -97,7 +97,7 @@ CHART_CONFIG = {
     "subtitle_fontsize": 12,
     "tick_label_fontsize": 10,
     "axis_label_fontsize": 10,
-    "footer_fontsize": 10,
+    "footer_fontsize": 9,
     "title_wrap_width": 40,
     "subtitle_wrap_width": 74,
     "title_max_lines": 2,
