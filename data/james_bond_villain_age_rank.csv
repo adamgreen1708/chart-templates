@@ -1,0 +1,25 @@
+film_no,villain_label,villain_name,villain_actor,title,year,villain_age_at_release,bond_actor,age_gap_years
+1,Dr. No,Dr. No,Joseph Wiseman,Dr. No,1962,44.4,Sean Connery,12.28
+2,Rosa Klebb,Colonel Rosa Klebb,Lotte Lenya,From Russia with Love,1963,64.98,Sean Connery,31.85
+3,Goldfinger,Auric Goldfinger,Gert Fröbe,Goldfinger,1964,51.56,Sean Connery,17.5
+4,Largo,Emilio Largo,Adolfo Celi,Thunderball,1965,43.43,Sean Connery,8.08
+5,Blofeld (Pleasence),Ernst Stavro Blofeld,Donald Pleasence,You Only Live Twice,1967,47.69,Sean Connery,10.89
+6,Blofeld (Savalas),Ernst Stavro Blofeld,Telly Savalas,On Her Majesty's Secret Service,1969,47.91,George Lazenby,17.62
+7,Blofeld (Gray),Ernst Stavro Blofeld,Charles Gray,Diamonds Are Forever,1971,43.34,Sean Connery,1.99
+8,Kananga / Mr. Big,Dr. Kananga / Mr. Big,Yaphet Kotto,Live and Let Die,1973,33.64,Roger Moore,-12.09
+9,Scaramanga,Francisco Scaramanga,Christopher Lee,The Man with the Golden Gun,1974,52.57,Roger Moore,5.38
+10,Stromberg,Karl Stromberg,Curd Jürgens,The Spy Who Loved Me,1977,61.6,Roger Moore,11.84
+11,Drax,Hugo Drax,Michael Lonsdale,Moonraker,1979,48.1,Roger Moore,-3.61
+12,Kristatos,Aristotle Kristatos,Julian Glover,For Your Eyes Only,1981,46.25,Roger Moore,-7.45
+13,Kamal Khan,Kamal Khan,Louis Jourdan,Octopussy,1983,61.96,Roger Moore,6.32
+14,Max Zorin,Max Zorin,Christopher Walken,A View to a Kill,1985,42.2,Roger Moore,-15.46
+15,Koskov,General Georgi Koskov,Jeroen Krabbé,The Living Daylights,1987,42.57,Timothy Dalton,1.29
+16,Sanchez,Franz Sanchez,Robert Davi,Licence to Kill,1989,37.97,Timothy Dalton,-5.26
+17,Trevelyan,Alec Trevelyan / Janus,Sean Bean,GoldenEye,1995,36.61,Pierce Brosnan,-5.92
+18,Carver,Elliot Carver,Jonathan Pryce,Tomorrow Never Dies,1997,50.53,Pierce Brosnan,5.96
+19,Elektra King,Elektra King,Sophie Marceau,The World Is Not Enough,1999,33.02,Pierce Brosnan,-13.51
+21,Le Chiffre,Le Chiffre,Mads Mikkelsen,Casino Royale,2006,40.98,Daniel Craig,2.28
+22,Dominic Greene,Dominic Greene,Mathieu Amalric,Quantum of Solace,2008,43.02,Daniel Craig,2.35
+23,Silva,Raoul Silva,Javier Bardem,Skyfall,2012,43.66,Daniel Craig,-1.0
+24,Blofeld (Waltz),Franz Oberhauser / Ernst Stavro Blofeld,Christoph Waltz,Spectre,2015,59.06,Daniel Craig,11.41
+25,Safin,Lyutsifer Safin,Rami Malek,No Time to Die,2021,40.39,Daniel Craig,-13.19
