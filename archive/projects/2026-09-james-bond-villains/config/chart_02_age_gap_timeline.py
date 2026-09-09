@@ -17,7 +17,7 @@ CHART_CONFIG = {
     # ---------------------------
     "title": "Bond used to fight his elders",
     "subtitle": "From 1962–71, first-listed villains were 14.3 years older than Bond on average; after that, 1.8 years younger.",
-    "source_text": "Sources: Wikipedia actor DOBs; UK public release dates. Die Another Day excluded: dual portrayal.",
+    "source_text": "Sources: Wikipedia; 007 Under the Mango Tree. DAD excluded.",
     "footer_left": "Adam Green | coffeetableviz",
     "story_angle": "shift",
     "focus_series": None,
