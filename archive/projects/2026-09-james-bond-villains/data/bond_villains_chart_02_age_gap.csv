@@ -1,0 +1,26 @@
+film_no,villain_label,villain_name,film_title,year,bond_actor,bond_age,villain_age,age_gap,period
+1,Dr. No · '62,Dr. No,Dr. No,1962,Sean Connery,32.12,44.4,12.28,1962–71
+2,Rosa Klebb · '63,Colonel Rosa Klebb,From Russia with Love,1963,Sean Connery,33.13,64.98,31.85,1962–71
+3,Goldfinger · '64,Auric Goldfinger,Goldfinger,1964,Sean Connery,34.07,51.56,17.49,1962–71
+4,Emilio Largo · '65,Emilio Largo,Thunderball,1965,Sean Connery,35.35,43.43,8.08,1962–71
+5,Blofeld · '67,Ernst Stavro Blofeld,You Only Live Twice,1967,Sean Connery,36.8,47.69,10.89,1962–71
+6,Blofeld · '69,Ernst Stavro Blofeld,On Her Majesty's Secret Service,1969,George Lazenby,30.29,47.91,17.62,1962–71
+7,Blofeld · '71,Ernst Stavro Blofeld,Diamonds Are Forever,1971,Sean Connery,41.35,43.34,1.99,1962–71
+8,Kananga / Mr. Big · '73,Dr. Kananga / Mr. Big,Live and Let Die,1973,Roger Moore,45.73,33.64,-12.09,1973–2021
+9,Scaramanga · '74,Francisco Scaramanga,The Man with the Golden Gun,1974,Roger Moore,47.18,52.57,5.39,1973–2021
+10,Stromberg · '77,Karl Stromberg,The Spy Who Loved Me,1977,Roger Moore,49.73,61.57,11.84,1973–2021
+11,Hugo Drax · '79,Hugo Drax,Moonraker,1979,Roger Moore,51.7,48.09,-3.61,1973–2021
+12,Kristatos · '81,Aristotle Kristatos,For Your Eyes Only,1981,Roger Moore,53.7,46.25,-7.45,1973–2021
+13,Kamal Khan · '83,Kamal Khan,Octopussy,1983,Roger Moore,55.65,61.96,6.31,1973–2021
+14,Max Zorin · '85,Max Zorin,A View to a Kill,1985,Roger Moore,57.67,42.2,-15.47,1973–2021
+15,Koskov · '87,General Georgi Koskov,The Living Daylights,1987,Timothy Dalton,41.28,42.57,1.29,1973–2021
+16,Franz Sanchez · '89,Franz Sanchez,Licence to Kill,1989,Timothy Dalton,43.23,37.97,-5.26,1973–2021
+17,Alec Trevelyan · '95,Alec Trevelyan / Janus,GoldenEye,1995,Pierce Brosnan,42.53,36.61,-5.92,1973–2021
+18,Elliot Carver · '97,Elliot Carver,Tomorrow Never Dies,1997,Pierce Brosnan,44.58,50.53,5.95,1973–2021
+19,Elektra King · '99,Elektra King,The World Is Not Enough,1999,Pierce Brosnan,46.53,33.02,-13.51,1973–2021
+20,Graves / Moon · '02,Gustav Graves / Colonel Tan-Sun Moon,Die Another Day,2002,Pierce Brosnan,49.52,32.62,-16.9,1973–2021
+21,Le Chiffre · '06,Le Chiffre,Casino Royale,2006,Daniel Craig,38.71,40.98,2.27,1973–2021
+22,Dominic Greene · '08,Dominic Greene,Quantum of Solace,2008,Daniel Craig,40.67,43.02,2.35,1973–2021
+23,Raoul Silva · '12,Raoul Silva,Skyfall,2012,Daniel Craig,44.65,43.66,-0.99,1973–2021
+24,Blofeld · '15,Franz Oberhauser / Ernst Stavro Blofeld,Spectre,2015,Daniel Craig,47.65,59.06,11.41,1973–2021
+25,Lyutsifer Safin · '21,Lyutsifer Safin,No Time to Die,2021,Daniel Craig,53.58,40.39,-13.19,1973–2021
