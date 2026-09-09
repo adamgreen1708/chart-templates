@@ -2,7 +2,7 @@
 
 ## Status
 
-- Status: Branch render QA passed / main merge pending
+- Status: Archive complete / publication draft
 - Started: 9 September 2026
 - Last updated: 10 September 2026
 - Owner: Adam Green
@@ -48,7 +48,7 @@
 | File | Chart | Output | QA status |
 |---|---|---|---|
 | `config/chart_01_actor_age.py` | Bond villains range from 32 to 65 | `bond_villains_actor_age.png` | Real renderer visual QA passed after title/subtitle fix |
-| `config/chart_02_age_gap.py` | Bond used to fight his elders | `bond_villains_age_gap.png` | Real renderer visual QA passed; categorical annotation renderer fix verified in Actions run #4 |
+| `config/chart_02_age_gap.py` | Bond used to fight his elders | `bond_villains_age_gap.png` | Real renderer visual QA passed; categorical annotation renderer fix verified in Actions runs #4 and #5 |
 | `config/chart_03_era_age.py` | Bond grew into his villains | `bond_villains_era_age.png` | Real renderer visual QA passed after same-age-label and annotation fixes |
 
 ## Story findings
@@ -70,10 +70,10 @@
 | Item | Status |
 |---|---|
 | `requirements-render.txt` | Pins the renderer stack used by GitHub Actions so production renders do not change when upstream libraries release new versions |
-| `.github/workflows/render-538.yml` | Existing single-active-config renderer retained; updated to use the pinned renderer requirements |
-| `.github/workflows/render-chart.yml` | Generated-config workflow updated to use the same pinned renderer requirements |
-| `.github/workflows/render-archived-project.yml` | Archived-project renderer retained; uses the pinned renderer requirements and is restored to `main` push triggering only |
-| `output/` inside this project | All three PNGs generated and committed on the renderer-fix branch by Actions run #4; final `main` verification required after merge |
+| `.github/workflows/render-538.yml` | Existing single-active-config renderer retained; uses the pinned renderer requirements |
+| `.github/workflows/render-chart.yml` | Generated-config workflow uses the same pinned renderer requirements |
+| `.github/workflows/render-archived-project.yml` | Archived-project renderer uses the pinned renderer requirements and commits project PNGs back to the archive |
+| `output/` inside this project | Complete: all three final PNGs verified in `main` after PR #27 |
 
 ## QA notes
 
@@ -89,17 +89,21 @@
 - Renderer fix: `_plot_annotations` now resolves categorical dot y-values through the same numeric y-position lookup used by `_plot_dot` and `_plot_labels`.
 - Actions branch QA run #4 (`34417695088`) completed successfully: all three configs rendered, archived output listing passed, artifact upload passed and output commit-back passed.
 - The run #4 artifact was visually inspected: Chart 1 title/subtitle and category labels fit; Chart 2 Klebb and Graves/Moon annotations render correctly with no clipping; Chart 3 equal-age diagonal and era labels remain clear and unclipped.
+- PR #27 merged at commit `5949d09fe5c88c4f3e38dbf8b73cd655cdc35873`.
+- Main archived-project run #5 (`34418280094`) completed successfully after the merge.
+- All three PNGs are verified under `archive/projects/2026-09-james-bond-villains/output/` on `main`.
 - The production stack remains pinned at NumPy 2.3.5, pandas 2.2.3 and Matplotlib 3.10.8 for reproducible rendering.
-- Final gate: merge the renderer-fix PR and verify the three PNGs in `main` before publication content is treated as final.
 
 ## Content package
 
 - Story plan: `content/story_plan.md`
-- Publication package: pending until archived renderer outputs are verified in `main`.
+- Publication package: `content/publication_package.md`
+- Publication draft status: ready for Adam review
 
 ## Closeout
 
 - Published URL: TBC
-- Final archive/output PR: renderer-fix PR pending
-- Final merge commit: TBC
-- Archive complete: No — branch QA is complete; wait for merge and `main` output verification.
+- Final archive/output PR: #27
+- Final archive/output merge commit: `5949d09fe5c88c4f3e38dbf8b73cd655cdc35873`
+- Archive complete: Yes
+- Publication complete: No — publication package is drafted and awaiting review/publishing.
