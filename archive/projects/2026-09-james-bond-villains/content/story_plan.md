@@ -52,6 +52,8 @@ This route is stronger than a simple `villains got younger` claim because the vi
 
 **Risk / weakness:** IMDb rates the film, not the villain. It is context only and should not be interpreted as a villain-quality ranking or causal relationship.
 
+**Decision:** Promote this to a small bonus chart after the core age story, rather than turning it into a fourth step in the main age narrative.
+
 ## Recommended 3-chart story
 
 ### Chart 1 — Bond villains range from 32 to 65
@@ -102,6 +104,24 @@ This route is stronger than a simple `villains got younger` claim because the vi
 
 **Potential issue / QA risk:** X and Y scales must be identical so distance from the same-age diagonal is visually honest. The diagonal label must remain inside the safe plotting area.
 
+## Bonus companion chart
+
+### Chart 4 — Le Chiffre got the best Bond film to be evil in
+
+**Role:** A small piece of dessert after the main age story, not part of the core three-chart argument.
+
+**Story question:** Which first-listed villain appears in the highest-rated Eon Bond film in the IMDb snapshot?
+
+**Chart type:** Ranked dot plot.
+
+**Data needed:** `data/bond_villains_chart_04_imdb_companion.csv`
+
+**Key stat:** `Casino Royale` leads at 8.0, ahead of `Skyfall` at 7.8 and `Goldfinger` at 7.7; `Die Another Day` is lowest at 6.1.
+
+**Why this chart matters:** It gives the post one recognisable, playful side statistic without weakening the age thesis.
+
+**Framing / QA risk:** IMDb rates the film, not the villain. Keep all 25 Eon films, use unique villain + film labels, and highlight Le Chiffre only.
+
 ## Editorial sequence
 
 1. **Set up:** Bond villains cover a much wider age range than a single stereotype suggests.
@@ -109,7 +129,8 @@ This route is stronger than a simple `villains got younger` claim because the vi
 3. **Rising insight:** The age gap shrinks and often reverses after the early Connery/Lazenby films.
 4. **Suspense:** Did villains suddenly become younger?
 5. **Aha:** Not really. Bond actors themselves got older relative to the antagonists they faced.
-6. **TLDR:** Bond stopped being the young man walking into a room full of older enemies.
+6. **Bonus:** Le Chiffre appears in the highest-rated Eon Bond film in the IMDb snapshot.
+7. **TLDR:** Bond stopped being the young man walking into a room full of older enemies.
 
 ## Method notes
 
@@ -117,8 +138,8 @@ This route is stronger than a simple `villains got younger` claim because the vi
 - Use exact actor dates of birth.
 - Use one first-listed villain identity per film for film-level comparison; do not relabel this as an objective `main villain` definition.
 - For `Die Another Day`, retain Toby Stephens and Will Yun Lee separately in Chart 1; use their mean for the film-level and era-level comparisons so the film contributes once.
-- IMDb companion data remains optional and must be described as film-level context.
+- IMDb companion data is film-level context only and uses the verified snapshot dated 9 September 2026.
 
 ## Next build step
 
-Render all three canonical configs into the project archive, verify those committed PNGs in `main`, then produce the publication package: Gutenberg blog post, excerpt, LinkedIn, Instagram, chart captions/alt text and feature-image prompt.
+Merge the QA-approved Chart 04 companion config/data/output into the project archive, verify the PNG in `main`, then publish from the updated publication package.
