@@ -20,6 +20,8 @@ This route is stronger than a simple `villains got younger` claim because the vi
 
 **Data required:** First-listed villain actor age at exact UK release date; retain both `Die Another Day` portrayals for the actor-level view.
 
+**Likely chart sequence:** Ranked age spread, decade/era comparison, oldest/youngest examples.
+
 **Risk / weakness:** Interesting as a distribution, but it does not explain how the casting relationship changed across the franchise.
 
 ### Option 2 — Bond used to fight his elders
@@ -29,6 +31,8 @@ This route is stronger than a simple `villains got younger` claim because the vi
 **Why it works:** It turns actor ages into a franchise-level relationship with a clear before/after pattern.
 
 **Data required:** Exact Bond age and first-listed villain age at UK release for all 25 Eon films.
+
+**Likely chart sequence:** Villain age spread, film-level age gap, Bond-era age relationship.
 
 **Risk / weakness:** Must state the first-listed-villain rule clearly and avoid implying age caused any creative or commercial outcome.
 
@@ -48,7 +52,7 @@ This route is stronger than a simple `villains got younger` claim because the vi
 
 **Risk / weakness:** IMDb rates the film, not the villain. It is context only and should not be interpreted as a villain-quality ranking or causal relationship.
 
-**Decision:** Promote this to a small bonus chart after the core age story, not a fourth step in the main narrative.
+**Decision:** Promote this to a small bonus chart after the core age story, rather than turning it into a fourth step in the main age narrative.
 
 ## Recommended 3-chart story
 
@@ -56,15 +60,23 @@ This route is stronger than a simple `villains got younger` claim because the vi
 
 **Role:** Set the scene.
 
+**Story question:** How old has a Bond villain been when the film reached UK audiences?
+
 **Chart type:** Ranked dot plot.
 
 **Data needed:** `data/bond_villains_chart_01_actor_age.csv`
 
 **Key stat:** First-listed villain actor portrayals range from Will Yun Lee at about 31.7 to Lotte Lenya at about 65.0 years old at UK release.
 
+**Why this chart matters:** Establishes the broad casting range before asking how those ages compare with Bond himself.
+
+**Potential issue / QA risk:** Long villain labels and repeated Blofeld appearances require unique year-suffixed labels and generous left margin. `Die Another Day` has two actor portrayals and must appear as two actor-level observations.
+
 ### Chart 2 — Bond used to fight his elders
 
 **Role:** Build the tension.
+
+**Story question:** Was the villain older or younger than Bond in each film?
 
 **Chart type:** Film-by-film dot plot of `villain age - Bond age`.
 
@@ -72,9 +84,15 @@ This route is stronger than a simple `villains got younger` claim because the vi
 
 **Key stat:** Across 1962–1971, first-listed villains averaged 14.3 years older than Bond; from 1973 onward they averaged 2.6 years younger.
 
+**Why this chart matters:** Reveals that the interesting change is relative age, not simply villain age.
+
+**Potential issue / QA risk:** The zero reference line must be obvious because it carries the meaning `same age`. `Die Another Day` must count once using the mean age of Toby Stephens and Will Yun Lee.
+
 ### Chart 3 — Bond grew into his villains
 
 **Role:** Land the aha moment.
+
+**Story question:** How did the Bond-villain age relationship change by Bond actor era?
 
 **Chart type:** Scatter plot of average Bond age against average first-listed villain age, with an equal-age diagonal.
 
@@ -82,13 +100,17 @@ This route is stronger than a simple `villains got younger` claim because the vi
 
 **Key stat:** Connery's villains averaged 13.8 years older; Brosnan's averaged 7.6 years younger; Craig and his villains were almost exactly age-matched at +0.4 years.
 
+**Why this chart matters:** It explains the film-level shift in one compact final view: Bond grew into his villains.
+
+**Potential issue / QA risk:** X and Y scales must be identical so distance from the same-age diagonal is visually honest. The diagonal label must remain inside the safe plotting area.
+
 ## Bonus companion chart
 
 ### Chart 4 — Le Chiffre got the best Bond film to be evil in
 
-**Role:** Dessert after the main story; a deliberately separate contextual ranking.
+**Role:** A small piece of dessert after the main age story, not part of the core three-chart argument.
 
-**Story question:** Which first-listed villain appears in the highest-rated Bond film in the IMDb snapshot?
+**Story question:** Which first-listed villain appears in the highest-rated Eon Bond film in the IMDb snapshot?
 
 **Chart type:** Ranked dot plot.
 
@@ -96,9 +118,9 @@ This route is stronger than a simple `villains got younger` claim because the vi
 
 **Key stat:** `Casino Royale` leads at 8.0, ahead of `Skyfall` at 7.8 and `Goldfinger` at 7.7; `Die Another Day` is lowest at 6.1.
 
-**Framing rule:** These are IMDb film ratings, not scores for villain quality.
+**Why this chart matters:** It gives the post one recognisable, playful side statistic without weakening the age thesis.
 
-**QA note:** Keep all 25 films, use unique villain + film display labels, and highlight Le Chiffre only so the ranking stays visually subordinate to the core age story.
+**Framing / QA risk:** IMDb rates the film, not the villain. Keep all 25 Eon films, use unique villain + film labels, and highlight Le Chiffre only.
 
 ## Editorial sequence
 
@@ -107,7 +129,7 @@ This route is stronger than a simple `villains got younger` claim because the vi
 3. **Rising insight:** The age gap shrinks and often reverses after the early Connery/Lazenby films.
 4. **Suspense:** Did villains suddenly become younger?
 5. **Aha:** Not really. Bond actors themselves got older relative to the antagonists they faced.
-6. **Bonus:** Le Chiffre happened to get the highest-rated film in the IMDb snapshot.
+6. **Bonus:** Le Chiffre appears in the highest-rated Eon Bond film in the IMDb snapshot.
 7. **TLDR:** Bond stopped being the young man walking into a room full of older enemies.
 
 ## Method notes
@@ -117,3 +139,7 @@ This route is stronger than a simple `villains got younger` claim because the vi
 - Use one first-listed villain identity per film for film-level comparison; do not relabel this as an objective `main villain` definition.
 - For `Die Another Day`, retain Toby Stephens and Will Yun Lee separately in Chart 1; use their mean for the film-level and era-level comparisons so the film contributes once.
 - IMDb companion data is film-level context only and uses the verified snapshot dated 9 September 2026.
+
+## Next build step
+
+Merge the QA-approved Chart 04 companion config/data/output into the project archive, verify the PNG in `main`, then publish from the updated publication package.
