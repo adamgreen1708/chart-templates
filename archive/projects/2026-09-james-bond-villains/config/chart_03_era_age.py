@@ -60,7 +60,7 @@ CHART_CONFIG = {
     },
 
     "point_style": {
-        "color": "#1F8FA8",
+        "color": "#D9D9D9",
         "size": 72,
         "alpha": 0.85
     },
