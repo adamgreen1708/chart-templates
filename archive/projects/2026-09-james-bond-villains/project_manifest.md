@@ -2,7 +2,7 @@
 
 ## Status
 
-- Status: Archive complete / publication draft
+- Status: Archive complete / IMDb companion chart branch QA
 - Started: 9 September 2026
 - Last updated: 10 September 2026
 - Owner: Adam Green
@@ -16,13 +16,14 @@
 - Main takeaway: Bond villains did not simply get steadily younger. Early Eon Bond usually faced much older first-listed villains; later Bond actors increasingly met villains close to their own age or younger.
 - Audience: coffeetableviz readers and social audience
 - Blog/social use: WordPress post, excerpt, LinkedIn, Instagram and feature image
+- Bonus companion: `Le Chiffre got the best Bond film to be evil in` — a film-level IMDb ranking framed explicitly as context, not villain quality.
 
 ## Scope and definitions
 
 - Scope: Eon Productions' 25 Bond films from `Dr. No` (1962) to `No Time to Die` (2021).
 - Villain grain: enriched source work uses one row per villain × film appearance; the core age story uses the first-listed villain identity per film for a consistent film-level comparison.
 - `is_first_listed_villain` is a consistency rule, not a claim that the selected character is objectively the film's sole or definitive main villain.
-- IMDb ratings are film ratings, not villain ratings, and are retained only as optional companion context.
+- IMDb ratings are film ratings, not villain ratings, and are retained only as companion context.
 - `Die Another Day` has a dual portrayal for Gustav Graves / Colonel Tan-Sun Moon. Chart 1 retains Toby Stephens and Will Yun Lee separately; film-level and Bond-era age calculations use their mean so the film counts once.
 
 ## Sources
@@ -41,7 +42,8 @@
 | `data/bond_villains_chart_01_actor_age.csv` | Actor-portrayal age spread | 26 portrayal rows across 25 films; `Die Another Day` has two rows |
 | `data/bond_villains_chart_02_age_gap.csv` | Film-level villain minus Bond age gap | 25 films; `Die Another Day` uses mean of two portrayer ages |
 | `data/bond_villains_chart_03_era_age.csv` | Bond-era age comparison | Six Bond actor eras |
-| `data/bond_villains_companion_imdb_ranking.csv` | Optional IMDb companion ranking | Film rating context only; rounded vote snapshot |
+| `data/bond_villains_companion_imdb_ranking.csv` | Verified IMDb companion ranking | Film rating context only; rounded vote snapshot |
+| `data/bond_villains_chart_04_imdb_companion.csv` | Chart-ready IMDb companion data | 25 first-listed villain identities; display label derived from verified villain and film fields |
 
 ## Chart configs
 
@@ -50,6 +52,7 @@
 | `config/chart_01_actor_age.py` | Bond villains range from 32 to 65 | `bond_villains_actor_age.png` | Real renderer visual QA passed after title/subtitle fix |
 | `config/chart_02_age_gap.py` | Bond used to fight his elders | `bond_villains_age_gap.png` | Real renderer visual QA passed; categorical annotation renderer fix verified in Actions runs #4 and #5 |
 | `config/chart_03_era_age.py` | Bond grew into his villains | `bond_villains_era_age.png` | Real renderer visual QA passed after same-age-label and annotation fixes |
+| `config/chart_04_imdb_companion.py` | Le Chiffre got the best Bond film to be evil in | `bond_villains_imdb_companion.png` | Branch renderer QA pending |
 
 ## Story findings
 
@@ -58,12 +61,13 @@
 - Across 1973–2021, first-listed villains averaged 2.6 years younger than Bond.
 - Bond-era average villain-minus-Bond age gaps: Connery +13.76; Lazenby +17.62; Moore -2.15; Dalton -1.98; Brosnan -7.59; Craig +0.37 years.
 - The strongest editorial interpretation is relative-age change, not a simplistic claim that villains themselves steadily became younger.
+- IMDb companion: `Casino Royale` is highest in the 25-film snapshot at 8.0, followed by `Skyfall` at 7.8 and `Goldfinger` at 7.7; `Die Another Day` is lowest at 6.1. These are film ratings, not villain ratings.
 
 ## Rejected / secondary story routes
 
-- SPECTRE chronology was demoted because Eon film release order does not equal Fleming publication chronology; using film order to imply literary villain evolution would be misleading.
-- IMDb ranking remains a companion idea: `Who got the best Bond film to be evil in?` It must always be framed as the film's IMDb rating, not a villain rating.
-- A villain-fate route remains possible but was not part of the core three-chart age story.
+- SPECTRE chronology was demoted because Eon film release order does not equal Fleming publication chronology; using film order to imply literary evolution would be misleading.
+- IMDb ranking is now promoted from optional companion idea to a small bonus chart: `Who got the best Bond film to be evil in?` It remains explicitly film-level context, not a villain-quality ranking.
+- A villain-fate route remains possible but is not part of the current publication package.
 
 ## Workflow / outputs
 
@@ -73,7 +77,7 @@
 | `.github/workflows/render-538.yml` | Existing single-active-config renderer retained; uses the pinned renderer requirements |
 | `.github/workflows/render-chart.yml` | Generated-config workflow uses the same pinned renderer requirements |
 | `.github/workflows/render-archived-project.yml` | Archived-project renderer uses the pinned renderer requirements and commits project PNGs back to the archive |
-| `output/` inside this project | Complete: all three final PNGs verified in `main` after PR #27 |
+| `output/` inside this project | Core three-chart set complete in `main`; Chart 04 companion output pending branch QA and merge |
 
 ## QA notes
 
@@ -91,19 +95,21 @@
 - The run #4 artifact was visually inspected: Chart 1 title/subtitle and category labels fit; Chart 2 Klebb and Graves/Moon annotations render correctly with no clipping; Chart 3 equal-age diagonal and era labels remain clear and unclipped.
 - PR #27 merged at commit `5949d09fe5c88c4f3e38dbf8b73cd655cdc35873`.
 - Main archived-project run #5 (`34418280094`) completed successfully after the merge.
-- All three PNGs are verified under `archive/projects/2026-09-james-bond-villains/output/` on `main`.
+- All three core PNGs are verified under `archive/projects/2026-09-james-bond-villains/output/` on `main`.
 - The production stack remains pinned at NumPy 2.3.5, pandas 2.2.3 and Matplotlib 3.10.8 for reproducible rendering.
+- Chart 04 must pass the same real archived-project Actions path and visual QA before it is added to the publication package as a final chart.
 
 ## Content package
 
 - Story plan: `content/story_plan.md`
 - Publication package: `content/publication_package.md`
-- Publication draft status: ready for Adam review
+- Publication draft status: core package approved; add the bonus IMDb chart/copy only after Chart 04 renderer QA passes.
 
 ## Closeout
 
 - Published URL: TBC
-- Final archive/output PR: #27
+- Final archive/output PR: #27 for the core three-chart story; companion extension PR pending
 - Final archive/output merge commit: `5949d09fe5c88c4f3e38dbf8b73cd655cdc35873`
-- Archive complete: Yes
-- Publication complete: No — publication package is drafted and awaiting review/publishing.
+- Core archive complete: Yes
+- Companion extension complete: No — Chart 04 branch render/visual QA pending.
+- Publication complete: No — awaiting publication and final live URL.
