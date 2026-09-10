@@ -10,7 +10,6 @@ on:
   push:
     branches:
       - main
-      - feature/bond-imdb-companion-chart
     paths:
       - "archive/projects/**/config/*.py"
       - "archive/projects/**/data/*.csv"
