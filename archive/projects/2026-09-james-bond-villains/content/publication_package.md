@@ -61,6 +61,20 @@
 <!-- CHART 3: Bond grew into his villains -->
 
 <!-- wp:heading {"level":2} -->
+<h2>Bonus Bond stat</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><strong>Le Chiffre got the best Bond film to be evil in.</strong> Among the first-listed villains, <em>Casino Royale</em> has the highest IMDb rating in the 9 September 2026 snapshot at <strong>8.0</strong>, ahead of <em>Skyfall</em> at <strong>7.8</strong> and <em>Goldfinger</em> at <strong>7.7</strong>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>That is a film score, not a villain score — but still a strong piece of villain admin.</p>
+<!-- /wp:paragraph -->
+
+<!-- CHART 4: Le Chiffre got the best Bond film to be evil in -->
+
+<!-- wp:heading {"level":2} -->
 <h2>TLDR</h2>
 <!-- /wp:heading -->
 
@@ -73,7 +87,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><em>Method note: this uses the first-listed villain in the Wikipedia Bond-villain table as a consistent film-level rule, not a claim about the one definitive “main villain”. Ages are calculated at the official UK release date from 007.com. <em>Die Another Day</em> has two actors for the Graves / Colonel Moon identity; Chart 1 keeps both portrayals, while film- and era-level comparisons use their mean so the film counts once.</em></p>
+<p><em>Method note: this uses the first-listed villain in the Wikipedia Bond-villain table as a consistent film-level rule, not a claim about the one definitive “main villain”. Ages are calculated at the official UK release date from 007.com. <em>Die Another Day</em> has two actors for the Graves / Colonel Moon identity; Chart 1 keeps both portrayals, while film- and era-level comparisons use their mean so the film counts once. IMDb ratings are film-level context from a snapshot dated 9 September 2026.</em></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -102,7 +116,9 @@ By Bond era, the shift is even clearer:
 
 The villain age range is wide — roughly 32 to 65 — but the bigger change is who Bond is standing opposite.
 
-Method: first-listed villain per film for consistency; ages calculated at official UK release dates. <em>Die Another Day</em> uses the mean age of its two portrayers for film-level comparisons.
+Bonus stat: among first-listed villains, Le Chiffre appears in the highest-rated Bond film in the IMDb snapshot: Casino Royale at 8.0.
+
+Method: first-listed villain per film for consistency; ages calculated at official UK release dates. <em>Die Another Day</em> uses the mean age of its two portrayers for film-level comparisons. IMDb ratings are film-level context, not villain scores.
 
 simple charts clear stories.
 
@@ -124,7 +140,9 @@ By era:
 
 The villains did not simply get dramatically younger. Bond caught up.
 
-Ages calculated at official UK release dates; first-listed villain used as the consistent film-level rule.
+Bonus: Le Chiffre appears in the highest-rated Bond film in the IMDb snapshot — Casino Royale at 8.0.
+
+Ages calculated at official UK release dates; first-listed villain used as the consistent film-level rule. IMDb ratings are film context, not villain scores.
 
 #dataviz #charts #data #jamesbond #film #coffeetableviz
 
@@ -147,6 +165,12 @@ Ages calculated at official UK release dates; first-listed villain used as the c
 **Caption:** Connery’s first-listed villains averaged 13.8 years older than him; Brosnan’s averaged 7.6 years younger; Craig and his villains are almost exactly age-matched.
 
 **Alt text:** Scatter plot comparing average Bond age with average first-listed-villain age across the six Bond actor eras. A diagonal line marks equal ages. Connery and Lazenby sit well above the line, Moore and Dalton just below it, Brosnan further below it, and Craig almost exactly on the line.
+
+### Chart 4 — Le Chiffre got the best Bond film to be evil in
+
+**Caption:** In the IMDb snapshot dated 9 September 2026, Casino Royale is the highest-rated Eon Bond film at 8.0 among the 25 first-listed-villain rows, ahead of Skyfall at 7.8 and Goldfinger at 7.7. These are film ratings, not villain ratings.
+
+**Alt text:** Ranked dot plot of IMDb film ratings for all 25 Eon Bond films, labelled by each film’s first-listed villain and film title. Le Chiffre in Casino Royale is highlighted at 8.0. Raoul Silva in Skyfall is second at 7.8, Auric Goldfinger in Goldfinger third at 7.7, and Graves / Colonel Moon in Die Another Day is lowest at 6.1.
 
 ## Cartoon scene text
 
