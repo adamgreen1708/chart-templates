@@ -1,0 +1,26 @@
+---
+layout: default
+---
+<article class="post">
+  <header class="post-hero shell-narrow">
+    <p class="eyebrow">{{ page.category | default: 'Data story' }}</p>
+    <h1>{{ page.title }}</h1>
+    <p class="standfirst">{{ page.description }}</p>
+    <div class="post-meta">
+      <span>{{ page.date | date: "%e %B %Y" }}</span>
+      <span aria-hidden="true">·</span>
+      <span>{{ page.read_time | default: '3 minute read' }}</span>
+    </div>
+  </header>
+
+  {% if page.hero_image %}
+  <figure class="post-lead-chart shell-wide">
+    <img src="{{ page.hero_image | relative_url }}" alt="{{ page.hero_alt }}" width="1600" height="1600">
+  </figure>
+  {% endif %}
+
+  <div class="post-body shell-narrow">
+    {{ content }}
+  </div>
+</article>
+

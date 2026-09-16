@@ -1,0 +1,14 @@
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="wordmark" href="{{ '/' | relative_url }}" aria-label="coffeetableviz home">
+      <span class="wordmark-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>coffeetableviz</span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Latest</a>
+      <a href="{{ '/archive/' | relative_url }}"{% if page.url == '/archive/' %} aria-current="page"{% endif %}>Archive</a>
+      <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}>About</a>
+    </nav>
+  </div>
+</header>
+

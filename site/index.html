@@ -1,0 +1,43 @@
+---
+layout: default
+title:
+description: Data stories by Adam Green — one strong takeaway, shown simply.
+---
+{% assign latest = site.posts.first %}
+<section class="home-intro shell">
+  <div>
+    <p class="eyebrow">Data · design · storytelling</p>
+    <h1>Find the interesting bit.<br><span>Show it simply.</span></h1>
+  </div>
+  <p class="intro-copy">Short visual stories about sport, culture and everyday numbers. Built from real data, with the charts doing most of the talking.</p>
+</section>
+
+<section class="latest shell" aria-labelledby="latest-heading">
+  <div class="section-rule">
+    <h2 id="latest-heading">Latest story</h2>
+    <span>{{ latest.date | date: "%e %B %Y" }}</span>
+  </div>
+  <a class="feature-card" href="{{ latest.url | relative_url }}">
+    <div class="feature-visual">
+      <img src="{{ latest.card_image | relative_url }}" alt="" width="1600" height="1600">
+    </div>
+    <div class="feature-copy">
+      <p class="eyebrow">{{ latest.category }}</p>
+      <h3>{{ latest.title }}</h3>
+      <p>{{ latest.description }}</p>
+      <span class="read-link">Read the story <span aria-hidden="true">→</span></span>
+    </div>
+  </a>
+</section>
+
+<section class="principles shell" aria-labelledby="principles-heading">
+  <div class="section-rule">
+    <h2 id="principles-heading">How stories are built</h2>
+  </div>
+  <div class="principle-grid">
+    <div><span>01</span><h3>Start with the data</h3><p>Inspect it, test it and resist the tempting story if the evidence points elsewhere.</p></div>
+    <div><span>02</span><h3>Build the reveal</h3><p>Set the scene, add the tension, then land one clear aha moment.</p></div>
+    <div><span>03</span><h3>Keep the receipts</h3><p>Data, chart configuration, output and article live together in one provenance trail.</p></div>
+  </div>
+</section>
+

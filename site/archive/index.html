@@ -1,0 +1,22 @@
+---
+layout: default
+title: Archive
+description: Browse coffeetableviz data stories.
+permalink: /archive/
+---
+<section class="page-hero shell-narrow">
+  <p class="eyebrow">Archive</p>
+  <h1>Every story.<br><span>No dashboard required.</span></h1>
+</section>
+
+<section class="archive-list shell-narrow" aria-label="Published stories">
+  {% for post in site.posts %}
+  <a class="archive-row" href="{{ post.url | relative_url }}">
+    <span class="archive-date">{{ post.date | date: "%Y" }}</span>
+    <span class="archive-title">{{ post.title }}</span>
+    <span class="archive-category">{{ post.category }}</span>
+    <span class="archive-arrow" aria-hidden="true">→</span>
+  </a>
+  {% endfor %}
+</section>
+
