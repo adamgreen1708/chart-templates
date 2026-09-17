@@ -21,6 +21,9 @@ layout: default
 
   <div class="post-body shell-narrow">
     {{ content }}
+
+    {% if page.legacy_url %}
+    <p class="legacy-note">First published on the original <a href="{{ page.legacy_url }}">coffeetableviz WordPress site</a>.</p>
+    {% endif %}
   </div>
 </article>
-

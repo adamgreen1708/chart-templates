@@ -1,12 +1,15 @@
 ---
-title: Bond finally grew into his villains
-slug: bond-finally-grew-into-his-villains
+title: 007 Villains of Age
+date: 2026-09-12 01:19:35 +0100
+slug: 007-villains-of-age
+permalink: /2026/09/12/007-villains-of-age/
 description: Bond villains did not simply get younger. Bond mostly caught up.
 category: Film
 read_time: 3 minute read
 card_image: /assets/charts/bond_villains_era_age.png
 hero_image: /assets/charts/bond_villains_actor_age.png
 hero_alt: "Ranked dot plot showing the age at UK release of actors portraying the first-listed villain identity across 25 Eon Bond films. Ages range from 31.7 for Will Yun Lee to almost 65 for Lotte Lenya, with a median reference line at 43.5."
+legacy_url: https://coffeetableviz.wordpress.com/2026/09/12/007-villains-of-age/
 ---
 
 I started with Bond villains expecting a fairly obvious age story: the baddies got younger as the franchise modernised.
@@ -66,4 +69,3 @@ By the Craig era, Bond had finally grown into them.
 </aside>
 
 <p class="sign-off"><strong>simple charts clear stories.</strong></p>
-
