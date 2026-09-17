@@ -1,0 +1,31 @@
+---
+layout: default
+title: Today’s Blockbuster Quote
+description: One verified blockbuster line, connected to today for a real reason.
+permalink: /series/blockbuster-quote/
+---
+{% assign editions = site.blockbuster_quotes | sort: "date" | reverse %}
+
+<section class="page-hero shell-narrow blockbuster-series-hero">
+  <p class="eyebrow">Recurring series</p>
+  <h1>Today’s Blockbuster Quote.</h1>
+  <p class="standfirst">One exact line from a recognisable film. One properly verified reason for choosing it today.</p>
+</section>
+
+{% if editions.size > 0 %}
+<section class="archive-list shell-narrow" aria-label="Blockbuster Quote editions">
+  {% for edition in editions %}
+  <a class="archive-row" href="{{ edition.url | relative_url }}">
+    <span class="archive-date">{{ edition.date | date: "%e %b" }}</span>
+    <span class="archive-title">{{ edition.film }}</span>
+    <span class="archive-category">{{ edition.film_year }}</span>
+    <span class="archive-arrow" aria-hidden="true">→</span>
+  </a>
+  {% endfor %}
+</section>
+{% else %}
+<section class="series-empty shell-narrow">
+  <p class="eyebrow">In development</p>
+  <p>The first edition will appear after its date connection, quotation, attribution, sources and final render have all passed review.</p>
+</section>
+{% endif %}
