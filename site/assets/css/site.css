@@ -230,3 +230,84 @@ a { color: inherit; }
   html { scroll-behavior: auto; }
   .feature-visual img { transition: none; }
 }
+
+
+/* Today’s Blockbuster Quote */
+.blockbuster-series-hero .standfirst { margin-bottom: 0; }
+
+.series-empty {
+  margin-bottom: 8rem;
+  padding: 2rem 0;
+  border-block: 1px solid var(--ink);
+}
+.series-empty p:last-child {
+  max-width: 620px;
+  margin: 0;
+  color: var(--muted);
+}
+
+.blockbuster-hero {
+  padding-block: clamp(4rem, 9vw, 7rem) clamp(2.5rem, 5vw, 4rem);
+}
+.blockbuster-hero h1 {
+  margin: 0 0 1.5rem;
+  font: 700 clamp(3.2rem, 9vw, 6.6rem)/.98 "Space Grotesk", sans-serif;
+  letter-spacing: -.055em;
+}
+.blockbuster-poster { margin-bottom: clamp(4rem, 8vw, 7rem); }
+.blockbuster-poster img { width: 100%; background: #e8e1d3; }
+
+.blockbuster-copy { padding-bottom: 8rem; }
+.blockbuster-copy blockquote {
+  margin: 0 0 5rem;
+  padding: 2.5rem 0;
+  border-block: 1px solid var(--ink);
+}
+.blockbuster-copy blockquote p {
+  margin: 0;
+  font: 500 clamp(2rem, 6vw, 4rem)/1.12 Georgia, "Times New Roman", serif;
+  letter-spacing: -.035em;
+}
+.blockbuster-copy cite {
+  display: block;
+  margin-top: 1.5rem;
+  color: var(--muted);
+  font: normal .78rem "IBM Plex Mono", monospace;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.blockbuster-context {
+  margin: 0;
+  font-size: 1.35rem;
+  line-height: 1.55;
+}
+.blockbuster-kicker {
+  margin: 3rem 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+}
+.source-note {
+  margin-top: 5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+.source-note h2 {
+  margin: 0 0 .8rem;
+  font: 600 .8rem "Space Grotesk", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.source-note ol {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+  font-size: .82rem;
+  line-height: 1.6;
+}
+.source-note a { text-underline-offset: .18em; }
+.source-note span { font-family: "IBM Plex Mono", monospace; font-size: .72rem; }
+
+@media (max-width: 560px) {
+  .blockbuster-copy blockquote { margin-bottom: 4rem; }
+  .blockbuster-context { font-size: 1.18rem; }
+}
