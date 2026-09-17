@@ -1,0 +1,41 @@
+---
+layout: default
+---
+<article class="blockbuster-edition">
+  <header class="blockbuster-hero shell-narrow">
+    <p class="eyebrow">{{ page.header }}</p>
+    <h1>{{ page.film }}</h1>
+    <div class="post-meta">
+      <span>{{ page.date | date: "%e %B %Y" }}</span>
+      <span aria-hidden="true">·</span>
+      <span>{{ page.film_year }}</span>
+    </div>
+  </header>
+
+  <figure class="blockbuster-poster shell-wide">
+    <img src="{{ page.hero_image | relative_url }}" alt="{{ page.hero_alt }}" width="1600" height="1600">
+  </figure>
+
+  <div class="blockbuster-copy shell-narrow">
+    <blockquote>
+      <p>“{{ page.quote }}”</p>
+      <cite>{{ page.character }} · {{ page.performer }}</cite>
+    </blockquote>
+
+    <section aria-labelledby="why-today">
+      <p class="eyebrow" id="why-today">Why today</p>
+      <p class="blockbuster-context">{{ page.why_today }}</p>
+    </section>
+
+    <p class="blockbuster-kicker">{{ page.kicker }}</p>
+
+    <aside class="source-note" aria-labelledby="edition-sources">
+      <h2 id="edition-sources">Sources</h2>
+      <ol>
+        {% for source in page.sources %}
+        <li><a href="{{ source.url }}">{{ source.title }}</a> <span>({{ source.role | replace: '_', ' ' }})</span></li>
+        {% endfor %}
+      </ol>
+    </aside>
+  </div>
+</article>
