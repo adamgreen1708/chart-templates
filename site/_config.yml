@@ -1,10 +1,10 @@
 title: coffeetableviz
 description: Simple charts. Clear stories. Data, design and the interesting bit in between.
-url: "https://adamgreen1708.github.io"
-baseurl: "/chart-templates"
+url: "https://coffeetableviz.com"
+baseurl: ""
 author:
   name: Adam Green
-  url: "https://coffeetableviz.wordpress.com"
+  url: "https://coffeetableviz.com"
 lang: en-GB
 timezone: Europe/London
 permalink: /stories/:slug/
