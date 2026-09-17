@@ -182,6 +182,16 @@ a { color: inherit; }
 .full-bleed { width: min(calc(100vw - 2.5rem), var(--wide)); margin: 4rem 0 5rem 50%; transform: translateX(-50%); }
 .story-chart img { width: 100%; }
 .story-chart figcaption { margin-top: .85rem; color: var(--muted); font-size: .86rem; line-height: 1.5; }
+.post-body table { width: 100%; border-collapse: collapse; margin: 2rem 0 3rem; font-size: .92rem; }
+.post-body th, .post-body td { padding: .65rem .75rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.post-body th { font-family: "Space Grotesk", sans-serif; font-weight: 700; }
+.post-body pre { margin: 1.5rem 0 2rem; padding: 1rem 1.15rem; overflow-x: auto; background: #dedede; font: .86rem/1.55 "IBM Plex Mono", monospace; }
+.post-body ul, .post-body ol { padding-left: 1.35rem; }
+.image-grid { width: min(calc(100vw - 2.5rem), var(--wide)); margin: 4rem 0 5rem 50%; transform: translateX(-50%); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.image-grid figure { margin: 0; }
+.image-grid img { width: 100%; background: #e7e7e8; }
+.legacy-note { margin-top: 5rem !important; padding-top: 1.2rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .82rem; }
+.legacy-note a { text-underline-offset: .18em; }
 .method-note { margin-top: 5rem; padding: 1.5rem 1.7rem; border-left: 5px solid var(--accent); background: #e5e5e5; }
 .method-note h2 { margin: 0 0 .7rem; font-size: 1rem; letter-spacing: 0; text-transform: uppercase; }
 .method-note p { margin: 0; color: #444; font-size: .88rem; line-height: 1.6; }
@@ -221,6 +231,8 @@ a { color: inherit; }
   .archive-category { display: none; }
   .standfirst { font-size: 1.18rem; }
   .full-bleed { width: calc(100vw - 1.5rem); }
+  .image-grid { width: calc(100vw - 1.5rem); grid-template-columns: 1fr; }
+  .post-body table { display: block; overflow-x: auto; white-space: nowrap; }
   .post-body h2 { margin-top: 4rem; }
   .footer-inner { align-items: flex-start; flex-direction: column; min-height: 180px; }
   .footer-inner p:last-child { text-align: left; }
