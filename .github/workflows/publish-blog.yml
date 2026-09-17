@@ -6,12 +6,16 @@ on:
       - main
     paths:
       - "site/**"
+      - "spec/series/blockbuster-quote.md"
+      - "scripts/validate_blockbuster_quotes.rb"
       - "Gemfile"
       - "Gemfile.lock"
       - ".github/workflows/publish-blog.yml"
   pull_request:
     paths:
       - "site/**"
+      - "spec/series/blockbuster-quote.md"
+      - "scripts/validate_blockbuster_quotes.rb"
       - "Gemfile"
       - "Gemfile.lock"
       - ".github/workflows/publish-blog.yml"
@@ -32,6 +36,9 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+
+      - name: Validate Blockbuster Quote editions
+        run: ruby scripts/validate_blockbuster_quotes.rb
 
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
