@@ -210,10 +210,11 @@ The illustration must introduce no new text or factual claim.
 
 LOCKED HOUSE STYLE
 - 1:1 square social/editorial card
-- warm cream/off-white lightly textured paper
+- soft grey lightly textured paper matching the site background (`#f1f1f1`)
 - unusually generous outer padding and negative space
-- charcoal/black typography
-- restrained muted-gold accents
+- near-black typography matching the site ink (`#111111`)
+- restrained coffeetableviz red accents (`#c94545`)
+- muted grey secondary text and divider rules
 - large elegant high-contrast serif for the quote
 - small uppercase contemporary sans-serif for date, heading and metadata
 - thin understated divider rules

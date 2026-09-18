@@ -13,10 +13,12 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 SIZE = 1600
-CREAM = (242, 235, 218)
-CHARCOAL = (35, 35, 32)
-GOLD = (178, 138, 55)
-MUTED = (92, 88, 79)
+PAPER = (241, 241, 241)      # site --paper: #f1f1f1
+INK = (17, 17, 17)          # site --ink: #111111
+MUTED = (100, 100, 100)     # site --muted: #646464
+LINE = (207, 207, 207)      # site --line: #cfcfcf
+ACCENT = (201, 69, 69)      # site --accent: #c94545
+SKETCH_FILL = (227, 227, 227)
 
 FONT_SANS = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 FONT_SANS_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
@@ -56,10 +58,10 @@ def fit_lines(draw: ImageDraw.ImageDraw, copy: str, face: ImageFont.FreeTypeFont
 def draw_megaphone(draw: ImageDraw.ImageDraw) -> None:
     """Draw one symbolic, monochrome, cross-hatched megaphone."""
     horn = [(1060, 455), (1425, 330), (1425, 775), (1060, 650)]
-    draw.polygon(horn, fill=(232, 224, 205), outline=CHARCOAL, width=9)
-    draw.rounded_rectangle((975, 490, 1085, 620), radius=18, fill=(232, 224, 205), outline=CHARCOAL, width=9)
-    draw.polygon([(1040, 625), (1130, 650), (1085, 865), (995, 840)], fill=(232, 224, 205), outline=CHARCOAL)
-    draw.line([(1040, 625), (1130, 650), (1085, 865), (995, 840), (1040, 625)], fill=CHARCOAL, width=9)
+    draw.polygon(horn, fill=SKETCH_FILL, outline=INK, width=9)
+    draw.rounded_rectangle((975, 490, 1085, 620), radius=18, fill=SKETCH_FILL, outline=INK, width=9)
+    draw.polygon([(1040, 625), (1130, 650), (1085, 865), (995, 840)], fill=SKETCH_FILL, outline=INK)
+    draw.line([(1040, 625), (1130, 650), (1085, 865), (995, 840), (1040, 625)], fill=INK, width=9)
 
     # Deliberately imperfect-looking hatch strokes, clipped by hand to the horn.
     hatch = [
@@ -70,24 +72,24 @@ def draw_megaphone(draw: ImageDraw.ImageDraw) -> None:
         ((1340, 705), (1418, 672)),
     ]
     for start, end in hatch:
-        draw.line([start, end], fill=CHARCOAL, width=3)
+        draw.line([start, end], fill=INK, width=3)
     for offset in (0, 34, 68):
-        draw.line([(1015 + offset // 4, 680 + offset), (1098 + offset // 4, 704 + offset)], fill=CHARCOAL, width=3)
+        draw.line([(1015 + offset // 4, 680 + offset), (1098 + offset // 4, 704 + offset)], fill=INK, width=3)
 
     # Sound marks belong to the same single symbolic sketch.
-    draw.arc((1450, 430, 1535, 680), -67, 67, fill=CHARCOAL, width=7)
-    draw.arc((1470, 380, 1590, 730), -67, 67, fill=CHARCOAL, width=5)
+    draw.arc((1450, 430, 1535, 680), -67, 67, fill=INK, width=7)
+    draw.arc((1470, 380, 1590, 730), -67, 67, fill=INK, width=5)
 
 
 def render(data: dict, output: Path) -> None:
-    image = Image.new("RGB", (SIZE, SIZE), CREAM)
+    image = Image.new("RGB", (SIZE, SIZE), PAPER)
     draw = ImageDraw.Draw(image)
 
     # A fixed seed gives the paper a reproducible, lightly flecked surface.
     rng = random.Random(18091998)
     for _ in range(7200):
         x, y = rng.randrange(SIZE), rng.randrange(SIZE)
-        shade = rng.choice(((224, 216, 198), (248, 242, 227), (230, 222, 204)))
+        shade = rng.choice(((224, 224, 224), (247, 247, 247), (233, 233, 233)))
         draw.point((x, y), fill=shade)
 
     run_date = data["date"]
@@ -104,32 +106,32 @@ def render(data: dict, output: Path) -> None:
     body_face = font(FONT_SANS, 33)
     kicker_face = font(FONT_SERIF_ITALIC, 31)
 
-    draw.text((margin, 92), data["header"], font=header_face, fill=CHARCOAL)
+    draw.text((margin, 92), data["header"], font=header_face, fill=ACCENT)
     date_box = draw.textbbox((0, 0), display_date, font=date_face)
     draw.text((SIZE - margin - date_box[2], 92), display_date, font=date_face, fill=MUTED)
-    draw.line((margin, 142, SIZE - margin, 142), fill=GOLD, width=5)
+    draw.line((margin, 142, SIZE - margin, 142), fill=ACCENT, width=5)
 
-    draw.text((margin, 184), data["film"], font=film_face, fill=CHARCOAL)
+    draw.text((margin, 184), data["film"], font=film_face, fill=INK)
     film_width = draw.textbbox((margin, 184), data["film"], font=film_face)[2]
-    draw.text((film_width + 20, 196), str(data["film_year"]), font=date_face, fill=GOLD)
+    draw.text((film_width + 20, 196), str(data["film_year"]), font=date_face, fill=ACCENT)
 
     quote = f'“{data["quote"]}”'
     quote_lines = fit_lines(draw, quote, quote_face, 830)
     y = 330
     for line in quote_lines:
-        draw.text((margin, y), line, font=quote_face, fill=CHARCOAL)
+        draw.text((margin, y), line, font=quote_face, fill=INK)
         y += 104
 
     draw_megaphone(draw)
 
-    draw.line((margin, 965, SIZE - margin, 965), fill=GOLD, width=3)
-    draw.text((margin, 1012), "WHY TODAY", font=label_face, fill=GOLD)
+    draw.line((margin, 965, SIZE - margin, 965), fill=LINE, width=3)
+    draw.text((margin, 1012), "WHY TODAY", font=label_face, fill=ACCENT)
     y = 1060
     for line in fit_lines(draw, data["why_today"], body_face, SIZE - 2 * margin):
-        draw.text((margin, y), line, font=body_face, fill=CHARCOAL)
+        draw.text((margin, y), line, font=body_face, fill=INK)
         y += 50
 
-    draw.line((margin, 1402, SIZE - margin, 1402), fill=CHARCOAL, width=2)
+    draw.line((margin, 1402, SIZE - margin, 1402), fill=INK, width=2)
     draw.text((margin, 1440), data["kicker"], font=kicker_face, fill=MUTED)
 
     output.parent.mkdir(parents=True, exist_ok=True)
