@@ -1,6 +1,6 @@
 # Today’s Blockbuster Quote
 
-Status: prototype integration specification.
+Status: live recurring-series specification.
 
 ## Purpose
 
@@ -20,14 +20,16 @@ The repository validator must pass before Jekyll builds the site. A failed or un
 
 ## Review model
 
-1. ChatGPT researches and freezes the copy deck.
-2. The evidence ledger is translated into edition front matter.
-3. The image is rendered deterministically.
-4. Repository validation runs.
-5. A pull request is reviewed.
-6. Only a merge publishes the edition.
+1. The enabled ChatGPT task reads this specification from `main` and checks that RUN_DATE has no existing edition.
+2. ChatGPT researches, verifies and freezes the copy deck.
+3. The evidence ledger is translated into edition front matter and a deterministic square PNG.
+4. The task commits only those two dated edition files to a new automation branch.
+5. The task opens a draft pull request and stops.
+6. GitHub validates the edition and builds the site preview.
+7. Adam reviews the draft pull request.
+8. Only Adam's merge publishes the edition.
 
-Automatic creation of draft pull requests may be considered after a successful reviewed pilot. Automatic merging is out of scope.
+The task must never push directly to `main`, mark its own pull request ready, merge, or publish a standalone ChatGPT-only substitute when GitHub delivery fails.
 
 ## Edition front matter
 
@@ -68,10 +70,10 @@ qa:
 
 ## Current scheduled ChatGPT prompt
 
-The following is the exact prompt captured from the enabled “Daily Blockbuster Quote” automation when this specification was created.
+The following is the exact prompt used by the enabled “Daily Blockbuster Quote” automation.
 
 ```text
-Create today’s “Today’s Blockbuster Quote” as ONE finished, publication-ready square editorial image.
+Create today’s verified “Today’s Blockbuster Quote” edition and deliver it as ONE draft pull request to `adamgreen1708/chart-templates`.
 
 NON-NEGOTIABLE STANDARD
 Accuracy is the product. A beautiful wrong image is a failed run.
@@ -237,12 +239,39 @@ Inspect the rendered image itself before presenting it.
 8. Confirm the illustration contains no text and no new factual claim.
 9. If layout fails, fix the deterministic layout and rerender internally. Never alter factual copy merely to make the layout fit.
 
-FINAL DELIVERY — ONE IMAGE ONLY
-- Present exactly ONE final QA-passed inline image.
-- Never show drafts, previews, failed renders, retries, candidates or alternatives.
-- Do not include explanatory prose before or after the image.
-- Do not return a filename, file path, markdown link or sandbox link as the main result.
-- If a fully verified, correctly rendered image cannot be produced, return a concise failure notice instead of an incorrect image.
+STEP 10 — CREATE ONE DRAFT GITHUB PULL REQUEST
+Use the configured GitHub connection. Do not ask Adam to copy files manually.
 
-The governing rule is simple: VERIFY FIRST, FREEZE COPY, RENDER DETERMINISTICALLY, VERIFY THE ACTUAL RENDER, THEN PRESENT.
+Target repository: `adamgreen1708/chart-templates`
+Base branch: `main`
+Automation branch: `automation/blockbuster-quote-YYYY-MM-DD`
+
+Before writing:
+1. Read `spec/series/blockbuster-quote.md` and `scripts/validate_blockbuster_quotes.rb` from the current `main` branch.
+2. Check `site/_blockbuster_quotes/` and open pull requests for RUN_DATE.
+3. If the edition already exists or the automation branch/PR already exists, return its link and STOP. Never create a duplicate.
+4. Confirm GitHub access with a harmless read before attempting writes.
+
+Create exactly two files:
+- `site/_blockbuster_quotes/YYYY-MM-DD-film-slug.md`
+- `site/assets/blockbuster-quote/YYYY-MM-DD-film-slug.png`
+
+The Markdown must use the repository schema, include all date-link and quote sources, and set every QA flag true only after that gate actually passed. `hero_image` must point to the dated PNG. The PNG must be the final 1600×1600 deterministic render that passed STEP 9.
+
+Create the branch from the latest `main`, commit the two files, and open a DRAFT pull request. The pull-request title must be `Add Blockbuster Quote — FILM (YYYY-MM-DD)`. Its body must state the exact date connection and territory/event type, list the source links, name the quote speaker and performer, and include a short QA checklist.
+
+Never:
+- push directly to `main`;
+- modify earlier editions, the renderer, layouts, CSS, workflow files or this specification during a daily run;
+- mark the pull request ready for review;
+- approve or merge the pull request;
+- create a standalone ChatGPT image as a fallback when GitHub delivery fails.
+
+FINAL DELIVERY — ONE PR LINK
+- Return the draft pull-request link, film title and one-line exact date connection.
+- State that it awaits Adam's review and merge.
+- Do not expose private evidence-ledger working, rejected candidates or intermediate renders.
+- If verification, rendering or GitHub delivery fails, return one concise failure notice with the failed gate. Do not claim that a PR exists.
+
+The governing rule is simple: VERIFY FIRST, FREEZE COPY, RENDER DETERMINISTICALLY, VERIFY THE ACTUAL RENDER, OPEN ONE DRAFT PR, THEN STOP.
 ```
