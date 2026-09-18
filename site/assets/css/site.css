@@ -179,6 +179,7 @@ a { color: inherit; }
 .post-body > p { margin: 0 0 1.45rem; }
 .post-body > p:first-child { font-size: 1.35rem; line-height: 1.55; }
 .post-body h2 { margin: 5rem 0 1.25rem; font: 700 clamp(2.25rem, 6vw, 3.75rem)/1.04 "Space Grotesk", sans-serif; letter-spacing: -.045em; }
+.post-body h3, .post-body h4 { margin: 3rem 0 1rem; font: 700 clamp(1.4rem, 4vw, 2rem)/1.15 "Space Grotesk", sans-serif; letter-spacing: -.025em; }
 .full-bleed { width: min(calc(100vw - 2.5rem), var(--wide)); margin: 4rem 0 5rem 50%; transform: translateX(-50%); }
 .story-chart img { width: 100%; }
 .story-chart figcaption { margin-top: .85rem; color: var(--muted); font-size: .86rem; line-height: 1.5; }
