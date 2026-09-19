@@ -7,7 +7,9 @@ on:
     paths:
       - "site/**"
       - "spec/series/blockbuster-quote.md"
+      - "spec/series/data-lens.md"
       - "scripts/validate_blockbuster_quotes.rb"
+      - "scripts/validate_data_lens.rb"
       - "scripts/render_blockbuster_quote.py"
       - "requirements-render.txt"
       - "Gemfile"
@@ -17,7 +19,9 @@ on:
     paths:
       - "site/**"
       - "spec/series/blockbuster-quote.md"
+      - "spec/series/data-lens.md"
       - "scripts/validate_blockbuster_quotes.rb"
+      - "scripts/validate_data_lens.rb"
       - "scripts/render_blockbuster_quote.py"
       - "requirements-render.txt"
       - "Gemfile"
@@ -43,6 +47,9 @@ jobs:
 
       - name: Validate Blockbuster Quote editions
         run: ruby scripts/validate_blockbuster_quotes.rb
+
+      - name: Validate Data Lens editions and resources
+        run: ruby scripts/validate_data_lens.rb
 
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1

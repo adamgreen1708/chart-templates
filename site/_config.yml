@@ -16,6 +16,9 @@ collections:
   blockbuster_quotes:
     output: true
     permalink: /series/blockbuster-quote/:name/
+  data_lens:
+    output: true
+    permalink: /data-lens/daily/:name/
 exclude:
   - README.md
   - Gemfile
@@ -31,4 +34,8 @@ defaults:
       type: blockbuster_quotes
     values:
       layout: blockbuster_quote
-
+  - scope:
+      path: ""
+      type: data_lens
+    values:
+      layout: data_lens

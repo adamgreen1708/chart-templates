@@ -1,0 +1,68 @@
+---
+layout: default
+title: Data Lens
+description: Small observations about charts, data and how we see information.
+permalink: /data-lens/
+---
+{% assign editions = site.data_lens | sort: "date" | reverse %}
+{% assign latest = editions | first %}
+
+<section class="page-hero shell-narrow data-lens-series-hero">
+  <p class="eyebrow">Charts · perception · communication</p>
+  <h1>Data Lens.</h1>
+  <p class="standfirst">Small observations about charts, data and how we see information.</p>
+</section>
+
+{% if latest %}
+<section class="data-lens-latest shell-wide" aria-labelledby="latest-lens-heading">
+  <div class="section-rule">
+    <h2 id="latest-lens-heading">Today’s Data Lens</h2>
+    <span>{{ latest.date | date: "%e %B %Y" }}</span>
+  </div>
+  <a class="data-lens-feature" href="{{ latest.url | relative_url }}">
+    <div class="data-lens-feature-visual">
+      <img src="{{ latest.hero_image | relative_url }}" alt="" width="1600" height="1600">
+    </div>
+    <div class="data-lens-feature-copy">
+      <p class="eyebrow">One-minute observation</p>
+      <h3>{{ latest.title }}</h3>
+      <span class="read-link">Read the edition <span>→</span></span>
+    </div>
+  </a>
+</section>
+{% endif %}
+
+<section class="data-lens-resources shell-wide" aria-labelledby="resources-heading">
+  <div class="section-rule">
+    <h2 id="resources-heading">Resources</h2>
+    <span>Keep and revisit</span>
+  </div>
+  <a class="resource-feature" href="{{ '/data-lens/resources/choosing-the-right-chart/' | relative_url }}">
+    <div class="resource-feature-copy">
+      <p class="eyebrow">13-card guide</p>
+      <h3>Choosing the right chart</h3>
+      <p>Start with the question the chart needs to answer, then choose the form that makes the comparison easiest to see.</p>
+      <span class="read-link">Open the guide <span>→</span></span>
+    </div>
+    <div class="resource-feature-visual">
+      <img src="{{ '/assets/data-lens/resources/chart-choice-guide/01-big-number.webp' | relative_url }}" alt="Data Lens card titled Big Number" width="1254" height="1254">
+    </div>
+  </a>
+</section>
+
+{% if editions.size > 0 %}
+<section class="archive-list shell-narrow data-lens-archive" aria-label="Data Lens daily editions">
+  <div class="section-rule">
+    <h2>Daily archive</h2>
+    <span>{{ editions.size }} {% if editions.size == 1 %}edition{% else %}editions{% endif %}</span>
+  </div>
+  {% for edition in editions %}
+  <a class="archive-row" href="{{ edition.url | relative_url }}">
+    <span class="archive-date">{{ edition.date | date: "%e %b" }}</span>
+    <span class="archive-title">{{ edition.title }}</span>
+    <span class="archive-category">Data Lens</span>
+    <span class="archive-arrow" aria-hidden="true">→</span>
+  </a>
+  {% endfor %}
+</section>
+{% endif %}

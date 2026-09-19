@@ -1,0 +1,39 @@
+---
+layout: default
+title: Choosing the right chart
+description: A practical 13-card guide to matching a chart to the question it needs to answer.
+permalink: /data-lens/resources/choosing-the-right-chart/
+---
+{% assign cards = "01-big-number|Big Number,02-compare-categories|Compare Categories,03-rank-the-field|Rank the Field,04-change-over-time|Change Over Time,05-before-vs-after|Before vs After,06-part-to-whole|Part to Whole,07-relationship|Relationship,08-distribution|Distribution,09-contribution-to-change|Contribution to Change,10-precise-lookup|Precise Lookup,11-actual-vs-forecast|Actual vs Forecast,12-two-trends|Two Trends,13-timeline|Timeline" | split: "," %}
+
+<article class="data-lens-resource">
+  <header class="page-hero shell-narrow">
+    <p class="eyebrow">Data Lens resource · 13 cards</p>
+    <h1>Choosing the right chart.</h1>
+    <p class="standfirst">Start with the question. These 13 cards match common data stories to a useful chart, flag the trap and leave one simple takeaway.</p>
+  </header>
+
+  <nav class="resource-index shell-wide" aria-label="Chart guide contents">
+    {% for card in cards %}
+      {% assign bits = card | split: "|" %}
+      <a href="#card-{{ bits[0] }}">{{ bits[0] | slice: 0, 2 }} · {{ bits[1] }}</a>
+    {% endfor %}
+  </nav>
+
+  <section class="resource-card-grid shell-wide" aria-label="Thirteen chart-choice cards">
+    {% for card in cards %}
+      {% assign bits = card | split: "|" %}
+      <figure class="resource-card" id="card-{{ bits[0] }}">
+        <a href="{{ '/assets/data-lens/resources/chart-choice-guide/' | append: bits[0] | append: '.webp' | relative_url }}">
+          <img src="{{ '/assets/data-lens/resources/chart-choice-guide/' | append: bits[0] | append: '.webp' | relative_url }}" alt="Data Lens chart-choice card: {{ bits[1] }}" width="1254" height="1254" loading="lazy">
+        </a>
+        <figcaption><span>{{ bits[0] | slice: 0, 2 }}</span>{{ bits[1] }}</figcaption>
+      </figure>
+    {% endfor %}
+  </section>
+
+  <footer class="resource-close shell-narrow">
+    <p>The chart is the answer’s shape. Work out the question first.</p>
+    <a href="{{ '/data-lens/' | relative_url }}">← Back to Data Lens</a>
+  </footer>
+</article>
