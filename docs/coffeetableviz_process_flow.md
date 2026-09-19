@@ -4,6 +4,26 @@ This document shows the standard process for running a coffeetableviz data story
 
 It is designed for ChatGPT-assisted production, where the assistant should inspect the repo, suggest better approaches, reduce manual copy/paste, create/update files where useful, QA outputs, and archive project-specific assets.
 
+## Editorial publishing model
+
+Three content types share one reviewed route into GitHub Pages:
+
+| Content type | Repository source | Site destination |
+|---|---|---|
+| Chart stories | `site/_posts/` plus chart assets | Latest and Archive |
+| Today’s Data Lens | `site/_data_lens/` plus one dated square card | Data Lens daily archive |
+| Blockbuster Quote | `site/_blockbuster_quotes/` plus one dated square card | Quotes archive |
+
+Evergreen Data Lens guides live in `site/data-lens/resources/` with their assets under `site/assets/data-lens/resources/`.
+
+All three routes converge on the same approval pattern:
+
+```text
+create → verify → render → package metadata → draft pull request → validate → Adam reviews → merge → GitHub Pages
+```
+
+Daily-series automations stop at a draft pull request. GitHub validates and builds; it does not research content or merge.
+
 ## Process flow diagram
 
 ```mermaid
@@ -60,7 +80,7 @@ flowchart TD
     K -->|No| L[Create branch and commit focused changes]
     K1 --> L
 
-    I --> I1[Create WordPress, excerpt, LinkedIn, Instagram, cartoon scene, image prompt]
+    I --> I1[Create site copy, excerpt, social copy and publication assets]
     I1 --> L
 
     J --> J1[Map files to archive/projects/YYYY-MM-project-name]

@@ -1,0 +1,36 @@
+---
+layout: default
+---
+<article class="data-lens-edition">
+  <header class="data-lens-hero shell-narrow">
+    <p class="eyebrow">{{ page.header }}</p>
+    <h1>{{ page.title }}</h1>
+    <div class="post-meta">
+      <span>{{ page.date | date: "%e %B %Y" }}</span>
+      <span aria-hidden="true">·</span>
+      <span>One-minute observation</span>
+    </div>
+  </header>
+
+  <figure class="data-lens-poster shell-wide">
+    <img src="{{ page.hero_image | relative_url }}" alt="{{ page.hero_alt }}" width="1600" height="1600">
+  </figure>
+
+  <div class="data-lens-copy shell-narrow">
+    <section aria-labelledby="observation">
+      <p class="eyebrow" id="observation">Observation</p>
+      <p class="data-lens-observation">{{ page.observation }}</p>
+    </section>
+
+    <p class="data-lens-kicker">{{ page.kicker }}</p>
+
+    <aside class="source-note" aria-labelledby="edition-sources">
+      <h2 id="edition-sources">Sources</h2>
+      <ol>
+        {% for source in page.sources %}
+        <li><a href="{{ source.url }}">{{ source.title }}</a></li>
+        {% endfor %}
+      </ol>
+    </aside>
+  </div>
+</article>
