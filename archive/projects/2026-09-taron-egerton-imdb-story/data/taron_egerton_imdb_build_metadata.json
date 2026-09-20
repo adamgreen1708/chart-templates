@@ -1,0 +1,64 @@
+{
+  "actor": {
+    "nconst": "nm5473782",
+    "primaryName": "Taron Egerton",
+    "birthYear": "1989",
+    "deathYear": "\\N",
+    "primaryProfession": "actor,producer,soundtrack",
+    "knownForTitles": "tt2802144,tt2066051,tt4649466,tt1083452"
+  },
+  "accessed_at_utc": "2026-09-20T22:34:33.027566+00:00",
+  "minimum_votes_for_analysis": 1000,
+  "counts": {
+    "all_principal_credits": 226,
+    "actor_or_actress_principal_rows": 95,
+    "distinct_actor_or_actress_titles": 94,
+    "titles_with_duplicate_principal_rows": 1,
+    "movie_records": 21,
+    "analysis_eligible_movies": 14,
+    "excluded_records": 80,
+    "principal_categories": {
+      "self": 123,
+      "archive_footage": 8,
+      "actor": 95
+    }
+  },
+  "sources": {
+    "names": {
+      "url": "https://datasets.imdbws.com/name.basics.tsv.gz",
+      "run_date": "2026-09-20",
+      "last_modified": "Sun, 20 Sep 2026 12:43:39 GMT",
+      "content_length": 310097488,
+      "etag": "\"b4db544897a8f71eb84c6526a18a7e0d-37\""
+    },
+    "principals": {
+      "url": "https://datasets.imdbws.com/title.principals.tsv.gz",
+      "run_date": "2026-09-20",
+      "last_modified": "Sun, 20 Sep 2026 12:43:52 GMT",
+      "content_length": 783382129,
+      "etag": "\"a319540c93b372c14e08aec9bbd96c24-94\""
+    },
+    "basics": {
+      "url": "https://datasets.imdbws.com/title.basics.tsv.gz",
+      "run_date": "2026-09-20",
+      "last_modified": "Sun, 20 Sep 2026 12:42:36 GMT",
+      "content_length": 227383627,
+      "etag": "\"2d8e13e79df5c0c4cab9e7d3fdd6aed7-28\""
+    },
+    "ratings": {
+      "url": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+      "run_date": "2026-09-19",
+      "last_modified": "Sun, 20 Sep 2026 00:42:35 GMT",
+      "content_length": 8647265,
+      "etag": "\"e999bd5961c2bf6bb448c3e540d648fb-2\""
+    },
+    "crew": {
+      "url": "https://datasets.imdbws.com/title.crew.tsv.gz",
+      "run_date": "2026-09-19",
+      "last_modified": "Sun, 20 Sep 2026 00:42:41 GMT",
+      "content_length": 83193646,
+      "etag": "\"6e2c817d7fd5a56f623192b7ae82c14f-10\""
+    }
+  },
+  "scope_note": "Principal actor/actress credits with IMDb titleType=movie. IMDb title ratings describe the title, not the actor's performance."
+}

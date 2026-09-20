@@ -1,0 +1,22 @@
+tconst,title,original_title,year,runtime_minutes,genres,rating,votes,principal_order,directors,characters,analysis_eligible,exclusion_reason
+tt6447474,The Last of the Haussmans,National Theatre Live: The Last of the Haussmans,2012,167,Comedy | Drama,7.6,46,4,Howard Davies | Ross MacGibbon,Daniel,0,votes_below_1000
+tt12153262,Cash Cow,Cash Cow,2013,45,Drama,6.4,17,2,Sally Avens,Frankie,0,votes_below_1000
+tt2802144,Kingsman: The Secret Service,Kingsman: The Secret Service,2014,129,Action | Adventure | Comedy,7.7,784718,3,Matthew Vaughn,Gary 'Eggsy' Unwin,1,
+tt1441953,Testament of Youth,Testament of Youth,2014,129,Biography | Drama | History,7.2,32119,3,James Kent,Edward Brittain,1,
+tt1083452,Eddie the Eagle,Eddie the Eagle,2015,106,Adventure | Biography | Comedy,7.3,108633,1,Dexter Fletcher,Eddie Edwards,1,
+tt3569230,Legend,Legend,2015,132,Biography | Crime | Drama,6.9,226964,4,Brian Helgeland,Mad Teddy Smith,1,
+tt3470600,Sing,Sing,2016,108,Animation | Comedy | Family,7.1,216976,6,Garth Jennings | Christophe Lourdelet,Johnny,1,
+tt4649466,Kingsman: The Golden Circle,Kingsman: The Golden Circle,2017,141,Action | Adventure | Comedy,6.7,406182,1,Matthew Vaughn,Eggsy,1,
+tt5179598,Billionaire Boys Club,Billionaire Boys Club,2018,108,Biography | Drama | Thriller,5.6,16133,3,James Cox,Dean Karny,1,
+tt4532826,Robin Hood,Robin Hood,2018,116,Action | Adventure | Drama,5.4,87593,1,Otto Bathurst,Robin of Loxley,1,
+tt12106008,The War of the Worlds: The Musical Drama,The War of the Worlds: The Musical Drama,2018,,Adventure | Musical | Sci-Fi,7.7,87,2,,The Artilleryman,0,votes_below_1000
+tt2066051,Rocketman,Rocketman,2019,121,Biography | Drama | Music,7.3,212139,1,Dexter Fletcher,Elton John,1,
+tt6467266,Sing 2,Sing 2,2021,110,Adventure | Animation | Comedy,7.3,103700,5,Garth Jennings | Christophe Lourdelet,Johnny,1,
+tt12758060,Tetris,Tetris,2023,118,Biography | Drama | History,7.4,110826,1,Jon S. Baird,Henk Rogers,1,
+tt21382296,Carry-On,Carry-On,2024,119,Action | Crime | Thriller,6.5,198996,1,Jaume Collet-Serra,Ethan Kopek,1,
+tt27986457,She Rides Shotgun,She Rides Shotgun,2025,120,Action | Drama | Thriller,6.5,15157,4,Nick Rowland,Nathan Mcclusky,1,
+tt16431404,Apex,Apex,2026,95,Action | Thriller,6.1,109844,2,Baltasar Kormákur,Ben,1,
+tt38629979,Everybody Wants to F*ck Me,Everybody Wants to F*ck Me,2026,97,Comedy | Thriller,7.3,41,3,Jonathan Schey,,0,votes_below_1000
+tt39105894,Alpha,Alpha,,,Horror,,,1,,,0,missing_year | missing_rating
+tt29529698,Kingsman: The Blue Blood,Kingsman: The Blue Blood,,,Action | Drama | Thriller,,,1,Matthew Vaughn,Gary 'Eggsy' Unwin,0,missing_year | missing_rating
+tt38072404,Kockroach,Kockroach,,,Crime | Drama | Mystery,,,2,Matt Ross,,0,missing_year | missing_rating
