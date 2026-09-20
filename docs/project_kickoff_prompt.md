@@ -25,7 +25,7 @@ For this task, identify whether the best route is:
 4. chart config creation;
 5. renderer/template improvement;
 6. workflow automation;
-7. blog/social content package;
+7. blog/social content package or live site publication;
 8. archive/cleanup;
 9. or a better alternative route I have not explicitly asked for.
 
@@ -45,6 +45,9 @@ Rules:
 - Keep `/src` for reusable chart system files only.
 - Keep `.github/workflows` for active reusable workflows only.
 - Archive project-specific files under `archive/projects/YYYY-MM-project-name/` when the project is complete or parked.
+- Treat archive output and site publication as separate deliverables. A publication package under `archive/projects` does not publish to coffeetableviz.com.
+- When the intended outcome includes a live coffeetableviz.com post, also create the Jekyll post under `site/_posts/`, copy its card/hero and inline images under `site/assets/`, verify every asset reference, and ensure the change triggers `.github/workflows/publish-blog.yml`.
+- For a live post, do not call the work published until the site PR is merged, the Pages deployment succeeds, and the final coffeetableviz.com URL is verified.
 - Compare every branch against `main` before opening or merging a PR.
 - Verify important files after merge.
 
@@ -65,6 +68,7 @@ At the end, give me:
 - what changed;
 - PR number and merge commit if applicable;
 - what was verified;
+- the published URL and Pages result when live publication was requested;
 - what was deliberately not changed;
 - the next sensible improvement.
 
@@ -125,7 +129,7 @@ Prioritise robustness: build reusable scripts/workflows and document assumptions
 ```
 
 ```text
-Prioritise publication: produce the story route, 3-chart plan, chart plus WordPress, excerpt, LinkedIn, Instagram, and cartoon prompt assets.
+Prioritise publication: produce the story route, 3-chart plan, charts, archive package, Jekyll post under `site/_posts`, web assets under `site/assets`, excerpt, LinkedIn, Instagram and feature artwork. Open a site PR, validate the Pages build, and verify the live coffeetableviz.com URL after merge.
 ```
 
 ```text
