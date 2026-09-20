@@ -13,7 +13,7 @@ permalink: /about/
 <section class="prose-page shell-narrow">
   <p class="lede">coffeetableviz is where I explore the numbers hiding inside sport, film, culture and everyday life.</p>
 
-  <p>I an Analytics lead and avid Tableau enthusiast and oadt Ambassador. I spend my working life helping people see and understand data, then come here to make charts about the things people discuss around a coffee table.</p>
+  <p>I am an Analytics lead and avid Tableau enthusiast and oadt Ambassador. I spend my working life helping people see and understand data, then come here to make charts about the things people discuss around a coffee table.</p>
 
   <h2>The rule</h2>
 
