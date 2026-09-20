@@ -47,6 +47,8 @@ Rules:
 - Archive project-specific files under `archive/projects/YYYY-MM-project-name/` when the project is complete or parked.
 - Treat archive output and site publication as separate deliverables. A publication package under `archive/projects` does not publish to coffeetableviz.com.
 - When the intended outcome includes a live coffeetableviz.com post, also create the Jekyll post under `site/_posts/`, copy its card/hero and inline images under `site/assets/`, verify every asset reference, and ensure the change triggers `.github/workflows/publish-blog.yml`.
+- Derive the feature-illustration concept from the approved editorial takeaway and chart sequence. It must communicate the specific story or tension, not merely the broad subject area. State the visual metaphor before generation and reject a generic category scene that could fit an unrelated post.
+- Verify that the final feature image, its alt text and its saved prompt all express the same story-specific concept before publication.
 - For a live post, do not call the work published until the site PR is merged, the Pages deployment succeeds, and the final coffeetableviz.com URL is verified.
 - Compare every branch against `main` before opening or merging a PR.
 - Verify important files after merge.

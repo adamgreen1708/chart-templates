@@ -6,9 +6,9 @@ permalink: /2026/09/20/tom-hanks-found-another-gear-in-1992/
 description: "A fresh IMDb snapshot reveals the extraordinary 1992–2002 run in Tom Hanks’ film career—and the familiar cowboy who kept it going."
 category: Film
 read_time: 3 minute read
-card_image: /assets/migrated/tom-hanks-revisited/feature.webp
-hero_image: /assets/migrated/tom-hanks-revisited/feature.webp
-hero_alt: "Black-and-white stencil illustration of a film-night sofa and coffee table with VHS tapes, coffee, chart-shaped toy blocks and one red cinema ticket."
+card_image: /assets/migrated/tom-hanks-revisited/feature-v2.webp
+hero_image: /assets/migrated/tom-hanks-revisited/feature-v2.webp
+hero_alt: "Black-and-white stencil illustration of a film strip passing through a large gear, rising towards five wooden blocks and a cowboy hat, with one red gear tooth marking the change."
 ---
 
 I first charted [Tom Hanks’ filmography]({{ '/2024/07/19/colour-bank-no-6-tom-hanks-filmography/' | relative_url }}) in 2024. Two years later, the same subject produced a much better question: when did all those familiar films turn into an extraordinary run?
