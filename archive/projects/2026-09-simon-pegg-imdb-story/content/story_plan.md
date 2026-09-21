@@ -64,17 +64,17 @@ Why it is weaker: release scale and audience selection vary sharply, while the 1
 - Why this matters: the recurring names emerge visually before the comparison is stated.
 - QA risk: multiple films share years; label only the editorially necessary points and disclose the 1,000-vote floor.
 
-### Chart 2 — Three familiar teams sit a point higher
+### Chart 2 — Familiar teams rate a point higher
 
 - Role: Build the tension and quantify the split.
 - Story question: How do the three recurring partnerships compare with the rest of the eligible movies?
-- Chart type: four-group strip/dot plot with every title and a clearly distinct mean marker.
+- Chart type: four-group mean dot plot; sample sizes are built into the labels, while charts 1 and 3 retain the individual-film detail.
 - Data needed: group, title, rating, votes and sample size.
 - Key stat: *Star Trek* 7.53, Edgar Wright 7.50 and *Mission: Impossible* 7.35, versus 6.09 for the other 21 films.
 - Why this matters: it is the strongest defensible pattern in the dataset.
-- QA risk: keep the groups mutually exclusive, show `n`, and do not let the means hide the small three-film groups.
+- QA risk: keep the groups mutually exclusive, show `n`, and state plainly that two groups contain only three films.
 
-### Chart 3 — Mission: Impossible became the long game
+### Chart 3 — Mission: Impossible is the long game
 
 - Role: Land the aha moment through the most durable partnership.
 - Story question: How did the three familiar teams unfold film by film?

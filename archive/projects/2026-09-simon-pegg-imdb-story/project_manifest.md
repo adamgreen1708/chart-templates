@@ -2,7 +2,7 @@
 
 ## Status
 
-- Status: Story plan awaiting approval
+- Status: Charts rendered and QA checked
 - Started: 21 September 2026
 - Owner: Adam Green
 - Repo project slug: `2026-09-simon-pegg-imdb-story`
@@ -31,16 +31,24 @@
 | `data/simon_pegg_imdb_exclusions.csv` | Audit of non-acting principal rows and excluded acting-credit titles |
 | `data/simon_pegg_imdb_source_metadata.json` | Resolved identity, URLs, access time, upstream run dates, stage counts and join/coverage validation |
 | `content/story_plan.md` | Ranked story angles, risks and recommended connected three-chart narrative |
+| `scripts/build_story_datasets.py` | Validate the approved route and build the three chart-specific datasets |
+| `data/simon_pegg_chart_01_timeline.csv` | All 33 eligible films for the timeline |
+| `data/simon_pegg_chart_02_groups.csv` | Four mutually exclusive group summaries with sample sizes |
+| `data/simon_pegg_chart_03_partnership_sequences.csv` | Twelve films across the three recurring partnerships |
+| `config/chart_01_timeline.py` | Full locked-renderer config for chart 1 |
+| `config/chart_02_groups.py` | Full locked-renderer config for chart 2 |
+| `config/chart_03_partnership_sequences.py` | Full locked-renderer config for chart 3 |
+| `output/simon_pegg_01_timeline.png` | 1600 × 1600 chart 1 render |
+| `output/simon_pegg_02_groups.png` | 1600 × 1600 chart 2 render |
+| `output/simon_pegg_03_partnership_sequences.png` | 1600 × 1600 chart 3 render |
+| `content/qa_report.md` | Data, config, renderer and visual QA record |
 
 ## Deliberately absent at this gate
 
-- chart-specific derived datasets
-- chart configs
-- rendered images
 - blog and social copy
 - site publication files
 
-These follow only after editorial approval.
+These remain separate follow-on deliverables.
 
 ## Palette constraint
 
