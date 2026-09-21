@@ -1,0 +1,34 @@
+tconst,title,original_title,year,runtime_minutes,genres,average_rating,num_votes,principal_order,director_nconsts,directors,characters
+tt0365748,Shaun of the Dead,Shaun of the Dead,2004,99,Comedy | Horror,7.8,645009,1,nm0942367,Edgar Wright,Shaun
+tt0488085,Big Nothing,Big Nothing,2006,86,Comedy | Crime | Thriller,6.7,33278,2,nm1125131,Jean-Baptiste Andrea,Gus
+tt0298337,Free Jimmy,Slipp Jimmy Fri,2006,86,Animation | Comedy,5.9,7118,3,nm0630770,Christopher Nielsen,Odd
+tt0317919,Mission: Impossible III,Mission: Impossible III,2006,126,Action | Adventure | Thriller,6.9,428983,9,nm0009190,J.J. Abrams,Benji
+tt0425112,Hot Fuzz,Hot Fuzz,2007,121,Action | Comedy | Mystery,7.8,572979,1,nm0942367,Edgar Wright,Nicholas Angel
+tt0425413,Run Fatboy Run,Run Fatboy Run,2007,100,Comedy | Romance | Sport,6.5,72034,1,nm0001710,David Schwimmer,Dennis
+tt0455538,How to Lose Friends & Alienate People,How to Lose Friends & Alienate People,2008,110,Biography | Comedy | Drama,6.4,72314,1,nm0004332,Robert B. Weide,Sidney Young
+tt0796366,Star Trek,Star Trek,2009,127,Action | Adventure | Sci-Fi,7.9,641448,3,nm0009190,J.J. Abrams,Scotty
+tt1320239,Burke and Hare,Burke & Hare,2010,91,Comedy | Crime | History,6.1,22272,9,nm0000484,John Landis,William Burke
+tt1229238,Mission: Impossible - Ghost Protocol,Mission: Impossible - Ghost Protocol,2011,132,Action | Adventure | Thriller,7.4,569836,3,nm0083348,Brad Bird,Benji
+tt1092026,Paul,Paul,2011,104,Adventure | Comedy | Sci-Fi,6.9,285449,1,nm0609549,Greg Mottola,Graeme Willy
+tt0983193,The Adventures of Tintin,The Adventures of Tintin,2011,107,Action | Adventure | Animation,7.3,257556,6,nm0000229,Steven Spielberg,Thompson
+tt2006040,A Fantastic Fear of Everything,A Fantastic Fear of Everything,2012,100,Comedy | Horror,5.8,15870,1,nm1553775 | nm4577742,Crispian Mills | Chris Hopewell,Jack
+tt1408101,Star Trek Into Darkness,Star Trek Into Darkness,2013,132,Action | Adventure | Sci-Fi,7.7,512696,7,nm0009190,J.J. Abrams,Scotty
+tt1213663,The World's End,The World's End,2013,109,Action | Comedy | Sci-Fi,6.9,315223,1,nm0942367,Edgar Wright,Gary King
+tt1626146,Hector and the Search for Happiness,Hector and the Search for Happiness,2014,114,Adventure | Comedy | Drama,6.9,53159,1,nm0155093,Peter Chelsom,Hector
+tt2393845,Kill Me Three Times,Kill Me Three Times,2014,90,Action | Adventure | Comedy,5.8,24943,1,nm0826541,Kriv Stenders,Charlie Wolfe
+tt1727770,Absolutely Anything,Absolutely Anything,2015,85,Comedy | Sci-Fi,6.0,55502,1,nm0001402,Terry Jones,Neil
+tt3064298,Man Up,Man Up,2015,88,Comedy | Drama | Romance,6.8,59856,8,nm1414582,Ben Palmer,Jack
+tt2381249,Mission: Impossible - Rogue Nation,Mission: Impossible - Rogue Nation,2015,131,Action | Adventure | Thriller,7.4,450195,4,nm0003160,Christopher McQuarrie,Benji Dunn
+tt2660888,Star Trek Beyond,Star Trek Beyond,2016,122,Action | Adventure | Sci-Fi,7.0,272044,5,nm0510912,Justin Lin,Montgomery 'Scotty' Scott
+tt4912910,Mission: Impossible - Fallout,Mission: Impossible - Fallout,2018,147,Action | Adventure | Thriller,7.7,424999,4,nm0003160,Christopher McQuarrie,Benji Dunn
+tt1677720,Ready Player One,Ready Player One,2018,140,Action | Adventure | Sci-Fi,7.4,551582,9,nm0000229,Steven Spielberg,Curator | Ogden Morrow
+tt6905696,Slaughterhouse Rulez,Slaughterhouse Rulez,2018,104,Action | Comedy | Fantasy,5.3,17384,8,nm1553775,Crispian Mills,Meredith Houseman
+tt4463816,Terminal,Terminal,2018,95,Action | Comedy | Crime,5.4,27646,3,nm2389363,Vaughn Stein,Bill
+tt6744360,Lost Transmissions,Lost Transmissions,2019,105,Drama,5.1,1365,2,nm3598014,Katharine O'Brien,Theo Ross
+tt7923220,Inheritance,Inheritance,2020,111,Drama | Mystery | Thriller,5.6,23885,2,nm2389363,Vaughn Stein,Morgan Warner
+tt6733874,America: The Motion Picture,America: The Motion Picture,2021,98,Action | Adventure | Animation,5.6,8176,9,nm0860483,Matt Thompson,King James
+tt7214954,Luck,Luck,2022,105,Adventure | Animation | Comedy,6.5,36380,2,nm0391996 | nm3371961,Peggy Holmes | Javier Abad,Bob
+tt13634480,The Ice Age Adventures of Buck Wild,The Ice Age Adventures of Buck Wild,2022,82,Adventure | Animation | Comedy,4.4,20635,7,nm3934188 | nm0232561,Marshall Fels Elliott | John C. Donkin,Buck
+tt9603212,Mission: Impossible - Dead Reckoning Part One,Mission: Impossible - Dead Reckoning Part One,2023,163,Action | Adventure | Thriller,7.6,333110,4,nm0003160,Christopher McQuarrie,Benji Dunn
+tt19838620,Nandor Fodor and the Talking Mongoose,Nandor Fodor and the Talking Mongoose,2023,96,Comedy | Mystery | Thriller,5.5,3949,1,nm2153008,Adam Sigal,Nandor Fodor
+tt9603208,Mission: Impossible - The Final Reckoning,Mission: Impossible - The Final Reckoning,2025,169,Action | Adventure | Thriller,7.1,241198,4,nm0003160,Christopher McQuarrie,Benji Dunn
