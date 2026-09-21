@@ -51,7 +51,7 @@ Why it is secondary: the period boundary is visually obvious, but the later peri
 - Question: How have IMDb title ratings moved across Egerton's released movie credits?
 - Chart: Timeline scatter plot of all 14 eligible titles.
 - Key statistic: *Kingsman: The Secret Service* leads at 7.7 and 784,718 votes.
-- Visual treatment: context grey for most films; current blue for the three first-ordered Biography films; current red only for the key breakout annotation.
+- Visual treatment: context grey for most films and current red for the key breakout point and annotation. The Biography trio is labelled here, then given the current-blue focus treatment in chart 2.
 - QA: label selectively, disclose the 1,000-vote floor and avoid implying a continuous yearly series.
 
 ### Chart 2 — Real people are his strongest lead roles
