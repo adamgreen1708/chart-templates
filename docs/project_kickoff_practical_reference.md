@@ -26,7 +26,7 @@ Dataset:
 [paste GitHub path, source link, uploaded file name, Kaggle/OWID page, CSV location, or dataset pointer here]
 
 My intended outcome:
-[chart, dataset, WordPress blog post, LinkedIn post, Instagram copy, cartoon prompt, repo cleanup, etc.]
+[chart, dataset, live coffeetableviz.com post, LinkedIn post, Instagram copy, cartoon prompt, repo cleanup, etc.]
 
 Please inspect the repo context first, inspect the dataset, find the strongest story, present the recommended 3-chart editorial plan, and then proceed with the most efficient build route.
 ```
@@ -52,7 +52,7 @@ ChatGPT should:
 
 ```text
 My intended outcome:
-One chart, WordPress blog post, excerpt, LinkedIn post, Instagram post, cartoon scene, and image prompt.
+One chart, GitHub Pages blog post, excerpt, LinkedIn post, Instagram post, cartoon scene, and image prompt.
 ```
 
 ```text
