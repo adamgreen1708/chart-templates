@@ -204,8 +204,17 @@ a { color: inherit; }
 .site-footer { background: var(--ink); color: white; }
 .footer-inner { min-height: 190px; display: flex; justify-content: space-between; gap: 2rem; align-items: flex-end; padding-block: 3rem; }
 .footer-inner p { margin: 0; }
-.footer-inner p:first-child { font: 700 1.35rem "Space Grotesk", sans-serif; }
-.footer-inner p:last-child { color: #aaa; font-size: .78rem; text-align: right; }
+.footer-tagline { font: 700 1.35rem "Space Grotesk", sans-serif; }
+.footer-follow { margin-top: .65rem !important; color: #aaa; font-size: .82rem; }
+.footer-follow a {
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  text-underline-offset: .18em;
+}
+.footer-follow a:hover { color: #ddd; }
+.footer-meta { color: #aaa; font-size: .78rem; text-align: right; }
 
 @media (max-width: 820px) {
   .home-intro { grid-template-columns: 1fr; min-height: 0; gap: 2rem; align-items: start; }
@@ -239,7 +248,7 @@ a { color: inherit; }
   .post-body table { display: block; overflow-x: auto; white-space: nowrap; }
   .post-body h2 { margin-top: 4rem; }
   .footer-inner { align-items: flex-start; flex-direction: column; min-height: 180px; }
-  .footer-inner p:last-child { text-align: left; }
+  .footer-meta { text-align: left; }
 }
 
 @media (prefers-reduced-motion: reduce) {
