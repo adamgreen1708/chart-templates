@@ -14,7 +14,7 @@ Current evidence base:
 
 Fury is the editorial trigger and must be visibly featured, but the data is allowed to deliver a different headline.
 
-## Chart 1 — Fury started the question. Tyler Durden owns the answer.
+## Chart 1 — Fury started it. Tyler Durden owns the answer.
 
 Role: set the scene.
 
@@ -135,13 +135,15 @@ Feature-art direction:
 
 ## Render gate
 
-These configs are production candidates, not approved renders.
+These configs have passed a local locked-renderer visual QA pass; repository PNGs are still pending the GitHub render/commit step.
 
-Before publication:
-1. run all three through src/render_538.py;
-2. inspect title/subtitle wrapping;
-3. inspect Chart 1 long y-axis labels and right-edge Tyler annotation;
-4. inspect Chart 2 annotation collisions around the left side of the scatter;
-5. inspect Chart 3 film labels and zero-baseline spacing;
-6. verify all outputs are 1600 × 1600;
-7. keep the renderer and template unchanged unless a reusable issue is discovered.
+QA completed locally against the locked renderer behaviour:
+1. all three outputs rendered at 1600 × 1600;
+2. first pass exposed title/subtitle and footer collisions;
+3. fixes were made only in the three project configs: title sizing/wrapping, title/subtitle spacing, footer spacing and shorter source text;
+4. second pass showed no clipping or title/subtitle/footer collisions;
+5. Fury remains the red focus point in Charts 1 and 2;
+6. Chart 3 retains a zero baseline and direct labels;
+7. renderer and template files remain unchanged.
+
+Next gate: create the repository PNG outputs through the GitHub archived-project render path, then present the exact committed images for Adam's approval.

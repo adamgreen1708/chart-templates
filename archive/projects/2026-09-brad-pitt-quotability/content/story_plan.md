@@ -33,7 +33,7 @@ That is useful editorially because it is neither zero nor destiny. Highly rated 
 
 ## Recommended 3-chart story
 
-### Chart 1 — Fury started the question. Tyler Durden owns the answer.
+### Chart 1 — Fury started it. Tyler Durden owns the answer.
 Role: Set the scene.
 Question: Which verified Brad Pitt film roles have the most IMDb quote entries?
 Chart type: ranked dot plot.
@@ -59,6 +59,20 @@ Chart type: three-point line.
 Data: Ocean's Eleven 42, Ocean's Twelve 13, Ocean's Thirteen 17.
 Why it matters: the same recurring character gives us a cleaner controlled example and resolves the film-role vs unique-character distinction.
 QA risk: three observations are illustrative, not a general trend.
+
+## Quote examples in the eventual blog post
+
+The article must include a small number of short, verified Brad Pitt lines so the quote-count analysis feels concrete rather than abstract.
+
+Preferred examples:
+- Fury / Wardaddy: “Ideals are peaceful. History is violent.”
+- Fight Club / Tyler Durden: “The things you own end up owning you.”
+- Moneyball / Billy Beane: “How can you not be romantic about baseball?”
+- Troy / Achilles: “You gave me peace in a lifetime of war.”
+- F1 / Sonny Hayes: “Hope is not a strategy.”
+- Ocean's Eleven / Rusty Ryan: “Been practicing that speech, haven't you?”
+
+Use 3–5 across the post, not all mechanically. Quotes are supporting texture; do not imply that any single line explains the IMDb quote-entry count.
 
 ## Editorial framing
 
@@ -96,4 +110,4 @@ It is:
 
 ## Next build step
 
-The final chart specs, derived datasets and CHART_CONFIG files are now staged in the project. Next gate is real renderer execution and visual QA; no site publication should happen before that.
+The final chart specs, derived datasets and CHART_CONFIG files are staged. A local locked-renderer QA pass exposed and fixed only project-level spacing issues; the second pass produced clean 1600 × 1600 charts. Next gate is to create the repository PNG outputs through the GitHub archived-project render path and present those exact images for approval; no site publication should happen before that.
