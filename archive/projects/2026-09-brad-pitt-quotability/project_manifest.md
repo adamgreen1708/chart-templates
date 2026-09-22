@@ -2,7 +2,7 @@
 
 ## Status
 
-- Status: Config/render QA passed locally; repository PNG commit pending
+- Status: Publication package staged; official PNGs committed; feature asset awaiting approval
 - Started: 23 September 2026
 - Last updated: 23 September 2026
 - Owner: Adam Green
@@ -95,6 +95,15 @@ Ocean's recurring-character check:
 
 - Workflow retrigger: corrected archived-render output-path handling after PR #59 validation failure.
 
+## Publication staging
+
+- Official GitHub Actions renders are committed on main.
+- Site post staged at `site/_posts/2026-09-23-fury-started-it-tyler-durden-owns-the-answer.md`.
+- Official chart blobs copied into `site/assets/migrated/brad-pitt-quotability/`.
+- Publication package staged at `content/publication_package.md`.
+- Feature illustration generated for Adam review; exact feature asset is intentionally not committed until approved.
+- Publication PR must remain draft until the exact feature asset is committed and all site references pass.
+
 ## Next gate
 
-Create the repository PNG outputs through the GitHub archived-project render path, verify they match the QA-approved config behaviour, then present the exact repository images for Adam's visual approval before publication work.
+Adam reviews the generated feature illustration. If approved, commit that exact asset as `site/assets/migrated/brad-pitt-quotability/feature.webp`, run final site-reference QA, then mark the publication PR ready for review.
