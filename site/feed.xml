@@ -1,0 +1,29 @@
+---
+layout: null
+permalink: /feed.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ site.title | xml_escape }}</title>
+    <link>{{ site.url | xml_escape }}</link>
+    <description>{{ site.description | xml_escape }}</description>
+    <language>{{ site.lang | default: 'en-GB' }}</language>
+    <atom:link href="{{ '/feed.xml' | absolute_url }}" rel="self" type="application/rss+xml" />
+    {% assign feed_items = site.posts | concat: site.blockbuster_quotes | concat: site.data_lens | sort: "date" | reverse %}
+    {% if feed_items.size > 0 %}
+    <lastBuildDate>{{ feed_items.first.date | date_to_rfc822 }}</lastBuildDate>
+    {% endif %}
+    {% for item in feed_items limit: 50 %}
+      {% assign item_title = item.title | default: item.film %}
+      {% assign item_description = item.description | default: item.observation | default: item.why_today | default: item.excerpt %}
+    <item>
+      <title>{{ item_title | strip_html | xml_escape }}</title>
+      <link>{{ item.url | absolute_url }}</link>
+      <guid isPermaLink="true">{{ item.url | absolute_url }}</guid>
+      <pubDate>{{ item.date | date_to_rfc822 }}</pubDate>
+      <description>{{ item_description | strip_html | strip_newlines | xml_escape }}</description>
+    </item>
+    {% endfor %}
+  </channel>
+</rss>

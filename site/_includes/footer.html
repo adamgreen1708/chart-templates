@@ -1,7 +1,9 @@
 <footer class="site-footer">
   <div class="shell footer-inner">
-    <p><strong>simple charts clear stories.</strong></p>
-    <p>© {{ site.time | date: '%Y' }} Adam Green · Built from the same repo as the charts.</p>
+    <div class="footer-left">
+      <p class="footer-tagline"><strong>simple charts clear stories.</strong></p>
+      <p class="footer-follow">Keep up with coffeetableviz · <a href="{{ '/feed.xml' | relative_url }}">RSS →</a></p>
+    </div>
+    <p class="footer-meta">© {{ site.time | date: '%Y' }} Adam Green · Built from the same repo as the charts.</p>
   </div>
 </footer>
-
