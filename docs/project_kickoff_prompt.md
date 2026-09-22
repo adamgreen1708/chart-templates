@@ -40,7 +40,7 @@ Rules:
 - Use `docs/story_discovery_and_3_chart_flow.md` to find the story and present the recommended 3-chart editorial plan before creating configs.
 - Use `docs/chart_config_prompt.txt` and `src/chart_config_template.py` for chart configs after the story route is clear.
 - Use `docs/chart_qa_checklist.md` before saying a chart is ready.
-- Use `spec/538_template_rules.md` as the chart template source of truth.
+- Use `spec/538_template_rules.md` as the chart template source of truth.\n- Use `spec/feature_image_rules.md` as the feature-art source of truth, including the default `#F3F4F6` light-grey background.
 - If a live project reveals a reusable improvement, actively suggest and update the template/control files rather than leaving the fix in one chart config.
 - Keep `/src` for reusable chart system files only.
 - Keep `.github/workflows` for active reusable workflows only.
