@@ -33,7 +33,7 @@ That is useful editorially because it is neither zero nor destiny. Highly rated 
 
 ## Recommended 3-chart story
 
-### Chart 1 — Fury started the question. Tyler Durden owns the answer.
+### Chart 1 — Fury started it. Tyler Durden owns the answer.
 Role: Set the scene.
 Question: Which verified Brad Pitt film roles have the most IMDb quote entries?
 Chart type: ranked dot plot.
@@ -96,4 +96,4 @@ It is:
 
 ## Next build step
 
-The final chart specs, derived datasets and CHART_CONFIG files are now staged in the project. Next gate is real renderer execution and visual QA; no site publication should happen before that.
+The final chart specs, derived datasets and CHART_CONFIG files are staged. A local locked-renderer QA pass exposed and fixed only project-level spacing issues; the second pass produced clean 1600 × 1600 charts. Next gate is to create the repository PNG outputs through the GitHub archived-project render path and present those exact images for approval; no site publication should happen before that.
