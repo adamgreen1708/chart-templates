@@ -33,7 +33,8 @@ Values were checked on 23 September 2026 from indexed IMDb character-page result
 
 | File | Purpose | Status |
 |---|---|---|
-| `data/brad_pitt_quote_counts_pilot.csv` | Quote-entry enrichment for 44 films | Expanded pilot; 10 source-list films unresolved |
+| `data/brad_pitt_quote_counts_pilot.csv` | Quote-entry enrichment for 44 films | Expanded pilot |
+| `data/brad_pitt_quote_counts_unresolved.csv` | Audit of the ten source-list films without a reliably exposed character-page count | Complete for this discovery stage; unresolved is not zero |
 
 ## Content
 
@@ -66,7 +67,7 @@ Ocean's recurring-character check:
 ## QA / caveats
 
 - Quote count verified for 44 of the 54 rows in the existing film list.
-- Ten films remain unresolved after indexed-source checks.
+- Ten films remain unresolved after indexed-source checks and are listed in the audit CSV.
 - Unresolved films are unknown, not zero.
 - Counts can change as IMDb users edit quote pages.
 - Counts may be influenced by role size, fandom and page activity.
@@ -76,4 +77,4 @@ Ocean's recurring-character check:
 
 ## Next gate
 
-Resolve or explicitly audit the remaining ten titles, freeze coverage, then build the three derived datasets and chart configs only after the story/coverage gate is accepted.
+Use the 44-film verified snapshot plus the explicit unresolved audit as the current evidence base. If this editorial route is accepted, freeze the snapshot and build the three derived datasets and chart configs through the locked 538 workflow.
