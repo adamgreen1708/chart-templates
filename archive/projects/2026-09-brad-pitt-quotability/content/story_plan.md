@@ -60,6 +60,20 @@ Data: Ocean's Eleven 42, Ocean's Twelve 13, Ocean's Thirteen 17.
 Why it matters: the same recurring character gives us a cleaner controlled example and resolves the film-role vs unique-character distinction.
 QA risk: three observations are illustrative, not a general trend.
 
+## Quote examples in the eventual blog post
+
+The article must include a small number of short, verified Brad Pitt lines so the quote-count analysis feels concrete rather than abstract.
+
+Preferred examples:
+- Fury / Wardaddy: “Ideals are peaceful. History is violent.”
+- Fight Club / Tyler Durden: “The things you own end up owning you.”
+- Moneyball / Billy Beane: “How can you not be romantic about baseball?”
+- Troy / Achilles: “You gave me peace in a lifetime of war.”
+- F1 / Sonny Hayes: “Hope is not a strategy.”
+- Ocean's Eleven / Rusty Ryan: “Been practicing that speech, haven't you?”
+
+Use 3–5 across the post, not all mechanically. Quotes are supporting texture; do not imply that any single line explains the IMDb quote-entry count.
+
 ## Editorial framing
 
 The eventual post can open from the real trigger:
