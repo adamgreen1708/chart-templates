@@ -1,0 +1,107 @@
+{
+  "accessed_at_utc": "2026-09-21T22:08:49.972848+00:00",
+  "sources": {
+    "names": {
+      "url": "https://datasets.imdbws.com/name.basics.tsv.gz",
+      "upstream_run_date": "2026-09-21",
+      "last_modified": "Mon, 21 Sep 2026 12:51:32 GMT",
+      "content_length": 310142596,
+      "etag": "\"5d95d9664880a3441af1940f40e6b03c-37\""
+    },
+    "principals": {
+      "url": "https://datasets.imdbws.com/title.principals.tsv.gz",
+      "upstream_run_date": "2026-09-21",
+      "last_modified": "Mon, 21 Sep 2026 12:51:51 GMT",
+      "content_length": 783476133,
+      "etag": "\"b1fa8c1bd3192e3ef58a7d3abf344fc7-94\""
+    },
+    "basics": {
+      "url": "https://datasets.imdbws.com/title.basics.tsv.gz",
+      "upstream_run_date": "2026-09-21",
+      "last_modified": "Mon, 21 Sep 2026 12:50:29 GMT",
+      "content_length": 227438494,
+      "etag": "\"c56a4894990cf4247734fff3e8d01c60-28\""
+    },
+    "ratings": {
+      "url": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+      "upstream_run_date": "2026-09-20",
+      "last_modified": "Mon, 21 Sep 2026 00:45:34 GMT",
+      "content_length": 8650110,
+      "etag": "\"48e3c526419736664cb719cc7dbb372e-2\""
+    },
+    "crew": {
+      "url": "https://datasets.imdbws.com/title.crew.tsv.gz",
+      "upstream_run_date": "2026-09-21",
+      "last_modified": "Mon, 21 Sep 2026 12:51:11 GMT",
+      "content_length": 83215703,
+      "etag": "\"cd23fb06a8137bf717708b356a74ab49-10\""
+    }
+  },
+  "validation": {
+    "resolved_person": {
+      "nconst": "nm0670408",
+      "primaryName": "Simon Pegg",
+      "birthYear": "1970",
+      "deathYear": "\\N",
+      "primaryProfession": "actor,writer,producer",
+      "knownForTitles": "tt1213663,tt0365748,tt0425112,tt0796366"
+    },
+    "minimum_votes_for_analysis": 1000,
+    "counts": {
+      "all_principal_rows": 559,
+      "principal_category_counts": {
+        "actor": 233,
+        "self": 252,
+        "writer": 41,
+        "producer": 2,
+        "director": 2,
+        "cinematographer": 1,
+        "archive_footage": 28
+      },
+      "actor_or_actress_principal_rows": 233,
+      "distinct_actor_or_actress_tconsts": 210,
+      "duplicate_actor_principal_tconsts": 13,
+      "matched_title_basics_rows": 210,
+      "matched_rating_rows": 179,
+      "matched_crew_rows": 210,
+      "principal_actor_title_type_counts": {
+        "tvMovie": 6,
+        "short": 6,
+        "tvEpisode": 132,
+        "movie": 38,
+        "tvSeries": 13,
+        "video": 8,
+        "tvMiniSeries": 2,
+        "tvShort": 2,
+        "videoGame": 3
+      },
+      "principal_actor_movie_titles": 38,
+      "released_principal_actor_movies": 35,
+      "rated_released_principal_actor_movies": 34,
+      "movies_meeting_vote_floor": 33,
+      "requested_director_ids": 86,
+      "resolved_director_names": 86,
+      "unresolved_director_ids": [],
+      "analysis_rows": 33,
+      "audit_rows": 503,
+      "analysis_missing_year": 0,
+      "analysis_missing_runtime": 0,
+      "analysis_missing_rating": 0
+    },
+    "coverage": {
+      "title_basics_join_pct": 100.0,
+      "ratings_join_pct": 85.24,
+      "crew_join_pct": 100.0,
+      "rated_coverage_of_released_movies_pct": 97.14,
+      "vote_floor_coverage_of_rated_released_movies_pct": 97.06,
+      "analysis_coverage_of_all_actor_titles_pct": 15.71
+    },
+    "duplicate_analysis_tconsts": 0
+  },
+  "scope_notes": [
+    "The analytical data contains principal actor/actress credits with titleType=movie, a release year, an IMDb rating, and at least 1,000 votes.",
+    "IMDb title.principals is a principal-credit subset, not a guaranteed complete filmography.",
+    "IMDb ratings describe titles, not Simon Pegg's individual performance or critical acclaim.",
+    "IMDb title.akas and title.episode were not used because regional titles and television episodes are outside scope."
+  ]
+}
