@@ -8,7 +8,7 @@ category: Film
 read_time: 3 minute read
 card_image: /assets/migrated/simon-pegg/feature.svg
 hero_image: /assets/migrated/simon-pegg/feature.svg
-hero_alt: "Black-and-white editorial illustration of three grouped film strips rising above scattered loose film frames, with one muted-red frame accent, symbolising the recurring teams behind Simon Pegg's highest-rated eligible films."
+hero_alt: "Editorial stencil-style illustration on a light-grey background showing three film worlds—spy missions, space travel and British pub comedy—converging on a central anonymous cinema figure, with a single muted-red accent and loose film frames around the edges."
 ---
 
 Cornetto pubs. Starships. Impossible missions.
