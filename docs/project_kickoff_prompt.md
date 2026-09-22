@@ -40,7 +40,9 @@ Rules:
 - Use `docs/story_discovery_and_3_chart_flow.md` to find the story and present the recommended 3-chart editorial plan before creating configs.
 - Use `docs/chart_config_prompt.txt` and `src/chart_config_template.py` for chart configs after the story route is clear.
 - Use `docs/chart_qa_checklist.md` before saying a chart is ready.
-- Use `spec/538_template_rules.md` as the chart template source of truth.\n- Use `spec/feature_image_rules.md` as the feature-art source of truth, including the default `#F3F4F6` light-grey background.
+- Use `spec/538_template_rules.md` as the chart template source of truth.
+- Use `spec/feature_image_rules.md` as the feature-art source of truth, including the default `#F3F4F6` light-grey background.
+- WordPress and Jetpack are retired. Do not use or recommend them as active publishing systems; all live coffeetableviz.com publication goes through Jekyll files in this repo, reviewed GitHub pull requests and GitHub Pages.
 - If a live project reveals a reusable improvement, actively suggest and update the template/control files rather than leaving the fix in one chart config.
 - Keep `/src` for reusable chart system files only.
 - Keep `.github/workflows` for active reusable workflows only.
@@ -96,7 +98,7 @@ Use this when starting:
 - a dataset generation task;
 - a story discovery and 3-chart planning task;
 - a renderer/template improvement;
-- a WordPress/social content package;
+- a GitHub Pages/social content package;
 - a repo cleanup;
 - an archive task;
 - an unclear project where you want ChatGPT to suggest the optimised route.
