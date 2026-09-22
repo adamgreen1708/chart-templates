@@ -6,8 +6,8 @@ permalink: /2026/09/22/simon-peggs-highest-rated-films-keep-familiar-company/
 description: "A fresh IMDb snapshot finds 12 films from three recurring Simon Pegg teams averaging 7.43, against 6.09 for the other 21 eligible movies."
 category: Film
 read_time: 3 minute read
-card_image: /assets/migrated/simon-pegg/feature.svg
-hero_image: /assets/migrated/simon-pegg/feature.svg
+card_image: /assets/migrated/simon-pegg/feature.webp
+hero_image: /assets/migrated/simon-pegg/feature.webp
 hero_alt: "Editorial stencil-style illustration on a light-grey background showing three film worlds—spy missions, space travel and British pub comedy—converging on a central anonymous cinema figure, with a single muted-red accent and loose film frames around the edges."
 ---
 
