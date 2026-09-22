@@ -1,6 +1,8 @@
 # coffeetableviz GitHub Pages prototype
 
-The prototype extends the repository from chart production into publication without changing the renderer.
+> Historical prototype record. The site has since cut over fully to the repository/Jekyll/GitHub Pages publishing model. WordPress and Jetpack are not active publishing systems. For the current workflow, use `docs/coffeetableviz_process_flow.md`.
+
+The prototype extended the repository from chart production into publication without changing the renderer.
 
 ## Publishing flow
 
@@ -18,12 +20,16 @@ dataset -> story discovery -> chart configs -> render and QA -> Markdown post ->
 - responsive styling for desktop and mobile;
 - GitHub Pages deployment workflow.
 
-## Deliberately unchanged
+## Historical prototype assumptions
 
-- WordPress remains live and untouched.
-- Existing chart renderers and workflows are unchanged.
-- No WordPress archive content has been migrated.
-- No custom domain has been configured.
+At the prototype stage:
+
+- the legacy WordPress site was still live and untouched;
+- existing chart renderers and workflows were unchanged;
+- WordPress archive content had not yet been migrated;
+- the custom domain had not yet been configured.
+
+These statements describe the prototype stage only and are not current publishing instructions.
 
 ## Post front matter
 

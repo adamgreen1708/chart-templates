@@ -1,6 +1,8 @@
 # WordPress selected-post migration
 
-This document tracks the curated launch archive being moved from
+> Historical migration record only. The active site is now created in this repository and published through GitHub Pages. WordPress and Jetpack are retired and must not be treated as current publishing systems.
+
+This document tracks the curated launch archive moved from
 `coffeetableviz.wordpress.com` to `coffeetableviz.com`.
 
 ## Migration rules
@@ -50,8 +52,6 @@ This document tracks the curated launch archive being moved from
 | 2024-10-10 | How to Find stories in Data: channelling our inner journo | Queued |
 | 2024-07-19 | Colour Bank No.6 — Tom Hanks Filmography | Queued |
 
-## Cutover approach
+## Cutover status
 
-The WordPress site remains online as a read-only legacy archive. Selected posts are
-published at their matching date-based path on `coffeetableviz.com`; future posts are
-created directly in this repository.
+The GitHub Pages cutover is complete. `coffeetableviz.com` is created and published from this repository; future posts are created directly here. Historical WordPress URLs and migration metadata may remain for provenance, but they are not an active publishing dependency.

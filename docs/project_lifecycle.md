@@ -124,17 +124,20 @@ Check:
 
 Use `docs/chart_qa_checklist.md` before asking Adam to review.
 
-## 7. Content package
+## 7. Content package and site publication
 
 When a chart is close to final, suggest the publication package:
 
-- WordPress Gutenberg blog post;
+- Jekyll post for `site/_posts/` when a live coffeetableviz.com article is intended;
+- site card/hero and inline assets under `site/assets/`;
 - blog excerpt;
 - LinkedIn post;
 - Instagram caption;
 - cartoon scene text;
 - locked stencil-style image prompt;
 - project manifest update.
+
+WordPress and Jetpack are retired and must not be used as active publishing routes. A live post is published only through the repository, reviewed pull request and GitHub Pages deployment.
 
 ## 8. Archive
 

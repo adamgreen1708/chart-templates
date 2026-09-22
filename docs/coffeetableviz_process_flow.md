@@ -113,6 +113,7 @@ flowchart TD
 8. Compare before PR and merge.
 9. Verify after merge.
 10. End with a clear summary and next suggested improvement.
+11. WordPress and Jetpack are retired. Treat the repository, Jekyll site files, GitHub pull requests and GitHub Pages deployment as the only active coffeetableviz publishing system.
 
 ## Key decision points
 

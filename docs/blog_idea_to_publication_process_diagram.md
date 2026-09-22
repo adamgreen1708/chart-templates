@@ -51,7 +51,7 @@ flowchart TD
     L -->|No| M[Create publication package]
     L1 --> M
 
-    M --> M1[WordPress post]
+    M --> M1[Jekyll post in site/_posts]
     M --> M2[Excerpt]
     M --> M3[LinkedIn post]
     M --> M4[Instagram copy]
@@ -111,7 +111,7 @@ Idea + dataset
 -> find the story
 -> present 3-chart plan
 -> build charts
--> write post
--> publish package
+-> write Jekyll post
+-> publish through reviewed PR and GitHub Pages
 -> archive
 ```
