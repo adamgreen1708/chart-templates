@@ -82,15 +82,15 @@ Source: IMDb non-commercial datasets. Ratings source run date: 20 September 2026
 
 ## Feature illustration concept
 
-Three grouped cinema film strips rise together above a loose field of isolated film frames. The longest strip contains six frames; the other two contain three each, echoing the three recurring partnership groups without adding labels or logos. The loose frames below represent the remaining eligible films. The image should feel like familiar company literally holding together while the other frames sit apart.
+Three recurring film worlds converge on one central, anonymous cinema figure: a spy/mission world, a space/starship world and a British pub/buddy-comedy world. Curved paths with six, three and three markers echo the three recurring groups without labels, while loose film frames around the lower edge suggest the remaining eligible movies. The visual idea is simple: very different worlds, repeatedly returning to familiar company.
 
 ## Feature-image prompt
 
-Use case: illustration-story. Asset type: square coffeetableviz editorial feature image. Create a bold black-and-white stencil/screen-print illustration on warm off-white paper. Three grouped cinema film strips rise diagonally together through the composition: one long strip with six visible frames and two shorter strips with three visible frames each. Below them, scatter a field of separate loose film frames with more space between them. Use one small muted-red sprocket/frame accent as the only colour. Strong negative space, rough ink texture, square crop, readable at thumbnail size. No people, faces, actor likenesses, film titles, franchise logos, text, numbers, charts or watermarks.
+Use case: illustration-story. Asset type: square coffeetableviz editorial feature image. Follow `spec/feature_image_rules.md`. Use the house light-grey `#F3F4F6` background, bold black/charcoal stencil or screen-print shapes and one restrained muted-red accent. Place one generic, non-recognisable cinema figure centrally on a film-reel-like pool of light. Around the figure, show three symbolic recurring worlds converging inward: a spy/mission vignette with a target/briefcase motif and six small path markers; a space/starship vignette with orbit lines and three markers; and a British pub/buddy-comedy vignette with a pub-sign/pint motif and three markers. Add faint loose film frames around the lower edges for the other eligible movies. Keep it square, crop-safe and readable at thumbnail size. No text, actor likenesses, copyrighted characters, franchise logos or watermarks.
 
 ## Feature alt text
 
-Black-and-white editorial illustration of three grouped film strips rising above scattered loose film frames, with one muted-red frame accent, symbolising the recurring teams behind Simon Pegg's highest-rated eligible films.
+Editorial stencil-style illustration on a light-grey background showing three film worlds—spy missions, space travel and British pub comedy—converging on a central anonymous cinema figure, with a single muted-red accent and loose film frames around the edges.
 
 ## QA checklist
 
