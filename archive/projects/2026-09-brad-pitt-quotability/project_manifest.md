@@ -2,7 +2,7 @@
 
 ## Status
 
-- Status: Final chart specs / configs staged; render QA pending
+- Status: Config/render QA passed locally; repository PNG commit pending
 - Started: 23 September 2026
 - Last updated: 23 September 2026
 - Owner: Adam Green
@@ -44,9 +44,9 @@ Values were checked on 23 September 2026 from indexed IMDb character-page result
 
 | File | Chart | Status |
 |---|---|---|
-| config/chart_01_top_roles.py | Fury started the question. Tyler Durden owns the answer. | Ready for renderer QA |
-| config/chart_02_quotes_vs_rating.py | Ratings help. They don't explain the quotes. | Ready for renderer QA |
-| config/chart_03_oceans.py | Rusty did most of his talking on the first job | Ready for renderer QA |
+| config/chart_01_top_roles.py | Fury started it. Tyler Durden owns the answer. | Local render QA passed |
+| config/chart_02_quotes_vs_rating.py | Ratings help. They don't explain the quotes. | Local render QA passed |
+| config/chart_03_oceans.py | Rusty did most of his talking on the first job | Local render QA passed |
 
 ## Content
 
@@ -88,8 +88,11 @@ Ocean's recurring-character check:
 - Correlation does not imply causation.
 - Film ratings inherit the existing Brad Pitt source-scope caveat.
 - Renderer and template files remain untouched.
+- Local visual QA produced three 1600 × 1600 outputs.
+- First-pass title/subtitle/footer collisions were resolved solely through project config spacing and shorter source text.
+- Second-pass visual QA found no clipping or collisions.
 - No live-site publication is part of this stage.
 
 ## Next gate
 
-Run all three configs through the locked renderer, inspect the resulting 1600 × 1600 PNGs, correct only project-level annotation/layout issues where possible, then present the three charts for Adam's visual approval before publication work.
+Create the repository PNG outputs through the GitHub archived-project render path, verify they match the QA-approved config behaviour, then present the exact repository images for Adam's visual approval before publication work.
