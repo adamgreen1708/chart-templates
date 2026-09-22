@@ -2,9 +2,9 @@
 
 ## Recommended story route
 
-**Brad Pitt's most quotable character is Tyler Durden — and IMDb's character quote pages give us a measurable way to look at which roles have accumulated the most user-curated quote entries.**
+Brad Pitt's most quotable film-role page is Tyler Durden in Fight Club — but Fury gives us the human way into the story because Don 'Wardaddy' Collier sits high in the current IMDb quote-count snapshot.
 
-This is deliberately a story about **IMDb quote entries**, not the amount of dialogue in each screenplay and not an objective measure of cultural importance. Quote counts are user-curated, can change over time, and are affected by role size, fandom and IMDb participation.
+This is deliberately a story about IMDb quote entries attached to Brad Pitt's film-role pages, not the amount of dialogue in each screenplay and not an objective measure of cultural importance. Quote counts are user-curated, can change over time, and are affected by role size, fandom and IMDb participation.
 
 ## Why this route works
 
@@ -12,76 +12,71 @@ The existing 54-film Brad Pitt IMDb list already gives us film year and rating. 
 
 The verified 44-film sample is visually strong:
 
-- Tyler Durden / *Fight Club*: 105 quote entries
-- Louis / *Interview with the Vampire*: 60
-- Billy Beane / *Moneyball*: 53
-- Achilles / *Troy*: 50
-- Sonny Hayes / *F1*: 46
-- Mills / *Seven*: 45
-- Rusty Ryan / *Ocean's Eleven*: 42
+- Tyler Durden / Fight Club: 105 quote entries
+- Louis / Interview with the Vampire: 60
+- Billy Beane / Moneyball: 53
+- Achilles / Troy: 50
+- Sonny Hayes / F1: 46
+- Mills / Seven: 45
+- Rusty Ryan / Ocean's Eleven: 42
+- Don 'Wardaddy' Collier / Fury: 40
 
-The gap between *Fight Club* and the rest is large enough to create a clear opening chart without inventing a subjective quote score.
+Fury is therefore not a token mention. Wardaddy ranks 8th among the 44 verified film-role pages.
 
-Across these 44 verified films, quote-entry count and IMDb rating have a **moderate positive association**:
-- Pearson correlation: **0.54**
-- Spearman rank correlation: **0.46**
+The important definition is film role rather than unique character. A recurring character such as Rusty Ryan has a separate IMDb quote count for each Ocean's film, which becomes the point of Chart 3 rather than being silently aggregated in Chart 1.
 
-That is useful editorially because it is neither zero nor destiny. Highly rated supporting roles such as *12 Years a Slave* (8.1 rating, 2 Pitt quote entries) and *The Big Short* (7.8, 4) sit well away from the broad pattern, while *Sinbad* has 39 quote entries at a 6.8 rating.
+Across the 44 verified film-role pages, quote-entry count and IMDb rating have a moderate positive association:
+- Pearson correlation: 0.54
+- Spearman rank correlation: 0.46
 
-These figures are provisional until the ten unresolved films are either verified or explicitly documented as unavailable.
-
-## Story options considered
-
-### Option A — Which Brad Pitt characters are most quotable?
-Core argument: IMDb users have preserved some Pitt characters in far more quote entries than others.
-Why it works: measurable, visual and directly connected to the idea.
-Risk: quote counts are user-curated and partly reflect role size and fandom.
-Recommendation: **use this as the main route**.
-
-### Option B — Do better-rated films produce more Pitt quote entries?
-Core argument: there is a moderate positive relationship in the verified sample, but rating clearly does not explain the whole pattern.
-Why it works: reuses the existing ratings dataset and produces useful counterexamples rather than a simplistic correlation story.
-Risk: role size is a major confounder. Treat as descriptive only; do not imply quotes cause ratings or vice versa.
-Recommendation: **retain as Chart 2**, with outliers doing the storytelling.
-
-### Option C — How does the same character change across sequels?
-Core argument: Rusty Ryan has 42 quote entries in *Ocean's Eleven*, 13 in *Ocean's Twelve* and 17 in *Ocean's Thirteen*.
-Why it works: same actor and character gives a cleaner mini-comparison.
-Risk: only three films.
-Recommendation: strong closing chart / small-multiple detail.
+That is useful editorially because it is neither zero nor destiny. Highly rated supporting roles such as 12 Years a Slave (8.1 rating, 2 Pitt quote entries) and The Big Short (7.8, 4) sit well away from the broad pattern, while Sinbad has 39 quote entries at a 6.8 rating. Fury itself sits at 40 quote entries and a 7.6 rating.
 
 ## Recommended 3-chart story
 
-### Chart 1 — Tyler Durden isn't even close
-**Role:** Set the scene  
-**Question:** Which Brad Pitt characters have the most IMDb quote entries?  
-**Chart type:** ranked dot plot or horizontal bars  
-**Data:** verified Brad Pitt film rows enriched with IMDb character quote-entry count  
-**Key stat:** Tyler Durden = 105; next highest Louis = 60  
-**Why it matters:** gives the piece an immediate, concrete hook.  
-**QA risk:** do not call this total dialogue or screenplay lines.
+### Chart 1 — Fury started the question. Tyler Durden owns the answer.
+Role: Set the scene.
+Question: Which verified Brad Pitt film roles have the most IMDb quote entries?
+Chart type: ranked dot plot.
+Display: top 12 verified film-role pages.
+Key stat: Tyler Durden = 105; Wardaddy = 40 and ranks 8th.
+Why it matters: Fury supplies the personal trigger while the data supplies the stronger headline.
+QA risk: do not call the count total dialogue, screenplay lines or a unique-character total.
 
 ### Chart 2 — Ratings help. They don't explain the quotes.
-**Role:** Build the tension  
-**Question:** Do films with more Pitt quote entries also have higher IMDb ratings?  
-**Chart type:** scatter plot, quote entries vs IMDb rating  
-**Data:** quote-count enrichment joined to the existing 54-film ratings list  
-**Key stat:** verified n=44; Pearson r=0.54; Spearman rho=0.46  
-**Story labels:** Tyler Durden / *Fight Club*; *12 Years a Slave*; *The Big Short*; *Sinbad*  
-**Why it matters:** tests the obvious assumption and shows where it breaks down.  
-**QA risk:** supporting roles naturally tend to have fewer attributed quotes; association is descriptive and role size is a confounder.
+Role: Build the tension.
+Question: Do films with more Pitt quote entries also have higher IMDb ratings?
+Chart type: scatter plot with a linear trend line.
+Data: all 44 verified film-role pages.
+Key stat: Pearson r = 0.54; Spearman rho = 0.46.
+Story labels: Fight Club, Fury, 12 Years a Slave, The Big Short and Sinbad.
+Why it matters: tests the obvious assumption and shows where it breaks down.
+QA risk: role size, fandom and IMDb participation are confounders; association is descriptive only.
 
 ### Chart 3 — Rusty did most of his talking on the first job
-**Role:** Land the aha / character detail  
-**Question:** What happened to Rusty Ryan's IMDb quote count across the Ocean's trilogy?  
-**Chart type:** three-point line or dot sequence  
-**Data:** *Ocean's Eleven* 42, *Ocean's Twelve* 13, *Ocean's Thirteen* 17  
-**Why it matters:** a controlled recurring-character example and a neat dry finish.  
-**QA risk:** three observations are illustrative, not a trend claim.
+Role: Land the aha / character detail.
+Question: What happened to Rusty Ryan's IMDb quote count across the Ocean's trilogy?
+Chart type: three-point line.
+Data: Ocean's Eleven 42, Ocean's Twelve 13, Ocean's Thirteen 17.
+Why it matters: the same recurring character gives us a cleaner controlled example and resolves the film-role vs unique-character distinction.
+QA risk: three observations are illustrative, not a general trend.
+
+## Editorial framing
+
+The eventual post can open from the real trigger:
+
+I was watching Fury and wondering where Don 'Wardaddy' Collier would actually land if you tried to measure Brad Pitt's most quotable film roles.
+
+Feature-art direction:
+- tank silhouette or commander hatch;
+- quote-burst / speech-fragment motif;
+- light grey background;
+- black/charcoal artwork;
+- one muted red accent;
+- no actor likeness required.
 
 ## Data definition
 
-`imdb_quote_entries` = the number labelled “Quotes” on Brad Pitt's IMDb character page for that title at the time checked.
+IMDb Quote Entries = the number labelled Quotes on Brad Pitt's IMDb character page for that title at the time checked.
 
 It is:
 - a current IMDb page count;
@@ -94,17 +89,11 @@ It is:
 ## Coverage
 
 - Existing Brad Pitt source list: 54 films.
-- Quote count verified: 44 films.
+- Quote count verified: 44 film-role pages.
 - Unresolved after indexed-source checks: 10 films.
-- Unresolved is **not zero**.
-
-The unresolved titles should be kept in an audit list and excluded from quote-count calculations unless a reliable count is obtained.
+- Unresolved is not zero.
+- Snapshot date: 23 September 2026.
 
 ## Next build step
 
-1. Create an explicit unresolved-title audit for the remaining ten films.
-2. Re-check those titles through a source path that exposes the character-page count reliably.
-3. Re-check duplicate characters and multi-role credits.
-4. Freeze the verified snapshot date and coverage.
-5. Build the three derived chart datasets.
-6. Create CHART_CONFIG files through the locked 538 workflow and render/QA only after the coverage gate is accepted.
+The final chart specs, derived datasets and CHART_CONFIG files are now staged in the project. Next gate is real renderer execution and visual QA; no site publication should happen before that.
