@@ -99,14 +99,7 @@ jobs:
               echo "Rendering $config"
               cp "$config" src/chart_config.py
 
-              configured_output="$(
-                python - <<'PY'
-import sys
-sys.path.insert(0, "src")
-from chart_config import CHART_CONFIG
-print(CHART_CONFIG.get("output_file", "output/chart.png"))
-PY
-              )"
+              configured_output="$(python -c 'import sys; sys.path.insert(0, "src"); from chart_config import CHART_CONFIG; print(CHART_CONFIG.get("output_file", "output/chart.png"))')"
 
               if [[ "$configured_output" != */* ]]; then
                 configured_output="output/$configured_output"

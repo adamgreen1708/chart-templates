@@ -93,6 +93,8 @@ Ocean's recurring-character check:
 - Second-pass visual QA found no clipping or collisions.
 - No live-site publication is part of this stage.
 
+- Workflow retrigger: corrected archived-render output-path handling after PR #59 validation failure.
+
 ## Next gate
 
 Create the repository PNG outputs through the GitHub archived-project render path, verify they match the QA-approved config behaviour, then present the exact repository images for Adam's visual approval before publication work.
