@@ -98,20 +98,42 @@ jobs:
             for config in "${configs[@]}"; do
               echo "Rendering $config"
               cp "$config" src/chart_config.py
+
+              configured_output="$(
+                python - <<'PY'
+import sys
+sys.path.insert(0, "src")
+from chart_config import CHART_CONFIG
+print(CHART_CONFIG.get("output_file", "output/chart.png"))
+PY
+              )"
+
+              if [[ "$configured_output" != */* ]]; then
+                configured_output="output/$configured_output"
+              fi
+
               rm -rf output
               mkdir -p output
               python src/render_538.py
 
-              shopt -s nullglob
-              pngs=(output/*.png)
-              shopt -u nullglob
-
-              if (( ${#pngs[@]} == 0 )); then
-                echo "Renderer produced no PNG for $config"
+              if [[ ! -f "$configured_output" ]]; then
+                echo "Renderer did not create the configured PNG for $config: $configured_output"
                 exit 1
               fi
 
-              cp "${pngs[@]}" "$project_dir/output/"
+              case "$configured_output" in
+                "$project_dir"/output/*)
+                  echo "Renderer wrote directly to project archive: $configured_output"
+                  ;;
+                output/*)
+                  cp "$configured_output" "$project_dir/output/"
+                  ;;
+                *)
+                  echo "Configured output must be inside output/ or $project_dir/output/: $configured_output"
+                  exit 1
+                  ;;
+              esac
+
               rendered_any=1
             done
           done < /tmp/project_dirs.txt
