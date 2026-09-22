@@ -37,17 +37,17 @@ legacy_url: https://coffeetableviz.wordpress.com/2024/11/13/creating-for-fun/
 <p>• Use Tableau to create a visualisation of your favorite songs, artist/bands and chart standings. Plot midi file data in Tableau to present the pitch and orchestration or analyse chord progressions and motif development.</p>
 
 <figure class="image-grid">
-<figure class="story-chart full-bleed"><img src="/assets/migrated/creating-for-fun/img_3368.png" alt="img 3368" loading="lazy"></figure>
+<figure><img src="/assets/migrated/creating-for-fun/img_3368.png" alt="img 3368" loading="lazy"></figure>
 
-<figure class="story-chart full-bleed"><img src="/assets/migrated/creating-for-fun/marvin-gaye.jpg" alt="marvin gaye" loading="lazy"></figure>
+<figure><img src="/assets/migrated/creating-for-fun/marvin-gaye.jpg" alt="marvin gaye" loading="lazy"></figure>
 
-<figure class="story-chart full-bleed"><img src="/assets/migrated/creating-for-fun/m-is-for-magic-1.png" alt="M is for Magic" loading="lazy"></figure>
+<figure><img src="/assets/migrated/creating-for-fun/m-is-for-magic-1.png" alt="M is for Magic" loading="lazy"></figure>
 
-<figure class="story-chart full-bleed"><img src="/assets/migrated/creating-for-fun/music-fundamentals_ironviz-music.png" alt="MUSIC FUNDAMENTALS IRONVIZ MUSIC" loading="lazy"></figure>
+<figure><img src="/assets/migrated/creating-for-fun/music-fundamentals_ironviz-music.png" alt="MUSIC FUNDAMENTALS IRONVIZ MUSIC" loading="lazy"></figure>
 
-<figure class="story-chart full-bleed"><img src="/assets/migrated/creating-for-fun/a-is-for-artist.png" alt="A is for ARTIST" loading="lazy"></figure>
+<figure><img src="/assets/migrated/creating-for-fun/a-is-for-artist.png" alt="A is for ARTIST" loading="lazy"></figure>
 
-<figure class="story-chart full-bleed"><img src="/assets/migrated/creating-for-fun/miles-davis-so-what.png" alt="Miles Davis – So What" loading="lazy"></figure>
+<figure><img src="/assets/migrated/creating-for-fun/miles-davis-so-what.png" alt="Miles Davis – So What" loading="lazy"></figure>
 </figure>
 
 <p><strong>2. Data Art</strong></p>
@@ -55,21 +55,21 @@ legacy_url: https://coffeetableviz.wordpress.com/2024/11/13/creating-for-fun/
 <p>• Tap into Tableau’s artistic potential by creating data art. This could mean arranging shapes and colours to represent a dataset visually, using coordinates to create patterns or even abstract images. Data art doesn’t have to be logical, you make the rules, it just needs to be visually engaging.</p>
 
 <figure class="image-grid">
-<figure class="story-chart full-bleed"><img src="/assets/migrated/creating-for-fun/cover-2-1.png" alt="cover 2 1" loading="lazy"></figure>
+<figure><img src="/assets/migrated/creating-for-fun/cover-2-1.png" alt="cover 2 1" loading="lazy"></figure>
 
-<figure class="story-chart full-bleed"><img src="/assets/migrated/creating-for-fun/img_4331-1.png" alt="img 4331 1" loading="lazy"></figure>
+<figure><img src="/assets/migrated/creating-for-fun/img_4331-1.png" alt="img 4331 1" loading="lazy"></figure>
 
-<figure class="story-chart full-bleed"><img src="/assets/migrated/creating-for-fun/8x8-pixel-art.jpg" alt="8×8 pixel art" loading="lazy"></figure>
+<figure><img src="/assets/migrated/creating-for-fun/8x8-pixel-art.jpg" alt="8×8 pixel art" loading="lazy"></figure>
 
-<figure class="story-chart full-bleed"><img src="/assets/migrated/creating-for-fun/image001-1.png" alt="image001 1" loading="lazy"></figure>
+<figure><img src="/assets/migrated/creating-for-fun/image001-1.png" alt="image001 1" loading="lazy"></figure>
 
-<figure class="story-chart full-bleed"><img src="/assets/migrated/creating-for-fun/knock-knock.png" alt="KNOCK KNOCK" loading="lazy"></figure>
+<figure><img src="/assets/migrated/creating-for-fun/knock-knock.png" alt="KNOCK KNOCK" loading="lazy"></figure>
 
-<figure class="story-chart full-bleed"><img src="/assets/migrated/creating-for-fun/aladdin-sane_high-res.png" alt="Aladdin Sane high res" loading="lazy"></figure>
+<figure><img src="/assets/migrated/creating-for-fun/aladdin-sane_high-res.png" alt="Aladdin Sane high res" loading="lazy"></figure>
 
-<figure class="story-chart full-bleed"><img src="/assets/migrated/creating-for-fun/lifes-a-beach-1-1.png" alt="lifes a beach (1) 1" loading="lazy"></figure>
+<figure><img src="/assets/migrated/creating-for-fun/lifes-a-beach-1-1.png" alt="lifes a beach (1) 1" loading="lazy"></figure>
 
-<figure class="story-chart full-bleed"><img src="/assets/migrated/creating-for-fun/img_4524-1.png" alt="img 4524 1" loading="lazy"></figure>
+<figure><img src="/assets/migrated/creating-for-fun/img_4524-1.png" alt="img 4524 1" loading="lazy"></figure>
 </figure>
 
 <p><strong>3. Personal Data Projects and data that’s personal to you</strong></p>
@@ -77,17 +77,17 @@ legacy_url: https://coffeetableviz.wordpress.com/2024/11/13/creating-for-fun/
 <p>• Track your daily habits, such as runs completed, films and actors you like, visualise iconic sporting events or art and artist you admire. Collate your own data to build something personal and visually interesting. It’s a great way to add a personal touch to your Tableau portfolio!</p>
 
 <figure class="image-grid">
-<figure class="story-chart full-bleed"><img src="/assets/migrated/creating-for-fun/image001-2-1.png" alt="image001 2 1" loading="lazy"></figure>
+<figure><img src="/assets/migrated/creating-for-fun/image001-2-1.png" alt="image001 2 1" loading="lazy"></figure>
 
-<figure class="story-chart full-bleed"><img src="/assets/migrated/creating-for-fun/image001-3-1.png" alt="image001 3 1" loading="lazy"></figure>
+<figure><img src="/assets/migrated/creating-for-fun/image001-3-1.png" alt="image001 3 1" loading="lazy"></figure>
 
-<figure class="story-chart full-bleed"><img src="/assets/migrated/creating-for-fun/2018-world-darts-championship-final.png" alt="2018 world darts championship final" loading="lazy"></figure>
+<figure><img src="/assets/migrated/creating-for-fun/2018-world-darts-championship-final.png" alt="2018 world darts championship final" loading="lazy"></figure>
 
-<figure class="story-chart full-bleed"><img src="/assets/migrated/creating-for-fun/img_1212.png" alt="img 1212" loading="lazy"></figure>
+<figure><img src="/assets/migrated/creating-for-fun/img_1212.png" alt="img 1212" loading="lazy"></figure>
 
-<figure class="story-chart full-bleed"><img src="/assets/migrated/creating-for-fun/img_1142.png" alt="img 1142" loading="lazy"></figure>
+<figure><img src="/assets/migrated/creating-for-fun/img_1142.png" alt="img 1142" loading="lazy"></figure>
 
-<figure class="story-chart full-bleed"><img src="/assets/migrated/creating-for-fun/image001-1-2.png" alt="image001 1" loading="lazy"></figure>
+<figure><img src="/assets/migrated/creating-for-fun/image001-1-2.png" alt="image001 1" loading="lazy"></figure>
 </figure>
 
 <p><strong>My tips for having the most fun in Tableau</strong></p>
