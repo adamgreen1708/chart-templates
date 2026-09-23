@@ -464,6 +464,16 @@ def _apply_axis_config(ax):
     if y_formatter:
         ax.yaxis.set_major_formatter(y_formatter)
 
+    x_tick_labels = CHART_CONFIG.get("x_tick_labels", [])
+    if x_tick_labels:
+        ax.set_xticks([tick["value"] for tick in x_tick_labels])
+        ax.set_xticklabels([tick["label"] for tick in x_tick_labels])
+
+    y_tick_labels = CHART_CONFIG.get("y_tick_labels", [])
+    if y_tick_labels:
+        ax.set_yticks([tick["value"] for tick in y_tick_labels])
+        ax.set_yticklabels([tick["label"] for tick in y_tick_labels])
+
 
 def _plot_diagonal_reference_line(ax, ref):
     xlim = ax.get_xlim()
