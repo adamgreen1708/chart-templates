@@ -2,7 +2,7 @@
 
 ## Status
 
-- Status: Three charts rendered and QA passed; awaiting Adam visual approval
+- Status: Charts approved; publication package and live-site draft staged; awaiting Adam review before merge
 - Started: 23 September 2026
 - Last updated: 23 September 2026
 - Owner: Adam Green
@@ -119,3 +119,14 @@ Renderer/template improvement:
 - enabled archived-project rendering on `project/**` branches so charts can be QA'd before merging.
 
 PR #65 remains draft. Final chart QA passed; Adam's visual approval is the remaining gate before the publication package.
+
+
+## Publication staging
+
+- Adam approved the final three-chart set on 23 September 2026.
+- Publication package staged at `content/publication_package.md`.
+- Jekyll post staged at `site/_posts/2026-09-23-how-do-you-measure-a-chameleon.md`.
+- Exact approved chart PNGs copied into `site/assets/migrated/david-bowie-reinvention/`.
+- Deterministic story-specific feature artwork staged as `site/assets/migrated/david-bowie-reinvention/feature.svg`.
+- Feature metaphor: a chameleon stretched across a measuring ruler, expressing the tension between visible reinvention and imperfect measurement.
+- PR #65 must remain draft until Adam reviews the exact feature asset and site post and the Pages PR build passes.
