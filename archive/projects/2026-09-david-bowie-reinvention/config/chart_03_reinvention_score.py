@@ -3,14 +3,14 @@ CHART_CONFIG = {
     "data_format": "wide",
     "chart_type": "dot",
     "orientation": None,
-    "x_col": "style_reset_score",
+    "x_col": "plot_position",
     "y_col": "display_album",
     "series_col": None,
     "value_col": None,
     "filters": [],
 
     "title": "A reinvention score gets awkward",
-    "subtitle": "23 of 25 album-to-album moves are measurable; The Next Day lacks AllMusic Styles. The labels still understate some famous pivots.",
+    "subtitle": "All 25 moves are shown: 23 scores plus two grey missing-data rows where The Next Day lacks AllMusic Styles.",
     "source_text": "AllMusic Styles · Jaccard distance",
     "footer_left": "Adam Green | coffeetableviz",
     "story_angle": "metadata_reset_sequence",
@@ -23,7 +23,7 @@ CHART_CONFIG = {
     "x_label": "Style reset score · higher means less overlap",
     "y_label": "Destination album",
     "x_margin": 0.04,
-    "x_axis": {"min": 0.0, "max": 1.0, "tick_interval": 0.25, "format": "percent"},
+    "x_axis": {"min": -0.06, "max": 1.0, "tick_interval": 0.25, "format": "percent"},
     "y_axis": {"min": None, "max": None, "tick_interval": None, "format": None},
     "y_axis_min": None,
     "y_axis_max": None,
@@ -42,7 +42,7 @@ CHART_CONFIG = {
     "dot_style": {"color": "#1F8FA8", "size": 44, "alpha": 0.86},
     "point_style": {"color": "#1F8FA8", "size": 44, "alpha": 0.86},
     "bar_style": {"color": "#1F8FA8", "alpha": 0.9},
-    "highlight_style": {"color": "#C44E52", "size": 82, "alpha": 1.0},
+    "highlight_style": {"color": "#7A7A7A", "size": 54, "alpha": 0.95},
     "context_style": {"color": "#D9D9D9", "linewidth": 0.8, "alpha": 0.25},
     "focus_style": {"color": "#1F8FA8", "linewidth": 3.2, "alpha": 1.0},
     "secondary_style": {"color": "#7A7A7A", "linewidth": 2.0, "alpha": 0.9},
@@ -52,12 +52,13 @@ CHART_CONFIG = {
     ],
     "trend_line": {"enabled": False, "color": "#7A7A7A", "linewidth": 1.4, "linestyle": "-", "alpha": 0.8},
     "highlight_points": [
-        {"to_album": "Space Oddity"},
-        {"to_album": "Low"}
+        {"analysis_status": "not_calculated_missing_allmusic_styles"}
     ],
     "annotate_points": [
         {"to_album": "Space Oddity", "text": "Largest measured reset · 89%", "xytext": (-8, 0), "ha": "right", "va": "center", "fontsize": 8, "color": "#C44E52", "fontweight": "bold", "arrowprops": None},
-        {"to_album": "Low", "text": "Station to Station → Low · only 33%", "xytext": (8, -10), "ha": "left", "va": "top", "fontsize": 8, "color": "#C44E52", "fontweight": "bold", "arrowprops": None}
+        {"to_album": "Low", "text": "Station to Station → Low · only 33%", "xytext": (8, -10), "ha": "left", "va": "top", "fontsize": 8, "color": "#C44E52", "fontweight": "bold", "arrowprops": None},
+        {"to_album": "The Next Day", "text": "No comparable Styles data", "xytext": (7, 0), "ha": "left", "va": "center", "fontsize": 7, "color": "#7A7A7A", "fontweight": "normal", "arrowprops": None},
+        {"to_album": "Blackstar", "text": "No comparable Styles data", "xytext": (7, 0), "ha": "left", "va": "center", "fontsize": 7, "color": "#7A7A7A", "fontweight": "normal", "arrowprops": None}
     ],
     "end_labels": [],
     "label_style": {"enabled": False, "label_col": None, "label_format": "{}", "position": "right", "fontsize": 8},

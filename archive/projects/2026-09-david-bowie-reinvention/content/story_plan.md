@@ -86,20 +86,14 @@ The metric also exposes a limitation that is editorially useful: the famous *Sta
 - **Data needed:** `david_bowie_style_transitions.csv`.
 - **Key stat:** 23 measurable transitions; median reset 0.3333. The largest is debut -> *Space Oddity* at 0.8889, while *Station to Station* -> *Low* is only 0.3333.
 - **Why this chart matters:** it gives us the Bowie story and the data-story punchline. Reinvention is visible, but taxonomy is not artistic truth.
-- **Potential issue / QA risk:** the two transitions involving *The Next Day* must be shown as missing rather than zero, and the title/subtitle must not imply an objective creativity score.
+- **Potential issue / QA risk:** the two transitions involving *The Next Day* must be shown as explicit missing-data rows rather than zero. They sit in a small grey gutter left of the 0% tick so the full 25-transition chronology remains visible without inventing values.
 
 ## Recommended story route
 
 **How do you measure a chameleon?** David Bowie gives us 26 studio albums across six named decades. Style metadata shows repeated movement, but the attempt to score “reinvention” also reveals how much the answer depends on the labels we use.
 
-## Next build step
+## Current build stage
 
-Await Adam's editorial approval of this route. After approval:
+Adam approved the editorial route. The three chart datasets/configs have been built and rendered. Chart 3 was subsequently refined so its full 25-transition chronology remains visible, including two explicit missing-data rows around *The Next Day*.
 
-1. derive the long album/style dataset for Chart 2;
-2. derive the chart-specific transition dataset for Chart 3;
-3. create the three locked 538 configs;
-4. render and run the chart QA checklist;
-5. only then move to publication copy and feature artwork.
-
-No chart configs or renders should be created before this approval gate.
+The remaining gate is Adam's visual approval before the publication package and feature artwork are prepared.

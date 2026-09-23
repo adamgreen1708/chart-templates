@@ -95,9 +95,8 @@ def main() -> None:
 
     reset_rows = []
     for row in transitions:
-        if row["analysis_status"] != "calculated":
-            continue
-        reset = float(row["style_reset_score"])
+        missing = row["analysis_status"] != "calculated"
+        reset = None if missing else float(row["style_reset_score"])
         reset_rows.append({
             "from_sequence": int(row["from_sequence"]),
             "to_sequence": int(row["to_sequence"]),
@@ -106,8 +105,14 @@ def main() -> None:
             "from_album": row["from_album"],
             "to_album": row["to_album"],
             "display_album": SHORT_TITLE.get(row["to_album"], row["to_album"]),
-            "style_reset_score": f"{reset:.4f}",
-            "reset_percent": f"{reset * 100:.1f}",
+            "style_reset_score": "" if missing else f"{reset:.4f}",
+            "reset_percent": "" if missing else f"{reset * 100:.1f}",
+            # Missing rows are deliberately placed in a small non-data gutter
+            # left of 0%. The chart uses explicit 0–100% ticks, so this cannot
+            # be read as a negative reset score.
+            "plot_position": "-0.035" if missing else f"{reset:.4f}",
+            "analysis_status": row["analysis_status"],
+            "missing_note": "No comparable Styles data" if missing else "",
         })
     write_csv(
         DATA_DIR / "bowie_chart_03_style_reset.csv",
@@ -115,13 +120,15 @@ def main() -> None:
         [
             "from_sequence", "to_sequence", "from_year", "to_year",
             "from_album", "to_album", "display_album",
-            "style_reset_score", "reset_percent",
+            "style_reset_score", "reset_percent", "plot_position",
+            "analysis_status", "missing_note",
         ],
     )
 
+    measurable = sum(r["analysis_status"] == "calculated" for r in reset_rows)
     print(
         f"Wrote {len(timeline)} timeline rows, {len(matrix)} matrix rows, "
-        f"and {len(reset_rows)} measurable reset rows."
+        f"and {len(reset_rows)} reset rows ({measurable} measurable)."
     )
 
 
