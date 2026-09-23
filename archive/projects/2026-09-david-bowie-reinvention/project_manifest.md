@@ -2,7 +2,7 @@
 
 ## Status
 
-- Status: Charts approved; publication package and live-site draft staged; awaiting Adam review before merge
+- Status: Charts approved; publication package staged; Pages PR build passed; awaiting Adam review before merge
 - Started: 23 September 2026
 - Last updated: 23 September 2026
 - Owner: Adam Green
@@ -129,4 +129,5 @@ PR #65 remains draft. Final chart QA passed; Adam's visual approval is the remai
 - Exact approved chart PNGs copied into `site/assets/migrated/david-bowie-reinvention/`.
 - Deterministic story-specific feature artwork staged as `site/assets/migrated/david-bowie-reinvention/feature.svg`.
 - Feature metaphor: a chameleon stretched across a measuring ruler, expressing the tension between visible reinvention and imperfect measurement.
-- PR #65 must remain draft until Adam reviews the exact feature asset and site post and the Pages PR build passes.
+- Pages PR build passed in run `35918449198`.
+- PR #65 must remain draft until Adam reviews the exact feature asset and site post.
