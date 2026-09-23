@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 
 from src.chart_538 import BG, apply_538_template
+from src import render_538
 from src.render_538 import _axis_formatter, _to_float
 
 
@@ -67,3 +68,20 @@ def test_to_float_handles_symbols_and_blanks():
 def test_axis_formatter_supports_billions():
     formatter = _axis_formatter("billions")
     assert formatter(13, None) == "$13bn"
+
+
+def test_custom_tick_labels_are_applied(monkeypatch):
+    fig, ax = plt.subplots(figsize=(8.0, 8.0))
+    config = {
+        "x_is_datetime": False,
+        "x_axis": {"min": None, "max": None, "tick_interval": None, "format": None},
+        "y_axis": {"min": None, "max": None, "tick_interval": None, "format": None},
+        "x_tick_labels": [{"value": 1, "label": "One"}, {"value": 2, "label": "Two"}],
+        "y_tick_labels": [{"value": 10, "label": "Ten"}, {"value": 20, "label": "Twenty"}],
+    }
+    monkeypatch.setattr(render_538, "CHART_CONFIG", config)
+
+    render_538._apply_axis_config(ax)
+
+    assert [tick.get_text() for tick in ax.get_xticklabels()] == ["One", "Two"]
+    assert [tick.get_text() for tick in ax.get_yticklabels()] == ["Ten", "Twenty"]
