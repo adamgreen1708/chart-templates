@@ -112,13 +112,21 @@ Final render:
 
 ### Chart 3 — A reinvention score gets awkward
 
-PASS after one copy refinement.
+PASS after final missing-data / axis refinement.
 
-- all 23 destination-album labels readable;
-- 0–100% axis correct;
-- median reference line readable;
+Final QA render:
+- GitHub Actions run `35917018118`
+- conclusion: success
+
+Checks:
+- all 25 destination-album rows are shown;
+- 23 rows carry measured reset scores;
+- *The Next Day* and *Blackstar* are retained as grey missing-data rows;
+- the two missing rows sit in a small non-data gutter left of 0%, so they cannot be read as zero reset scores;
+- x-axis begins at -0.06 internally, while visible labelled ticks remain 0–100%;
+- exact-zero measured dots now have breathing room and are not clipped;
+- median reference line remains readable;
 - Space Oddity and Low annotations remain inside safe margins;
-- subtitle now states why only 23 of 25 moves are measurable;
 - source/footer visible.
 
 ## Editorial QA
