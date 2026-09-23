@@ -6,8 +6,8 @@ permalink: /2026/09/23/fury-started-it-tyler-durden-owns-the-answer/
 description: "Watching Fury sent me down a Brad Pitt quotability rabbit hole: 44 verified IMDb film-role pages, one dominant Tyler Durden, and Wardaddy in eighth."
 category: Film
 read_time: 4 minute read
-card_image: /assets/migrated/brad-pitt-quotability/feature.webp
-hero_image: /assets/migrated/brad-pitt-quotability/feature.webp
+card_image: /assets/migrated/brad-pitt-quotability/feature.svg
+hero_image: /assets/migrated/brad-pitt-quotability/feature.svg
 hero_alt: "Black-and-charcoal stencil illustration on a light-grey background showing a tank and a plain soap bar on opposite ends of a seesaw, with the soap side weighed down by quotation marks and one muted-red quote mark beside the tank."
 ---
 
