@@ -2,7 +2,7 @@
 
 ## Status
 
-- Status: Data/story discovery complete; awaiting Adam editorial approval before chart configs/renders
+- Status: Editorial route approved; derived datasets/configs created; branch render/QA in progress
 - Started: 23 September 2026
 - Last updated: 23 September 2026
 - Owner: Adam Green
@@ -92,10 +92,22 @@ Full rationale and QA risks: `content/story_plan.md`.
 | `config/chart_02_*.py` | Chart config | Not created — approval gate |
 | `config/chart_03_*.py` | Chart config | Not created — approval gate |
 
-## Approval gate
+## Build status
 
-The repo workflow gate has been reached.
+Adam approved the recommended editorial route on 23 September 2026.
 
-Do not create chart-specific derived datasets/configs/renders until Adam approves the recommended editorial route in `content/story_plan.md`.
+Created:
+- `data/bowie_chart_01_timeline.csv`
+- `data/bowie_chart_02_style_matrix.csv`
+- `data/bowie_chart_03_style_reset.csv`
+- `scripts/build_story_datasets.py`
+- `config/chart_01_six_decades.py`
+- `config/chart_02_style_matrix.py`
+- `config/chart_03_reinvention_score.py`
 
-PR #65 should remain draft; it does not need to be merged for chart development to continue on the branch.
+Renderer/template improvement:
+- added reusable explicit `x_tick_labels` / `y_tick_labels` support for numeric-position matrix/scatter charts;
+- updated spec, config template, prompt and tests;
+- enabled archived-project rendering on `project/**` branches so charts can be QA'd before merging.
+
+PR #65 remains draft pending rendered-chart QA and Adam's visual review.
