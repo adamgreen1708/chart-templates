@@ -101,9 +101,9 @@ Ocean's recurring-character check:
 - Site post staged at `site/_posts/2026-09-23-fury-started-it-tyler-durden-owns-the-answer.md`.
 - Official chart blobs copied into `site/assets/migrated/brad-pitt-quotability/`.
 - Publication package staged at `content/publication_package.md`.
-- Feature illustration generated for Adam review; exact feature asset is intentionally not committed until approved.
+- Feature artwork committed to the publication branch as `site/assets/migrated/brad-pitt-quotability/feature.svg`.
 - Publication PR must remain draft until the exact feature asset is committed and all site references pass.
 
 ## Next gate
 
-Adam reviews the generated feature illustration. If approved, commit that exact asset as `site/assets/migrated/brad-pitt-quotability/feature.webp`, run final site-reference QA, then mark the publication PR ready for review.
+Run final site-reference QA against the committed SVG feature artwork, then mark the publication PR ready for review.
