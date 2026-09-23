@@ -119,6 +119,19 @@ Supported formats include:
 - Python numeric formats such as `".0f"` and `".1f"`
 - datetime formatter strings such as `"%Y"` when `x_is_datetime` is true
 
+For scatter/matrix charts that use numeric positions for categorical axes, optional explicit tick labels are supported:
+
+```python
+"x_tick_labels": [
+    {"value": 1, "label": "First"}
+],
+"y_tick_labels": [
+    {"value": 1, "label": "Category A"}
+]
+```
+
+Use these only when a numeric plotting position needs a human-readable categorical label. Keep the list compact enough to remain readable on the square canvas.
+
 ## Gridlines
 
 - Horizontal gridlines: on by default.
