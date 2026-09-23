@@ -88,9 +88,17 @@ Full rationale and QA risks: `content/story_plan.md`.
 | `data/david_bowie_style_transitions.csv` | 25 adjacent transitions; 23 scored, 2 explicitly missing | Created |
 | `content/story_plan.md` | Ranked story options and recommended three-chart route | Created |
 | `data/artist_album_spans.csv` | Optional wider-cohort output | Deferred |
-| `config/chart_01_*.py` | Chart config | Not created — approval gate |
-| `config/chart_02_*.py` | Chart config | Not created — approval gate |
-| `config/chart_03_*.py` | Chart config | Not created — approval gate |
+| `data/bowie_chart_01_timeline.csv` | Chart 1 derived chronology | Created |
+| `data/bowie_chart_02_style_matrix.csv` | Chart 2 derived album/style matrix | Created |
+| `data/bowie_chart_03_style_reset.csv` | Chart 3 measurable reset rows | Created |
+| `scripts/build_story_datasets.py` | Rebuild all three derived chart datasets | Created |
+| `config/chart_01_six_decades.py` | Chart 1 locked-renderer config | Created and rendered |
+| `config/chart_02_style_matrix.py` | Chart 2 locked-renderer config | Created and rendered |
+| `config/chart_03_reinvention_score.py` | Chart 3 locked-renderer config | Created and rendered |
+| `output/bowie_01_six_decades.png` | Final Chart 1 render | QA pass |
+| `output/bowie_02_style_matrix.png` | Final Chart 2 render | QA pass |
+| `output/bowie_03_reinvention_score.png` | Final Chart 3 render | QA pass |
+| `content/qa_report.md` | Data, config, renderer and visual QA record | Created |
 
 ## Build status
 
