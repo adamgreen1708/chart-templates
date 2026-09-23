@@ -2,109 +2,79 @@
 
 ## Core question
 
-Can we show, with transparent real data, that David Bowie's long recording career was not simply durable but repeatedly changed musical direction?
+Can we show, with transparent real data, that David Bowie's long recording career was not simply durable but repeatedly changed musical direction — and can we do it without pretending a genre tag is the same thing as creativity?
 
 ## Scope definition
 
-The phrase “over five decades” is ambiguous. For this project, the context cohort means **qualifying studio albums appearing in six or more named calendar decades**.
+The phrase “over five decades” is ambiguous. Bowie’s lifetime solo studio chronology runs from the 1967 debut to *Blackstar* in 2016: a 49-year difference across **six named calendar decades**.
 
-For Bowie, the focus chronology begins with the 1967 debut and ends with *Blackstar* in 2016. That crosses the 1960s, 1970s, 1980s, 1990s, 2000s and 2010s without claiming more than 50 elapsed years.
+The validated focus scope contains **26 studio albums**.
 
-## Primary data route
+Two catalogue decisions matter:
 
-Use MusicBrainz because it gives us:
+- **Include *The Buddha of Suburbia* (1993).** Bowie's official store identifies it as his 19th studio album, even though MusicBrainz also marks it as a soundtrack.
+- **Exclude *Toy* from the lifetime chronology.** Bowie's official archive describes it as previously unreleased; the standalone release arrived in 2022.
 
-- stable artist identifiers;
-- release-group entities that represent the album concept rather than individual reissues;
-- first-release dates;
-- primary/secondary release-group types;
-- genre metadata through `inc=genres`;
-- a public non-commercial API.
+Live albums, compilations, *Peter and the Wolf* and Tin Machine are outside the solo studio-album sequence.
 
-The acquisition script must respect MusicBrainz's one-request-per-second guidance and use a meaningful User-Agent.
+## Source strategy
 
-## Focus-scope validation
+### Chronology and identity
 
-MusicBrainz type metadata is useful but not sufficient on its own to define “David Bowie studio album”.
+Use MusicBrainz for reproducible artist/release-group identity and album dates, then cross-check Bowie-specific edge cases against davidbowie.com.
 
-Before any reset metric is frozen:
+### Style metadata
 
-1. retain only exact Bowie artist-credit album release groups in the raw focus export;
-2. inspect secondary types and collaborations;
-3. cross-check the chronology against the official David Bowie site;
-4. document any manual inclusion/exclusion in the final story plan;
-5. do not silently repair questionable dates or classifications.
+Use **AllMusic album-level Styles** as the primary like-for-like style vocabulary for the reinvention analysis.
 
-This is especially important for catalogue edge cases, posthumous issues and releases whose MusicBrainz primary type alone could make them look like ordinary studio albums.
+Reason: MusicBrainz genre coverage is uneven across the chronology. Mixing missing MusicBrainz genre sets with zeros would create false “no change” observations.
+
+AllMusic currently exposes Styles for 25 of the 26 scoped albums. Its *The Next Day* page exposes no Styles values. MusicBrainz genres for that album are retained only as supplemental context and are **not** mixed into the Jaccard calculation.
 
 ## Reinvention measure
 
-The initial candidate is an adjacent-album genre reset score based on MusicBrainz release-group genres.
+For adjacent albums with AllMusic Styles metadata on both sides:
 
-Possible implementation after inspection:
+- represent each album as its complete observed AllMusic Styles set;
+- calculate Jaccard similarity = intersection / union;
+- define style reset score = `1 - similarity`;
+- retain the introduced and dropped style labels for auditability;
+- leave a transition missing when either side lacks AllMusic Styles.
 
-- represent each album as its observed genre set;
-- calculate Jaccard similarity between each adjacent pair: intersection / union;
-- define reset score as `1 - similarity`;
-- only calculate a pair when both albums meet a minimum genre-coverage threshold;
-- run a sensitivity check using all genres versus a fixed top-N by MusicBrainz genre count.
+This yields 23 measured transitions out of 25.
 
-The score measures **metadata change between adjacent albums**. It does not measure creativity, quality, influence or intent.
+The score measures **metadata turnover between adjacent albums**. It is not an objective creativity, quality or influence score.
 
-## Known QA risks
+## QA findings
 
-- MusicBrainz genres are community tags, not a controlled expert classification.
-- Genre coverage may vary substantially by album and era.
-- Broad tags such as “rock” can make two otherwise different albums look artificially similar.
-- A top-N rule can introduce a different form of arbitrariness.
-- The context cohort is illustrative unless we build an exhaustive population search.
-- Bands and solo artists have different membership/identity dynamics, so the peer chart must be labelled as context, not a league table of “most reinvented”.
-- Tin Machine should not be silently folded into Bowie's solo album chronology; if used, it needs an explicit separate rule.
-- UK chart peaks are optional context only because chart systems and catalogue/reissue behaviour change across eras.
+- The official Bowie catalogue overrides a naive MusicBrainz secondary-type filter for *The Buddha of Suburbia*.
+- *Toy* must not be allowed into the lifetime sequence merely because catalogue databases expose it as an album.
+- AllMusic’s broad umbrella labels are very persistent: Contemporary Pop/Rock appears on 24 of 25 tagged albums, Art Rock on 23 and Experimental Rock on 22.
+- Because broad labels persist, famous musical pivots can receive modest reset scores. That is a property of the taxonomy, not evidence that the pivot did not happen.
+- *The Next Day* remains missing in the AllMusic Styles field, so the two adjacent transitions around it are explicitly missing rather than imputed.
 
-## Provisional story routes to test after acquisition
+## Analytical result
 
-### Route A — The chameleon, measured
+The style-turnover calculation is useful but imperfect:
 
-Core argument: Bowie's six-decade album chronology contains repeated, measurable breaks in genre metadata rather than one long gradual drift.
+- median measured reset: 0.3333;
+- debut -> *Space Oddity*: 0.8889;
+- *Tonight* -> *Never Let Me Down*: 0.7500;
+- *Diamond Dogs* -> *Young Americans*: 0.6667;
+- *Let's Dance* -> *Tonight*: 0.6250;
+- *Scary Monsters* -> *Let's Dance*: 0.6000;
+- *The Buddha of Suburbia* -> *1. Outside*: 0.6000.
 
-Likely sequence:
-1. long-career peer context;
-2. Bowie album genre timeline;
-3. adjacent-album reset score with the sharpest changes annotated.
+The counterexample is editorially valuable: *Station to Station* -> *Low* scores 0.3333 because six broad AllMusic labels remain shared.
 
-Strength: closest to Adam's original idea and gives “reinvention” a transparent definition.
+## Recommended route
 
-Risk: depends on sufficiently complete and stable MusicBrainz genre coverage.
+The strongest first story is now **Bowie-only**:
 
-### Route B — Reinvention came in waves
+1. establish the 26-album, six-decade chronology;
+2. show the style labels appearing/disappearing through the catalogue;
+3. show what happens when we try to reduce reinvention to one simple score.
 
-Core argument: the strongest resets cluster into distinct career phases rather than occurring evenly.
+The wider peer cohort remains useful for a later extension about longevity, but it should not hold up the Bowie story or become an unsupported “most reinvented” ranking.
 
-Likely sequence:
-1. full Bowie chronology;
-2. genre reset score;
-3. decade/era summary showing clusters of high-reset albums.
-
-Strength: more Bowie-focused and potentially a stronger editorial narrative.
-
-Risk: era boundaries must emerge from data or be externally sourced, not invented to fit the chart.
-
-### Route C — Longevity is common; repeated change is the story
-
-Core argument: several peers span many calendar decades, but Bowie's catalogue is interesting because the internal genre profile keeps changing.
-
-Likely sequence:
-1. peer longevity comparison;
-2. Bowie genre breadth/change;
-3. biggest resets.
-
-Strength: makes the comparison cohort useful without pretending it measures artistic reinvention across all artists.
-
-Risk: the peer cohort must stay clearly illustrative.
-
-## Current recommendation
-
-Start with Route A, but do not create chart configs yet.
-
-The next repo step is to run `scripts/build_musicbrainz_dataset.py`, inspect the generated cohort and Bowie genre coverage, then write `content/story_plan.md` using the locked story-discovery flow.
+See `content/story_plan.md` for the approval-ready three-chart editorial sequence.
