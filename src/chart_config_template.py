@@ -54,6 +54,11 @@ CHART_CONFIG = {
     "y_tick_interval": None,
     "y_tick_format": None,
 
+    # Optional explicit tick labels for numeric axes used as categorical positions.
+    # Example: [{"value": 1, "label": "Category A"}]
+    "x_tick_labels": [],
+    "y_tick_labels": [],
+
     # ---------------------------
     # SORTING
     # ---------------------------
