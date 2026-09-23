@@ -36,7 +36,6 @@ CHART_CONFIG = {
         {"value": 14, "label": "1980"},
         {"value": 18, "label": "1993"},
         {"value": 23, "label": "2002"},
-        {"value": 25, "label": "2013"},
         {"value": 26, "label": "2016"}
     ],
     "y_tick_labels": [
@@ -80,12 +79,7 @@ CHART_CONFIG = {
 
     "reference_lines": [],
     "trend_line": {"enabled": False, "color": "#7A7A7A", "linewidth": 1.4, "linestyle": "-", "alpha": 0.8},
-    "highlight_points": [
-        {"title": "Young Americans"},
-        {"title": "Low"},
-        {"title": "Let's Dance"},
-        {"title": "Earthling"}
-    ],
+    "highlight_points": [],
     "annotate_points": [],
     "end_labels": [],
     "label_style": {"enabled": False, "label_col": None, "label_format": "{}", "position": "right", "fontsize": 8},

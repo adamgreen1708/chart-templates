@@ -10,7 +10,7 @@ CHART_CONFIG = {
     "filters": [],
 
     "title": "A reinvention score gets awkward",
-    "subtitle": "Style turnover is measurable for 23 of 25 album-to-album moves — but the labels understate some of Bowie's most famous pivots.",
+    "subtitle": "23 of 25 album-to-album moves are measurable; The Next Day lacks AllMusic Styles. The labels still understate some famous pivots.",
     "source_text": "AllMusic Styles · Jaccard distance",
     "footer_left": "Adam Green | coffeetableviz",
     "story_angle": "metadata_reset_sequence",

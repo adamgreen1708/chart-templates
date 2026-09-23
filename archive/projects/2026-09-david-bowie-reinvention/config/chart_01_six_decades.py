@@ -51,7 +51,7 @@ CHART_CONFIG = {
     "trend_line": {"enabled": False, "color": "#7A7A7A", "linewidth": 1.4, "linestyle": "-", "alpha": 0.8},
     "highlight_points": [{"title": "The Next Day"}],
     "annotate_points": [
-        {"title": "The Next Day", "text": "10-year gap after Reality", "xytext": (-8, -10), "ha": "right", "va": "top", "fontsize": 8, "color": "#C44E52", "fontweight": "bold", "arrowprops": None}
+        {"title": "The Next Day", "text": "10-year gap after Reality", "xytext": (-8, 10), "ha": "right", "va": "bottom", "fontsize": 8, "color": "#C44E52", "fontweight": "bold", "arrowprops": None}
     ],
     "end_labels": [],
     "label_style": {"enabled": False, "label_col": None, "label_format": "{}", "position": "right", "fontsize": 8},
