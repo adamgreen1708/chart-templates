@@ -33,6 +33,8 @@ MIN_SECONDS_BETWEEN_CALLS = 1.1
 MAX_RETRIES = 4
 
 FOCUS_ARTIST = "David Bowie"
+FOCUS_INCLUDE_TITLES = {"The Buddha of Suburbia"}
+FOCUS_EXCLUDE_TITLES = {"Toy", "David Bowie Narrates Prokofiev's Peter and the Wolf"}
 
 # Secondary types that are not ordinary studio-album scope for this project.
 NON_STUDIO_SECONDARY_TYPES = {
@@ -148,14 +150,19 @@ def is_exact_artist_credit(rg: dict[str, Any], artist_mbid: str) -> bool:
     return credited_artists == [artist_mbid]
 
 
-def is_qualifying_album(rg: dict[str, Any], artist_mbid: str) -> bool:
+def is_qualifying_album(rg: dict[str, Any], artist_mbid: str, artist_name: str) -> bool:
     if rg.get("primary-type") != "Album":
         return False
     if not is_exact_artist_credit(rg, artist_mbid):
         return False
 
+    title = (rg.get("title") or "").strip()
+    if artist_name == FOCUS_ARTIST and title in FOCUS_EXCLUDE_TITLES:
+        return False
+
     secondary = set(rg.get("secondary-types") or [])
-    if secondary & NON_STUDIO_SECONDARY_TYPES:
+    focus_override = artist_name == FOCUS_ARTIST and title in FOCUS_INCLUDE_TITLES
+    if secondary & NON_STUDIO_SECONDARY_TYPES and not focus_override:
         return False
 
     first_date = rg.get("first-release-date") or ""
@@ -208,7 +215,7 @@ def main() -> None:
         mbid = artist["id"]
 
         release_groups = browse_album_release_groups(mbid)
-        qualifying = [rg for rg in release_groups if is_qualifying_album(rg, mbid)]
+        qualifying = [rg for rg in release_groups if is_qualifying_album(rg, mbid, name)]
         qualifying.sort(key=lambda rg: (rg.get("first-release-date") or "9999", rg.get("title") or ""))
 
         if not qualifying:
@@ -305,7 +312,7 @@ def main() -> None:
         "cohort_definition": "qualifying studio albums in six or more named calendar decades is the project target; seed cohort remains illustrative until inspected",
         "focus_artist": FOCUS_ARTIST,
         "resolved_artists": resolved,
-        "focus_scope_gate": "Cross-check Bowie chronology against davidbowie.com before derived reinvention metrics.",
+        "focus_scope_gate": "Official Bowie cross-check: include The Buddha of Suburbia; exclude Toy and non-studio spoken/live/compilation material. AllMusic Styles are used for the like-for-like reset metric.",
         "outputs": [
             "data/artist_album_spans.csv",
             "data/david_bowie_album_genres.csv",
