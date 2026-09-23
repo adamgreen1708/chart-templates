@@ -2,7 +2,7 @@
 
 ## Status
 
-- Status: Editorial route approved; derived datasets/configs created; branch render/QA in progress
+- Status: Three charts rendered and QA passed; awaiting Adam visual approval
 - Started: 23 September 2026
 - Last updated: 23 September 2026
 - Owner: Adam Green
@@ -110,4 +110,4 @@ Renderer/template improvement:
 - updated spec, config template, prompt and tests;
 - enabled archived-project rendering on `project/**` branches so charts can be QA'd before merging.
 
-PR #65 remains draft pending rendered-chart QA and Adam's visual review.
+PR #65 remains draft. Final chart QA passed; Adam's visual approval is the remaining gate before the publication package.
