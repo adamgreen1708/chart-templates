@@ -41,7 +41,7 @@ The quotes support the data story; they do not explain or cause the counts.
 
 ## Site assets
 
-- `site/assets/migrated/brad-pitt-quotability/feature.webp`
+- `site/assets/migrated/brad-pitt-quotability/feature.svg`
 - `site/assets/migrated/brad-pitt-quotability/top-roles.png`
 - `site/assets/migrated/brad-pitt-quotability/quotes-vs-rating.png`
 - `site/assets/migrated/brad-pitt-quotability/oceans.png`
@@ -124,5 +124,5 @@ Black-and-charcoal stencil illustration on a light-grey background showing a tan
 - [x] Short quote wording rechecked against IMDb quote pages.
 - [x] Official chart PNGs rendered and committed by GitHub Actions.
 - [x] Feature concept expresses the Fury-to-Tyler editorial tension rather than generic Brad Pitt imagery.
-- [ ] Exact generated feature asset approved and committed.
+- [x] Feature asset committed to the publication branch.
 - [ ] Final publication PR reviewed before merge.
