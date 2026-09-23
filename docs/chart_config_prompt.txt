@@ -190,6 +190,15 @@ For y-axis:
 - leave them as `None` for categorical dot charts unless required;
 - do not force ranges unless they improve the story or prevent clipping.
 
+For matrix/scatter charts that encode categories as numeric positions, use explicit tick labels rather than manual annotation hacks:
+
+```python
+"x_tick_labels": [{"value": 1, "label": "First"}],
+"y_tick_labels": [{"value": 1, "label": "Category A"}],
+```
+
+Leave both lists empty for ordinary charts.
+
 ---
 
 ## SORTING RULES — STRICT
