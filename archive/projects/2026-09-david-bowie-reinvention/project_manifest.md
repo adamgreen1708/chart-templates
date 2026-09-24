@@ -2,9 +2,9 @@
 
 ## Status
 
-- Status: Charts approved; publication package staged; Pages PR build passed; awaiting Adam review before merge
+- Status: Main three-chart package staged; Chart 3 gap refinement and exploratory Chart 4 rendered/QA passed; awaiting Adam final chart-selection review
 - Started: 23 September 2026
-- Last updated: 23 September 2026
+- Last updated: 24 September 2026
 - Owner: Adam Green
 - Repo project slug: `2026-09-david-bowie-reinvention`
 - Working branch: `project/2026-09-david-bowie-reinvention`
@@ -61,6 +61,9 @@ This is a metadata-turnover score, not a creativity/quality/influence score.
 - Art Rock appears on 23 of 25.
 - Experimental Rock appears on 22 of 25.
 - Median measurable adjacent-album reset = 0.3333.
+- Calendar-year gap vs reset score across 23 measurable transitions: Pearson r = 0.3568 (shown as 0.36).
+- The 6-year gap before *Black Tie White Noise* produces a 0.3333 / 33% reset; the highest measured reset, *Space Oddity*, follows a 2-year gap.
+- The 10-year *Reality* → *The Next Day* hiatus cannot be included in that relationship because *The Next Day* has no comparable AllMusic Styles score.
 - Highest reset = 1967 debut -> *Space Oddity* at 0.8889.
 - *Diamond Dogs* -> *Young Americans* = 0.6667.
 - *Scary Monsters* -> *Let's Dance* = 0.6000.
@@ -90,15 +93,18 @@ Full rationale and QA risks: `content/story_plan.md`.
 | `data/artist_album_spans.csv` | Optional wider-cohort output | Deferred |
 | `data/bowie_chart_01_timeline.csv` | Chart 1 derived chronology | Created |
 | `data/bowie_chart_02_style_matrix.csv` | Chart 2 derived album/style matrix | Created |
-| `data/bowie_chart_03_style_reset.csv` | Chart 3 measurable reset rows | Created |
-| `scripts/build_story_datasets.py` | Rebuild all three derived chart datasets | Created |
+| `data/bowie_chart_03_style_reset.csv` | Chart 3 reset rows plus calendar-year gap context | Created |
+| `data/bowie_chart_04_gap_vs_reset.csv` | Chart 4 measurable gap-vs-reset rows | Created |
+| `scripts/build_story_datasets.py` | Rebuild derived Bowie chart datasets | Updated |
 | `config/chart_01_six_decades.py` | Chart 1 locked-renderer config | Created and rendered |
 | `config/chart_02_style_matrix.py` | Chart 2 locked-renderer config | Created and rendered |
-| `config/chart_03_reinvention_score.py` | Chart 3 locked-renderer config | Created and rendered |
+| `config/chart_03_reinvention_score.py` | Chart 3 locked-renderer config with gap labels | Updated and rendered |
+| `config/chart_04_gap_vs_reset.py` | Exploratory Chart 4 scatter config | Created and rendered |
 | `output/bowie_01_six_decades.png` | Final Chart 1 render | QA pass |
 | `output/bowie_02_style_matrix.png` | Final Chart 2 render | QA pass |
-| `output/bowie_03_reinvention_score.png` | Final Chart 3 render | QA pass |
-| `content/qa_report.md` | Data, config, renderer and visual QA record | Created |
+| `output/bowie_03_reinvention_score.png` | Revised Chart 3 render with gap context | QA pass |
+| `output/bowie_04_gap_vs_reset.png` | Exploratory gap-vs-reset scatter | QA pass |
+| `content/qa_report.md` | Data, config, renderer and visual QA record | Updated |
 
 ## Build status
 
@@ -131,3 +137,15 @@ PR #65 remains draft. Final chart QA passed; Adam's visual approval is the remai
 - Feature metaphor: a chameleon stretched across a measuring ruler, expressing the tension between visible reinvention and imperfect measurement.
 - Pages PR build passed in run `35918449198`.
 - PR #65 must remain draft until Adam reviews the exact feature asset and site post.
+
+
+## Gap-analysis extension — 24 September 2026
+
+- Chart 3 now adds the calendar-year gap since the previous album directly to each destination-album label.
+- Same-year album pairs are labelled `same year`.
+- Exploratory Chart 4 asks whether longer release gaps coincide with larger style resets.
+- Across 23 measurable transitions, Pearson `r = 0.3568` (0.36): a modest positive relationship, not a rule.
+- The 6-year wait before *Black Tie White Noise* has only a 33% reset.
+- The 10-year *Reality* → *The Next Day* hiatus is the largest calendar-year gap but cannot be scored and is therefore not plotted in Chart 4.
+- Final extension render/QA: GitHub Actions run `35961245532` — success.
+- Chart 4 remains a spin-off candidate and is not yet included in the live Jekyll article.
