@@ -53,10 +53,10 @@ CHART_CONFIG = {
         {"to_album": "Black Tie White Noise"}
     ],
     "annotate_points": [
-        {"to_album": "Black Tie White Noise", "text": "6y gap · 33% reset", "xytext": (-8, -10), "ha": "right", "va": "top", "fontsize": 8, "color": "#C44E52", "fontweight": "bold", "arrowprops": None},
-        {"to_album": "Space Oddity", "text": "2y gap · 89%", "xytext": (8, -8), "ha": "left", "va": "top", "fontsize": 8, "color": "#1F8FA8", "fontweight": "bold", "arrowprops": None},
-        {"to_album": "Young Americans", "text": "1y · 67%", "xytext": (-8, 8), "ha": "right", "va": "bottom", "fontsize": 8, "color": "#555555", "arrowprops": None},
-        {"to_album": "Low", "text": "1y · 33%", "xytext": (8, -10), "ha": "left", "va": "top", "fontsize": 8, "color": "#555555", "arrowprops": None}
+        {"to_album": "Black Tie White Noise", "text": "Black Tie White Noise · 6y · 33%", "xytext": (-8, -10), "ha": "right", "va": "top", "fontsize": 8, "color": "#C44E52", "fontweight": "bold", "arrowprops": None},
+        {"to_album": "Space Oddity", "text": "Space Oddity · 2y · 89%", "xytext": (8, -8), "ha": "left", "va": "top", "fontsize": 8, "color": "#1F8FA8", "fontweight": "bold", "arrowprops": None},
+        {"to_album": "Young Americans", "text": "Young Americans · 1y · 67%", "xytext": (-8, 8), "ha": "right", "va": "bottom", "fontsize": 8, "color": "#555555", "arrowprops": None},
+        {"to_album": "Low", "text": "Low · 1y · 33%", "xytext": (8, -10), "ha": "left", "va": "top", "fontsize": 8, "color": "#555555", "arrowprops": None}
     ],
     "end_labels": [],
     "label_style": {"enabled": False, "label_col": None, "label_format": "{}", "position": "right", "fontsize": 8},
