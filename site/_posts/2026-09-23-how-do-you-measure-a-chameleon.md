@@ -5,7 +5,7 @@ slug: how-do-you-measure-a-chameleon
 permalink: /2026/09/23/how-do-you-measure-a-chameleon/
 description: "David Bowie released 26 lifetime solo studio albums across six named decades. A simple style-reset score shows repeated change — and the limits of trying to measure reinvention."
 category: Music
-read_time: 4 minute read
+read_time: 5 minute read
 card_image: /assets/migrated/david-bowie-reinvention/feature.svg
 hero_image: /assets/migrated/david-bowie-reinvention/feature.svg
 hero_alt: "Black-and-charcoal stencil chameleon stretched across a measuring ruler on a light-grey background, with segmented body tones suggesting change and one muted-red measurement mark breaking the regular scale."
@@ -104,6 +104,29 @@ It shows a catalogue that repeatedly changes its descriptive vocabulary.
 
 And it shows the limit of pretending those labels are the same thing as the art.
 
+## More time doesn't guarantee a bigger reset
+
+One obvious follow-up question is whether bigger gaps between albums tend to mean bigger stylistic resets.
+
+Sometimes they do. But not reliably.
+
+Across the **23 measurable transitions**, the relationship between calendar-year gap and style reset is only **modest: Pearson r = 0.36**.
+
+That is enough to suggest some association, but nowhere near enough to say that time away automatically leads to reinvention.
+
+<figure class="story-chart full-bleed">
+  <img src="{{ '/assets/migrated/david-bowie-reinvention/gap-vs-reset.png' | relative_url }}" alt="Scatter plot of calendar-year gap since the previous David Bowie studio album against style-reset score for 23 measurable album transitions. A light upward trend line corresponds to Pearson r of 0.36. Space Oddity is labelled at a 2-year gap and 89% reset; Black Tie White Noise is highlighted at a 6-year gap and 33% reset. The 10-year Reality to The Next Day gap is not plotted because The Next Day lacks a comparable reset score." loading="lazy">
+  <figcaption>Longer calendar-year gaps are only modestly associated with bigger style resets. <em>Black Tie White Noise</em> follows a six-year gap but lands at just 33%, while <em>Space Oddity</em> reaches 89% after two years.</figcaption>
+</figure>
+
+The exceptions are the useful part.
+
+The biggest measured reset in the catalogue is the 1967 debut → *Space Oddity*, which follows only a **2-year gap**. By contrast, *Black Tie White Noise* arrives after a **6-year gap** and scores only **33%**.
+
+There is also one important hole in the picture. Bowie's longest studio-album hiatus — **10 calendar years**, from *Reality* (2003) to *The Next Day* (2013) — cannot be plotted here because *The Next Day* has no comparable AllMusic Styles metadata.
+
+So time away helps as context, but it does not explain reinvention on its own.
+
 ## TLDR
 
 David Bowie released **26 lifetime solo studio albums** from 1967 to 2016, spanning **six named calendar decades**.
@@ -111,6 +134,8 @@ David Bowie released **26 lifetime solo studio albums** from 1967 to 2016, spann
 Distinctive style labels repeatedly enter, disappear and return across the catalogue. A simple adjacent-album reset score captures some of that movement, with the debut → *Space Oddity* transition scoring **89%**.
 
 But *Station to Station* → *Low* scores only **33%** because broad labels remain shared.
+
+Longer gaps help a bit, but only a bit: across the 23 measurable transitions, the gap/reset relationship is **modest (r = 0.36)** rather than decisive.
 
 The score is useful.
 
