@@ -150,5 +150,5 @@ Black-and-charcoal stencil chameleon stretched across a measuring ruler on a lig
 - [x] Feature concept expresses the approved “measure a chameleon” tension rather than generic Bowie/music imagery.
 - [x] Feature asset uses the locked `#F3F4F6` background and one muted-red accent.
 - [x] No Bowie likeness, logos or album artwork are used.
-- [x] GitHub Pages PR build passes after publication staging (run `35918449198`).
+- [x] GitHub Pages/Jekyll build passes with Chart 4 included (run `35963834037`).
 - [ ] Adam reviews the exact feature asset and site post before merge.
