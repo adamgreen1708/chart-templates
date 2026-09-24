@@ -1,0 +1,24 @@
+from_album,to_album,display_album,from_year,to_year,year_gap,style_reset_score,reset_percent
+David Bowie,Space Oddity,Space Oddity,1967,1969,2,0.8889,88.9
+Space Oddity,The Man Who Sold the World,The Man Who Sold the World,1969,1970,1,0.5556,55.6
+The Man Who Sold the World,Hunky Dory,Hunky Dory,1970,1971,1,0.3333,33.3
+Hunky Dory,The Rise and Fall of Ziggy Stardust and the Spiders from Mars,Ziggy Stardust,1971,1972,1,0.2222,22.2
+The Rise and Fall of Ziggy Stardust and the Spiders from Mars,Aladdin Sane,Aladdin Sane,1972,1973,1,0.1250,12.5
+Aladdin Sane,Pin Ups,Pin Ups,1973,1973,0,0.0000,0.0
+Pin Ups,Diamond Dogs,Diamond Dogs,1973,1974,1,0.1429,14.3
+Diamond Dogs,Young Americans,Young Americans,1974,1975,1,0.6667,66.7
+Young Americans,Station to Station,Station to Station,1975,1976,1,0.1429,14.3
+Station to Station,Low,Low,1976,1977,1,0.3333,33.3
+Low,Heroes,Heroes,1977,1977,0,0.0000,0.0
+Heroes,Lodger,Lodger,1977,1979,2,0.1250,12.5
+Lodger,Scary Monsters,Scary Monsters,1979,1980,1,0.1250,12.5
+Scary Monsters,Let's Dance,Let's Dance,1980,1983,3,0.6000,60.0
+Let's Dance,Tonight,Tonight,1983,1984,1,0.6250,62.5
+Tonight,Never Let Me Down,Never Let Me Down,1984,1987,3,0.7500,75.0
+Never Let Me Down,Black Tie White Noise,Black Tie White Noise,1987,1993,6,0.3333,33.3
+Black Tie White Noise,The Buddha of Suburbia,Buddha of Suburbia,1993,1993,0,0.5000,50.0
+The Buddha of Suburbia,1. Outside,1. Outside,1993,1995,2,0.6000,60.0
+1. Outside,Earthling,Earthling,1995,1997,2,0.5714,57.1
+Earthling,Hours,Hours,1997,1999,2,0.3750,37.5
+Hours,Heathen,Heathen,1999,2002,3,0.5714,57.1
+Heathen,Reality,Reality,2002,2003,1,0.2000,20.0
