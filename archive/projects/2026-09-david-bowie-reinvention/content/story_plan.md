@@ -86,7 +86,20 @@ The metric also exposes a limitation that is editorially useful: the famous *Sta
 - **Data needed:** `david_bowie_style_transitions.csv`.
 - **Key stat:** 23 measurable transitions; median reset 0.3333. The largest is debut -> *Space Oddity* at 0.8889, while *Station to Station* -> *Low* is only 0.3333.
 - **Why this chart matters:** it gives us the Bowie story and the data-story punchline. Reinvention is visible, but taxonomy is not artistic truth.
+- **Context refinement:** each destination-album label now adds the calendar-year gap since the previous album (for example, `Low · 1y`, `Black Tie White Noise · 6y`, `The Next Day · 10y`). Same-year releases are labelled `same year`.
 - **Potential issue / QA risk:** the two transitions involving *The Next Day* must be shown as explicit missing-data rows rather than zero. They sit in a small grey gutter left of the 0% tick so the full 25-transition chronology remains visible without inventing values.
+
+### Chart 4 — More time doesn't guarantee a bigger reset — spin-off candidate
+
+- **Role:** Exploratory follow-on, not yet part of the main three-chart article.
+- **Story question:** Do longer calendar-year gaps between Bowie studio albums tend to coincide with bigger style resets?
+- **Chart type:** scatter plot with a light linear trend line.
+- **Data needed:** the 23 measurable reset transitions with `year_gap = to_year - from_year`.
+- **Key result:** Pearson `r = 0.3568` (shown as 0.36), a modest positive relationship rather than a strong rule.
+- **Useful counterexample:** *Black Tie White Noise* follows a 6-year calendar gap but has only a 33% reset, while *Space Oddity* has the largest measured reset at 89% after a 2-year gap.
+- **Missing-data caveat:** the catalogue's largest gap, *Reality* (2003) → *The Next Day* (2013), is 10 calendar years but cannot be plotted because *The Next Day* lacks comparable AllMusic Styles.
+- **Interpretation:** time away is useful context, but it does not explain reinvention on its own.
+- **Measurement note:** these are differences between release years, not exact elapsed time between release dates.
 
 ## Recommended story route
 
@@ -96,4 +109,4 @@ The metric also exposes a limitation that is editorially useful: the famous *Sta
 
 Adam approved the editorial route. The three chart datasets/configs have been built and rendered. Chart 3 was subsequently refined so its full 25-transition chronology remains visible, including two explicit missing-data rows around *The Next Day*.
 
-The remaining gate is Adam's visual approval before the publication package and feature artwork are prepared.
+The main three-chart publication package remains staged. Chart 3 has been refined with calendar-year gap labels, and exploratory Chart 4 has been rendered and QA'd as a spin-off candidate. Adam's decision on whether Chart 4 belongs in the published article is the remaining editorial gate for this extension.
