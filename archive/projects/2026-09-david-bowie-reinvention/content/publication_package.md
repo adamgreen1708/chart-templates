@@ -21,7 +21,10 @@ David Bowie released 26 lifetime solo studio albums across six named decades. A 
    Distinctive AllMusic style tags appear, disappear and return across the album sequence.
 
 3. **A reinvention score gets awkward.**  
-   Twenty-six albums create 25 album-to-album moves. Twenty-three can be scored consistently; the two moves touching *The Next Day* remain explicit missing-data rows.
+   Twenty-six albums create 25 album-to-album moves. Twenty-three can be scored consistently; the two moves touching *The Next Day* remain explicit missing-data rows. Album labels also show the calendar-year gap since the previous release.
+
+4. **More time doesn't guarantee a bigger reset.**  
+   Across the 23 measurable transitions, calendar-year gap and style reset have a modest positive relationship (Pearson r = 0.36). The 6-year gap before *Black Tie White Noise* produces only a 33% reset, while *Space Oddity* reaches 89% after a 2-year gap.
 
 ## Site post
 
@@ -33,6 +36,7 @@ David Bowie released 26 lifetime solo studio albums across six named decades. A 
 - `site/assets/migrated/david-bowie-reinvention/six-decades.png`
 - `site/assets/migrated/david-bowie-reinvention/style-matrix.png`
 - `site/assets/migrated/david-bowie-reinvention/reinvention-score.png`
+- `site/assets/migrated/david-bowie-reinvention/gap-vs-reset.png`
 
 ## Blog excerpt
 
@@ -60,7 +64,7 @@ That is where the chart gets more interesting than the ranking.
 
 Broad labels survive across very different records, so a tidy taxonomy can flatten a messy artistic shift. The data still shows movement — it just cannot become the art.
 
-Three charts, one slightly awkward metric, and a David Bowie catalogue that remains difficult to pin down.
+Four charts, one slightly awkward metric, and a David Bowie catalogue that remains difficult to pin down.
 
 Full story on **coffeetableviz.com**.
 
@@ -106,9 +110,15 @@ New on coffeetableviz.com.
 
 ### Chart 3 — A reinvention score gets awkward
 
-**Caption:** Twenty-six albums create 25 transitions. Twenty-three have comparable style data; the two moves involving *The Next Day* are shown as grey missing-data rows rather than zero scores.
+**Caption:** Twenty-six albums create 25 transitions. Album labels add the calendar-year gap since the previous release; 23 have comparable style data and the two moves involving *The Next Day* remain grey missing-data rows.
 
-**Alt text:** Dot plot showing style-reset scores for 25 album-to-album moves in David Bowie's solo studio catalogue. Twenty-three transitions have measured scores; The Next Day and Blackstar are retained as grey missing-data rows because The Next Day lacks comparable AllMusic Styles metadata. Space Oddity has the largest measured reset at 89%, while Low is highlighted at 33%.
+**Alt text:** Dot plot showing style-reset scores for 25 album-to-album moves in David Bowie's solo studio catalogue. Each destination album label includes the calendar-year gap since the previous album. Twenty-three transitions have measured scores; The Next Day at a 10-year gap and Blackstar at a 3-year gap are retained as grey missing-data rows because The Next Day lacks comparable AllMusic Styles metadata. Space Oddity has the largest measured reset at 89% after a 2-year gap, while Low is highlighted at 33% after a 1-year gap.
+
+### Chart 4 — More time doesn't guarantee a bigger reset
+
+**Caption:** Longer calendar-year gaps are only modestly associated with bigger style resets. *Black Tie White Noise* follows a six-year gap but lands at just 33%, while *Space Oddity* reaches 89% after two years.
+
+**Alt text:** Scatter plot of calendar-year gap since the previous David Bowie studio album against style-reset score for 23 measurable album transitions. A light upward trend line corresponds to Pearson r of 0.36. Space Oddity is labelled at a 2-year gap and 89% reset; Black Tie White Noise is highlighted at a 6-year gap and 33% reset. The 10-year Reality to The Next Day gap is not plotted because The Next Day lacks a comparable reset score.
 
 ## Feature-image metaphor
 
@@ -131,6 +141,10 @@ Black-and-charcoal stencil chameleon stretched across a measuring ruler on a lig
 - [x] Final chart set visually approved by Adam.
 - [x] 26-album lifetime solo studio scope retained.
 - [x] Chart 3 shows all 25 possible transitions: 23 measured plus two explicit missing-data rows.
+- [x] Chart 3 labels add calendar-year gap context without changing the reset metric.
+- [x] Chart 4 is included in the live article using the approved rendered scatter.
+- [x] Chart 4 relationship independently reproduced as Pearson r = 0.3568 and displayed as 0.36.
+- [x] The 10-year Reality → The Next Day hiatus is explicitly disclosed as unscored and absent from the scatter.
 - [x] First album is correctly treated as the baseline rather than given a fake reset score.
 - [x] Site chart assets are byte-for-byte copies of the approved project PNGs.
 - [x] Feature concept expresses the approved “measure a chameleon” tension rather than generic Bowie/music imagery.
