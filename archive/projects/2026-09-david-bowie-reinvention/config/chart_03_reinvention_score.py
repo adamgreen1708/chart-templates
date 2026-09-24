@@ -21,7 +21,7 @@ CHART_CONFIG = {
     "x_is_datetime": False,
     "x_tick_rotation": 0,
     "x_label": "Style reset score · higher means less overlap",
-    "y_label": "Destination album · calendar-year gap",
+    "y_label": "Album · year gap",
     "x_margin": 0.04,
     "x_axis": {"min": -0.06, "max": 1.0, "tick_interval": 0.25, "format": "percent"},
     "y_axis": {"min": None, "max": None, "tick_interval": None, "format": None},
