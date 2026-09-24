@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the three chart-specific Bowie datasets from the validated source files."""
+"""Build the Bowie story datasets from the validated source files."""
 
 from __future__ import annotations
 
@@ -76,7 +76,10 @@ def main() -> None:
 
     matrix = []
     for album in albums:
-        for style in sorted(style_sets[int(album["sequence"])], key=lambda s: style_order.get(s, 999)):
+        for style in sorted(
+            style_sets[int(album["sequence"])],
+            key=lambda s: style_order.get(s, 999),
+        ):
             if style in BROAD_CONTEXT_STYLES:
                 continue
             matrix.append({
@@ -97,6 +100,10 @@ def main() -> None:
     for row in transitions:
         missing = row["analysis_status"] != "calculated"
         reset = None if missing else float(row["style_reset_score"])
+        gap = int(row["to_year"]) - int(row["from_year"])
+        gap_display = "same year" if gap == 0 else f"{gap}y"
+        display_album = SHORT_TITLE.get(row["to_album"], row["to_album"])
+
         reset_rows.append({
             "from_sequence": int(row["from_sequence"]),
             "to_sequence": int(row["to_sequence"]),
@@ -104,7 +111,10 @@ def main() -> None:
             "to_year": int(row["to_year"]),
             "from_album": row["from_album"],
             "to_album": row["to_album"],
-            "display_album": SHORT_TITLE.get(row["to_album"], row["to_album"]),
+            "display_album": display_album,
+            "year_gap": gap,
+            "gap_display": gap_display,
+            "display_album_with_gap": f"{display_album} · {gap_display}",
             "style_reset_score": "" if missing else f"{reset:.4f}",
             "reset_percent": "" if missing else f"{reset * 100:.1f}",
             # Missing rows are deliberately placed in a small non-data gutter
@@ -114,21 +124,48 @@ def main() -> None:
             "analysis_status": row["analysis_status"],
             "missing_note": "No comparable Styles data" if missing else "",
         })
+
     write_csv(
         DATA_DIR / "bowie_chart_03_style_reset.csv",
         reset_rows,
         [
             "from_sequence", "to_sequence", "from_year", "to_year",
             "from_album", "to_album", "display_album",
+            "year_gap", "gap_display", "display_album_with_gap",
             "style_reset_score", "reset_percent", "plot_position",
             "analysis_status", "missing_note",
         ],
     )
 
-    measurable = sum(r["analysis_status"] == "calculated" for r in reset_rows)
+    scatter_rows = [
+        {
+            "from_album": row["from_album"],
+            "to_album": row["to_album"],
+            "display_album": row["display_album"],
+            "from_year": row["from_year"],
+            "to_year": row["to_year"],
+            "year_gap": row["year_gap"],
+            "style_reset_score": row["style_reset_score"],
+            "reset_percent": row["reset_percent"],
+        }
+        for row in reset_rows
+        if row["analysis_status"] == "calculated"
+    ]
+    write_csv(
+        DATA_DIR / "bowie_chart_04_gap_vs_reset.csv",
+        scatter_rows,
+        [
+            "from_album", "to_album", "display_album",
+            "from_year", "to_year", "year_gap",
+            "style_reset_score", "reset_percent",
+        ],
+    )
+
+    measurable = len(scatter_rows)
     print(
         f"Wrote {len(timeline)} timeline rows, {len(matrix)} matrix rows, "
-        f"and {len(reset_rows)} reset rows ({measurable} measurable)."
+        f"{len(reset_rows)} reset rows ({measurable} measurable), "
+        f"and {len(scatter_rows)} gap-vs-reset rows."
     )
 
 

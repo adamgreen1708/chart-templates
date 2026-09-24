@@ -78,8 +78,8 @@ Twenty-six albums create **25 possible album-to-album moves**. The debut itself 
 AllMusic currently exposes comparable Styles data for 25 of the 26 albums. *The Next Day* is the exception, so the two moves touching it cannot be scored consistently. They stay in the chart as grey missing-data rows rather than being quietly turned into zero.
 
 <figure class="story-chart full-bleed">
-  <img src="{{ '/assets/migrated/david-bowie-reinvention/reinvention-score.png' | relative_url }}" alt="Dot plot showing style-reset scores for 25 album-to-album moves in David Bowie's solo studio catalogue. Twenty-three transitions have measured scores; The Next Day and Blackstar are retained as grey missing-data rows because The Next Day lacks comparable AllMusic Styles metadata. Space Oddity has the largest measured reset at 89%, while Low is highlighted at 33%." loading="lazy">
-  <figcaption>Twenty-six albums create 25 transitions. Twenty-three have comparable style data; the two moves involving <em>The Next Day</em> are shown as grey missing-data rows rather than zero scores.</figcaption>
+  <img src="{{ '/assets/migrated/david-bowie-reinvention/reinvention-score.png' | relative_url }}" alt="Dot plot showing style-reset scores for 25 album-to-album moves in David Bowie's solo studio catalogue. Each destination album label includes the calendar-year gap since the previous album. Twenty-three transitions have measured scores; The Next Day at a 10-year gap and Blackstar at a 3-year gap are retained as grey missing-data rows because The Next Day lacks comparable AllMusic Styles metadata. Space Oddity has the largest measured reset at 89% after a 2-year gap, while Low is highlighted at 33% after a 1-year gap." loading="lazy">
+  <figcaption>Twenty-six albums create 25 transitions. Album labels add the calendar-year gap since the previous release; 23 have comparable style data and the two moves involving <em>The Next Day</em> remain grey missing-data rows.</figcaption>
 </figure>
 
 The largest measured reset is the 1967 debut → *Space Oddity* at **89%**.

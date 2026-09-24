@@ -6,7 +6,7 @@ Status: **PASS — ready for Adam visual review**
 
 GitHub Actions render:
 - workflow: `Render archived project`
-- final QA run: `35915620376`
+- final extension QA run: `35961245532`
 - conclusion: success
 - branch: `project/2026-09-david-bowie-reinvention`
 
@@ -112,26 +112,53 @@ Final render:
 
 ### Chart 3 — A reinvention score gets awkward
 
-PASS after final missing-data / axis refinement.
+PASS after release-gap context refinement.
 
-Final QA render:
-- GitHub Actions run `35917018118`
+Final extension QA render:
+- GitHub Actions run `35961245532`
 - conclusion: success
 
 Checks:
 - all 25 destination-album rows are shown;
 - 23 rows carry measured reset scores;
-- *The Next Day* and *Blackstar* are retained as grey missing-data rows;
+- each album label now includes the calendar-year gap since the previous release;
+- same-year releases are labelled `same year` rather than `0y`;
+- *The Next Day · 10y* and *Blackstar · 3y* remain grey missing-data rows;
 - the two missing rows sit in a small non-data gutter left of 0%, so they cannot be read as zero reset scores;
 - x-axis begins at -0.06 internally, while visible labelled ticks remain 0–100%;
-- exact-zero measured dots now have breathing room and are not clipped;
+- exact-zero measured dots retain breathing room and are not clipped;
 - median reference line remains readable;
 - Space Oddity and Low annotations remain inside safe margins;
+- labels remain readable on the locked 8 × 8 canvas;
 - source/footer visible.
+
+### Chart 4 — More time doesn't guarantee a bigger reset
+
+PASS — exploratory spin-off.
+
+Data checks:
+- 23 measurable transitions plotted;
+- x-axis uses calendar-year difference (`to_year - from_year`), not exact elapsed release-date intervals;
+- Pearson correlation independently reproduced as `r = 0.3568`, displayed as 0.36;
+- the 10-year *Reality* → *The Next Day* gap is excluded from the scatter because no comparable reset score exists;
+- *Black Tie White Noise* = 6-year gap / 33% reset;
+- *Space Oddity* = 2-year gap / 89% reset.
+
+Visual checks:
+- final render from run `35961245532` succeeded;
+- 0% reset and same-year observations have axis breathing room;
+- trend line is visible but subordinate to the points;
+- four selected annotations include album names, gap and reset;
+- no annotation or title clipping;
+- source/footer visible.
+
+Editorial check:
+- the chart supports a modest positive association, not a causal claim;
+- the 6-year / 33% counterexample and unscored 10-year hiatus prevent a simplistic “more time means more reinvention” reading.
 
 ## Editorial QA
 
-The three charts form one connected argument:
+The main three charts form one connected argument:
 
 1. longevity: 26 albums across six named decades;
 2. stylistic movement: distinctive labels repeatedly enter and leave;
@@ -139,8 +166,8 @@ The three charts form one connected argument:
 
 The charts do not claim that the reset metric measures creativity, quality, influence or Bowie's intent.
 
+Chart 4 is retained as an exploratory spin-off candidate. It is not yet part of the live-site story.
+
 ## Remaining gate
 
-Adam visual approval.
-
-Do not merge PR #65 or start the live-site publication package until Adam approves the rendered chart set.
+Adam review of the Chart 3 gap-label refinement and the Chart 4 spin-off. The live-site publication package is already staged in draft PR #65; do not merge until Adam confirms the final chart selection.
