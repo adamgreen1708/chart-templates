@@ -2,7 +2,7 @@
 
 ## Status
 
-- Status: Story route selected; published aggregate metrics transcribed; three chart configs staged for render/QA
+- Status: Three-chart first build rendered and QA passed; draft PR ready for Adam visual/editorial review
 - Started: 25 September 2026
 - Last updated: 25 September 2026
 - Owner: Adam Green
@@ -74,11 +74,11 @@ Full rationale and QA risks: `content/story_plan.md`.
 | `config/chart_01_invented_things.py` | Part-of-speech chart config | Created |
 | `config/chart_02_sound_system.py` | Rhyme/alliteration chart config | Created |
 | `config/chart_03_z_signature.py` | Z-frequency comparison chart config | Created |
-| `output/` | Rendered chart PNGs | Pending workflow render |
-| `content/qa_report.md` | Render/data QA record | Pending render QA |
+| `output/` | Three rendered chart PNGs | QA pass |
+| `content/qa_report.md` | Render/data QA record | Created; QA pass |
 
 ## Build decision
 
 No renderer or reusable template change is currently required. The existing locked square 538 renderer supports the proposed horizontal bar and dot charts directly.
 
-Live coffeetableviz.com publication is not part of this first build stage. The project should reach chart QA and Adam review before a Jekyll publication package or feature image is created.
+The three-chart first build has passed data, config and visual QA. Live coffeetableviz.com publication remains deliberately out of scope until Adam approves the editorial direction and exact chart renders; no Jekyll post or feature image has been created.
