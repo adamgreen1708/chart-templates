@@ -74,34 +74,54 @@ def parse_characters(value):
         return [value]
 
 
-def exact_person(person_name):
+def exact_person(person_name, expected_nconst=None, birth_year=None):
     matches = [
         row for row in stream_tsv(FILES["names"])
         if row["primaryName"].casefold() == person_name.casefold()
     ]
-    if len(matches) != 1:
-        candidates = [
-            {
-                "nconst": row["nconst"],
-                "primaryName": row["primaryName"],
-                "birthYear": row["birthYear"],
-                "primaryProfession": row["primaryProfession"],
-                "knownForTitles": row["knownForTitles"],
-            }
-            for row in matches
-        ]
+
+    candidates = [
+        {
+            "nconst": row["nconst"],
+            "primaryName": row["primaryName"],
+            "birthYear": row["birthYear"],
+            "primaryProfession": row["primaryProfession"],
+            "knownForTitles": row["knownForTitles"],
+        }
+        for row in matches
+    ]
+
+    filtered = matches
+    if expected_nconst:
+        filtered = [row for row in filtered if row["nconst"] == expected_nconst]
+    if birth_year:
+        filtered = [row for row in filtered if row["birthYear"] == str(birth_year)]
+
+    if len(filtered) != 1:
         raise ValueError(
-            f"Expected one exact match for {person_name!r}; candidates={candidates}"
+            "Could not resolve exactly one verified person for "
+            f"{person_name!r}; expected_nconst={expected_nconst!r}; "
+            f"birth_year={birth_year!r}; candidates={candidates}"
         )
-    return matches[0]
+
+    person = filtered[0]
+    if person["primaryName"].casefold() != person_name.casefold():
+        raise ValueError(
+            f"Resolved nconst {person['nconst']} does not match name {person_name!r}"
+        )
+    return person
 
 
 def directors_from_row(row):
     return [value for value in normal(row.get("directors")).split(",") if value]
 
 
-def acquire(person_name):
-    person = exact_person(person_name)
+def acquire(person_name, expected_nconst=None, birth_year=None):
+    person = exact_person(
+        person_name,
+        expected_nconst=expected_nconst,
+        birth_year=birth_year,
+    )
 
     principals = [
         row for row in stream_tsv(FILES["principals"])
@@ -360,6 +380,8 @@ def validation_report(bundle, joined, audit, min_votes):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--person", default="Mel Gibson")
+    parser.add_argument("--expected-nconst", default="nm0000154")
+    parser.add_argument("--birth-year", type=int, default=1956)
     parser.add_argument("--min-votes", type=int, default=1000)
     parser.add_argument(
         "--output-dir",
@@ -370,7 +392,11 @@ def main():
     args.output_dir.mkdir(parents=True, exist_ok=True)
 
     accessed_at = datetime.now(timezone.utc).isoformat()
-    bundle = acquire(args.person)
+    bundle = acquire(
+        args.person,
+        expected_nconst=args.expected_nconst,
+        birth_year=args.birth_year,
+    )
     joined, audit = build_outputs(bundle, args.output_dir, args.min_votes)
 
     metadata = {
