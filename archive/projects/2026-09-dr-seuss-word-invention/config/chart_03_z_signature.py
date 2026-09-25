@@ -10,7 +10,7 @@ CHART_CONFIG = {
     "filters": [{"column": "metric", "operator": "==", "value": "z_letter_share"}],
 
     "title": "Z does much more work in Seuss",
-    "subtitle": "Z is 4.42% of letters in the nonce-word sample versus 0.10% in the 3,000-common-word comparison — 44.2× as much.",
+    "subtitle": "Z is 4.42% of letters in the invented-word sample versus 0.10% in the 3,000-common-word comparison — 44.2× as much.",
     "source_text": "Source: Teuber (2018)",
     "footer_left": "Adam Green | coffeetableviz",
     "story_angle": "ranked_comparison",
@@ -49,7 +49,7 @@ CHART_CONFIG = {
 
     "reference_lines": [],
     "trend_line": {"enabled": False, "color": "#7A7A7A", "linewidth": 1.4, "linestyle": "-", "alpha": 0.8},
-    "highlight_points": [{"category": "Dr Seuss nonce words"}],
+    "highlight_points": [{"category": "Dr Seuss invented words"}],
     "annotate_points": [],
     "end_labels": [],
     "label_style": {"enabled": True, "label_col": "value", "label_format": "{:.2%}", "position": "right", "fontsize": 9},

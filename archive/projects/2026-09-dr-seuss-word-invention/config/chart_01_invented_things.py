@@ -10,7 +10,7 @@ CHART_CONFIG = {
     "filters": [{"column": "metric", "operator": "==", "value": "part_of_speech_share"}],
 
     "title": "Seuss mostly invented things",
-    "subtitle": "Common and proper nouns make up 88% of the 377-word nonce sample; verbs account for just 3%.",
+    "subtitle": "Common and proper nouns make up 88% of the 377 invented words in the sample; verbs account for just 3%.",
     "source_text": "Source: Teuber (2018)",
     "footer_left": "Adam Green | coffeetableviz",
     "story_angle": "ranked_comparison",
@@ -20,7 +20,7 @@ CHART_CONFIG = {
 
     "x_is_datetime": False,
     "x_tick_rotation": 0,
-    "x_label": "Share of sampled nonce words",
+    "x_label": "Share of sampled invented words",
     "y_label": "",
     "x_margin": 0.04,
     "x_axis": {"min": 0, "max": 0.70, "tick_interval": 0.10, "format": "percent"},

@@ -10,7 +10,7 @@ CHART_CONFIG = {
     "filters": [{"column": "metric", "operator": "==", "value": "sound_influence_share"}],
 
     "title": "The nonsense follows the sound",
-    "subtitle": "Rhyme and/or alliteration influence roughly 84% of the 377 sampled coinages.",
+    "subtitle": "Rhyme and/or alliteration influence roughly 84% of the 377 invented words in the sample.",
     "source_text": "Source: Teuber (2018)",
     "footer_left": "Adam Green | coffeetableviz",
     "story_angle": "ranked_comparison",
@@ -20,7 +20,7 @@ CHART_CONFIG = {
 
     "x_is_datetime": False,
     "x_tick_rotation": 0,
-    "x_label": "Share of sampled nonce words",
+    "x_label": "Share of sampled invented words",
     "y_label": "",
     "x_margin": 0.04,
     "x_axis": {"min": 0, "max": 0.55, "tick_interval": 0.10, "format": "percent"},
@@ -49,7 +49,7 @@ CHART_CONFIG = {
 
     "reference_lines": [],
     "trend_line": {"enabled": False, "color": "#7A7A7A", "linewidth": 1.4, "linestyle": "-", "alpha": 0.8},
-    "highlight_points": [{"category": "Rhyme only"}],
+    "highlight_points": [],
     "annotate_points": [],
     "end_labels": [],
     "label_style": {"enabled": True, "label_col": "value", "label_format": "{:.0%}", "position": "right", "fontsize": 9},
