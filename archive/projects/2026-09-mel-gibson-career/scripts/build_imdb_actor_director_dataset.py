@@ -4,6 +4,8 @@
 Large IMDb gzip files are streamed over HTTPS and never stored in the repo.
 The analytical output keeps principal acting credits and feature-film directing
 credits in one row-per-title dataset so the career lanes can be compared.
+
+Designed to run locally or through the reusable archived IMDb career-data workflow.
 """
 
 import argparse
