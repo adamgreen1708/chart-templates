@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Acquisition rerun marker: 2026-09-25 network retry
 """Build a reproducible Mel Gibson acting + directing movie dataset from IMDb.
 
 Large IMDb gzip files are streamed over HTTPS and never stored in the repo.
