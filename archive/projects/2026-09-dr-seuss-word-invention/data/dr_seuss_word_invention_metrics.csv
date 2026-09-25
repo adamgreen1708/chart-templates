@@ -1,0 +1,13 @@
+metric,category,value,sample_size,unit,source_key,source_note
+part_of_speech_share,Common noun,0.61,377,share,teuber2018,Published rounded percentage
+part_of_speech_share,Proper noun,0.27,377,share,teuber2018,Published rounded percentage
+part_of_speech_share,Adjective,0.05,377,share,teuber2018,Published rounded percentage
+part_of_speech_share,Interjection,0.04,377,share,teuber2018,Published rounded percentage
+part_of_speech_share,Verb,0.03,377,share,teuber2018,Published rounded percentage
+sound_influence_share,Rhyme only,0.48,377,share,teuber2018,Figure 4 published rounded percentage
+sound_influence_share,Rhyme + alliteration,0.19,377,share,teuber2018,Figure 4 published rounded percentage
+sound_influence_share,Alliteration only,0.17,377,share,teuber2018,Figure 4 published rounded percentage
+sound_influence_share,Neither,0.16,377,share,teuber2018,Figure 4 published rounded percentage
+z_letter_share,Dr Seuss nonce words,0.0442,2556,share_of_letters,teuber2018,377 words and 2556 letters
+z_letter_share,"Top 1,000 US surnames",0.0102,,share_of_letters,teuber2018,Paper reports roughly 6000 tokens in comparison list
+z_letter_share,"3,000 common English words",0.0010,,share_of_letters,teuber2018,Paper reports roughly 19000 tokens in comparison list
