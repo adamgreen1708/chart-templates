@@ -1,0 +1,42 @@
+tconst,title,title_type,year,rating,votes,acted,directed,reason
+tt0076780,Summer City,movie,1977,3.9,852,1,0,votes_below_1000
+tt0081920,Punishment,tvSeries,1981,6.5,137,1,0,title_type:tvSeries | votes_below_1000
+tt0289172,Earth and the American Dream,tvMovie,1992,6.7,130,1,0,title_type:tvMovie | votes_below_1000
+tt0290161,The Chili Con Carne Club,short,1993,4.4,208,1,0,title_type:short | votes_below_1000
+tt0294408,Breaking the News,tvMovie,2001,6.0,52,1,0,title_type:tvMovie | votes_below_1000
+tt0411024,Complete Savages,tvSeries,2004,7.3,2111,1,1,title_type:tvSeries
+tt0545351,Car Jack,tvEpisode,2004,7.9,66,1,0,title_type:tvEpisode | votes_below_1000
+tt0545358,Pilot,tvEpisode,2004,7.9,72,0,1,title_type:tvEpisode | votes_below_1000
+tt0545363,Thanksgiving with the Savages,tvEpisode,2004,7.0,62,1,0,title_type:tvEpisode | votes_below_1000
+tt0545364,The Complete Savages in...'Hot Water',tvEpisode,2005,8.1,80,1,0,title_type:tvEpisode | votes_below_1000
+tt0545365,The Man Without a Ball,tvEpisode,2004,7.3,66,0,1,title_type:tvEpisode | votes_below_1000
+tt0545366,Tutoring,tvEpisode,2004,7.5,59,0,1,title_type:tvEpisode | votes_below_1000
+tt0701069,Beyond Blunderdome,tvEpisode,1999,7.3,2702,1,0,title_type:tvEpisode
+tt0899167,Saturday Night Live: The Best of Jon Lovitz,tvSpecial,2005,6.7,191,1,0,title_type:tvSpecial | votes_below_1000
+tt0902915,Honeymoon Honeymoon,tvEpisode,1981,6.1,32,1,0,title_type:tvEpisode | votes_below_1000
+tt11242358,Leo from Toledo,movie,,,,1,0,missing_year_or_unreleased | missing_rating
+tt12820824,The Canyon,movie,,,,1,0,missing_year_or_unreleased | missing_rating
+tt13217676,Brothers in Arms,tvEpisode,2023,7.4,4273,1,0,title_type:tvEpisode
+tt15192658,Loyalty to the Master,tvEpisode,2023,7.1,3103,1,0,title_type:tvEpisode
+tt15192662,Theater of Pain,tvEpisode,2023,7.8,3006,1,0,title_type:tvEpisode
+tt15964284,Rabbit Ears: David and Goliath,video,1992,3.2,19,1,0,title_type:video | votes_below_1000
+tt16101924,Lethal Weapon 5,movie,,,,0,1,missing_year_or_unreleased | missing_rating
+tt1928502,Mad Max 2: Versión no íntegra,tvEpisode,2011,,,1,0,title_type:tvEpisode | missing_rating
+tt1954966,The Quest for Captain Kidd,tvMovie,2001,6.6,64,1,0,title_type:tvMovie | votes_below_1000
+tt2102445,The Last Trimate,tvMovie,2008,7.0,9,1,0,title_type:tvMovie | votes_below_1000
+tt2113789,The Brain Storm,short,2011,4.9,175,1,0,title_type:short | votes_below_1000
+tt2308827,Mel Gibson Goes Back to School,tvMovie,1991,5.9,145,0,1,title_type:tvMovie | votes_below_1000
+tt2660990,The Making of 'Bird on a Wire',short,1990,,,1,0,title_type:short | missing_rating
+tt28817676,"To Be, Or...?",short,2020,,,1,0,title_type:short | missing_rating
+tt32021219,The Resurrection of the Christ: Part Two,movie,2028,,,0,1,missing_rating
+tt3238528,The Hero,tvShort,1979,6.4,89,1,0,title_type:tvShort | votes_below_1000
+tt36979864,Episode #1.1,tvEpisode,1981,,,1,0,title_type:tvEpisode | missing_rating
+tt36979865,Episode #1.2,tvEpisode,1981,,,1,0,title_type:tvEpisode | missing_rating
+tt38350908,Coyote,movie,,,,1,0,missing_year_or_unreleased | missing_rating
+tt39382655,Arrow,short,1992,,,1,0,title_type:short | missing_rating
+tt5795232,The Resurrection of the Christ: Part One,movie,2027,,,0,1,missing_rating
+tt6486762,The Continental,tvMiniSeries,2023,7.1,47456,1,0,title_type:tvMiniSeries
+tt6998764,Episode #1.369,tvEpisode,1978,,,1,0,title_type:tvEpisode | missing_rating
+tt6998766,Episode #1.370,tvEpisode,1978,,,1,0,title_type:tvEpisode | missing_rating
+tt6998768,Episode #1.371,tvEpisode,1978,,,1,0,title_type:tvEpisode | missing_rating
+tt6998770,Episode #1.372,tvEpisode,1978,,,1,0,title_type:tvEpisode | missing_rating
