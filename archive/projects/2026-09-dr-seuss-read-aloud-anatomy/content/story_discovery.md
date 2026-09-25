@@ -1,3 +1,9 @@
+# STATUS: PARKED
+
+Adam reviewed the exploratory read-aloud route and decided the story is not strong enough to progress. Preserve this branch as research history only. Do not create further charts, publication assets, site content or merge work unless Adam explicitly restarts the project.
+
+---
+
 # Dr Seuss read-aloud anatomy — first story discovery
 
 ## Dataset status
