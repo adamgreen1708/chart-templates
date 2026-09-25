@@ -9,7 +9,7 @@ CHART_CONFIG = {
     "value_col": None,
     "filters": [],
 
-    "title": "The movie-star peak is where memory puts it",
+    "title": "The peak is where memory puts it",
     "subtitle": "Lethal Weapon and Braveheart sit inside a stronger-rated 1980s–90s run; later films are much more uneven.",
     "source_text": "IMDb datasets · 25 Sep 2026 · 1,000+ votes",
     "footer_left": "Adam Green | coffeetableviz",

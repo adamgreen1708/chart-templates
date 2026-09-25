@@ -108,7 +108,7 @@ The personal hook remains the same: Martin Riggs is the movie star Adam remember
 
 ## Recommended three-chart story
 
-### Chart 1 — The movie-star peak is where memory puts it
+### Chart 1 — The peak is where memory puts it
 
 - **Role:** Set the scene.
 - **Story question:** Where do the strongest-rated eligible acting films sit across Gibson's career?
@@ -128,7 +128,7 @@ The personal hook remains the same: Martin Riggs is the movie star Adam remember
 - **Why this chart matters:** This is the counter-intuitive reveal. The later career is not quiet in volume.
 - **Potential issue / QA risk:** the 1,000-vote floor means this is a count of eligible analytical films, not every credit Gibson has ever had.
 
-### Chart 3 — The second career was behind the camera
+### Chart 3 — Directing became the second career
 
 - **Role:** Land the aha moment.
 - **Story question:** What happened when Gibson moved into directing?

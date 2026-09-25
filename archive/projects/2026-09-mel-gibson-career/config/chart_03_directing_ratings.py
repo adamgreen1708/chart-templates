@@ -9,7 +9,7 @@ CHART_CONFIG = {
     "value_col": None,
     "filters": [],
 
-    "title": "The second career was behind the camera",
+    "title": "Directing became the second career",
     "subtitle": "Only six released features across 32 years — but Braveheart, Apocalypto and Hacksaw Ridge all rate 7.9+ on IMDb.",
     "source_text": "IMDb datasets · Academy Awards · 25 Sep 2026",
     "footer_left": "Adam Green | coffeetableviz",
