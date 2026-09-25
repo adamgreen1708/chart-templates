@@ -121,3 +121,119 @@ Do not build charts yet.
 Candidate C is the strongest direction to test next, with Candidate D as the likely explanation if the family favourites cluster around different mechanics rather than a single numeric sweet spot.
 
 The next data collection should be tiny and personal, not another web scrape: family ratings for the 16 pilot titles.
+
+
+---
+
+## Family ratings — first result
+
+Adam supplied two of the three planned family measures for all 16 pilot titles:
+
+- **Adam enjoys reading it**: 1–5
+- **Kids join in**: 1–5
+
+The **Kids choose it** field remains blank for now and should not be inferred.
+
+### The strongest signal so far
+
+Across the 16 books, Adam's enjoyment and the children's join-in score have a **Pearson correlation of r = 0.87**.
+
+This is a family-specific descriptive result, not a claim about Seuss readers generally.
+
+Six titles score **5/5 on both measures**:
+
+- Fox in Socks
+- Green Eggs and Ham
+- Hop on Pop
+- Oh, Say Can You Say?
+- One Fish Two Fish Red Fish Blue Fish
+- What Pet Should I Get?
+
+The lowest combined score is *The Foot Book* at 1/1.
+
+### Length does not explain the favourites
+
+Using the mean of the two family ratings as a provisional read-aloud score:
+
+- correlation with word count: **r = 0.40** across 15 books with observed word counts;
+- correlation with Lexile: **r = -0.48** across 12 books with both measures;
+- correlation with ATOS: **r = 0.46** across all 16 books.
+
+The conflicting directions of Lexile and ATOS are a warning not to reduce read-aloud appeal to a single reading-difficulty metric.
+
+More importantly, the six 5/5 family favourites span a very wide range:
+
+- *Hop on Pop*: 384 words, 190L, ATOS 1.5
+- *Green Eggs and Ham*: 769 words, 210L, ATOS 1.5
+- *Fox in Socks*: 834 words, 380L, ATOS 2.1
+- *Oh, Say Can You Say?*: 1,186 words, ATOS 4.0
+- *One Fish Two Fish Red Fish Blue Fish*: 1,308 words, 270L, ATOS 1.7
+- *What Pet Should I Get?*: 621 words, 350L, ATOS 1.9
+
+The favourites are therefore neither uniformly short nor uniformly easy.
+
+### Editorial implication
+
+This shifts the leading story away from **"the bedtime spectrum"**.
+
+A stronger working idea is:
+
+> **The books we enjoy reading most are also the books the kids join in with most.**
+
+That suggests the read-aloud experience may be less about ease and more about **participation / performance**.
+
+The current publisher-described mechanics of the six 5/5 books include:
+
+- tongue twisters + rhyme;
+- repetition + cumulative rhyme;
+- simple words + rhyme + rhythm;
+- tongue twisters;
+- counting + rhyme + wordplay;
+- narrative + decision + rhyme.
+
+There is no single mechanism, but all six give the reader something active to *do* with the language.
+
+This is a hypothesis to test, not yet a conclusion.
+
+### New leading story candidates
+
+#### Candidate 1 — Reading aloud is a duet
+
+The books Adam enjoys most are overwhelmingly the ones the children join in with.
+
+Potential story:
+**The fun isn't on the page. It's between the readers.**
+
+Strength: personal, distinctive, data-led.
+
+Risk: family ratings are subjective and should remain clearly labelled as such.
+
+#### Candidate 2 — The favourites aren't the easiest books
+
+The six 5/5 favourites range from very simple to the hardest ATOS title in the pilot.
+
+Potential story:
+**The best read-aloud isn't necessarily the easiest read.**
+
+Strength: combines objective and personal data cleanly.
+
+Risk: reading-level measures are designed for independent reading, not parent performance.
+
+#### Candidate 3 — Seuss gives you something to perform
+
+The highest-rated family books use different devices, but they repeatedly involve rhyme, rhythm, repetition, tongue twisters or wordplay.
+
+Potential story:
+**Maybe a great read-aloud is a book that turns the reader into a performer.**
+
+Strength: closest to the lived family experience.
+
+Risk: "performance" needs a transparent coding rule before it can become chart data.
+
+## Current recommendation
+
+Do not create the standard three-chart package yet.
+
+The evidence now supports a much more promising family-centred route. The next useful analytical step is to define a transparent, source-backed **participation/performance feature set** for the 16 books and test whether those features separate the high-rated family favourites from the rest.
+
+If that separation is weak, stop. If it is strong, this becomes the central story.
