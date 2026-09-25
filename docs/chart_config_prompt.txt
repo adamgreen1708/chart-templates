@@ -347,13 +347,16 @@ Default layout:
 "fig_width": 8.0,
 "fig_height": 8.0,
 "plot_top": 0.75,
-"plot_bottom": 0.14,
+"plot_bottom": 0.18,
 "plot_left": 0.12,
 "plot_right": 0.90,
+"footer_y": 0.055,
 "vertical_gridlines": False,
 ```
 
 Do not revert to older layout values unless explicitly required.
+
+Keep `source_text` concise, normally the source name plus year. Put longer methodology or caveats in supporting copy so the source line cannot collide with the brand footer.
 
 ---
 
