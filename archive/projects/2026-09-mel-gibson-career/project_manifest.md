@@ -2,7 +2,7 @@
 
 ## Status
 
-- Status: Rendered / QA passed
+- Status: Published
 - Started: 2026-09-25
 - Last updated: 2026-09-25
 - Owner: Adam Green
@@ -16,7 +16,7 @@
 - Core question: What happened to Mel Gibson's career after the Lethal Weapon / Braveheart peak, and where did he take it?
 - Main takeaway: The verified IMDb data shows a real acting gap followed by a high-volume but lower-rated acting return, while directing became a sparse second career with several major peaks.
 - Audience: coffeetableviz readers
-- Blog/social use: Potential live coffeetableviz.com post after chart approval
+- Blog/social use: Live coffeetableviz.com post published
 
 ## Sources
 
@@ -72,7 +72,7 @@
 
 ## Content package
 
-Not started. Archive renders and live-site publication remain separate deliverables.
+Published via site/_posts/2026-09-25-mel-gibson-didnt-disappear-his-career-changed-shape.md using the three QA-passed chart assets copied into site/assets/migrated/mel-gibson/. Chart 1 is reused as the card/hero image so no additional unapproved illustration was introduced.
 
 ## QA notes
 
@@ -98,6 +98,9 @@ Not started. Archive renders and live-site publication remain separate deliverab
 
 ## Closeout
 
-- Published URL:
-- Final archive PR:
-- Merge commit:
+- Published URL: https://coffeetableviz.com/stories/mel-gibson-didnt-disappear-his-career-changed-shape/
+- Final archive PR: #74
+- Archive merge commit: adeb9d5fa7e7351eb3676d147e1f17a9f1804cc7
+- Publication PR: #75
+- Publication merge commit: 62b1bc407f27eac6a6014e4db156e054c13fb601
+- Pages deployment run: 36198776377 — success
