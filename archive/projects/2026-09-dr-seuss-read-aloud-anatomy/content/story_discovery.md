@@ -237,3 +237,71 @@ Do not create the standard three-chart package yet.
 The evidence now supports a much more promising family-centred route. The next useful analytical step is to define a transparent, source-backed **participation/performance feature set** for the 16 books and test whether those features separate the high-rated family favourites from the rest.
 
 If that separation is weak, stop. If it is strong, this becomes the central story.
+
+
+---
+
+## Participation / performance hypothesis test
+
+The 16 books were coded conservatively from Penguin Random House / Seussville descriptions and the official Random House teaching guide. The coding does not inspect or reproduce full copyrighted text.
+
+A narrow binary field, **explicit_verbal_play**, was used only when the source explicitly foregrounded a word-game or verbal-challenge mechanism such as tongue twisters, witty wordplay, phonics/rhyme play, or made-up rhyming words.
+
+The six books coded this way are:
+
+- Fox in Socks — 5.0 family mean
+- Green Eggs and Ham — 5.0
+- Hop on Pop — 5.0
+- Oh, Say Can You Say? — 5.0
+- One Fish Two Fish Red Fish Blue Fish — 5.0
+- There's a Wocket in My Pocket! — 3.5
+
+Their mean family score is **4.75 / 5**.
+
+The other ten books average **3.25 / 5**.
+
+This is a difference of **1.50 points** on the family's five-point scale.
+
+### Why this is more useful than "Seuss rhymes"
+
+Rhyme appears in both loved and less-loved books. It therefore does not separate the family favourites cleanly.
+
+The sharper distinction is whether the language itself becomes an activity:
+
+- twisting the tongue;
+- sounding out and recombining words;
+- building a cumulative verbal pattern;
+- playing with invented rhymes and verbal surprise.
+
+The strongest counterexample is *There's a Wocket in My Pocket!*: it is explicitly wordplay-heavy but scores 3/4 rather than 5/5. That is useful because it prevents the hypothesis becoming tautological.
+
+*What Pet Should I Get?* is the other important exception in the opposite direction: it scores 5/5 without being coded as explicit verbal play. Its active mechanism is a narrative decision — the reader is repeatedly invited to choose.
+
+### Revised story idea
+
+The evidence currently supports a more interesting personal story:
+
+> **The Dr Seuss books we love reading aloud aren't simply the easiest or the shortest. They tend to turn the reading itself into a game.**
+
+A possible sharper line is:
+
+> **Maybe the secret isn't rhyme. It's participation.**
+
+This remains a family case study, not a universal claim about children's reading.
+
+### Editorial gate
+
+This is now strong enough to justify **one exploratory visual**, but not yet a three-chart package.
+
+Recommended first visual:
+
+- one row per book;
+- family read-aloud score from 1–5;
+- Adam enjoyment and kids join-in shown separately or as paired marks;
+- small text tag for the dominant read-aloud device;
+- highlight the explicit verbal-play books;
+- no aggregate ranking framed as universal quality.
+
+The chart's job is to show that the 5/5 cluster contains several different kinds of verbal play while simple rhyme alone appears across the scale.
+
+Only expand to a second or third chart if the first visual creates a genuine follow-on question.
