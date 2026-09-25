@@ -1,89 +1,143 @@
-# Mel Gibson career pivot — provisional story discovery
+# Mel Gibson career pivot — validated story discovery
 
-## Status
+## Dataset read
 
-This is the **pre-dataset editorial hypothesis**. It is based on current IMDb credit information, Academy records and contemporary Reuters reporting. The repo's official IMDb acquisition script must be run before any chart config is created.
+The official IMDb non-commercial dataset pass resolves **Mel Gibson = nm0000154**, born 1956, profession `actor,producer,director`.
 
-## Strongest story options
+Analytical scope follows the repo's actor-project rules:
 
-### 1. Riggs made the star. Braveheart changed the job. — recommended
+- principal acting credits from `title.principals`;
+- directing credits from `title.crew`;
+- `titleType=movie`;
+- released titles with a year and IMDb rating;
+- minimum **1,000 votes**;
+- excluded/unrated/unreleased/non-movie records retained in the audit CSV.
 
-**Core argument:** The nostalgia version of Mel Gibson is the actor — *Mad Max*, Martin Riggs, *Braveheart*. But *Braveheart* is also the hinge where his career becomes two careers. The later story is not simply "the leading man faded"; directing becomes a sparse but repeatedly consequential second lane.
+Validation result:
 
-**Why it works:** It starts exactly where the personal hook is — *Lethal Weapon* and *Braveheart* — then answers "where did he go?" with a measurable change in credit type rather than gossip or a subjective rise/fall narrative.
+- 103 acting/directing career-title IDs before analytical filters;
+- 65 released movie titles;
+- 63 rated released movie titles;
+- 62 titles meet the 1,000-vote floor;
+- **62 analytical rows** with no duplicate `tconst` values;
+- **58 acting rows**;
+- **6 directing rows**;
+- **2 films where Gibson both acts and directs**: *The Man Without a Face* and *Braveheart*;
+- 100% title-basics join coverage;
+- 98.41% of rated released movies survive the vote floor.
 
-**Data required:** Full principal-acting movie chronology, directing chronology, IMDb rating, vote count, year, role lane; Academy milestones as annotations.
+IMDb ratings describe the titles, not Gibson's individual acting or directing performance. IMDb principal ordering is not a formal screen-time or billing measure.
 
-**Risk / weakness:** The full acting-output break and era averages must be validated from the downloadable IMDb data. Public controversies are context, not a causal variable.
+## What the data says
 
-### 2. Two careers, different peaks
+### The remembered peak is real in the title ratings
 
-**Core argument:** Gibson's acting career generated the scale and familiarity; his much smaller directing filmography produced the clearest awards milestones.
+*Lethal Weapon* (1987) is rated **7.6** and *Braveheart* (1995) **8.3**, the highest-rated eligible acting title in this dataset.
 
-**Why it works:** Six released feature directing credits can be compared with the much larger acting set without pretending they are the same kind of work.
+Across eligible acting movies:
 
-**Data required:** Actor/director title counts, ratings, awards and optionally inflation-safe box-office context.
+- 1980s: 11 titles, mean rating 6.75, median 7.1;
+- 1990s: 13 titles, mean 6.72, median 6.7;
+- 2010s: 9 titles, mean 6.49, median 6.6;
+- 2020–25: 16 titles, mean 5.26, median 5.6.
 
-**Risk / weakness:** Directing has a tiny sample. Average-rating comparisons could overstate a six-film sequence.
+The recent acting run is therefore **busier but lower-rated at title level**.
 
-### 3. The career went quiet, then the director returned
+### He did not simply disappear
 
-**Core argument:** A visible gap in mainstream acting/directing work after the mid-2000s is followed by *Hacksaw Ridge* in 2016, which returned Gibson to the Academy's Directing nominees.
+The largest gap between years containing an eligible acting movie is **seven release years**, from 2003 to 2010. There are no eligible acting movies in 2004–09.
 
-**Why it works:** It gives the post-*Braveheart* question a clean second act.
+After the return:
 
-**Data required:** Year-by-year acting/directing credits plus sourced timeline events.
+- 2010s: 9 eligible acting films;
+- 2020–25: **16** eligible acting films;
+- the whole 1990s: **13**.
 
-**Risk / weakness:** It is easy to turn chronology into a causal story about his 2006 conduct. The article should state the documented industry context while keeping the chart claim to "what happened when".
+So the clean data contradicts a simple "he vanished" narrative. Output eventually became higher than the decade most associated with his movie-star peak.
+
+A supporting, carefully worded indicator also changes: all 13 eligible acting movies in the 1990s place Gibson first in IMDb's principal ordering, compared with 7 of 16 in 2020–25. This is useful context, but principal order must not be described as screen time or formal billing.
+
+### Directing is a sparse second career
+
+The six released directing features in the analytical dataset are:
+
+| Year | Film | IMDb rating | Gap from previous |
+|---|---|---:|---:|
+| 1993 | The Man Without a Face | 6.7 | — |
+| 1995 | Braveheart | 8.3 | 2 years |
+| 2004 | The Passion of the Christ | 7.3 | 9 years |
+| 2006 | Apocalypto | 7.9 | 2 years |
+| 2016 | Hacksaw Ridge | 8.1 | 10 years |
+| 2025 | Flight Risk | 5.2 | 9 years |
+
+The Academy records Gibson winning Directing for *Braveheart* at the 1996 ceremony and returning as a Directing nominee for *Hacksaw Ridge* at the 2017 ceremony.
+
+The important pattern is not that every Gibson-directed film is highly rated — *Flight Risk* clearly breaks that idea. It is that directing became an infrequent, long-gap second lane that produced several of the strongest-rated titles associated with his later career.
+
+## Ranked story options
+
+### 1. He didn't disappear. He changed jobs, then came back differently. — recommended
+
+**Core argument:** The nostalgic movie-star peak is visible in the data, but the surprise is what follows. Gibson has a genuine acting gap, then returns to increasingly prolific acting work — 16 eligible films in 2020–25 — while the films themselves rate markedly lower than the 1980s–90s run. In parallel, directing becomes a sparse second career with several conspicuous peaks.
+
+**Why it leads:** It answers Adam's actual question without forcing a simplistic rise/fall story. It gives *Lethal Weapon* and *Braveheart* a genuine editorial role and lets the later data overturn the assumption that Gibson simply stopped working.
+
+**Risk / weakness:** IMDb ratings are title-level audience ratings, not measures of Gibson's performance. Credit volume is not commercial scale. The 2020s comparison covers six years (2020–25), not a full decade.
+
+### 2. More films. Less centre stage.
+
+**Core argument:** The 2020–25 acting run contains more eligible films than the 1990s, but lower title ratings and fewer first-position principal credits.
+
+**Why it works:** This is the cleanest contradiction in the data.
+
+**Risk / weakness:** Principal ordering is useful context but not a formal billing or screen-time metric, so it should not carry the headline alone.
+
+### 3. The director became the second career.
+
+**Core argument:** Six directing features across 32 years include *Braveheart*, *Apocalypto* and *Hacksaw Ridge*, with gaps as long as 10 years.
+
+**Why it works:** It directly answers "where did he take the career?" and gives the article a strong final act.
+
+**Risk / weakness:** Six films are a sequence, not enough observations for broad causal or trend claims.
 
 ## Recommended story route
 
-**Riggs made the star. Braveheart changed the job.**
+**He didn't disappear. He changed jobs, then came back differently.**
 
-The most interesting answer is not that Mel Gibson disappeared. It is that his career changed shape: from a high-volume, highly visible acting run into a two-lane career where directing was infrequent but carried disproportionate cultural and awards weight.
-
-The downloadable IMDb data should now test that claim rather than merely illustrate it.
+The personal hook remains the same: Martin Riggs is the movie star Adam remembers; *Braveheart* is the hinge. The data then adds the less obvious answer: after the long acting gap, Gibson eventually became prolific again, but in a much more uneven set of titles, while directing stayed rare and capable of producing major peaks.
 
 ## Recommended three-chart story
 
-### Chart 1 — Riggs made the movie star
+### Chart 1 — The peak is where memory puts it
 
 - **Role:** Set the scene.
-- **Story question:** What does Gibson's eligible acting-film timeline look like from *Mad Max* through the 2020s?
-- **Chart type:** scatter/timeline of eligible acting movies, year vs IMDb rating.
-- **Data needed:** year, title, rating, votes, acted flag.
-- **Key stat:** To be calculated after acquisition.
-- **Editorial anchors:** *Lethal Weapon* (1987) and *Braveheart* (1995), with only a small number of other labels.
-- **Why this matters:** Shows the dense star period before we introduce the second career lane.
-- **QA risk:** Over-labelling; treating IMDb title ratings as performance scores; titles with low vote counts.
+- **Story question:** Where do the strongest-rated eligible acting films sit across Gibson's career?
+- **Chart type:** scatter timeline of all 58 eligible acting movies.
+- **Data needed:** year, title, IMDb rating, votes, principal order.
+- **Key stat:** *Lethal Weapon* 7.6; *Braveheart* 8.3. The 1980s median is 7.1 and the 1990s median 6.7, versus 5.6 for 2020–25.
+- **Why this chart matters:** It validates the nostalgia rather than merely using it as decoration.
+- **Potential issue / QA risk:** multiple films share years; labels should be limited to the two story anchors. A truncated rating axis is acceptable for scatter but must be clearly labelled.
 
-### Chart 2 — Then the job changed
+### Chart 2 — He didn't stop acting. He got busier.
 
 - **Role:** Build the tension.
-- **Story question:** How did the mix of acting and directing credits change over time?
-- **Chart type:** five-year-period comparison of eligible acting titles and directed features, or a role-lane timeline if period counts hide too much.
-- **Data needed:** year, acted, directed, career_lane.
-- **Key stat:** To be calculated after acquisition — especially the acting-output gap/decline and directing gaps.
-- **Why this matters:** This is the actual answer to "where did he take his career?" rather than a greatest-hits chart.
-- **Context annotation:** A sourced 2006 marker may be included in the article/timeline, but not as a causal divider unless the evidence supports that wording.
-- **QA risk:** Acting and directing counts are different kinds of credits; labels must make that explicit.
+- **Story question:** Did Gibson actually disappear from feature acting?
+- **Chart type:** annual line of eligible acting-film counts, including explicit zero years.
+- **Data needed:** year and eligible acting-film count.
+- **Key stat:** the 2003→2010 release-year gap is the largest; 2020–25 contains 16 eligible acting films versus 13 in the 1990s, with six in 2022 alone.
+- **Why this chart matters:** This is the counter-intuitive reveal. The later career is not quiet in volume.
+- **Potential issue / QA risk:** the 1,000-vote floor means this is a count of eligible analytical films, not every credit Gibson has ever had.
 
-### Chart 3 — The awards came back behind the camera
+### Chart 3 — Directing became the second career
 
 - **Role:** Land the aha moment.
-- **Story question:** What happened across Gibson's released feature films as director?
-- **Chart type:** chronological dot plot of directed feature films and IMDb rating, with Academy annotations.
-- **Data needed:** year, title, rating, votes, directed flag; Academy milestones.
-- **Verified anchors:** *Braveheart* won Gibson the Directing Oscar in 1996; *Hacksaw Ridge* brought another Directing nomination in 2017.
-- **Why this matters:** The directing lane is small, but it explains why the later career cannot be summarised as a simple fade-out.
-- **QA risk:** Six released feature films is a small sequence, not a population; do not imply a trend from sparse points.
-
-## Feature-art seed — not for generation yet
-
-If this route survives the dataset pass, the story-specific visual metaphor should be **a film clapperboard splitting into two paths: one path becomes an action-film silhouette / police badge echoing the acting-star era, the other becomes a director's chair / camera viewfinder**. A single muted-red hinge at the split represents *Braveheart* as the pivot.
-
-This is deliberately more specific than generic medieval/action imagery. Final feature art should only be generated after the chart sequence is approved, using the repo's feature-image rules.
+- **Story question:** What happened when Gibson moved into directing?
+- **Chart type:** six-point chronological scatter of directing features by IMDb rating.
+- **Data needed:** year, title, rating, votes, years since previous directing release, Academy milestone.
+- **Key stat:** six released features from 1993–2025; *Braveheart* 8.3, *Apocalypto* 7.9, *Hacksaw Ridge* 8.1; gaps of 9, 10 and 9 years separate later directing releases.
+- **Why this chart matters:** It answers where the career went without pretending every later project was a success.
+- **Potential issue / QA risk:** sparse sequence; labels must stay inside the square canvas and *Flight Risk* should remain visible as a counterexample.
 
 ## Next build step
 
-Run `scripts/build_imdb_actor_director_dataset.py`, inspect the clean and audit datasets, calculate the exact era statistics, then confirm or revise the three-chart route. Only after that should configs be created.
+Build the three derived chart datasets, create locked 538 configs, render them, then run `docs/chart_qa_checklist.md` before any publication package is created.

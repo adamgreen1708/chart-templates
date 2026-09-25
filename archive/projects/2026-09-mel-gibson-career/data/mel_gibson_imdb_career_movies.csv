@@ -1,0 +1,63 @@
+tconst,title,original_title,year,runtime_minutes,genres,average_rating,num_votes,acted,directed,career_lane,principal_order,directors,characters
+tt0079501,Mad Max,Mad Max,1979,88,Action | Adventure | Sci-Fi,6.8,247217,1,0,acting,1,George Miller,Max
+tt0080024,Tim,Tim,1979,109,Drama | Romance,6.4,4093,1,0,acting,2,Michael Pate,Tim Melville
+tt0083591,Attack Force Z,Attack Force Z,1981,84,Action | Drama | History,5.4,3212,1,0,acting,2,Tim Burstall,Paul Kelly
+tt0082432,Gallipoli,Gallipoli,1981,110,Adventure | Drama | History,7.4,45093,1,0,acting,1,Peter Weir,Frank Dunne
+tt0082694,The Road Warrior,Mad Max 2,1981,96,Action | Adventure | Sci-Fi,7.6,215247,1,0,acting,1,George Miller,Max
+tt0086617,The Year of Living Dangerously,The Year of Living Dangerously,1982,115,Drama | Romance | War,7.1,25132,1,0,acting,1,Peter Weir,Guy Hamilton
+tt0087751,Mrs. Soffel,Mrs. Soffel,1984,110,Drama | Romance,6.1,3952,1,0,acting,2,Gillian Armstrong,Ed Biddle
+tt0086993,The Bounty,The Bounty,1984,132,Adventure | Drama | History,7.1,35431,1,0,acting,1,Roger Donaldson,Fletcher Christian
+tt0088007,The River,The River,1984,124,Drama,6.3,8453,1,0,acting,1,Mark Rydell,Tom Garvey
+tt0089530,Mad Max: Beyond Thunderdome,Mad Max Beyond Thunderdome,1985,107,Action | Adventure | Sci-Fi,6.2,163719,1,0,acting,1,George Miller | George Ogilvie,Mad Max
+tt0093409,Lethal Weapon,Lethal Weapon,1987,109,Action | Crime | Thriller,7.6,299010,1,0,acting,1,Richard Donner,Martin Riggs
+tt0096244,Tequila Sunrise,Tequila Sunrise,1988,115,Crime | Drama | Romance,6.1,36680,1,0,acting,1,Robert Towne,Dale McKussic
+tt0097733,Lethal Weapon 2,Lethal Weapon 2,1989,114,Action | Crime | Thriller,7.3,203338,1,0,acting,1,Richard Donner,Martin Riggs
+tt0099005,Air America,Air America,1990,113,Action | Comedy | War,5.8,32790,1,0,acting,1,Roger Spottiswoode,Gene
+tt0099141,Bird on a Wire,Bird on a Wire,1990,110,Action | Comedy | Crime,6.0,51400,1,0,acting,1,John Badham,Rick Jarmin
+tt0099726,Hamlet,Hamlet,1990,135,Drama,6.7,25258,1,0,acting,1,Franco Zeffirelli,Hamlet
+tt0104291,Forever Young,Forever Young,1992,102,Drama | Romance | Sci-Fi,6.4,53197,1,0,acting,1,Steve Miner,Capt. Daniel McCormick
+tt0104714,Lethal Weapon 3,Lethal Weapon 3,1992,118,Action | Crime | Thriller,6.7,190211,1,0,acting,1,Richard Donner,Martin Riggs
+tt0107501,The Man Without a Face,The Man Without a Face,1993,115,Drama,6.7,33190,1,1,acting + directing,1,Mel Gibson,Justin McLeod
+tt0110478,Maverick,Maverick,1994,127,Action | Adventure | Comedy,7.0,126120,1,0,acting,1,Richard Donner,Bret Maverick
+tt0112573,Braveheart,Braveheart,1995,178,Drama | War,8.3,1173077,1,1,acting + directing,1,Mel Gibson,William Wallace
+tt0114148,Pocahontas,Pocahontas,1995,81,Adventure | Animation | Drama,6.7,220247,1,0,acting,1,Mike Gabriel | Eric Goldberg,John Smith
+tt0117438,Ransom,Ransom,1996,121,Action | Crime | Drama,6.7,145459,1,0,acting,1,Ron Howard,Tom Mullen
+tt0118883,Conspiracy Theory,Conspiracy Theory,1997,135,Action | Crime | Drama,6.7,115486,1,0,acting,1,Richard Donner,Jerry Fletcher
+tt0122151,Lethal Weapon 4,Lethal Weapon 4,1998,127,Action | Crime | Thriller,6.6,181988,1,0,acting,1,Richard Donner,Martin Riggs
+tt0120784,Payback,Payback,1999,100,Action | Crime | Drama,7.0,155023,1,0,acting,1,Brian Helgeland,Porter
+tt0120630,Chicken Run,Chicken Run,2000,84,Adventure | Animation | Comedy,7.1,227052,1,0,acting,1,Peter Lord | Nick Park,Rocky
+tt0120753,The Million Dollar Hotel,The Million Dollar Hotel,2000,122,Drama | Mystery | Romance,5.7,23361,1,0,acting,3,Wim Wenders,Skinner
+tt0187393,The Patriot,The Patriot,2000,165,Action | Drama | War,7.2,316757,1,0,acting,1,Roland Emmerich,Benjamin Martin
+tt0207201,What Women Want,What Women Want,2000,127,Comedy | Fantasy | Romance,6.5,241025,1,0,acting,1,Nancy Meyers,Nick Marshall
+tt0286106,Signs,Signs,2002,106,Drama | Mystery | Sci-Fi,6.8,418956,1,0,acting,1,M. Night Shyamalan,Graham Hess
+tt0277434,We Were Soldiers,We Were Soldiers,2002,138,Action | Drama | History,7.2,161227,1,0,acting,1,Randall Wallace,Lt. Col. Hal Moore
+tt0314676,The Singing Detective,The Singing Detective,2003,109,Comedy | Crime | Musical,5.4,9214,1,0,acting,5,Keith Gordon,Dr. Gibbon
+tt0335345,The Passion of the Christ,The Passion of the Christ,2004,127,Drama,7.3,277310,0,1,directing,,Mel Gibson,
+tt0472043,Apocalypto,Apocalypto,2006,139,Action | Adventure | Drama,7.9,364690,0,1,directing,,Mel Gibson,
+tt1226273,Edge of Darkness,Edge of Darkness,2010,117,Action | Adventure | Drama,6.6,104242,1,0,acting,1,Martin Campbell,Craven
+tt1321860,The Beaver,The Beaver,2011,91,Drama,6.6,52453,1,0,acting,1,Jodie Foster,Walter Black
+tt1567609,Get the Gringo,Get the Gringo,2012,96,Action | Drama | Thriller,6.9,115272,1,0,acting,1,Adrian Grunberg,Driver
+tt2002718,Machete Kills,Machete Kills,2013,107,Action | Comedy | Crime,5.6,86061,1,0,acting,3,Robert Rodriguez,Voz
+tt2333784,The Expendables 3,The Expendables 3,2014,126,Action | Adventure | Thriller,6.1,207908,1,0,acting,7,Patrick Hughes,Stonebanks
+tt3647498,Blood Father,Blood Father,2016,88,Action | Crime | Drama,6.4,71292,1,0,acting,1,Jean-François Richet,Link
+tt2119532,Hacksaw Ridge,Hacksaw Ridge,2016,139,Biography | Drama | History,8.1,697818,0,1,directing,,Mel Gibson,
+tt5657846,Daddy's Home 2,Daddy's Home 2,2017,100,Comedy,6.1,94048,1,0,acting,3,Sean Anders,Kurt
+tt6491178,Dragged Across Concrete,Dragged Across Concrete,2018,159,Action | Crime | Drama,6.9,63190,1,0,acting,1,S. Craig Zahler,Brett Ridgeman
+tt5932728,The Professor and the Madman,The Professor and the Madman,2019,124,Biography | Drama | History,7.2,55642,1,0,acting,1,Farhad Safinia,James Murray
+tt7638348,Boss Level,Boss Level,2020,100,Action | Adventure | Comedy,6.8,92020,1,0,acting,2,Joe Carnahan,Colonel Clive Ventor
+tt10310140,Fatman,Fatman,2020,100,Action | Adventure | Comedy,5.9,35748,1,0,acting,1,Eshom Nelms | Ian Nelms,Chris
+tt10308928,Force of Nature,Force of Nature,2020,91,Action | Adventure | Crime,4.6,14617,1,0,acting,2,Michael Polish,Ray
+tt3876910,Dangerous,Dangerous,2021,99,Action | Thriller,5.2,11644,1,0,acting,5,David Hackl,Dr. Alderwood
+tt9244554,Last Looks,Last Looks,2021,110,Action | Comedy | Crime,5.8,14653,1,0,acting,2,Tim Kirkby,Alastair Pinch
+tt14168394,Agent Game,Agent Game,2022,90,Action | Thriller,4.1,3821,1,0,acting,8,Grant S. Johnson,Olsen
+tt9853500,Bandit,Bandit,2022,126,Biography | Crime | Drama,6.5,18515,1,0,acting,4,Allan Ungar,Tommy
+tt14439896,Father Stu,Father Stu,2022,124,Biography | Drama | Sport,6.5,36808,1,0,acting,2,Rosalind Ross,Bill Long
+tt15690300,Hot Seat,Hot Seat,2022,99,Action | Thriller,4.3,4647,1,0,acting,1,James Cullen Bressack,Wallace Reed
+tt14824590,On the Line,On the Line,2022,104,Thriller,5.5,18921,1,0,acting,1,Romuald Boulanger,Elvis
+tt4029412,Panama,Panama,2022,95,Action | Thriller,3.6,4641,1,0,acting,2,Mark Neveldine,Stark
+tt21391242,Confidential Informant,Confidential Informant,2023,88,Action | Crime | Drama,3.7,3318,1,0,acting,1,Michael Oblowitz,Lieutenant Kevin Hickey
+tt14633464,Desperation Road,Desperation Road,2023,112,Action | Crime | Drama,5.9,5969,1,0,acting,5,Nadine Crocker,Mitchell
+tt10993078,Boneyard,Cemitério,2024,96,Action | Crime | Drama,4.2,6628,1,0,acting,1,Asif Akbar,Agent Petrovick
+tt3954936,Monster Summer,Monster Summer,2024,98,Adventure | Fantasy | Horror,5.7,8185,1,0,acting,1,David Henrie,Gene Carruthers
+tt10078772,Flight Risk,Flight Risk,2025,91,Action | Crime | Drama,5.2,46820,0,1,directing,,Mel Gibson,
+tt32537226,Hunting Season,Hunting Season,2025,100,Action | Crime | Drama,5.8,9236,1,0,acting,1,Raja Collins,Bowdrie

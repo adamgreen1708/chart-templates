@@ -1,0 +1,106 @@
+name: Build archived IMDb career data
+
+on:
+  workflow_dispatch:
+    inputs:
+      project_dir:
+        description: "Archive project directory containing scripts/build_imdb_actor_director_dataset.py"
+        required: true
+        type: string
+  push:
+    branches:
+      - "project/**"
+    paths:
+      - "archive/projects/**/scripts/build_imdb_actor_director_dataset.py"
+      - ".github/workflows/build-archived-imdb-career-data.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-archived-imdb-career-data-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Resolve project directories
+        shell: bash
+        run: |
+          set -euo pipefail
+          : > /tmp/project_dirs.txt
+
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            printf '%s\n' "${{ inputs.project_dir }}" >> /tmp/project_dirs.txt
+          else
+            git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" \
+              | awk -F/ '$1=="archive" && $2=="projects" && $4=="scripts" && $5=="build_imdb_actor_director_dataset.py" {print $1"/"$2"/"$3}' \
+              | sort -u >> /tmp/project_dirs.txt
+          fi
+
+          echo "Projects selected for IMDb acquisition:"
+          cat /tmp/project_dirs.txt || true
+
+      - name: Run IMDb acquisition
+        shell: bash
+        run: |
+          set -euo pipefail
+          built_any=0
+
+          while IFS= read -r project_dir; do
+            [[ -z "$project_dir" ]] && continue
+
+            case "$project_dir" in
+              archive/projects/*) ;;
+              *)
+                echo "Invalid project path: $project_dir"
+                exit 1
+                ;;
+            esac
+
+            script="$project_dir/scripts/build_imdb_actor_director_dataset.py"
+            if [[ ! -f "$script" ]]; then
+              echo "IMDb career acquisition script not found: $script"
+              exit 1
+            fi
+
+            mkdir -p "$project_dir/data"
+            python "$script" --output-dir "$project_dir/data"
+            built_any=1
+          done < /tmp/project_dirs.txt
+
+          if (( built_any == 0 )); then
+            echo "No archived IMDb career project required acquisition for this event."
+          fi
+
+      - name: Commit validated data outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          while IFS= read -r project_dir; do
+            [[ -z "$project_dir" ]] && continue
+            git add "$project_dir/data" || true
+          done < /tmp/project_dirs.txt
+
+          if git diff --staged --quiet; then
+            echo "No IMDb data changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Build archived IMDb career data"
+          git push

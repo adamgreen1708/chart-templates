@@ -1,0 +1,86 @@
+{
+  "accessed_at_utc": "2026-09-25T22:19:40.366395+00:00",
+  "sources": {
+    "names": {
+      "url": "https://datasets.imdbws.com/name.basics.tsv.gz",
+      "upstream_run_date": "2026-09-24",
+      "last_modified": "Fri, 25 Sep 2026 00:40:08 GMT",
+      "content_length": 310341288,
+      "etag": "\"43df81a977355a27885d4ae799d4ac21-37\""
+    },
+    "principals": {
+      "url": "https://datasets.imdbws.com/title.principals.tsv.gz",
+      "upstream_run_date": "2026-09-24",
+      "last_modified": "Fri, 25 Sep 2026 00:40:24 GMT",
+      "content_length": 783966700,
+      "etag": "\"c7e7651414623759eea719c945546b9a-94\""
+    },
+    "basics": {
+      "url": "https://datasets.imdbws.com/title.basics.tsv.gz",
+      "upstream_run_date": "2026-09-25",
+      "last_modified": "Fri, 25 Sep 2026 12:38:57 GMT",
+      "content_length": 227603943,
+      "etag": "\"5c87515ab81cbc5d0338f63ca9315c46-28\""
+    },
+    "ratings": {
+      "url": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+      "upstream_run_date": "2026-09-24",
+      "last_modified": "Fri, 25 Sep 2026 00:40:02 GMT",
+      "content_length": 8657835,
+      "etag": "\"e03c00cbebf3c4fda2d847d0f6d16b7e-2\""
+    },
+    "crew": {
+      "url": "https://datasets.imdbws.com/title.crew.tsv.gz",
+      "upstream_run_date": "2026-09-24",
+      "last_modified": "Fri, 25 Sep 2026 00:39:46 GMT",
+      "content_length": 83271237,
+      "etag": "\"1fb85aa00dc8b8c8fdc70c479097a765-10\""
+    }
+  },
+  "validation": {
+    "resolved_person": {
+      "nconst": "nm0000154",
+      "primaryName": "Mel Gibson",
+      "birthYear": "1956",
+      "deathYear": "\\N",
+      "primaryProfession": "actor,producer,director",
+      "knownForTitles": "tt0112573,tt0104714,tt0118883,tt0117438"
+    },
+    "minimum_votes_for_analysis": 1000,
+    "counts": {
+      "all_person_principal_rows": 617,
+      "principal_actor_rows": 93,
+      "distinct_principal_actor_titles": 92,
+      "distinct_directed_titles_all_types": 14,
+      "career_title_union": 103,
+      "matched_title_basics": 103,
+      "matched_ratings": 87,
+      "matched_crew_rows": 103,
+      "released_movie_titles": 65,
+      "rated_released_movie_titles": 63,
+      "movies_meeting_vote_floor": 62,
+      "analysis_rows": 62,
+      "audit_rows": 41,
+      "analysis_acting_rows": 58,
+      "analysis_directing_rows": 6,
+      "analysis_both_rows": 2,
+      "analysis_missing_year": 0,
+      "analysis_missing_runtime": 0,
+      "analysis_missing_rating": 0,
+      "resolved_director_names": 86
+    },
+    "coverage": {
+      "title_basics_join_pct": 100.0,
+      "ratings_join_pct": 84.47,
+      "vote_floor_coverage_of_rated_released_movies_pct": 98.41
+    },
+    "duplicate_analysis_tconsts": 0
+  },
+  "scope_notes": [
+    "Acting rows come from IMDb title.principals actor/actress credits, which are a principal-credit subset rather than a guaranteed complete filmography.",
+    "Directing rows come from IMDb title.crew directors fields.",
+    "The analytical set is restricted to titleType=movie, a release year, an IMDb rating, and the configured minimum vote floor.",
+    "IMDb ratings describe titles, not Mel Gibson's individual acting or directing performance.",
+    "All excluded, unrated, unreleased and non-movie career titles are preserved in the audit CSV."
+  ]
+}
