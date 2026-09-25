@@ -2,7 +2,7 @@
 
 ## Status
 
-- Status: In progress
+- Status: Render build
 - Started: 2026-09-25
 - Last updated: 2026-09-25
 - Owner: Adam Green
@@ -13,7 +13,7 @@
 - Working title: Riggs made the star. Braveheart changed the job.
 - Final title:
 - Core question: What happened to Mel Gibson's career after the Lethal Weapon / Braveheart peak, and where did he take it?
-- Main takeaway: Provisional — the career appears to split into two lanes: a mainstream acting-star run followed by a smaller but repeatedly high-profile directing career. The official IMDb dataset pass must validate the full career-shape claims before charts are built.
+- Main takeaway: The verified IMDb data shows a real acting gap followed by a high-volume but lower-rated acting return, while directing became a sparse second career with several major peaks.
 - Audience: coffeetableviz readers
 - Blog/social use: Potential live coffeetableviz.com post after chart approval
 
@@ -32,9 +32,9 @@
 
 | File | Purpose | Created by | Notes |
 |---|---|---|---|
-| data/mel_gibson_imdb_career_movies.csv | Clean joined acting/directing movie dataset | scripts/build_imdb_actor_director_dataset.py | Not created yet; requires running acquisition script |
-| data/mel_gibson_imdb_exclusions.csv | Audit trail of excluded/unrated/non-movie credits | scripts/build_imdb_actor_director_dataset.py | Not created yet |
-| data/mel_gibson_imdb_source_metadata.json | Source and validation metadata | scripts/build_imdb_actor_director_dataset.py | Not created yet |
+| data/mel_gibson_imdb_career_movies.csv | Clean joined acting/directing movie dataset | scripts/build_imdb_actor_director_dataset.py | Created and validated from official IMDb exports |
+| data/mel_gibson_imdb_exclusions.csv | Audit trail of excluded/unrated/non-movie credits | scripts/build_imdb_actor_director_dataset.py | Created; 41 audit rows |
+| data/mel_gibson_imdb_source_metadata.json | Source and validation metadata | scripts/build_imdb_actor_director_dataset.py | Created; identity and coverage validated |
 
 ## Scripts
 
@@ -44,11 +44,11 @@
 
 ## Chart configs
 
-None yet. Story discovery must be validated against the acquired dataset first.
+| File | Chart | Output | Status |\n|---|---|---|---|\n| config/chart_01_acting_ratings.py | Acting-rating timeline | output/mel_gibson_01_acting_ratings.png | Build |\n| config/chart_02_annual_acting_count.py | Annual acting-film counts | output/mel_gibson_02_annual_acting_count.png | Build |\n| config/chart_03_directing_ratings.py | Directing-rating chronology | output/mel_gibson_03_directing_ratings.png | Build |
 
 ## Workflows
 
-No new reusable workflow required at this stage.
+| File | Purpose | Status |\n|---|---|---|\n| .github/workflows/build-archived-imdb-career-data.yml | Reusable official IMDb acquisition for archived actor/director projects | Added on project branch |\n| .github/workflows/render-archived-project.yml | Locked archived-project rendering | Existing reusable workflow |
 
 ## Outputs
 
@@ -60,7 +60,7 @@ Not started. Site publication is deliberately outside this discovery-stage PR.
 
 ## QA notes
 
-- Data checked: External source hypothesis only; official IMDb export acquisition still required.
+- Data checked: Official IMDb exports acquired; 62 analytical rows, 41 audit rows, 100% basics join coverage, no duplicate analytical tconst values.
 - Config checked: Not applicable.
 - Render checked: Not applicable.
 - Labels/margins checked: Not applicable.
