@@ -67,9 +67,9 @@ def apply_538_template(
     subtitle_y=0.86,
     footer_left_x=0.10,
     footer_right_x=0.90,
-    footer_y=0.08,
+    footer_y=0.055,
     plot_top=0.75,
-    plot_bottom=0.14,
+    plot_bottom=0.18,
     plot_left=0.12,
     plot_right=0.90,
 ):
@@ -1122,9 +1122,9 @@ def main():
         subtitle_y=CHART_CONFIG.get("subtitle_y", 0.86),
         footer_left_x=CHART_CONFIG.get("footer_left_x", 0.10),
         footer_right_x=CHART_CONFIG.get("footer_right_x", 0.90),
-        footer_y=CHART_CONFIG.get("footer_y", 0.08),
+        footer_y=CHART_CONFIG.get("footer_y", 0.055),
         plot_top=CHART_CONFIG.get("plot_top", 0.75),
-        plot_bottom=CHART_CONFIG.get("plot_bottom", 0.14),
+        plot_bottom=CHART_CONFIG.get("plot_bottom", 0.18),
         plot_left=CHART_CONFIG.get("plot_left", 0.12),
         plot_right=CHART_CONFIG.get("plot_right", 0.90),
     )
