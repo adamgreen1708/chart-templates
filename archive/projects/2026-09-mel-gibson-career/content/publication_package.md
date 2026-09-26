@@ -153,4 +153,4 @@ Black-and-charcoal editorial illustration on a light-grey background showing one
 - [x] Feature prompt follows the locked light-grey / black-charcoal / single-muted-red house palette.
 - [x] Feature prompt explicitly excludes people and actor likenesses.
 - [x] Exact feature asset committed and referenced by the Jekyll post.
-- [ ] Publication correction PR passes Jekyll / Pages validation before merge.
+- [x] Publication correction PR passes Jekyll / Pages validation before merge.
