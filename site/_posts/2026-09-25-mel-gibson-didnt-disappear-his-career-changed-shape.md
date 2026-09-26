@@ -5,9 +5,9 @@ slug: mel-gibson-didnt-disappear-his-career-changed-shape
 description: "IMDb data shows a real acting gap, then a much busier but lower-rated return, while directing became a sparse second career."
 category: Film
 read_time: 4 minute read
-card_image: /assets/migrated/mel-gibson/acting-ratings.png
-hero_image: /assets/migrated/mel-gibson/acting-ratings.png
-hero_alt: "Scatter plot of IMDb ratings across Mel Gibson's eligible acting films, highlighting Lethal Weapon and Braveheart against the rest of his career."
+card_image: /assets/migrated/mel-gibson/feature.svg
+hero_image: /assets/migrated/mel-gibson/feature.svg
+hero_alt: "Black-and-charcoal editorial illustration on a light-grey background showing one film strip splitting at a muted-red hinge into a broken-then-busier acting lane and a thinner directing lane with six widely spaced markers and a small director’s-chair symbol."
 ---
 
 For me, Mel Gibson was Martin Riggs first. *Lethal Weapon* was one of those films that seemed permanently attached to growing up. Then came *Braveheart*, and the career suddenly felt bigger than just being the bloke in front of the camera.
