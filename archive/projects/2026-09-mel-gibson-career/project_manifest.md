@@ -4,7 +4,7 @@
 
 - Status: Published
 - Started: 2026-09-25
-- Last updated: 2026-09-25
+- Last updated: 2026-09-26
 - Owner: Adam Green
 - Repo project slug: 2026-09-mel-gibson-career
 
@@ -12,7 +12,7 @@
 
 - Working title: Riggs made the star. Braveheart changed the job.
 - Recommended route: He didn't disappear. He changed jobs, then came back differently.
-- Final title:
+- Final title: Mel Gibson didn't disappear. His career changed shape.
 - Core question: What happened to Mel Gibson's career after the Lethal Weapon / Braveheart peak, and where did he take it?
 - Main takeaway: The verified IMDb data shows a real acting gap followed by a high-volume but lower-rated acting return, while directing became a sparse second career with several major peaks.
 - Audience: coffeetableviz readers
@@ -72,7 +72,7 @@
 
 ## Content package
 
-Published via site/_posts/2026-09-25-mel-gibson-didnt-disappear-his-career-changed-shape.md using the three QA-passed chart assets copied into site/assets/migrated/mel-gibson/. Chart 1 is reused as the card/hero image so no additional unapproved illustration was introduced.
+Publication package: `content/publication_package.md`. Live Jekyll post: `site/_posts/2026-09-25-mel-gibson-didnt-disappear-his-career-changed-shape.md`. The three QA-passed chart assets are copied into `site/assets/migrated/mel-gibson/`. Story-specific feature artwork is `site/assets/migrated/mel-gibson/feature.svg`, derived from the saved publication-package metaphor and prompt and used as both card and hero image.
 
 ## QA notes
 
