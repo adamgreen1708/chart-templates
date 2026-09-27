@@ -152,8 +152,8 @@ Distribution chart of David Bowie album track lengths. Each row is one studio al
 - [x] Source and stream snapshot date visible.
 - [x] Feature concept matches the approved distribution story.
 - [x] Feature follows the locked #F3F4F6 / black-charcoal / one-muted-red palette.
-- [ ] Exact approved chart copied byte-for-byte into site assets.
-- [ ] Exact feature asset referenced by the Jekyll post.
-- [ ] GitHub Pages/Jekyll PR build passes.
+- [x] Exact approved chart copied byte-for-byte into site assets.
+- [x] Exact feature asset referenced by the Jekyll post.
+- [x] GitHub Pages/Jekyll PR build passes (run `36310750584`).
 - [ ] PR merged.
 - [ ] Live page and assets verified after deployment.
