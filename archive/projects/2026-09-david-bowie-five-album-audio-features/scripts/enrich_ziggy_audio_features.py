@@ -8,6 +8,7 @@ import unicodedata
 from pathlib import Path
 
 import requests
+from bs4 import BeautifulSoup
 
 PROJECT = Path(__file__).resolve().parents[1]
 INPUT = PROJECT / "data" / "five_album_track_spine.csv"
@@ -19,6 +20,7 @@ FEATURES = [
     "acousticness","danceability","energy","instrumentalness","liveness",
     "loudness","speechiness","tempo","valence",
 ]
+KWORB_URL = "https://kworb.net/spotify/artist/0oSGxfWSnnOXhD2fKuz2Gy_songs.html"
 
 SESSION = requests.Session()
 SESSION.headers.update({"Accept":"application/json","User-Agent":"coffeetableviz-research/1.0"})
@@ -57,6 +59,30 @@ def version_penalty(title: str) -> int:
     t = (title or "").lower()
     bad = ["live", "remix", "instrumental", "radio edit", "single version", "acoustic"]
     return 1 if any(x in t for x in bad) else 0
+
+
+def kworb_spotify_ids() -> dict[str, str]:
+    r = SESSION.get(KWORB_URL, timeout=60)
+    r.raise_for_status()
+    soup = BeautifulSoup(r.text, "html.parser")
+    out = {}
+    for a in soup.find_all("a", href=True):
+        href = a.get("href") or ""
+        title = a.get_text(" ", strip=True)
+        m = re.search(r"open\.spotify\.com/track/([A-Za-z0-9]+)", href)
+        if m and title:
+            out[norm_full(title)] = m.group(1)
+    if not out:
+        raise RuntimeError("Could not parse Spotify track links from Kworb")
+    return out
+
+
+def lookup_reccobeats_by_spotify_id(spotify_id: str) -> dict | None:
+    data = get_json(f"{API}/track", {"ids": spotify_id})
+    content = data.get("content", [])
+    if len(content) != 1:
+        return None
+    return content[0]
 
 
 def resolve_artist() -> dict:
@@ -131,16 +157,47 @@ def main():
     if len(rows) != 11:
         raise RuntimeError(f"Expected 11 Ziggy rows, got {len(rows)}")
 
-    artist = resolve_artist()
-    catalogue = fetch_artist_tracks(artist["id"])
-    print(f"Resolved ReccoBeats artist: {artist['name']} ({artist['id']}); catalogue rows={len(catalogue)}")
+    spotify_ids = kworb_spotify_ids()
+    artist = None
+    catalogue = None
 
     out = []
     for row in rows:
-        match, status = choose_match(row, catalogue)
+        spotify_id = spotify_ids.get(norm_full(row.get("spotify_title") or ""))
+        match = None
+        status = "no_spotify_id"
+        match_method = ""
+
+        if spotify_id:
+            exact = lookup_reccobeats_by_spotify_id(spotify_id)
+            if exact:
+                match = dict(exact)
+                ms = match.get("durationMs")
+                diff = 999999 if ms is None else abs(float(ms) / 1000 - float(row["duration_seconds"]))
+                match["_duration_diff"] = diff
+                match["_candidate_count"] = 1
+                match["_exact_spotify_title"] = True
+                if diff <= 12:
+                    status = "matched"
+                    match_method = "exact_spotify_id"
+                else:
+                    match = None
+                    status = f"spotify_id_duration_diff_{diff:.1f}s"
+
+        if match is None:
+            if catalogue is None:
+                artist = resolve_artist()
+                catalogue = fetch_artist_tracks(artist["id"])
+                print(f"Fallback ReccoBeats artist: {artist['name']} ({artist['id']}); catalogue rows={len(catalogue)}")
+            match, status = choose_match(row, catalogue)
+            if match:
+                match_method = "title_duration_fallback"
+
         result = dict(row)
         result.update({
             "reccobeats_match_status": status,
+            "reccobeats_match_method": match_method,
+            "spotify_track_id": spotify_id or "",
             "reccobeats_track_id": "",
             "reccobeats_track_title": "",
             "reccobeats_duration_seconds": "",
