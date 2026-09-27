@@ -135,11 +135,15 @@ def normalize_title(value: str) -> str:
     return " ".join(value.split())
 
 
-def search_release_group(album_title: str, album_year: int) -> list[dict[str, Any]]:
+def search_release_group(album_title: str, album_year: int, artist_mbid: str) -> list[dict[str, Any]]:
     aliases = ALBUM_TITLE_ALIASES.get(album_title, {album_title})
     found: dict[str, dict[str, Any]] = {}
     for alias in aliases:
-        query = f'releasegroup:"{alias}" AND artist:"{ARTIST_NAME}"'
+        # Search release titles as well as canonical release-group titles. This
+        # handles cases such as the 1969 album whose MusicBrainz release-group
+        # title documents its historical renaming while releases are titled
+        # "Space Oddity". arid keeps the query unambiguously on Bowie.
+        query = f'release:"{alias}" AND arid:{artist_mbid}'
         url = f"{API_ROOT}/release-group/?{urlencode({'query': query, 'fmt': 'json', 'limit': 25})}"
         data = get_json(url)
         for rg in data.get("release-groups", []):
@@ -154,7 +158,7 @@ def search_release_group(album_title: str, album_year: int) -> list[dict[str, An
     return same_year or candidates
 
 
-def match_release_group(album_title: str, album_year: int, release_groups: list[dict[str, Any]]) -> dict[str, Any]:
+def match_release_group(album_title: str, album_year: int, release_groups: list[dict[str, Any]], artist_mbid: str) -> dict[str, Any]:
     aliases = ALBUM_TITLE_ALIASES.get(album_title, {album_title})
     normalized_aliases = {normalize_title(x) for x in aliases}
     candidates = [
@@ -169,7 +173,7 @@ def match_release_group(album_title: str, album_year: int, release_groups: list[
         if same_year:
             candidates = same_year
     if len(candidates) != 1:
-        searched = search_release_group(album_title, album_year)
+        searched = search_release_group(album_title, album_year, artist_mbid)
         if len(searched) == 1:
             return searched[0]
         if searched:
@@ -236,7 +240,7 @@ def main() -> None:
     for album in albums:
         title = album["title"].strip()
         year = int(album["year"])
-        rg = match_release_group(title, year, release_groups)
+        rg = match_release_group(title, year, release_groups, artist_mbid)
         release = choose_release(rg["id"])
         release_payload = fetch_release_tracks(release["id"])
 
