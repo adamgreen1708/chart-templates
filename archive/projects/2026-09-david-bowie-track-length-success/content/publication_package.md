@@ -167,7 +167,7 @@ Black-and-charcoal editorial illustration on a light-grey background showing an 
 - [x] Feature concept expresses the specific three-minute-rule tension rather than generic Bowie/music imagery.
 - [x] Feature artwork uses the locked `#F3F4F6` background and one muted-red accent.
 - [x] No Bowie likeness, logos, album artwork or lightning-bolt imagery.
-- [ ] Exact chart PNGs copied byte-for-byte into site assets and referenced by the Jekyll post.
-- [ ] Exact feature asset committed and referenced by the Jekyll post.
-- [ ] GitHub Pages/Jekyll PR build passes.
+- [x] Exact chart PNGs copied byte-for-byte into site assets and referenced by the Jekyll post.
+- [x] Exact feature asset committed and referenced by the Jekyll post.
+- [x] GitHub Pages/Jekyll PR build passes (run `36303151300`).
 - [ ] Adam reviews the exact feature asset and site post before merge.
