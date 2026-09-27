@@ -10,7 +10,7 @@ CHART_CONFIG = {
     "filters": [],
 
     "title": "Bowie stretched the song",
-    "subtitle": "Each point is one studio album in release order. The median track rises from 2:49 on the 1967 debut to a 6:02 peak on Station to Station, then keeps changing shape.",
+    "subtitle": "Album medians keep changing; points are evenly spaced in release order: 2:49 on the 1967 debut, 6:02 on Station to Station.",
     "source_text": "MusicBrainz durations · 275 tracks",
     "footer_left": "Adam Green | coffeetableviz",
     "story_angle": "single_series_trend",

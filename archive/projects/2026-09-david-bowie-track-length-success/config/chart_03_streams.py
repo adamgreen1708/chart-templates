@@ -63,7 +63,7 @@ CHART_CONFIG = {
     "annotate_points": [
         {"track_title": "Starman", "text": "Starman · 4:10 · 830m", "xytext": (-8, 8), "ha": "right", "va": "bottom", "fontsize": 8, "color": "#C44E52", "fontweight": "bold", "arrowprops": None},
         {"track_title": "“Heroes”", "text": "“Heroes” · 6:10 · 740m", "xytext": (8, 8), "ha": "left", "va": "bottom", "fontsize": 8, "color": "#C44E52", "fontweight": "bold", "arrowprops": None},
-        {"track_title": "Let's Dance", "text": "Let's Dance · 7:37 · 403m", "xytext": (8, -10), "ha": "left", "va": "top", "fontsize": 8, "color": "#C44E52", "fontweight": "bold", "arrowprops": None},
+        {"track_title": "Let’s Dance", "text": "Let’s Dance · 7:37 · 403m", "xytext": (8, -10), "ha": "left", "va": "top", "fontsize": 8, "color": "#C44E52", "fontweight": "bold", "arrowprops": None},
         {"track_title": "Moonage Daydream", "text": "Moonage Daydream · 294m\nno main UK chart match", "xytext": (-8, -10), "ha": "right", "va": "top", "fontsize": 8, "color": "#555555", "fontweight": "bold", "arrowprops": None},
     ],
     "end_labels": [],

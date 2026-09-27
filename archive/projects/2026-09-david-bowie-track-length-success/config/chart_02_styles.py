@@ -10,7 +10,7 @@ CHART_CONFIG = {
     "filters": [],
 
     "title": "Style changed the clock",
-    "subtitle": "Tracks on albums tagged Blue-Eyed Soul have a 4:45 median; Glam Rock 3:29. These are overlapping AllMusic album Styles, not mutually exclusive song genres.",
+    "subtitle": "Album-level AllMusic Styles overlap, but their track-length profiles differ: Blue-Eyed Soul 4:45 median; Glam Rock 3:29.",
     "source_text": "AllMusic Styles · MusicBrainz durations",
     "footer_left": "Adam Green | coffeetableviz",
     "story_angle": "ranked_comparison",
