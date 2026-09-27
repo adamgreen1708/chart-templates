@@ -20,7 +20,7 @@ Primary encoding:
 Right-hand feature panels:
 - Energy
 - Valence
-- Danceability
+- Acousticness
 
 ## What the data is saying
 
@@ -48,34 +48,27 @@ Valence:
 - *Soul Love* 0.709
 - lowest: *It Ain’t Easy* 0.177
 
-### Danceability is comparatively compressed
+### Acousticness gives stronger separation than danceability
 
-Matched-track danceability runs only from:
-- 0.434 (*Ziggy Stardust*)
-- to 0.593 (*Lady Stardust*)
-
-It is valid data, but it creates less visual separation than the other features.
-
-### Acousticness may be a better third mini-panel
-
-Acousticness ranges from:
+Matched-track acousticness ranges from:
 - 0.017 (*It Ain’t Easy*)
 - to 0.615 (*Lady Stardust*)
 
-That is much stronger visual variation than danceability and may tell a more useful album-structure story.
+That is materially wider than the discarded Danceability panel, which only ranged from 0.434 to 0.593 on the matched Ziggy tracks.
 
-Liveness also varies materially (0.045–0.540), but its interpretation is less immediately intuitive for a general audience.
+This makes Acousticness the stronger third mini-panel for the Ziggy prototype while remaining intuitive enough for a general audience.
 
-## Recommendation before scaling to the other albums
+Liveness also varies materially (0.045–0.540), but its interpretation is less immediate.
+
+## Preferred template before scaling to the other albums
 
 Keep:
 1. duration as the dominant encoding;
 2. tempo as bar colour;
 3. energy;
-4. valence.
+4. valence;
+5. acousticness.
 
-For the third mini-panel, compare:
-- **Danceability** — familiar and intuitive, but compressed on Ziggy;
-- **Acousticness** — much stronger variation on Ziggy and potentially more revealing.
+The revised Ziggy chart is the preferred prototype for Adam's review.
 
-Do not enrich/render the other four albums until Adam has reviewed this prototype and chosen the final mini-panel set.
+Do not enrich/render the other four albums until Adam approves this final feature-panel set.
