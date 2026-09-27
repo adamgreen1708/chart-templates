@@ -149,16 +149,21 @@ def choose_match(row: dict, catalogue: list[dict]) -> tuple[dict | None, str]:
     ranked.sort(key=lambda z: z[0])
     (_, _, diff), best = ranked[0]
 
-    if diff > 12:
-        return None, f"closest_duration_diff_{diff:.1f}s"
+    exact_title = (
+        bool(target_spotify_title)
+        and norm_full(best.get("trackTitle") or "") == target_spotify_title
+    )
+    # Exact validated version titles can differ slightly in encoded duration.
+    # A title-only fallback must be much tighter: otherwise we risk mixing in
+    # another master/edit while pretending it is the canonical album version.
+    allowed_diff = 12 if exact_title else 5
+    if diff > allowed_diff:
+        return None, f"unconfident_version_diff_{diff:.1f}s"
 
     best = dict(best)
     best["_duration_diff"] = diff
     best["_candidate_count"] = len(candidates)
-    best["_exact_spotify_title"] = (
-        bool(target_spotify_title)
-        and norm_full(best.get("trackTitle") or "") == target_spotify_title
-    )
+    best["_exact_spotify_title"] = exact_title
     return best, "matched"
 
 
