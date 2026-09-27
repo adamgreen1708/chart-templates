@@ -11,7 +11,7 @@ hero_image: /assets/migrated/david-bowie-track-distributions/feature.svg
 hero_alt: "Editorial illustration on a light-grey background showing several horizontal track distributions made of grey dots, with blue median marks, charcoal mean crosses and one muted-red standout dot sitting away from the centre."
 ---
 
-The previous Bowie story used album medians because medians are useful.
+The previous Bowie story, [Bowie never needed the three-minute rule]({{ '/2026/09/27/bowie-never-needed-the-three-minute-rule/' | relative_url }}), used album medians because medians are useful.
 
 They are robust, tidy and good for comparison.
 
