@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1600" role="img" aria-labelledby="title desc">
+  <title id="title">Album distributions with one red standout track</title>
+  <desc id="desc">Several horizontal distributions made of grey track dots, with blue median ticks, charcoal mean crosses and one muted-red standout dot away from the centre.</desc>
+  <rect width="1600" height="1600" fill="#F3F4F6"/>
+
+  <g stroke="#D9D9D9" stroke-width="3" opacity="0.9">
+    <line x1="180" y1="390" x2="1420" y2="390"/>
+    <line x1="180" y1="610" x2="1420" y2="610"/>
+    <line x1="180" y1="830" x2="1420" y2="830"/>
+    <line x1="180" y1="1050" x2="1420" y2="1050"/>
+    <line x1="180" y1="1270" x2="1420" y2="1270"/>
+  </g>
+
+  <g fill="#B8B8B8">
+    <circle cx="355" cy="390" r="22"/><circle cx="430" cy="390" r="22"/><circle cx="500" cy="390" r="22"/><circle cx="550" cy="390" r="22"/><circle cx="615" cy="390" r="22"/><circle cx="700" cy="390" r="22"/><circle cx="785" cy="390" r="22"/>
+    <circle cx="450" cy="610" r="22"/><circle cx="515" cy="610" r="22"/><circle cx="570" cy="610" r="22"/><circle cx="640" cy="610" r="22"/><circle cx="720" cy="610" r="22"/><circle cx="820" cy="610" r="22"/><circle cx="930" cy="610" r="22"/>
+    <circle cx="275" cy="830" r="22"/><circle cx="390" cy="830" r="22"/><circle cx="510" cy="830" r="22"/><circle cx="590" cy="830" r="22"/><circle cx="650" cy="830" r="22"/><circle cx="710" cy="830" r="22"/><circle cx="760" cy="830" r="22"/><circle cx="835" cy="830" r="22"/><circle cx="980" cy="830" r="22"/>
+    <circle cx="520" cy="1050" r="22"/><circle cx="585" cy="1050" r="22"/><circle cx="645" cy="1050" r="22"/><circle cx="700" cy="1050" r="22"/><circle cx="765" cy="1050" r="22"/><circle cx="820" cy="1050" r="22"/><circle cx="880" cy="1050" r="22"/>
+    <circle cx="430" cy="1270" r="22"/><circle cx="510" cy="1270" r="22"/><circle cx="580" cy="1270" r="22"/><circle cx="655" cy="1270" r="22"/><circle cx="725" cy="1270" r="22"/><circle cx="790" cy="1270" r="22"/>
+  </g>
+
+  <g stroke="#1F8FA8" stroke-width="16" stroke-linecap="round">
+    <line x1="615" y1="345" x2="615" y2="435"/>
+    <line x1="690" y1="565" x2="690" y2="655"/>
+    <line x1="650" y1="785" x2="650" y2="875"/>
+    <line x1="735" y1="1005" x2="735" y2="1095"/>
+    <line x1="675" y1="1225" x2="675" y2="1315"/>
+  </g>
+
+  <g stroke="#333333" stroke-width="14" stroke-linecap="round">
+    <path d="M650 355 L700 425 M700 355 L650 425"/>
+    <path d="M725 575 L775 645 M775 575 L725 645"/>
+    <path d="M675 795 L725 865 M725 795 L675 865"/>
+    <path d="M785 1015 L835 1085 M835 1015 L785 1085"/>
+    <path d="M710 1235 L760 1305 M760 1235 L710 1305"/>
+  </g>
+
+  <circle cx="1115" cy="830" r="38" fill="#C44E52"/>
+  <path d="M1115 770 L1115 710" stroke="#C44E52" stroke-width="13" stroke-linecap="round" opacity="0.9"/>
+  <path d="M1115 950 C1240 900 1325 875 1410 875" fill="none" stroke="#C44E52" stroke-width="12" stroke-linecap="round" opacity="0.35"/>
+</svg>
