@@ -118,6 +118,13 @@ def main():
         "Red = most-streamed album track in the 25 Sep 2026 snapshot.",
         fontsize=9.5, color=RED, ha="left", fontweight="bold"
     )
+    missing = [r["track_title"] for r in rows if r["reccobeats_match_status"] != "matched"]
+    if missing:
+        fig.text(
+            0.07, 0.825,
+            "Audio features unavailable for: " + ", ".join(missing) + " · duration retained, feature marks left blank.",
+            fontsize=8.5, color=MID, ha="left"
+        )
 
     starman = rows[top_idx]
     fig.text(
