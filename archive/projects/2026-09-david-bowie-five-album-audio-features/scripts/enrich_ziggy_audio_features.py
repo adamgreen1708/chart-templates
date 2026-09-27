@@ -46,6 +46,19 @@ def norm(value: str) -> str:
     return " ".join(value.split())
 
 
+def norm_full(value: str) -> str:
+    value = unicodedata.normalize("NFKD", value or "")
+    value = value.replace("’", "'").replace("‘", "'").replace("“", '"').replace("”", '"')
+    value = re.sub(r"[^a-z0-9]+", " ", value.lower())
+    return " ".join(value.split())
+
+
+def version_penalty(title: str) -> int:
+    t = (title or "").lower()
+    bad = ["live", "remix", "instrumental", "radio edit", "single version", "acoustic"]
+    return 1 if any(x in t for x in bad) else 0
+
+
 def resolve_artist() -> dict:
     data = get_json(f"{API}/artist/search", {"searchText": ARTIST, "page": 0, "size": 20})
     exact = [x for x in data.get("content", []) if (x.get("name") or "").strip().lower() == ARTIST.lower()]
@@ -75,22 +88,40 @@ def choose_match(row: dict, catalogue: list[dict]) -> tuple[dict | None, str]:
     candidates = [x for x in catalogue if norm(x.get("trackTitle") or "") == key]
     if not candidates:
         return None, "no_title_match"
+
     canonical = float(row["duration_seconds"])
+    target_spotify_title = norm_full(row.get("spotify_title") or "")
+
     ranked = []
     for x in candidates:
+        returned_title = x.get("trackTitle") or ""
         ms = x.get("durationMs")
-        if ms is None:
-            diff = 999999
-        else:
-            diff = abs(float(ms) / 1000 - canonical)
-        ranked.append((diff, x))
+        diff = 999999 if ms is None else abs(float(ms) / 1000 - canonical)
+
+        exact_spotify = (
+            0 if target_spotify_title and norm_full(returned_title) == target_spotify_title else 1
+        )
+        penalty = version_penalty(returned_title)
+
+        # Ranking priority:
+        # 1. exact match to the already-validated Spotify/Kworb version title;
+        # 2. avoid live/remix/instrumental/edit alternatives;
+        # 3. closest duration to the canonical album track.
+        ranked.append(((exact_spotify, penalty, diff), x))
+
     ranked.sort(key=lambda z: z[0])
-    diff, best = ranked[0]
+    (_, _, diff), best = ranked[0]
+
     if diff > 12:
         return None, f"closest_duration_diff_{diff:.1f}s"
+
     best = dict(best)
     best["_duration_diff"] = diff
     best["_candidate_count"] = len(candidates)
+    best["_exact_spotify_title"] = (
+        bool(target_spotify_title)
+        and norm_full(best.get("trackTitle") or "") == target_spotify_title
+    )
     return best, "matched"
 
 
@@ -115,6 +146,7 @@ def main():
             "reccobeats_duration_seconds": "",
             "reccobeats_duration_diff_seconds": "",
             "reccobeats_candidate_count": "",
+            "reccobeats_exact_spotify_title_match": "",
             "audio_feature_source": "ReccoBeats",
         })
         for name in FEATURES:
@@ -126,6 +158,7 @@ def main():
             result["reccobeats_duration_seconds"] = round(float(match.get("durationMs", 0)) / 1000, 3) if match.get("durationMs") is not None else ""
             result["reccobeats_duration_diff_seconds"] = round(match["_duration_diff"], 3)
             result["reccobeats_candidate_count"] = match["_candidate_count"]
+            result["reccobeats_exact_spotify_title_match"] = "Yes" if match["_exact_spotify_title"] else "No"
             feat = get_json(f"{API}/track/{match['id']}/audio-features")
             for name in FEATURES:
                 result[name] = feat.get(name, "")
