@@ -41,6 +41,35 @@ MIN_SECONDS_BETWEEN_CALLS = 1.1
 MAX_RETRIES = 4
 ARTIST_NAME = "David Bowie"
 
+CANONICAL_TRACK_COUNTS = {
+    "David Bowie": 14,
+    "Space Oddity": 10,
+    "The Man Who Sold the World": 9,
+    "Hunky Dory": 11,
+    "The Rise and Fall of Ziggy Stardust and the Spiders from Mars": 11,
+    "Aladdin Sane": 10,
+    "Pin Ups": 12,
+    "Diamond Dogs": 11,
+    "Young Americans": 8,
+    "Station to Station": 6,
+    "Low": 11,
+    "Heroes": 10,
+    "Lodger": 10,
+    "Scary Monsters": 10,
+    "Let's Dance": 8,
+    "Tonight": 9,
+    "Never Let Me Down": 11,
+    "Black Tie White Noise": 12,
+    "The Buddha of Suburbia": 10,
+    "1. Outside": 19,
+    "Earthling": 9,
+    "Hours": 10,
+    "Heathen": 12,
+    "Reality": 11,
+    "The Next Day": 14,
+    "Blackstar": 7,
+}
+
 # MusicBrainz preserves some catalogue typography that differs from the
 # editorial album labels used in the validated Bowie spine.
 ALBUM_TITLE_ALIASES = {
@@ -195,20 +224,38 @@ def match_release_group(album_title: str, album_year: int, release_groups: list[
     return candidates[0]
 
 
-def choose_release(release_group_id: str) -> dict[str, Any]:
+def choose_release(release_group_id: str, album_year: int) -> dict[str, Any]:
     params = {"inc": "releases", "fmt": "json"}
     rg = get_json(f"{API_ROOT}/release-group/{quote(release_group_id)}?{urlencode(params)}")
     releases = [r for r in rg.get("releases", []) if r.get("status") in (None, "Official")]
     if not releases:
         raise RuntimeError(f"No releases found for release group {release_group_id}")
 
+    # Prefer a release from the validated album year, then the original UK
+    # issue where one exists. Sorting by date first picked the shortened US
+    # 1967 debut and a multi-layer SACD of Reality, so territory must precede
+    # date within the original-year pool.
+    original_year = [
+        r for r in releases
+        if str(r.get("date") or "").startswith(str(album_year))
+    ]
+    pool = original_year or releases
+
     def key(r: dict[str, Any]) -> tuple[Any, ...]:
         date = r.get("date") or "9999-99-99"
         country = r.get("country") or ""
-        country_rank = 0 if country == "GB" else 1 if country == "US" else 2
-        return (date, country_rank, r.get("title") or "", r.get("id") or "")
+        country_rank = {
+            "GB": 0,
+            "XE": 1,  # Europe
+            "XW": 2,  # worldwide
+            "US": 3,
+            "CA": 4,
+            "AU": 5,
+            "JP": 6,
+        }.get(country, 7)
+        return (country_rank, date, r.get("title") or "", r.get("id") or "")
 
-    return sorted(releases, key=key)[0]
+    return sorted(pool, key=key)[0]
 
 
 def fetch_release_tracks(release_id: str) -> dict[str, Any]:
@@ -241,7 +288,7 @@ def main() -> None:
         title = album["title"].strip()
         year = int(album["year"])
         rg = match_release_group(title, year, release_groups, artist_mbid)
-        release = choose_release(rg["id"])
+        release = choose_release(rg["id"], year)
         release_payload = fetch_release_tracks(release["id"])
 
         track_rows: list[dict[str, Any]] = []
@@ -280,6 +327,16 @@ def main() -> None:
 
         if not track_rows:
             raise RuntimeError(f"No tracks found for {title!r} using release {release['id']}")
+
+        expected = CANONICAL_TRACK_COUNTS.get(title)
+        if expected is None:
+            raise RuntimeError(f"No canonical track-count QA rule for {title!r}")
+        if len(track_rows) != expected:
+            raise RuntimeError(
+                f"Canonical track-count mismatch for {title!r}: expected {expected}, "
+                f"got {len(track_rows)} from release {release['id']} "
+                f"({release.get('country')}, {release.get('date')})."
+            )
         out.extend(track_rows)
 
     fields = list(out[0].keys())
