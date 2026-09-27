@@ -204,7 +204,12 @@ def resolve_album_catalogues(rows: list[dict]) -> dict[str, list[dict]]:
     return resolved
 
 
-def choose_match(row: dict, catalogue: list[dict]) -> tuple[dict | None, str]:
+def choose_match(
+    row: dict,
+    catalogue: list[dict],
+    *,
+    album_scoped: bool = False,
+) -> tuple[dict | None, str]:
     key = norm(row["track_title"])
     candidates = [x for x in catalogue if norm(x.get("trackTitle") or "") == key]
     if not candidates:
@@ -226,7 +231,10 @@ def choose_match(row: dict, catalogue: list[dict]) -> tuple[dict | None, str]:
 
     # Exact validated version titles allow small mastering-duration differences.
     # Title-only fallbacks are intentionally stricter to avoid mixing versions.
-    allowed_diff = 12 if exact_title else 5
+    # Within a positively identified album tracklist, a base-title match can
+    # tolerate the same small mastering-duration drift as an exact validated
+    # Spotify-version title. Global artist-catalogue fallbacks remain stricter.
+    allowed_diff = 12 if (exact_title or album_scoped) else 5
     if diff > allowed_diff:
         return None, f"unconfident_version_diff_{diff:.1f}s"
 
@@ -288,7 +296,7 @@ def main():
         if match is None:
             album_catalogue = album_catalogues.get(row["album_title"], [])
             if album_catalogue:
-                match, status = choose_match(row, album_catalogue)
+                match, status = choose_match(row, album_catalogue, album_scoped=True)
                 if match:
                     match_method = "album_title_duration_fallback"
 
