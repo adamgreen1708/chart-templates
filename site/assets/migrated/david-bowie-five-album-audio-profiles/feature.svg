@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1600" role="img" aria-labelledby="title desc">
+  <title id="title">One red entry point opening into five different sound paths</title>
+  <desc id="desc">A muted-red dot on the left opens into five different black-and-charcoal waveform paths across a light-grey square background.</desc>
+  <rect width="1600" height="1600" fill="#F3F4F6"/>
+
+  <!-- single entry point -->
+  <circle cx="245" cy="800" r="62" fill="#C44E52"/>
+  <circle cx="245" cy="800" r="96" fill="none" stroke="#C44E52" stroke-width="10" opacity="0.18"/>
+
+  <!-- five divergent album paths -->
+  <path d="M320 800 C420 800 420 330 560 330 C690 330 710 245 850 245 C990 245 1040 355 1180 355 C1310 355 1370 285 1490 285"
+        fill="none" stroke="#111111" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M320 800 C445 800 455 560 575 560 C690 560 735 650 845 650 C965 650 1010 505 1135 505 C1270 505 1340 585 1490 585"
+        fill="none" stroke="#3A3A3A" stroke-width="48" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M320 800 C480 800 510 800 645 800 C760 800 805 735 920 735 C1045 735 1100 875 1220 875 C1345 875 1400 800 1490 800"
+        fill="none" stroke="#111111" stroke-width="60" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M320 800 C445 800 470 1045 600 1045 C720 1045 760 950 875 950 C985 950 1045 1115 1180 1115 C1310 1115 1375 1045 1490 1045"
+        fill="none" stroke="#555555" stroke-width="46" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M320 800 C410 800 445 1290 585 1290 C720 1290 760 1370 910 1370 C1050 1370 1100 1240 1230 1240 C1360 1240 1410 1315 1490 1315"
+        fill="none" stroke="#222222" stroke-width="52" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- waveform cuts create different internal rhythms -->
+  <g stroke="#F3F4F6" stroke-width="14" stroke-linecap="round" opacity="0.96">
+    <path d="M605 307 L622 353"/><path d="M784 246 L803 291"/><path d="M1035 315 L1053 361"/><path d="M1272 325 L1292 365"/>
+    <path d="M575 536 L592 582"/><path d="M805 614 L824 657"/><path d="M1090 520 L1108 560"/><path d="M1330 557 L1347 599"/>
+    <path d="M535 779 L553 821"/><path d="M752 768 L770 813"/><path d="M1005 785 L1024 830"/><path d="M1275 828 L1294 873"/>
+    <path d="M590 1018 L608 1066"/><path d="M820 974 L838 1016"/><path d="M1055 1060 L1073 1105"/><path d="M1340 1021 L1357 1065"/>
+    <path d="M575 1265 L593 1311"/><path d="M835 1335 L853 1378"/><path d="M1105 1250 L1123 1294"/><path d="M1365 1285 L1383 1328"/>
+  </g>
+
+  <!-- understated starting branches -->
+  <g stroke="#333333" stroke-width="12" opacity="0.45">
+    <line x1="305" y1="775" x2="370" y2="390"/>
+    <line x1="310" y1="788" x2="385" y2="605"/>
+    <line x1="310" y1="812" x2="385" y2="995"/>
+    <line x1="305" y1="825" x2="365" y2="1235"/>
+  </g>
+</svg>
