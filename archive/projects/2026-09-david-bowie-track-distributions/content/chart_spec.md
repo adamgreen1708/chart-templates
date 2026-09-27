@@ -13,7 +13,7 @@
 - X-axis: canonical album-track duration in minutes.
 - Y-axis: album year + album title.
 - Every canonical track plotted at its exact duration.
-- Target roughly 12 × 16–18 inches so 26 rows remain readable.
+- Use an extended wide canvas (current draft: 14.5 × 17.5 inches) so all 26 red labels fit without clipping.
 
 ## Encoding
 
@@ -26,12 +26,13 @@
 
 ## Labelling rule
 
-Do not label all 26 most-streamed tracks.
+Label **all 26 album-level most-streamed tracks** in muted red.
 
-Label:
-1. every Tukey outlier where space permits;
-2. a most-streamed track when it is at least 60 seconds from its album median;
-3. selected editorial anchors.
+To keep the distribution readable, grey outlier labels are selective rather than exhaustive:
+1. every red most-streamed track is labelled;
+2. if a red track is also a Tukey outlier, add “outlier” to the red label;
+3. for other Tukey outliers, label only the single most extreme non-red outlier per album;
+4. place grey labels on the opposite vertical side from the red label where possible.
 
 Priority anchors:
 - *Cygnet Committee* — 9:36
