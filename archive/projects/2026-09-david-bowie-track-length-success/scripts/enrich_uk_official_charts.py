@@ -49,6 +49,10 @@ def normalize_title(value: str) -> str:
     value = unicodedata.normalize("NFKD", value or "")
     value = value.replace("“", '"').replace("”", '"').replace("‘", "'").replace("’", "'")
     value = re.sub(r"\([^)]*remaster[^)]*\)", "", value, flags=re.IGNORECASE)
+    # Official Charts sometimes gives reissues separate display titles such as
+    # "SPACE ODDITY {1975}". For composition-level success, fold a trailing
+    # four-digit release-year qualifier back into the canonical song title.
+    value = re.sub(r"\s*[\{\(\[]\d{4}[\}\)\]]\s*$", "", value)
     value = re.sub(r"[^a-z0-9]+", " ", value.lower())
     key = " ".join(value.split())
     return TITLE_ALIASES.get(key, key)
