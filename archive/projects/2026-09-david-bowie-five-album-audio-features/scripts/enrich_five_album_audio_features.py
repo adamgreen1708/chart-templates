@@ -52,8 +52,22 @@ def norm(value: str) -> str:
     value = unicodedata.normalize("NFKD", value or "")
     value = value.replace("’", "'").replace("‘", "'").replace("“", '"').replace("”", '"')
     value = value.lower().strip()
-    value = re.sub(r"\s+-\s+.*(?:remaster|remastered|mix|remix|live|edit|version).*?$", "", value, flags=re.I)
-    value = re.sub(r"\s*\((?:\d{4}\s+)?(?:remaster|remastered|mix|remix|edit|version)[^)]*\)\s*$", "", value, flags=re.I)
+
+    # Strip only a trailing version/remaster qualifier. Do not discard meaningful
+    # subtitles before it: "Sweet Thing - Reprise; 2016 Remaster" must retain
+    # "Reprise" so it can match the canonical album track.
+    value = re.sub(
+        r"\s*[-;]\s*(?:\d{4}\s+)?(?:remaster(?:ed)?|mix|remix|edit|version)[^;()]*$",
+        "",
+        value,
+        flags=re.I,
+    )
+    value = re.sub(
+        r"\s*\((?:\d{4}\s+)?(?:remaster(?:ed)?|mix|remix|edit|version)[^)]*\)\s*$",
+        "",
+        value,
+        flags=re.I,
+    )
     value = re.sub(r"[^a-z0-9]+", " ", value)
     return " ".join(value.split())
 
@@ -117,6 +131,79 @@ def fetch_artist_tracks(artist_id: str) -> list[dict]:
     return all_rows
 
 
+ALBUM_SEARCH_TERMS = {
+    "The Rise and Fall of Ziggy Stardust and the Spiders from Mars": "Ziggy Stardust",
+    "Heroes": "Heroes",
+    "Space Oddity": "Space Oddity",
+    "Diamond Dogs": "Diamond Dogs",
+    "Hunky Dory": "Hunky Dory",
+}
+
+
+def fetch_album_tracks(album_id: str) -> list[dict]:
+    out = []
+    for page in range(8):
+        data = get_json(f"{API}/album/{album_id}/track", {"page": page, "size": 40})
+        content = data.get("content", [])
+        if not content:
+            break
+        out.extend(content)
+        if len(content) < 40:
+            break
+        time.sleep(0.20)
+    return out
+
+
+def resolve_album_catalogues(rows: list[dict]) -> dict[str, list[dict]]:
+    by_album: dict[str, list[dict]] = {}
+    for row in rows:
+        by_album.setdefault(row["album_title"], []).append(row)
+
+    resolved: dict[str, list[dict]] = {}
+    for album, canonical_rows in by_album.items():
+        search_text = ALBUM_SEARCH_TERMS[album]
+        data = get_json(f"{API}/album/search", {"searchText": search_text, "page": 0, "size": 40})
+        candidates = []
+        for candidate in data.get("content", []):
+            artists = [str(a.get("name") or "").strip().lower() for a in candidate.get("artists", [])]
+            if ARTIST.lower() not in artists:
+                continue
+            tracks = fetch_album_tracks(candidate["id"])
+            if not tracks:
+                continue
+
+            title_keys = {norm(t.get("trackTitle") or "") for t in tracks}
+            hits = sum(1 for r in canonical_rows if norm(r["track_title"]) in title_keys)
+
+            diffs = []
+            for r in canonical_rows:
+                key = norm(r["track_title"])
+                matches = [t for t in tracks if norm(t.get("trackTitle") or "") == key and t.get("durationMs") is not None]
+                if matches:
+                    canonical = float(r["duration_seconds"])
+                    diffs.append(min(abs(float(t["durationMs"]) / 1000 - canonical) for t in matches))
+
+            mean_diff = sum(diffs) / len(diffs) if diffs else 999999
+            release = str(candidate.get("releaseDate") or "")
+            target_year = str(canonical_rows[0]["album_year"])
+            year_penalty = 0 if release.startswith(target_year) else 1
+            candidates.append(((hits, -year_penalty, -mean_diff), candidate, tracks))
+
+        if not candidates:
+            print(f"Album catalogue unresolved | {album}")
+            resolved[album] = []
+            continue
+
+        candidates.sort(key=lambda x: x[0], reverse=True)
+        score, candidate, tracks = candidates[0]
+        resolved[album] = tracks
+        print(
+            f"Album catalogue | {album} -> {candidate.get('albumTitle')} "
+            f"({candidate.get('releaseDate')}) | track rows={len(tracks)} | title hits={score[0]}"
+        )
+    return resolved
+
+
 def choose_match(row: dict, catalogue: list[dict]) -> tuple[dict | None, str]:
     key = norm(row["track_title"])
     candidates = [x for x in catalogue if norm(x.get("trackTitle") or "") == key]
@@ -157,6 +244,7 @@ def main():
         raise RuntimeError(f"Expected 53 five-album rows, got {len(rows)}")
 
     spotify_ids = kworb_spotify_ids()
+    album_catalogues = resolve_album_catalogues(rows)
     artist = None
     catalogue = None
     out = []
@@ -198,13 +286,20 @@ def main():
                         status = f"spotify_id_duration_diff_{diff:.1f}s"
 
         if match is None:
+            album_catalogue = album_catalogues.get(row["album_title"], [])
+            if album_catalogue:
+                match, status = choose_match(row, album_catalogue)
+                if match:
+                    match_method = "album_title_duration_fallback"
+
+        if match is None:
             if catalogue is None:
                 artist = resolve_artist()
                 catalogue = fetch_artist_tracks(artist["id"])
                 print(f"Fallback artist catalogue: {artist['name']} ({artist['id']}); rows={len(catalogue)}")
             match, status = choose_match(row, catalogue)
             if match:
-                match_method = "title_duration_fallback"
+                match_method = "artist_title_duration_fallback"
 
         result = dict(row)
         result.update({
