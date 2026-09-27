@@ -38,7 +38,7 @@ def main():
     tempo = np.array([float(r["tempo"]) if r["tempo"] else np.nan for r in rows])
     energy = np.array([float(r["energy"]) if r["energy"] else np.nan for r in rows])
     valence = np.array([float(r["valence"]) if r["valence"] else np.nan for r in rows])
-    dance = np.array([float(r["danceability"]) if r["danceability"] else np.nan for r in rows])
+    acoustic = np.array([float(r["acousticness"]) if r["acousticness"] else np.nan for r in rows])
     streams = np.array([float(r["spotify_streams"]) if r["spotify_streams"] else 0 for r in rows])
     y = np.arange(len(rows))
 
@@ -93,7 +93,7 @@ def main():
     panels = [
         (ax_e, energy, "Energy"),
         (ax_v, valence, "Valence"),
-        (ax_d, dance, "Danceability"),
+        (ax_d, acoustic, "Acousticness"),
     ]
     for panel, vals, label in panels:
         panel.axvline(0.5, color="#D0D0D0", linewidth=0.8, zorder=0)
@@ -123,7 +123,7 @@ def main():
     fig.text(0.07, 0.94, "Inside Ziggy Stardust", fontsize=24, fontweight="bold", color=DARK, ha="left")
     fig.text(
         0.07, 0.895,
-        "Track length leads the comparison; bar colour shows tempo. Energy, valence and danceability add a compact sound profile for each song.",
+        "Track length leads the comparison; bar colour shows tempo. Energy, valence and acousticness add a compact sound profile for each song.",
         fontsize=11, color="#555555", ha="left"
     )
     fig.text(
