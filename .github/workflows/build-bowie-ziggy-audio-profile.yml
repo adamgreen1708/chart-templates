@@ -24,7 +24,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install requests matplotlib numpy
+        run: pip install requests beautifulsoup4 matplotlib numpy
 
       - name: Enrich Ziggy tracks with ReccoBeats audio features
         run: python archive/projects/2026-09-david-bowie-five-album-audio-features/scripts/enrich_ziggy_audio_features.py
