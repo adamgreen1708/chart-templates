@@ -87,6 +87,16 @@ The hit is sometimes surprisingly central (*Starman*), sometimes structurally un
 - five final chart PNGs under the same asset folder
 - final site PNGs are copied from the approved project outputs; *Heroes* was resynced after the running-order correction
 
+## Final QA
+
+- temporary order-rebuild workflow removed
+- five site chart PNGs match their final project-output Git blob SHAs exactly
+- final site-content PR workflow passed in run `36344254770`
+- Blockbuster Quote validator passed
+- Data Lens validator passed
+- Jekyll build passed
+- Pages artifact upload passed
+
 ## Next gate
 
-Remove the temporary order-rebuild workflow, run final PR/Jekyll validation, then hand PR #80 to Adam for approval before merge.
+Adam reviews PR #80 and approves the merge. After merge, verify the main-branch Pages deployment and live URL before calling the post published.

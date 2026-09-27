@@ -193,5 +193,5 @@ Five album profiles on coffeetableviz.com.
 - [x] No chart title, subtitle or track label clipping found in visual QA.
 - [x] Exact final chart PNGs copied byte-for-byte into site assets.
 - [x] Feature image committed and referenced by Jekyll post.
-- [ ] Pages/Jekyll PR build passes on the final branch head.
+- [x] Pages/Jekyll PR build passed after the final site-content sync (run `36344254770`).
 - [ ] Adam approves final publication package before merge.
