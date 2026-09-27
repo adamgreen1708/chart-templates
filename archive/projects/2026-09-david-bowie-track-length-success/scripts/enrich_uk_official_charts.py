@@ -158,11 +158,15 @@ def extract_chart_rows(tokens: list[str]) -> list[dict[str, object]]:
         if not title:
             continue
 
-        weeks = None
-        for j in range(i + 1, min(len(tokens), i + 12)):
-            weeks = parse_weeks(tokens[j])
-            if weeks is not None:
-                break
+        # Text renderers can place Peak and Weeks in the same list token,
+        # e.g. "Peak: 10, Weeks: 11". Check the current token first, then
+        # nearby following tokens.
+        weeks = parse_weeks(token)
+        if weeks is None:
+            for j in range(i + 1, min(len(tokens), i + 12)):
+                weeks = parse_weeks(tokens[j])
+                if weeks is not None:
+                    break
 
         rows.append(
             {
