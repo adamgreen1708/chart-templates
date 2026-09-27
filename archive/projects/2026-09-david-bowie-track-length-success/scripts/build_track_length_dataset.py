@@ -21,7 +21,9 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 import time
+import unicodedata
 from pathlib import Path
 from typing import Any
 from urllib.parse import quote, urlencode
@@ -38,6 +40,15 @@ USER_AGENT = "coffeetableviz-chart-templates/1.0 (https://github.com/adamgreen17
 MIN_SECONDS_BETWEEN_CALLS = 1.1
 MAX_RETRIES = 4
 ARTIST_NAME = "David Bowie"
+
+# MusicBrainz preserves some catalogue typography that differs from the
+# editorial album labels used in the validated Bowie spine.
+ALBUM_TITLE_ALIASES = {
+    "Heroes": {"Heroes", "“Heroes”", "\"Heroes\""},
+    "Scary Monsters": {"Scary Monsters", "Scary Monsters (and Super Creeps)"},
+    "Hours": {"Hours", "hours…", "‘hours…’", "'hours...'"},
+    "Blackstar": {"Blackstar", "★"},
+}
 
 _last_call_at = 0.0
 
@@ -115,6 +126,45 @@ def exact_artist_credit(rg: dict[str, Any], artist_mbid: str) -> bool:
     return ids == [artist_mbid]
 
 
+def normalize_title(value: str) -> str:
+    value = unicodedata.normalize("NFKD", value or "")
+    value = value.replace("…", "...").replace("★", "blackstar")
+    value = value.replace("“", '"').replace("”", '"').replace("‘", "'").replace("’", "'")
+    value = re.sub(r"[^a-z0-9]+", " ", value.lower())
+    return " ".join(value.split())
+
+
+def match_release_group(album_title: str, album_year: int, release_groups: list[dict[str, Any]]) -> dict[str, Any]:
+    aliases = ALBUM_TITLE_ALIASES.get(album_title, {album_title})
+    normalized_aliases = {normalize_title(x) for x in aliases}
+    candidates = [
+        rg for rg in release_groups
+        if normalize_title(rg.get("title") or "") in normalized_aliases
+    ]
+    if len(candidates) > 1:
+        same_year = [
+            rg for rg in candidates
+            if str(rg.get("first-release-date") or "").startswith(str(album_year))
+        ]
+        if len(same_year) == 1:
+            candidates = same_year
+    if len(candidates) != 1:
+        summary = [
+            {
+                "id": rg.get("id"),
+                "title": rg.get("title"),
+                "first_release_date": rg.get("first-release-date"),
+                "secondary_types": rg.get("secondary-types"),
+            }
+            for rg in candidates
+        ]
+        raise RuntimeError(
+            f"Release-group match for {album_title!r} ({album_year}) returned "
+            f"{len(candidates)} candidates: {summary}"
+        )
+    return candidates[0]
+
+
 def choose_release(release_group_id: str) -> dict[str, Any]:
     params = {"inc": "releases", "fmt": "json"}
     rg = get_json(f"{API_ROOT}/release-group/{quote(release_group_id)}?{urlencode(params)}")
@@ -152,22 +202,12 @@ def main() -> None:
     artist_mbid = artist["id"]
     release_groups = [rg for rg in browse_release_groups(artist_mbid) if exact_artist_credit(rg, artist_mbid)]
 
-    by_title: dict[str, list[dict[str, Any]]] = {}
-    for rg in release_groups:
-        by_title.setdefault((rg.get("title") or "").strip(), []).append(rg)
-
     out: list[dict[str, Any]] = []
 
     for album in albums:
         title = album["title"].strip()
-        matches = by_title.get(title, [])
-        if len(matches) != 1:
-            raise RuntimeError(
-                f"Release-group match for {title!r} returned {len(matches)} exact matches; "
-                "review rather than guessing."
-            )
-
-        rg = matches[0]
+        year = int(album["year"])
+        rg = match_release_group(title, year, release_groups)
         release = choose_release(rg["id"])
         release_payload = fetch_release_tracks(release["id"])
 
