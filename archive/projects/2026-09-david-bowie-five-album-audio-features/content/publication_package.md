@@ -97,13 +97,14 @@ Square editorial illustration on a light-grey background showing one muted-red e
 ## Method / comparability notes
 
 - Five albums selected because they contain Bowie's five most-streamed canonical studio tracks in the **25 September 2026 Spotify/Kworb snapshot**.
-- Canonical track identity, sequence and duration reuse the validated MusicBrainz-based Bowie parent dataset.
+- Canonical track identity and duration reuse the validated MusicBrainz-based Bowie parent dataset. Original album running order was checked against David Bowie's official album pages; the final *Heroes* chart uses the official 1977 sequence after correcting the parent spine.
 - Current streams reuse the dated Spotify/Kworb snapshot.
 - Audio descriptors are **ReccoBeats Spotify-style audio features**, not newly retrieved Spotify Web API Audio Features.
 - ReccoBeats features retained in the dataset include acousticness, danceability, energy, instrumentalness, liveness, loudness, speechiness, tempo and valence.
 - Publication charts use Tempo, Energy, Valence and Acousticness.
 - 51 of 53 canonical tracks have confident audio-feature matches.
 - Missing: *Neuköln* on *Heroes* and *(Don’t Sit Down)* on *Space Oddity*. Their durations remain plotted and their feature marks are blank.
+- Version note: on *Space Oddity*, the title track resolves to the 2009 remaster while the other accepted ReccoBeats feature rows resolve to 2019 Mix equivalents where exact 2015-remaster feature records were unavailable. Canonical duration and stream fields still come from the validated parent spine. Treat fine-grained feature comparisons on this album as slightly less version-pure than the other four.
 - No missing audio-feature values are imputed.
 - The Tempo colour scale is global across all five charts; Energy, Valence and Acousticness use fixed 0–1 scales.
 - ReccoBeats values are descriptive model-derived audio descriptors. They should not be treated as objective judgements about artistic quality, mood or genre.
@@ -190,7 +191,7 @@ Five album profiles on coffeetableviz.com.
 - [x] Energy, Valence and Acousticness use consistent 0–1 scales.
 - [x] Red most-streamed marker is consistent and restrained.
 - [x] No chart title, subtitle or track label clipping found in visual QA.
-- [ ] Exact final chart PNGs copied byte-for-byte into site assets.
-- [ ] Feature image committed and referenced by Jekyll post.
-- [ ] Pages/Jekyll PR build passes.
+- [x] Exact final chart PNGs copied byte-for-byte into site assets.
+- [x] Feature image committed and referenced by Jekyll post.
+- [ ] Pages/Jekyll PR build passes on the final branch head.
 - [ ] Adam approves final publication package before merge.

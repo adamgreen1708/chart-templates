@@ -7,8 +7,9 @@
 - Scope: five albums associated with David Bowie's five most-streamed canonical studio tracks in the 25 September 2026 snapshot
 - Visual template: **duration + tempo + energy + valence + acousticness**
 - Analysis status: **complete**
-- Publication package: **complete; site packaging next**
+- Publication package: **complete**
 - PR: #80
+- Site packaging: **complete; final PR validation pending**
 - Publication status: not merged / not live
 
 ## Five-album scope
@@ -35,6 +36,7 @@ The source spine reuses the validated Bowie track dataset:
 - 51 confident ReccoBeats audio-feature matches
 - Missing feature rows: *Neuköln* and *(Don’t Sit Down)*
 - Missing rows retain canonical duration; no feature values are imputed
+- *Space Oddity* limitation: title-track features resolve to the 2009 remaster; the remaining accepted feature rows resolve to ReccoBeats 2019 Mix equivalents where exact 2015-remaster feature records were unavailable
 
 Coverage:
 - Ziggy Stardust: 11/11
@@ -45,7 +47,8 @@ Coverage:
 
 ## Source strategy
 
-- Canonical sequence/duration: validated MusicBrainz-based parent dataset
+- Canonical identity/duration: validated MusicBrainz-based parent dataset
+- Running order: checked against official David Bowie album pages; *Heroes* corrected to the original 1977 sequence before final render
 - Current streams: Spotify/Kworb snapshot dated 25 September 2026
 - Audio features: ReccoBeats Spotify-style descriptors
 - Matching hierarchy:
@@ -77,6 +80,13 @@ Coverage:
 
 The hit is sometimes surprisingly central (*Starman*), sometimes structurally unusual but sonically typical (*“Heroes”*), and sometimes a poor guide to the album around it (*Rebel Rebel*).
 
+## Site package
+
+- `site/_posts/2026-09-27-can-one-bowie-song-tell-you-the-whole-album.md`
+- `site/assets/migrated/david-bowie-five-album-audio-profiles/feature.svg`
+- five final chart PNGs under the same asset folder
+- final site PNGs are copied from the approved project outputs; *Heroes* was resynced after the running-order correction
+
 ## Next gate
 
-Copy the exact final charts into site assets, add the feature image and Jekyll post, run Pages/Jekyll QA, then hand PR #80 to Adam for final approval before merge.
+Remove the temporary order-rebuild workflow, run final PR/Jekyll validation, then hand PR #80 to Adam for approval before merge.
