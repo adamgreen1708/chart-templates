@@ -135,6 +135,25 @@ def normalize_title(value: str) -> str:
     return " ".join(value.split())
 
 
+def search_release_group(album_title: str, album_year: int) -> list[dict[str, Any]]:
+    aliases = ALBUM_TITLE_ALIASES.get(album_title, {album_title})
+    found: dict[str, dict[str, Any]] = {}
+    for alias in aliases:
+        query = f'releasegroup:"{alias}" AND artist:"{ARTIST_NAME}"'
+        url = f"{API_ROOT}/release-group/?{urlencode({'query': query, 'fmt': 'json', 'limit': 25})}"
+        data = get_json(url)
+        for rg in data.get("release-groups", []):
+            if rg.get("primary-type") not in (None, "Album"):
+                continue
+            secondary = set(rg.get("secondary-types") or [])
+            if secondary & {"Compilation", "Live", "Remix", "DJ-mix", "Mixtape/Street", "Demo", "Interview", "Audiobook"}:
+                continue
+            found[rg["id"]] = rg
+    candidates = list(found.values())
+    same_year = [rg for rg in candidates if str(rg.get("first-release-date") or "").startswith(str(album_year))]
+    return same_year or candidates
+
+
 def match_release_group(album_title: str, album_year: int, release_groups: list[dict[str, Any]]) -> dict[str, Any]:
     aliases = ALBUM_TITLE_ALIASES.get(album_title, {album_title})
     normalized_aliases = {normalize_title(x) for x in aliases}
@@ -147,8 +166,14 @@ def match_release_group(album_title: str, album_year: int, release_groups: list[
             rg for rg in candidates
             if str(rg.get("first-release-date") or "").startswith(str(album_year))
         ]
-        if len(same_year) == 1:
+        if same_year:
             candidates = same_year
+    if len(candidates) != 1:
+        searched = search_release_group(album_title, album_year)
+        if len(searched) == 1:
+            return searched[0]
+        if searched:
+            candidates = searched
     if len(candidates) != 1:
         summary = [
             {
@@ -161,7 +186,7 @@ def match_release_group(album_title: str, album_year: int, release_groups: list[
         ]
         raise RuntimeError(
             f"Release-group match for {album_title!r} ({album_year}) returned "
-            f"{len(candidates)} candidates: {summary}"
+            f"{len(candidates)} candidates after browse+search: {summary}"
         )
     return candidates[0]
 
