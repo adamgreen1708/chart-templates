@@ -38,6 +38,17 @@ def get_json(url: str, params: dict | None = None, retries: int = 5):
     raise RuntimeError(f"Rate limit persisted: {url}")
 
 
+def get_json_optional(url: str, params: dict | None = None):
+    r = SESSION.get(url, params=params, timeout=60)
+    if r.status_code in (400, 404):
+        return None
+    if r.status_code == 429:
+        time.sleep(float(r.headers.get("Retry-After", "2")))
+        r = SESSION.get(url, params=params, timeout=60)
+    r.raise_for_status()
+    return r.json()
+
+
 def norm(value: str) -> str:
     value = unicodedata.normalize("NFKD", value or "")
     value = value.replace("’", "'").replace("‘", "'").replace("“", '"').replace("”", '"')
@@ -169,20 +180,34 @@ def main():
         match_method = ""
 
         if spotify_id:
-            exact = lookup_reccobeats_by_spotify_id(spotify_id)
-            if exact:
-                match = dict(exact)
-                ms = match.get("durationMs")
-                diff = 999999 if ms is None else abs(float(ms) / 1000 - float(row["duration_seconds"]))
-                match["_duration_diff"] = diff
-                match["_candidate_count"] = 1
-                match["_exact_spotify_title"] = True
-                if diff <= 12:
-                    status = "matched"
-                    match_method = "exact_spotify_id"
-                else:
-                    match = None
-                    status = f"spotify_id_duration_diff_{diff:.1f}s"
+            direct_features = get_json_optional(f"{API}/track/{spotify_id}/audio-features")
+            if direct_features:
+                match = {
+                    "id": direct_features.get("id", spotify_id),
+                    "trackTitle": row.get("spotify_title") or row["track_title"],
+                    "durationMs": None,
+                    "_duration_diff": 0.0,
+                    "_candidate_count": 1,
+                    "_exact_spotify_title": True,
+                    "_features": direct_features,
+                }
+                status = "matched"
+                match_method = "exact_spotify_id_audio_features"
+            else:
+                exact = lookup_reccobeats_by_spotify_id(spotify_id)
+                if exact:
+                    match = dict(exact)
+                    ms = match.get("durationMs")
+                    diff = 999999 if ms is None else abs(float(ms) / 1000 - float(row["duration_seconds"]))
+                    match["_duration_diff"] = diff
+                    match["_candidate_count"] = 1
+                    match["_exact_spotify_title"] = True
+                    if diff <= 12:
+                        status = "matched"
+                        match_method = "exact_spotify_id"
+                    else:
+                        match = None
+                        status = f"spotify_id_duration_diff_{diff:.1f}s"
 
         if match is None:
             if catalogue is None:
@@ -216,7 +241,7 @@ def main():
             result["reccobeats_duration_diff_seconds"] = round(match["_duration_diff"], 3)
             result["reccobeats_candidate_count"] = match["_candidate_count"]
             result["reccobeats_exact_spotify_title_match"] = "Yes" if match["_exact_spotify_title"] else "No"
-            feat = get_json(f"{API}/track/{match['id']}/audio-features")
+            feat = match.get("_features") or get_json(f"{API}/track/{match['id']}/audio-features")
             for name in FEATURES:
                 result[name] = feat.get(name, "")
             time.sleep(0.25)
