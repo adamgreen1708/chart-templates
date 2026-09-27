@@ -224,22 +224,16 @@ def match_release_group(album_title: str, album_year: int, release_groups: list[
     return candidates[0]
 
 
-def choose_release(release_group_id: str, album_year: int) -> dict[str, Any]:
+def choose_release(
+    release_group_id: str,
+    album_year: int,
+    expected_track_count: int,
+) -> tuple[dict[str, Any], dict[str, Any]]:
     params = {"inc": "releases", "fmt": "json"}
     rg = get_json(f"{API_ROOT}/release-group/{quote(release_group_id)}?{urlencode(params)}")
     releases = [r for r in rg.get("releases", []) if r.get("status") in (None, "Official")]
     if not releases:
         raise RuntimeError(f"No releases found for release group {release_group_id}")
-
-    # Prefer a release from the validated album year, then the original UK
-    # issue where one exists. Sorting by date first picked the shortened US
-    # 1967 debut and a multi-layer SACD of Reality, so territory must precede
-    # date within the original-year pool.
-    original_year = [
-        r for r in releases
-        if str(r.get("date") or "").startswith(str(album_year))
-    ]
-    pool = original_year or releases
 
     def key(r: dict[str, Any]) -> tuple[Any, ...]:
         date = r.get("date") or "9999-99-99"
@@ -255,7 +249,35 @@ def choose_release(release_group_id: str, album_year: int) -> dict[str, Any]:
         }.get(country, 7)
         return (country_rank, date, r.get("title") or "", r.get("id") or "")
 
-    return sorted(pool, key=key)[0]
+    original_year = [
+        r for r in releases
+        if str(r.get("date") or "").startswith(str(album_year))
+    ]
+    ordered = sorted(original_year, key=key)
+    ordered += [
+        r for r in sorted(releases, key=key)
+        if r.get("id") not in {x.get("id") for x in ordered}
+    ]
+
+    rejected: list[dict[str, Any]] = []
+    for release in ordered:
+        payload = fetch_release_tracks(release["id"])
+        track_count = sum(len(m.get("tracks", [])) for m in payload.get("media", []))
+        if track_count == expected_track_count:
+            return release, payload
+        rejected.append(
+            {
+                "id": release.get("id"),
+                "country": release.get("country"),
+                "date": release.get("date"),
+                "track_count": track_count,
+            }
+        )
+
+    raise RuntimeError(
+        f"No canonical {expected_track_count}-track release found for "
+        f"release group {release_group_id}. Rejected candidates: {rejected[:12]}"
+    )
 
 
 def fetch_release_tracks(release_id: str) -> dict[str, Any]:
@@ -288,8 +310,10 @@ def main() -> None:
         title = album["title"].strip()
         year = int(album["year"])
         rg = match_release_group(title, year, release_groups, artist_mbid)
-        release = choose_release(rg["id"], year)
-        release_payload = fetch_release_tracks(release["id"])
+        expected = CANONICAL_TRACK_COUNTS.get(title)
+        if expected is None:
+            raise RuntimeError(f"No canonical track-count QA rule for {title!r}")
+        release, release_payload = choose_release(rg["id"], year, expected)
 
         track_rows: list[dict[str, Any]] = []
         for disc_number, medium in enumerate(release_payload.get("media", []), start=1):
@@ -328,9 +352,6 @@ def main() -> None:
         if not track_rows:
             raise RuntimeError(f"No tracks found for {title!r} using release {release['id']}")
 
-        expected = CANONICAL_TRACK_COUNTS.get(title)
-        if expected is None:
-            raise RuntimeError(f"No canonical track-count QA rule for {title!r}")
         if len(track_rows) != expected:
             raise RuntimeError(
                 f"Canonical track-count mismatch for {title!r}: expected {expected}, "
