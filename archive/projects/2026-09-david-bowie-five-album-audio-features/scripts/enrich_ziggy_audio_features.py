@@ -57,12 +57,12 @@ def resolve_artist() -> dict:
 def fetch_artist_tracks(artist_id: str) -> list[dict]:
     all_rows = []
     for page in range(30):
-        data = get_json(f"{API}/artist/{artist_id}/track", {"page": page, "size": 100})
+        data = get_json(f"{API}/artist/{artist_id}/track", {"page": page, "size": 40})
         content = data.get("content", [])
         if not content:
             break
         all_rows.extend(content)
-        if len(content) < 100:
+        if len(content) < 40:
             break
         time.sleep(0.4)
     if not all_rows:
