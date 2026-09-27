@@ -33,6 +33,7 @@ CORE_INPUT = DATA_DIR / "david_bowie_tracks_core.csv"
 OUTPUT = DATA_DIR / "david_bowie_tracks_success.csv"
 
 OFFICIAL_CHARTS_URL = "https://www.officialcharts.com/artist/19138/david-bowie/"
+TEXT_READER_URL = "https://r.jina.ai/https://www.officialcharts.com/artist/19138/david-bowie/"
 USER_AGENT = "Mozilla/5.0 (compatible; coffeetableviz-data-research/1.0)"
 
 TITLE_ALIASES = {
@@ -183,18 +184,68 @@ def extract_chart_rows(tokens: list[str]) -> list[dict[str, object]]:
     return unique
 
 
+def markdown_tokens(text: str) -> list[str]:
+    tokens: list[str] = []
+    for raw in text.splitlines():
+        token = clean_token(raw)
+        token = re.sub(r"^#{1,6}\\s*", "", token)
+        token = token.replace("**", "").replace("__", "").strip()
+        if token.startswith("![") or token.startswith("[Image"):
+            continue
+        if token:
+            tokens.append(token)
+    return tokens
+
+
+def extract_main_singles_from_markdown(text: str) -> list[str]:
+    all_tokens = markdown_tokens(text)
+    start = None
+    for i, token in enumerate(all_tokens):
+        if token == "Official Singles Chart" or token.endswith("Official Singles Chart"):
+            start = i
+            break
+    if start is None:
+        raise RuntimeError("Text-rendered Official Charts page has no Official Singles Chart heading.")
+
+    section: list[str] = []
+    for token in all_tokens[start:]:
+        canonical = token
+        if canonical != "Official Singles Chart" and (
+            canonical.startswith("Official ") and " Chart" in canonical and len(canonical) < 110
+        ):
+            break
+        section.append(token)
+    return section
+
+
 def fetch_chart_rows() -> list[dict[str, object]]:
     response = requests.get(OFFICIAL_CHARTS_URL, headers={"User-Agent": USER_AGENT}, timeout=90)
     response.raise_for_status()
-    soup = BeautifulSoup(response.text, "html.parser")
-    tokens = extract_main_singles_section(soup)
+
+    tokens: list[str]
+    transport = "officialcharts_html"
+    try:
+        soup = BeautifulSoup(response.text, "html.parser")
+        tokens = extract_main_singles_section(soup)
+    except RuntimeError:
+        # Official Charts currently client-renders much of the artist-history page,
+        # so a normal HTTP client can receive a shell with no visible chart rows.
+        # Jina Reader is used only as a text transport for the same public Official
+        # Charts URL; provenance remains Official Charts and the original URL is
+        # stored in every joined row.
+        rendered = requests.get(TEXT_READER_URL, headers={"User-Agent": USER_AGENT}, timeout=120)
+        rendered.raise_for_status()
+        tokens = extract_main_singles_from_markdown(rendered.text)
+        transport = "officialcharts_via_text_reader"
+
     rows = extract_chart_rows(tokens)
     if len(rows) < 20:
         sample = " | ".join(tokens[:250])
         raise RuntimeError(
-            f"Parsed only {len(rows)} Official Singles Chart rows; expected materially more. "
-            f"Section sample: {sample[:5000]}"
+            f"Parsed only {len(rows)} Official Singles Chart rows via {transport}; "
+            f"expected materially more. Section sample: {sample[:5000]}"
         )
+    print(f"Official Charts transport={transport}; parsed main-chart rows={len(rows)}")
     return rows
 
 
