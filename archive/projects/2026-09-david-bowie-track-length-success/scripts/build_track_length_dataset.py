@@ -44,8 +44,9 @@ ARTIST_NAME = "David Bowie"
 # MusicBrainz preserves some catalogue typography that differs from the
 # editorial album labels used in the validated Bowie spine.
 ALBUM_TITLE_ALIASES = {
+    "Space Oddity": {"Space Oddity", "David Bowie (aka “Man of Words / Man of Music” then “Space Oddity”)"},
     "Heroes": {"Heroes", "“Heroes”", "\"Heroes\""},
-    "Scary Monsters": {"Scary Monsters", "Scary Monsters (and Super Creeps)"},
+    "Scary Monsters": {"Scary Monsters", "Scary Monsters (and Super Creeps)", "Scary Monsters… and Super Creeps", "Scary Monsters... and Super Creeps"},
     "Hours": {"Hours", "hours…", "‘hours…’", "'hours...'"},
     "Blackstar": {"Blackstar", "★"},
 }
@@ -200,7 +201,10 @@ def main() -> None:
 
     artist = resolve_artist(ARTIST_NAME)
     artist_mbid = artist["id"]
-    release_groups = [rg for rg in browse_release_groups(artist_mbid) if exact_artist_credit(rg, artist_mbid)]
+    # Browsing by artist already scopes the release groups to Bowie. The browse
+    # payload is not guaranteed to include artist-credit, so filtering again on
+    # a missing artist-credit field can incorrectly remove the whole catalogue.
+    release_groups = browse_release_groups(artist_mbid)
 
     out: list[dict[str, Any]] = []
 
