@@ -1,0 +1,54 @@
+album_rank,album_sequence,album_year,album_title,track_number,track_position,track_title,duration_seconds,duration_display,spotify_title,spotify_streams,spotify_daily,spotify_snapshot_date,musicbrainz_recording_id
+3,2,1969,Space Oddity,A1,1,Space Oddity,316,5:16,Space Oddity - 2009 Remaster,517370855,205578,2026-09-25,84649f3b-6da6-4da6-8e33-a7a990b69516
+3,2,1969,Space Oddity,A2,2,Unwashed and Somewhat Slightly Dazed,372,6:12,Unwashed and Somewhat Slightly Dazed - 2015 Remaster,5270849,1093,2026-09-25,b9b9090d-23c0-46aa-9811-8fb5a9ccafc3
+3,2,1969,Space Oddity,A3,3,(Don’t Sit Down),44,0:44,,,,2026-09-25,e0cccb31-0a9c-4846-98c0-e4af412228ce
+3,2,1969,Space Oddity,A4,4,Letter to Hermione,157,2:37,Letter to Hermione - 2015 Remaster,7562877,1730,2026-09-25,88f20741-0c96-4514-80d2-ea9c50e7cb4d
+3,2,1969,Space Oddity,A5,5,Cygnet Committee,576,9:36,Cygnet Committee - 2015 Remaster,4834675,1003,2026-09-25,7b05462d-aedb-4933-a846-af8a4fcfdccc
+3,2,1969,Space Oddity,B1,6,Janine,205,3:25,Janine - 2015 Remaster,3495648,639,2026-09-25,6218e182-1ba8-4a18-980b-afecb2ce0b60
+3,2,1969,Space Oddity,B2,7,An Occasional Dream,181,3:01,An Occasional Dream - 2015 Remaster,3293101,608,2026-09-25,3917014a-46fd-4419-8528-8a457a4682ac
+3,2,1969,Space Oddity,B3,8,Wild Eyed Boy From Freecloud,292,4:52,Wild Eyed Boy from Freecloud - 2015 Remaster,3177844,637,2026-09-25,20ba9cb7-768e-4ff0-8656-9d3c74b8df17
+3,2,1969,Space Oddity,B4,9,God Knows I’m Good,202,3:22,God Knows I'm Good - 2015 Remaster,4975417,1938,2026-09-25,138bd73d-7e15-4950-9ef8-16ae32888051
+3,2,1969,Space Oddity,B5,10,Memory of a Free Festival,431,7:11,Memory of a Free Festival - 2015 Remaster,3864206,792,2026-09-25,f239a701-9798-4abb-afd2-67bd6b404b5e
+5,4,1971,Hunky Dory,A1,1,Changes,217,3:37,Changes - 2015 Remaster,275169815,95707,2026-09-25,e7b022c5-bce7-4bee-8136-7889af2f4162
+5,4,1971,Hunky Dory,A2,2,Oh! You Pretty Things,192,3:12,Oh! You Pretty Things - 2015 Remaster,71276720,17529,2026-09-25,2b8363c3-511c-4816-934b-fef55fb1e5ac
+5,4,1971,Hunky Dory,A3,3,Eight Line Poem,176,2:56,Eight Line Poem - 2015 Remaster,13399728,2283,2026-09-25,6221a91a-0ef4-490d-89f5-a230d089f0d8
+5,4,1971,Hunky Dory,A4,4,Life on Mars?,234,3:54,Life on Mars? - 2015 Remaster,406078582,122708,2026-09-25,e1f40fdd-7204-4022-ae93-8fc7c9a93119
+5,4,1971,Hunky Dory,A5,5,Kooks,173,2:53,Kooks - 2015 Remaster,27228532,6761,2026-09-25,3917f659-9339-4a72-9fe4-11eb88a65323
+5,4,1971,Hunky Dory,A6,6,Quicksand,307,5:07,Quicksand - 2015 Remaster,17778678,5263,2026-09-25,05dc3833-6186-4fcd-9fb5-f31e0ac598dc
+5,4,1971,Hunky Dory,B1,7,Fill Your Heart,187,3:07,Fill Your Heart - 2015 Remaster,9824533,1828,2026-09-25,c52822b8-6daa-458a-ae27-80ab12328ffb
+5,4,1971,Hunky Dory,B2,8,Andy Warhol,237,3:57,Andy Warhol - 2015 Remaster,14547399,3645,2026-09-25,51361c82-c06e-479c-ba93-bb07b366b5ba
+5,4,1971,Hunky Dory,B3,9,Song for Bob Dylan,252,4:12,Song for Bob Dylan - 2015 Remaster,9245322,1925,2026-09-25,e783c7ad-9b12-44f6-ac27-2a3c91afa223
+5,4,1971,Hunky Dory,B4,10,Queen Bitch,199,3:19,Queen Bitch - 2015 Remaster,48612888,8542,2026-09-25,131c5027-2037-4ee4-a284-7521ea362f27
+5,4,1971,Hunky Dory,B5,11,The Bewlay Brothers,324,5:24,The Bewlay Brothers - 2015 Remaster,11243033,2885,2026-09-25,4545ff1f-f7fd-4dd9-862c-d0f88f2c4f4b
+1,5,1972,The Rise and Fall of Ziggy Stardust and the Spiders from Mars,A1,1,Five Years,282,4:42,Five Years - 2012 Remaster,71587554,27789,2026-09-25,9c9345d9-a631-484b-b66b-4e78aa776cb3
+1,5,1972,The Rise and Fall of Ziggy Stardust and the Spiders from Mars,A2,2,Soul Love,214,3:34,Soul Love - 2012 Remaster,43175994,13600,2026-09-25,e8afe383-1478-497e-90b1-7885c7f37f6e
+1,5,1972,The Rise and Fall of Ziggy Stardust and the Spiders from Mars,A3,3,Moonage Daydream,280,4:40,Moonage Daydream - 2012 Remaster,294113144,96308,2026-09-25,c0f27bed-7986-4c88-a9c6-1d16ebc9817b
+1,5,1972,The Rise and Fall of Ziggy Stardust and the Spiders from Mars,A4,4,Starman,250,4:10,Starman - 2012 Remaster,829880663,414957,2026-09-25,c75ca467-b76c-4800-8267-9862e93b7040
+1,5,1972,The Rise and Fall of Ziggy Stardust and the Spiders from Mars,A5,5,It Ain’t Easy,178,2:58,It Ain't Easy - 2012 Remaster,27229921,7268,2026-09-25,df367f8e-3f2d-4f37-84c7-5e6617e16258
+1,5,1972,The Rise and Fall of Ziggy Stardust and the Spiders from Mars,B1,6,Lady Stardust,202,3:22,Lady Stardust - 2012 Remaster,44761324,14284,2026-09-25,2ca5c833-8f3d-4566-9d61-a2294ea996ac
+1,5,1972,The Rise and Fall of Ziggy Stardust and the Spiders from Mars,B2,7,Star,167,2:47,Star - 2012 Remaster,23306194,7286,2026-09-25,674e786f-19ac-462b-98ab-e5340248a7f2
+1,5,1972,The Rise and Fall of Ziggy Stardust and the Spiders from Mars,B3,8,Hang On to Yourself,160,2:40,Hang on to Yourself - 2012 Remaster,23172806,6249,2026-09-25,d76c72e3-3338-4d66-a3e1-7e9f5f71f95b
+1,5,1972,The Rise and Fall of Ziggy Stardust and the Spiders from Mars,B4,9,Ziggy Stardust,193,3:13,Ziggy Stardust - 2012 Remaster,189842615,55215,2026-09-25,a0ca0cc0-cc0d-431c-8a36-dd917ea0dfa2
+1,5,1972,The Rise and Fall of Ziggy Stardust and the Spiders from Mars,B5,10,Suffragette City,205,3:25,Suffragette City - 2012 Remaster,89683602,22478,2026-09-25,4ce20795-0558-4302-943a-7f621f49aad6
+1,5,1972,The Rise and Fall of Ziggy Stardust and the Spiders from Mars,B6,11,Rock ’n’ Roll Suicide,178,2:58,Rock 'n' Roll Suicide - 2012 Remaster,63489881,19677,2026-09-25,04534165-f62b-4505-8fc5-1c820df8da45
+4,8,1974,Diamond Dogs,A1,1,Future Legend,68,1:08,Future Legend - 2016 Remaster,5099338,2208,2026-09-25,d590dc65-9124-43aa-a46e-72a72a9f942e
+4,8,1974,Diamond Dogs,A2,2,Diamond Dogs,358,5:58,Diamond Dogs - 2016 Remaster,24812424,5136,2026-09-25,51086d20-5d3d-473d-9805-6ca404a614eb
+4,8,1974,Diamond Dogs,A3,3,Sweet Thing,219,3:39,Sweet Thing - 2016 Remaster,5850776,1535,2026-09-25,0ff4c7c5-a384-4530-b07a-f53c0525fa0f
+4,8,1974,Diamond Dogs,A4,4,Candidate,160,2:40,Candidate - 2016 Remaster,3877225,918,2026-09-25,25da028f-b0a9-4a57-96ad-db69806e52bb
+4,8,1974,Diamond Dogs,A5,5,Sweet Thing (reprise),152,2:32,Sweet Thing - Reprise; 2016 Remaster,3375388,804,2026-09-25,e93d06be-e8d4-42e5-993a-65051aa1f7c6
+4,8,1974,Diamond Dogs,A6,6,Rebel Rebel,274,4:34,Rebel Rebel - 2016 Remaster,462516363,89319,2026-09-25,11bd860a-4447-4140-813d-64834ae02ca8
+4,8,1974,Diamond Dogs,B1,7,Rock ’n’ Roll With Me,242,4:02,Rock 'n' Roll with Me - 2016 Remaster,5431956,2075,2026-09-25,189f297b-98fc-4805-a5df-b9e161243ab3
+4,8,1974,Diamond Dogs,B2,8,We Are the Dead,299,4:59,We Are the Dead - 2016 Remaster,4446626,1102,2026-09-25,074bd83d-4cf6-465e-9e6e-2acc426a45c1
+4,8,1974,Diamond Dogs,B3,9,1984,207,3:27,1984 - 2016 Remaster,5797387,1367,2026-09-25,6b3e5418-c624-421c-a180-1ebb95a1936f
+4,8,1974,Diamond Dogs,B4,10,Big Brother,200,3:20,Big Brother - 2016 Remaster,3718071,895,2026-09-25,f772fac4-abba-46c3-a680-ddbd91b5ac70
+4,8,1974,Diamond Dogs,B5,11,Chant of the Ever Circling Skeletal Family,124,2:04,Chant of the Ever Circling Skeletal Family - 2016 Remaster,2367163,527,2026-09-25,57842def-1fbb-481e-9325-2ae46ba50d71
+2,12,1977,Heroes,1,1,“Heroes”,370,6:10,"""Heroes"" - 2017 Remaster",739816301,432791,2026-09-25,722190f8-f718-482f-a8bc-a8d479426a30
+2,12,1977,Heroes,2,2,Blackout,229,3:49,Blackout - 2017 Remaster,5234159,1747,2026-09-25,0c3d0cd1-bb56-4449-b1a1-ac5c4695801f
+2,12,1977,Heroes,3,3,The Secret Life of Arabia,227,3:47,The Secret Life of Arabia - 2017 Remaster,5072394,1190,2026-09-25,bd04833b-e811-491f-bfb1-c0b3ee6cc437
+2,12,1977,Heroes,4,4,Sons of the Silent Age,199,3:19,Sons of the Silent Age - 2017 Remaster,6080707,1815,2026-09-25,9456c257-1284-4cbf-948a-a7c4f41c0fb2
+2,12,1977,Heroes,5,5,Joe the Lion,187,3:07,Joe the Lion - 2017 Remaster,5115938,1546,2026-09-25,e3adcb5b-e457-4f43-801a-76222f723111
+2,12,1977,Heroes,6,6,V‐2 Schneider,191,3:11,V-2 Schneider - 2017 Remaster,5356651,1546,2026-09-25,e3f9cfb6-ca47-4185-b8d8-dcccfafbae87
+2,12,1977,Heroes,7,7,Sense of Doubt,238,3:58,Sense of Doubt - 2017 Remaster,2967776,1335,2026-09-25,8405e7f1-dcaa-4058-9457-9dcf92250706
+2,12,1977,Heroes,8,8,Moss Garden,305,5:05,Moss Garden - 2017 Remaster,3433977,1339,2026-09-25,d8b81e82-abbc-4f99-910b-18de9ecc259e
+2,12,1977,Heroes,9,9,Neuköln,275,4:35,,,,2026-09-25,5094b040-946d-4e42-991e-3f02f3d92d02
+2,12,1977,Heroes,10,10,Beauty and the Beast,216,3:36,Beauty and the Beast - 2017 Remaster,9718588,2614,2026-09-25,eddc8656-54cd-416c-b4aa-87502bb3ac22
