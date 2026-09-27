@@ -42,13 +42,13 @@ album_rank,album_sequence,album_year,album_title,track_number,track_position,tra
 4,8,1974,Diamond Dogs,B3,9,1984,207,3:27,1984 - 2016 Remaster,5797387,1367,2026-09-25,6b3e5418-c624-421c-a180-1ebb95a1936f
 4,8,1974,Diamond Dogs,B4,10,Big Brother,200,3:20,Big Brother - 2016 Remaster,3718071,895,2026-09-25,f772fac4-abba-46c3-a680-ddbd91b5ac70
 4,8,1974,Diamond Dogs,B5,11,Chant of the Ever Circling Skeletal Family,124,2:04,Chant of the Ever Circling Skeletal Family - 2016 Remaster,2367163,527,2026-09-25,57842def-1fbb-481e-9325-2ae46ba50d71
-2,12,1977,Heroes,1,1,“Heroes”,370,6:10,"""Heroes"" - 2017 Remaster",739816301,432791,2026-09-25,722190f8-f718-482f-a8bc-a8d479426a30
-2,12,1977,Heroes,2,2,Blackout,229,3:49,Blackout - 2017 Remaster,5234159,1747,2026-09-25,0c3d0cd1-bb56-4449-b1a1-ac5c4695801f
-2,12,1977,Heroes,3,3,The Secret Life of Arabia,227,3:47,The Secret Life of Arabia - 2017 Remaster,5072394,1190,2026-09-25,bd04833b-e811-491f-bfb1-c0b3ee6cc437
-2,12,1977,Heroes,4,4,Sons of the Silent Age,199,3:19,Sons of the Silent Age - 2017 Remaster,6080707,1815,2026-09-25,9456c257-1284-4cbf-948a-a7c4f41c0fb2
-2,12,1977,Heroes,5,5,Joe the Lion,187,3:07,Joe the Lion - 2017 Remaster,5115938,1546,2026-09-25,e3adcb5b-e457-4f43-801a-76222f723111
-2,12,1977,Heroes,6,6,V‐2 Schneider,191,3:11,V-2 Schneider - 2017 Remaster,5356651,1546,2026-09-25,e3f9cfb6-ca47-4185-b8d8-dcccfafbae87
-2,12,1977,Heroes,7,7,Sense of Doubt,238,3:58,Sense of Doubt - 2017 Remaster,2967776,1335,2026-09-25,8405e7f1-dcaa-4058-9457-9dcf92250706
-2,12,1977,Heroes,8,8,Moss Garden,305,5:05,Moss Garden - 2017 Remaster,3433977,1339,2026-09-25,d8b81e82-abbc-4f99-910b-18de9ecc259e
-2,12,1977,Heroes,9,9,Neuköln,275,4:35,,,,2026-09-25,5094b040-946d-4e42-991e-3f02f3d92d02
-2,12,1977,Heroes,10,10,Beauty and the Beast,216,3:36,Beauty and the Beast - 2017 Remaster,9718588,2614,2026-09-25,eddc8656-54cd-416c-b4aa-87502bb3ac22
+2,12,1977,Heroes,A1,1,Beauty and the Beast,216,3:36,Beauty and the Beast - 2017 Remaster,9718588,2614,2026-09-25,eddc8656-54cd-416c-b4aa-87502bb3ac22
+2,12,1977,Heroes,A2,2,Joe the Lion,187,3:07,Joe the Lion - 2017 Remaster,5115938,1546,2026-09-25,e3adcb5b-e457-4f43-801a-76222f723111
+2,12,1977,Heroes,A3,3,“Heroes”,370,6:10,"""Heroes"" - 2017 Remaster",739816301,432791,2026-09-25,722190f8-f718-482f-a8bc-a8d479426a30
+2,12,1977,Heroes,A4,4,Sons of the Silent Age,199,3:19,Sons of the Silent Age - 2017 Remaster,6080707,1815,2026-09-25,9456c257-1284-4cbf-948a-a7c4f41c0fb2
+2,12,1977,Heroes,A5,5,Blackout,229,3:49,Blackout - 2017 Remaster,5234159,1747,2026-09-25,0c3d0cd1-bb56-4449-b1a1-ac5c4695801f
+2,12,1977,Heroes,B1,6,V‐2 Schneider,191,3:11,V-2 Schneider - 2017 Remaster,5356651,1546,2026-09-25,e3f9cfb6-ca47-4185-b8d8-dcccfafbae87
+2,12,1977,Heroes,B2,7,Sense of Doubt,238,3:58,Sense of Doubt - 2017 Remaster,2967776,1335,2026-09-25,8405e7f1-dcaa-4058-9457-9dcf92250706
+2,12,1977,Heroes,B3,8,Moss Garden,305,5:05,Moss Garden - 2017 Remaster,3433977,1339,2026-09-25,d8b81e82-abbc-4f99-910b-18de9ecc259e
+2,12,1977,Heroes,B4,9,Neuköln,275,4:35,,,,2026-09-25,5094b040-946d-4e42-991e-3f02f3d92d02
+2,12,1977,Heroes,B5,10,The Secret Life of Arabia,227,3:47,The Secret Life of Arabia - 2017 Remaster,5072394,1190,2026-09-25,bd04833b-e811-491f-bfb1-c0b3ee6cc437
