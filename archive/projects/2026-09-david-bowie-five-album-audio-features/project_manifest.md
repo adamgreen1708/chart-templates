@@ -5,8 +5,8 @@
 - Started: 27 September 2026
 - Working branch: `project/2026-09-david-bowie-five-album-audio-features`
 - Scope: five albums associated with David Bowie's five most-streamed canonical studio tracks in the 25 September 2026 snapshot
-- Prototype gate: enrich and render **Ziggy Stardust only** before rolling the visual across the other four albums
-- Publication status: research/prototype only
+- Template approved: **duration + tempo + energy + valence + acousticness**
+- Publication status: five-album build in progress
 
 ## Five-album scope
 
@@ -28,9 +28,9 @@ The new project does not reacquire duration or stream-count data.
 
 ## Audio-feature source
 
-Spotify's own Audio Features / Audio Analysis endpoints are unavailable to new or development-mode API applications. For this project, the prototype uses **ReccoBeats Spotify-style audio features** with explicit source attribution rather than claiming the values are newly retrieved from Spotify.
+Spotify's own Audio Features / Audio Analysis endpoints are unavailable to new or development-mode API applications. This project therefore uses **ReccoBeats Spotify-style audio features** with explicit attribution.
 
-ReccoBeats documents the following features:
+Available features retained in the enriched dataset:
 
 - acousticness
 - danceability
@@ -42,19 +42,20 @@ ReccoBeats documents the following features:
 - tempo
 - valence
 
-## Prototype question
+The publication visuals use **tempo, energy, valence and acousticness**.
 
-Can one album graphic make track sequence, song length, pace and mood readable at the same time?
+## Locked visual template
 
-## Ziggy prototype encoding
-
-- rows: album tracks in original order
-- primary comparison: canonical track duration
-- bar colour: tempo
-- right-side mini-panels: energy, valence and danceability on 0–1 scales
-- contextual emphasis: most-streamed track on the album
-- retain streams in the dataset but do not use them as a second quantitative axis
+- rows = album tracks in original order
+- primary comparison = canonical track duration
+- bar colour = tempo
+- compact horizontal tempo key
+- right-side mini-panels = energy, valence, acousticness
+- red dot beside track label = most-streamed matched track on the album
+- missing audio-feature rows retain duration and show blank feature marks
+- tempo colour scale = global across all five albums
+- feature scales = fixed 0–1
 
 ## Next gate
 
-Run the ReccoBeats enrichment for all 11 *Ziggy Stardust* tracks. If coverage and matching QA pass, render one prototype chart and inspect whether tempo colour plus three feature dots is legible. Do not enrich/render the other four albums yet.
+Build and QA the full five-album enrichment, render all five charts, then write the dataset-led publication package. The temporary project-specific workflow must be removed before merge.

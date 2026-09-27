@@ -1,4 +1,4 @@
-name: Build Bowie Ziggy audio profile prototype
+name: Build Bowie five-album audio profiles
 
 on:
   push:
@@ -6,8 +6,8 @@ on:
       - project/2026-09-david-bowie-five-album-audio-features
     paths:
       - archive/projects/2026-09-david-bowie-five-album-audio-features/data/five_album_track_spine.csv
-      - archive/projects/2026-09-david-bowie-five-album-audio-features/scripts/enrich_ziggy_audio_features.py
-      - archive/projects/2026-09-david-bowie-five-album-audio-features/scripts/render_ziggy_audio_profile.py
+      - archive/projects/2026-09-david-bowie-five-album-audio-features/scripts/enrich_five_album_audio_features.py
+      - archive/projects/2026-09-david-bowie-five-album-audio-features/scripts/render_five_album_audio_profiles.py
       - .github/workflows/build-bowie-ziggy-audio-profile.yml
 
 permissions:
@@ -26,38 +26,44 @@ jobs:
       - name: Install dependencies
         run: pip install requests beautifulsoup4 matplotlib numpy
 
-      - name: Enrich Ziggy tracks with ReccoBeats audio features
-        run: python archive/projects/2026-09-david-bowie-five-album-audio-features/scripts/enrich_ziggy_audio_features.py
+      - name: Enrich five albums with ReccoBeats audio features
+        run: python archive/projects/2026-09-david-bowie-five-album-audio-features/scripts/enrich_five_album_audio_features.py
 
       - name: QA enriched dataset
         run: |
           python - <<'PY'
           import csv
+          from collections import Counter
           from pathlib import Path
-          p=Path("archive/projects/2026-09-david-bowie-five-album-audio-features/data/ziggy_audio_features.csv")
+          p=Path("archive/projects/2026-09-david-bowie-five-album-audio-features/data/five_album_audio_features.csv")
           rows=list(csv.DictReader(p.open(encoding="utf-8")))
-          matched=[r for r in rows if r["reccobeats_match_status"]=="matched"]
-          print(f"QA rows={len(rows)} matched={len(matched)}")
-          if len(rows)!=11:
-              raise SystemExit(f"Expected 11 Ziggy rows, got {len(rows)}")
-          if len(matched)<10:
-              raise SystemExit(f"Need at least 10 matched tracks, got {len(matched)}")
-          for r in matched:
-              if not r["tempo"] or not r["energy"] or not r["valence"] or not r["danceability"]:
-                  raise SystemExit(f"Missing core audio features for {r['track_title']}")
+          if len(rows)!=53:
+              raise SystemExit(f"Expected 53 rows, got {len(rows)}")
+          totals=Counter(r["album_title"] for r in rows)
+          matched=Counter(r["album_title"] for r in rows if r["reccobeats_match_status"]=="matched")
+          for album,total in sorted(totals.items()):
+              print(f"QA {album}: {matched[album]}/{total}")
+              if matched[album]/total < 0.80:
+                  raise SystemExit(f"Coverage below 80% for {album}")
+          for r in rows:
+              if r["reccobeats_match_status"]!="matched":
+                  continue
+              for f in ["tempo","energy","valence","acousticness"]:
+                  if r[f]=="":
+                      raise SystemExit(f"Missing {f} for {r['album_title']} / {r['track_title']}")
           PY
 
-      - name: Render Ziggy prototype
-        run: python archive/projects/2026-09-david-bowie-five-album-audio-features/scripts/render_ziggy_audio_profile.py
+      - name: Render all five album profiles
+        run: python archive/projects/2026-09-david-bowie-five-album-audio-features/scripts/render_five_album_audio_profiles.py
 
-      - name: Commit prototype outputs
+      - name: Commit enriched data and chart outputs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add             archive/projects/2026-09-david-bowie-five-album-audio-features/data/ziggy_audio_features.csv             archive/projects/2026-09-david-bowie-five-album-audio-features/output/ziggy_audio_profile.png
+          git add             archive/projects/2026-09-david-bowie-five-album-audio-features/data/five_album_audio_features.csv             archive/projects/2026-09-david-bowie-five-album-audio-features/output/*_audio_profile.png
           if git diff --cached --quiet; then
             echo "No output changes"
           else
-            git commit -m "Build Ziggy audio feature prototype"
+            git commit -m "Build Bowie five-album audio profiles"
             git push
           fi
