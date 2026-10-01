@@ -14,8 +14,8 @@ stop_order,country_sequence,country,continent,place,latitude,longitude,label_dx,
 13,6,Australia,Australia,Heron Island,-23.4419,151.9139,0.000,Wikidata Q2719889
 14,7,Chile,South America,San Pedro,-22.9113,-68.1995,0.000,Wikidata San Pedro de Atacama
 15,8,Argentina,South America,Wichí territory,-24.6901,-61.4260,0.000,OpenStreetMap / GeoNames Wichi locality
-16,9,Paraguay,South America,Mbaracayú,-25.0153,-54.6892,-0.008,Wikidata Q2445799
-17,9,Paraguay,South America,Ciudad del Este,-25.5167,-54.6167,0.008,Wikidata Q192235
-18,10,Brazil,South America,Iguaçu Falls,-25.6939,-54.4365,0.017,OpenStreetMap / GeoNames
-19,10,Brazil,South America,São Paulo,-23.5503,-46.6339,-0.006,Wikipedia / IBGE coordinates
-20,10,Brazil,South America,Ubatuba,-23.4414,-45.0761,0.010,ANAC Ubatuba Airport coordinate proxy
+16,9,Paraguay,South America,Mbaracayú,-25.0153,-54.6892,-0.030,Wikidata Q2445799
+17,9,Paraguay,South America,Ciudad del Este,-25.5167,-54.6167,0.000,Wikidata Q192235
+18,10,Brazil,South America,Iguaçu Falls,-25.6939,-54.4365,0.032,OpenStreetMap / GeoNames
+19,10,Brazil,South America,São Paulo,-23.5503,-46.6339,-0.015,Wikipedia / IBGE coordinates
+20,10,Brazil,South America,Ubatuba,-23.4414,-45.0761,0.012,ANAC Ubatuba Airport coordinate proxy
