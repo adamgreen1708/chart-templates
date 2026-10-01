@@ -407,16 +407,16 @@ def render_mode_clusters(repo_root, config, rows):
 
         family_modes = modes[family]
         if family == "Ground":
-            positions = [(cx-0.060,0.52),(cx+0.060,0.52),(cx-0.060,0.36),(cx+0.060,0.36)]
+            positions = [(cx-0.060,0.57),(cx+0.060,0.57),(cx-0.060,0.30),(cx+0.060,0.30)]
         elif family == "Air":
-            positions = [(cx,0.52),(cx,0.34)]
+            positions = [(cx,0.57),(cx,0.30)]
         else:
-            positions = [(cx,0.44)]
+            positions = [(cx,0.43)]
 
         for mode, (mx,my) in zip(family_modes, positions):
             _icon_circle(ax, mx, my)
             _draw_icon(ax, mode, mx, my)
-            ax.text(mx, my-0.078, mode, ha="center", va="top", fontsize=10.5, color=TEXT)
+            ax.text(mx, my-0.073, mode, ha="center", va="top", fontsize=10.3, color=TEXT)
 
     _add_footer(
         fig,
