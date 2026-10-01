@@ -4,7 +4,7 @@ CHART_CONFIG = {
     # ---------------------------
     "data_file": "data/your_file.csv",
     "data_format": "wide",
-    "chart_type": "dot",  # line | bar | dot | scatter
+    "chart_type": "dot",  # line | bar | dot | scatter | route_zigzag | route_longitude | mode_clusters
     "orientation": None,  # None | horizontal for bar charts
 
     "x_col": "x_column",
