@@ -2,7 +2,7 @@
 
 ## Status
 
-- Status: deterministic render QA round 2; waiting for the final GitHub Actions render to commit the revised PNGs
+- Status: three deterministic GitHub renders QA-passed; draft PR ready for Adam chart review
 - Started: 1 October 2026
 - Owner: Adam Green
 - Repo project slug: `2026-10-simon-reeve-tropic-of-capricorn`
@@ -42,4 +42,4 @@ New chart types:
 
 ## Gate
 
-Do not stage or merge live site publication until Adam has reviewed the official GitHub Actions renders.
+Final archived-project render run 36928780602 passed. Do not stage or merge live site publication until Adam has reviewed the official GitHub Actions renders.
