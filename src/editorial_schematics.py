@@ -215,20 +215,32 @@ def render_route_longitude(repo_root, config, rows):
         grouped[row["continent"]].append(row)
 
     point_xy = {}
+    label_exclusions = set(config.get("label_exclusions", []))
     for panel, values in grouped.items():
         xs = [_panel_x(r["longitude"], panel) for r in values]
         ys = [y_base + (float(r["latitude"]) - tropic) * y_scale for r in values]
         ax.plot(xs, ys, color=PRIMARY, linewidth=2.4, zorder=3)
         ax.scatter(xs, ys, s=82, color=PRIMARY, edgecolor=BG, linewidth=0.9, zorder=4)
+
         for r, x, y in zip(values, xs, ys):
             point_xy[int(r["stop_order"])] = (x, y)
-            label_x = x + float(r.get("label_dx", 0) or 0)
-            label_y = 0.325 if int(r["stop_order"]) % 2 else 0.292
+
+        label_values = [r for r in values if r["place"] not in label_exclusions]
+        x0, x1 = panels[panel]
+        if len(label_values) == 1:
+            label_slots = [(x0 + x1) / 2]
+        else:
+            label_slots = np.linspace(x0 + 0.012, x1 - 0.012, len(label_values))
+
+        value_lookup = {int(r["stop_order"]): (x, y) for r, x, y in zip(values, xs, ys)}
+        for r, label_x in zip(label_values, label_slots):
+            x, y = value_lookup[int(r["stop_order"])]
+            label_y = 0.315
             ax.plot([x, label_x], [y - 0.01, label_y + 0.012], color="#A0A0A0", linewidth=0.7, zorder=2)
             ax.text(
                 label_x, label_y, r["place"],
                 ha="left", va="top", rotation=-90,
-                fontsize=7.8, color=SUBTEXT,
+                fontsize=7.6, color=SUBTEXT,
             )
 
     country_rows = {}
