@@ -1,0 +1,9 @@
+mode_order,transport_family,family_count,mode
+1,Ground,4,van
+2,Ground,4,car
+3,Ground,4,train
+4,Ground,4,road train
+5,Air,2,helicopter
+6,Air,2,plane
+7,Water,1,boat
+8,Animal,1,horseback
