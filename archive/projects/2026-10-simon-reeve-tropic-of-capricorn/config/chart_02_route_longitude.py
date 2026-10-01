@@ -17,6 +17,7 @@ CHART_CONFIG = {
     "footer_left": "Adam Green | coffeetableviz",
     "tropic_latitude": -23.4366,
     "vertical_exaggeration": 3.0,
+    "label_exclusions": ["São Paulo"],
     "fig_width": 8.0,
     "fig_height": 8.0,
     "dpi": 200,
