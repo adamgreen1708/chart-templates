@@ -223,11 +223,12 @@ def render_route_longitude(repo_root, config, rows):
         for r, x, y in zip(values, xs, ys):
             point_xy[int(r["stop_order"])] = (x, y)
             label_x = x + float(r.get("label_dx", 0) or 0)
-            ax.plot([x, label_x], [y - 0.01, 0.34], color="#A0A0A0", linewidth=0.7, zorder=2)
+            label_y = 0.325 if int(r["stop_order"]) % 2 else 0.292
+            ax.plot([x, label_x], [y - 0.01, label_y + 0.012], color="#A0A0A0", linewidth=0.7, zorder=2)
             ax.text(
-                label_x, 0.325, r["place"],
+                label_x, label_y, r["place"],
                 ha="left", va="top", rotation=-90,
-                fontsize=8.4, color=SUBTEXT,
+                fontsize=7.8, color=SUBTEXT,
             )
 
     country_rows = {}
@@ -267,10 +268,11 @@ def render_route_longitude(repo_root, config, rows):
             ha="center", va="center",
             fontsize=13.5, fontweight="bold", color=WHITE, zorder=6,
         )
+        country_label_y = marker_y + (0.067 if seq % 2 else 0.102)
         ax.text(
-            marker_x, marker_y + 0.072, _wrap(row["country"], 10, 2),
+            marker_x, country_label_y, _wrap(row["country"], 10, 2),
             ha="center", va="bottom",
-            fontsize=8.4, color=TEXT, linespacing=0.95,
+            fontsize=8.1, color=TEXT, linespacing=0.95,
             fontweight="bold" if seq in (1, 10) else "normal",
         )
 
