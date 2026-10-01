@@ -14,6 +14,7 @@ CHART_CONFIG = {
     "subtitle": "Eight transport modes from Reeve's account, grouped by how they move.",
     "source_text": "Source: Simon Reeve official site",
     "footer_left": "Adam Green | coffeetableviz",
+    "qa_revision": "round-icons-final",
     "fig_width": 8.0,
     "fig_height": 8.0,
     "dpi": 200,
