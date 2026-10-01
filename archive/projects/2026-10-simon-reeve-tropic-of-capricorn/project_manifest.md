@@ -2,7 +2,7 @@
 
 ## Status
 
-- Status: three deterministic GitHub renders QA-passed; draft PR ready for Adam chart review
+- Status: charts approved; live-site publication package staged on draft PR #87; awaiting Pages validation and Adam final approval
 - Started: 1 October 2026
 - Owner: Adam Green
 - Repo project slug: `2026-10-simon-reeve-tropic-of-capricorn`
@@ -29,6 +29,11 @@
 - `content/source_notes.md`
 - `content/qa_report.md`
 - `content/publication_package.md`
+- `site/_posts/2026-10-01-one-invisible-line-23000-miles-of-detours.md`
+- `site/assets/migrated/simon-reeve-tropic-of-capricorn/feature.svg`
+- `site/assets/migrated/simon-reeve-tropic-of-capricorn/route-zigzag.png`
+- `site/assets/migrated/simon-reeve-tropic-of-capricorn/route-longitude.png`
+- `site/assets/migrated/simon-reeve-tropic-of-capricorn/transport-modes.png`
 
 ## Reusable renderer change
 
@@ -42,4 +47,4 @@ New chart types:
 
 ## Gate
 
-Final archived-project render run 36928780602 passed. Do not stage or merge live site publication until Adam has reviewed the official GitHub Actions renders.
+Adam approved the final chart set on 1 October 2026. Site post, feature artwork and exact approved chart assets are now staged on draft PR #87. Do not merge until the pull-request Pages build passes and Adam gives final approval.
