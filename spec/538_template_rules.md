@@ -158,6 +158,18 @@ Horizontal bars are supported with:
 "orientation": "horizontal"
 ```
 
+## Editorial schematic chart types
+
+The renderer also supports three mobile-first editorial schematic types when a conventional statistical chart would obscure the story:
+
+- `route_zigzag` — ordered stops evenly spaced around a reference line; use when sequence is more important than geographic distance.
+- `route_longitude` — broken longitude panels with approximate place coordinates and an explicit latitude reference; use only with documented coordinates and a visible approximation/exaggeration caveat.
+- `mode_clusters` — grouped categorical items with deterministic vector pictograms and prominent group counts.
+
+These types use the same square canvas, background and house palette as the core renderer. They must remain deterministic: no generated text, generated icons, or image-model output may be used in the final chart PNG.
+
+For `route_longitude`, any vertical exaggeration must be stated on-chart. For `route_zigzag`, even spacing must be stated on-chart so readers do not infer distance.
+
 ## Highlighting and annotation
 
 Use highlights sparingly.

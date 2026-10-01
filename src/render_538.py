@@ -22,6 +22,7 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 from chart_config import CHART_CONFIG
+from editorial_schematics import EDITORIAL_TYPES, render_editorial_schematic
 
 
 BG = "#F3F4F6"
@@ -1047,6 +1048,12 @@ def main():
     rows = _apply_sort(rows)
 
     chart_type = CHART_CONFIG.get("chart_type")
+
+    if chart_type in EDITORIAL_TYPES:
+        if not rows:
+            raise ValueError("No rows remain after filtering.")
+        return render_editorial_schematic(REPO_ROOT, CHART_CONFIG, rows, columns)
+
     rows = _prepare_rows_for_chart(rows, chart_type)
 
     if not rows:

@@ -1,0 +1,21 @@
+stop_order,country_sequence,country,continent,place,latitude,longitude,label_dx,coordinate_source
+1,1,Namibia,Africa,Windhoek,-22.5700,17.0836,0.000,Wikidata Q3935
+2,2,Botswana,Africa,Gaborone,-24.6569,25.9086,0.000,Wikidata Q3919
+3,3,South Africa,Africa,Kruger,-24.9958,31.5919,-0.006,Skukuza Wikidata Q1013435
+4,4,Mozambique,Africa,Bazaruto,-21.6333,35.5000,0.000,Wikidata / OpenStreetMap Bazaruto Archipelago
+5,5,Madagascar,Africa,Toliara,-23.3542,43.6697,-0.012,OpenStreetMap / GeoNames
+6,5,Madagascar,Africa,Ilakaka,-22.7004,45.2147,-0.003,Wikidata Q3108180
+7,5,Madagascar,Africa,Fianarantsoa,-21.4794,47.1292,0.005,Wikidata Fianarantsoa I
+8,5,Madagascar,Africa,Manakara,-22.1500,48.0000,0.014,Wikidata Q991066
+9,6,Australia,Australia,Wittenoom,-22.2394,118.3373,0.000,Australian Bureau of Meteorology
+10,6,Australia,Australia,Uluru,-25.3221,130.9857,-0.010,Wikidata Uluṟu-Kata Tjuṯa National Park
+11,6,Australia,Australia,Alice Springs,-23.6994,133.8807,0.000,Northern Territory Place Names Register
+12,6,Australia,Australia,Queensland,-22.4869,144.4317,0.000,Geoscience Australia centre of Queensland
+13,6,Australia,Australia,Heron Island,-23.4419,151.9139,0.000,Wikidata Q2719889
+14,7,Chile,South America,San Pedro,-22.9113,-68.1995,0.000,Wikidata San Pedro de Atacama
+15,8,Argentina,South America,Wichí territory,-24.6901,-61.4260,0.000,OpenStreetMap / GeoNames Wichi locality
+16,9,Paraguay,South America,Mbaracayú,-25.0153,-54.6892,-0.050,Wikidata Q2445799
+17,9,Paraguay,South America,Ciudad del Este,-25.5167,-54.6167,0.000,Wikidata Q192235
+18,10,Brazil,South America,Iguaçu Falls,-25.6939,-54.4365,0.050,OpenStreetMap / GeoNames
+19,10,Brazil,South America,São Paulo,-23.5503,-46.6339,-0.025,Wikipedia / IBGE coordinates
+20,10,Brazil,South America,Ubatuba,-23.4414,-45.0761,0.025,ANAC Ubatuba Airport coordinate proxy
