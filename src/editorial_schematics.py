@@ -235,23 +235,42 @@ def render_route_longitude(repo_root, config, rows):
         seq = int(row["country_sequence"])
         country_rows.setdefault(seq, row)
 
+    panel_sequences = {
+        "Africa": [1, 2, 3, 4, 5],
+        "Australia": [6],
+        "South America": [7, 8, 9, 10],
+    }
+    country_marker_x = {}
+    for panel, sequences in panel_sequences.items():
+        x0, x1 = panels[panel]
+        if len(sequences) == 1:
+            positions = [(x0 + x1) / 2]
+        else:
+            positions = np.linspace(x0 + 0.020, x1 - 0.020, len(sequences))
+        for seq, marker_x in zip(sequences, positions):
+            country_marker_x[seq] = marker_x
+
     for seq in range(1, 11):
         row = country_rows[seq]
-        x = _panel_x(row["longitude"], row["continent"])
+        point_x = _panel_x(row["longitude"], row["continent"])
         point_y = y_base + (float(row["latitude"]) - tropic) * y_scale
+        marker_x = country_marker_x[seq]
         marker_y = 0.82
         color = ACCENT if seq in (1, 10) else PRIMARY
-        ax.plot([x, x], [marker_y - 0.045, point_y + 0.018], color="#A8A8A8", linewidth=0.75, zorder=1)
-        ax.scatter([x], [marker_y], s=950, color=color, edgecolor=BG, linewidth=1.7, zorder=5)
+        ax.plot(
+            [marker_x, point_x], [marker_y - 0.045, point_y + 0.018],
+            color="#A8A8A8", linewidth=0.75, zorder=1,
+        )
+        ax.scatter([marker_x], [marker_y], s=950, color=color, edgecolor=BG, linewidth=1.7, zorder=5)
         ax.text(
-            x, marker_y, str(seq),
+            marker_x, marker_y, str(seq),
             ha="center", va="center",
             fontsize=13.5, fontweight="bold", color=WHITE, zorder=6,
         )
         ax.text(
-            x, marker_y + 0.072, row["country"],
+            marker_x, marker_y + 0.072, _wrap(row["country"], 10, 2),
             ha="center", va="bottom",
-            fontsize=8.6, color=TEXT,
+            fontsize=8.4, color=TEXT, linespacing=0.95,
             fontweight="bold" if seq in (1, 10) else "normal",
         )
 
