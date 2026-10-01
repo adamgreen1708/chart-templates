@@ -296,7 +296,7 @@ def render_route_longitude(repo_root, config, rows):
     return _save(fig, repo_root, config)
 
 
-def _icon_circle(ax, x, y, size=2800):
+def _icon_circle(ax, x, y, size=2300):
     # scatter markers stay circular in display space even when the axes box is wide.
     ax.scatter([x], [y], s=size, color=PRIMARY, edgecolor="none", zorder=5)
 
@@ -416,7 +416,7 @@ def render_mode_clusters(repo_root, config, rows):
         for mode, (mx,my) in zip(family_modes, positions):
             _icon_circle(ax, mx, my)
             _draw_icon(ax, mode, mx, my)
-            ax.text(mx, my-0.073, mode, ha="center", va="top", fontsize=10.3, color=TEXT)
+            ax.text(mx, my-0.085, mode, ha="center", va="top", fontsize=10.3, color=TEXT)
 
     _add_footer(
         fig,
