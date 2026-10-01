@@ -11,7 +11,7 @@ CHART_CONFIG = {
     "sort": {"by": "mode_order", "ascending": True},
     "sort_descending": False,
     "title": "A straight line still took eight ways to travel",
-    "subtitle": "Reeve's Capricorn account names eight distinct transport modes. Grouped here by how they move.",
+    "subtitle": "Reeve's account names eight transport modes, grouped simply by how they move.",
     "source_text": "Source: Simon Reeve official site",
     "footer_left": "Adam Green | coffeetableviz",
     "fig_width": 8.0,
