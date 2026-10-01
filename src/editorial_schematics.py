@@ -191,7 +191,7 @@ def render_route_longitude(repo_root, config, rows):
         ax.plot([x0, x0], [0.14, 0.16], color="#999999", linewidth=1.1)
         ax.plot([x1, x1], [0.14, 0.16], color="#999999", linewidth=1.1)
         ax.text(
-            (x0 + x1) / 2, 0.075, panel,
+            (x0 + x1) / 2, 0.055, panel,
             ha="center", va="center",
             fontsize=13, color=SUBTEXT, fontweight="bold",
         )
@@ -296,8 +296,9 @@ def render_route_longitude(repo_root, config, rows):
     return _save(fig, repo_root, config)
 
 
-def _icon_circle(ax, x, y, radius=0.055):
-    ax.add_patch(Circle((x, y), radius, facecolor=PRIMARY, edgecolor="none", zorder=5))
+def _icon_circle(ax, x, y, size=2800):
+    # scatter markers stay circular in display space even when the axes box is wide.
+    ax.scatter([x], [y], s=size, color=PRIMARY, edgecolor="none", zorder=5)
 
 
 def _wheel(ax, x, y, r=0.009):
@@ -306,52 +307,59 @@ def _wheel(ax, x, y, r=0.009):
 
 def _draw_icon(ax, mode, x, y):
     white = WHITE
+    # The mode-cluster axes are much wider than they are tall. Compress x offsets
+    # so deterministic vector pictograms appear proportionate in display space.
+    xscale = 0.58
+
+    def X(dx):
+        return x + dx * xscale
+
     if mode == "van":
-        ax.add_patch(Rectangle((x-0.038, y-0.016), 0.076, 0.036, facecolor=white, edgecolor="none", zorder=7))
-        ax.add_patch(Rectangle((x-0.029, y+0.002), 0.018, 0.013, facecolor=PRIMARY, edgecolor="none", zorder=8))
-        ax.add_patch(Rectangle((x-0.006, y+0.002), 0.018, 0.013, facecolor=PRIMARY, edgecolor="none", zorder=8))
-        _wheel(ax, x-0.024, y-0.020)
-        _wheel(ax, x+0.024, y-0.020)
+        ax.add_patch(Rectangle((X(-0.038), y-0.016), 0.076*xscale, 0.036, facecolor=white, edgecolor="none", zorder=7))
+        ax.add_patch(Rectangle((X(-0.029), y+0.002), 0.018*xscale, 0.013, facecolor=PRIMARY, edgecolor="none", zorder=8))
+        ax.add_patch(Rectangle((X(-0.006), y+0.002), 0.018*xscale, 0.013, facecolor=PRIMARY, edgecolor="none", zorder=8))
+        _wheel(ax, X(-0.024), y-0.020, 0.007)
+        _wheel(ax, X(0.024), y-0.020, 0.007)
     elif mode == "car":
-        ax.add_patch(Rectangle((x-0.038, y-0.014), 0.076, 0.025, facecolor=white, edgecolor="none", zorder=7))
-        ax.add_patch(Polygon([(x-0.022,y+0.011),(x-0.010,y+0.030),(x+0.018,y+0.030),(x+0.031,y+0.011)], closed=True, facecolor=white, edgecolor="none", zorder=7))
-        _wheel(ax, x-0.025, y-0.018)
-        _wheel(ax, x+0.025, y-0.018)
+        ax.add_patch(Rectangle((X(-0.038), y-0.014), 0.076*xscale, 0.025, facecolor=white, edgecolor="none", zorder=7))
+        ax.add_patch(Polygon([(X(-0.022),y+0.011),(X(-0.010),y+0.030),(X(0.018),y+0.030),(X(0.031),y+0.011)], closed=True, facecolor=white, edgecolor="none", zorder=7))
+        _wheel(ax, X(-0.025), y-0.018, 0.007)
+        _wheel(ax, X(0.025), y-0.018, 0.007)
     elif mode == "train":
-        ax.add_patch(Rectangle((x-0.030, y-0.030), 0.060, 0.066, facecolor=white, edgecolor="none", zorder=7))
-        ax.add_patch(Rectangle((x-0.020, y+0.010), 0.040, 0.015, facecolor=PRIMARY, edgecolor="none", zorder=8))
-        ax.plot([x-0.018,x+0.018],[y-0.038,y-0.038],color=white,linewidth=2.0,zorder=8)
+        ax.add_patch(Rectangle((X(-0.030), y-0.030), 0.060*xscale, 0.066, facecolor=white, edgecolor="none", zorder=7))
+        ax.add_patch(Rectangle((X(-0.020), y+0.010), 0.040*xscale, 0.015, facecolor=PRIMARY, edgecolor="none", zorder=8))
+        ax.plot([X(-0.018),X(0.018)],[y-0.038,y-0.038],color=white,linewidth=2.0,zorder=8)
     elif mode == "road train":
-        ax.add_patch(Rectangle((x-0.044, y-0.014), 0.022, 0.026, facecolor=white, edgecolor="none", zorder=7))
-        ax.add_patch(Rectangle((x-0.018, y-0.012), 0.026, 0.024, facecolor=white, edgecolor="none", zorder=7))
-        ax.add_patch(Rectangle((x+0.012, y-0.012), 0.026, 0.024, facecolor=white, edgecolor="none", zorder=7))
-        for wx in (x-0.034,x-0.005,x+0.025):
-            _wheel(ax, wx, y-0.019, 0.0065)
+        ax.add_patch(Rectangle((X(-0.044), y-0.014), 0.022*xscale, 0.026, facecolor=white, edgecolor="none", zorder=7))
+        ax.add_patch(Rectangle((X(-0.018), y-0.012), 0.026*xscale, 0.024, facecolor=white, edgecolor="none", zorder=7))
+        ax.add_patch(Rectangle((X(0.012), y-0.012), 0.026*xscale, 0.024, facecolor=white, edgecolor="none", zorder=7))
+        for dx in (-0.034,-0.005,0.025):
+            _wheel(ax, X(dx), y-0.019, 0.0065)
     elif mode == "helicopter":
-        ax.add_patch(Ellipse((x, y), 0.060, 0.030, facecolor=white, edgecolor="none", zorder=7))
-        ax.plot([x-0.010,x-0.010],[y+0.015,y+0.038],color=white,linewidth=2.0,zorder=8)
-        ax.plot([x-0.045,x+0.045],[y+0.038,y+0.038],color=white,linewidth=2.0,zorder=8)
-        ax.plot([x+0.025,x+0.050],[y+0.002,y+0.018],color=white,linewidth=3.0,zorder=8)
-        ax.plot([x-0.025,x+0.020],[y-0.022,y-0.022],color=white,linewidth=2.0,zorder=8)
+        ax.add_patch(Ellipse((x, y), 0.060*xscale, 0.030, facecolor=white, edgecolor="none", zorder=7))
+        ax.plot([X(-0.010),X(-0.010)],[y+0.015,y+0.038],color=white,linewidth=2.0,zorder=8)
+        ax.plot([X(-0.045),X(0.045)],[y+0.038,y+0.038],color=white,linewidth=2.0,zorder=8)
+        ax.plot([X(0.025),X(0.050)],[y+0.002,y+0.018],color=white,linewidth=3.0,zorder=8)
+        ax.plot([X(-0.025),X(0.020)],[y-0.022,y-0.022],color=white,linewidth=2.0,zorder=8)
     elif mode == "plane":
         ax.add_patch(Polygon([
-            (x-0.048,y-0.006),(x-0.010,y-0.006),(x+0.035,y-0.040),
-            (x+0.043,y-0.035),(x+0.015,y-0.004),(x+0.050,y+0.006),
-            (x+0.050,y+0.012),(x+0.012,y+0.009),(x-0.012,y+0.040),
-            (x-0.020,y+0.036),(x-0.010,y+0.008),(x-0.048,y+0.008)
+            (X(-0.048),y-0.006),(X(-0.010),y-0.006),(X(0.035),y-0.040),
+            (X(0.043),y-0.035),(X(0.015),y-0.004),(X(0.050),y+0.006),
+            (X(0.050),y+0.012),(X(0.012),y+0.009),(X(-0.012),y+0.040),
+            (X(-0.020),y+0.036),(X(-0.010),y+0.008),(X(-0.048),y+0.008)
         ], closed=True, facecolor=white, edgecolor="none", zorder=7))
     elif mode == "boat":
-        ax.add_patch(Polygon([(x-0.040,y-0.005),(x+0.040,y-0.005),(x+0.026,y-0.030),(x-0.028,y-0.030)], closed=True, facecolor=white, edgecolor="none", zorder=7))
-        ax.add_patch(Rectangle((x-0.012,y-0.002),0.025,0.024,facecolor=white,edgecolor="none",zorder=7))
+        ax.add_patch(Polygon([(X(-0.040),y-0.005),(X(0.040),y-0.005),(X(0.026),y-0.030),(X(-0.028),y-0.030)], closed=True, facecolor=white, edgecolor="none", zorder=7))
+        ax.add_patch(Rectangle((X(-0.012),y-0.002),0.025*xscale,0.024,facecolor=white,edgecolor="none",zorder=7))
         for yy in (y-0.038, y-0.047):
-            ax.plot([x-0.043,x-0.020,x+0.003,x+0.026,x+0.045],[yy,yy+0.004,yy,yy+0.004,yy],color=white,linewidth=1.5,zorder=8)
+            ax.plot([X(-0.043),X(-0.020),X(0.003),X(0.026),X(0.045)],[yy,yy+0.004,yy,yy+0.004,yy],color=white,linewidth=1.5,zorder=8)
     elif mode == "horseback":
-        ax.add_patch(Ellipse((x-0.005,y),0.052,0.030,facecolor=white,edgecolor="none",zorder=7))
-        ax.add_patch(Circle((x+0.028,y+0.018),0.014,facecolor=white,edgecolor="none",zorder=7))
-        ax.plot([x+0.015,x+0.028],[y+0.005,y+0.019],color=white,linewidth=4.0,zorder=8)
-        for lx in (x-0.020,x-0.002,x+0.012):
-            ax.plot([lx,lx-0.004],[y-0.012,y-0.040],color=white,linewidth=2.2,zorder=8)
-        ax.plot([x-0.032,x-0.048],[y+0.005,y+0.022],color=white,linewidth=2.0,zorder=8)
+        ax.add_patch(Ellipse((X(-0.005),y),0.052*xscale,0.030,facecolor=white,edgecolor="none",zorder=7))
+        ax.add_patch(Circle((X(0.028),y+0.018),0.014,facecolor=white,edgecolor="none",zorder=7))
+        ax.plot([X(0.015),X(0.028)],[y+0.005,y+0.019],color=white,linewidth=4.0,zorder=8)
+        for dx in (-0.020,-0.002,0.012):
+            ax.plot([X(dx),X(dx-0.004)],[y-0.012,y-0.040],color=white,linewidth=2.2,zorder=8)
+        ax.plot([X(-0.032),X(-0.048)],[y+0.005,y+0.022],color=white,linewidth=2.0,zorder=8)
 
 
 def render_mode_clusters(repo_root, config, rows):
@@ -394,7 +402,8 @@ def render_mode_clusters(repo_root, config, rows):
         ax.text(cx, 0.88, family, ha="center", va="center", fontsize=16, fontweight="bold", color=TEXT)
         ax.scatter([cx], [0.77], s=1500, color=ACCENT, edgecolor=BG, linewidth=1.6, zorder=6)
         ax.text(cx, 0.77, str(counts[family]), ha="center", va="center", fontsize=19, fontweight="bold", color=WHITE, zorder=7)
-        ax.add_patch(Circle((cx, group_y), r, facecolor="#DDEFF2", edgecolor="none", alpha=0.72, zorder=0))
+        bg_sizes = {"Ground": 25500, "Air": 19000, "Water": 13500, "Animal": 13500}
+        ax.scatter([cx], [group_y], s=bg_sizes[family], color="#DDEFF2", edgecolor="none", alpha=0.72, zorder=0)
 
         family_modes = modes[family]
         if family == "Ground":
@@ -405,7 +414,7 @@ def render_mode_clusters(repo_root, config, rows):
             positions = [(cx,0.44)]
 
         for mode, (mx,my) in zip(family_modes, positions):
-            _icon_circle(ax, mx, my, 0.056)
+            _icon_circle(ax, mx, my)
             _draw_icon(ax, mode, mx, my)
             ax.text(mx, my-0.078, mode, ha="center", va="top", fontsize=10.5, color=TEXT)
 
