@@ -2,7 +2,7 @@
 
 ## Status
 
-- Status: deterministic render branch in progress; awaiting official GitHub Actions PNG review
+- Status: deterministic render QA round 2; waiting for the final GitHub Actions render to commit the revised PNGs
 - Started: 1 October 2026
 - Owner: Adam Green
 - Repo project slug: `2026-10-simon-reeve-tropic-of-capricorn`
