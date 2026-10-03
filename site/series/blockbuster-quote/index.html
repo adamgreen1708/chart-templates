@@ -5,6 +5,7 @@ description: One verified blockbuster line, connected to today for a real reason
 permalink: /series/blockbuster-quote/
 ---
 {% assign editions = site.blockbuster_quotes | sort: "date" | reverse %}
+{% assign latest = editions | first %}
 
 <section class="page-hero shell-narrow blockbuster-series-hero">
   <p class="eyebrow">Recurring series</p>
@@ -12,8 +13,32 @@ permalink: /series/blockbuster-quote/
   <p class="standfirst">One exact line from a recognisable film. One properly verified reason for choosing it today.</p>
 </section>
 
+{% if latest %}
+<section class="blockbuster-latest shell-wide" aria-labelledby="latest-quote-heading">
+  <div class="section-rule">
+    <h2 id="latest-quote-heading">Today’s Quote</h2>
+    <span>{{ latest.date | date: "%e %B %Y" }}</span>
+  </div>
+  <a class="blockbuster-feature" href="{{ latest.url | relative_url }}">
+    <div class="blockbuster-feature-visual">
+      <img src="{{ latest.hero_image | relative_url }}" alt="" width="1600" height="1600">
+    </div>
+    <div class="blockbuster-feature-copy">
+      <p class="eyebrow">Today’s verified line</p>
+      <h3>{{ latest.film }}</h3>
+      <p>{{ latest.film_year }} · {{ latest.character }}</p>
+      <span class="read-link">Read the edition <span>→</span></span>
+    </div>
+  </a>
+</section>
+{% endif %}
+
 {% if editions.size > 0 %}
-<section class="archive-list shell-narrow" aria-label="Blockbuster Quote editions">
+<section class="archive-list shell-narrow blockbuster-archive" aria-label="Blockbuster Quote editions">
+  <div class="section-rule">
+    <h2>Archive</h2>
+    <span>{{ editions.size }} {% if editions.size == 1 %}edition{% else %}editions{% endif %}</span>
+  </div>
   {% for edition in editions %}
   <a class="archive-row" href="{{ edition.url | relative_url }}">
     <span class="archive-date">{{ edition.date | date: "%e %b" }}</span>
