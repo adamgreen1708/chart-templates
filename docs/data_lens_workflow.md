@@ -1,13 +1,13 @@
 # Data Lens workflow
 
-## One content type, two formats
+## Daily series
 
 Data Lens is the home for short visual thinking about charts, data and communication.
 
 - **Today’s Data Lens** is the dated daily edition.
-- **Resources** are evergreen guides, including the 13-card chart-choice guide.
+- **Resources** are a separate top-level site section for evergreen guides and reference material.
 
-Both formats use the same site palette, accessibility expectations and repository review model.
+The two sections can share the same palette, accessibility expectations and repository review model, but Resources should not be presented inside the Data Lens landing page.
 
 ## Daily publishing flow
 
@@ -40,7 +40,7 @@ Routine editions must not change the canonical specification, layouts, CSS, vali
 
 ## Resource publishing flow
 
-Resources live under `site/data-lens/resources/`, with their images under `site/assets/data-lens/resources/`. They are deliberate releases, not part of the daily automation. Resource changes use a focused draft pull request and the same GitHub Pages build check.
+Resources live under `site/resources/`. The current 13-card guide keeps its image assets under `site/assets/data-lens/resources/`; future resource assets can be organised under the Resources section when needed. Resource changes are deliberate releases, not part of the daily Data Lens automation, and use a focused pull request plus the same GitHub Pages build check.
 
 ## Review from iPhone
 

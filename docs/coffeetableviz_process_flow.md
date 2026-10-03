@@ -6,17 +6,18 @@ It is designed for ChatGPT-assisted production, where the assistant should inspe
 
 ## Editorial publishing model
 
-Three content types share one reviewed route into GitHub Pages:
+Four content types share one reviewed route into GitHub Pages:
 
 | Content type | Repository source | Site destination |
 |---|---|---|
 | Chart stories | `site/_posts/` plus chart assets | Latest and Archive |
 | Today’s Data Lens | `site/_data_lens/` plus one dated square card | Data Lens daily archive |
+| Resources | `site/resources/` plus supporting assets | Resources |
 | Blockbuster Quote | `site/_blockbuster_quotes/` plus one dated square card | Today’s Quote feature + Quotes archive |
 
-Evergreen Data Lens guides live in `site/data-lens/resources/` with their assets under `site/assets/data-lens/resources/`.
+Evergreen guides live under the standalone `site/resources/` section. Existing chart-guide images remain under `site/assets/data-lens/resources/` until a broader asset cleanup is worthwhile.
 
-All three routes converge on the same approval pattern:
+All four routes converge on the same approval pattern:
 
 ```text
 create → verify → render → package metadata → draft pull request → validate → Adam reviews → merge → GitHub Pages
