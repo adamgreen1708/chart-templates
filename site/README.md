@@ -6,7 +6,8 @@ This folder is the source for the GitHub Pages prototype.
 
 - `_posts/` contains the Markdown master copy for published stories.
 - `_data_lens/` contains verified daily Data Lens editions.
-- `data-lens/resources/` contains evergreen Data Lens guides.
+- `resources/` contains standalone evergreen guides and reference material.
+- `assets/data-lens/resources/` contains the existing chart-guide image assets.
 - `assets/charts/` contains publication-ready chart outputs.
 - `_layouts/` and `_includes/` define the reusable site shell.
 - `about/` and `archive/` contain the supporting pages.
