@@ -1,0 +1,91 @@
+name: Daily Coffeetableviz Pulse
+
+on:
+  schedule:
+    - cron: "15 8 * * *"
+  workflow_dispatch:
+    inputs:
+      report_date:
+        description: "Optional Europe/London report date (YYYY-MM-DD). Defaults to yesterday."
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-coffeetableviz-pulse
+  cancel-in-progress: false
+
+jobs:
+  daily-pulse:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install chart dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-render.txt
+
+      - name: Build Daily Pulse
+        env:
+          GOATCOUNTER_API_TOKEN: ${{ secrets.GOATCOUNTER_API_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ -z "${GOATCOUNTER_API_TOKEN:-}" ]]; then
+            echo "::notice::GOATCOUNTER_API_TOKEN is not configured; Daily Pulse skipped."
+            exit 0
+          fi
+
+          if [[ -n "${{ inputs.report_date || '' }}" ]]; then
+            python scripts/site_analytics_daily.py --report-date "${{ inputs.report_date }}"
+          else
+            python scripts/site_analytics_daily.py
+          fi
+
+      - name: Upload latest pulse
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-site-pulse
+          path: |
+            output/daily_site_pulse.png
+            output/daily_site_pulse_summary.md
+            output/daily_site_pulse_latest.json
+            data/site_analytics_daily.csv
+          if-no-files-found: ignore
+
+      - name: Commit updated analytics
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add             data/site_analytics_daily.csv             output/daily_site_pulse.png             output/daily_site_pulse_summary.md             output/daily_site_pulse_latest.json 2>/dev/null || true
+
+          if git diff --staged --quiet; then
+            echo "No Daily Pulse changes to commit."
+            exit 0
+          fi
+
+          report_date="$(python - <<'PY'
+import json
+from pathlib import Path
+p = Path("output/daily_site_pulse_latest.json")
+print(json.loads(p.read_text())["report_date"] if p.exists() else "latest")
+PY
+)"
+          git commit -m "Update Daily Pulse for ${report_date}"
+          git push
