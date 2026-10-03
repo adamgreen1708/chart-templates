@@ -14,7 +14,7 @@ A line on a globe looks wonderfully simple.
 
 The Tropic of Capricorn is not.
 
-Simon Reeve's journey followed the southern edge of the tropics eastwards for around **23,000 miles**, starting in Namibia and eventually reaching Brazil. In between came Botswana, South Africa, Mozambique, Madagascar, Australia, Chile, Argentina and Paraguay.
+in 2008 Simon Reeve's journey followed the southern edge of the tropics eastwards for around **23,000 miles**, starting in Namibia and eventually reaching Brazil. In between came Botswana, South Africa, Mozambique, Madagascar, Australia, Chile, Argentina and Paraguay.
 
 That makes the route easy to list — and rather harder to imagine.
 
