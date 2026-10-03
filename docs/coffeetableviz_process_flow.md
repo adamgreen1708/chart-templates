@@ -12,7 +12,7 @@ Three content types share one reviewed route into GitHub Pages:
 |---|---|---|
 | Chart stories | `site/_posts/` plus chart assets | Latest and Archive |
 | Today’s Data Lens | `site/_data_lens/` plus one dated square card | Data Lens daily archive |
-| Blockbuster Quote | `site/_blockbuster_quotes/` plus one dated square card | Quotes archive |
+| Blockbuster Quote | `site/_blockbuster_quotes/` plus one dated square card | Today’s Quote feature + Quotes archive |
 
 Evergreen Data Lens guides live in `site/data-lens/resources/` with their assets under `site/assets/data-lens/resources/`.
 
