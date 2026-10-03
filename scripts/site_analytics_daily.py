@@ -44,7 +44,6 @@ OUTPUT_JSON = REPO_ROOT / "output" / "daily_site_pulse_latest.json"
 BLUE = "#1F8FA8"
 RED = "#C44E52"
 GREY = "#7A7A7A"
-GRID = "#D9D9D9"
 
 CSV_FIELDS = [
     "report_date",
@@ -131,14 +130,13 @@ def fetch_top_page(token: str, report_date: date) -> dict:
 
     hits = [h for h in payload.get("hits", []) if not h.get("event")]
     if not hits:
-        return {"path": "(none)", "title": "No page visits", "count": 0, "path_id": None}
+        return {"path": "(none)", "title": "No page visits", "count": 0}
 
     hit = hits[0]
     return {
         "path": hit.get("path") or "(unknown)",
         "title": hit.get("title") or hit.get("path") or "(untitled)",
         "count": int(hit.get("count") or 0),
-        "path_id": hit.get("path_id"),
     }
 
 
@@ -176,8 +174,11 @@ def make_observation(
     if visits > 0 and top_page_visits / visits >= 0.5:
         return "One page did most of the work."
 
-    if prior_avg is None or pct_vs_avg is None:
+    if prior_avg is None:
         return "Still building enough history for a proper baseline."
+
+    if pct_vs_avg is None:
+        return "The previous seven-day baseline was zero visits."
 
     if pct_vs_avg >= 50:
         return "A noticeably busier day than the seven-day baseline."
@@ -250,7 +251,9 @@ def render_pulse(
     ax.margins(x=0.04)
 
     if prior_avg is None:
-        context = "First complete day of tracking."
+        context = "First complete day of tracking." if report_date == TRACKING_START_DATE else "Building the seven-day baseline."
+    elif pct_vs_avg is None:
+        context = "Previous seven-day daily average: 0 visits."
     else:
         direction = "above" if pct_vs_avg >= 0 else "below"
         context = f"{abs(pct_vs_avg):.0f}% {direction} the previous seven-day daily average."
@@ -280,7 +283,8 @@ def render_pulse(
         plot_right=0.90,
     )
 
-    fig.text(0.10, 0.735, "14-DAY VISITS TREND", ha="left", va="bottom", fontsize=9, fontweight="bold", color=SUBTEXT)
+    trend_label = "14-DAY VISITS TREND" if len(dates) >= 14 else "VISITS TREND · BUILDING TO 14 DAYS"
+    fig.text(0.10, 0.735, trend_label, ha="left", va="bottom", fontsize=9, fontweight="bold", color=SUBTEXT)
 
     fig.text(0.10, 0.255, "MOST READ", ha="left", va="bottom", fontsize=9, fontweight="bold", color=SUBTEXT)
     fig.text(
@@ -342,7 +346,9 @@ def write_summary(
     observation: str,
 ) -> None:
     comparison = "Not enough history yet"
-    if prior_avg is not None and pct_vs_avg is not None:
+    if prior_avg is not None and pct_vs_avg is None:
+        comparison = "Prior 7-day daily average was 0 visits"
+    elif prior_avg is not None and pct_vs_avg is not None:
         direction = "above" if pct_vs_avg >= 0 else "below"
         comparison = f"{abs(pct_vs_avg):.0f}% {direction} prior 7-day daily average ({prior_avg:.1f})"
 
