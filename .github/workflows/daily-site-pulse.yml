@@ -46,6 +46,20 @@ jobs:
       - name: Validate generator syntax
         run: python -m py_compile scripts/site_analytics_daily.py
 
+      - name: Probe GoatCounter API
+        env:
+          GOATCOUNTER_API_TOKEN: ${{ secrets.GOATCOUNTER_API_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for path in me stats/total stats/totals stats/hits stats/toprefs; do
+            code="$(curl --silent --show-error --output /dev/null --write-out '%{http_code}' \
+              --header 'Content-Type: application/json' \
+              --header "Authorization: Bearer ${GOATCOUNTER_API_TOKEN}" \
+              "https://coffeetableviz.goatcounter.com/api/v0/${path}")"
+            echo "/api/v0/${path} -> HTTP ${code}"
+          done
+
       - name: Build Daily Pulse
         env:
           GOATCOUNTER_API_TOKEN: ${{ secrets.GOATCOUNTER_API_TOKEN }}
