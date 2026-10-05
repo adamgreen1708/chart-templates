@@ -86,12 +86,6 @@ jobs:
             exit 0
           fi
 
-          report_date="$(python - <<'PY'
-import json
-from pathlib import Path
-p = Path("output/daily_site_pulse_latest.json")
-print(json.loads(p.read_text())["report_date"] if p.exists() else "latest")
-PY
-)"
+          report_date="$(python -c 'import json; from pathlib import Path; p=Path("output/daily_site_pulse_latest.json"); print(json.loads(p.read_text())["report_date"] if p.exists() else "latest")')"
           git commit -m "Update Daily Pulse for ${report_date}"
           git push
