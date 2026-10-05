@@ -80,6 +80,11 @@ def iso_midnight(day: date) -> str:
     return dt.isoformat(timespec="seconds")
 
 
+def iso_end_of_day(day: date) -> str:
+    dt = datetime.combine(day, time.max, TZ)
+    return dt.isoformat(timespec="microseconds")
+
+
 def api_get(path: str, token: str, params: dict | None = None) -> dict:
     url = f"{API_BASE}{path}"
     if params:
@@ -105,15 +110,15 @@ def api_get(path: str, token: str, params: dict | None = None) -> dict:
         raise RuntimeError(f"Could not reach GoatCounter API: {exc}") from exc
 
 
-def date_params(start: date, end_exclusive: date) -> dict[str, str]:
+def date_params(start: date, end_inclusive: date) -> dict[str, str]:
     return {
         "start": iso_midnight(start),
-        "end": iso_midnight(end_exclusive),
+        "end": iso_end_of_day(end_inclusive),
     }
 
 
-def fetch_daily_totals(token: str, start: date, end_exclusive: date) -> dict[date, int]:
-    payload = api_get("/stats/total", token, date_params(start, end_exclusive))
+def fetch_daily_totals(token: str, start: date, end_inclusive: date) -> dict[date, int]:
+    payload = api_get("/stats/total", token, date_params(start, end_inclusive))
     out: dict[date, int] = {}
     for stat in payload.get("stats", []):
         day_value = stat.get("day")
@@ -124,7 +129,7 @@ def fetch_daily_totals(token: str, start: date, end_exclusive: date) -> dict[dat
 
 
 def fetch_top_page(token: str, report_date: date) -> dict:
-    params = date_params(report_date, report_date + timedelta(days=1))
+    params = date_params(report_date, report_date)
     params.update({"group": "day", "limit": 100})
     payload = api_get("/stats/hits", token, params)
 
@@ -141,7 +146,7 @@ def fetch_top_page(token: str, report_date: date) -> dict:
 
 
 def fetch_top_referrer(token: str, report_date: date) -> dict:
-    params = date_params(report_date, report_date + timedelta(days=1))
+    params = date_params(report_date, report_date)
     params.update({"limit": 20})
     payload = api_get("/stats/toprefs", token, params)
     stats = payload.get("stats", [])
@@ -254,14 +259,19 @@ def render_pulse(
         context = "First complete day of tracking." if report_date == TRACKING_START_DATE else "Building the seven-day baseline."
     elif pct_vs_avg is None:
         context = "Previous seven-day daily average: 0 visits."
+    elif pct_vs_avg == 0:
+        context = "Exactly in line with the previous seven-day daily average."
     else:
-        direction = "above" if pct_vs_avg >= 0 else "below"
+        direction = "above" if pct_vs_avg > 0 else "below"
         context = f"{abs(pct_vs_avg):.0f}% {direction} the previous seven-day daily average."
+
+    is_yesterday = report_date == datetime.now(TZ).date() - timedelta(days=1)
+    headline_prefix = "Yesterday brought" if is_yesterday else report_date.strftime("%-d %B brought")
 
     apply_538_template(
         ax,
         fig,
-        title=f"Yesterday brought {visits:,} visit{'s' if visits != 1 else ''}",
+        title=f"{headline_prefix} {visits:,} visit{'s' if visits != 1 else ''}",
         subtitle=f"Coffeetableviz Daily Pulse · {report_date.strftime('%-d %B %Y')} · {context}",
         source_text="Source: GoatCounter",
         footer_left="Coffeetableviz",
@@ -348,8 +358,10 @@ def write_summary(
     comparison = "Not enough history yet"
     if prior_avg is not None and pct_vs_avg is None:
         comparison = "Prior 7-day daily average was 0 visits"
+    elif prior_avg is not None and pct_vs_avg == 0:
+        comparison = f"Equal to prior 7-day daily average ({prior_avg:.1f})"
     elif prior_avg is not None and pct_vs_avg is not None:
-        direction = "above" if pct_vs_avg >= 0 else "below"
+        direction = "above" if pct_vs_avg > 0 else "below"
         comparison = f"{abs(pct_vs_avg):.0f}% {direction} prior 7-day daily average ({prior_avg:.1f})"
 
     text = f"""# Coffeetableviz Daily Pulse — {report_date.strftime('%-d %B %Y')}
@@ -374,6 +386,14 @@ def main() -> int:
         return 0
 
     report_date = report_date_from_args(args.report_date)
+    today_local = datetime.now(TZ).date()
+
+    if report_date >= today_local:
+        raise ValueError(
+            f"Report date must be a completed Europe/London day; got {report_date} "
+            f"while today is {today_local}."
+        )
+
     if report_date < TRACKING_START_DATE:
         print(
             f"Skipping {report_date}: tracking only has a full day from "
@@ -382,14 +402,14 @@ def main() -> int:
         return 0
 
     trend_start = max(TRACKING_START_DATE, report_date - timedelta(days=13))
-    daily_counts = fetch_daily_totals(token, trend_start, report_date + timedelta(days=1))
+    daily_counts = fetch_daily_totals(token, trend_start, report_date)
     visits = int(daily_counts.get(report_date, 0))
 
     prior_start = report_date - timedelta(days=7)
     has_full_baseline = prior_start >= TRACKING_START_DATE
     prior_counts: list[int] = []
     if has_full_baseline:
-        baseline_totals = fetch_daily_totals(token, prior_start, report_date)
+        baseline_totals = fetch_daily_totals(token, prior_start, report_date - timedelta(days=1))
         prior_counts = [
             int(baseline_totals.get(prior_start + timedelta(days=i), 0))
             for i in range(7)
