@@ -1,6 +1,12 @@
 name: Daily Coffeetableviz Pulse
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/daily-site-pulse.yml"
+      - "scripts/site_analytics_daily.py"
   schedule:
     - cron: "15 8 * * *"
   workflow_dispatch:
