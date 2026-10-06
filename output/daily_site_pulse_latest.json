@@ -1,13 +1,13 @@
 {
-  "report_date": "2026-10-04",
-  "visits": 9,
+  "report_date": "2026-10-05",
+  "visits": 3,
   "prior_7d_avg": "",
   "pct_vs_prior_7d": "",
   "top_page_path": "/",
   "top_page_title": "coffeetableviz",
   "top_page_visits": 2,
   "top_referrer": "Direct / unknown",
-  "top_referrer_visits": 0,
-  "observation": "The baseline has, technically, begun.",
-  "generated_at_utc": "2026-10-05T17:33:02+00:00"
+  "top_referrer_visits": 2,
+  "observation": "One page did most of the work.",
+  "generated_at_utc": "2026-10-06T15:10:09+00:00"
 }
