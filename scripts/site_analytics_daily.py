@@ -53,8 +53,10 @@ CSV_FIELDS = [
     "top_page_path",
     "top_page_title",
     "top_page_visits",
+    "top_pages_json",
     "top_referrer",
     "top_referrer_visits",
+    "top_referrers_json",
     "observation",
     "generated_at_utc",
 ]
@@ -128,35 +130,64 @@ def fetch_daily_totals(token: str, start: date, end_inclusive: date) -> dict[dat
     return out
 
 
-def fetch_top_page(token: str, report_date: date) -> dict:
+def page_display_name(path: str, title: str) -> str:
+    path = (path or "").strip() or "(unknown)"
+    title = " ".join((title or "").split()).strip()
+
+    if path == "/":
+        return "Home"
+
+    for suffix in (" | coffeetableviz", " · coffeetableviz", " - coffeetableviz"):
+        if title.lower().endswith(suffix):
+            title = title[: -len(suffix)].strip()
+            break
+
+    if not title or title.lower() in {"coffeetableviz", "coffeetableviz.com"}:
+        slug = path.rstrip("/").split("/")[-1]
+        title = slug.replace("-", " ").replace("_", " ").strip().title()
+
+    return title or path
+
+
+def fetch_top_pages(token: str, report_date: date) -> list[dict]:
     params = date_params(report_date, report_date)
     params.update({"group": "day", "limit": 100})
     payload = api_get("/stats/hits", token, params)
 
-    hits = [h for h in payload.get("hits", []) if not h.get("event")]
-    if not hits:
-        return {"path": "(none)", "title": "No page visits", "count": 0}
+    pages = []
+    for hit in payload.get("hits", []):
+        if hit.get("event"):
+            continue
+        path = hit.get("path") or "(unknown)"
+        title = hit.get("title") or ""
+        pages.append(
+            {
+                "path_id": hit.get("path_id"),
+                "path": path,
+                "title": title or path,
+                "display": page_display_name(path, title),
+                "count": int(hit.get("count") or 0),
+            }
+        )
+    return pages
 
-    hit = hits[0]
-    return {
-        "path": hit.get("path") or "(unknown)",
-        "title": hit.get("title") or hit.get("path") or "(untitled)",
-        "count": int(hit.get("count") or 0),
-    }
 
-
-def fetch_top_referrer(token: str, report_date: date) -> dict:
+def fetch_top_referrers(token: str, report_date: date) -> list[dict]:
     params = date_params(report_date, report_date)
     params.update({"limit": 20})
     payload = api_get("/stats/toprefs", token, params)
-    stats = payload.get("stats", [])
 
-    if not stats:
-        return {"name": "Direct / unknown", "count": 0}
-
-    first = stats[0]
-    name = (first.get("name") or "").strip() or "Direct / unknown"
-    return {"name": name, "count": int(first.get("count") or 0)}
+    referrers = []
+    for stat in payload.get("stats", []):
+        referrers.append(
+            {
+                "id": stat.get("id"),
+                "name": (stat.get("name") or "").strip() or "Direct / unknown",
+                "count": int(stat.get("count") or 0),
+                "ref_scheme": stat.get("ref_scheme"),
+            }
+        )
+    return referrers
 
 
 def truncate(text: str, max_chars: int) -> str:
@@ -171,13 +202,20 @@ def make_observation(
     visits: int,
     prior_avg: float | None,
     pct_vs_avg: float | None,
-    top_page_visits: int,
+    top_pages: list[dict],
 ) -> str:
     if report_date == TRACKING_START_DATE:
         return "The baseline has, technically, begun."
 
-    if visits > 0 and top_page_visits / visits >= 0.5:
-        return "One page did most of the work."
+    if visits > 0 and top_pages:
+        leader = top_pages[0]
+        if leader["count"] >= visits:
+            return f'{leader["display"]} reached every recorded visitor.'
+        if leader["count"] / visits >= 0.5:
+            return (
+                f'{leader["display"]} led the day, reaching '
+                f'{leader["count"]} of {visits} recorded visitors.'
+            )
 
     if prior_avg is None:
         return "Still building enough history for a proper baseline."
@@ -217,8 +255,8 @@ def render_pulse(
     visits: int,
     prior_avg: float | None,
     pct_vs_avg: float | None,
-    top_page: dict,
-    top_referrer: dict,
+    top_pages: list[dict],
+    top_referrers: list[dict],
     observation: str,
 ) -> None:
     trend_start = max(TRACKING_START_DATE, report_date - timedelta(days=13))
@@ -251,8 +289,11 @@ def render_pulse(
 
     ax.set_ylim(bottom=0)
     ax.yaxis.set_major_locator(MaxNLocator(integer=True, nbins=5))
+    tick_dates = dates if len(dates) <= 7 else dates[::2]
+    if report_date not in tick_dates:
+        tick_dates.append(report_date)
+    ax.set_xticks(tick_dates)
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%-d %b"))
-    ax.xaxis.set_major_locator(mdates.AutoDateLocator(minticks=3, maxticks=6))
     ax.margins(x=0.04)
 
     if prior_avg is None:
@@ -296,27 +337,34 @@ def render_pulse(
     trend_label = "14-DAY VISITS TREND" if len(dates) >= 14 else "VISITS TREND · BUILDING TO 14 DAYS"
     fig.text(0.10, 0.735, trend_label, ha="left", va="bottom", fontsize=9, fontweight="bold", color=SUBTEXT)
 
-    fig.text(0.10, 0.255, "MOST READ", ha="left", va="bottom", fontsize=9, fontweight="bold", color=SUBTEXT)
-    fig.text(
-        0.10,
-        0.220,
-        truncate(top_page["title"], 42),
-        ha="left",
-        va="bottom",
-        fontsize=11,
-        fontweight="bold",
-        color=TEXT,
-    )
-    fig.text(
-        0.10,
-        0.190,
-        f'{top_page["count"]:,} visit{"s" if top_page["count"] != 1 else ""} · {truncate(top_page["path"], 42)}',
-        ha="left",
-        va="bottom",
-        fontsize=9,
-        color=SUBTEXT,
-    )
+    fig.text(0.10, 0.255, "TOP PAGES", ha="left", va="bottom", fontsize=9, fontweight="bold", color=SUBTEXT)
+    visible_pages = top_pages[:3]
+    if not visible_pages:
+        fig.text(0.10, 0.220, "No page visits", ha="left", va="bottom", fontsize=10.5, color=TEXT)
+    else:
+        for idx, page in enumerate(visible_pages):
+            y = 0.222 - (idx * 0.028)
+            fig.text(
+                0.10,
+                y,
+                truncate(page["display"], 28),
+                ha="left",
+                va="bottom",
+                fontsize=10.2,
+                fontweight="bold" if idx == 0 else "normal",
+                color=TEXT,
+            )
+            fig.text(
+                0.49,
+                y,
+                f'{page["count"]:,}',
+                ha="right",
+                va="bottom",
+                fontsize=10.2,
+                color=SUBTEXT,
+            )
 
+    top_referrer = top_referrers[0] if top_referrers else {"name": "No referrer recorded", "count": 0}
     fig.text(0.57, 0.255, "TOP REFERRER", ha="left", va="bottom", fontsize=9, fontweight="bold", color=SUBTEXT)
     fig.text(
         0.57,
@@ -351,8 +399,8 @@ def write_summary(
     visits: int,
     prior_avg: float | None,
     pct_vs_avg: float | None,
-    top_page: dict,
-    top_referrer: dict,
+    top_pages: list[dict],
+    top_referrers: list[dict],
     observation: str,
 ) -> None:
     comparison = "Not enough history yet"
@@ -364,11 +412,16 @@ def write_summary(
         direction = "above" if pct_vs_avg > 0 else "below"
         comparison = f"{abs(pct_vs_avg):.0f}% {direction} prior 7-day daily average ({prior_avg:.1f})"
 
+    page_summary = ", ".join(
+        f'{page["display"]} ({page["count"]})' for page in top_pages[:3]
+    ) or "No page visits"
+    top_referrer = top_referrers[0] if top_referrers else {"name": "No referrer recorded", "count": 0}
+
     text = f"""# Coffeetableviz Daily Pulse — {report_date.strftime('%-d %B %Y')}
 
 - **Visits:** {visits:,}
 - **7-day context:** {comparison}
-- **Most read:** {top_page['title']} — {top_page['count']:,} visits
+- **Top pages:** {page_summary}
 - **Top referrer:** {top_referrer['name']} — {top_referrer['count']:,} visits
 - **Observation:** {observation}
 
@@ -420,14 +473,24 @@ def main() -> int:
     if prior_avg is not None and prior_avg > 0:
         pct_vs_avg = ((visits - prior_avg) / prior_avg) * 100
 
-    top_page = fetch_top_page(token, report_date)
-    top_referrer = fetch_top_referrer(token, report_date)
+    top_pages = fetch_top_pages(token, report_date)
+    top_referrers = fetch_top_referrers(token, report_date)
+    top_page = top_pages[0] if top_pages else {
+        "path": "(none)",
+        "title": "No page visits",
+        "display": "No page visits",
+        "count": 0,
+    }
+    top_referrer = top_referrers[0] if top_referrers else {
+        "name": "No referrer recorded",
+        "count": 0,
+    }
     observation = make_observation(
         report_date,
         visits,
         prior_avg,
         pct_vs_avg,
-        int(top_page["count"]),
+        top_pages,
     )
 
     row = {
@@ -438,8 +501,10 @@ def main() -> int:
         "top_page_path": top_page["path"],
         "top_page_title": top_page["title"],
         "top_page_visits": top_page["count"],
+        "top_pages_json": json.dumps(top_pages, separators=(",", ":")),
         "top_referrer": top_referrer["name"],
         "top_referrer_visits": top_referrer["count"],
+        "top_referrers_json": json.dumps(top_referrers, separators=(",", ":")),
         "observation": observation,
         "generated_at_utc": datetime.now(ZoneInfo("UTC")).isoformat(timespec="seconds"),
     }
@@ -451,8 +516,8 @@ def main() -> int:
         visits,
         prior_avg,
         pct_vs_avg,
-        top_page,
-        top_referrer,
+        top_pages,
+        top_referrers,
         observation,
     )
     write_summary(
@@ -460,12 +525,17 @@ def main() -> int:
         visits,
         prior_avg,
         pct_vs_avg,
-        top_page,
-        top_referrer,
+        top_pages,
+        top_referrers,
         observation,
     )
 
-    OUTPUT_JSON.write_text(json.dumps(row, indent=2) + "\n", encoding="utf-8")
+    latest = dict(row)
+    latest["top_pages"] = top_pages
+    latest["top_referrers"] = top_referrers
+    latest.pop("top_pages_json", None)
+    latest.pop("top_referrers_json", None)
+    OUTPUT_JSON.write_text(json.dumps(latest, indent=2) + "\n", encoding="utf-8")
 
     print(f"Generated Daily Pulse for {report_date}")
     print(f"Image: {OUTPUT_IMAGE.relative_to(REPO_ROOT)}")

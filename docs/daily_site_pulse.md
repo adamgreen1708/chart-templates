@@ -8,8 +8,8 @@ Daily, internal traffic summary built from GoatCounter and rendered in the Coffe
 - total visits;
 - 14-day visits trend;
 - previous seven-day daily average once seven complete prior days exist;
-- most-read page;
-- top referrer;
+- top three pages on the visual, with the full ranked page list retained in the latest JSON/history;
+- top referrer on the visual, with the ranked referrer list retained in the latest JSON/history;
 - one deterministic observation based only on the measured data.
 
 The GoatCounter tracker went live on 3 October 2026, so **4 October 2026 is the first complete reporting day**. The workflow deliberately skips earlier dates.
@@ -56,6 +56,7 @@ The visual follows `spec/538_template_rules.md`:
 - primary `#1F8FA8`;
 - highlight `#C44E52`;
 - restrained grid and labels;
+- at most one x-axis label per calendar date;
 - message-led title;
 - source footer;
 - safe margins.
