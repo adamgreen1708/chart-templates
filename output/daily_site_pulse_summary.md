@@ -1,6 +1,6 @@
-# Coffeetableviz Daily Pulse — 5 October 2026
+# Coffeetableviz Daily Pulse — 6 October 2026
 
-- **Visits:** 3
+- **Visits:** 2
 - **7-day context:** Not enough history yet
 - **Most read:** coffeetableviz — 2 visits
 - **Top referrer:** Direct / unknown — 2 visits
