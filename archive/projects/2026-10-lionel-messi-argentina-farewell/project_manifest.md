@@ -2,7 +2,7 @@
 
 ## Status
 
-- Status: Revised three-chart set — render/QA in progress
+- Status: Publication branch ready for final merge
 - Started: 7 October 2026
 - Last updated: 7 October 2026
 - Owner: Adam Green
@@ -11,7 +11,7 @@
 ## Story
 
 - Working title: The ending changed the story
-- Final title: Pending Adam review
+- Final title: The ending changed the story
 - Core question: What does Lionel Messi's full Argentina career look like now that it is complete?
 - Main takeaway: The career was extraordinarily long, but its defining team success and a much higher scoring rate were concentrated in the final six calendar years.
 - Audience: coffeetableviz readers; beginner/intermediate data-viz audience
@@ -46,15 +46,15 @@
 
 | File | Chart | Output | Status |
 |---|---|---|---|
-| config/chart_01_yearly_appearances.py | Annual Argentina appearances with late-career context | output/messi_01_yearly_appearances.png | Revised config; rerender pending |
-| config/chart_02_major_finals.py | Senior-finals reversal with chapter context | output/messi_02_major_finals.png | Revised config; rerender pending |
-| config/chart_03_scoring_acceleration.py | Annual scoring-rate journey | output/messi_03_scoring_acceleration.png | Replaced; rerender pending |
+| config/chart_01_yearly_appearances.py | Annual Argentina appearances with late-career context | output/messi_01_yearly_appearances.png | Rendered; QA pass |
+| config/chart_02_major_finals.py | Senior-finals reversal with chapter context | output/messi_02_major_finals.png | Rendered; QA pass |
+| config/chart_03_scoring_acceleration.py | Annual scoring-rate journey | output/messi_03_scoring_acceleration.png | Rendered; QA pass |
 
 ## Workflows
 
 | File | Purpose | Status |
 |---|---|---|
-| .github/workflows/render-archived-project.yml | Reusable archived-project renderer | Existing; unchanged; runs 37678465723 and 37678949173 succeeded |
+| .github/workflows/render-archived-project.yml | Reusable archived-project renderer | Existing; unchanged; final revised render 37681849180 succeeded |
 
 ## Outputs
 
@@ -68,18 +68,18 @@
 
 | Asset | File or text location | Status |
 |---|---|---|
-| Blog post |  | Not started |
-| Blog excerpt |  | Not started |
-| LinkedIn post |  | Not started |
-| Instagram caption |  | Not started |
-| Cartoon scene |  | Not started |
-| Image prompt |  | Not started |
+| Blog post | site/_posts/2026-10-07-the-ending-changed-the-story.md | Final candidate |
+| Blog excerpt | content/publication_package.md | Final |
+| LinkedIn post | content/publication_package.md | Final |
+| Instagram caption | content/publication_package.md | Final |
+| Feature artwork | site/assets/migrated/lionel-messi-argentina-farewell/feature.svg | Final candidate |
+| Image prompt | content/feature_image_prompt.md | Final |
 
 ## QA notes
 
 - Data checked: Yes — totals and split recomputed.
 - Config checked: Yes — source paths/columns/chart types reviewed.
-- Render checked: Yes — both archived-project runs succeeded.
+- Render checked: Yes — final revised archived-project render succeeded.
 - Labels/margins checked: Yes — final PNGs visually reviewed at 1600 × 1600; no clipping/collisions.
 - Source text checked: Yes.
 - Archive checked: Yes — project-scoped only.
@@ -94,5 +94,5 @@
 ## Closeout
 
 - Published URL:
-- Final archive PR: Draft PR pending creation
+- Final archive PR: #103 merged
 - Merge commit:

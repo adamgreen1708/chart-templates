@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1600" role="img" aria-labelledby="title desc">
+  <title id="title">The ending changed the story</title>
+  <desc id="desc">A long black-and-charcoal career line stays low past four hollow trophy shapes, then rises sharply through four solid trophy shapes before ending at one muted-red marker.</desc>
+  <rect width="1600" height="1600" fill="#F3F4F6"/>
+
+  <defs>
+    <g id="trophy-outline" fill="none" stroke="#303030" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-42 -42 H42 V10 C42 56 18 84 0 96 C-18 84 -42 56 -42 10 Z"/>
+      <path d="M-42 -22 H-76 V4 C-76 34 -58 52 -32 52"/>
+      <path d="M42 -22 H76 V4 C76 34 58 52 32 52"/>
+      <line x1="0" y1="96" x2="0" y2="132"/>
+      <line x1="-40" y1="132" x2="40" y2="132"/>
+    </g>
+    <g id="trophy-solid" fill="#111111">
+      <path d="M-46 -46 H46 V10 C46 59 21 88 0 102 C-21 88 -46 59 -46 10 Z"/>
+      <path d="M-46 -28 H-84 V4 C-84 40 -60 63 -28 63 V38 C-48 38 -59 26 -59 7 V-3 H-46 Z"/>
+      <path d="M46 -28 H84 V4 C84 40 60 63 28 63 V38 C48 38 59 26 59 7 V-3 H46 Z"/>
+      <rect x="-10" y="98" width="20" height="42" rx="8"/>
+      <rect x="-48" y="136" width="96" height="20" rx="8"/>
+    </g>
+  </defs>
+
+  <path d="M130 1045
+           C245 1010 330 1065 435 1035
+           C545 1005 640 1050 740 1015
+           C830 985 905 1000 990 965
+           C1050 940 1085 860 1125 790
+           C1170 710 1220 650 1280 610
+           C1340 570 1390 545 1450 520"
+        fill="none" stroke="#111111" stroke-width="42" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g fill="#111111" opacity="0.10">
+    <rect x="145" y="1215" width="1090" height="8" rx="4"/>
+    <rect x="250" y="1245" width="890" height="5" rx="3"/>
+    <rect x="390" y="1270" width="610" height="4" rx="2"/>
+  </g>
+
+  <g opacity="0.92">
+    <use href="#trophy-outline" transform="translate(300 795) scale(0.72)"/>
+    <use href="#trophy-outline" transform="translate(500 760) scale(0.72)"/>
+    <use href="#trophy-outline" transform="translate(700 805) scale(0.72)"/>
+    <use href="#trophy-outline" transform="translate(900 750) scale(0.72)"/>
+  </g>
+
+  <use href="#trophy-solid" transform="translate(1080 665) scale(0.70)"/>
+  <use href="#trophy-solid" transform="translate(1190 585) scale(0.70)"/>
+  <use href="#trophy-solid" transform="translate(1295 520) scale(0.70)"/>
+  <use href="#trophy-solid" transform="translate(1390 465) scale(0.70)"/>
+
+  <circle cx="1450" cy="520" r="54" fill="#C44E52"/>
+  <circle cx="1450" cy="520" r="19" fill="#F3F4F6" opacity="0.9"/>
+  <circle cx="130" cy="1045" r="29" fill="#303030"/>
+</svg>
