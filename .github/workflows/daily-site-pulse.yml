@@ -94,4 +94,19 @@ jobs:
 
           report_date="$(python -c 'import json; from pathlib import Path; p=Path("output/daily_site_pulse_latest.json"); print(json.loads(p.read_text())["report_date"] if p.exists() else "latest")')"
           git commit -m "Update Daily Pulse for ${report_date}"
-          git push
+
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main
+
+            if git push origin HEAD:main; then
+              echo "Daily Pulse pushed successfully."
+              exit 0
+            fi
+
+            echo "Push raced with another main update; retrying (${attempt}/3)."
+            sleep 2
+          done
+
+          echo "::error::Failed to push Daily Pulse after 3 attempts."
+          exit 1
