@@ -2,7 +2,7 @@
 
 ## Status
 
-- Status: Rendered — ready for Adam visual review
+- Status: Revised three-chart set — render/QA in progress
 - Started: 7 October 2026
 - Last updated: 7 October 2026
 - Owner: Adam Green
@@ -46,9 +46,9 @@
 
 | File | Chart | Output | Status |
 |---|---|---|---|
-| config/chart_01_yearly_appearances.py | Annual Argentina appearances | output/messi_01_yearly_appearances.png | Rendered; QA pass |
-| config/chart_02_major_finals.py | Senior-finals reversal | output/messi_02_major_finals.png | Rendered after highlight fix; QA pass |
-| config/chart_03_scoring_acceleration.py | Pre/post-2021 scoring rate | output/messi_03_scoring_acceleration.png | Rendered; QA pass |
+| config/chart_01_yearly_appearances.py | Annual Argentina appearances with late-career context | output/messi_01_yearly_appearances.png | Revised config; rerender pending |
+| config/chart_02_major_finals.py | Senior-finals reversal with chapter context | output/messi_02_major_finals.png | Revised config; rerender pending |
+| config/chart_03_scoring_acceleration.py | Annual scoring-rate journey | output/messi_03_scoring_acceleration.png | Replaced; rerender pending |
 
 ## Workflows
 
