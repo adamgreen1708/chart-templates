@@ -2,7 +2,7 @@
 
 ## Status
 
-- Status: In progress — first render
+- Status: Rendered — ready for Adam visual review
 - Started: 7 October 2026
 - Last updated: 7 October 2026
 - Owner: Adam Green
@@ -46,23 +46,23 @@
 
 | File | Chart | Output | Status |
 |---|---|---|---|
-| config/chart_01_yearly_appearances.py | Annual Argentina appearances | output/messi_01_yearly_appearances.png | Render pending |
-| config/chart_02_major_finals.py | Senior-finals reversal | output/messi_02_major_finals.png | Render pending |
-| config/chart_03_scoring_acceleration.py | Pre/post-2021 scoring rate | output/messi_03_scoring_acceleration.png | Render pending |
+| config/chart_01_yearly_appearances.py | Annual Argentina appearances | output/messi_01_yearly_appearances.png | Rendered; QA pass |
+| config/chart_02_major_finals.py | Senior-finals reversal | output/messi_02_major_finals.png | Rendered after highlight fix; QA pass |
+| config/chart_03_scoring_acceleration.py | Pre/post-2021 scoring rate | output/messi_03_scoring_acceleration.png | Rendered; QA pass |
 
 ## Workflows
 
 | File | Purpose | Status |
 |---|---|---|
-| .github/workflows/render-archived-project.yml | Reusable archived-project renderer | Existing; unchanged |
+| .github/workflows/render-archived-project.yml | Reusable archived-project renderer | Existing; unchanged; runs 37678465723 and 37678949173 succeeded |
 
 ## Outputs
 
 | File | Purpose | Notes |
 |---|---|---|
-| output/messi_01_yearly_appearances.png | Chart 1 | Pending |
-| output/messi_02_major_finals.png | Chart 2 | Pending |
-| output/messi_03_scoring_acceleration.png | Chart 3 | Pending |
+| output/messi_01_yearly_appearances.png | Chart 1 | Visual QA pass |
+| output/messi_02_major_finals.png | Chart 2 | Visual QA pass after numeric row-match correction |
+| output/messi_03_scoring_acceleration.png | Chart 3 | Visual QA pass |
 
 ## Content package
 
@@ -79,8 +79,8 @@
 
 - Data checked: Yes — totals and split recomputed.
 - Config checked: Yes — source paths/columns/chart types reviewed.
-- Render checked: Pending.
-- Labels/margins checked: Pending rendered-image review.
+- Render checked: Yes — both archived-project runs succeeded.
+- Labels/margins checked: Yes — final PNGs visually reviewed at 1600 × 1600; no clipping/collisions.
 - Source text checked: Yes.
 - Archive checked: Yes — project-scoped only.
 
@@ -94,5 +94,5 @@
 ## Closeout
 
 - Published URL:
-- Final archive PR:
+- Final archive PR: Draft PR pending creation
 - Merge commit:
