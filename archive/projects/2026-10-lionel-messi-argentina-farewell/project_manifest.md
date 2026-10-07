@@ -2,7 +2,7 @@
 
 ## Status
 
-- Status: Revised three-chart set — render/QA in progress
+- Status: Publication branch ready for final merge
 - Started: 7 October 2026
 - Last updated: 7 October 2026
 - Owner: Adam Green
@@ -68,12 +68,12 @@
 
 | Asset | File or text location | Status |
 |---|---|---|
-| Blog post |  | Not started |
-| Blog excerpt |  | Not started |
-| LinkedIn post |  | Not started |
-| Instagram caption |  | Not started |
-| Cartoon scene |  | Not started |
-| Image prompt |  | Not started |
+| Blog post | site/_posts/2026-10-07-the-ending-changed-the-story.md | Final candidate |
+| Blog excerpt | content/publication_package.md | Final |
+| LinkedIn post | content/publication_package.md | Final |
+| Instagram caption | content/publication_package.md | Final |
+| Feature artwork | site/assets/migrated/lionel-messi-argentina-farewell/feature.svg | Final candidate |
+| Image prompt | content/feature_image_prompt.md | Final |
 
 ## QA notes
 

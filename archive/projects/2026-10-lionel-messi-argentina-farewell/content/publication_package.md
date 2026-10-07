@@ -8,7 +8,7 @@ Lead with the late-career reversal, not a generic retirement tribute.
 
 The charts show three linked things: a surprisingly busy final six years, the complete reversal from four lost senior finals to four consecutive trophy-winning finals, and a sustained late-career lift in scoring rate.
 
-## Proposed headline
+## Final headline
 
 **The ending changed the story**
 
@@ -31,13 +31,13 @@ Lionel Messi finished his Argentina career with 208 caps and 126 goals. The stri
 
 See `content/blog_draft.md`.
 
-## Proposed site post
+## Site post
 
 `site/_posts/2026-10-07-the-ending-changed-the-story.md`
 
-## Proposed site assets
+## Site assets
 
-- `site/assets/migrated/lionel-messi-argentina-farewell/feature.png`
+- `site/assets/migrated/lionel-messi-argentina-farewell/feature.svg`
 - `site/assets/migrated/lionel-messi-argentina-farewell/yearly-appearances.png`
 - `site/assets/migrated/lionel-messi-argentina-farewell/major-finals.png`
 - `site/assets/migrated/lionel-messi-argentina-farewell/scoring-rate.png`
@@ -126,6 +126,8 @@ The metaphor carries the specific story: a long career whose summary changed lat
 
 ## Feature-image prompt / construction brief
 
+The final production asset is deterministic SVG rather than generated likeness-based artwork.
+
 Use case: illustration-story. Asset type: square coffeetableviz editorial feature image. Follow `spec/feature_image_rules.md`.
 
 Create a square stencil / screen-print editorial illustration on the house light-grey `#F3F4F6` background. Use a strong black-and-charcoal horizontal career line travelling from left to right across most of the image. Keep its early path restrained and mostly level. Along this first two-thirds, place four simple thin-outline empty trophy cup silhouettes, spaced apart, representing repeated near-misses.
@@ -144,9 +146,9 @@ Black-and-charcoal editorial timeline on a light-grey background, staying low fo
 - [x] PR #103 merged to main.
 - [x] Draft publication copy prepared.
 - [x] Feature concept tied to the approved late-career reversal.
-- [ ] Adam reviews blog draft.
-- [ ] Adam reviews exact generated feature image.
-- [ ] Exact approved feature asset saved to repo.
-- [ ] Jekyll post and site assets created on publication branch.
+- [x] Adam reviewed blog direction and approved finalisation.
+- [x] Deterministic feature SVG created from the approved metaphor and house rules.
+- [x] Exact feature asset saved to the site publication path.
+- [x] Jekyll post and site assets created on publication branch.
 - [ ] Publication PR opened and Pages build validated.
 - [ ] Site PR merged and final live URL verified.
