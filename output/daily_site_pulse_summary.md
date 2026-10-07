@@ -2,8 +2,8 @@
 
 - **Visits:** 2
 - **7-day context:** Not enough history yet
-- **Most read:** coffeetableviz — 2 visits
+- **Top pages:** Home (2), Data Lens (1)
 - **Top referrer:** Direct / unknown — 2 visits
-- **Observation:** One page did most of the work.
+- **Observation:** Home reached every recorded visitor.
 
 Latest image: `output/daily_site_pulse.png`

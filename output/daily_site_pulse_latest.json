@@ -8,6 +8,30 @@
   "top_page_visits": 2,
   "top_referrer": "Direct / unknown",
   "top_referrer_visits": 2,
-  "observation": "One page did most of the work.",
-  "generated_at_utc": "2026-10-07T17:47:02+00:00"
+  "observation": "Home reached every recorded visitor.",
+  "generated_at_utc": "2026-10-07T18:01:09+00:00",
+  "top_pages": [
+    {
+      "path_id": 109451764,
+      "path": "/",
+      "title": "coffeetableviz",
+      "display": "Home",
+      "count": 2
+    },
+    {
+      "path_id": 109446444,
+      "path": "/data-lens",
+      "title": "Data Lens \u00b7 coffeetableviz",
+      "display": "Data Lens",
+      "count": 1
+    }
+  ],
+  "top_referrers": [
+    {
+      "id": null,
+      "name": "Direct / unknown",
+      "count": 2,
+      "ref_scheme": "o"
+    }
+  ]
 }
