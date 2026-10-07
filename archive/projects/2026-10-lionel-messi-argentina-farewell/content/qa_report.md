@@ -1,6 +1,6 @@
 # QA report
 
-Status: **PASS — ready for Adam visual review**
+Status: **PASS — revised three-chart set ready for Adam visual review**
 
 ## Data checks
 
@@ -12,29 +12,46 @@ Status: **PASS — ready for Adam visual review**
 - Major-finals table: 9 finals; first four runner-up, next four champion, final 2026 runner-up.
 - No youth or Olympic matches included in cap/goal totals.
 
+## Final chart sequence
+
+1. **208 caps. Plenty left for the final act.**
+   - Annual Argentina appearances.
+   - Makes the 2021–26 period explicit: 66 of 208 caps.
+   - Marks 2021 as the career-high appearance year (16) and 2026 as the farewell year (12).
+
+2. **Four finals lost. Then four won.**
+   - Nine senior finals in sequence.
+   - Adds chapter labels: 2007–16 = 4 finals / 0 titles; 2021–24 = 4 finals / 4 titles.
+   - Keeps the 2026 World Cup runner-up visible as the final coda.
+
+3. **The scoring lift wasn’t a blip**
+   - Replaces the earlier two-dot era comparison with an annual goals-per-appearance line, 2005–2026.
+   - Shows the 2012 prior peak for context and highlights 2022 and 2026 late-career output.
+   - Includes 2005–20 (0.50) and 2021–26 (0.83) reference averages plus the 2021 first-senior-title marker.
+
 ## Config checks
 
-- Three configs use only locked renderer chart types: bar, scatter, dot.
+- Chart types: bar, scatter, line — all supported by the locked renderer.
 - Chart 1 bars start at zero.
-- Chart 2 uses explicit categorical tick labels rather than pretending the nine finals are evenly spaced in calendar time.
-- Chart 3 axis starts at zero and compares the same metric, scope and unit.
+- Chart 2 uses ordered-final positions with explicit categorical labels; it does not imply calendar spacing.
+- Chart 3 y-axis starts at zero and compares the same senior-international scoring-rate metric across all years.
 - Output paths are project-scoped.
 - Source text is present on all charts.
-- No renderer or reusable template changes were required.
+- No renderer or reusable template files changed.
 
 ## Render QA
 
 - Initial archived-project render: run 37678465723 — success.
-- Visual QA found Chart 2's champion highlights and row-matched annotations were not resolving after CSV numeric coercion.
-- Config-only correction used float-compatible row matches and slightly larger final markers.
-- Final archived-project render: run 37678949173 — success.
-- Chart 1: PASS — title/subtitle clear, final-year highlight visible, source/footer inside safe margins.
-- Chart 2: PASS — four champions highlighted, runner-ups remain context grey, 2016/2021 annotations visible, tick labels readable.
-- Chart 3: PASS — late-career comparison highlighted, labels clear, zero baseline retained.
-- Final 1600 × 1600 PNGs show no clipping, title/subtitle collisions, footer collisions or unsafe edge labels.
+- Chart 2 numeric row-match correction render: run 37678949173 — success.
+- Revised three-chart render: run 37681849180 — success.
+- Chart 1 final: PASS — title/subtitle clear; 2021 divider and career-high annotation readable; 2026 highlight visible; no clipping.
+- Chart 2 final: PASS — chapter labels use the central negative space cleanly; champion/runner-up distinction clear; 2026 coda readable; no collisions.
+- Chart 3 final: PASS — full annual journey visible; 2012/2022/2026 annotations readable; both average lines and 2021 marker clear; no clipping.
+- All final PNGs reviewed at 1600 × 1600; titles, subtitles, axes, annotations, source/footer and safe margins pass.
 
 ## Editorial QA
 
-- The three charts follow the intended sequence: longevity → finals reversal → scoring acceleration.
+- The sequence now reads clearly as **longevity → trophy reversal → late-career scoring performance**.
+- Chart 1 owns appearance volume; Chart 3 owns scoring-rate detail.
 - The story does not infer that trophies caused the scoring-rate increase.
-- 2026 World Cup runner-up remains visible rather than presenting the late career as an uninterrupted victory sequence.
+- The 2026 World Cup runner-up remains visible rather than presenting the late career as an uninterrupted victory sequence.
