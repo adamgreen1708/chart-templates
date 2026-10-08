@@ -1,0 +1,77 @@
+name: QA Icons of Data Resources layout (temporary)
+
+on:
+  push:
+    branches: [fix/icons-of-data-resources-layout-20261008]
+    paths:
+      - .github/workflows/qa-icons-resources-preview.yml
+
+permissions:
+  contents: write
+
+jobs:
+  screenshots:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./site
+          destination: ./_site
+      - name: Prepare browser
+        run: |
+          set -euo pipefail
+          python -m pip install playwright==1.56.0
+          command -v google-chrome || command -v chromium || command -v chromium-browser
+      - name: Render and inspect at desktop and mobile widths
+        run: |
+          set -euo pipefail
+          python -m http.server 8008 --bind 127.0.0.1 --directory ./_site > /tmp/icons-http.log 2>&1 &
+          mkdir -p archive/projects/2026-10-icons-of-data/qa
+          python - <<'PY'
+          import json
+          import os
+          import time
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          root=Path('archive/projects/2026-10-icons-of-data/qa')
+          with sync_playwright() as p:
+              b=p.chromium.launch(channel='chrome',headless=True,args=['--no-sandbox','--disable-gpu'])
+              for name,width,height in [('desktop',1365,960),('mobile',390,844),('small-mobile',320,680)]:
+                  page=b.new_page(viewport={'width':width,'height':height},device_scale_factor=1)
+                  page.goto('http://127.0.0.1:8008/resources/icons-of-data/',wait_until='networkidle',timeout=30000)
+                  page.locator('.icons-feature img').wait_for(state='visible')
+                  page.screenshot(path=str(root/f'{name}.png'),full_page=True)
+                  v=page.evaluate("""() => ({
+                      viewport: innerWidth, htmlWidth: document.documentElement.scrollWidth,
+                      font: getComputedStyle(document.querySelector('.page-hero h1')).fontFamily,
+                      imageWidth: document.querySelector('.icons-feature img').naturalWidth,
+                      originalCardLinks: document.querySelectorAll('a.icons-feature').length,
+                      inlineStyleTags: document.querySelectorAll('.icons-resource style').length,
+                      sections: document.querySelectorAll('.icons-section').length,
+                      headingCount: document.querySelectorAll('.icons-section .section-rule h2').length
+                  })""")
+                  print(name,json.dumps(v))
+                  assert v['htmlWidth'] <= width+1,(name,'horizontal page overflow',v)
+                  assert v['imageWidth']==1920,(name,'image not loaded',v)
+                  assert v['sections']==5 and v['headingCount']==5,(name,'wrong section hierarchy',v)
+                  assert v['inlineStyleTags']==0
+                  page.close()
+              page=b.new_page(viewport={'width':390,'height':844})
+              page.goto('http://127.0.0.1:8008/resources/',wait_until='networkidle',timeout=30000)
+              assert page.locator('a.resource-feature').count()==2
+              assert page.locator('a.resource-feature img').count()==2
+              assert page.locator('a.resource-feature img').nth(1).evaluate('(i) => i.naturalWidth')==1920
+              print('Resources index: two cards and approved local image present')
+              b.close()
+          PY
+      - name: Commit temporary QA screenshots for review
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add archive/projects/2026-10-icons-of-data/qa/*.png
+          git commit -m "Temporary Icons of Data layout QA screenshots"
+          git push
