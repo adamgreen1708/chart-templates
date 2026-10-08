@@ -9,6 +9,8 @@ on:
       - "scripts/site_analytics_daily.py"
   schedule:
     - cron: "15 8 * * *"
+    # Recovery run: only regenerates if yesterday’s report is missing.
+    - cron: "15 18 * * *"
   workflow_dispatch:
     inputs:
       report_date:
@@ -46,7 +48,37 @@ jobs:
       - name: Validate generator syntax
         run: python -m py_compile scripts/site_analytics_daily.py
 
+      - name: Check if evening recovery is needed
+        id: recovery
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_SCHEDULE: ${{ github.event.schedule }}
+        shell: bash
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          import os
+          from datetime import datetime, timedelta
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+
+          expected = (datetime.now(ZoneInfo("Europe/London")).date() - timedelta(days=1)).isoformat()
+          path = Path("output/daily_site_pulse_latest.json")
+          try:
+              current = json.loads(path.read_text(encoding="utf-8")).get("report_date")
+          except (FileNotFoundError, OSError, ValueError):
+              current = None
+
+          evening = (
+              os.environ["EVENT_NAME"] == "schedule"
+              and os.environ["EVENT_SCHEDULE"] == "15 18 * * *"
+          )
+          build = not (evening and current == expected)
+          print(f"build={'true' if build else 'false'}")
+          PY
+
       - name: Build Daily Pulse
+        if: steps.recovery.outputs.build == 'true'
         env:
           GOATCOUNTER_API_TOKEN: ${{ secrets.GOATCOUNTER_API_TOKEN }}
         shell: bash
@@ -54,17 +86,33 @@ jobs:
           set -euo pipefail
 
           if [[ -z "${GOATCOUNTER_API_TOKEN:-}" ]]; then
-            echo "::notice::GOATCOUNTER_API_TOKEN is not configured; Daily Pulse skipped."
-            exit 0
+            echo "::error::GOATCOUNTER_API_TOKEN is not configured; Daily Pulse cannot run."
+            exit 1
           fi
 
-          if [[ -n "${{ inputs.report_date || '' }}" ]]; then
-            python scripts/site_analytics_daily.py --report-date "${{ inputs.report_date }}"
-          else
-            python scripts/site_analytics_daily.py
-          fi
+          # GoatCounter has intermittently returned HTTP 404 to scheduled runs.
+          # Retry short-lived API failures, then let the evening schedule recover if needed.
+          for attempt in 1 2 3; do
+            if [[ -n "${{ inputs.report_date || '' }}" ]]; then
+              if python scripts/site_analytics_daily.py --report-date "${{ inputs.report_date }}"; then
+                exit 0
+              fi
+            else
+              if python scripts/site_analytics_daily.py; then
+                exit 0
+              fi
+            fi
+
+            if [[ "$attempt" == "3" ]]; then
+              echo "::error::Daily Pulse generation failed after 3 attempts."
+              exit 1
+            fi
+            echo "::warning::Daily Pulse generation failed (attempt ${attempt}/3). Retrying in 60 seconds."
+            sleep 60
+          done
 
       - name: Upload latest pulse
+        if: steps.recovery.outputs.build == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: daily-site-pulse
@@ -76,6 +124,7 @@ jobs:
           if-no-files-found: ignore
 
       - name: Commit updated analytics
+        if: steps.recovery.outputs.build == 'true'
         shell: bash
         run: |
           set -euo pipefail
