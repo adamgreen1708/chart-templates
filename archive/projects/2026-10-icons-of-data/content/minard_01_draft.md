@@ -1,71 +1,83 @@
 # A line that disappears
+
 *Icons of Data · Edition 01 · Charles Joseph Minard (1869)*
-**Draft — not published · original source and images still to be checked for specific use rights**
 
-Imagine drawing a long road across a map and then letting the road itself grow thinner every time fewer people are left to travel it.
+**Working editorial draft — approved direction, not approved for publication. Visuals, source attribution and final QA outstanding.**
 
-That, broadly, is what Charles Joseph Minard did in 1869.
+Napoleon's invasion of Russia in 1812 didn't exactly go to plan.
 
-His famous diagram traces Napoleon's Russian campaign of 1812–1813. The line moves east towards Moscow, turns back west and becomes strikingly narrow. This is not simply a route map. The **width** tells part of the story.
+An enormous army marched east towards Moscow. A considerably smaller one made it back.
 
-## When a line stops being just a line
+Historians have spent rather a lot of time explaining what went wrong. Battles, disease, hunger, exhaustion and, of course, the Russian winter.
 
-Minard's French legend explains that the width of the coloured bands represents the number of men, at a scale of one millimetre per ten thousand. A warm-toned band represents the march into Russia; a dark band represents the return.
+In 1869, French engineer Charles Joseph Minard decided to tell the story rather differently.
 
-Now the geography is doing two jobs. The route shows *where*. The width shows *how many*. The band's shrinking form lets the reader see a disastrous change without reading a column of figures.
+He drew a map.
 
-And the map doesn't stop there. Place names, troop-count annotations and a lower temperature trace add context along the retreat.
+And made the line shrink.
 
-This is the key editorial trick: the graphic keeps the important information near the place where it matters.
+## Not your usual route map
 
-**[Figure 1: full historical original, credited to BnF collection / specific digitisation to be approved; annotations prepared separately.]**
+At first glance, Minard's famous illustration looks like a map of Napoleon's journey across Russia.
 
-## A remarkable picture. Not a perfect record.
+The pale band follows the army towards Moscow. The dark one traces the retreat.
 
-There is a temptation to describe this as a precise count of everyone who died in Napoleon's campaign. It is not that.
+But look a little closer.
 
-Minard was working from contemporary histories and an army pharmacist's journal. He also stated that, for clarity, he represented certain detached corps as if they had remained with the main body. In other words, the map is a *designed historical synthesis*, with assumptions made visible in the small print.
+**The width of each band represents the estimated number of men in the army.**
 
-Nor does the cold temperature trace establish that temperature alone caused every loss. The campaign was more complicated than one freezing night or one bad decision.
+As the numbers fall, the line narrows. By the time it heads back west, there's precious little width left.
 
-Those cautions make Minard more interesting rather than less. A compelling picture can contain careful judgement. The duty of a reader — and anyone reconstructing it — is not to mistake that judgement for a census.
+You don't need to know much about military history to appreciate that things have gone rather badly.
 
-**[Figure 2: troop bands reconstructed from HistData's 51 observations, with branch/group QA and explicit source note. No made-up troop counts.]**
+*[Visual 1 — Minard's original 1869 map]*
 
-## Four ways to encode one disaster
+## One line. Several jobs.
 
-Pull the composition apart and the choices become clearer.
+What makes this remarkable isn't simply the shrinking line.
 
-- **Geographic position** locates the journey.
-- **Band width** represents the estimated size of the army.
-- **Colour and direction** distinguish outward movement from retreat.
-- **Temperature marks, dates and annotations** add a separate, time-linked view of the conditions.
+Minard manages to combine geography, troop numbers, direction, place names and dates. Beneath the map, he even plots temperatures recorded during the retreat.
 
-Put these together and a long historical narrative becomes one connected visual argument.
+And those temperatures make for fairly uncomfortable reading.
 
-Crucially, Minard didn't need a 3D chart, a dashboard, or a particularly excitable colour palette. He needed the right channels for the job.
+*[Visual 2 — Reconstructing the shrinking line]*
 
-**[Figure 3: Decode the Icon decomposition; exact original markings plus faithful recreation from the sourced temperature and route tables.]**
+The clever part is how naturally the different pieces fit together.
 
-## The encoding lesson
+The route tells us **where** the army travelled. The width tells us **how many** men remained in Minard's estimates. The temperature chart adds another layer of context to an already disastrous journey.
 
-The great idea isn't that every data story should look like Minard's. Most really shouldn't.
+Each element tells us something different, but together they tell one story.
 
-It's that **a mark can carry meaning through more than one property**. A line can show where something went and, through its width, how much of it remained.
+All on a single sheet of paper.
 
-The difficulty is knowing when that extra encoding clarifies and when it merely crowds the page.
+In 1869.
 
-Minard managed an unusually ambitious balance. It is why we're opening *Icons of Data* with his chart.
+*[Visual 3 — Decode the Icon: how Minard's encodings work]*
 
-And why we should read the legend before marvelling at the line.
+## But there's always a catch
+
+As compelling as the illustration is, it isn't a perfect historical record.
+
+Minard worked with estimates and made deliberate simplifications about the movement of different army units.
+
+The shrinking line doesn't mean everyone who disappeared from the count died. Nor does the temperature chart prove that the cold caused every loss.
+
+Those distinctions matter.
+
+A brilliant visualisation can tell a powerful story without telling us absolutely everything.
 
 ## TLDR
 
-In 1869 Minard made troop strength part of the route itself. His bands change width as the plotted size of the army changes. The result shows what carefully chosen encodings can achieve — with the important reminder that the historical figures are estimates and the design incorporates explicit assumptions.
+Most lines on maps tell us where something goes.
 
-## Sources and method (pre-publication)
-- Primary provenance: Bibliothèque nationale de France, *Carte figurative des pertes successives en hommes ... campagne de Russie 1812–13*, 1869: https://catalogue.bnf.fr/ark:/12148/cb40650878p
-- Original French legend transcription / public-domain image metadata: https://commons.wikimedia.org/wiki/File:Minard.png (verify precise scan licence before reuse).
-- Structured plotting data: `HistData` through `Rdatasets`, originally sourced from Lee Wilkinson / *Grammar of Graphics*. See https://friendly.github.io/HistData/reference/Minard.html. Current digitisation comprises 51 troop path records, 20 city records and 9 temperature records; these are *derived representations* of the historic diagram, not newly measured military history.
-- QA note: the HistData help text mistakenly calls the campaign **1815**. The original 1869 title specifies **1812–1813**. Temperature is labelled in the original as Réaumur; do not silently call it Celsius.
-- Next: check named troop labels against source scan, exact image licence and alt text; render and manually QA all reconstruction panels.
+Minard made the width of his line tell us how much remained.
+
+He combined several different ways of encoding information into one extraordinary illustration.
+
+More than 150 years later, it's still a rather good lesson in visual storytelling.
+
+Sometimes the cleverest thing you can do with a line is make it thinner.
+
+---
+
+**Source and method:** Charles Joseph Minard, *Carte figurative des pertes successives en hommes de l'Armée Française dans la campagne de Russie 1812–1813* (1869). The troop counts are historical estimates, and temperatures on the original are expressed in degrees Réaumur. Our reconstructions use the digitised Minard dataset from the HistData collection.
