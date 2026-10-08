@@ -1,16 +1,23 @@
 {
-  "report_date": "2026-10-06",
-  "visits": 2,
+  "report_date": "2026-10-07",
+  "visits": 9,
   "prior_7d_avg": "",
   "pct_vs_prior_7d": "",
-  "top_page_path": "/",
-  "top_page_title": "coffeetableviz",
+  "top_page_path": "/stories/the-ending-changed-the-story",
+  "top_page_title": "The ending changed the story \u00b7 coffeetableviz",
   "top_page_visits": 2,
   "top_referrer": "Direct / unknown",
   "top_referrer_visits": 2,
-  "observation": "Home reached every recorded visitor.",
-  "generated_at_utc": "2026-10-07T18:01:09+00:00",
+  "observation": "Still building enough history for a proper baseline.",
+  "generated_at_utc": "2026-10-08T19:27:26+00:00",
   "top_pages": [
+    {
+      "path_id": 110325243,
+      "path": "/stories/the-ending-changed-the-story",
+      "title": "The ending changed the story \u00b7 coffeetableviz",
+      "display": "The ending changed the story",
+      "count": 2
+    },
     {
       "path_id": 109451764,
       "path": "/",
@@ -19,10 +26,38 @@
       "count": 2
     },
     {
+      "path_id": 109453481,
+      "path": "/resources",
+      "title": "Resources \u00b7 coffeetableviz",
+      "display": "Resources",
+      "count": 1
+    },
+    {
+      "path_id": 109446452,
+      "path": "/data-lens/daily/2026-10-03-position-beats-area",
+      "title": "Position beats area. \u00b7 coffeetableviz",
+      "display": "Position beats area.",
+      "count": 1
+    },
+    {
       "path_id": 109446444,
       "path": "/data-lens",
       "title": "Data Lens \u00b7 coffeetableviz",
       "display": "Data Lens",
+      "count": 1
+    },
+    {
+      "path_id": 109446302,
+      "path": "/series/blockbuster-quote",
+      "title": "Today\u2019s Blockbuster Quote \u00b7 coffeetableviz",
+      "display": "Today\u2019s Blockbuster Quote",
+      "count": 1
+    },
+    {
+      "path_id": 109446267,
+      "path": "/archive",
+      "title": "Archive \u00b7 coffeetableviz",
+      "display": "Archive",
       "count": 1
     }
   ],
@@ -32,6 +67,12 @@
       "name": "Direct / unknown",
       "count": 2,
       "ref_scheme": "o"
+    },
+    {
+      "id": "www.linkedin.com",
+      "name": "www.linkedin.com",
+      "count": 1,
+      "ref_scheme": "h"
     }
   ]
 }
