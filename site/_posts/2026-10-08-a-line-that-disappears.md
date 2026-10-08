@@ -6,6 +6,8 @@ permalink: /icons-of-data/minard/
 description: "In 1869 Charles Joseph Minard turned Napoleon's disastrous Russian campaign into a line that shrank. The clever bit? Width became information."
 category: Icons of Data
 read_time: 3 minute read
+card_image: /assets/icons-of-data/minard/02_shrinking_army.png
+social_image: /assets/icons-of-data/minard/02_shrinking_army.png
 ---
 
 <p class="eyebrow"><a href="{{ '/resources/icons-of-data/' | relative_url }}">Icons of Data · Edition 01</a></p>
