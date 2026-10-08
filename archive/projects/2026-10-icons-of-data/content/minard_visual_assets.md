@@ -1,32 +1,32 @@
 # Minard publication asset register
 
-Status: **both reviewed PNGs approved editorially; binary upload to GitHub outstanding.** No site publication approval given.
+Status: **both exact approved PNGs present on PR #107 branch and verified by SHA-256 in GitHub Actions**. No site publication approval given.
 
-## Exact reviewed PNG files
-| Jekyll static path | Pixel dimensions | SHA-256 |
+## Approved PNGs — committed to GitHub
+| Site static path | Dimensions | SHA-256 |
 |---|---:|---|
 | `site/assets/icons-of-data/minard/02_shrinking_army.png` | 1920 × 1920 | `d773841188e51026f423060214daf98daa06197d9733028732d652a563b078bb` |
 | `site/assets/icons-of-data/minard/03_decode_the_icon.png` | 1920 × 1920 | `e6505c2326f3ba431d59ee698adc47bcc95ca71e22ac0fbeb78cadbfed5efca6` |
 
-These were approved in the Icons of Data visual review on 8 October 2026.
-The exact PNGs and their rendering script/data are bundled in the **Icons of Data Minard site-ready assets ZIP**, delivered in the same ChatGPT conversation. Keep them unchanged; do not recreate/recompress without a new visual QA.
+These are the exact reviewed images from 8 October 2026, not a stylistically similar substitute.
 
-The current GitHub connector only supports UTF-8 text file writes or encoded blob content, and cannot consume local binary source files directly. Therefore the exact binary PNGs are **not in this PR yet**. This is a real publication blocker.
+An on-branch, **temporary GitHub Actions job** rendered the archived deterministic Python script with pinned reference package versions and compared each generated PNG's SHA-256 to the approved image before committing. The job completed successfully: https://github.com/adamgreen1708/chart-templates/actions/runs/37841911808.
 
-## Historical original
-`https://commons.wikimedia.org/wiki/File:Minard.png`
+The temporary workflow was then removed from the branch. The reusable rendering script remains at `archive/projects/2026-10-icons-of-data/scripts/render_minard.py`, and source data at `archive/projects/2026-10-icons-of-data/data/`.
 
-Current site draft hotlinks the stable Commons file image `https://upload.wikimedia.org/wikipedia/commons/2/29/Minard.png`, with explicit public-domain credit and links to source metadata. Do not substitute a modern redraw without attribution/permission checks.
+The article references both verified assets at their permanent site paths. Its Jekyll conditionals also avoid missing-image placeholders if assets were deleted inadvertently.
 
-## How the site handles incomplete assets
-The staged Minard Jekyll article uses `site.static_files` tests. Its two modern figures are displayed only when their expected PNG files exist, otherwise it displays honest review placeholders. This avoids invisible broken images but **does not constitute publication QA**.
+## Original historical artwork
+Original 1869 chart: https://commons.wikimedia.org/wiki/File:Minard.png
 
-## Before any merge
-1. Upload the two exact PNGs to the paths above and confirm hashes.
-2. Supply story-specific approved card/hero artwork consistent with `spec/feature_image_rules.md`; the historical original currently carries the page's introductory visual.
-3. Run the Jekyll build and check output URLs/assets, metadata, mobile layout, captions, alt text and keyboard filtering.
-4. Compare PR against current main (no unrelated changes).
-5. Request explicit authorisation before merging or publishing to GitHub Pages.
-6. After merge, verify Pages deploy and live URLs.
+The original work is identified as public domain and attributed on the draft Resources and story pages. Both currently point to Wikimedia's stable hosted scan; consider a self-hosted copy in a future maintenance update to avoid hotlink dependence, with original credit retained.
 
-**Do not merge PR #107 in its present incomplete form.**
+## Metadata
+The approved, story-specific `02_shrinking_army.png` is used as both card and social preview artwork. It conveys the shrinking band, has light-grey background and the story-specific caption and alt text. The story's hero visual is the attributed original map within the article (not a duplicated lead image).
+
+## Still to QA before merge
+1. Confirm latest Jekyll PR build succeeds after the asset commits.
+2. Test mobile and desktop rendering, external original image loading, full-size modern graphics, alt text and keyboard-operated encoding filters.
+3. Recompare the final branch against the latest `main` and confirm only intended changes.
+4. Explicit author approval to merge PR #107 (nothing has been published yet).
+5. Once approved and merged, verify Pages deployment and live URLs.
