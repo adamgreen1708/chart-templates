@@ -1,7 +1,7 @@
 # Project manifest — Icons of Data
 **Project:** `2026-10-icons-of-data`
 **Created:** 2026-10-08
-**Status:** foundation draft, awaiting editorial/art approval
+**Status:** drafted Jekyll Resources hub and Minard article; modern visuals approved; binary upload, full Jekyll QA and final publication approval pending
 **Project scope:** evergreen Resources collection plus independently authored long-form editions about influential systems for encoding information.
 
 ## Files in this foundation
@@ -24,5 +24,13 @@ Original map provenance: https://catalogue.bnf.fr/ark:/12148/cb40650878p
 
 **Source caution:** the `HistData` documentation mislabels the campaign as 1815. It was 1812–1813. The CSVs are transcription/digitisation for reproduction, not new first-hand evidence; dates and temperature units must be audited against the original diagram before plotting.
 
-## Scope of foundation delivery
-No Jekyll post, resources page, renderer/config changes, visual output or site image is included. No change is published to GitHub Pages. Work remains in a draft branch/PR pending approval.
+## 8 October delivery update
+- Draft Jekyll article: `site/_posts/2026-10-08-a-line-that-disappears.md`, following the approved ~400-word version.
+- New Resources collection: `site/resources/icons-of-data/index.html`, introducing Minard, Beck's Tube map and Braille with a filterable encoding gallery, encoding matrix and verified timeline.
+- Draft Resources navigation: `site/resources/index.html`, with the original 13-card guide preserved.
+- Exact modern PNGs approved and delivered separately in an asset ZIP; hashes and expected site paths: `content/minard_visual_assets.md`.
+- Primary original (public-domain Minard scan): Wikimedia Commons, credited in site source.
+- The modern binary PNGs are NOT yet in GitHub: GitHub connector cannot read local binary files directly; never claim the site package is complete until uploaded and verified.
+- No changes to renderer, global CSS, GitHub workflow or protected core files.
+- PR: https://github.com/adamgreen1708/chart-templates/pull/107 (draft, not merged).
+- Publication blocked pending image upload, card/hero artwork, Jekyll and mobile QA, explicit approval, Pages deployment verification.
