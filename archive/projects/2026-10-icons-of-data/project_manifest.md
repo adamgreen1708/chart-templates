@@ -1,7 +1,7 @@
 # Project manifest — Icons of Data
 **Project:** `2026-10-icons-of-data`
 **Created:** 2026-10-08
-**Status:** drafted Jekyll Resources hub and Minard article; modern visuals approved; binary upload, full Jekyll QA and final publication approval pending
+**Status:** approved modern visuals committed to draft PR #107 with exact SHA-256 checks; site build/mobile QA and publication approval pending
 **Project scope:** evergreen Resources collection plus independently authored long-form editions about influential systems for encoding information.
 
 ## Files in this foundation
@@ -28,9 +28,9 @@ Original map provenance: https://catalogue.bnf.fr/ark:/12148/cb40650878p
 - Draft Jekyll article: `site/_posts/2026-10-08-a-line-that-disappears.md`, following the approved ~400-word version.
 - New Resources collection: `site/resources/icons-of-data/index.html`, introducing Minard, Beck's Tube map and Braille with a filterable encoding gallery, encoding matrix and verified timeline.
 - Draft Resources navigation: `site/resources/index.html`, with the original 13-card guide preserved.
-- Exact modern PNGs approved and delivered separately in an asset ZIP; hashes and expected site paths: `content/minard_visual_assets.md`.
+- Exact modern PNGs committed under `site/assets/icons-of-data/minard/`, with verified reference SHA-256 hashes: `content/minard_visual_assets.md`.
 - Primary original (public-domain Minard scan): Wikimedia Commons, credited in site source.
-- The modern binary PNGs are NOT yet in GitHub: GitHub connector cannot read local binary files directly; never claim the site package is complete until uploaded and verified.
-- No changes to renderer, global CSS, GitHub workflow or protected core files.
+- A one-off GitHub Actions job rendered the approved images with pinned dependencies and verified both original SHA-256 checksums before committing. The temporary workflow has since been removed; reproducible renderer: `scripts/render_minard.py`.
+- No changes to protected reusable renderers, global CSS or active GitHub workflows remain.
 - PR: https://github.com/adamgreen1708/chart-templates/pull/107 (draft, not merged).
-- Publication blocked pending image upload, card/hero artwork, Jekyll and mobile QA, explicit approval, Pages deployment verification.
+- Card/social preview uses the approved Minard reconstruction; original historical scan appears within the article. Publication blocked pending latest Jekyll/mobile QA, explicit approval and Pages deployment verification.
