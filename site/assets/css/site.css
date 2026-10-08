@@ -539,6 +539,7 @@ a { color: inherit; }
 .icons-feature .resource-feature-visual { background: #F3F4F6; }
 .icons-feature .resource-feature-visual img { object-fit: contain; background: #F3F4F6; padding: clamp(.75rem, 2.4vw, 1.5rem); }
 .icons-feature .resource-feature-copy .eyebrow { color: #ed9797; }
+.icons-feature .resource-feature-copy h3 { font-size: clamp(2.1rem, 3.5vw, 2.75rem); letter-spacing: -.045em; line-height: 1.04; }
 .icons-footnote { max-width: 720px; margin: 1.15rem 0 0; color: var(--muted); font-size: .84rem; line-height: 1.65; }
 .icons-footnote a, .icons-sources a { text-underline-offset: .2em; }
 .icons-intro { max-width: 720px; margin: 0 0 2rem; line-height: 1.6; }
