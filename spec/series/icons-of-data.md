@@ -1,5 +1,5 @@
 # Icons of Data — series specification (draft)
-Status: editorial proposal for approval. Not live or scheduled.
+Status: editorial direction and Minard manuscript/modern visuals approved for drafting; website publication not approved. Not live or scheduled.
 Repository: `adamgreen1708/chart-templates`
 Started: 2026-10-08
 
@@ -15,6 +15,14 @@ Explore historically important, distinctive and influential systems for encoding
 - Show the cost/trade-off of the encoding, not just praise for attractive design.
 - Historical dates distinguish conception, issue, publication and later adoption.
 - Do not claim an inventor invented a general encoding technique without verification.
+
+## Coffeetableviz editorial voice (approved 8 October 2026)
+- Individual posts target roughly **350–400 words**, with flexibility when a genuinely interesting fact earns its place.
+- Conversational UK English, curious, mildly dry and approachable. Avoid museum-label language, historical essays, lectures and unexplained specialist terms.
+- Lead with a concrete curiosity; let three purposeful visuals carry the explanation when suitable.
+- Keep one honest caveat and a short TLDR; move deeper historical context and methodology into the Resources feature and linked source notes.
+- Minard's approved reference manuscript is `archive/projects/2026-10-icons-of-data/content/minard_01_draft.md`, and its staged Jekyll copy is `site/_posts/2026-10-08-a-line-that-disappears.md`.
+- Image approvals and publication approvals are separate: source files, image rights, mobile QA, site preview, final merge and Pages verification still require checks.
 
 ## Per-edition package
 1. Original work, with creator/date/edition, image provenance and reuse rights verified.
