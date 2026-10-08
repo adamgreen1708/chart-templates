@@ -44,3 +44,7 @@
 **C — Resource launch:** implement first public collection landing page with approved originals, captions and filtering, plus the Minard Jekyll article; preview mobile and desktop, image/asset links and accessibility.
 **D — Publish only after approval:** open final site PR, merge only when approved, verify Pages deployment and final URLs.
 **E — Expand deliberately:** Tube diagram and Braille are preferred additions; source/rights and accessibility reviewed per edition.
+
+
+## Implementation note — 8 October 2026
+A substantial draft Resources page and the ~400-word Minard post now exist on the PR branch, with the chart-choice guide left intact. Two modern images were approved and are packaged for delivery, not yet added to GitHub because this connected file-writing interface cannot ingest local PNG binaries. The Resources gallery has accessible button filters and a descriptive encoding fingerprint matrix; the modern charts remain blocked behind exact image paths. No merge, Pages deployment or social publication is authorised. Review gate and expected PNG hashes: `content/minard_visual_assets.md`.
