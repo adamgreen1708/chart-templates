@@ -1,0 +1,69 @@
+name: Render Icons of Data Minard assets (draft only)
+
+on:
+  push:
+    branches:
+      - feature/icons-of-data-foundation-20261008
+    paths:
+      - archive/projects/2026-10-icons-of-data/scripts/render_minard.py
+      - archive/projects/2026-10-icons-of-data/data/*.csv
+      - .github/workflows/prepare-icons-of-data-minard.yml
+
+permissions:
+  contents: write
+
+jobs:
+  render-reviewed-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout draft branch
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install reference rendering dependencies
+        run: |
+          python -m pip install --disable-pip-version-check "numpy==2.3.5" "pandas==2.2.3" "matplotlib==3.10.8" "pillow==12.3.0"
+
+      - name: Rebuild and validate Minard images against approved originals
+        shell: bash
+        env:
+          MPLBACKEND: Agg
+        run: |
+          set -euo pipefail
+          project="archive/projects/2026-10-icons-of-data"
+          mkdir -p "$project/scripts/data" "site/assets/icons-of-data/minard"
+          cp "$project/data"/minard_*.csv "$project/scripts/data/"
+          python "$project/scripts/render_minard.py"
+          output_dir="$project/scripts/visuals"
+          expected_second="d773841188e51026f423060214daf98daa06197d9733028732d652a563b078bb"
+          expected_third="e6505c2326f3ba431d59ee698adc47bcc95ca71e22ac0fbeb78cadbfed5efca6"
+          hash_second="$(sha256sum "$output_dir/02_shrinking_army.png" | cut -d' ' -f1)"
+          hash_third="$(sha256sum "$output_dir/03_decode_the_icon.png" | cut -d' ' -f1)"
+          echo "Visual 2 sha256 $hash_second"
+          echo "Visual 3 sha256 $hash_third"
+          [[ "$hash_second" == "$expected_second" ]] || { echo "::error::Visual 2 does not match the exact reviewed PNG; do not substitute"; exit 1; }
+          [[ "$hash_third" == "$expected_third" ]] || { echo "::error::Visual 3 does not match the exact reviewed PNG; do not substitute"; exit 1; }
+          cp "$output_dir/02_shrinking_army.png" site/assets/icons-of-data/minard/
+          cp "$output_dir/03_decode_the_icon.png" site/assets/icons-of-data/minard/
+          rm -rf "$project/scripts/data" "$project/scripts/visuals"
+          sha256sum site/assets/icons-of-data/minard/*.png
+
+      - name: Commit only exact approved PNG assets to draft branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/assets/icons-of-data/minard/02_shrinking_army.png site/assets/icons-of-data/minard/03_decode_the_icon.png
+          if git diff --staged --quiet; then
+            echo "Exact assets are already present."
+            exit 0
+          fi
+          git commit -m "Add exact approved Minard PNGs to Icons of Data draft"
+          git push
