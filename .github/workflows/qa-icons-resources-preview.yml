@@ -5,6 +5,7 @@ on:
     branches: [fix/icons-of-data-resources-layout-20261008]
     paths:
       - .github/workflows/qa-icons-resources-preview.yml
+      - site/assets/css/site.css
 
 permissions:
   contents: write
@@ -51,11 +52,14 @@ jobs:
                       originalCardLinks: document.querySelectorAll('a.icons-feature').length,
                       inlineStyleTags: document.querySelectorAll('.icons-resource style').length,
                       sections: document.querySelectorAll('.icons-section').length,
-                      headingCount: document.querySelectorAll('.icons-section .section-rule h2').length
+                      headingCount: document.querySelectorAll('.icons-section .section-rule h2').length,
+                      cardHeadlineWidth: document.querySelector('.icons-feature h3').clientWidth,
+                      cardHeadlineScroll: document.querySelector('.icons-feature h3').scrollWidth
                   })""")
                   print(name,json.dumps(v))
                   assert v['htmlWidth'] <= width+1,(name,'horizontal page overflow',v)
                   assert v['imageWidth']==1920,(name,'image not loaded',v)
+                  assert v['cardHeadlineScroll'] <= v['cardHeadlineWidth']+1,(name,'feature headline clipped',v)
                   assert v['sections']==5 and v['headingCount']==5,(name,'wrong section hierarchy',v)
                   assert v['inlineStyleTags']==0
                   page.close()
