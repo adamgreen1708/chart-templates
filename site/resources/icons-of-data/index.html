@@ -1,0 +1,192 @@
+---
+layout: default
+title: Icons of Data
+description: Remarkable ways humans turn information into understanding: charts, maps, codes, tactile writing and the design decisions behind them.
+permalink: /resources/icons-of-data/
+---
+
+<style>
+.iod-hero { padding-block: clamp(4rem, 8vw, 7rem) 3.5rem; }
+.iod-hero h1 { font: 700 clamp(3.5rem, 10vw, 6.4rem)/.98 "Space Grotesk", sans-serif; letter-spacing: -.055em; margin: 0; }
+.iod-hero .standfirst { max-width: 770px; }
+.iod-section { padding-bottom: clamp(4rem, 8vw, 7rem); }
+.iod-kicker { font: 500 .76rem/1.3 "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.iod-section h2 { font: 700 clamp(2.1rem, 5vw, 3.4rem)/1.08 "Space Grotesk", sans-serif; letter-spacing: -.035em; margin: 0 0 1.3rem; }
+.iod-section h3 { font: 700 1.28rem/1.2 "Space Grotesk", sans-serif; margin: 0 0 .65rem; }
+.iod-section p { line-height: 1.56; }
+.iod-intro-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(1.5rem, 5vw, 4rem); align-items: center; }
+.iod-archive-image { display: block; width: 100%; background: #e7e7e8; padding: 1rem; }
+.iod-archive-image img { width: 100%; object-fit: contain; background: white; }
+.iod-caption { font-size: .78rem; line-height: 1.4; color: var(--muted); }
+.iod-lenses, .iod-library { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.iod-lens, .iod-library article { padding: 1.5rem; border: 1px solid var(--line); min-width: 0; }
+.iod-index { border-block: 1px solid var(--ink); padding: 1.4rem 0; margin-bottom: 2rem; display: flex; gap: .75rem; flex-wrap: wrap; }
+.iod-index a { font: 500 .78rem "IBM Plex Mono", monospace; text-decoration: none; border-bottom: 1px solid var(--accent); }
+.iod-filters { border: 0; margin: 0 0 2rem; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
+.iod-filters legend { width: 100%; font: 500 .79rem "IBM Plex Mono", monospace; margin-bottom: .8rem; }
+.iod-filter { appearance: none; background: transparent; border: 1px solid var(--line); border-radius: 0; color: var(--ink); font: 500 .81rem "IBM Plex Sans", sans-serif; padding: .5rem .85rem; cursor: pointer; }
+.iod-filter[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+.iod-objects { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.iod-object { background: #fff; padding: 1.6rem; min-width: 0; display: flex; flex-direction: column; align-items: start; }
+.iod-object p { font-size: .95rem; margin: .25rem 0 1rem; }
+.iod-object a { font-weight: 600; margin-top: auto; text-underline-offset: .17em; }
+.iod-object[hidden] { display: none; }
+.iod-status { color: var(--muted); font: .8rem "IBM Plex Mono", monospace; }
+.iod-matrix { border-collapse: collapse; width: 100%; font: .87rem "IBM Plex Sans", sans-serif; }
+.iod-matrix th, .iod-matrix td { text-align: center; border-bottom: 1px solid var(--line); padding: .8rem .55rem; }
+.iod-matrix th:first-child { text-align: left; }
+.iod-matrix thead th { font-size: .77rem; }
+.iod-check { color: #13758a; font-weight: 700; }
+.iod-table-scroll { overflow-x: auto; }
+.iod-timeline { list-style: none; border-top: 1px solid var(--line); padding: 0; margin: 1.3rem 0; }
+.iod-timeline li { display: grid; grid-template-columns: 95px 1fr; gap: 1rem; padding: 1.05rem 0; border-bottom: 1px solid var(--line); }
+.iod-year { font-family: "IBM Plex Mono", monospace; font-weight: 600; }
+.iod-source-links { padding-left: 1.25rem; font-size: .87rem; }
+.iod-source-links li { margin-bottom: .65rem; overflow-wrap: anywhere; }
+@media(max-width:840px){ .iod-intro-grid {grid-template-columns:1fr;} .iod-lenses,.iod-library,.iod-objects{grid-template-columns:repeat(2,minmax(0,1fr));} }
+@media(max-width:560px){.iod-lenses,.iod-library,.iod-objects{grid-template-columns:1fr;} .iod-hero {padding-top:4rem;} .iod-timeline li{grid-template-columns:70px 1fr;} .iod-matrix{min-width:620px;} }
+</style>
+
+<header class="iod-hero shell-wide">
+  <p class="eyebrow">Coffeetableviz · A growing collection</p>
+  <h1>Icons of Data.</h1>
+  <p class="standfirst">The remarkable ways we turn information into understanding.</p>
+  <p>Not just charts. Maps, symbols, systems and even patterns you read with your fingertips. Each has a clever idea hiding in plain sight — or, sometimes, not in sight at all.</p>
+</header>
+
+<nav class="iod-index shell-wide" aria-label="Explore Icons of Data">
+  <a href="#featured">The first icon</a>
+  <a href="#library">The encoding library</a>
+  <a href="#collection">Explore the collection</a>
+  <a href="#fingerprints">Encoding fingerprints</a>
+  <a href="#timeline">Timeline</a>
+  <a href="#sources">Sources</a>
+</nav>
+
+<section id="featured" class="iod-section shell-wide" aria-labelledby="iod-featured-title">
+  <div class="section-rule"><h2 id="iod-featured-title">01 · A line that disappears</h2><span>Minard · 1869</span></div>
+  <div class="iod-intro-grid">
+    <div>
+      <p class="iod-kicker">Position · Width · Colour · Context</p>
+      <p>Napoleon's 1812 invasion of Russia didn't end terribly well. In 1869, Charles Joseph Minard turned the story into a shrinking band across a map.</p>
+      <p>The line tells you where the army travelled. The <strong>width</strong> tells you how many men remained in his estimates.</p>
+      <p>One design decision. Rather a lot of history.</p>
+      <p><a href="{{ '/icons-of-data/minard/' | relative_url }}">Read the Minard story →</a></p>
+    </div>
+    <figure style="margin:0">
+      <a class="iod-archive-image" href="https://commons.wikimedia.org/wiki/File:Minard.png">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Minard.png" alt="Minard's original 1869 print, showing the pale advancing route narrowing into the black retreating route and a temperature plot beneath." width="2003" height="955" loading="lazy">
+      </a>
+      <figcaption class="iod-caption">Charles Joseph Minard, 1869. Public-domain print via Wikimedia Commons. Open the image for original labels and attribution.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="library" class="iod-section shell-wide" aria-labelledby="iod-library-title">
+  <div class="section-rule"><h2 id="iod-library-title">How information changes shape</h2><span>The encoding library</span></div>
+  <p>Every icon makes choices about which property of a mark should carry information. These are six starting points. We'll keep expanding them.</p>
+  <div class="iod-library">
+    <article><p class="iod-kicker">01 · Where</p><h3>Position</h3><p>Where a line, symbol or dot sits can communicate location, sequence or quantity.</p></article>
+    <article><p class="iod-kicker">02 · How much</p><h3>Width &amp; area</h3><p>A thicker band can mean more people. The area of a shape can carry a different kind of numerical comparison.</p></article>
+    <article><p class="iod-kicker">03 · Which kind</p><h3>Colour</h3><p>Contrast separates routes, categories or states. Colour can also communicate a numerical scale.</p></article>
+    <article><p class="iod-kicker">04 · What connects</p><h3>Topology</h3><p>For a transport network, the stations and how they connect may matter more than exact distances.</p></article>
+    <article><p class="iod-kicker">05 · What comes next</p><h3>Sequence</h3><p>Order can carry meaning even when the marks themselves are deliberately simple.</p></article>
+    <article><p class="iod-kicker">06 · What can be felt</p><h3>Touch &amp; patterns</h3><p>Not all meaningful encodings are visual. Braille uses the position of raised dots in a tactile cell.</p></article>
+  </div>
+</section>
+
+<section id="collection" class="iod-section shell-wide" aria-labelledby="iod-collection-title">
+  <div class="section-rule"><h2 id="iod-collection-title">The collection</h2><span>One published candidate · more in research</span></div>
+  <p>Start with a design choice, then see what it made possible. Filter by the channels that interest you.</p>
+  <fieldset class="iod-filters" aria-label="Filter icons by encoding" id="iod-filters">
+    <legend>Explore by encoding</legend>
+    <button class="iod-filter" type="button" aria-pressed="true" data-filter="all">All icons</button>
+    <button class="iod-filter" type="button" aria-pressed="false" data-filter="position">Position</button>
+    <button class="iod-filter" type="button" aria-pressed="false" data-filter="width">Width</button>
+    <button class="iod-filter" type="button" aria-pressed="false" data-filter="colour">Colour</button>
+    <button class="iod-filter" type="button" aria-pressed="false" data-filter="topology">Connections</button>
+    <button class="iod-filter" type="button" aria-pressed="false" data-filter="touch">Touch</button>
+  </fieldset>
+  <div class="iod-objects" id="iod-objects">
+    <article class="iod-object" data-channels="position width colour sequence" data-label="Minard">
+      <p class="iod-kicker">01 · 1869 · In progress</p>
+      <h3>Charles Joseph Minard</h3>
+      <p>A route where the line itself diminishes. Geography and quantity at the same time.</p>
+      <a href="{{ '/icons-of-data/minard/' | relative_url }}">Explore the story →</a>
+    </article>
+    <article class="iod-object" data-channels="position topology colour" data-label="Beck">
+      <p class="iod-kicker">In research · 1933</p>
+      <h3>Harry Beck's Tube diagram</h3>
+      <p>Accurate connections beat accurate geography when you need to navigate a network.</p>
+      <span class="iod-status">Future edition</span>
+    </article>
+    <article class="iod-object" data-channels="position touch sequence" data-label="Braille">
+      <p class="iod-kicker">In research · 1829 publication</p>
+      <h3>Louis Braille's six-dot system</h3>
+      <p>Reading and writing through raised-dot patterns. A reminder that encoding doesn't have to be visual.</p>
+      <span class="iod-status">Future edition</span>
+    </article>
+  </div>
+  <p id="iod-filter-result" class="iod-status" aria-live="polite">Showing 3 icons.</p>
+</section>
+
+<section id="fingerprints" class="iod-section shell-wide" aria-labelledby="iod-fingerprints-title">
+  <div class="section-rule"><h2 id="iod-fingerprints-title">Encoding fingerprints</h2><span>Descriptive, not scored</span></div>
+  <p>Different designs, different jobs. A tick means the channel is materially used; it doesn't mean the work is objectively better.</p>
+  <div class="iod-table-scroll">
+    <table class="iod-matrix">
+      <thead><tr><th scope="col">Icon</th><th scope="col">Position</th><th scope="col">Width</th><th scope="col">Colour</th><th scope="col">Topology</th><th scope="col">Touch</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Minard</th><td class="iod-check">✓</td><td class="iod-check">✓</td><td class="iod-check">✓</td><td>—</td><td>—</td></tr>
+        <tr><th scope="row">Beck</th><td class="iod-check">✓</td><td>—</td><td class="iod-check">✓</td><td class="iod-check">✓</td><td>—</td></tr>
+        <tr><th scope="row">Braille</th><td class="iod-check">✓</td><td>—</td><td>—</td><td>—</td><td class="iod-check">✓</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="iod-caption">Position here includes location on a page or within a six-dot tactile cell; the interpretation depends on the medium. Historical works are discussed on their own terms, not given invented effectiveness scores.</p>
+</section>
+
+<section id="timeline" class="iod-section shell-wide" aria-labelledby="iod-timeline-title">
+  <div class="section-rule"><h2 id="iod-timeline-title">A few dates worth keeping</h2><span>Specific milestones, not invention claims</span></div>
+  <ol class="iod-timeline">
+    <li><span class="iod-year">1829</span><span>Louis Braille publishes his description of the six-dot writing system; development began earlier.</span></li>
+    <li><span class="iod-year">1869</span><span>Charles Joseph Minard publishes his figurative map of the 1812–1813 Russian campaign.</span></li>
+    <li><span class="iod-year">1933</span><span>Harry Beck's diagrammatic Underground map is first issued; his design was conceived in 1931.</span></li>
+  </ol>
+</section>
+
+<section id="sources" class="iod-section shell-wide" aria-labelledby="iod-sources-title">
+  <div class="section-rule"><h2 id="iod-sources-title">Sources &amp; looking closer</h2><span>Originals before opinions</span></div>
+  <p>Each edition will document the original object, the interpretation and any data behind our reconstructions. No invented ratings, no disappearing caveats.</p>
+  <ul class="iod-source-links">
+    <li><a href="https://commons.wikimedia.org/wiki/File:Minard.png">Minard (1869) — original public-domain lithograph and translation</a>; <a href="https://friendly.github.io/HistData/reference/Minard.html">HistData reconstruction tables</a>.</li>
+    <li><a href="https://library.ltmuseum.co.uk/portal/Default/en-GB/RecordView/Index/106">London Transport Museum — Harry Beck and the 1933 Tube diagram</a>. Reproduction rights for original artefact images must be checked before use.</li>
+    <li><a href="https://www.perkins.org/history-of-braille/">Perkins School for the Blind — history of Braille</a>. A tactile writing system deserves an explanation that goes beyond looking at dots on a screen.</li>
+  </ul>
+  <p><a href="{{ '/resources/' | relative_url }}">← Back to Resources</a></p>
+</section>
+
+<script>
+(function () {
+  var filterContainer = document.getElementById("iod-filters");
+  var cards = Array.prototype.slice.call(document.querySelectorAll("#iod-objects [data-channels]"));
+  var feedback = document.getElementById("iod-filter-result");
+  if (!filterContainer || !feedback) return;
+  filterContainer.addEventListener("click", function (event) {
+    var button = event.target.closest("button[data-filter]");
+    if (!button || !filterContainer.contains(button)) return;
+    var selected = button.getAttribute("data-filter");
+    Array.prototype.forEach.call(filterContainer.querySelectorAll("button[data-filter]"), function (control) {
+      control.setAttribute("aria-pressed", String(control === button));
+    });
+    var visible = 0;
+    cards.forEach(function (card) {
+      var channels = (card.getAttribute("data-channels") || "").split(" ");
+      var match = selected === "all" || channels.indexOf(selected) !== -1;
+      card.hidden = !match;
+      if (match) visible += 1;
+    });
+    feedback.textContent = "Showing " + visible + " " + (visible === 1 ? "icon" : "icons") + ".";
+  });
+})();
+</script>
