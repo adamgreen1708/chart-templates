@@ -1,0 +1,77 @@
+name: Prepare approved Icons of Data 02 images (temporary)
+
+on:
+  push:
+    branches:
+      - feature/icons-of-data-02-beck-kickoff
+    paths:
+      - .github/workflows/prepare-icons-of-data-beck.yml
+
+permissions:
+  contents: write
+
+jobs:
+  approved-graphics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out edition branch with main history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Bring latest main Resources styles into edition branch
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+
+      - name: Set up reference renderer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install EXACT reference Python library versions
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check \
+            "numpy==2.3.5" "pandas==2.2.3" "matplotlib==3.10.8" "pillow==12.3.0"
+
+      - name: Render and compare to visually approved PNG SHA-256
+        shell: bash
+        env:
+          MPLBACKEND: Agg
+        run: |
+          set -euo pipefail
+          edition="archive/projects/2026-10-icons-of-data/editions/02-beck"
+          mkdir -p "$edition/inputs" "site/assets/icons-of-data/beck"
+          cp "$edition/data/stations_2013.csv" "$edition/inputs/stations_2013.csv"
+          cp "$edition/data/connections_2013.csv" "$edition/inputs/connections_2013.csv"
+          python "$edition/render_beck.py"
+          img2="$edition/visuals/02_geography_vs_connections.png"
+          img3="$edition/visuals/03_decode_the_icon.png"
+          expected2="c3437080ab4f0309a43f05312063a45d3649ab280407ea863c99a018e55a277d"
+          expected3="cd65ae43cd4c7fa9aa9f635f5a729c5e6a6157760cf32c9b1e3e2dd3e7ea36e1"
+          actual2="$(sha256sum "$img2" | cut -d' ' -f1)"
+          actual3="$(sha256sum "$img3" | cut -d' ' -f1)"
+          echo "Visual 2 SHA-256 $actual2"
+          echo "Visual 3 SHA-256 $actual3"
+          [[ "$actual2" == "$expected2" ]] || { echo "::error::Modern geographic/teaching image differs from approved PNG"; exit 1; }
+          [[ "$actual3" == "$expected3" ]] || { echo "::error::Decode the Icon differs from approved PNG"; exit 1; }
+          cp "$img2" "site/assets/icons-of-data/beck/02_geography_vs_connections.png"
+          cp "$img3" "site/assets/icons-of-data/beck/03_decode_the_icon.png"
+          rm -rf "$edition/inputs" "$edition/visuals"
+          sha256sum site/assets/icons-of-data/beck/*.png
+
+      - name: Commit verified PNGs and main sync only to draft branch
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/assets/icons-of-data/beck/02_geography_vs_connections.png site/assets/icons-of-data/beck/03_decode_the_icon.png
+          if ! git diff --staged --quiet; then
+            git commit -m "Commit exact approved Beck PNG assets"
+          fi
+          git push origin "HEAD:feature/icons-of-data-02-beck-kickoff"
