@@ -47,10 +47,13 @@ jobs:
                   page.locator('h1').wait_for(state='visible')
                   images=page.locator('.story-chart img')
                   assert images.count()==2,(label,'Modern figure count',images.count())
-                  print('FIRST IMAGE',images.nth(0).evaluate('(i) => ({src:i.src, width:i.naturalWidth, complete:i.complete})'),flush=True)
-                  assert images.nth(0).evaluate('(i) => i.naturalWidth')==1920
-                  print('SECOND IMAGE',images.nth(1).evaluate('(i) => ({src:i.src, width:i.naturalWidth, complete:i.complete})'),flush=True)
-                  assert images.nth(1).evaluate('(i) => i.naturalWidth')==1920
+                  for k in range(images.count()):
+                      image=images.nth(k)
+                      image.scroll_into_view_if_needed()
+                      image.evaluate("(img) => { img.loading = 'eager'; return img.decode(); }")
+                      info=image.evaluate('(img) => ({src:img.src, width:img.naturalWidth, complete:img.complete})')
+                      print(label,'IMAGE',k,info,flush=True)
+                      assert info['width']==1920 and info['complete'], (label,'image decoding failed',info)
                   result=page.evaluate("""() => ({
                      viewport: innerWidth,
                      scrollWidth: document.documentElement.scrollWidth,
