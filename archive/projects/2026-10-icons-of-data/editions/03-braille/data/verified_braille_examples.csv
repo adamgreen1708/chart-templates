@@ -1,6 +1,6 @@
 example,label,code_scope,raised_dots,unicode_braille,notes,source
-a,a,Uncontracted English Braille,1,⠁,single cell,Braille Authority of North America
-b,b,Uncontracted English Braille,1|2,⠃,single cell,Braille Authority of North America
-c,c,Uncontracted English Braille,1|4,⠉,single cell,Braille Authority of North America
-numeric_indicator,number indicator,Uncontracted English Braille,3|4|5|6,⠼,precedes digits,Braille Authority of North America
-digit_1,1,Uncontracted English Braille,3|4|5|6;1,⠼⠁,two-cell sequence number indicator followed by a-pattern,Braille Authority of North America
+a,a,UK Unified English Braille (UEB) — uncontracted examples,1,⠁,single cell,RNIB; UKAAF-endorsed ICEB UEB Rules (2024)
+b,b,UK Unified English Braille (UEB) — uncontracted examples,1|2,⠃,single cell,RNIB; UKAAF-endorsed ICEB UEB Rules (2024)
+c,c,UK Unified English Braille (UEB) — uncontracted examples,1|4,⠉,single cell,RNIB; UKAAF-endorsed ICEB UEB Rules (2024)
+numeric_indicator,number indicator,UK Unified English Braille (UEB) — uncontracted examples,3|4|5|6,⠼,precedes digits,RNIB; UKAAF-endorsed ICEB UEB Rules (2024)
+digit_1,1,UK Unified English Braille (UEB) — uncontracted examples,3|4|5|6;1,⠼⠁,two-cell sequence number indicator followed by a-pattern,RNIB; UKAAF-endorsed ICEB UEB Rules (2024)
