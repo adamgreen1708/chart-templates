@@ -28,7 +28,7 @@ Not bad for a grid you can cover with a fingertip.
 
 The position of a raised dot matters more than how it looks.
 
-One raised dot in the top-left position can represent the letter **a** in uncontracted English Braille. Put a number indicator before that same pattern, and it represents **1**.
+In **UK Unified English Braille (UEB)**, a raised dot in the top-left position represents the letter **a** in an uncontracted example. Put a number indicator before that same pattern, and it represents **1**.
 
 The dots haven't changed. The context has.
 
@@ -66,4 +66,4 @@ Rather a lot to say.
 
 ---
 
-**Source and method:** Perkins School for the Blind (history of Braille; 1829 publication), RNIB (six-dot codes, the 63 raised combinations and modern UK Unified English Braille), and Braille Authority of North America (dot numbering and numeral indicator). Diagrams will show the structure of modern uncontracted English Braille, not a replica of the historical 1829 print. Drawn dots on a screen are explanatory graphics, not tactile copies.
+**Source and method:** Historical background: RNIB and Perkins School for the Blind (1824 development and 1829 publication). **Encoding references are UK-first:** RNIB and the UK Association for Accessible Formats (UKAAF), using the International Council on English Braille's *Rules of Unified English Braille* (2024), endorsed by UKAAF. UK UEB replaced older Standard English Braille after a transition ending in 2015. Examples show **modern UK UEB, uncontracted**, not Louis Braille's original nineteenth-century French notation. Drawn dots on screen explain the patterns but are not tactile Braille.
