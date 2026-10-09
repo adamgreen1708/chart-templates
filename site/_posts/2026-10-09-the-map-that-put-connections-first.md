@@ -10,7 +10,7 @@ card_image: /assets/icons-of-data/beck/02_geography_vs_connections.png
 social_image: /assets/icons-of-data/beck/02_geography_vs_connections.png
 ---
 
-<p class="eyebrow"><a href="{{ '/resources/icons-of-data/' | relative_url }}">Icons of Data · Edition 02</a></p>
+<div class="eyebrow"><a href="{{ '/resources/icons-of-data/' | relative_url }}">Icons of Data · Edition 02</a></div>
 
 London's Tube map is very good at helping you get across London.
 
