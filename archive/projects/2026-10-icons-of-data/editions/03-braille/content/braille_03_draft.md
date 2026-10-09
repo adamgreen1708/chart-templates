@@ -42,6 +42,8 @@ It's building a system that people can **read and write for themselves**.
 
 That was a considerable change from earlier raised-print books, which were much harder for readers to produce independently.
 
+Notes, letters and labels no longer had to depend on a printing press. Of course, adoption took time; older raised-letter methods continued for decades.
+
 ## A picture isn't the experience
 
 There's a catch for those of us explaining this on a screen.
