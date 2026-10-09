@@ -17,10 +17,13 @@
 - `project_manifest.md` — scope, assets and next gates.
 
 ## Next
-1. Jekyll build and browser QA on the staging branch, including 390px and 320px layouts.
+1. Jekyll build and desktop/mobile browser QA — passed; screenshots and checks in `qa/README.md`.
 2. Confirm original Beck artwork remains a museum link (not a copied historical image).
 3. Preview the complete page with the author and request **explicit publishing approval** before merge.
 4. After approval, merge PR #109, verify GitHub Pages deployed URL and social/card image.
 
 ## Boundaries
 No auto-run; only a review branch contains the new post/Resources link. No historical artwork copied without cleared rights. Do not modify generic renderer or existing Minard assets; no merge or live publication until specifically approved.
+
+## Website QA complete
+Jekyll and mobile/desktop Playwright checks passed on run 37970512954. Full-size reviewed PNGs remain checksum-matched. Screenshots staged in `qa/`, documenting the correct house layout and safe mobile margins. Do not merge until author explicitly approves publication.
