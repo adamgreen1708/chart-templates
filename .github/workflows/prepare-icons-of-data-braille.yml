@@ -55,8 +55,22 @@ jobs:
           edition="archive/projects/2026-10-icons-of-data/editions/03-braille"
           python "$edition/scripts/render_braille.py"
           python "$edition/scripts/render_braille_revision_03.py"
-          echo "68b1a53a9de8a7ff243bbca437e4b2e34fd84b98f6a41a7a8605bfbda8b2037f  $edition/scripts/visuals/02_six_places_many_patterns.png" | sha256sum -c
-          echo "bfdb9d0f504b1d96369340b3baaaa443c80aff3a476ba260d00ef857b71e8095  $edition/scripts/visuals/03_why_braille_mattered.png" | sha256sum -c
+          python - <<'PY'
+          from PIL import Image
+          from hashlib import sha256
+          from pathlib import Path
+          base=Path("archive/projects/2026-10-icons-of-data/editions/03-braille/scripts/visuals")
+          expected={
+            "02_six_places_many_patterns.png":"25fafa97975c974004d033a200f624c947a280850ac9bd5ea0b0466e1ea69536",
+            "03_why_braille_mattered.png":"88c4b91f10723c631f8bbde23561896c1297206636303a709fc15cecb5b34088"
+          }
+          for name,original_pixel_digest in expected.items():
+            image=Image.open(base/name).convert("RGBA")
+            rendered_pixel_digest=sha256(image.tobytes()).hexdigest()
+            print(f"{name}: 1920px visual pixels SHA256 {rendered_pixel_digest} (approved {original_pixel_digest})")
+            assert image.size==(1920,1920)
+            assert rendered_pixel_digest==original_pixel_digest, f"{name} pixels differ from approved visual"
+          PY
           mkdir -p site/assets/icons-of-data/braille
           cp "$edition/scripts/visuals/02_six_places_many_patterns.png" site/assets/icons-of-data/braille/
           cp "$edition/scripts/visuals/03_why_braille_mattered.png" site/assets/icons-of-data/braille/
