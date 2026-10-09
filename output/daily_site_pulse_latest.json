@@ -1,21 +1,35 @@
 {
-  "report_date": "2026-10-07",
-  "visits": 9,
+  "report_date": "2026-10-08",
+  "visits": 17,
   "prior_7d_avg": "",
   "pct_vs_prior_7d": "",
   "top_page_path": "/stories/the-ending-changed-the-story",
   "top_page_title": "The ending changed the story \u00b7 coffeetableviz",
   "top_page_visits": 2,
-  "top_referrer": "Direct / unknown",
+  "top_referrer": "www.linkedin.com",
   "top_referrer_visits": 2,
   "observation": "Still building enough history for a proper baseline.",
-  "generated_at_utc": "2026-10-08T19:30:22+00:00",
+  "generated_at_utc": "2026-10-09T15:17:13+00:00",
   "top_pages": [
     {
       "path_id": 110325243,
       "path": "/stories/the-ending-changed-the-story",
       "title": "The ending changed the story \u00b7 coffeetableviz",
       "display": "The ending changed the story",
+      "count": 2
+    },
+    {
+      "path_id": 109455079,
+      "path": "/stories/one-invisible-line-23000-miles-of-detours",
+      "title": "One invisible line. 23,000 miles of detours. \u00b7 coffeetableviz",
+      "display": "One invisible line. 23,000 miles of detours.",
+      "count": 2
+    },
+    {
+      "path_id": 109453481,
+      "path": "/resources",
+      "title": "Resources \u00b7 coffeetableviz",
+      "display": "Resources",
       "count": 2
     },
     {
@@ -26,24 +40,38 @@
       "count": 2
     },
     {
-      "path_id": 109453481,
-      "path": "/resources",
-      "title": "Resources \u00b7 coffeetableviz",
-      "display": "Resources",
-      "count": 1
-    },
-    {
-      "path_id": 109446452,
-      "path": "/data-lens/daily/2026-10-03-position-beats-area",
-      "title": "Position beats area. \u00b7 coffeetableviz",
-      "display": "Position beats area.",
-      "count": 1
-    },
-    {
       "path_id": 109446444,
       "path": "/data-lens",
       "title": "Data Lens \u00b7 coffeetableviz",
       "display": "Data Lens",
+      "count": 2
+    },
+    {
+      "path_id": 110548893,
+      "path": "/resources/icons-of-data",
+      "title": "Icons of Data \u00b7 coffeetableviz",
+      "display": "Icons of Data",
+      "count": 1
+    },
+    {
+      "path_id": 110546630,
+      "path": "/icons-of-data/minard",
+      "title": "A line that disappears \u00b7 coffeetableviz",
+      "display": "A line that disappears",
+      "count": 1
+    },
+    {
+      "path_id": 109627413,
+      "path": "/data-lens/daily/2026-10-04-ten-years-shouldnt-look-like-one",
+      "title": "Ten years shouldn\u2019t look like one. \u00b7 coffeetableviz",
+      "display": "Ten years shouldn\u2019t look like one.",
+      "count": 1
+    },
+    {
+      "path_id": 109446434,
+      "path": "/about",
+      "title": "About \u00b7 coffeetableviz",
+      "display": "About",
       "count": 1
     },
     {
@@ -63,16 +91,16 @@
   ],
   "top_referrers": [
     {
-      "id": null,
-      "name": "Direct / unknown",
-      "count": 2,
-      "ref_scheme": "o"
-    },
-    {
       "id": "www.linkedin.com",
       "name": "www.linkedin.com",
-      "count": 1,
+      "count": 2,
       "ref_scheme": "h"
+    },
+    {
+      "id": null,
+      "name": "Direct / unknown",
+      "count": 1,
+      "ref_scheme": "o"
     }
   ]
 }
