@@ -32,11 +32,11 @@ Not bad for a grid you can cover with a fingertip.
 
 <figure class="story-chart full-bleed">
   <a href="https://commons.wikimedia.org/wiki/File:Braille_text.jpg">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Braille_text.jpg/960px-Braille_text.jpg"
+    <img src="{{ '/assets/icons-of-data/braille/01_embossed_braille.jpg' | relative_url }}"
          alt="Close-up photograph of actual raised Braille dots embossed on both sides of white paper, illuminated at an angle to reveal the texture. This is a modern sample, not Braille's original 1829 book."
          width="960" height="768" loading="lazy" decoding="async">
   </a>
-  <figcaption>Real, double-sided embossed Braille photographed by <a href="https://commons.wikimedia.org/wiki/File:Braille_text.jpg">Ralph Aichinger (2011)</a>, <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>. Unmodified source photograph, not an example transcribed into UK UEB. For the historical original, see <a href="https://www.perkins.org/brailles-most-famous-book/">Louis Braille's 1829 publication at Perkins</a> (archive images linked, not reproduced).</figcaption>
+  <figcaption>Real, double-sided embossed Braille photographed by <a href="https://commons.wikimedia.org/wiki/File:Braille_text.jpg">Ralph Aichinger (2011)</a>, <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>. The original CC BY photograph is downscaled to 960px for the website without cropping or editorial alteration; the sample is not presented as a verified UK UEB transcription. For the historical original, see <a href="https://www.perkins.org/brailles-most-famous-book/">Louis Braille's 1829 publication at Perkins</a> (archive images linked, not reproduced).</figcaption>
 </figure>
 
 ## Same dots. Different meanings.
