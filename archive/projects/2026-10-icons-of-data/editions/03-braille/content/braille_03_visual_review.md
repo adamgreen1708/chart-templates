@@ -36,3 +36,14 @@ Rendered in the ChatGPT conversation using deterministic Python/matplotlib. Revi
 2. After approval, commit the **exact** approved PNGs and deterministic source to the project via a checksum-locked branch-only workflow, and integrate a properly credited physical Braille photo.
 3. Draft the Jekyll article with clear accessible dot-position text and historical source references; include an explicit note that drawn dots do not represent the tactile experience.
 4. Preview in actual desktop, 390px and 320px Jekyll browser render; author must explicitly approve merge/publishing.
+
+## Production / browser QA update — 9 October 2026
+- **Visual 3 was replaced and explicitly approved:** `03_why_braille_mattered.png` (original review SHA-256 `bfdb9d0f504b1d96369340b3baaaa443c80aff3a476ba260d00ef857b71e8095`). The older `03_decode_the_icon.png` is **not** the article visual.
+- Chart 2's original review SHA-256 remained `68b1a53a9de8a7ff243bbca437e4b2e34fd84b98f6a41a7a8605bfbda8b2037f`.
+- Human-readable renderer files are stored in `scripts/`. In the GitHub runner with matching Python/plot libraries, **the content and design match the approved reference**, but the byte and RGBA pixel SHA-256 checks differ slightly due rasterisation environment. **Do not claim exact pixel/byte identity or substitute source-approved checksums.** Final article review is required for runner outputs.
+- The site assets were produced by GitHub Actions run `37998009066`; both 1920×1920 chart renderings are in `site/assets/icons-of-data/braille/`.
+- Visual 1 is a **real 2011 embossed-Braille photo** by Ralph Aichinger, verified against original Wikimedia Commons source SHA-1 `28ffbfac9277b633ef0426eb6fb3701268071a73`, downsized without cropping to 960×768, locally hosted under `01_embossed_braille.jpg`, and attributed under **CC BY 2.0** with licence link and modification disclosure. Not a historical 1829 photo or a verified English Braille transcription.
+- Actual Jekyll + Chromium browser QA at 1365px, 390px, 320px **passed** on run `37998183946`: all three images loaded, no clipped hero or page horizontal overflow, UK UEB method caption and photo attribution present; three series collection entries link correctly; homepage card loaded.
+- Screenshot evidence in `qa/site/` (article at 3 widths, mobile Resources and homepage). These are branch previews, not public Pages publication.
+- Both one-off GitHub Actions workflows and their compressed source transfer helpers were removed. Only readable Python scripts, finished preview assets, source research and QA evidence remain.
+- **Merge/publish remains subject to explicit author approval.**
