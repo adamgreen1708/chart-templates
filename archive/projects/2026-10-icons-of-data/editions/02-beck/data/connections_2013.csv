@@ -1,0 +1,11 @@
+line,from,to
+bakerloo,regentspark,oxfordcircus
+bakerloo,oxfordcircus,piccadillycircus
+bakerloo,piccadillycircus,charingcross
+central,bondstreet,oxfordcircus
+central,oxfordcircus,tottenhamcourtroad
+central,tottenhamcourtroad,holborn
+piccadilly,greenpark,piccadillycircus
+piccadilly,piccadillycircus,leicestersquare
+piccadilly,leicestersquare,coventgarden
+piccadilly,coventgarden,holborn
