@@ -1,6 +1,6 @@
 ---
 title: "The map that put connections first"
-date: 2026-10-09 18:20:00 +0100
+date: 2026-10-09 18:00:00 +0100
 slug: the-map-that-put-connections-first
 permalink: /icons-of-data/beck-tube-map/
 description: "Harry Beck's Underground diagram rearranged the geography so passengers could follow the connections. A neat lesson in what a map chooses to show."
