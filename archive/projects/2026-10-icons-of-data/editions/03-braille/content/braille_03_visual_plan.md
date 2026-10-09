@@ -1,6 +1,11 @@
 # Edition 03 — Braille visual storyboard
 **Status:** Design plan for approval. Do not produce or publish a historical object image without source/rights checks.
 
+## UK encoding standard (locked for Edition 03)
+Use **UK Unified English Braille (UEB)** throughout. UKAAF is the UK standards authority; RNIB is the primary UK explainer and publication source; the internationally agreed ICEB UEB rulebook (2024) defines the actual shared code. The UK adopted UEB in 2011 and completed transition from the older UK Standard English Braille by 2015. American English Braille (EBAE) is historical US terminology and **not** our reference code. UEB signs are shared internationally, so UK and US users of UEB generally use the same basic alphabet and numeric indicator; do not invent a UK-only alphabet difference. Label charts, dot tables, alt text and methods **“UK Unified English Braille (UEB) — uncontracted examples”**. Historical Louis Braille context is separate from modern UEB.
+
+Encoding source hierarchy: [RNIB facts](https://shop.rnib.org.uk/blogs/news/eight-essential-braille-facts) → [UKAAF UEB standard](https://www.ukaaf.org/standards/ueb/) → [ICEB UEB rules (2024)](https://iceb.org/publications/ueb/). No American-only transcriber guide as sole authority for a symbol.
+
 ## Editorial intention
 Our first **tactile information-encoding** episode. Don't call Braille a data visualisation, or imply an on-screen graphic recreates the lived experience of reading Braille. The goal is to make the mechanics of a six-dot cell understandable while respecting that the native medium is **touch**.
 
@@ -19,8 +24,8 @@ Our first **tactile information-encoding** episode. Don't call Braille a data vi
 
 - Original deterministic square, light-grey, house fonts/colour.
 - A large *numbered* six-dot cell: top-to-bottom left is 1–2–3, top-to-bottom right is 4–5–6.
-- Show uncontracted English examples `a` = dot **1**, `b` = dots **1,2**, `c` = dots **1,4**.
-- Illustrate the context effect: the number indicator (dots **3,4,5,6**) + `a` (dot **1**) means **1**.
+- Show **UK UEB uncontracted** examples `a` = dot **1**, `b` = dots **1,2**, `c` = dots **1,4**, verified from RNIB and ICEB UEB rules endorsed by UKAAF.
+- Illustrate the UK UEB context effect: numeric indicator (dots **3,4,5,6**, `⠼`) + `a` (dot **1**, `⠁`) means digit **1** (`⠼⠁`), per RNIB and ICEB. Include the words “in this code and context”.
 - Footnote: 2^6 = 64 possible states *including the empty cell*, hence 63 non-empty dot patterns. Mathematical combinatorics is not a claim about 64 entire written meanings or all 64 symbols being available for simple letters.
 - **Accessibility:** Braille characters must be accompanied by print text and spelled-out dot positions in nearby visible text, caption and alt text; ensure contrast without suggesting colour encodes actual Braille.
 - If using Unicode Braille glyphs, verify the correct UEB mapping. Favour data-driven circle positions over dependency on a specific Unicode Braille font.
@@ -31,7 +36,7 @@ Our first **tactile information-encoding** episode. Don't call Braille a data vi
 3. **Context** — prefix indicators (number sign) change interpretation of a subsequent cell; not every cell stands alone.
 4. **Touch, not ink** — diagrammatic image on a screen versus *actual embossed material*; explicitly identify why paper/screen image cannot replace tactile access.
 - Reuse the four-panel *Decode the Icon* editorial format established for Minard and Beck, not photographic simulation.
-- See also modern **Unified English Braille** in UK (adopted during 2011–2015 transition). Specify code/version when explaining symbols. Don't imply today's code exactly matches the first 1829 publication.
+- Cite **UK UEB** (adopted 2011, completed transition 2015), with RNIB/UKAAF/ICEB source URLs in the figure method. Never imply today's UK UEB exactly matches the original 1829 French publication.
 
 ## Publication integrity and QA
 - Historical chronology & attribution: Louis Braille began development 1824; first major publication 1829; credited influence of Charles Barbier.
