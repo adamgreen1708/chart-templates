@@ -1,4 +1,4 @@
-# The map that stopped caring about distance
+# The map that put connections first
 
 *Icons of Data · Edition 02 · Harry Beck's Tube diagram (1933)*
 
