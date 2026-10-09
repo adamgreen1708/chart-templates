@@ -31,6 +31,7 @@ jobs:
         run: |
           set -euo pipefail
           python -m http.server 8014 --directory ./_site --bind 127.0.0.1 > /tmp/iod-qa-http.log 2>&1 &
+          find ./_site/assets/icons-of-data/beck -maxdepth 1 -type f -ls || true
           mkdir -p archive/projects/2026-10-icons-of-data/editions/02-beck/qa
           python - <<'PY'
           from pathlib import Path
@@ -46,7 +47,9 @@ jobs:
                   page.locator('h1').wait_for(state='visible')
                   images=page.locator('.story-chart img')
                   assert images.count()==2,(label,'Modern figure count',images.count())
+                  print('FIRST IMAGE',images.nth(0).evaluate('(i) => ({src:i.src, width:i.naturalWidth, complete:i.complete})'),flush=True)
                   assert images.nth(0).evaluate('(i) => i.naturalWidth')==1920
+                  print('SECOND IMAGE',images.nth(1).evaluate('(i) => ({src:i.src, width:i.naturalWidth, complete:i.complete})'),flush=True)
                   assert images.nth(1).evaluate('(i) => i.naturalWidth')==1920
                   result=page.evaluate("""() => ({
                      viewport: innerWidth,
