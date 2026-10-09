@@ -44,3 +44,6 @@ A separately reviewable research package has been started under `editions/02-bec
 - Edition manifest: `project_manifest.md`
 
 **State:** editorial kickoff only. No published post, site Resources updates, original 1933 map copy, new graphic assets or general renderer changes. Historical image reuse rights require separate review; the drafted comparison requires verified network source data.
+
+## Edition 02 approval and site staging — 9 October 2026
+Harry Beck's two original explanatory diagrams were approved and committed exactly, with verified SHA-256 hashes, by GitHub Actions run 37969690244. Files: `site/assets/icons-of-data/beck/02_geography_vs_connections.png` and `03_decode_the_icon.png`. The Jekyll article and Edition 02 link in Resources are staged on draft PR #109; Beck's 1933 original remains a museum link due unresolved reproduction rights. Work awaits site/mobile QA and **explicit merge/publish authorisation**.
