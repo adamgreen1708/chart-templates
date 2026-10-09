@@ -33,3 +33,8 @@ Both comparative maps use the exact same **10 station identities** and **10 sour
 3. Update Resources item 02 from 'In research' to article link after final visual and editorial approval.
 4. Build site and check mobile/desktop clipping, card aspect and alt text.
 5. Historical map remains a museum link unless exact reproduction reuse rights are cleared. Do not imply visual 2/3 show the 1933 network.
+
+## Approval and exact-asset delivery — 9 October 2026
+Both modern charts were explicitly approved by the author. The exact images were reproduced on the GitHub runner using pinned `numpy==2.3.5`, `pandas==2.2.3`, `matplotlib==3.10.8` and `pillow==12.3.0`; the workflow failed closed on SHA mismatch. **Both checks succeeded**, and the PNGs were committed to `site/assets/icons-of-data/beck/`. Successful run: https://github.com/adamgreen1708/chart-templates/actions/runs/37969690244. The temporary rendering workflow was deleted. The approved reproducible source is `render_beck.py`.
+
+The Jekyll article at `site/_posts/2026-10-09-the-map-that-put-connections-first.md` and Resources entry are staged on draft PR #109, not merged. Original 1933 map is still a museum link only. Final site preview, responsive QA and author publishing approval remain required.
