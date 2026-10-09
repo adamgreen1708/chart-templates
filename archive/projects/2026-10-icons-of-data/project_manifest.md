@@ -34,3 +34,16 @@ Original map provenance: https://catalogue.bnf.fr/ark:/12148/cb40650878p
 - No changes to protected reusable renderers, global CSS or active GitHub workflows remain.
 - PR: https://github.com/adamgreen1708/chart-templates/pull/107 (draft, not merged).
 - Card/social preview uses the approved Minard reconstruction; original historical scan appears within the article. Publication blocked pending latest Jekyll/mobile QA, explicit approval and Pages deployment verification.
+
+
+## Edition 02: Beck — 9 October 2026
+A separately reviewable research package has been started under `editions/02-beck/`:
+- Draft: `content/beck_02_draft.md`
+- Historical claim / image reuse audit: `research/beck_02_sources.md`
+- Three-visual editorial plan: `content/beck_02_visual_plan.md`
+- Edition manifest: `project_manifest.md`
+
+**State:** editorial kickoff only. No published post, site Resources updates, original 1933 map copy, new graphic assets or general renderer changes. Historical image reuse rights require separate review; the drafted comparison requires verified network source data.
+
+## Edition 02 approval and site staging — 9 October 2026
+Harry Beck's two original explanatory diagrams were approved and committed exactly, with verified SHA-256 hashes, by GitHub Actions run 37969690244. Files: `site/assets/icons-of-data/beck/02_geography_vs_connections.png` and `03_decode_the_icon.png`. The Jekyll article and Edition 02 link in Resources are staged on draft PR #109; Beck's 1933 original remains a museum link due unresolved reproduction rights. Work awaits site/mobile QA and **explicit merge/publish authorisation**.
