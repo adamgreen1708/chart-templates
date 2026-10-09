@@ -30,13 +30,19 @@ Our first **tactile information-encoding** episode. Don't call Braille a data vi
 - **Accessibility:** Braille characters must be accompanied by print text and spelled-out dot positions in nearby visible text, caption and alt text; ensure contrast without suggesting colour encodes actual Braille.
 - If using Unicode Braille glyphs, verify the correct UEB mapping. Favour data-driven circle positions over dependency on a specific Unicode Braille font.
 
-## Visual 3 — Decode the Icon (four panels)
-1. **Positions** — six-dot cell, fixed two-column, three-row geometry, correct dot numbers.
-2. **Patterns** — selecting different raised-dot combinations generates different signs; show verified examples.
-3. **Context** — prefix indicators (number sign) change interpretation of a subsequent cell; not every cell stands alone.
-4. **Touch, not ink** — diagrammatic image on a screen versus *actual embossed material*; explicitly identify why paper/screen image cannot replace tactile access.
-- Reuse the four-panel *Decode the Icon* editorial format established for Minard and Beck, not photographic simulation.
-- Cite **UK UEB** (adopted 2011, completed transition 2015), with RNIB/UKAAF/ICEB source URLs in the figure method. Never imply today's UK UEB exactly matches the original 1829 French publication.
+## Visual 3 — Why Braille was a breakthrough (revised; approved)
+**Editorial question:** Why did six dots make such a difference beyond simply encoding letters?
+
+The original four-panel `Decode the Icon` plan was too similar to Chart 2. It has been superseded by the **approved 9 October revision** `03_why_braille_mattered.png`.
+
+1. **The fingertip test:** contrast Barbier's earlier 12-dot cell and Braille's compact six-dot arrangement, labelled a historical comparison, not reproduced originals.
+2. **Read AND write:** original schematic slate, stylus and paper illustrations explain independent writing alongside reading; no artefact photo is claimed.
+3. **Context matters:** one UEB dot-1 cell represents *a* as a letter or *1* after the numeric indicator; Chapter 2 contains the detailed indicator mechanics.
+4. **Designed for touch:** contrast flat screen diagrams and raised marks on paper. Neither cartoon is usable tactile Braille.
+
+**Distinct roles:** Chart 2 = technical six-dot encoding; Chart 3 = significance, agency and tactile medium. Keep these stories different in captions and article placement. Use modern UK UEB conventions (RNIB, UKAAF/ICEB), and historical background from Perkins. The approved author review requires preserving Chart 2.
+
+**Delivery:** GitHub-runner reproduction uses unchanged drawing code and visually matches the approved layouts, but PNG/pixel hashes differ slightly because of font rasterisation on the runner. Keep the differing raster output identified as the site-review rendition and request final visual approval before merging; do not claim binary identity.
 
 ## Publication integrity and QA
 - Historical chronology & attribution: Louis Braille began development 1824; first major publication 1829; credited influence of Charles Barbier.
