@@ -47,3 +47,8 @@ A separately reviewable research package has been started under `editions/02-bec
 
 ## Edition 02 approval and site staging — 9 October 2026
 Harry Beck's two original explanatory diagrams were approved and committed exactly, with verified SHA-256 hashes, by GitHub Actions run 37969690244. Files: `site/assets/icons-of-data/beck/02_geography_vs_connections.png` and `03_decode_the_icon.png`. The Jekyll article and Edition 02 link in Resources are staged on draft PR #109; Beck's 1933 original remains a museum link due unresolved reproduction rights. Work awaits site/mobile QA and **explicit merge/publish authorisation**.
+
+## Edition 03: Braille — 9 October 2026
+Editorial kickoff: `editions/03-braille/`, including the ~350-word manuscript, verified historical and UK/English Braille code references, accessible three-visual storyboard, and exact dot-position examples for deterministic diagrams.
+
+**State:** draft for editorial review. No visual or historical photograph has been generated/republished, no Jekyll post or live Resources change, and no Pages merge/publish authorisation. Distinguish six-dot cell drawings on a screen from tactile Braille. Development 1824; book published 1829; historical image rights remain a gate.
