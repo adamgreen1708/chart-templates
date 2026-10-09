@@ -1,7 +1,7 @@
 id,title,creator,year,year_meaning,lane,encoding_channels,status,source_url
 minard-1869,Napoleon's Russian campaign,Charles Joseph Minard,1869,Original map publication,Numbers into pictures,position|width|colour|time,verified_reference,https://catalogue.bnf.fr/ark:/12148/cb40650878p
 beck-tube-map,London Underground diagram,Harry Beck,1933,First issued diagrammatic map,Mapping and connections,topology|position|colour|symbols,verified_reference,https://library.ltmuseum.co.uk/portal/Default/en-GB/RecordView/Index/106
-braille,Braille tactile writing system,Louis Braille,1829,First published explanation (development began 1824),Symbols and codes,tactile_pattern|dot_position,verified_reference,https://www.perkins.org/history-of-braille/
+braille,Braille tactile writing system,Louis Braille,1829,First published explanation (development began 1824),Symbols and codes,tactile_pattern|dot_position,edition_03_draft,https://www.perkins.org/history-of-braille/
 playfair,Commercial and Political Atlas,William Playfair,,Source and precise date to verify,Numbers into pictures,position|length|line,candidate,
 snow,Cholera death map,John Snow,,Source and map edition to verify,Mapping and connections,geographic_position|marks,candidate,
 nightingale,Diagram of the causes of mortality,Florence Nightingale,,Source and publication edition to verify,Numbers into pictures,area|colour|sequence,candidate,
