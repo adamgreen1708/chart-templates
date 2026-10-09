@@ -10,6 +10,9 @@
 - `research/braille_03_sources.md` — specialist historical/code sources and key caveats.
 - `data/verified_braille_examples.csv` — minimal machine-readable dot-position examples for later deterministic drawing, not a general Braille translator.
 
+## Coding standard — locked for this edition
+All *encoding* diagrams and source data use **UK Unified English Braille (UEB), uncontracted examples**, from **RNIB and UKAAF** with ICEB 2024 rules accepted by UKAAF. Do not use legacy American English Braille (EBAE) or older British Standard English Braille (SEB) as the code of the examples. UEB is internationally shared; there is no artificial UK-only basic alphabet. Separate original 1824–1829 French Braille history from modern UK examples.
+
 ## Editorial purpose
 Broaden 'Icons of Data' beyond pictorial encoding: a system meant to be **felt**, not merely seen. Explain character formation, patterns, context markers and writing as well as reading. Keep six-dot design integrity, don't equate pictures of dots to tactile Braille.
 
