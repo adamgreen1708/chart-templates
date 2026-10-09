@@ -1,0 +1,69 @@
+name: QA inline Beck 1933 map (temporary)
+
+on:
+  push:
+    branches: [fix/icons-beck-inline-original-1933-20261009]
+    paths:
+      - .github/workflows/qa-beck-inline-map.yml
+
+permissions:
+  contents: write
+
+jobs:
+  test-inline-map:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./site
+          destination: ./_site
+      - name: Setup Chrome checks
+        run: |
+          python -m pip install "playwright==1.56.0"
+          command -v google-chrome
+      - name: Verify original image on desktop and mobile
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m http.server 8018 --directory ./_site --bind 127.0.0.1 >/tmp/beck-qa-server.log 2>&1 &
+          mkdir -p archive/projects/2026-10-icons-of-data/editions/02-beck/qa-inline-original
+          python - <<'PY'
+          from playwright.sync_api import sync_playwright
+          from pathlib import Path
+          images_dir=Path("archive/projects/2026-10-icons-of-data/editions/02-beck/qa-inline-original")
+          with sync_playwright() as p:
+            b=p.chromium.launch(channel="chrome",headless=True,args=["--no-sandbox"])
+            for name,w,h in [("desktop",1365,960),("mobile",390,844),("narrow",320,680)]:
+              page=b.new_page(viewport={"width":w,"height":h},device_scale_factor=1)
+              r=page.goto("http://127.0.0.1:8018/icons-of-data/beck-tube-map/",wait_until="networkidle",timeout=45000)
+              assert r.status==200,("article not found",r.status)
+              all_images=page.locator(".story-chart img")
+              assert all_images.count()==3,("Expected 3 actual illustrations",all_images.count())
+              for i,expected_width in [(0,1024),(1,1920),(2,1920)]:
+                el=all_images.nth(i)
+                el.scroll_into_view_if_needed()
+                el.evaluate("(img) => { img.loading='eager'; return img.decode(); }")
+                actual=el.evaluate("(img) => ({src:img.currentSrc,width:img.naturalWidth,height:img.naturalHeight,complete:img.complete})")
+                print(name,i,actual,flush=True)
+                assert actual["width"]==expected_width,(name,"wrong image",actual)
+                assert actual["complete"],(name,"image not fully decoded",actual)
+              first=page.locator(".story-chart").first
+              href=first.locator("a").first.get_attribute("href")
+              assert href=="https://www.ltmuseum.co.uk/collections/collections-online/maps/item/1999-321",href
+              assert "Beckmap1.jpg" in first.locator("img").first.get_attribute("src")
+              assert page.evaluate("document.documentElement.scrollWidth")<=w+1,(name,"page horizontal overflow")
+              page.screenshot(path=str(images_dir/f"beck-original-{name}.png"),full_page=True)
+              page.close()
+            b.close()
+          PY
+      - name: Commit temporary screenshots on draft branch
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add archive/projects/2026-10-icons-of-data/editions/02-beck/qa-inline-original/*.png
+          git commit -m "Temporary QA screenshots for embedded Beck original"
+          git push
