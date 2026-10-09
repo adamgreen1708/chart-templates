@@ -1,5 +1,5 @@
 # Edition 02 — Visual storyboard and build gates
-**Provisional headline:** The map that stopped caring about distance
+**Working headline:** The map that put connections first
 **Central argument:** Beck didn't simply tidy a map. He changed the information readers were meant to prioritise — the stations and connections, not the ground between them.
 
 This is an Icons of Data editorial three-visual narrative, NOT a conventional three statistical chart dataset story. Follow original source -> honest comparison -> Encode/Decode reveal.
