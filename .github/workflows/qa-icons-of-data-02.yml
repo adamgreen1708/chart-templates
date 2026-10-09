@@ -68,6 +68,10 @@ jobs:
                   assert result['heroWidth']<=result['heroClient']+1,(label,'Title clipping',result)
                   assert result['title']=='The map that put connections first',result
                   assert result['hasMuseumLink']
+                  eyebrow=page.locator('.post-body .eyebrow')
+                  assert eyebrow.count()==1
+                  assert eyebrow.evaluate('(e) => parseFloat(getComputedStyle(e).fontSize)')<15
+                  page.evaluate('window.scrollTo(0, 0)')
                   page.screenshot(path=str(qa/f'beck-article-{label}.png'),full_page=True)
                   page.close()
               page=browser.new_page(viewport={'width':390,'height':844},device_scale_factor=1)
