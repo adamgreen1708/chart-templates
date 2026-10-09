@@ -38,7 +38,14 @@ The result wasn't a conventional map at all.
 
 It was a **diagram of connections**.
 
-<p><a href="https://www.ltmuseum.co.uk/collections/collections-online/maps/item/1999-321">See Beck's original 1933 diagram in the London Transport Museum collection →</a></p>
+<figure class="story-chart full-bleed">
+  <a href="https://www.ltmuseum.co.uk/collections/collections-online/maps/item/1999-321" aria-label="Explore Harry Beck's original 1933 Underground map in London Transport Museum's collection">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Beckmap1.jpg"
+         alt="Harry Beck's original 1933 Underground diagram. Coloured railway lines run along horizontal, vertical and 45-degree segments. Interchanges are marked with diamonds, the centre is given extra space, and a stylised River Thames curves beneath the lines."
+         width="1024" height="715" loading="lazy" decoding="async">
+  </a>
+  <figcaption>Harry Beck's 1933 Underground diagram. Image reproduced via <a href="https://commons.wikimedia.org/wiki/File:Beckmap1.jpg">Wikimedia Commons</a>; original design attributed to Harry Beck, with the <a href="https://www.ltmuseum.co.uk/collections/collections-online/maps/item/1999-321">London Transport Museum collection record</a> linked for further detail. Copyright clearance remains under review before publication.</figcaption>
+</figure>
 
 ## Geography can get in the way
 
@@ -98,7 +105,7 @@ Just the right thing.
 
 <aside class="method-note">
   <h2>Source and method</h2>
-  <p>Historical research: <a href="https://www.ltmuseum.co.uk/collections/collections-online/maps/item/1999-321">London Transport Museum</a>, <a href="https://www.londonmuseum.org.uk/collections/london-stories/harry-beck-revolutionised-tube-map/">London Museum</a>, <a href="https://content.tfl.gov.uk/research-guide-24-harry-beck.pdf">TfL Corporate Archives</a> and <a href="https://designmuseum.org/london-transport">Design Museum</a>. Beck's proposal dates to 1931 and the pocket diagram was first issued in 1933. The historical original is linked rather than reproduced because its specific image rights have not been resolved.</p>
+  <p>Historical research: <a href="https://www.ltmuseum.co.uk/collections/collections-online/maps/item/1999-321">London Transport Museum</a>, <a href="https://www.londonmuseum.org.uk/collections/london-stories/harry-beck-revolutionised-tube-map/">London Museum</a>, <a href="https://content.tfl.gov.uk/research-guide-24-harry-beck.pdf">TfL Corporate Archives</a> and <a href="https://designmuseum.org/london-transport">Design Museum</a>. Beck's proposal dates to 1931 and the pocket diagram was first issued in 1933. A reproduction of the 1933 diagram is shown above for critical discussion of its design, with credit and a direct museum link. The image's reuse status is still being reviewed before publication.</p>
   <p>Modern explanatory visualisation: an attributed subset of the London multiplex network collected from TfL material in <strong>2013</strong> and documented by De Domenico, Solé-Ribalta, Gómez and Arenas (PNAS, 2014). The ten stations and ten line-specific links are retained identically in both panels. The source database is available under <a href="https://opendatacommons.org/licenses/odbl/1-0/">ODbL 1.0</a> with contents under DbCL 1.0; <a href="https://github.com/CoMuNeLab/London-Multiplex-Transport-Network">original dataset and licence notices</a> and <a href="https://github.com/adamgreen1708/chart-templates/tree/main/archive/projects/2026-10-icons-of-data/editions/02-beck/data">derived data and provenance</a>. The 2013 data are not a reconstruction of the 1933 network.</p>
 </aside>
 
