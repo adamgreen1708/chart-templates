@@ -38,7 +38,7 @@ The result wasn't a conventional map at all.
 
 It was a **diagram of connections**.
 
-<p><a href="https://library.ltmuseum.co.uk/portal/Default/en-GB/RecordView/Index/106">See Beck's original 1933 diagram in the London Transport Museum collection →</a></p>
+<p><a href="https://www.ltmuseum.co.uk/collections/collections-online/maps/item/1999-321">See Beck's original 1933 diagram in the London Transport Museum collection →</a></p>
 
 ## Geography can get in the way
 
@@ -98,7 +98,7 @@ Just the right thing.
 
 <aside class="method-note">
   <h2>Source and method</h2>
-  <p>Historical research: <a href="https://library.ltmuseum.co.uk/portal/Default/en-GB/RecordView/Index/106">London Transport Museum</a>, <a href="https://www.londonmuseum.org.uk/collections/london-stories/harry-beck-revolutionised-tube-map/">London Museum</a>, <a href="https://content.tfl.gov.uk/research-guide-24-harry-beck.pdf">TfL Corporate Archives</a> and <a href="https://designmuseum.org/london-transport">Design Museum</a>. Beck's proposal dates to 1931 and the pocket diagram was first issued in 1933. The historical original is linked rather than reproduced because its specific image rights have not been resolved.</p>
+  <p>Historical research: <a href="https://www.ltmuseum.co.uk/collections/collections-online/maps/item/1999-321">London Transport Museum</a>, <a href="https://www.londonmuseum.org.uk/collections/london-stories/harry-beck-revolutionised-tube-map/">London Museum</a>, <a href="https://content.tfl.gov.uk/research-guide-24-harry-beck.pdf">TfL Corporate Archives</a> and <a href="https://designmuseum.org/london-transport">Design Museum</a>. Beck's proposal dates to 1931 and the pocket diagram was first issued in 1933. The historical original is linked rather than reproduced because its specific image rights have not been resolved.</p>
   <p>Modern explanatory visualisation: an attributed subset of the London multiplex network collected from TfL material in <strong>2013</strong> and documented by De Domenico, Solé-Ribalta, Gómez and Arenas (PNAS, 2014). The ten stations and ten line-specific links are retained identically in both panels. The source database is available under <a href="https://opendatacommons.org/licenses/odbl/1-0/">ODbL 1.0</a> with contents under DbCL 1.0; <a href="https://github.com/CoMuNeLab/London-Multiplex-Transport-Network">original dataset and licence notices</a> and <a href="https://github.com/adamgreen1708/chart-templates/tree/main/archive/projects/2026-10-icons-of-data/editions/02-beck/data">derived data and provenance</a>. The 2013 data are not a reconstruction of the 1933 network.</p>
 </aside>
 
