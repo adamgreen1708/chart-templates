@@ -1,0 +1,87 @@
+name: QA Icons of Data 02 article and resources (temporary)
+
+on:
+  push:
+    branches:
+      - feature/icons-of-data-02-beck-kickoff
+    paths:
+      - .github/workflows/qa-icons-of-data-02.yml
+
+permissions:
+  contents: write
+
+jobs:
+  browser-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./site
+          destination: ./_site
+      - name: Prepare browser and screenshots
+        run: |
+          set -euo pipefail
+          python -m pip install "playwright==1.56.0"
+          command -v google-chrome || command -v chromium || command -v chromium-browser
+      - name: Test article, Resources and home at real breakpoints
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m http.server 8014 --directory ./_site --bind 127.0.0.1 > /tmp/iod-qa-http.log 2>&1 &
+          mkdir -p archive/projects/2026-10-icons-of-data/editions/02-beck/qa
+          python - <<'PY'
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          qa=Path('archive/projects/2026-10-icons-of-data/editions/02-beck/qa')
+          root='http://127.0.0.1:8014'
+          with sync_playwright() as p:
+              browser=p.chromium.launch(channel='chrome',headless=True,args=['--no-sandbox'])
+              for label,width,height in [('desktop',1365,960),('mobile',390,844),('small-mobile',320,680)]:
+                  page=browser.new_page(viewport={'width':width,'height':height},device_scale_factor=1)
+                  resp=page.goto(root+'/icons-of-data/beck-tube-map/',wait_until='networkidle',timeout=30000)
+                  assert resp.status==200,(label,'Article not 200')
+                  page.locator('h1').wait_for(state='visible')
+                  images=page.locator('.story-chart img')
+                  assert images.count()==2,(label,'Modern figure count',images.count())
+                  assert images.nth(0).evaluate('(i) => i.naturalWidth')==1920
+                  assert images.nth(1).evaluate('(i) => i.naturalWidth')==1920
+                  result=page.evaluate("""() => ({
+                     viewport: innerWidth,
+                     scrollWidth: document.documentElement.scrollWidth,
+                     title: document.querySelector('.post-hero h1')?.innerText,
+                     images: document.querySelectorAll('.story-chart img').length,
+                     hasMuseumLink: !!document.querySelector('a[href*="ltmuseum.co.uk"]'),
+                     heroWidth: document.querySelector('.post-hero h1').scrollWidth,
+                     heroClient: document.querySelector('.post-hero h1').clientWidth
+                  })""")
+                  print(label,result)
+                  assert result['scrollWidth']<=width+1,(label,'Horizontal overflow',result)
+                  assert result['heroWidth']<=result['heroClient']+1,(label,'Title clipping',result)
+                  assert result['title']=='The map that put connections first',result
+                  assert result['hasMuseumLink']
+                  page.screenshot(path=str(qa/f'beck-article-{label}.png'),full_page=True)
+                  page.close()
+              page=browser.new_page(viewport={'width':390,'height':844},device_scale_factor=1)
+              resp=page.goto(root+'/resources/icons-of-data/',wait_until='networkidle',timeout=30000)
+              assert resp.status==200
+              assert page.locator('a[href$="/icons-of-data/minard/"]').count()>0
+              assert page.locator('a[href$="/icons-of-data/beck-tube-map/"]').count()==1
+              assert page.evaluate('document.documentElement.scrollWidth')<=390
+              page.screenshot(path=str(qa/'beck-resource-mobile.png'),full_page=True)
+              page.goto(root+'/',wait_until='networkidle',timeout=30000)
+              assert 'The map that put connections first' in page.locator('.latest h3').inner_text()
+              assert page.locator('.latest .feature-visual img').evaluate('(i) => i.naturalWidth')==1920
+              page.screenshot(path=str(qa/'beck-home-mobile.png'),full_page=True)
+              browser.close()
+          PY
+      - name: Commit temporary QA screenshots to draft branch
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add archive/projects/2026-10-icons-of-data/editions/02-beck/qa/*.png
+          git commit -m "Temporary browser QA screenshots for approved Beck edition"
+          git push
