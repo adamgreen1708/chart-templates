@@ -52,3 +52,9 @@ Harry Beck's two original explanatory diagrams were approved and committed exact
 Editorial kickoff: `editions/03-braille/`, including the ~350-word manuscript, verified historical and UK/English Braille code references, accessible three-visual storyboard, and exact dot-position examples for deterministic diagrams.
 
 **State:** draft for editorial review. No visual or historical photograph has been generated/republished, no Jekyll post or live Resources change, and no Pages merge/publish authorisation. Distinguish six-dot cell drawings on a screen from tactile Braille. Development 1824; book published 1829; historical image rights remain a gate.
+
+
+## Edition 04: Florence Nightingale — 10 October 2026
+An editorial concept package was started under `editions/04-nightingale/`: conversational manuscript, three-visual plan, exact **1858** Wellcome L0041105 plate reference and CC BY 4.0 licence, critical historical-claim research, a 24-month HistData mortality transcription and independently derived QA summary. The original historical plates' two-period orientation, **annualised rate vs death counts**, area vs radius, and cautious interpretation are mandatory.
+
+**State:** concept/manuscript only, submitted for author review. No images generated, Jekyll post, Resources page edit or publishing approval. The historical source plate may be reused only with its specific licence credit. No claims Nightingale invented polar-area graphics or proved causal effect of sanitation from the diagram alone.
