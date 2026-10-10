@@ -58,3 +58,7 @@ Editorial kickoff: `editions/03-braille/`, including the ~350-word manuscript, v
 An editorial concept package was started under `editions/04-nightingale/`: conversational manuscript, three-visual plan, exact **1858** Wellcome L0041105 plate reference and CC BY 4.0 licence, critical historical-claim research, a 24-month HistData mortality transcription and independently derived QA summary. The original historical plates' two-period orientation, **annualised rate vs death counts**, area vs radius, and cautious interpretation are mandatory.
 
 **State:** concept/manuscript only, submitted for author review. No images generated, Jekyll post, Resources page edit or publishing approval. The historical source plate may be reused only with its specific licence credit. No claims Nightingale invented polar-area graphics or proved causal effect of sanitation from the diagram alone.
+
+
+## Edition 04 — site staging after author approved visuals (10 October 2026)
+Florence Nightingale's three-visual edition (Wellcome 1858 L0041105, modern 24-month mortality trend and polar-area explanatory diagram) is now staged on draft PR #113, along with Resources entry #04. Exact source references, archival reproduction CC BY 4.0, modern renderer and rate-validation data are included. Jekyll/browser QA at 1365/390/320px passed on run 38072120585. Github runner image rasterisation differs from the original user-approved PNGs; await final visual approval before merging or publishing.
