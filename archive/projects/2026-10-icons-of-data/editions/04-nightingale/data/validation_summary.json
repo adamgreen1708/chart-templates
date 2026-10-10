@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "source": "HistData Nightingale, via vincentarelbundock/Rdatasets csv/HistData/Nightingale.csv",
+    "source_github_blob_sha": "0e69a3b02360ba23669cfb94a2d53c8521a59a3f",
+    "period": "1854-04 to 1856-03",
+    "rows": 24,
+    "annualised_rate_definition": "12 * 1000 * monthly cause deaths / monthly estimated average army strength, rounded to 1 decimal",
+    "notice": "Source is a later transcription of 19th-century returns, not independent contemporary measurements. Era/army denominators may differ. No causal inference from before/after periods."
+  },
+  "periods": {
+    "1854-04_to_1855-03": {
+      "month_count": 12,
+      "counts": {
+        "disease": 11157,
+        "wounds": 772,
+        "other": 1365
+      },
+      "total_deaths": 13294,
+      "share_disease_pct": 83.925,
+      "army_strength_man_month_sum": 336072,
+      "annualised_disease_rate_per_1000_from_weighted_counts": 398.379
+    },
+    "1855-04_to_1856-03": {
+      "month_count": 12,
+      "counts": {
+        "disease": 3319,
+        "wounds": 986,
+        "other": 383
+      },
+      "total_deaths": 4688,
+      "share_disease_pct": 70.798,
+      "army_strength_man_month_sum": 503359,
+      "annualised_disease_rate_per_1000_from_weighted_counts": 79.124
+    }
+  },
+  "peak_disease_month": {
+    "date": "1855-01-01",
+    "estimated_army_strength": 32393,
+    "disease_deaths": 2761,
+    "annualised_rate_reported_per_1000": 1022.8
+  }
+}
