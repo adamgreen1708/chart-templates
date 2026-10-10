@@ -1,0 +1,162 @@
+name: Icons of Data 04 Nightingale site QA (temporary)
+
+on:
+  push:
+    branches: [feature/icons-of-data-04-nightingale-kickoff-20261010]
+    paths: [.github/workflows/qa-icons-of-data-04-nightingale.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  review-site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install exact plotting packages and house font
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-inter
+          fc-cache -f
+          fc-match Inter
+          python -m pip install "numpy==2.3.5" "pandas==2.2.3" "matplotlib==3.10.8" "Pillow==12.3.0" "playwright==1.56.0"
+
+      - name: Decode and verify original renderer, reproduce charts
+        shell: bash
+        env:
+          MPLBACKEND: Agg
+        run: |
+          set -euo pipefail
+          edition="archive/projects/2026-10-icons-of-data/editions/04-nightingale"
+          mkdir -p "$edition/scripts"
+          base64 -d "$edition/transfer/render_nightingale.py.gz.b64" | gzip -cd > "$edition/scripts/render_nightingale.py"
+          echo "5dc299af182b48ffbb6c5e412acad7533d37fbe61390059a7357d45e172c3af5  $edition/scripts/render_nightingale.py" | sha256sum -c
+          cp "$edition/data/nightingale_24_months.csv" "$edition/scripts/data_nightingale_24_months.csv"
+          python "$edition/scripts/render_nightingale.py"
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          import hashlib
+          base=Path('archive/projects/2026-10-icons-of-data/editions/04-nightingale/scripts/visuals')
+          expected={
+            "02_what_the_numbers_reveal.png":("46dd37c432fed14efb09b04f0f408af66de219e4fd0b20b21f73a309cddf03d3","6d5f944596d699afc83eaeef51b8d3227ffcee75275eefdf8931789fe539a1ea"),
+            "03_decode_the_icon.png":("65c95c6eb2b3c899eebc383dba8ae8f9bba7047ea6ec2cb2fa53d3cc60184a1e","bab11ae6417a03d851314f04248b2435682df3d446e71d63bcee58e908beea22")
+          }
+          for name,(approved_file,approved_pixels) in expected.items():
+            path=base/name
+            img=Image.open(path).convert("RGBA")
+            assert img.size==(1920,1920)
+            file_hash=hashlib.sha256(path.read_bytes()).hexdigest()
+            pixel_hash=hashlib.sha256(img.tobytes()).hexdigest()
+            print(name,"original approved file:",approved_file, "reproduced:",file_hash,flush=True)
+            print(name,"original approved pixels:",approved_pixels,"reproduced:",pixel_hash,flush=True)
+            if pixel_hash != approved_pixels:
+              print("::warning::Rasterised figure differs at pixel level from author-approved PNG. Draft preview only; final visual check required.")
+          PY
+          mkdir -p site/assets/icons-of-data/nightingale
+          cp "$edition/scripts/visuals/02_what_the_numbers_reveal.png" site/assets/icons-of-data/nightingale/
+          cp "$edition/scripts/visuals/03_decode_the_icon.png" site/assets/icons-of-data/nightingale/
+          rm -rf "$edition/scripts/visuals" "$edition/scripts/__pycache__"
+
+      - name: Download licence-verified original Wellcome scan
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from urllib.request import Request,urlopen
+          from io import BytesIO
+          from pathlib import Path
+          import hashlib
+          from PIL import Image
+          url="https://commons.wikimedia.org/wiki/Special:Redirect/file/Diagram_of_the_causes_of_mortality_in_the_army_Wellcome_L0041105.jpg"
+          req=Request(url,headers={"User-Agent":"Coffeetableviz (historical art attribution and educational review; coffeetableviz.com)"})
+          with urlopen(req,timeout=75) as response:
+            data=response.read()
+          original_sha1=hashlib.sha1(data).hexdigest()
+          print("Wellcome original SHA1",original_sha1,flush=True)
+          assert original_sha1=="442b26ea9b709364c652addded7ac5a67cb3755f", "Wrong historic image or altered source"
+          im=Image.open(BytesIO(data)).convert("RGB")
+          assert im.size==(3942,2566),im.size
+          im.thumbnail((1536,1000),Image.Resampling.LANCZOS)
+          assert im.size==(1536,1000),im.size
+          out=Path("site/assets/icons-of-data/nightingale/01_nightingale_1858_wellcome.jpg")
+          out.parent.mkdir(parents=True,exist_ok=True)
+          im.save(out,format="JPEG",quality=88,optimize=True)
+          print("saved attributed resized archival scan",out,out.stat().st_size,flush=True)
+          PY
+
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./site
+          destination: ./_site
+
+      - name: Browser QA desktop, mobile and narrow; images & resources
+        shell: bash
+        run: |
+          set -euo pipefail
+          command -v google-chrome
+          python -m http.server 8024 --directory ./_site --bind 127.0.0.1 >/tmp/night-qa-server.log 2>&1 &
+          mkdir -p archive/projects/2026-10-icons-of-data/editions/04-nightingale/qa/site
+          python - <<'PY'
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          qa=Path("archive/projects/2026-10-icons-of-data/editions/04-nightingale/qa/site")
+          with sync_playwright() as pw:
+            browser=pw.chromium.launch(channel="chrome",headless=True,args=["--no-sandbox"])
+            for label,w,h in [("desktop",1365,960),("mobile",390,844),("narrow",320,680)]:
+              page=browser.new_page(viewport={"width":w,"height":h},device_scale_factor=1)
+              r=page.goto("http://127.0.0.1:8024/icons-of-data/nightingale-mortality/",wait_until="networkidle",timeout=45000)
+              assert r.status==200,(label,r.status)
+              assert "The chart that made disease impossible to ignore" in page.locator(".post-hero h1").inner_text()
+              figures=page.locator(".story-chart img")
+              assert figures.count()==3,(label,"3 figures required",figures.count())
+              for i,expected_width in [(0,1536),(1,1920),(2,1920)]:
+                image=figures.nth(i)
+                image.scroll_into_view_if_needed()
+                image.evaluate("(el)=>{el.loading='eager';return el.decode()}")
+                meta=image.evaluate("(el)=>({w:el.naturalWidth,h:el.naturalHeight,alt:el.alt,src:el.currentSrc})")
+                print(label,"figure",i,meta,flush=True)
+                assert meta["w"]==expected_width and meta["alt"],(label,i,"broken or no alt")
+              assert page.evaluate("document.documentElement.scrollWidth")<=w+1,(label,"page horizontal overflow")
+              assert page.locator(".method-note").count()==1
+              assert page.locator('a[href="https://creativecommons.org/licenses/by/4.0/"]').count()>=1
+              assert page.locator('a[href*="commons.wikimedia.org/wiki/File:Diagram_of_the_causes"]').count()>=1
+              assert page.locator(".post-hero h1").evaluate("(el)=>el.scrollWidth<=el.clientWidth+1")
+              page.evaluate("scrollTo(0,0)")
+              page.screenshot(path=str(qa/f"nightingale-article-{label}.png"),full_page=True)
+              page.close()
+            page=browser.new_page(viewport={"width":390,"height":844},device_scale_factor=1)
+            r=page.goto("http://127.0.0.1:8024/resources/icons-of-data/",wait_until="networkidle")
+            assert r.status==200
+            assert page.locator('a[href$="/icons-of-data/minard/"]').count()>0
+            assert page.locator('a[href$="/icons-of-data/beck-tube-map/"]').count()>0
+            assert page.locator('a[href$="/icons-of-data/braille/"]').count()>0
+            assert page.locator('a[href$="/icons-of-data/nightingale-mortality/"]').count()==1
+            assert "Four stories" in page.locator("body").inner_text()
+            assert page.evaluate("document.documentElement.scrollWidth")<=391
+            page.screenshot(path=str(qa/"nightingale-resources-mobile.png"),full_page=True)
+            page.close()
+            browser.close()
+            print("Jekyll/Playwright QA passed for all breakpoints and resources.",flush=True)
+          PY
+
+      - name: Commit draft assets and QA images only
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/assets/icons-of-data/nightingale/*.png \
+                  site/assets/icons-of-data/nightingale/*.jpg \
+                  archive/projects/2026-10-icons-of-data/editions/04-nightingale/scripts/render_nightingale.py \
+                  archive/projects/2026-10-icons-of-data/editions/04-nightingale/qa/site/*.png
+          if ! git diff --staged --quiet; then
+            git commit -m "Stage Nightingale original and review-rendered charts with browser QA"
+            git push origin "HEAD:feature/icons-of-data-04-nightingale-kickoff-20261010"
+          fi
