@@ -59,7 +59,7 @@ There are two circles: the first year of the war on the right, and the second on
          alt="Line chart of annualised monthly British Army mortality rates per 1,000 soldiers from April 1854 to March 1856, starting at zero. The blue disease line rises sharply to 1,022.8 in January 1855, then falls across the second period. Red wounds and charcoal other-causes lines remain much lower. A dashed divider marks April 1855."
          width="1920" height="1920" loading="lazy" decoding="async">
   </a>
-  <figcaption>Same historical returns, modern view: 24 monthly records, plotted as <strong>annualised rates per 1,000 troops</strong>, not counts of deaths. The disease peak of 1,022.8 in January 1855 is an annualised rate based on 2,761 recorded disease deaths and estimated army strength 32,393 for that month. Source: `HistData::Nightingale`, digitised from nineteenth-century military records. A decline is observable; this plot does not assign a cause.</figcaption>
+  <figcaption>Same historical returns, modern view: 24 monthly records, plotted as <strong>annualised rates per 1,000 troops</strong>, not counts of deaths. The disease peak of 1,022.8 in January 1855 is an annualised rate based on 2,761 recorded disease deaths and estimated army strength 32,393 for that month. Source: <code>HistData::Nightingale</code>, digitised from nineteenth-century military records. A decline is observable; this plot does not assign a cause.</figcaption>
 </figure>
 
 ## A chart isn't a verdict
