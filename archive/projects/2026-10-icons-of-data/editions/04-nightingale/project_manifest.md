@@ -2,7 +2,7 @@
 **Started:** 10 October 2026
 **Working title:** The chart that made disease impossible to ignore
 **Artefact:** Florence Nightingale, *Diagram of the Causes of Mortality in the Army in the East*, Wellcome digitised **1858** plate L0041105.
-**Status:** working article, three-visual storyboard, source/data audit. No generated images, Jekyll post, Resources update or website publication. Await author review.
+**Status:** full three-image Jekyll article and Resources #04 link staged on PR #113; desktop/mobile QA passed; awaiting final author site approval. Nothing published.
 
 ## Files
 - `content/nightingale_04_draft.md` — conversational UK-English article with three figure slots and data/source note.
@@ -24,3 +24,11 @@
 3. Prepare full site Jekyll/Resources integration in dedicated review PR after content approval, preserve source licence and alt text.
 4. Browser/mobile QA at 1365, 390 and 320px, safe margins, no clipping or false rate axes.
 5. Explicit author publishing approval before merging to `main` and verifying Pages.
+
+
+## Site package and image QA — 10 October 2026
+**State:** All three visuals and the Nightingale Jekyll article are staged on **PR #113** for final author review. The original 1858 plate is verified Wellcome Collection L0041105, resized to 1536×1000, CC BY 4.0, linked and credited with resize disclosure. Graphics #02 and #03 are 1920×1920, rendered from the approved source code, and included in the site at `site/assets/icons-of-data/nightingale/`; original code is under `scripts/render_nightingale.py`.
+
+**Distinguish image fidelity:** the two original user-approved review images had SHA-256 `46dd37c432fed14efb09b04f0f408af66de219e4fd0b20b21f73a309cddf03d3` (Chart 2) and `65c95c6eb2b3c899eebc383dba8ae8f9bba7047ea6ec2cb2fa53d3cc60184a1e` (Chart 3). GitHub's runner produced visibly equivalent but **pixel-different** image bytes: `4e5be0fb9c37895e74ce3a799582acee05887b5c48d908c94a8f56cab5162ade` and `e6d201aae4134239a5bae10d8e4b09a2e67cf183135c410fbc15ee36ffa63c86` respectively. **Do not claim byte identity; final visual approval is required.**
+
+Actual Jekyll/browser QA (GitHub Actions run [38072120585](https://github.com/adamgreen1708/chart-templates/actions/runs/38072120585)) passed at desktop 1365px, mobile 390px and narrow 320px, verifying three images, alt text, citations, Wellcome CC BY licensing, no page overflow and all four Resources entries. Saved branch screenshots under `qa/site/`. Temporary workflow and compressed transfer helper removed. No merge/Pages publication authorised.
