@@ -1,36 +1,29 @@
 {
-  "report_date": "2026-10-09",
-  "visits": 9,
+  "report_date": "2026-10-10",
+  "visits": 7,
   "prior_7d_avg": "",
   "pct_vs_prior_7d": "",
-  "top_page_path": "/resources/icons-of-data",
-  "top_page_title": "Icons of Data \u00b7 coffeetableviz",
-  "top_page_visits": 2,
-  "top_referrer": "No referrer recorded",
-  "top_referrer_visits": 0,
+  "top_page_path": "/",
+  "top_page_title": "coffeetableviz",
+  "top_page_visits": 3,
+  "top_referrer": "Direct / unknown",
+  "top_referrer_visits": 2,
   "observation": "Still building enough history for a proper baseline.",
-  "generated_at_utc": "2026-10-10T14:28:48+00:00",
+  "generated_at_utc": "2026-10-11T14:55:32+00:00",
   "top_pages": [
     {
-      "path_id": 110548893,
-      "path": "/resources/icons-of-data",
-      "title": "Icons of Data \u00b7 coffeetableviz",
-      "display": "Icons of Data",
-      "count": 2
+      "path_id": 109451764,
+      "path": "/",
+      "title": "coffeetableviz",
+      "display": "Home",
+      "count": 3
     },
     {
-      "path_id": 110546630,
-      "path": "/icons-of-data/minard",
-      "title": "A line that disappears \u00b7 coffeetableviz",
-      "display": "A line that disappears",
-      "count": 2
-    },
-    {
-      "path_id": 109453481,
-      "path": "/resources",
-      "title": "Resources \u00b7 coffeetableviz",
-      "display": "Resources",
-      "count": 2
+      "path_id": 110989424,
+      "path": "/icons-of-data/nightingale-mortality",
+      "title": "The chart that made disease impossible to ignore \u00b7 coffeetableviz",
+      "display": "The chart that made disease impossible to ignore",
+      "count": 1
     },
     {
       "path_id": 110776881,
@@ -40,10 +33,10 @@
       "count": 1
     },
     {
-      "path_id": 109451764,
-      "path": "/",
-      "title": "coffeetableviz",
-      "display": "Home",
+      "path_id": 110548893,
+      "path": "/resources/icons-of-data",
+      "title": "Icons of Data \u00b7 coffeetableviz",
+      "display": "Icons of Data",
       "count": 1
     },
     {
@@ -54,5 +47,12 @@
       "count": 1
     }
   ],
-  "top_referrers": []
+  "top_referrers": [
+    {
+      "id": null,
+      "name": "Direct / unknown",
+      "count": 2,
+      "ref_scheme": "o"
+    }
+  ]
 }
