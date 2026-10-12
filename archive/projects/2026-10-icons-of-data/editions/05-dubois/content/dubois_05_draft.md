@@ -16,6 +16,8 @@ At the Paris Exposition in 1900, Du Bois and his collaborators from Atlanta Univ
 
 They were showing an international audience something that racist stereotypes and national celebrations tended to ignore: evidence about real people, their circumstances and their achievements.
 
+It was part of a much larger display of charts, photographs and books. The point wasn't to turn people into statistics, but to challenge what other people claimed to know about them. Data had a rather important job to do.
+
 One chart was titled *City and Rural Population. 1890.*
 
 It compared where Black Georgians lived.
