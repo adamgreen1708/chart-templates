@@ -152,5 +152,7 @@ jobs:
                   "$edition/qa/site/"*.png
           if ! git diff --cached --quiet; then
             git commit -m 'Stage Du Bois historical source, house-style charts and browser QA'
+            git fetch origin feature/icons-of-data-05-dubois-kickoff-20261012
+            git rebase origin/feature/icons-of-data-05-dubois-kickoff-20261012
             git push origin "HEAD:feature/icons-of-data-05-dubois-kickoff-20261012"
           fi
