@@ -23,7 +23,7 @@ SUB='#555555'; GRID='#D9D9D9'
 plt.rcParams.update({'font.family':'Inter','font.size':13,'text.color':TEXT,'figure.facecolor':BG,'savefig.facecolor':BG,'axes.labelcolor':SUB,'xtick.color':SUB,'ytick.color':SUB})
 DPI=240
 rows=[]
-with open(ROOT/'population_1890_verified.csv',newline='',encoding='utf-8') as f:
+with open(ROOT.parent/'data/verified_population_1890.csv',newline='',encoding='utf-8') as f:
     for r in csv.DictReader(f):
         rows.append(dict(label=r['category_display'],count=int(r['people'])))
 rows=sorted(rows,key=lambda r:r['count'],reverse=True)
