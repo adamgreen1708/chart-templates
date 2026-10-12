@@ -1,0 +1,32 @@
+{
+  "scope": "visual-review only",
+  "figures": {
+    "02_the_pattern_mapped.png": {
+      "sha256": "ce24a67182a3e80210ff7d116e3c2b716343a4159b0d8b00c1970b4ed0ca8d30",
+      "dimensions": [
+        1920,
+        1920
+      ],
+      "bytes": 452387
+    },
+    "03_decode_the_icon.png": {
+      "sha256": "458087d1fb8072e51963c67c5868c5baad0bc3dcc86b9edda1d55aea21bf8edb",
+      "dimensions": [
+        1920,
+        1920
+      ],
+      "bytes": 314535
+    }
+  },
+  "counts": {
+    "mapped_marks": 578,
+    "pumps": 13,
+    "street_polyline_groups": 528
+  },
+  "background": "#F3F4F6",
+  "notes": [
+    "map coordinates are local diagram coords, not GPS",
+    "no fabricated rates / timeline",
+    "figure 3 diagrams all schematic"
+  ]
+}
