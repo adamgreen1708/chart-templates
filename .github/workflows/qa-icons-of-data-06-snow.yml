@@ -1,0 +1,103 @@
+name: Icons of Data 06 Snow visual review (temporary)
+
+on:
+  push:
+    branches: [feature/icons-of-data-06-john-snow-kickoff-20261012]
+    paths: [.github/workflows/qa-icons-of-data-06-snow.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  review-images:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install official font and pinned graph library
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-inter
+          fc-cache -f
+          python -m pip install 'matplotlib==3.10.8' 'numpy==2.3.5' 'Pillow==12.3.0'
+          fc-match Inter
+
+      - name: Render and validate two quantitative/editorial figures
+        shell: bash
+        env:
+          MPLBACKEND: Agg
+        run: |
+          set -euo pipefail
+          edition=archive/projects/2026-10-icons-of-data/editions/06-john-snow
+          python "$edition/scripts/render_snow_review.py"
+          python - <<'PY'
+          import csv,hashlib,json
+          from pathlib import Path
+          from PIL import Image
+          root=Path("archive/projects/2026-10-icons-of-data/editions/06-john-snow")
+          m=json.loads((root/"qa/render_manifest.json").read_text())
+          assert m["counts"]=={"mapped_marks":578,"pumps":13,"street_polyline_groups":528}
+          assert set(m["figures"])=={"02_the_pattern_mapped.png","03_decode_the_icon.png"}
+          for name,meta in m["figures"].items():
+            p=root/"qa/visuals"/name
+            img=Image.open(p);assert img.size==(1920,1920)
+            sha=hashlib.sha256(p.read_bytes()).hexdigest()
+            assert sha==meta["sha256"]
+            print(name,img.size,sha,flush=True)
+          PY
+
+      - name: Retrieve exact licensed 1855 original source plate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          from urllib.request import Request,urlopen
+          from io import BytesIO
+          from PIL import Image
+          import hashlib,json
+          url="https://upload.wikimedia.org/wikipedia/commons/3/3d/Map_showing_deaths_from_Cholera_in_Broad_Street..._Wellcome_L0063431.jpg"
+          req=Request(url,headers={"User-Agent":"Coffeetableviz/1.0 (attribution and educational historical infographic; coffeetableviz.com)"})
+          with urlopen(req,timeout=95) as res:data=res.read()
+          sha1=hashlib.sha1(data).hexdigest()
+          print("Original SHA1",sha1,"bytes",len(data))
+          assert sha1=="3cb5210cd4b7fd3c1cc4426ca01bf9b96b6cf7c8","Incorrect original scan"
+          img=Image.open(BytesIO(data)).convert("RGB")
+          assert img.size==(5064,4856),img.size
+          img.thumbnail((1600,1540),Image.Resampling.LANCZOS)
+          root=Path("archive/projects/2026-10-icons-of-data/editions/06-john-snow/qa")
+          out=root/"visuals"/"01_snow_original_wellcome_L0063431_review.jpg"
+          img.save(out,quality=88,optimize=True)
+          (root/"original_source_manifest.json").write_text(json.dumps({
+              "historical_object":"John Snow second-edition cholera map (1855), representing 1854 observations",
+              "scan":"Wellcome Collection photo L0063431, CC BY 4.0",
+              "link":"https://commons.wikimedia.org/wiki/File:Map_showing_deaths_from_Cholera_in_Broad_Street..._Wellcome_L0063431.jpg",
+              "original_sha1":sha1,"original_image_size":[5064,4856],"review_image_size":list(img.size),
+              "transformation":"Proportionally downsampled to <=1600 x 1540 pixels with LANCZOS; no crop or recolouring",
+              "review_image_sha256":hashlib.sha256(out.read_bytes()).hexdigest(),
+              "license_url":"https://creativecommons.org/licenses/by/4.0/",
+              "publication_state":"historical image preview only, no site publication"
+            },indent=2)+"\n")
+          print("Historical original verified and saved",out,img.size,flush=True)
+          PY
+
+      - name: Commit only visual previews and validation manifests to draft archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          root=archive/projects/2026-10-icons-of-data/editions/06-john-snow/qa
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$root/visuals" "$root/render_manifest.json" "$root/original_source_manifest.json"
+          if ! git diff --cached --quiet; then
+            git commit -m "Render John Snow #06 three source-verified editorial images for author review"
+            git fetch origin feature/icons-of-data-06-john-snow-kickoff-20261012
+            git rebase origin/feature/icons-of-data-06-john-snow-kickoff-20261012
+            git push origin "HEAD:feature/icons-of-data-06-john-snow-kickoff-20261012"
+          fi
