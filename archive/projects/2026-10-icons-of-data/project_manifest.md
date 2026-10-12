@@ -70,3 +70,16 @@ Started a draft editorial research package under `editions/05-dubois/` for the s
 ## Edition 05 — website staging after visual approval (12 October 2026)
 Du Bois's historic four-colour visual revision approved. Full blog edition (authentic LoC 815×1024 JPEG, two 1920px custom house-style graphic images, captions, archival numerical checks, Resources entry #05) staged in PR #114. Jekyll/Playwright desktop 1365px, mobile 390px and narrow 320px QA passed in run 38300582492; screenshots in edition `qa/site/`. Note site runner PNG pixels differ from approved local review PNGs; final author visual review/merge permission still pending. No changes to global 538 renderer or publishing system.
 
+
+
+## Edition 06 — John Snow (12 October 2026)
+New focused research kickoff under `editions/06-john-snow/`: 363-word editorial manuscript **“The map that put a pump on trial”**, three separate visual treatments (specific authentic **1855** book map, accurate 578-mark/13-pump/528-street-segment reconstruction, four-panel decode), historical/source/image-rights research, and unchanged public HistData source tables with independent schema/geometry checks. Chosen historical original is Wellcome **L0063431**, an image reproduction labelled **CC BY 4.0**; distinguish from the public-domain-marked book scan and the 1855 parish inquiry map. Historical outbreak was **1854**; no claim the map discovered contaminated water or that pump handle removal ended an already declining outbreak.
+**State:** concept/working draft only. No images rendered, Jekyll/site/Resources content changed, or publication approved. Await author editorial direction; preserve separate image and merge approval gates.
+
+
+## Edition 06 — first three visuals for author review (12 October 2026)
+Original **1855** Wellcome L0063431 source image and two house-style 1920px modern visuals now rendered and staged for *review only* on PR #115 in `editions/06-john-snow/qa/visuals/`. Pinned data: 578 digitised map marks, 13 pump positions, 528 street segments. Exact original/photo hashes, CC BY 4.0, small-screen thumbnails and manuscript QA specified in `editions/06-john-snow/content/snow_06_visual_review.md`. Runner https://github.com/adamgreen1708/chart-templates/actions/runs/38303582365 passed; temporary workflow removed. **No `site/**` modifications. Await author visual approval before website integration, with a separate final merge/publish gate.**
+
+
+## Edition 06 — full website staged, pending merge approval (12 October 2026)
+John Snow's approved two modern graphics, authentic CC BY 4.0 Wellcome L0063431 historic original and fully attributed ~363-word article are staged with a sixth Resources entry in PR #115. Source JPG/PNG files copied byte-identically (SHA-256 verified) into `site/assets/icons-of-data/john-snow/` from the approved archive. Jekyll/Playwright checks at 1365px/390px/320px passed in run 38304702761. Screenshots under `editions/06-john-snow/qa/site/`, including homepage and collection. Final author visual/site approval required before merge or Pages deploy.

@@ -1,0 +1,84 @@
+{
+  "edition": "icons-of-data-06",
+  "verified_at": "2026-10-12",
+  "historical_object": "John Snow 1855 second edition, observations recorded 1854",
+  "source_documentation_url": "https://rdrr.io/rforge/HistData/man/Snow.html",
+  "datasets": {
+    "deaths": {
+      "source_repo": "vincentarelbundock/Rdatasets",
+      "source_path": "csv/HistData/Snow.deaths.csv",
+      "source_git_blob_sha": "de97ca1939d6277782a1a50bf94eadafed158507",
+      "rows": 578,
+      "columns": [
+        "rownames",
+        "case",
+        "x",
+        "y"
+      ],
+      "coordinate_system": "local map digitisation coordinates; not latitude/longitude",
+      "coordinate_ranges": {
+        "x_min": 8.280715,
+        "x_max": 17.93893,
+        "y_min": 6.090047,
+        "y_max": 16.97276
+      },
+      "note": "One digitised death-map mark per row. Case IDs arbitrary, not dates. Coordinates include visual stacking for shared addresses, not household GPS. 578 is NOT total outbreak deaths."
+    },
+    "pumps": {
+      "source_repo": "vincentarelbundock/Rdatasets",
+      "source_path": "csv/HistData/Snow.pumps.csv",
+      "source_git_blob_sha": "c739dd38f267e2db8222c16dbf7f9d707b2254db",
+      "rows": 13,
+      "columns": [
+        "rownames",
+        "pump",
+        "label",
+        "x",
+        "y"
+      ],
+      "coordinate_system": "local map digitisation coordinates; not latitude/longitude",
+      "coordinate_ranges": {
+        "x_min": 8.6512012,
+        "x_max": 18.9143906,
+        "y_min": 5.0468378,
+        "y_max": 18.5178509
+      },
+      "broad_street_pump": {
+        "index": 7,
+        "x": 12.5713596,
+        "y": 11.72717
+      }
+    },
+    "streets": {
+      "source_repo": "vincentarelbundock/Rdatasets",
+      "source_path": "csv/HistData/Snow.streets.csv",
+      "source_git_blob_sha": "300b3b266a50b29511c2ac8a35e04000a5c22f24",
+      "rows": 1241,
+      "columns": [
+        "rownames",
+        "street",
+        "n",
+        "x",
+        "y"
+      ],
+      "coordinate_system": "local map digitisation coordinates; not latitude/longitude",
+      "coordinate_ranges": {
+        "x_min": 3.3900001,
+        "x_max": 19.9120007,
+        "y_min": 3.2349999,
+        "y_max": 18.7250004
+      },
+      "street_segment_groups": 528,
+      "note": "Polyline vertices, not dwellings or people; use street ID groups with n to reconstruct each independent line."
+    }
+  },
+  "checks": [
+    "578 map death marks; not all outbreak cases/deaths",
+    "13 pumps; Broad St pump identified by source data label",
+    "528 street polylines across 1241 vertex rows",
+    "coordinate schema local, not GPS",
+    "deaths dataset contains no dates or residence/water exposure denominators",
+    "original scan edition/licence must be matched before republishing"
+  ],
+  "publication_state": "research candidate for visualization; not a published chart or approval to merge"
+}

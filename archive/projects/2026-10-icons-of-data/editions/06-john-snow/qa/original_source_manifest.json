@@ -1,0 +1,18 @@
+{
+  "historical_object": "John Snow second-edition cholera map (1855), representing 1854 observations",
+  "scan": "Wellcome Collection photo L0063431, CC BY 4.0",
+  "link": "https://commons.wikimedia.org/wiki/File:Map_showing_deaths_from_Cholera_in_Broad_Street..._Wellcome_L0063431.jpg",
+  "original_sha1": "3cb5210cd4b7fd3c1cc4426ca01bf9b96b6cf7c8",
+  "original_image_size": [
+    5064,
+    4856
+  ],
+  "review_image_size": [
+    1600,
+    1534
+  ],
+  "transformation": "Proportionally downsampled to <=1600 x 1540 pixels with LANCZOS; no crop or recolouring",
+  "review_image_sha256": "025cfcef1e21220ca82eb0b703d65494bd8670962934b3514c173764e172d166",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "publication_state": "historical image preview only, no site publication"
+}
