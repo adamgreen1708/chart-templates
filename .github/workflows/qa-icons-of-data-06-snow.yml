@@ -1,4 +1,5 @@
 name: Icons of Data 06 Snow visual review (temporary)
+# Final pass: use deterministic drawn pump legend markers
 
 on:
   push:
