@@ -79,3 +79,7 @@ New focused research kickoff under `editions/06-john-snow/`: 363-word editorial 
 
 ## Edition 06 — first three visuals for author review (12 October 2026)
 Original **1855** Wellcome L0063431 source image and two house-style 1920px modern visuals now rendered and staged for *review only* on PR #115 in `editions/06-john-snow/qa/visuals/`. Pinned data: 578 digitised map marks, 13 pump positions, 528 street segments. Exact original/photo hashes, CC BY 4.0, small-screen thumbnails and manuscript QA specified in `editions/06-john-snow/content/snow_06_visual_review.md`. Runner https://github.com/adamgreen1708/chart-templates/actions/runs/38303582365 passed; temporary workflow removed. **No `site/**` modifications. Await author visual approval before website integration, with a separate final merge/publish gate.**
+
+
+## Edition 06 — full website staged, pending merge approval (12 October 2026)
+John Snow's approved two modern graphics, authentic CC BY 4.0 Wellcome L0063431 historic original and fully attributed ~363-word article are staged with a sixth Resources entry in PR #115. Source JPG/PNG files copied byte-identically (SHA-256 verified) into `site/assets/icons-of-data/john-snow/` from the approved archive. Jekyll/Playwright checks at 1365px/390px/320px passed in run 38304702761. Screenshots under `editions/06-john-snow/qa/site/`, including homepage and collection. Final author visual/site approval required before merge or Pages deploy.
