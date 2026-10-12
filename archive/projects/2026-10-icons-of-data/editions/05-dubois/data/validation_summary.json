@@ -1,32 +1,43 @@
 {
   "verified_reference": "U.S. Census Bureau Georgia race historical Table 25 (1890 Black population)",
   "verified_total_black_georgia_1890": 858815,
-  "provisional_chart_item": "Library of Congress 2013650430",
-  "provisional_categories": [
-    {
-      "key": "city_over_10000",
-      "count": 78139
-    },
-    {
-      "key": "city_5000_to_10000",
-      "count": 8025
-    },
-    {
-      "key": "city_2500_to_5000",
-      "count": 37699
-    },
-    {
-      "key": "country_villages",
-      "count": 734952
-    }
-  ],
+  "provisional_chart_item": "Library of Congress original 2013650430 (counts checked in medium JPEG 800×1000)",
   "candidate_sum": 858815,
   "arithmetic_reconciles_to_census": true,
-  "provisional_rural_share_pct": 85.577,
-  "verification_status": "NOT FINAL — printed values require readable high-resolution original scan and source-level confirmation; arithmetic agreement alone is not proof",
+  "verification_status": "SOURCE-VERIFIED FOR AUTHOR VISUAL REVIEW — LoC original JPEG independently corroborated against Yale and total US Census population. Further author approval needed before figures become website assets.",
   "secondary_discrepancies": [
     "Smithsonian Magazine reproduction PDF page visual reads 70839 for the large city category",
     "New Yorker caption gives 37899 for the small city category; other reproduction reads 37699"
   ],
-  "do_not_render_from_this_file_without_provenance_approval": true
+  "do_not_render_from_this_file_without_provenance_approval": false,
+  "verified_categories": [
+    {
+      "key": "city_over_10000",
+      "count": 78139,
+      "source_level_check": "Library of Congress original image + Yale National Initiative Unit 26.01.04"
+    },
+    {
+      "key": "city_5000_to_10000",
+      "count": 8025,
+      "source_level_check": "Library of Congress original image + Yale National Initiative Unit 26.01.04"
+    },
+    {
+      "key": "city_2500_to_5000",
+      "count": 37699,
+      "source_level_check": "Library of Congress original image + Yale National Initiative Unit 26.01.04"
+    },
+    {
+      "key": "country_villages",
+      "count": 734952,
+      "source_level_check": "Library of Congress original image + Yale National Initiative Unit 26.01.04"
+    }
+  ],
+  "verified_rural_share_pct": 85.577,
+  "images_approved_for_site": false,
+  "count_source_urls": [
+    "https://www.loc.gov/item/2013650430/",
+    "https://tile.loc.gov/storage-services/service/pnp/ppmsca/33800/33873v.jpg",
+    "https://teachers.yale.edu/curriculum/units/2026/1/4/8",
+    "https://www2.census.gov/library/working-papers/2002/demo/pop-twps0056/table25.pdf"
+  ]
 }
