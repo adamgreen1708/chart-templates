@@ -1,0 +1,156 @@
+name: Icons of Data 05 Du Bois visual and website QA (temporary)
+
+on:
+  push:
+    branches: [feature/icons-of-data-05-dubois-kickoff-20261012]
+    paths: [.github/workflows/qa-icons-of-data-05-dubois.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  review-site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install plotting and browser dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-inter
+          fc-cache -f
+          fc-match Inter
+          python -m pip install 'numpy==2.3.5' 'matplotlib==3.10.8' 'Pillow==12.3.0' 'playwright==1.56.0'
+
+      - name: Render approved design code from verified source data
+        shell: bash
+        env:
+          MPLBACKEND: Agg
+        run: |
+          set -euo pipefail
+          edition='archive/projects/2026-10-icons-of-data/editions/05-dubois'
+          python "$edition/scripts/render_historic_palette.py"
+          python - <<'PY'
+          import hashlib
+          from pathlib import Path
+          from PIL import Image
+          base=Path("archive/projects/2026-10-icons-of-data/editions/05-dubois")
+          site=Path("site/assets/icons-of-data/dubois")
+          site.mkdir(parents=True,exist_ok=True)
+          approved={
+            "02_the_spiral_unwound_historic_palette.png":"d46ab51831777fd0564f2919bd215ce0d0d6162b54d7e08d1fe619209e09514c",
+            "03_decode_the_spiral_historic_palette.png":"ff60147eaadccad344c6b3dc1235007c36b47c43024d89fd84f993692ac50c7c",
+          }
+          for name,approved_sha in approved.items():
+            src=base/'scripts'/'visuals'/name
+            img=Image.open(src)
+            assert img.size==(1920,1920),img.size
+            sha=hashlib.sha256(src.read_bytes()).hexdigest()
+            print(name,"user-approved SHA-256",approved_sha,"runner SHA-256",sha,flush=True)
+            if sha!=approved_sha:
+              print("::warning::GitHub runner image differs from author-approved PNG bytes, likely font rasterisation. Final website screenshots require author re-check.")
+            (site/name).write_bytes(src.read_bytes())
+          PY
+
+      - name: Download the original Library of Congress plate (never generated)
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from urllib.request import urlopen,Request
+          from pathlib import Path
+          from io import BytesIO
+          from PIL import Image
+          import hashlib
+          url='https://tile.loc.gov/storage-services/service/pnp/ppmsca/33800/33873v.jpg'
+          req=Request(url,headers={'User-Agent':'Coffeetableviz educational edition verification (coffeetableviz.com)','Accept':'image/jpeg,*/*'})
+          with urlopen(req,timeout=90) as r:
+            data=r.read()
+          im=Image.open(BytesIO(data))
+          im.verify()
+          im=Image.open(BytesIO(data))
+          assert im.format=='JPEG',im.format
+          assert im.width>=500 and im.height>=400,im.size
+          assert .5 < im.width/im.height < 1.5,im.size
+          p=Path('site/assets/icons-of-data/dubois/01_city_and_rural_population_1890_loc.jpg')
+          p.parent.mkdir(parents=True,exist_ok=True)
+          p.write_bytes(data)
+          print("LOC ORIGINAL",url,"dimensions",im.size,"sha256",hashlib.sha256(data).hexdigest(),"bytes",len(data),flush=True)
+          PY
+
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./site
+          destination: ./_site
+
+      - name: Browser QA for article, assets, provenance and Resources
+        shell: bash
+        run: |
+          set -euo pipefail
+          command -v google-chrome
+          python -m http.server 8025 --directory ./_site --bind 127.0.0.1 >/tmp/dubois-site-server.log 2>&1 &
+          mkdir -p archive/projects/2026-10-icons-of-data/editions/05-dubois/qa/site
+          python - <<'PY'
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          qa=Path('archive/projects/2026-10-icons-of-data/editions/05-dubois/qa/site')
+          with sync_playwright() as pw:
+            browser=pw.chromium.launch(channel="chrome",headless=True,args=["--no-sandbox"])
+            for label,w,h in [("desktop",1365,960),("mobile",390,844),("narrow",320,680)]:
+              page=browser.new_page(viewport={"width":w,"height":h},device_scale_factor=1)
+              failures=[]
+              page.on("pageerror",lambda e: failures.append(str(e)))
+              r=page.goto("http://127.0.0.1:8025/icons-of-data/dubois-spiral/",wait_until="networkidle",timeout=45000)
+              assert r.status==200,(label,r.status)
+              assert "The spiral that tells a bigger story" in page.locator('.post-hero h1').inner_text()
+              figures=page.locator('.story-chart img')
+              assert figures.count()==3,(label,figures.count())
+              for i in range(3):
+                image=figures.nth(i)
+                image.scroll_into_view_if_needed()
+                image.evaluate("(el)=>{el.loading='eager';return el.decode()}")
+                meta=image.evaluate("(el)=>({w:el.naturalWidth,h:el.naturalHeight,alt:el.alt})")
+                print(label,"image",i,meta,flush=True)
+                assert meta['w']>=500 and meta['h']>=400 and len(meta['alt'])>90,(label,i,meta)
+                if i>0: assert meta['w']==1920 and meta['h']==1920
+              assert page.locator('.method-note').count()==1
+              assert page.locator('a[href="https://www.loc.gov/item/2013650430/"]').count()>=1
+              assert page.evaluate('document.documentElement.scrollWidth')<=w+1,(label,'horizontal overflow',page.evaluate('document.documentElement.scrollWidth'))
+              assert page.locator('.post-hero h1').evaluate('(el)=>el.scrollWidth<=el.clientWidth+1'),(label,'title clipping')
+              assert not failures,failures
+              page.evaluate('scrollTo(0,0)')
+              page.screenshot(path=str(qa/f"dubois-article-{label}.png"),full_page=True)
+              page.close()
+            page=browser.new_page(viewport={"width":390,"height":844},device_scale_factor=1)
+            r=page.goto("http://127.0.0.1:8025/resources/icons-of-data/",wait_until="networkidle")
+            assert r.status==200
+            for slug in ['minard','beck-tube-map','braille','nightingale-mortality','dubois-spiral']:
+              assert page.locator(f'a[href$="/icons-of-data/{slug}/"]').count()>=1,slug
+            assert "Five stories" in page.locator('body').inner_text()
+            assert page.evaluate('document.documentElement.scrollWidth')<=391
+            page.screenshot(path=str(qa/"dubois-resources-mobile.png"),full_page=True)
+            page.close()
+            browser.close()
+          print("Jekyll and Playwright: Du Bois article + five-story Resources passed at 1365px, 390px and 320px",flush=True)
+          PY
+
+      - name: Commit generated site images and QA screenshots only
+        shell: bash
+        run: |
+          set -euo pipefail
+          edition='archive/projects/2026-10-icons-of-data/editions/05-dubois'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add site/assets/icons-of-data/dubois/*.png \
+                  site/assets/icons-of-data/dubois/*.jpg \
+                  "$edition/qa/site/"*.png
+          if ! git diff --cached --quiet; then
+            git commit -m 'Stage Du Bois historical source, house-style charts and browser QA'
+            git push origin "HEAD:feature/icons-of-data-05-dubois-kickoff-20261012"
+          fi
