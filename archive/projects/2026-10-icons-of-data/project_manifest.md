@@ -70,3 +70,8 @@ Started a draft editorial research package under `editions/05-dubois/` for the s
 ## Edition 05 — website staging after visual approval (12 October 2026)
 Du Bois's historic four-colour visual revision approved. Full blog edition (authentic LoC 815×1024 JPEG, two 1920px custom house-style graphic images, captions, archival numerical checks, Resources entry #05) staged in PR #114. Jekyll/Playwright desktop 1365px, mobile 390px and narrow 320px QA passed in run 38300582492; screenshots in edition `qa/site/`. Note site runner PNG pixels differ from approved local review PNGs; final author visual review/merge permission still pending. No changes to global 538 renderer or publishing system.
 
+
+
+## Edition 06 — John Snow (12 October 2026)
+New focused research kickoff under `editions/06-john-snow/`: 363-word editorial manuscript **“The map that put a pump on trial”**, three separate visual treatments (specific authentic **1855** book map, accurate 578-mark/13-pump/528-street-segment reconstruction, four-panel decode), historical/source/image-rights research, and unchanged public HistData source tables with independent schema/geometry checks. Chosen historical original is Wellcome **L0063431**, an image reproduction labelled **CC BY 4.0**; distinguish from the public-domain-marked book scan and the 1855 parish inquiry map. Historical outbreak was **1854**; no claim the map discovered contaminated water or that pump handle removal ended an already declining outbreak.
+**State:** concept/working draft only. No images rendered, Jekyll/site/Resources content changed, or publication approved. Await author editorial direction; preserve separate image and merge approval gates.
