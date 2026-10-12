@@ -62,3 +62,11 @@ An editorial concept package was started under `editions/04-nightingale/`: conve
 
 ## Edition 04 — site staging after author approved visuals (10 October 2026)
 Florence Nightingale's three-visual edition (Wellcome 1858 L0041105, modern 24-month mortality trend and polar-area explanatory diagram) is now staged on draft PR #113, along with Resources entry #04. Exact source references, archival reproduction CC BY 4.0, modern renderer and rate-validation data are included. Jekyll/browser QA at 1365/390/320px passed on run 38072120585. Github runner image rasterisation differs from the original user-approved PNGs; await final visual approval before merging or publishing.
+
+## Edition 05 — W. E. B. Du Bois (12 October 2026)
+Started a draft editorial research package under `editions/05-dubois/` for the specific LoC item 2013650430, *City and Rural Population. 1890*, drawn circa 1900 for the Paris Exposition. Includes ~360-word article draft, three purposeful visual specs (authentic poster → source-data zero-based ranked view → spatial-encoding decoder), institution-based research and **provisional** chart counts reconciled to Census 1890 Georgia Black population 858,815. Two source reproductions disagree on individual category labels, so exact transcription is a **hard rendering gate**. No images or site files created. Author editorial approval and figure rights remain outstanding.
+
+
+## Edition 05 — website staging after visual approval (12 October 2026)
+Du Bois's historic four-colour visual revision approved. Full blog edition (authentic LoC 815×1024 JPEG, two 1920px custom house-style graphic images, captions, archival numerical checks, Resources entry #05) staged in PR #114. Jekyll/Playwright desktop 1365px, mobile 390px and narrow 320px QA passed in run 38300582492; screenshots in edition `qa/site/`. Note site runner PNG pixels differ from approved local review PNGs; final author visual review/merge permission still pending. No changes to global 538 renderer or publishing system.
+

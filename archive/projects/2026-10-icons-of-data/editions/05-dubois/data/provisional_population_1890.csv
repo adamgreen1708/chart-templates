@@ -1,0 +1,5 @@
+category_id,source_label_paraphrase,candidate_count,year,scope,verification_status,source_item,notes
+city_over_10000,Black population in cities over 10000 inhabitants,78139,1890,Georgia,pending_direct_original_scan,LoC 2013650430,Secondary reproductions conflict with 70839
+city_5000_to_10000,Black population in cities from 5000 to 10000 inhabitants,8025,1890,Georgia,pending_direct_original_scan,LoC 2013650430,Check exact inclusive cutoff wording on source
+city_2500_to_5000,Black population in cities from 2500 to 5000 inhabitants,37699,1890,Georgia,pending_direct_original_scan,LoC 2013650430,Another secondary description says 37899
+country_villages,Black population in country and villages,734952,1890,Georgia,pending_direct_original_scan,LoC 2013650430,Large original red spiral visibly labelled
