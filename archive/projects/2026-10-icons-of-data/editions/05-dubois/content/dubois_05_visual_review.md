@@ -34,3 +34,21 @@ The replacement review graphics (not yet committed to GitHub) follow `spec/538_t
 - Revised review pack delivered through ChatGPT as `icons_of_data_05_house_style_revision.zip`: includes 2 PNGs, 600/390/320px QA thumbnails, documented Matplotlib review source, `chart_config_dubois_02.py` (full repo-compatible **CHART_CONFIG** for `src/render_538.py`), verified CSV and sha manifest.
 - **Important:** the local PNG preview imitates the standard renderer style, but **has not itself been produced by `src/render_538.py`**. After the user visually approves this review, run the actual repository renderer using the saved config, compare its output and QA labels/margins, then stage final assets separately. Decoder #03 remains a deterministic editorial composition in the established series style rather than an unsupported core chart type.
 - **Approval gate:** author must approve these revised renders before committing image assets or initiating publication. PR remains a draft; no Jekyll or Resources files changed.
+
+
+## Author approval — original-inspired historic palette, 12 October 2026
+The user **explicitly approved** the *third*, historically coloured revision of Charts 02 and 03. This **supersedes** both the initial decorative designs and the later teal/red-only revised versions. Keep the locked editorial square typography, grey `#F3F4F6` canvas, horizontal presentation, thin frame rules and safe margins, but use the four historical **category-specific colour cues**.
+
+**Exact author-approved review image files** (local ChatGPT review archive) SHA-256:
+- Chart 02 `02_the_spiral_unwound_historic_palette.png`: `d46ab51831777fd0564f2919bd215ce0d0d6162b54d7e08d1fe619209e09514c`.
+- Chart 03 `03_decode_the_spiral_historic_palette.png`: `ff60147eaadccad344c6b3dc1235007c36b47c43024d89fd84f993692ac50c7c`.
+
+**Historical colour mapping (near visual interpretations, not sampled exact values):** country and villages RED `#C44E52`; cities over 10,000 GREEN `#43855A`; cities 5,000–10,000 BLUE `#2A83A6`; cities 2,500–5,000 YELLOW `#D1A53A`. Core house teal `#1F8FA8` remains used for contextual 1890 cue. All groups are identified by text as well as hue.
+
+Production-source staging:
+- `scripts/render_historic_palette.py`: deterministic Python script derived from approved review source; it reads `data/verified_population_1890.csv` and uses the same two figure designs. Global `src/render_538.py`, `src/chart_config.py` and locked renderer defaults are untouched. The historical palette is a project-specific exception, not a new default.
+- `site/_posts/2026-10-12-the-spiral-that-tells-a-bigger-story.md` and `site/resources/icons-of-data/index.html` staged, not published.
+- Source archival photograph will be fetched *unaltered* from the specific Library of Congress `LC-DIG-ppmsca-33873` digital record, with explicit item's 'No known restrictions on publication' advisory. Do not label this as a Creative Commons licence.
+- GitHub runner renders may differ in exact PNG bytes from the author-reviewed files due to backend/font differences. Compare approved SHA-256 against actual generated SHA and **show final site screenshot for visual acceptance**. Never claim exact identity when hashes differ.
+
+**Approval scope:** Figure concepts, house styling and Du Bois colour mapping are approved. This is **not** author approval to merge PR #114 or publish to GitHub Pages. Complete browser/site and final visual review still required.
