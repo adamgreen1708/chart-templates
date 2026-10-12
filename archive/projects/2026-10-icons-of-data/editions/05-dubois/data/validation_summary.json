@@ -1,0 +1,32 @@
+{
+  "verified_reference": "U.S. Census Bureau Georgia race historical Table 25 (1890 Black population)",
+  "verified_total_black_georgia_1890": 858815,
+  "provisional_chart_item": "Library of Congress 2013650430",
+  "provisional_categories": [
+    {
+      "key": "city_over_10000",
+      "count": 78139
+    },
+    {
+      "key": "city_5000_to_10000",
+      "count": 8025
+    },
+    {
+      "key": "city_2500_to_5000",
+      "count": 37699
+    },
+    {
+      "key": "country_villages",
+      "count": 734952
+    }
+  ],
+  "candidate_sum": 858815,
+  "arithmetic_reconciles_to_census": true,
+  "provisional_rural_share_pct": 85.577,
+  "verification_status": "NOT FINAL — printed values require readable high-resolution original scan and source-level confirmation; arithmetic agreement alone is not proof",
+  "secondary_discrepancies": [
+    "Smithsonian Magazine reproduction PDF page visual reads 70839 for the large city category",
+    "New Yorker caption gives 37899 for the small city category; other reproduction reads 37699"
+  ],
+  "do_not_render_from_this_file_without_provenance_approval": true
+}
