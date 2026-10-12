@@ -22,3 +22,15 @@
 - 600px/390px/320px reduced-size reviews included in ZIP; meaningful source citation, alt text and direct data description required in Jekyll captions.
 - No historic facsimile generated, no historic image licence asserted beyond precise LoC notice.
 - Await author visual approval before GitHub site assets or any PR merge.
+
+
+## CORRECTION — existing visual designs superseded, 12 October 2026
+The user **approved the chart concepts and data only**, but specifically **rejected the first visual styling** as a deviation from the locked coffeetableviz render system. **Do not use the two earlier PNG hashes from the preceding section as accepted final image assets.**
+
+The replacement review graphics (not yet committed to GitHub) follow `spec/538_template_rules.md` and the approved #04 Nightingale visual grammar, using 8×8 square / 1920×1920 PNG, background `#F3F4F6`, teal `#1F8FA8` and limited red `#C44E52`, black titles, light dividers, safe margins and a slim source footer. Reject the earlier custom red series banner, large grey footer band, four-colour bars and rounded cards.
+
+- Revised **02 The spiral, unwound** PNG review SHA-256: `56c9106a77554d11fb693a8f1975eba7ba403d140a6a7ee5f3ad456eda797731`.
+- Revised **03 Decode the Icon** PNG review SHA-256: `aa94fa221bf642a56e7553ac42ad0646244ef8eb9e750751b33dbcbad9c843b8`.
+- Revised review pack delivered through ChatGPT as `icons_of_data_05_house_style_revision.zip`: includes 2 PNGs, 600/390/320px QA thumbnails, documented Matplotlib review source, `chart_config_dubois_02.py` (full repo-compatible **CHART_CONFIG** for `src/render_538.py`), verified CSV and sha manifest.
+- **Important:** the local PNG preview imitates the standard renderer style, but **has not itself been produced by `src/render_538.py`**. After the user visually approves this review, run the actual repository renderer using the saved config, compare its output and QA labels/margins, then stage final assets separately. Decoder #03 remains a deterministic editorial composition in the established series style rather than an unsupported core chart type.
+- **Approval gate:** author must approve these revised renders before committing image assets or initiating publication. PR remains a draft; no Jekyll or Resources files changed.
