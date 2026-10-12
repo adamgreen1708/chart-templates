@@ -1,49 +1,21 @@
 {
-  "report_date": "2026-10-10",
-  "visits": 7,
-  "prior_7d_avg": "",
-  "pct_vs_prior_7d": "",
+  "report_date": "2026-10-11",
+  "visits": 1,
+  "prior_7d_avg": "8.00",
+  "pct_vs_prior_7d": "-87.5",
   "top_page_path": "/",
   "top_page_title": "coffeetableviz",
-  "top_page_visits": 3,
+  "top_page_visits": 1,
   "top_referrer": "Direct / unknown",
-  "top_referrer_visits": 2,
-  "observation": "Still building enough history for a proper baseline.",
-  "generated_at_utc": "2026-10-11T14:55:32+00:00",
+  "top_referrer_visits": 1,
+  "observation": "Home reached every recorded visitor.",
+  "generated_at_utc": "2026-10-12T17:54:04+00:00",
   "top_pages": [
     {
       "path_id": 109451764,
       "path": "/",
       "title": "coffeetableviz",
       "display": "Home",
-      "count": 3
-    },
-    {
-      "path_id": 110989424,
-      "path": "/icons-of-data/nightingale-mortality",
-      "title": "The chart that made disease impossible to ignore \u00b7 coffeetableviz",
-      "display": "The chart that made disease impossible to ignore",
-      "count": 1
-    },
-    {
-      "path_id": 110776881,
-      "path": "/icons-of-data/beck-tube-map",
-      "title": "The map that put connections first \u00b7 coffeetableviz",
-      "display": "The map that put connections first",
-      "count": 1
-    },
-    {
-      "path_id": 110548893,
-      "path": "/resources/icons-of-data",
-      "title": "Icons of Data \u00b7 coffeetableviz",
-      "display": "Icons of Data",
-      "count": 1
-    },
-    {
-      "path_id": 109446267,
-      "path": "/archive",
-      "title": "Archive \u00b7 coffeetableviz",
-      "display": "Archive",
       "count": 1
     }
   ],
@@ -51,7 +23,7 @@
     {
       "id": null,
       "name": "Direct / unknown",
-      "count": 2,
+      "count": 1,
       "ref_scheme": "o"
     }
   ]
