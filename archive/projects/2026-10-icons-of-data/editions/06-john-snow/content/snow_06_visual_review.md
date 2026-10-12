@@ -1,7 +1,7 @@
 # Icons of Data #06 — John Snow visual review
 
 **Edition:** 06 · *The map that put a pump on trial*
-**Status:** title/manuscript and visual storyboard approved by author; three figures have been prepared and displayed **for visual approval only**. No website article or Resources edits; no merge/Pages publishing approved.
+**Status:** author approved both modern visuals. Exactly approved JPG/PNG bytes, full Jekyll article and Resources #06 entry now staged on PR #115; browser QA passed. **No merge or Pages publication approval yet.**
 
 ## Review figures
 
@@ -36,3 +36,22 @@ Reuses author-approved Icons of Data house style (#04 Nightingale, #05 Du Bois):
 2. Stage exactly approved artwork and article/Jekyll Resources entry with proper image reuse metadata; do not substitute changed rasterisation without author re-check.
 3. Perform Jekyll + Playwright screenshots at 1365px, 390px and 320px and verify alt text and captions.
 4. Obtain **separate explicit permission** before merging to `main` and verifying Pages deployment.
+
+
+## Exact visual approval and website staging — 12 October 2026
+The user explicitly approved both modern **Chart 02** and **Chart 03**, after approving the editorial manuscript and title. Website article and Resources content are now staged **only on PR #115**. The historical original is source-verified Wellcome Collection **L0063431**, CC BY 4.0 and proportionally resized without crop/recolour. The original review image and both modern PNGs are **copied byte-for-byte** into `site/assets/icons-of-data/john-snow/`, **not rerendered**.
+
+Image baselines (author-reviewed SHA-256, separately verified for source files and staged website copies):
+- Historical review JPG: `025cfcef1e21220ca82eb0b703d65494bd8670962934b3514c173764e172d166`, 1600×1534, source image Wellcome L0063431 originally 5064×4856, source SHA-1 `3cb5210cd4b7fd3c1cc4426ca01bf9b96b6cf7c8`.
+- Chart 02 `02_the_pattern_mapped.png`: `d1add220b9e69e44b2392e7b0f23ea1af5bff1dbecebd1180f41c0e5fd4f16bd`, 1920×1920.
+- Chart 03 `03_decode_the_icon.png`: `458087d1fb8072e51963c67c5868c5baad0bc3dcc86b9edda1d55aea21bf8edb`, 1920×1920.
+
+**Website files staged**
+- `site/_posts/2026-10-12-the-map-that-put-a-pump-on-trial.md`; proposed permalink `/icons-of-data/john-snow-cholera-map/`. Includes all three figures, informative alt descriptions and fair historical licence/method notes.
+- `site/assets/icons-of-data/john-snow/`: exactly approved three image bytes.
+- `site/resources/icons-of-data/index.html`: **sixth story**, encoding fingerprint row, and a primary source note. Existing site CSS and all shared renderers left unchanged.
+- QA screenshots: `qa/site/snow-article-desktop.png`, `snow-article-mobile.png`, `snow-article-narrow.png`, `snow-resources-mobile.png`, `snow-home-mobile.png`.
+
+**Actual QA:** Jekyll/Chrome in [GitHub Actions run 38304702761](https://github.com/adamgreen1708/chart-templates/actions/runs/38304702761) passed for 1365px desktop, 390px mobile and 320px narrow mobile. All three images loaded at their original dimensions, descriptive alt text and Wellcome source/CC BY 4.0 link present, no horizontal overflow or title clipping, six Icons of Data story links verified, and home/latest card includes Snow article. Full-page mobile previews visually inspected; no obvious clipping or layout issue.
+
+Temporary site QA workflow removed, no workflow/render/spec mutations remain. **PR #115 must not merge/publish until author sees and explicitly approves this complete website rendition**; user approval of Charts 02/03 does not authorise GitHub Pages deployment.
