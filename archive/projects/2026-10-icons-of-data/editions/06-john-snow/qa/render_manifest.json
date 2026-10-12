@@ -2,12 +2,12 @@
   "scope": "visual-review only",
   "figures": {
     "02_the_pattern_mapped.png": {
-      "sha256": "ce24a67182a3e80210ff7d116e3c2b716343a4159b0d8b00c1970b4ed0ca8d30",
+      "sha256": "d1add220b9e69e44b2392e7b0f23ea1af5bff1dbecebd1180f41c0e5fd4f16bd",
       "dimensions": [
         1920,
         1920
       ],
-      "bytes": 452387
+      "bytes": 451401
     },
     "03_decode_the_icon.png": {
       "sha256": "458087d1fb8072e51963c67c5868c5baad0bc3dcc86b9edda1d55aea21bf8edb",
