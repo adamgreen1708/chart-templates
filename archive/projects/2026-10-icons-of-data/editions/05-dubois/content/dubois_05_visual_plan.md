@@ -8,8 +8,8 @@
 
 ## Visual 02 — Unwinding the numbers (modern comparison)
 - Question: How large were the rural group and three urban-size groups relative to each other?
-- **Do not render yet** until four exact numbers and original city-size boundaries are verified from high-resolution scan.
-- Candidate transcription pending QA: 78,139 (cities >10,000), 8,025 (5,000–10,000), 37,699 (2,500–5,000), 734,952 (country and villages), total **858,815** from Census table 25. **These are provisional, not licensed final data**; conflicting online captions are recorded in source audit.
+- **Verified for review-stage rendering on 12 October 2026:** checked all four printed values in the LoC 800×1000 original image and the Yale National Initiative teaching table, plus US Census total. A larger archival TIFF remains available from LoC if needed for final publication provenance.
+- Verified transcription: 78,139 (cities >10,000), 8,025 (5,000–10,000), 37,699 (2,500–5,000), 734,952 (country and villages), total **858,815** from Census table 25. Conflicting online secondary captions are retained in the source audit and must not supersede the primary plus independent verification.
 - Prefer **four horizontal bars starting at zero**, direct count labels, a single ordered scale to show magnitude; historical original colour categories if independently checked, with accessibility text. Largest first by house default. No invented unit transformations. Optional one annotation `~86% rural/villages` only if original numbers verified.
 - Explain this is the **distribution** of 1890 categories, not a chronological trend. Geography and definition are scope constraints.
 - All 4 categories must be exhaustive and non-overlapping as stated; if source categories uncertain, stop rather than manufacture a complete distribution.
