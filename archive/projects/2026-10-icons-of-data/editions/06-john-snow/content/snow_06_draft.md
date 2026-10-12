@@ -34,7 +34,7 @@ The short bars show **where** fatal attacks were recorded. The pumps introduce a
 
 *[Visual 2 — A source-faithful modern reconstruction from the HistData digitisation: 578 plotted fatal-attack marks, 13 pumps and original digitised street coordinates. No fictional deaths or GPS conversion.]*
 
-It's a beautifully economical encoding.
+It's a beautifully economical encoding. A reader can see the neighbourhood pattern almost immediately, where a list of addresses might take far longer to explain.
 
 But a convincing cluster is not the same as an answer.
 
