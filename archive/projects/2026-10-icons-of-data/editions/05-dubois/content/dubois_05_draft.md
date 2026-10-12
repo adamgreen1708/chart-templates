@@ -2,7 +2,7 @@
 
 *Icons of Data · Edition 05 · W. E. B. Du Bois and the 1900 Paris Exposition*
 
-**Working manuscript — editorial review only. Historical numerical transcription requires final plate-level verification before any new chart is rendered.**
+**Working manuscript — editorial direction approved. Four 1890 counts verified against the readable Library of Congress original and an independent Yale teaching table; figures now rendered separately for visual approval.**
 
 Some numbers are so much bigger than the others that the chart becomes a bit awkward.
 
@@ -42,7 +42,7 @@ Modern bars could make that comparison easier to judge.
 
 In Du Bois's original, though, the spiral commands the page. The drawing's sheer scale does part of the storytelling.
 
-*[Visual 2 — Modern zero-based comparison of the four source categories, with exact period definitions and confirmed transcription.]*
+*[Visual 2 — “The spiral, unwound”: modern zero-based comparison of the four verified 1890 source categories.]*
 
 And that's a choice worth noticing.
 
@@ -54,7 +54,7 @@ The colours help separate categories, and the printed numbers carry essential pr
 
 There's another catch. The categories reflect **1890 definitions of cities and villages**, not today's idea of an urban neighbourhood. And a single census year is a snapshot, not evidence of why people moved.
 
-*[Visual 3 — Decode the Icon: line length and compacting, colour and categories, printed counts, and what 1890 boundaries conceal.]*
+*[Visual 3 — “A striking shape. A tricky comparison.”: four-panel decoder of page space, colour, exact labels and historical boundaries.]*
 
 ## TLDR
 
@@ -68,4 +68,4 @@ One isn't quite enough without the other.
 
 ---
 
-**Source and method:** W. E. B. Du Bois, *The Georgia Negro: City and Rural Population. 1890*, original drawn c. 1900 for the Paris Exposition, Library of Congress [item 2013650430](https://www.loc.gov/item/2013650430/), no known restrictions on publication. Original census total: US Census historical Georgia table (1890 Black population 858,815). The 734,952 figure appears on the reproduced source plate; the full four-category transcription remains provisional pending close original scan reading. Modern categories and definitions must not be substituted; exact methods will be published with the later article. Du Bois worked with Atlanta University collaborators; don't treat this single chart as his only personal handiwork.
+**Source and method:** W. E. B. Du Bois, *The Georgia Negro: City and Rural Population. 1890*, original drawn c. 1900 for the Paris Exposition, Library of Congress [item 2013650430](https://www.loc.gov/item/2013650430/), no known restrictions on publication. Original census total: US Census historical Georgia table (1890 Black population 858,815). The four 1890 counts (734,952; 78,139; 37,699; 8,025) have been checked against the readable Library of Congress original image and an independent teaching table from Yale National Initiative. Some secondary captions disagree, so those discrepancies are documented in the source audit. Modern categories and definitions must not be substituted; exact methods will be published with the later article. Du Bois worked with Atlanta University collaborators; don't treat this single chart as his only personal handiwork.
