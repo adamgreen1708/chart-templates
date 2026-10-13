@@ -1,21 +1,56 @@
 {
-  "report_date": "2026-10-11",
-  "visits": 1,
-  "prior_7d_avg": "8.00",
-  "pct_vs_prior_7d": "-87.5",
-  "top_page_path": "/",
-  "top_page_title": "coffeetableviz",
+  "report_date": "2026-10-12",
+  "visits": 6,
+  "prior_7d_avg": "6.86",
+  "pct_vs_prior_7d": "-12.5",
+  "top_page_path": "/icons-of-data/dubois-spiral",
+  "top_page_title": "The spiral that tells a bigger story \u00b7 coffeetableviz",
   "top_page_visits": 1,
   "top_referrer": "Direct / unknown",
   "top_referrer_visits": 1,
-  "observation": "Home reached every recorded visitor.",
-  "generated_at_utc": "2026-10-12T17:54:04+00:00",
+  "observation": "Traffic stayed fairly close to its recent rhythm.",
+  "generated_at_utc": "2026-10-13T00:35:23+00:00",
   "top_pages": [
+    {
+      "path_id": 111792201,
+      "path": "/icons-of-data/dubois-spiral",
+      "title": "The spiral that tells a bigger story \u00b7 coffeetableviz",
+      "display": "The spiral that tells a bigger story",
+      "count": 1
+    },
+    {
+      "path_id": 110989424,
+      "path": "/icons-of-data/nightingale-mortality",
+      "title": "The chart that made disease impossible to ignore \u00b7 coffeetableviz",
+      "display": "The chart that made disease impossible to ignore",
+      "count": 1
+    },
+    {
+      "path_id": 110548893,
+      "path": "/resources/icons-of-data",
+      "title": "Icons of Data \u00b7 coffeetableviz",
+      "display": "Icons of Data",
+      "count": 1
+    },
+    {
+      "path_id": 110546630,
+      "path": "/icons-of-data/minard",
+      "title": "A line that disappears \u00b7 coffeetableviz",
+      "display": "A line that disappears",
+      "count": 1
+    },
     {
       "path_id": 109451764,
       "path": "/",
       "title": "coffeetableviz",
       "display": "Home",
+      "count": 1
+    },
+    {
+      "path_id": 109446267,
+      "path": "/archive",
+      "title": "Archive \u00b7 coffeetableviz",
+      "display": "Archive",
       "count": 1
     }
   ],
