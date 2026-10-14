@@ -94,12 +94,16 @@ Use fresh web research before any image work.
 Find several recognisable mainstream blockbuster films with a genuine connection to RUN_DATE’s exact calendar month/day.
 
 Preferred connection hierarchy:
-1. original theatrical release or premiere on RUN_DATE’s month/day in a clearly named territory
-2. birthday of a principal actor or director directly connected to the film
-3. major award date directly tied to the film
-4. box-office milestone reached on that exact date
-5. another genuine film-history event directly tied to the film
-6. an occasional numerical/date connection only if unusually strong, central and independently verifiable
+1. birthday of a principal actor directly connected to the film
+2. birthday of the director where no strong principal-actor birthday candidate exists
+3. original theatrical release or premiere on RUN_DATE’s month/day in a clearly named territory
+4. major award date directly tied to the film
+5. box-office milestone reached on that exact date
+6. another genuine film-history event directly tied to the film
+7. an occasional numerical/date connection only if unusually strong, central and independently verifiable
+
+EDITORIAL PREFERENCE — BIRTHDAYS FIRST
+For this series, principal-actor birthdays are the default preferred date connection. Actively search for recognisable lead or principal actors born on RUN_DATE before considering theatrical-release dates. Prefer a strong actor-birthday connection even when a valid US release-date candidate exists. Use a release-date connection only when no sufficiently strong, recognisable and independently verifiable birthday-led film/quote candidate can be found.
 
 Reject weak, incidental or forced connections.
 
