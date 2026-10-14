@@ -1,9 +1,9 @@
-# Coffeetableviz Daily Pulse — 12 October 2026
+# Coffeetableviz Daily Pulse — 13 October 2026
 
-- **Visits:** 6
-- **7-day context:** 12% below prior 7-day daily average (6.9)
-- **Top pages:** The spiral that tells a bigger story (1), The chart that made disease impossible to ignore (1), Icons of Data (1)
-- **Top referrer:** Direct / unknown — 1 visits
-- **Observation:** Traffic stayed fairly close to its recent rhythm.
+- **Visits:** 35
+- **7-day context:** 380% above prior 7-day daily average (7.3)
+- **Top pages:** The grid is a guide, not a verdict (9), Home (4), Resources (2)
+- **Top referrer:** www.linkedin.com — 5 visits
+- **Observation:** A noticeably busier day than the seven-day baseline.
 
 Latest image: `output/daily_site_pulse.png`
