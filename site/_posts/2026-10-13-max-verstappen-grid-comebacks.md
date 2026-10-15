@@ -4,7 +4,7 @@ title: "The grid is a guide, not a verdict"
 slug: max-verstappen-grid-comebacks
 description: "Max Verstappen, eleven seasons, and the rather interesting difference between where you start and where you finish."
 date: 2026-10-13 19:00:00 +0100
-category: "Data stories"
+category: Sport
 read_time: "4 minute read"
 card_image: "/assets/charts/shortsinsports-verstappen-03-comebacks.png"
 social_image: "/assets/charts/shortsinsports-verstappen-03-comebacks.png"

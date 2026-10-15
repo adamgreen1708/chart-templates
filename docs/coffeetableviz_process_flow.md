@@ -17,6 +17,12 @@ Four content types share one reviewed route into GitHub Pages:
 
 Evergreen guides live under the standalone `site/resources/` section. Existing chart-guide images remain under `site/assets/data-lens/resources/` until a broader asset cleanup is worthwhile.
 
+### Archive classification rule
+
+Archive labels are **subject themes**, not the format of the article. Every new chart story in `site/_posts/` should specify one meaningful `category` in its front matter, such as `Sport`, `Society`, `Culture`, `Environment`, `Climate`, `Economy`, `Technology`, `Design`, `Travel` or `Film`. Reuse established category names and their exact capitalisation; introduce a new theme only when justified by the subject. Do not use catch-all values such as `Data Stories`, `Data stories` or `Data story`. Series categories (for example `Icons of Data`) may be used deliberately for posts in a named editorial series.
+
+The archive template at `site/archive/index.html` displays `post.category` directly. Check the rendered archive label as part of publication QA, alongside the article itself.
+
 All four routes converge on the same approval pattern:
 
 ```text
