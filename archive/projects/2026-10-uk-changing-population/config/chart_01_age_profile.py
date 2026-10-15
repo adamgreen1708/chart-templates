@@ -62,7 +62,7 @@ CHART_CONFIG = {
     "highlight_points": [{"age": 35}, {"age": 62}, {"age": 78}],
     "annotate_points": [
         {"age": 35, "text": "35  |  982,419\nAround the Web's arrival",
-         "xytext": (-24, -76), "ha": "right", "va": "top",
+         "xytext": (32, -58), "ha": "right", "va": "top",
          "fontsize": 10, "color": "#111111", "arrowprops": None},
         {"age": 62, "text": "62  |  1960s baby boom",
          "xytext": (0, 58), "ha": "center", "va": "bottom",
