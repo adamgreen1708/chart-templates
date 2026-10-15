@@ -82,7 +82,7 @@ CHART_CONFIG = {
          "bbox": {"facecolor": "#F3F4F6", "edgecolor": "none", "pad": 1.8},
          "arrowprops": None},
         {"age": 78, "text": "78  |  Born around\nthe NHS's birth",
-         "xytext": (0, 40), "ha": "center", "va": "bottom",
+         "xytext": (12, 40), "ha": "left", "va": "bottom",
          "fontsize": 10, "color": "#111111",
          "bbox": {"facecolor": "#F3F4F6", "edgecolor": "none", "pad": 1.8},
          "arrowprops": None},
