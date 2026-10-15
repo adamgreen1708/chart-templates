@@ -11,10 +11,13 @@ on:
     branches:
       - main
       - "project/**"
+      - "draft/**"
     paths:
       - "archive/projects/**/config/*.py"
       - "archive/projects/**/data/*.csv"
       - "archive/projects/**/project_manifest.md"
+      - "archive/projects/**/publish_asset_map.csv"
+      - "archive/projects/**/scripts/build_chart_views.py"
       - ".github/workflows/render-archived-project.yml"
       - "requirements-render.txt"
 
@@ -67,6 +70,7 @@ jobs:
         run: |
           set -euo pipefail
           rendered_any=0
+          : > /tmp/updated_site_assets.txt
 
           while IFS= read -r project_dir; do
             [[ -z "$project_dir" ]] && continue
@@ -91,6 +95,11 @@ jobs:
             if (( ${#configs[@]} == 0 )); then
               echo "No chart configs found in $project_dir/config"
               exit 1
+            fi
+
+            if [[ -f "$project_dir/scripts/build_chart_views.py" ]]; then
+              echo "Rebuilding derived chart datasets for $project_dir"
+              python "$project_dir/scripts/build_chart_views.py"
             fi
 
             mkdir -p "$project_dir/output"
@@ -130,6 +139,25 @@ jobs:
 
               rendered_any=1
             done
+
+            # A project may declare approved site asset paths for its rendered PNGs.
+            # Publish only exact output basenames into the site/assets/charts directory.
+            if [[ -f "$project_dir/publish_asset_map.csv" ]]; then
+              while IFS=, read -r png_name asset_path; do
+                [[ "$png_name" == "rendered_filename" || -z "$png_name" ]] && continue
+                if [[ "$png_name" == */* || "$png_name" == *..* || "$asset_path" != site/assets/charts/* || "$asset_path" == *..* || "$asset_path" != *.png ]]; then
+                  echo "Unsafe image mapping: $png_name => $asset_path"
+                  exit 1
+                fi
+                if [[ ! -f "$project_dir/output/$png_name" ]]; then
+                  echo "Mapped PNG missing: $project_dir/output/$png_name"
+                  exit 1
+                fi
+                mkdir -p "$(dirname "$asset_path")"
+                cp "$project_dir/output/$png_name" "$asset_path"
+                printf '%s\n' "$asset_path" >> /tmp/updated_site_assets.txt
+              done < "$project_dir/publish_asset_map.csv"
+            fi
           done < /tmp/project_dirs.txt
 
           git checkout -- src/chart_config.py
@@ -163,8 +191,13 @@ jobs:
 
           while IFS= read -r project_dir; do
             [[ -z "$project_dir" ]] && continue
-            git add "$project_dir/output" || true
+            git add "$project_dir/output" "$project_dir/data" || true
           done < /tmp/project_dirs.txt
+
+          while IFS= read -r asset_path; do
+            [[ -z "$asset_path" ]] && continue
+            git add "$asset_path"
+          done < /tmp/updated_site_assets.txt
 
           if git diff --staged --quiet; then
             echo "No rendered output changes to commit."

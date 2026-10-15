@@ -33,7 +33,7 @@ Yes, that was **1996**. Sorry.
 
 ## 2. The balance is shifting
 
-In **2026, 19.7%** of the UK is projected to be aged 65 or over. By **2050, that's 24.9%** — almost one in four.
+In **2026, 19.6%** of the UK is projected to be aged 65 or over. By **2050, that's 24.9%** — almost one in four.
 
 Meanwhile, the share aged under 15 falls from **16.4% to 13.6%**.
 
