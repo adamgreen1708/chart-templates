@@ -201,6 +201,14 @@ Rules:
 - Avoid labels overlapping title, subtitle, footer, or chart edges.
 - Prefer no arrow unless the point genuinely needs a pointer.
 
+For text annotations in front of dotted reference guides, an optional Matplotlib
+`bbox` dictionary can be supplied in each `annotate_points` item. Use a
+background matching the canvas (normally `#F3F4F6`), no edge, and modest
+padding. This masks guides behind the text without hiding the rest of the
+reference line. Leave `bbox` absent for ordinary annotations.
+
+Example: `"bbox": {"facecolor": "#F3F4F6", "edgecolor": "none", "pad": 1.2}`.
+
 ## Reference lines
 
 Supported reference line axes:

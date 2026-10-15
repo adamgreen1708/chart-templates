@@ -627,7 +627,7 @@ def _point_matches_row(point, row):
     ignored = {
         "x", "y", "label", "text", "color", "colour", "size", "alpha",
         "xytext", "ha", "va", "fontsize", "arrowprops", "column",
-        "target", "value", "series", "fontweight"
+        "target", "value", "series", "fontweight", "bbox"
     }
 
     for key, value in point.items():
@@ -737,6 +737,7 @@ def _plot_annotations(ax, rows=None):
             fontsize=p.get("fontsize", 9),
             color=p.get("color", p.get("colour", "#333333")),
             fontweight=p.get("fontweight", "normal"),
+            bbox=p.get("bbox"),
             arrowprops=p.get(
                 "arrowprops",
                 {

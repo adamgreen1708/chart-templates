@@ -85,3 +85,27 @@ def test_custom_tick_labels_are_applied(monkeypatch):
 
     assert [tick.get_text() for tick in ax.get_xticklabels()] == ["One", "Two"]
     assert [tick.get_text() for tick in ax.get_yticklabels()] == ["Ten", "Twenty"]
+
+
+def test_annotations_allow_matching_rows_with_background_boxes(monkeypatch):
+    """Guide lines remain legible while label text gets a chart-coloured backdrop."""
+    fig, ax = plt.subplots(figsize=(8.0, 8.0))
+    monkeypatch.setattr(render_538, "CHART_CONFIG", {
+        "x_col": "age",
+        "y_col": "people",
+        "x_is_datetime": False,
+        "series_col": None,
+        "annotate_points": [{
+            "age": 35,
+            "text": "35 | 982,419 people",
+            "xytext": (0, -20),
+            "ha": "center",
+            "arrowprops": None,
+            "bbox": {"facecolor": "#F3F4F6", "edgecolor": "none", "pad": 1.5},
+        }],
+    })
+    render_538._plot_annotations(ax, [{"age": 35, "people": 982.419}])
+    assert len(ax.texts) == 1
+    assert ax.texts[0].get_bbox_patch() is not None
+    assert ax.texts[0].get_text() == "35 | 982,419 people"
+    plt.close(fig)
