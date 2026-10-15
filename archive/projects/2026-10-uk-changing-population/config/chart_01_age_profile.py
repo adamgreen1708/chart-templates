@@ -48,7 +48,7 @@ CHART_CONFIG = {
     "data_file": "archive/projects/2026-10-uk-changing-population/data/chart_01_age_profile.csv",
     "chart_type": "line",
     "story_angle": "single_series_trend",
-    "title": "Britain's busiest age is 35",
+    "title": "The UK's busiest age is 35",
     "subtitle": "982,419 people aged 35 in mid-2026. The bumps carry echoes of British history.",
     "x_col": "age",
     "y_col": "people_thousands",
@@ -63,7 +63,7 @@ CHART_CONFIG = {
     "annotate_points": [
         {"age": 35, "text": "35: 982k", "xytext": (0, 16), "ha": "center", "va": "bottom",
          "fontsize": 11, "color": "#C44E52", "arrowprops": None},
-        {"age": 78, "text": "1948: NHS era", "xytext": (-10, 18), "ha": "right", "va": "bottom",
+        {"age": 78, "text": "1948: NHS era", "xytext": (-6, -35), "ha": "right", "va": "top",
          "fontsize": 9, "arrowprops": None},
         {"age": 62, "text": "1960s baby boom", "xytext": (-8, -22), "ha": "right", "va": "top",
          "fontsize": 9, "arrowprops": None}
