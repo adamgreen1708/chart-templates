@@ -6,8 +6,8 @@ permalink: /stories/the-uk-is-getting-older-but-not-all-at-once/
 description: "The UK's busiest age is 35. By 2050, the population aged 85+ is projected to more than double. From Live Aid to Doctor Who, the age chart has quite a soundtrack."
 category: Data Stories
 read_time: 2 minute read
-card_image: /assets/charts/uk_ageing_feature.png
-hero_image: /assets/charts/uk_ageing_feature.png
+card_image: /assets/charts/uk_ageing_feature.webp
+hero_image: /assets/charts/uk_ageing_feature.webp
 hero_alt: "Single-scene stencil illustration of different generations walking across a bridge in a British city, with older figures highlighted in muted red to symbolise the changing age balance."
 ---
 
