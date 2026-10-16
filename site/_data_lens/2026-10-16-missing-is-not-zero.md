@@ -22,8 +22,8 @@ qa:
   page_copy_checked: true
 ---
 
-Missing values look harmless in a table: a blank cell, perhaps `NA`. In a chart, the choice you make can change the story. Replacing missing with zero creates a real-looking event — a collapse, stop or disappearance — that may never have happened. Joining the points either side is subtler, but it still assumes a path between them.
+Missing values can look harmless in a table. In a chart, the treatment can change the story. Replacing missing with zero invents an event that may never have happened; joining the points either side assumes a path you do not know.
 
-A better choice depends on *why* the data is missing. A sensor outage, a suppressed small count and a genuinely zero value are different states. If the gap matters, show it and, where useful, annotate why.
+The right choice depends on why the value is missing. A sensor outage, suppressed count and genuine zero are different states.
 
-A useful review question: **if someone only saw the chart, could they tell the difference between “nothing happened” and “we don’t know what happened”?**
+A useful check: **could a reader tell the difference between “nothing happened” and “we don’t know what happened”?**
