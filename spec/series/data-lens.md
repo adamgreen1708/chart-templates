@@ -31,8 +31,9 @@ The repository validator must pass before Jekyll builds the site. If a factual, 
 1. The enabled ChatGPT task reads this specification from `main` and checks for an existing edition for the run date.
 2. ChatGPT reads `spec/series/data-lens-reference-sources.md`, completes the required reference pass, researches several candidates and selects one with a strong, supportable observation.
 3. Claims, comparisons, units, scales, labels, arithmetic and sources are checked before copy is frozen.
-4. The final card is rendered and inspected at full size.
-5. The task commits only the dated edition Markdown and PNG to `automation/data-lens-YYYY-MM-DD`.
+4. The final card is rendered, then the actual final PNG is opened and inspected at full size. The inspection must cover every text block, axis and tick label, caption, annotation, panel boundary, divider, source line, footer and outer safe margin. Any clipping, overlap, collision, truncation, unreadable text or unsafe edge clearance is a render failure and requires a rerender followed by another inspection.
+5. `qa.render_checked` may be set to `true` only after that final-pixel inspection passes. Code execution, image dimensions, calculated bounding boxes or inspection of an earlier/intermediate render do not satisfy this gate.
+6. The task commits only the dated edition Markdown and PNG to `automation/data-lens-YYYY-MM-DD`.
 6. The task opens a draft pull request and stops.
 7. GitHub validates and builds the site.
 8. Adam reviews; only Adam’s merge publishes the edition.
@@ -69,8 +70,12 @@ qa:
 - Reproduce arithmetic and inspect chart axes, labels, baselines and encodings.
 - Use deterministic typography and layout for all factual text.
 - Render exactly one square publication image.
-- Read every visible word, date, number and source line after rendering.
-- Reject clipping, overlap, malformed text, inconsistent scales or changed copy.
+- Open and inspect the actual final PNG at full size after rendering. Do not treat renderer success, dimensions, geometry calculations or an earlier preview as visual QA.
+- Read every visible word, date, number and source line in that final PNG.
+- Check every text block, axis/tick label, caption, annotation, chart mark, panel boundary, divider, source line, footer and outer safe margin for clearance.
+- Reject and rerender for any clipping, overlap, collision, truncation, malformed text, unreadable text, unsafe edge clearance, inconsistent scale, changed copy or element touching/crossing a boundary it should not touch.
+- After any rerender, repeat the full final-pixel inspection from the beginning.
+- Set `qa.render_checked: true` only after the actual final PNG passes this inspection. If the inspection cannot be performed, fail the run rather than presenting or publishing the edition.
 - Never push to `main`, merge, or bypass repository review with a standalone image.
 
 ## Expected daily delivery
