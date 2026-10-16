@@ -6,6 +6,13 @@ Status: live recurring-series specification.
 
 Publish one concise, accurate and visually useful observation about charts, data, visualisation, communication, numbers or analytical thinking. Each edition should be readable in under one minute and make one idea—not a bundle of tips.
 
+## Required inspiration/reference pass
+
+Before general candidate research, read `spec/series/data-lens-reference-sources.md` from `main` and complete its required daily reference pass. The curated panel is the default inspiration layer for Today’s Data Lens: use it to seed ideas about chart craft, perception, statistical interpretation, communication, encoding and analytical thinking.
+
+The reference panel is an **idea source, not a substitute for verification**. Any empirical claim, current statistic or historical fact in the finished edition must still be checked against a primary, official or otherwise authoritative source.
+
+
 ## Publishing contract
 
 Each daily edition lives in `site/_data_lens/` and contains:
@@ -22,7 +29,7 @@ The repository validator must pass before Jekyll builds the site. If a factual, 
 ## Review model
 
 1. The enabled ChatGPT task reads this specification from `main` and checks for an existing edition for the run date.
-2. ChatGPT researches several candidate ideas and selects one with a strong, supportable observation.
+2. ChatGPT reads `spec/series/data-lens-reference-sources.md`, completes the required reference pass, researches several candidates and selects one with a strong, supportable observation.
 3. Claims, comparisons, units, scales, labels, arithmetic and sources are checked before copy is frozen.
 4. The final card is rendered and inspected at full size.
 5. The task commits only the dated edition Markdown and PNG to `automation/data-lens-YYYY-MM-DD`.
@@ -56,7 +63,7 @@ qa:
 ## Daily-run rules
 
 - Resolve and freeze the current date from Europe/London before research.
-- Research fresh candidates; do not reuse stale copy or an old render.
+- Complete the required reference pass in `spec/series/data-lens-reference-sources.md` before choosing the topic; then research fresh candidates and do not reuse stale copy or an old render.
 - Prefer primary sources, official datasets and original research.
 - Keep source definitions, time periods, geographies and units comparable.
 - Reproduce arithmetic and inspect chart axes, labels, baselines and encodings.
