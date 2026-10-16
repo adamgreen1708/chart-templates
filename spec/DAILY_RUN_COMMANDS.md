@@ -30,7 +30,7 @@ Publish the exact Blockbuster edition I just approved to `adamgreen1708/chart-te
 
 Run today’s Data Lens using @GitHub.
 
-Before doing anything else, read the current Data Lens specification and any relevant publishing/validation instructions in my `adamgreen1708/chart-templates` GitHub repository. Treat the repository as the source of truth rather than relying on previous chat history or memory.
+Before doing anything else, read the current Data Lens specification, `spec/series/data-lens-reference-sources.md`, and any relevant publishing/validation instructions in my `adamgreen1708/chart-templates` GitHub repository. Complete the reference-source pass before choosing today’s topic. Treat the repository as the source of truth rather than relying on previous chat history or memory.
 
 Create and QA today’s edition, then show me the finished image for approval. Do not publish anything to GitHub yet.
 
