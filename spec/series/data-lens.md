@@ -18,7 +18,8 @@ The reference panel is an **idea source, not a substitute for verification**. An
 Each daily edition lives in `site/_data_lens/` and contains:
 
 - the exact Europe/London run date;
-- one verified title, observation and closing line;
+- one verified title, observation and closing line for the card;
+- a short developed page note that adds value beyond the card rather than restating it;
 - direct source links for factual or research-based claims;
 - explicit QA sign-off flags;
 - one finished square image;
@@ -58,8 +59,32 @@ qa:
   sources_verified: true
   copy_deck_frozen: true
   render_checked: true
+  page_copy_checked: true
 ---
+A short developed page note goes here. It is separate from the poster copy and should add useful context, application, nuance or a practical question.
 ```
+
+## Page-copy rule — the card is the summary; the page adds value
+
+The poster/card is the concise one-minute idea. The webpage must earn the click by developing that idea briefly rather than transcribing or paraphrasing the image.
+
+For every new Data Lens edition:
+
+- Write roughly **100–160 words** of developed page copy in the Markdown body after the front matter.
+- Use **2–4 short paragraphs**. Keep the tone conversational, curious and concise.
+- Do **not** narrate the chart, repeat the observation sentence-for-sentence, or simply expand the same wording.
+- Add at least **two** useful layers that are not already doing the same job on the card, chosen from:
+  - why the idea matters in real analysis or communication;
+  - a concrete practical example or application;
+  - a caveat, edge case or distinction;
+  - a useful question/check someone can apply to their own work;
+  - a small piece of verified context that deepens the lesson.
+- The page copy may refer to the visual, but it should still reward someone who has already understood the poster.
+- Do not introduce unsupported claims merely to make the page longer. Any new factual claim must be sourced and verified under the same evidence rules as the card.
+- The kicker remains separate and should not be repeated in the page copy.
+- Set `qa.page_copy_checked: true` only after confirming that the body adds incremental value and does not materially duplicate the card.
+
+A useful test is: **after reading the image, does the page teach me one more thing or give me one useful way to apply it?** If not, rewrite it.
 
 ## Daily-run rules
 
@@ -69,6 +94,7 @@ qa:
 - Keep source definitions, time periods, geographies and units comparable.
 - Reproduce arithmetic and inspect chart axes, labels, baselines and encodings.
 - Use deterministic typography and layout for all factual text.
+- Write and QA the developed webpage copy under the Page-copy rule before final delivery.
 - Render exactly one square publication image.
 - Open and inspect the actual final PNG at full size after rendering. Do not treat renderer success, dimensions, geometry calculations or an earlier preview as visual QA.
 - Read every visible word, date, number and source line in that final PNG.
