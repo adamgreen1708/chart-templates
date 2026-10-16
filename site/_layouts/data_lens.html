@@ -17,9 +17,17 @@ layout: default
   </figure>
 
   <div class="data-lens-copy shell-narrow">
-    <section aria-labelledby="observation">
-      <p class="eyebrow" id="observation">Observation</p>
+    {% assign developed_copy = content | strip %}
+    <section aria-labelledby="data-lens-more">
+      {% if developed_copy != "" %}
+      <p class="eyebrow" id="data-lens-more">A little further</p>
+      <div class="data-lens-article">
+        {{ content }}
+      </div>
+      {% else %}
+      <p class="eyebrow" id="data-lens-more">Observation</p>
       <p class="data-lens-observation">{{ page.observation }}</p>
+      {% endif %}
     </section>
 
     <p class="data-lens-kicker">{{ page.kicker }}</p>
