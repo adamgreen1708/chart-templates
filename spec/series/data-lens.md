@@ -70,8 +70,8 @@ The poster/card is the concise one-minute idea. The webpage must earn the click 
 
 For every new Data Lens edition:
 
-- Write roughly **100–160 words** of developed page copy in the Markdown body after the front matter.
-- Use **2–4 short paragraphs**. Keep the tone conversational, curious and concise.
+- Write roughly **70–120 words** of developed page copy in the Markdown body after the front matter.
+- Use **2–3 short paragraphs**. Keep the tone conversational, curious and concise.
 - Do **not** narrate the chart, repeat the observation sentence-for-sentence, or simply expand the same wording.
 - Add at least **two** useful layers that are not already doing the same job on the card, chosen from:
   - why the idea matters in real analysis or communication;
