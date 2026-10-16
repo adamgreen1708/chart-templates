@@ -44,7 +44,7 @@ Run today’s Data Lens using @GitHub.
 
 Before doing anything else, read the current Data Lens specification, `spec/series/data-lens-reference-sources.md`, and any relevant publishing/validation instructions in my `adamgreen1708/chart-templates` GitHub repository. Complete the reference-source pass before choosing today’s topic. Treat the repository as the source of truth rather than relying on previous chat history or memory.
 
-Create and QA today’s edition, then inspect the actual final PNG at full size before showing it to me. Confirm that every text block, axis/tick label, caption, annotation, panel boundary and footer/source line has safe clearance and that nothing clips, overlaps, collides or becomes unreadable. Only then may `render_checked` be treated as true.
+Create and QA today’s edition. Write the short developed webpage copy required by the Data Lens specification so the page adds value beyond the card rather than repeating it. Then inspect the actual final PNG at full size before showing it to me. Confirm that every text block, axis/tick label, caption, annotation, panel boundary and footer/source line has safe clearance and that nothing clips, overlaps, collides or becomes unreadable. Only then may `render_checked` be treated as true.
 
 Show me the finished image for approval. Do not publish anything to GitHub yet. If the final-pixel inspection fails, rerender and reinspect before presenting anything.
 

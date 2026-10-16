@@ -440,6 +440,13 @@ a { color: inherit; }
   line-height: 1.55;
 }
 
+.data-lens-article {
+  font-size: 1.15rem;
+  line-height: 1.65;
+}
+.data-lens-article p { margin: 0 0 1.25rem; }
+.data-lens-article p:last-child { margin-bottom: 0; }
+
 .data-lens-kicker {
   margin: 3rem 0 0;
   font-family: Georgia, "Times New Roman", serif;

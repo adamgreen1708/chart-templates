@@ -19,4 +19,11 @@ qa:
   sources_verified: true
   copy_deck_frozen: true
   render_checked: true
+  page_copy_checked: true
 ---
+
+Missing values can look harmless in a table. In a chart, the treatment can change the story. Replacing missing with zero invents an event that may never have happened; joining the points either side assumes a path you do not know.
+
+The right choice depends on why the value is missing. A sensor outage, suppressed count and genuine zero are different states.
+
+A useful check: **could a reader tell the difference between “nothing happened” and “we don’t know what happened”?**

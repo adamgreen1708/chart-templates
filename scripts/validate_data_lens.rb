@@ -10,6 +10,7 @@ EDITION_DIR = File.join(ROOT, "site", "_data_lens")
 RESOURCE_DIR = File.join(ROOT, "site", "assets", "data-lens", "resources", "chart-choice-guide")
 REQUIRED_TEXT = %w[header title observation kicker hero_image hero_alt].freeze
 REQUIRED_QA = %w[run_date_verified claim_verified sources_verified copy_deck_frozen render_checked].freeze
+DEVELOPED_COPY_START = Date.new(2026, 10, 16)
 RESOURCE_IMAGES = %w[
   01-big-number.webp
   02-compare-categories.webp
@@ -29,12 +30,13 @@ RESOURCE_IMAGES = %w[
 errors = []
 seen_dates = {}
 
-def front_matter(path)
+def front_matter_and_body(path)
   raw = File.read(path, encoding: "UTF-8")
-  match = raw.match(/\A---\s*\n(.*?)\n---\s*(?:\n|\z)/m)
+  match = raw.match(/\A---\s*\n(.*?)\n---\s*(?:\n|\z)(.*)\z/m)
   raise "missing YAML front matter" unless match
 
-  YAML.safe_load(match[1], permitted_classes: [Date, Time], aliases: false) || {}
+  data = YAML.safe_load(match[1], permitted_classes: [Date, Time], aliases: false) || {}
+  [data, match[2].to_s.strip]
 end
 
 def iso_date(value)
@@ -88,7 +90,7 @@ Dir.glob(File.join(EDITION_DIR, "*.md")).sort.each do |path|
   name = File.basename(path)
 
   begin
-    data = front_matter(path)
+    data, body = front_matter_and_body(path)
 
     REQUIRED_TEXT.each do |key|
       errors << "#{name}: #{key} is required" if data[key].to_s.strip.empty?
@@ -124,6 +126,21 @@ Dir.glob(File.join(EDITION_DIR, "*.md")).sort.each do |path|
     end
     REQUIRED_QA.each do |key|
       errors << "#{name}: qa.#{key} must be true" unless qa[key] == true
+    end
+
+    if date >= DEVELOPED_COPY_START
+      body_words = body.scan(/[[:alnum:]’'-]+/).length
+      errors << "#{name}: developed page copy must contain 60–140 words (found #{body_words})" unless (60..140).cover?(body_words)
+
+      paragraphs = body.split(/\n\s*\n/).reject { |paragraph| paragraph.strip.empty? }
+      errors << "#{name}: developed page copy must contain at least 2 short paragraphs" if paragraphs.length < 2
+
+      observation = data["observation"].to_s.strip
+      if !observation.empty? && body.downcase.include?(observation.downcase)
+        errors << "#{name}: developed page copy must not repeat the observation verbatim"
+      end
+
+      errors << "#{name}: qa.page_copy_checked must be true" unless qa["page_copy_checked"] == true
     end
 
     image = data["hero_image"].to_s
