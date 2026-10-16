@@ -130,7 +130,7 @@ Dir.glob(File.join(EDITION_DIR, "*.md")).sort.each do |path|
 
     if date >= DEVELOPED_COPY_START
       body_words = body.scan(/[[:alnum:]’'-]+/).length
-      errors << "#{name}: developed page copy must contain 90–180 words (found #{body_words})" unless (90..180).cover?(body_words)
+      errors << "#{name}: developed page copy must contain 60–140 words (found #{body_words})" unless (60..140).cover?(body_words)
 
       paragraphs = body.split(/\n\s*\n/).reject { |paragraph| paragraph.strip.empty? }
       errors << "#{name}: developed page copy must contain at least 2 short paragraphs" if paragraphs.length < 2
