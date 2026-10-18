@@ -1,9 +1,9 @@
-# Coffeetableviz Daily Pulse — 16 October 2026
+# Coffeetableviz Daily Pulse — 17 October 2026
 
-- **Visits:** 28
-- **7-day context:** 70% above prior 7-day daily average (16.4)
-- **Top pages:** Fury started it. Tyler Durden owns the answer. (2), The grid is a guide, not a verdict (2), 30% rain does not mean 18 wet minutes. (1)
-- **Top referrer:** www.linkedin.com — 1 visits
-- **Observation:** A noticeably busier day than the seven-day baseline.
+- **Visits:** 17
+- **7-day context:** 11% below prior 7-day daily average (19.1)
+- **Top pages:** Home (4), Missing is not zero. (2), The UK is getting older. But not all at once. (2)
+- **Top referrer:** Direct / unknown — 2 visits
+- **Observation:** Traffic stayed fairly close to its recent rhythm.
 
 Latest image: `output/daily_site_pulse.png`
