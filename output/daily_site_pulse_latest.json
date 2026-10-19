@@ -1,106 +1,23 @@
 {
-  "report_date": "2026-10-17",
-  "visits": 17,
-  "prior_7d_avg": "19.14",
-  "pct_vs_prior_7d": "-11.2",
+  "report_date": "2026-10-18",
+  "visits": 1,
+  "prior_7d_avg": "20.57",
+  "pct_vs_prior_7d": "-95.1",
   "top_page_path": "/",
   "top_page_title": "coffeetableviz",
-  "top_page_visits": 4,
-  "top_referrer": "Direct / unknown",
-  "top_referrer_visits": 2,
-  "observation": "Traffic stayed fairly close to its recent rhythm.",
-  "generated_at_utc": "2026-10-18T12:37:28+00:00",
+  "top_page_visits": 1,
+  "top_referrer": "No referrer recorded",
+  "top_referrer_visits": 0,
+  "observation": "Home reached every recorded visitor.",
+  "generated_at_utc": "2026-10-19T15:36:10+00:00",
   "top_pages": [
     {
       "path_id": 109451764,
       "path": "/",
       "title": "coffeetableviz",
       "display": "Home",
-      "count": 4
-    },
-    {
-      "path_id": 112407624,
-      "path": "/data-lens/daily/2026-10-16-missing-is-not-zero",
-      "title": "Missing is not zero. \u00b7 coffeetableviz",
-      "display": "Missing is not zero.",
-      "count": 2
-    },
-    {
-      "path_id": 112219374,
-      "path": "/stories/the-uk-is-getting-older-but-not-all-at-once",
-      "title": "The UK is getting older. But not all at once. \u00b7 coffeetableviz",
-      "display": "The UK is getting older. But not all at once.",
-      "count": 2
-    },
-    {
-      "path_id": 109446444,
-      "path": "/data-lens",
-      "title": "Data Lens \u00b7 coffeetableviz",
-      "display": "Data Lens",
-      "count": 2
-    },
-    {
-      "path_id": 112564032,
-      "path": "/data-lens/daily/2026-10-17-log-scale-doubling-same-distance",
-      "title": "On a log scale, doubling travels the same distance. \u00b7 coffeetableviz",
-      "display": "On a log scale, doubling travels the same distance.",
-      "count": 1
-    },
-    {
-      "path_id": 112561957,
-      "path": "/series/blockbuster-quote/2026-10-17-superman",
-      "title": "Superman \u00b7 coffeetableviz",
-      "display": "Superman",
-      "count": 1
-    },
-    {
-      "path_id": 112389232,
-      "path": "/2026/09/27/bowie-never-needed-the-three-minute-rule",
-      "title": "Bowie never needed the three-minute rule \u00b7 coffeetableviz",
-      "display": "Bowie never needed the three-minute rule",
-      "count": 1
-    },
-    {
-      "path_id": 109454214,
-      "path": "/2026/09/27/every-bowie-album-has-a-shape",
-      "title": "Every Bowie album has a shape \u00b7 coffeetableviz",
-      "display": "Every Bowie album has a shape",
-      "count": 1
-    },
-    {
-      "path_id": 109446302,
-      "path": "/series/blockbuster-quote",
-      "title": "Today\u2019s Blockbuster Quote \u00b7 coffeetableviz",
-      "display": "Today\u2019s Blockbuster Quote",
-      "count": 1
-    },
-    {
-      "path_id": 109446272,
-      "path": "/2026/09/27/can-one-bowie-song-tell-you-the-whole-album",
-      "title": "Can one Bowie song tell you the whole album? \u00b7 coffeetableviz",
-      "display": "Can one Bowie song tell you the whole album?",
-      "count": 1
-    },
-    {
-      "path_id": 109446267,
-      "path": "/archive",
-      "title": "Archive \u00b7 coffeetableviz",
-      "display": "Archive",
       "count": 1
     }
   ],
-  "top_referrers": [
-    {
-      "id": null,
-      "name": "Direct / unknown",
-      "count": 2,
-      "ref_scheme": "o"
-    },
-    {
-      "id": "www.linkedin.com",
-      "name": "www.linkedin.com",
-      "count": 1,
-      "ref_scheme": "h"
-    }
-  ]
+  "top_referrers": []
 }
