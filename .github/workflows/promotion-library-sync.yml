@@ -1,0 +1,82 @@
+name: Propose promotion library updates
+
+# A post is first approved and merged through its normal workflow.
+# This follow-up only proposes new catalogue rows in a separate DRAFT PR.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/_posts/**"
+      - "site/_data_lens/**"
+      - "site/_blockbuster_quotes/**"
+      - "site/resources/**"
+      - "scripts/sync_promotion_library.py"
+      - "data/promotion/content_index.csv"
+      - "data/promotion/blockbuster_events.csv"
+      - ".github/workflows/promotion-library-sync.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: promotion-library-catalogue-sync
+  cancel-in-progress: false
+
+jobs:
+  propose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Test promotion inventory sync
+        run: python -m unittest discover -s tests -p test_promotion_library_sync.py -v
+
+      - name: Discover new merged content
+        run: python scripts/sync_promotion_library.py --write
+
+      - name: Check for new candidate rows
+        id: changes
+        shell: bash
+        run: |
+          if git diff --quiet -- data/promotion/content_index.csv data/promotion/blockbuster_events.csv; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open or update an editorial-review PR
+        if: steps.changes.outputs.has_changes == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: automation/promotion-library-content-refresh
+          base: main
+          delete-branch: true
+          draft: true
+          commit-message: "Index newly published content for promotion review"
+          title: "Review newly indexed coffeetableviz promotion candidates"
+          body: |
+            New content was merged through the normal coffeetableviz publishing process.
+            This draft PR only appends catalogue rows and leaves existing editorial metadata intact.
+
+            **Before approving this PR:**
+            - Set priority and evergreen class after reading each source.
+            - Propose a distinctive, accurate hook and freshness check.
+            - For Blockbuster entries, verify the birthday/release evidence again and link an
+              existing article only when the relationship is genuinely meaningful.
+            - Confirm asset rights, live URL and mobile readiness before any LinkedIn promotion.
+
+            Nothing has been posted, scheduled, or rewritten on the website.
+            The daily series creation and QA rules are unaffected.
+          add-paths: |
+            data/promotion/content_index.csv
+            data/promotion/blockbuster_events.csv
