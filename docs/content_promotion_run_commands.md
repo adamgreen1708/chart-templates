@@ -2,6 +2,16 @@
 
 The repository source of truth for this workflow is docs/content_promotion_workflow.md. This is a **manual, approval-first** process. The website is on GitHub Pages, not WordPress. Neither of the commands below publishes a LinkedIn post, creates a new daily series edition, or commits a site change.
 
+## One-click command: plan the next three months of articles
+
+Use @GitHub to prepare the Coffeetableviz monthly Editorial Radar.
+
+Read docs/editorial_radar/README.md, data/promotion/editorial_radar_events.csv, docs/editorial_radar/priority_briefs.md and the latest main-site promotion catalogue from adamgreen1708/chart-templates. Resolve today's Europe/London date and review the **next three full months**. Independently research upcoming actor and artist birthdays, death anniversaries, film releases and album anniversaries using credible primary/authoritative sources. Preserve exact day versus month-only uncertainty, film territory and premiere versus theatrical release; for Blockbuster pairing require all existing separate exact-date and quote QA gates. Look for opportunities that might genuinely support a new three-chart data story, or that could reuse a published article.
+
+Produce a **month-by-month potential article table** showing date/event, anniversary, source evidence, proposed hook, feasible real dataset, new-vs-resurface decision, possible Blockbuster connection, research-by date, priority and progress status. Prioritise the 3–5 strongest ideas and write short analysis briefs for the top one or two. Do not manufacture data findings, film quotes or an exact album day that is not reliably verified. Present the plan for approval before updating CSV or monthly snapshots in a reviewable PR. Do not publish articles, schedule social posts or merge GitHub PRs.
+
+---
+
 ## One-click command: build this week's LinkedIn drafts
 
 Use @GitHub and prepare this week's Coffeetableviz LinkedIn promotion candidates.
