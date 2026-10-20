@@ -16,6 +16,13 @@ Use @GitHub to find a relevant date-led opportunity for Coffeetableviz.
 
 Read the current Blockbuster source records from site/_blockbuster_quotes and data/promotion/blockbuster_events.csv alongside docs/content_promotion_workflow.md and the main article catalogue. Resolve the current date in Europe/London. Look for a verifiable upcoming birthday, exact film-release anniversary with territory, or clearly identified seasonal opportunity that honestly connects to an *existing* article. Prefer exact actor or franchise connections to loose associations. Recheck the date source; never imply the source Blockbuster card was created today if it was not. Produce one optional LinkedIn draft plus a grounded rationale and article URL for review. If nothing is genuinely relevant, say so and offer an evergreen resource instead. Do not change any GitHub files, render new daily editions or post automatically.
 
+
+## One-click command: review newly indexed material
+
+Use @GitHub to review the newest Coffeetableviz promotion-library entries.
+
+Read docs/content_promotion_workflow.md and the current data/promotion/content_index.csv and data/promotion/blockbuster_events.csv on main. Identify new entries marked priority REVIEW or evergreen_class unclassified, and any Blockbuster additions with an empty article match. Read their actual source pages and source evidence; assess an appropriate evergreen/freshness class, promotion priority, two differentiated hook ideas, relevant calendar links (if any) and material preflight risks. **Do not fabricate related films, birthdays or audience reach.** Show the editorial decisions for approval. Only after explicit approval should you make a branch/commit/PR to enrich the CSV; do not write to main directly or publish to LinkedIn.
+
 ## After publication — voluntary measurement update
 
 Only after the user confirms the LinkedIn publication, request the actual LinkedIn post URL and any available impressions, clicks, saves and engagement counts. Update data/promotion/promotion_log.csv **via a reviewable PR**, with measured values and clear reporting dates. Do not backfill or estimate missing metrics.
