@@ -109,7 +109,7 @@ def figure2():
     ax2.tick_params(length=0,labelsize=9.4,pad=6)
     ax2.grid(axis="y",color=GRID,lw=.7)
     for spine in ax2.spines.values():spine.set_visible(False)
-    txt(fig,.810,.472,"2025",9.5,color="#B5444B",weight="bold")
+    txt(fig,.808,.496,"2025",9.5,color="#B5444B",weight="bold")
     txt(fig,.086,.245,"Each band uses the same source year as the line below.",11.3)
     txt(fig,.086,.212,"Shading shows the Met Office published 95% uncertainty range.",10.3,color=MUTED)
     txt(fig,.086,.165,"Source: "+SRC,9.5,color=MUTED)
@@ -117,7 +117,7 @@ def figure2():
     return save(fig,"02_the_century_shifts_colour.png")
 def rectangle(fig,x,y,w,h,face=BG,edge=GRID,lw=1):
     fig.add_artist(Rectangle((x,y),w,h,transform=fig.transFigure,
-              facecolor=face,edgecolor=edge,linewidth=lw))
+              facecolor="none",edgecolor=edge,linewidth=lw))
 def panel(fig,x,y,w,h,n,title,subtitle):
     rectangle(fig,x,y,w,h)
     txt(fig,x+.024,y+h-.033,n+"  "+title,11.1,weight="bold",va="top")
