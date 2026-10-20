@@ -18,15 +18,12 @@
   "source_csv_sha256": "7f750b673bb34aad722736ee21f122b5ea692c99877fa0b1066df65e51f32c04",
   "figures": {
     "01": {
-      "sha256": "11d7328cbda28a87a1fe43a1e6e99a286454d99d01b78db4d58baea518f3f480",
-      "width": 1920,
-      "height": 1920,
-      "bytes": 190683,
-      "original_sha256": "64ac4a7b3ed36fc7448b107caa4b6c222005013862ecf017947e24ad4d16f07f",
-      "original_dimensions": [
-        1200,
-        675
-      ]
+      "filename": "01_reading_global_2020_original_unmodified.jpg",
+      "sha256": "64ac4a7b3ed36fc7448b107caa4b6c222005013862ecf017947e24ad4d16f07f",
+      "width": 1200,
+      "height": 675,
+      "bytes": 373973,
+      "is_original_unaltered": true
     },
     "02": {
       "sha256": "cc74466aa9d4bb80f8b9fda6b7f2aeec44a2577d09b67105da5994d87bc42a97",
