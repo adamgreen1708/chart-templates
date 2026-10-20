@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Render Icons of Data #07 on GitHub Actions from a pinned HadCRUT5 snapshot.
 Original artwork: genuine University of Reading image, not an imitation.
-All three review figures are confined to archive/; no site publication.
+Original source (landscape JPEG) and TWO 1920px Coffeetableviz figures are confined to archive/; no site publication.
 """
 from pathlib import Path
 from io import BytesIO
@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap, TwoSlopeNorm
 from matplotlib.patches import Rectangle
 from matplotlib.lines import Line2D
-from PIL import Image, ImageOps
+from PIL import Image
 
 ROOT=Path(__file__).resolve().parents[1]
 DATA=ROOT/"data"/"HadCRUT.5.2.0.0.analysis.summary_series.global.annual.snapshot_2026-10-19.csv"
@@ -74,19 +74,14 @@ def figure1():
     if original.width<900 or original.height<400:raise ValueError("Wrong historical image dimensions")
     op=OUT/"01_reading_global_2020_original_unmodified.jpg"
     op.write_bytes(data)
-    fig=base("01  /  ORIGINAL","The chart without an axis.","Ed Hawkins turned annual temperatures into colour alone.")
-    ax=fig.add_axes([.072,.300,.856,.395],facecolor=BG)
-    ax.imshow(original,interpolation="nearest",aspect="equal")
-    ax.axis("off")
-    txt(fig,.080,.740,"GLOBAL TEMPERATURE STRIPES  /  1850-2020",12,weight="bold")
-    txt(fig,.080,.247,"ONE VERTICAL STRIPE REPRESENTS ONE YEAR",12,weight="bold")
-    txt(fig,.080,.210,"The original University of Reading artwork, displayed unaltered.",11.1,color=MUTED)
-    txt(fig,.080,.173,"This historic edition ends in 2020, not 2025.",11.1,color=MUTED)
-    txt(fig,.080,.131,"Ed Hawkins · University of Reading Art Collection UAC/11018",9.4,color=MUTED)
-    meta=save(fig,"01_the_original_warming_stripes.png")
-    meta["original_sha256"]=sha256(data).hexdigest()
-    meta["original_dimensions"]=[original.width,original.height]
-    return meta
+    # The historical artefact is itself the first figure — no Coffeetableviz wrapper.
+    # Never re-colour, annotate, resize or replace its original bytes.
+    image_sha = sha256(data).hexdigest()
+    assert image_sha == "64ac4a7b3ed36fc7448b107caa4b6c222005013862ecf017947e24ad4d16f07f", "Source asset changed; require re-review"
+    return {"filename": op.name, "sha256": image_sha,
+            "width": original.width, "height": original.height, "bytes": len(data),
+            "is_original_unaltered": True}
+
 def figure2():
     fig=base("02  /  RECONSTRUCTION","The years turn red.","The same 176 annual temperatures, shown two different ways.")
     txt(fig,.082,.753,"ONE YEAR  =  ONE STRIPE",11.7,weight="bold")
