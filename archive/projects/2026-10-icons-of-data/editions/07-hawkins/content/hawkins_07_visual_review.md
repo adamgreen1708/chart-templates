@@ -1,6 +1,6 @@
 # Icons of Data #07 — GitHub Actions visual review (corrected 20 October 2026)
 
-**State:** author identified Figure 01 was wrongly presented in a Coffeetableviz frame. Correction completed exclusively in the GitHub draft process, no website changes, no merge or publication. The original artefact is shown as-is. Image approval remains pending.
+**State:** author identified Figure 01 was wrongly presented in a Coffeetableviz frame. Correction completed exclusively in the GitHub draft process, no website changes, no merge or publication. The original artefact is shown as-is. Author approved this corrected original plus the two GitHub-rendered modern figures on 20 October 2026, authorising website staging and QA **only**. Final merge and publication approval remain pending.
 
 ## Figure 01 — authentic historical original, no Coffeetableviz frame
 
@@ -32,4 +32,14 @@ This distinction MUST be explained in article/captions, not implied that Hawkins
 - **Corrective GitHub Actions run:** https://github.com/adamgreen1708/chart-templates/actions/runs/39506769249 — success; independent sha256/original dimensions check; both modern PNGs rerendered and verified, stale framed source image removed.
 - Renderer `scripts/render_hawkins_review.py` now treats Figure 01 as an unaltered historical file (1200 × 675); it generates only Figures 02 and 03 as square Coffeetableviz graphics.
 - All files remain within the edition's `archive/**` tree on draft PR #138. The temporary GH Actions workflow may be removed once verified; don't make site or shared renderer changes.
-- The author must still review the corrected three-image package before preparing Jekyll assets. Separate explicit approval is required for final merge and publication.
+- The author has approved the exact corrected original and two modern PNGs. Their site copies were verified byte-for-byte, and Jekyll/browser QA passed. Separate explicit approval is still required before merge and publication.
+
+## Website staging and browser QA — 20 October 2026
+
+- Author explicitly approved the corrected three-image set and authorised the next step of staging the website. This approval does **not** authorise GitHub merge or live deployment.
+- Staged Jekyll article: `site/_posts/2026-10-20-how-the-world-changed-colour.md`, proposed permalink `/icons-of-data/ed-hawkins-warming-stripes/`. Art attribution in the caption, not inside Figure 01; full Met Office method/licence acknowledgement; 1971–2000 / 1961–2010 / 1961–1990 periods distinguished.
+- Staged original and exact approved modern image bytes in `site/assets/icons-of-data/ed-hawkins/`; 3 source/output SHA-256 pairs match exactly.
+- Updated `site/resources/icons-of-data/index.html` to **seven** editions; entry #07, encoding fingerprint, primary source and baseline references included.
+- GitHub Actions website staging and QA: https://github.com/adamgreen1708/chart-templates/actions/runs/39508118680 — **success**. Jekyll build passed; headless Chrome screenshots and checks at **1365, 390, 320px**; all 3 images had correct natural dimensions and descriptive alt; 7 Resources entries; **no horizontal overflow, no page JavaScript errors**, required article text/attribution present.
+- Exact screenshots: `qa/site/hawkins-article-desktop.png`, `hawkins-article-mobile.png`, `hawkins-article-narrow.png`, and matching Resources page captures; `qa/site/browser_qa.json` records machine-readable results. Desktop and mobile previews have been visually inspected.
+- PR #138 **remains draft**. No changes merged to main and no Pages deployment. Next: author reviews staged website article/screenshots and gives a separate explicit OK before merge.
