@@ -1,0 +1,153 @@
+name: Icons 07 — stage website and QA (temporary)
+on:
+  push:
+    branches:
+      - icons-of-data-07-hawkins-20261020
+    paths:
+      - ".github/workflows/icons-07-site-review.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  website-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out the PR branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Stage only the exact approved GitHub image files
+        shell: bash
+        run: |
+          set -euo pipefail
+          edition="archive/projects/2026-10-icons-of-data/editions/07-hawkins"
+          target="site/assets/icons-of-data/ed-hawkins"
+          mkdir -p "$target"
+          cp "$edition/qa/visuals/01_reading_global_2020_original_unmodified.jpg" "$target/"
+          cp "$edition/qa/visuals/02_the_century_shifts_colour.png" "$target/"
+          cp "$edition/qa/visuals/03_decode_the_icon.png" "$target/"
+      - name: Validate image identity and website references
+        shell: bash
+        run: |
+          python - <<'PY'
+          import hashlib, pathlib, re
+          archive = pathlib.Path("archive/projects/2026-10-icons-of-data/editions/07-hawkins/qa/visuals")
+          assets = pathlib.Path("site/assets/icons-of-data/ed-hawkins")
+          expected = {
+            "01_reading_global_2020_original_unmodified.jpg": "64ac4a7b3ed36fc7448b107caa4b6c222005013862ecf017947e24ad4d16f07f",
+            "02_the_century_shifts_colour.png": "cc74466aa9d4bb80f8b9fda6b7f2aeec44a2577d09b67105da5994d87bc42a97",
+            "03_decode_the_icon.png": "b5eaac606edd53251cc86468a78da17658e16ae855b7be535f56dd7789ca0959"
+          }
+          article = pathlib.Path("site/_posts/2026-10-20-how-the-world-changed-colour.md").read_text()
+          resources = pathlib.Path("site/resources/icons-of-data/index.html").read_text()
+          for file, sha in expected.items():
+            a = archive / file
+            b = assets / file
+            assert a.is_file() and b.is_file()
+            assert a.read_bytes() == b.read_bytes(), file
+            assert hashlib.sha256(b.read_bytes()).hexdigest() == sha, file
+            assert file in article
+          assert "seven icons" in resources and "Seven stories" in resources
+          assert "/icons-of-data/ed-hawkins-warming-stripes/" in resources
+          assert "1971–2000" in article and "1961–2010" in article and "1961–1990" in article
+          assert "UAC/11018" in article and "Morice et al" in article
+          assert article.count('<figure class="story-chart full-bleed">') == 3
+          assert not (assets / "01_the_original_warming_stripes.png").exists()
+          print("PASS: image hashes and exact bytes, three figure references, credits, three baselines")
+          PY
+      - name: Build Jekyll site for PR preview only
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./site
+          destination: ./_site
+      - name: Prepare Python and headless Chromium
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install browser QA
+        run: |
+          python -m pip install --disable-pip-version-check playwright==1.56.0 pillow==11.0.0
+          python -m playwright install --with-deps chromium
+      - name: Check desktop and narrow layouts and capture previews
+        shell: bash
+        run: |
+          python - <<'PY'
+          import subprocess,sys,time,urllib.request,json
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          qa=Path("archive/projects/2026-10-icons-of-data/editions/07-hawkins/qa/site")
+          qa.mkdir(parents=True,exist_ok=True)
+          server=subprocess.Popen([sys.executable,"-m","http.server","8765","--bind","127.0.0.1","--directory","_site"],stdout=subprocess.DEVNULL,stderr=subprocess.STDOUT)
+          base="http://127.0.0.1:8765"
+          try:
+              for attempt in range(40):
+                  try:
+                      with urllib.request.urlopen(base+"/",timeout=2) as res:
+                          if res.status==200:break
+                  except Exception:time.sleep(.25)
+              else:raise AssertionError("Server failed to start")
+              results=[]
+              with sync_playwright() as p:
+                  browser=p.chromium.launch(headless=True)
+                  for width,label in ((1365,"desktop"),(390,"mobile"),(320,"narrow")):
+                      page=browser.new_page(viewport={"width":width,"height":850},device_scale_factor=1)
+                      errors=[]
+                      page.on("pageerror",lambda exc:errors.append(str(exc)))
+                      response=page.goto(base+"/icons-of-data/ed-hawkins-warming-stripes/",wait_until="load",timeout=60000)
+                      assert response.status==200,(label,response.status)
+                      imgs=page.locator("article.post figure.story-chart img")
+                      assert imgs.count()==3,(label,"images",imgs.count())
+                      dimensions=[(1200,675),(1920,1920),(1920,1920)]
+                      for n,(w,h) in enumerate(dimensions):
+                          img=imgs.nth(n)
+                          img.scroll_into_view_if_needed()
+                          img.evaluate("(el) => el.decode()")
+                          loaded=img.evaluate("(el) => ({width:el.naturalWidth,height:el.naturalHeight,alt:el.alt,src:el.currentSrc,displayWidth:el.getBoundingClientRect().width})")
+                          assert (loaded["width"],loaded["height"]) == (w,h),(label,n,loaded)
+                          assert len(loaded["alt"])>80,(label,n,"alt too short")
+                          assert loaded["displayWidth"] <= width+2,(label,n,"image overflow",loaded)
+                      dims=page.evaluate("({viewport:window.innerWidth,doc:document.documentElement.scrollWidth})")
+                      assert dims["doc"]<=dims["viewport"]+2,(label,"horizontal overflow",dims)
+                      assert "1961–2010" in page.locator("article.post").inner_text()
+                      assert page.locator("a[href*='UAC']").count() >= 0
+                      assert not errors,(label,errors)
+                      page.screenshot(path=str(qa/f"hawkins-article-{label}.png"),full_page=True)
+                      page.goto(base+"/resources/icons-of-data/",wait_until="load")
+                      count=page.locator(".icons-entry").count()
+                      assert count==7,(label,"resources count",count)
+                      hawkins=page.locator(".icons-entry").filter(has_text="Ed Hawkins")
+                      assert hawkins.count()==1,(label,"Hawkins entry missing")
+                      assert hawkins.locator('a[href*="ed-hawkins-warming-stripes"]').count()==1
+                      resdims=page.evaluate("({viewport:window.innerWidth,doc:document.documentElement.scrollWidth})")
+                      assert resdims["doc"]<=resdims["viewport"]+2,(label,"resources horizontal overflow",resdims)
+                      page.screenshot(path=str(qa/f"hawkins-resources-{label}.png"),full_page=True)
+                      results.append({"screen":label,"width":width,"article_images":3,"resources_stories":count,"article_overflow":dims["doc"]-dims["viewport"],"resources_overflow":resdims["doc"]-resdims["viewport"],"js_errors":errors})
+                      page.close()
+                  browser.close()
+              (qa/"browser_qa.json").write_text(json.dumps({"result":"PASS","pages":results,"published":False},indent=2)+"\n")
+              print(json.dumps(results,indent=2))
+          finally:
+              server.terminate()
+              server.wait(timeout=10)
+          PY
+      - name: Upload screenshots and site QA report
+        uses: actions/upload-artifact@v4
+        with:
+          name: icons-07-website-review
+          path: |
+            archive/projects/2026-10-icons-of-data/editions/07-hawkins/qa/site/**
+            site/assets/icons-of-data/ed-hawkins/**
+          if-no-files-found: error
+      - name: Commit QA-approved site staging to existing DRAFT PR
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/assets/icons-of-data/ed-hawkins archive/projects/2026-10-icons-of-data/editions/07-hawkins/qa/site
+          if ! git diff --cached --quiet; then
+            git commit -m "Stage exact Icons 07 original and charts, Jekyll browser QA on draft PR"
+            git push origin HEAD:icons-of-data-07-hawkins-20261020
+          fi
