@@ -121,7 +121,7 @@ def render_month(month: str, events: list[dict[str, str]]) -> str:
         milestone = f"{r['milestone_years']} years" if r["event_type"] in {
             "album_release", "album_anniversary", "film_anniversary",
             "artist_death_anniversary", "actor_death_anniversary",
-        } else f"{r['milestone_years']}th birthday"
+        } else f"turns {r['milestone_years']}"
         occasion = f"**{when}** — {r['subject']} ({milestone})"
         prep = target - timedelta(days=28)
         if r["date_precision"] == "month":
