@@ -151,7 +151,7 @@ def figure3():
     txt(fig,x+W-.042,y+.083,"+1.25°C",9.5,color=MUTED,ha="right")
     txt(fig,x+.040,y+.034,"Relative to 1961-1990 mean",9.4,color=MUTED)
     x,y=places[2]
-    ax=fig.add_axes([x+.051,y+.084,W-.092,.095])
+    ax=fig.add_axes([x+.051,y+.084,W-.092,.095],facecolor=BG)
     m=years>=1980
     ax.fill_between(years[m],lower[m],upper[m],color=TEAL,alpha=.25)
     ax.plot(years[m],vals[m],lw=1.6,color=INK)
@@ -165,9 +165,9 @@ def figure3():
     x,y=places[3]
     txt(fig,x+.034,y+.158,"+1.07°C",20.2,weight="bold",color=INK)
     txt(fig,x+.224,y+.158,"vs",11.5,color=MUTED)
-    txt(fig,x+.269,y+.158,"+0.89°C",18.9,weight="bold",color="#C44E52")
+    txt(fig,x+.262,y+.158,"+0.89°C",17.3,weight="bold",color="#C44E52")
     txt(fig,x+.034,y+.112,"vs 1961-1990",9.3,color=MUTED)
-    txt(fig,x+.266,y+.112,"vs 1961-2010",9.3,color=MUTED)
+    txt(fig,x+.257,y+.112,"vs 1961-2010",9.3,color=MUTED)
     rule(fig,x+.034,y+.088,W-.068)
     txt(fig,x+.034,y+.056,"Mean shift: +0.181°C; same 2025 value.",9.0,color=MUTED)
     txt(fig,x+.034,y+.030,"Rebasing changes the zero, not the climate.",9.0,color=MUTED)
