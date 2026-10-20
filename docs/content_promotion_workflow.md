@@ -26,13 +26,13 @@ The latest Daily Pulse examined at audit time (19 October) recorded 5 visits ver
 
 | File | Role |
 | --- | --- |
-| data/promotion/content_index.csv | Starting catalogue of all 40 main posts and two resource collections; P1/P2/P3 are **editorial** priorities, not measured performance |
+| data/promotion/content_index.csv | Starting catalogue of all 40 main posts, two resource collections and 17 archived Data Lens editions; P1/P2/P3 are **editorial** priorities, not measured performance |
 | data/promotion/blockbuster_events.csv | Archived Blockbuster date connections and conservative proposed article matches; date refers to the **original** edition |
 | data/promotion/pilot_queue.csv | Eight candidates over four weeks, starting Monday 26 October 2026; none is approved or scheduled |
 | data/promotion/promotion_log.csv | Empty human-maintained posting and measurement log; fill only with observed LinkedIn metrics and site traffic |
 | docs/content_promotion_run_commands.md | Copyable ChatGPT + GitHub commands for manual preparation and review |
 
-The index contains **source paths, not guessed public links**. At draft time, open the current article front matter / Jekyll routing and resolve the canonical coffeetableviz.com URL. Never publish GitHub blob links or legacy WordPress URLs as the article destination. Confirm mobile loading, imagery, alt text and social previews first.
+The index contains **59 source paths, not guessed public links**. At draft time, open the current article front matter / Jekyll routing and resolve the canonical coffeetableviz.com URL. Never publish GitHub blob links or legacy WordPress URLs as the article destination. Confirm mobile loading, imagery, alt text and social previews first.
 
 Content index class meanings:
 
