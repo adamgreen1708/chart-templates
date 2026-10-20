@@ -27,4 +27,6 @@ jobs:
         run: python -m unittest discover -s tests -p test_editorial_radar.py -v
 
       - name: Ensure seed monthly tables match source ledger
-        run: python scripts/render_editorial_radar.py --start-month 2026-11 --months 3 --check
+        run: |
+          python scripts/render_editorial_radar.py --start-month 2026-11 --months 3 --write
+          git diff --exit-code -- docs/editorial_radar/2026-11.md docs/editorial_radar/2026-12.md docs/editorial_radar/2027-01.md
