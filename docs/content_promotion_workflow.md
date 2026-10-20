@@ -46,23 +46,23 @@ Priority P1 = start here, P2 = additional evergreen/seasonal opportunities, P3 =
 
 ## Automatically register newly merged content (proposed integration)
 
-The separate \`.github/workflows/promotion-library-sync.yml\` runs on a **push to main** affecting source content, after the ordinary site publishing approval. It does not run the daily series and does not publish to any social network.
+The separate `.github/workflows/promotion-library-sync.yml` runs on a **push to main** affecting source content, after the ordinary site publishing approval. It does not run the daily series and does not publish to any social network.
 
-1. \`scripts/sync_promotion_library.py --write\` scans \`site/_posts/*.md\`, \`site/_data_lens/*.md\`, \`site/resources/*/index.html\` and \`site/_blockbuster_quotes/*.md\`.
+1. `scripts/sync_promotion_library.py --write` scans `site/_posts/*.md`, `site/_data_lens/*.md`, `site/resources/*/index.html` and `site/_blockbuster_quotes/*.md`.
 2. It compares each file's **source path** to the corresponding CSV index. New sources are appended only once; existing rows, assigned hooks, priorities, links and editorial notes are preserved byte-for-byte.
-3. New articles, Resources and Data Lens cards enter \`content_index.csv\` with **priority REVIEW**, **evergreen class unclassified** and no hook.
-4. New Blockbusters enter \`blockbuster_events.csv\` with their **original run date**, documented film, performer and connection type. Their article match stays empty until an editor establishes a real link. The recorded date is not independently reverified by the sync script.
-5. The workflow runs small unit tests, then **opens/updates a draft PR** for those proposed CSV additions. It does not commit to \`main\` or block the original content's publication.
+3. New articles, Resources and Data Lens cards enter `content_index.csv` with **priority REVIEW**, **evergreen class unclassified** and no hook.
+4. New Blockbusters enter `blockbuster_events.csv` with their **original run date**, documented film, performer and connection type. Their article match stays empty until an editor establishes a real link. The recorded date is not independently reverified by the sync script.
+5. The workflow runs small unit tests, then **opens/updates a draft PR** for those proposed CSV additions. It does not commit to `main` or block the original content's publication.
 6. Review and merge that follow-up PR after enriching the new entries; only then can the weekly manual promotion selection consider them editorially ready.
 
 Run locally on a checkout of the branch with:
 
-\`\`\`bash
+```bash
 python -m unittest discover -s tests -p test_promotion_library_sync.py -v
 python scripts/sync_promotion_library.py --check
 # --check exits 1 if content is newly discovered and not yet indexed
 python scripts/sync_promotion_library.py --write
-\`\`\`
+```
 
 **Limitations:** The sync detects *new file paths*, not content revisions or deleted/renamed source paths. Treat edits to previously published articles, new sources, updated dataset vintages and changes of publication rights as separate editorial review triggers. The draft-PR workflow needs the repository setting that permits GitHub Actions to create pull requests with its token; if disabled, enable that setting or use the script in a manually opened PR. Until the first post-merge action run succeeds, the proposed automation is **not proven operational**.
 
