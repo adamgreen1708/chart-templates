@@ -1,4 +1,4 @@
-# Edition 07 — visual storyboard (NOT RENDERED)
+# Edition 07 — visual storyboard (GITHUB-RENDERED; EXACT IMAGE APPROVAL PENDING)
 
 ## Figure 01 — The original: a climate history without an axis
 - Historical original: Ed Hawkins, University of Reading Art Collection, *Climate Stripes: Warming Stripes, Global 2020*, digital edition 2021 (UAC/11018), one annual stripe from 1850 through 2020.
@@ -25,3 +25,6 @@ D. **Same record, different reference choice:** explain rebasing shifts the nume
 - Differentiate original, sourced reconstructed figure and schematic decoder.
 - Include concise source + baseline + colour palette note in every graphic; 390/320px small-screen readability.
 - No work under site/_posts, site/assets, or site/resources until figure and editorial approval.
+
+
+Final GitHub render references and provenances: `content/hawkins_07_visual_review.md`; Actions final https://github.com/adamgreen1708/chart-templates/actions/runs/39505109952 .
