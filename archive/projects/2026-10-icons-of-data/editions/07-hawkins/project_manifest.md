@@ -4,7 +4,7 @@
 **Working headline:** How the world changed colour
 **Editorial category:** Making the invisible visible
 **Historic object:** Ed Hawkins / University of Reading, Warming Stripes, developed 2018. The specific archival comparison artefact proposed is the University of Reading Art Collection's *Climate Stripes: Warming Stripes, Global 2020* (digital edition 2021, collection UAC/11018), depicting 1850–2020.
-**State:** Concept and manuscript research for author review ONLY. No original downloaded, data CSV copied, figure rendered, exact art-image reuse approved, site post created, Resources collection altered, merge or GitHub Pages publication authorised.
+**State (20 October 2026):** Editorial direction approved. A pinned Met Office snapshot, edition-specific renderer, authentic original and two modern visuals were generated and hash-QA'd on GitHub Actions; full GitHub PNGs visually inspected. All output remains under edition archive on draft PR #138. Exact final image approval **pending**; no site post, Resources change, merge or GitHub Pages publication.
 
 ## Working editorial argument
 Removing scales, labels and numbers makes a century-spanning temperature pattern immediately legible; the same decision makes precise magnitudes, uncertainty and reference periods much harder to inspect. Colour replaces nearly all the furniture of a conventional chart.
@@ -29,3 +29,9 @@ C. Only after exact image approval, stage Jekyll and Resources website preview o
 D. Separate explicit approval to merge/deploy; verify Pages and live URL. Do not publish from this research draft PR.
 
 No site, renderer, CSS or active workflows changed in this kickoff.
+
+
+## GitHub-hosted review production — 20 October 2026
+Successful final GitHub workflow run: https://github.com/adamgreen1708/chart-templates/actions/runs/39505109952 . Final source-data integrity, original, three 1920 square images, all hash values, author-review links, visual inspection and remaining image/site approval requirements are documented in `content/hawkins_07_visual_review.md` and `qa/render_manifest.json`.
+
+**Temporary workflow must be removed after successful review render; keep the edition-specific Python renderer so the images can be regenerated through GitHub when requested.** Website remains untouched. Exact GH-generated image approval required before staging site content.
