@@ -1,0 +1,33 @@
+{
+  "result": "PASS",
+  "pages": [
+    {
+      "screen": "desktop",
+      "width": 1365,
+      "article_images": 3,
+      "resources_stories": 7,
+      "article_overflow": 0,
+      "resources_overflow": 0,
+      "js_errors": []
+    },
+    {
+      "screen": "mobile",
+      "width": 390,
+      "article_images": 3,
+      "resources_stories": 7,
+      "article_overflow": 0,
+      "resources_overflow": 0,
+      "js_errors": []
+    },
+    {
+      "screen": "narrow",
+      "width": 320,
+      "article_images": 3,
+      "resources_stories": 7,
+      "article_overflow": 0,
+      "resources_overflow": 0,
+      "js_errors": []
+    }
+  ],
+  "published": false
+}
