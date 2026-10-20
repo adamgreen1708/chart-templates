@@ -1,0 +1,30 @@
+name: Validate editorial radar
+
+on:
+  pull_request:
+    paths:
+      - "data/promotion/editorial_radar_events.csv"
+      - "docs/editorial_radar/**"
+      - "scripts/render_editorial_radar.py"
+      - "tests/test_editorial_radar.py"
+      - ".github/workflows/validate-editorial-radar.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Test editorial radar date and precision rules
+        run: python -m unittest discover -s tests -p test_editorial_radar.py -v
+
+      - name: Ensure seed monthly tables match source ledger
+        run: python scripts/render_editorial_radar.py --start-month 2026-11 --months 3 --check
