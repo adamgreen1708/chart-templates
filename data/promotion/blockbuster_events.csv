@@ -1,0 +1,17 @@
+event_id,original_date,month_day,film,performer,recorded_connection,source_path,matched_content_ids,match_type,editorial_note
+blockbuster_2026-09-18_rush-hour,2026-09-18,09-18,Rush Hour,Chris Tucker,US theatrical release,site/_blockbuster_quotes/2026-09-18-rush-hour.md,,,No verified related long-form article
+blockbuster_2026-09-19_the-lion-king,2026-09-19,09-19,The Lion King,Jeremy Irons,performer birthday,site/_blockbuster_quotes/2026-09-19-the-lion-king.md,,,Standalone unless subject link is independently checked
+blockbuster_2026-09-20_the-first-wives-club,2026-09-20,09-20,The First Wives Club,Ivana Trump,US theatrical release,site/_blockbuster_quotes/2026-09-20-the-first-wives-club.md,,,No forced match
+blockbuster_2026-09-21_ghostbusters,2026-09-21,09-21,Ghostbusters,Bill Murray,performer birthday,site/_blockbuster_quotes/2026-09-21-ghostbusters.md,,,No forced match
+blockbuster_2026-09-22_se7en,2026-09-22,09-22,Se7en,Brad Pitt,US theatrical release,site/_blockbuster_quotes/2026-09-22-se7en.md,article_2026-09-08-imdb-brad-pitt-film-ratings-popcorn-a-boys-night-in;article_2026-09-23-fury-started-it-tyler-durden-owns-the-answer,actor,Film release anchors Brad Pitt feature; avoid implying analytical story is specifically about the Se7en quote
+blockbuster_2026-09-23_avengers-endgame,2026-09-23,09-23,Avengers: Endgame,Anthony Mackie,performer birthday,site/_blockbuster_quotes/2026-09-23-avengers-endgame.md,,,No forced match
+blockbuster_2026-09-24_the-incredibles,2026-09-24,09-24,The Incredibles,Brad Bird,director and voice performer birthday,site/_blockbuster_quotes/2026-09-24-the-incredibles.md,,,No forced match
+blockbuster_2026-09-28_zoolander,2026-09-28,09-28,Zoolander,Ben Stiller,US theatrical release,site/_blockbuster_quotes/2026-09-28-zoolander.md,,,No forced match
+blockbuster_2026-09-30_the-martian,2026-09-30,09-30,The Martian,Matt Damon,UK theatrical release,site/_blockbuster_quotes/2026-09-30-the-martian.md,,,No forced match
+blockbuster_2026-10-03_scream,2026-10-03,10-03,Scream,Neve Campbell,performer birthday,site/_blockbuster_quotes/2026-10-03-scream.md,,,"Halloween is a distinct seasonal hook, not this date link"
+blockbuster_2026-10-04_inglourious-basterds,2026-10-04,10-04,Inglourious Basterds,Christoph Waltz,performer birthday,site/_blockbuster_quotes/2026-10-04-inglourious-basterds.md,,,Check any Brad Pitt film link before using
+blockbuster_2026-10-13_borat,2026-10-13,10-13,Borat,Sacha Baron Cohen,performer birthday,site/_blockbuster_quotes/2026-10-13-borat.md,,,No forced match
+blockbuster_2026-10-14_the-spy-who-loved-me,2026-10-14,10-14,The Spy Who Loved Me,Roger Moore,performer birthday,site/_blockbuster_quotes/2026-10-14-the-spy-who-loved-me.md,article_2026-09-12-007-villains-of-age,franchise,Bond franchise relevance only; check Roger Moore-era discussion
+blockbuster_2026-10-16_the-shawshank-redemption,2026-10-16,10-16,The Shawshank Redemption,Tim Robbins,performer birthday,site/_blockbuster_quotes/2026-10-16-the-shawshank-redemption.md,,,No forced match
+blockbuster_2026-10-17_superman,2026-10-17,10-17,Superman,Margot Kidder,performer birthday,site/_blockbuster_quotes/2026-10-17-superman.md,,,No forced match
+blockbuster_2026-10-19_harry-potter-and-the-prisoner-of-azkaban,2026-10-19,10-19,Harry Potter and the Prisoner of Azkaban,Michael Gambon,performer birthday,site/_blockbuster_quotes/2026-10-19-harry-potter-and-the-prisoner-of-azkaban.md,,,No forced match
