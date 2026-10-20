@@ -4,7 +4,7 @@
 **Working headline:** How the world changed colour
 **Editorial category:** Making the invisible visible
 **Historic object:** Ed Hawkins / University of Reading, Warming Stripes, developed 2018. The specific archival comparison artefact proposed is the University of Reading Art Collection's *Climate Stripes: Warming Stripes, Global 2020* (digital edition 2021, collection UAC/11018), depicting 1850–2020.
-**State (20 October 2026):** Editorial direction approved. A pinned Met Office snapshot, edition-specific renderer, authentic original and two modern visuals were generated and hash-QA'd on GitHub Actions; full GitHub PNGs visually inspected. All output remains under edition archive on draft PR #138. Exact final image approval **pending**; no site post, Resources change, merge or GitHub Pages publication.
+**State (20 October 2026):** Editorial direction approved. A pinned Met Office snapshot, edition-specific renderer, authentic original and two modern visuals were generated and hash-QA'd on GitHub Actions; full GitHub PNGs visually inspected. All output remains under edition archive on draft PR #138. Exact historical original and two modern images **approved for website staging** on 20 October 2026; article, Resources entry and exact site assets now staged and GitHub browser-QA passed on PR #138. **No merge or GitHub Pages publication.**
 
 ## Working editorial argument
 Removing scales, labels and numbers makes a century-spanning temperature pattern immediately legible; the same decision makes precise magnitudes, uncertainty and reference periods much harder to inspect. Colour replaces nearly all the furniture of a conventional chart.
@@ -41,3 +41,9 @@ Successful final GitHub workflow run: https://github.com/adamgreen1708/chart-tem
 The author correctly rejected Figure 01 as a 1920px Coffeetableviz frame, since Icons of Data shows the untouched original object. The framed file and 320/390/600 previews were deleted from the draft branch. Correct first figure is `qa/visuals/01_reading_global_2020_original_unmodified.jpg`, **1200×675**, SHA-256 `64ac4a7b3ed36fc7448b107caa4b6c222005013862ecf017947e24ad4d16f07f`. Modern Figures 02/03 remain separate, square Coffeetableviz interpretations. Renderer updated not to frame the historical artwork.
 
 Authoritative Hawkins first-person 2024 source confirms the **2023** baseline change from **1971–2000** to **1961–2010**, to handle exceptionally high 2023 values along with palette changes; the original Global 2020 artefact precedes that update. Our Met Office HadCRUT5 data instead use **1961–1990**. Verified correction and source integrity in GitHub Actions https://github.com/adamgreen1708/chart-templates/actions/runs/39506769249 . Author image and site publication approval still pending. 
+
+## Website staging QA (approval not publication)
+
+- Stage: `site/_posts/2026-10-20-how-the-world-changed-colour.md`, `site/resources/icons-of-data/index.html` and 3 immutable image assets in `site/assets/icons-of-data/ed-hawkins/`.
+- Jekyll build, real Chrome screenshots and layout/link/image QA at 1365, 390, 320px passed: https://github.com/adamgreen1708/chart-templates/actions/runs/39508118680 . `qa/site/browser_qa.json` and screenshots stored in this edition archive.
+- **Final approval needed:** Review the page screenshots and linked draft PR #138, then obtain a separate explicit author decision before merging to main and activating GitHub Pages. Original stays original; no fake historic frame.
