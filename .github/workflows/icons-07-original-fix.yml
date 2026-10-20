@@ -1,0 +1,62 @@
+name: Icons 07 — correct historical original (temporary)
+on:
+  push:
+    branches:
+      - icons-of-data-07-hawkins-20261020
+    paths:
+      - ".github/workflows/icons-07-original-fix.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install pinned rendering environment
+        run: python -m pip install numpy==2.1.3 matplotlib==3.9.2 pillow==11.0.0
+      - name: Remove incorrectly framed historical figure
+        run: |
+          rm -f archive/projects/2026-10-icons-of-data/editions/07-hawkins/qa/visuals/01_the_original_warming_stripes*.png
+      - name: Render and verify source-original and modern figures
+        run: |
+          python archive/projects/2026-10-icons-of-data/editions/07-hawkins/scripts/render_hawkins_review.py
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          from PIL import Image
+          p=Path("archive/projects/2026-10-icons-of-data/editions/07-hawkins/qa")
+          m=json.loads((p/"render_manifest.json").read_text())
+          assert set(m["figures"])=={"01","02","03"}
+          assert m["observations"]==176 and m["year_2026_excluded"]
+          a=m["figures"]["01"]
+          assert a["is_original_unaltered"] and a["width"]==1200 and a["height"]==675
+          assert a["sha256"]=="64ac4a7b3ed36fc7448b107caa4b6c222005013862ecf017947e24ad4d16f07f"
+          assert not list((p/"visuals").glob("01_the_original_warming_stripes*"))
+          for n in ("02","03"):
+              fn="02_the_century_shifts_colour.png" if n=="02" else "03_decode_the_icon.png"
+              f=p/"visuals"/fn
+              with Image.open(f) as image: assert image.size==(1920,1920)
+              assert hashlib.sha256(f.read_bytes()).hexdigest()==m["figures"][n]["sha256"]
+          print("PASS: historical original untouched and standalone, modern figures rebuilt from source, all hashes verified")
+          PY
+      - name: Upload corrected review collection
+        uses: actions/upload-artifact@v4
+        with:
+          name: icons-07-authentic-original-and-modern-charts
+          path: archive/projects/2026-10-icons-of-data/editions/07-hawkins/qa/**
+      - name: Commit corrected GitHub-rendered review set
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A archive/projects/2026-10-icons-of-data/editions/07-hawkins/qa/
+          if ! git diff --staged --quiet; then
+            git commit -m "Remove framed original and preserve the exact historic artwork for Icons 07"
+            git push origin HEAD:icons-of-data-07-hawkins-20261020
+          fi
