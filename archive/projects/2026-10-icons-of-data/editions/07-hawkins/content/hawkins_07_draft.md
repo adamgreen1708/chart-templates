@@ -2,7 +2,7 @@
 
 *Icons of Data · Edition 07 · Ed Hawkins' Warming Stripes (2018)*
 
-**Working editorial draft — for concept approval only. Figures are planned, not rendered.**
+**Working manuscript — GitHub-rendered review images available; not published.**
 
 What if a chart lost its axis, its labels and every last number?
 
@@ -20,7 +20,7 @@ The message does not need much explaining.
 
 The stripes were developed at the University of Reading, with an early version made for the Hay Festival in 2018. Later versions showed the global temperature record stretching back to 1850.
 
-*[Visual 1 — Authentic University of Reading Art Collection's Global 2020 Warming Stripes (2021 digital artwork, 1850–2020); precise reproduction rights and image asset to verify before embedding.]*
+*[Visual 1 — The actual, unframed University of Reading *Global 2020* artwork, UAC/11018 (1850–2020), with title and attribution in the article caption.]*
 
 ## The chart with almost nothing on it
 
@@ -35,6 +35,8 @@ It is an argument made with remarkably few ingredients.
 *[Visual 2 — New data-faithful reconstruction from verified annual global HadCRUT5 series, with a tiny conventional temperature view underneath. Separate sources and baselines explicitly labelled.]*
 
 But what makes it so immediate also introduces a trade-off.
+
+Even the midpoint of the colours has a history. When Hawkins updated the stripes for 2023, he shifted their reference average from 1971–2000 to 1961–2010 and widened the colour range to accommodate the unusually hot new observations. There is no special temperature event in 1961: it is simply the first year of the chosen averaging period.
 
 ## Beautifully clear. Deliberately incomplete.
 
@@ -58,4 +60,4 @@ Not quite the last word in it.
 
 ---
 
-**Source and method (research stage):** University of Reading's climate-stripes explainer, University Art Collection's *Global 2020* and *Hay-on-Wye 2017* archive entries, and the first-person Hawkins history from Reading. Reconstruction proposed from the Met Office HadCRUT5 annual global analysis (current release 5.2.0.0), not from invented or back-calculated original stripe pixels. The University explains climate stripes relative to 1961–2010; the Met Office native HadCRUT5 anomalies use 1961–1990. Any rebasing must be shown, and copyright attribution recorded.
+**Sources and method (image-review stage):** University of Reading's climate-stripes explainer, University Art Collection's *Global 2020* and *Hay-on-Wye 2017* archive entries, and the first-person Hawkins history from Reading. Reconstruction proposed from the Met Office HadCRUT5 annual global analysis (current release 5.2.0.0), not from invented or back-calculated original stripe pixels. The University explains current climate stripes relative to 1961–2010; Hawkins' first-person 14 May 2024 note confirms that the 2023 update changed the baseline from 1971–2000 to 1961–2010 and the palette limits to handle the extremes of 2023. The historic Global 2020 artefact predates that change. Our separate HadCRUT5 v5.2.0.0 reconstruction is native to 1961–1990 and uses 1850–2025 completed years. Baselines are not interchangeable. First-person source: https://climatelabbook.substack.com/p/warming-stripes .
