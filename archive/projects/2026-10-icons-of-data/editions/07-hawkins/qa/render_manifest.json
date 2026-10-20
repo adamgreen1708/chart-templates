@@ -1,0 +1,44 @@
+{
+  "run_scope": "REVIEW ONLY \u2014 no website publication",
+  "original_url": "https://collections.reading.ac.uk/art-collections/wp-content/uploads/sites/2/2021/10/UAC_11018-1200px.jpg",
+  "original_provenance": "UAC/11018, Ed Hawkins, University of Reading, 2021 digitisation of Global 2020",
+  "data_source": "HadCRUT.5.2.0.0 analysis global annual; 19 Oct 2026 source snapshot",
+  "native_baseline": "1961-1990",
+  "start_year": 1850,
+  "end_year": 2025,
+  "observations": 176,
+  "year_2026_excluded": true,
+  "reference_1961_2010_offset_C": 0.18100777835999998,
+  "value_2025_C": 1.0732167,
+  "color_scale_C": [
+    -1.25,
+    1.25
+  ],
+  "illustration_not_identical_to_reading": true,
+  "source_csv_sha256": "7f750b673bb34aad722736ee21f122b5ea692c99877fa0b1066df65e51f32c04",
+  "figures": {
+    "01": {
+      "sha256": "11d7328cbda28a87a1fe43a1e6e99a286454d99d01b78db4d58baea518f3f480",
+      "width": 1920,
+      "height": 1920,
+      "bytes": 190683,
+      "original_sha256": "64ac4a7b3ed36fc7448b107caa4b6c222005013862ecf017947e24ad4d16f07f",
+      "original_dimensions": [
+        1200,
+        675
+      ]
+    },
+    "02": {
+      "sha256": "b9148cf47324fd5ab2d59e08eded4b3de64118804ec4596d7bd1abdf9b57c650",
+      "width": 1920,
+      "height": 1920,
+      "bytes": 284346
+    },
+    "03": {
+      "sha256": "ea9fadc26377c521dda4387c98bd2e9c87bec0a2d0adba3fcaf3e2d5482bb781",
+      "width": 1920,
+      "height": 1920,
+      "bytes": 276619
+    }
+  }
+}
