@@ -147,7 +147,7 @@ def render_month(month: str, events: list[dict[str, str]]) -> str:
             f"- **Sources to recheck:** {links}",
         ]
         if r["existing_content_path"]:
-            lines.append(f"- **Existing story:** \`{r['existing_content_path']}\`")
+            lines.append(f"- **Existing story:** `{r['existing_content_path']}`")
         lines.append("")
     lines += [
         "## Preparation and review",
