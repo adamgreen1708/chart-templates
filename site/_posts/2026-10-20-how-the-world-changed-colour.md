@@ -43,6 +43,8 @@ There is a clever decision hiding inside all that simplicity, each stripe gets t
 
 You don't have to know much about charts to see the red gathering on the right. Hawkin successfully packs a lot of communication with very little furniture!
 
+My recreation adds a little back in 🤓
+
 <figure class="story-chart full-bleed">
   <a href="{{ '/assets/icons-of-data/ed-hawkins/02_the_century_shifts_colour.png' | relative_url }}" aria-label="Open The years turn red full-size temperature reconstruction">
     <img src="{{ '/assets/icons-of-data/ed-hawkins/02_the_century_shifts_colour.png' | relative_url }}"
@@ -51,8 +53,6 @@ You don't have to know much about charts to see the red gathering on the right. 
   </a>
   <figcaption><strong>The years turn red.</strong> My independent reconstruction uses the Met Office HadCRUT5 annual global analysis for <strong>1850–2025</strong>, with the original dataset's <strong>1961–1990</strong> reference average. Its colours and input dataset are <em>not</em> pixel-for-pixel reproductions of Hawkins' historical artwork. <strong>Each stripe sits directly above the same year in the line chart.</strong> The subtle beige band highlights the <strong>1961–1990 reference period</strong> that defines the dashed <strong>0°C anomaly</strong> line (not an actual temperature of zero). Light blue shading shows the published measurement-uncertainty interval.</figcaption>
 </figure>
-
-But making something immediate also means leaving things out.
 
 ## Why 1961? It depends which stripes.
 
@@ -81,9 +81,7 @@ And colour alone needs a verbal explanation for people who can't reliably distin
 
 Hawkins didn't make temperature data less serious. He made the first encounter with it less demanding.
 
-A wonderful way to start a conversation.
-
-Not quite the last word in it.
+It serves as awonderful way to start a conversation but definitely not quite the last word in it.
 
 <aside class="method-note">
   <h2>Source and method</h2>
