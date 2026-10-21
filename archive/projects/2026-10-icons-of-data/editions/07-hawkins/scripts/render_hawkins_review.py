@@ -6,7 +6,7 @@ Original source (landscape JPEG) and TWO 1920px Coffeetableviz figures are confi
 from pathlib import Path
 from io import BytesIO
 from hashlib import sha256
-import csv, json, urllib.request
+import csv, json
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
@@ -67,13 +67,14 @@ def save(fig,name):
             im.resize((size,size),Image.Resampling.LANCZOS).save(OUT/(target.stem+f"_preview_{size}.png"))
     return {"sha256":sha256(target.read_bytes()).hexdigest(),"width":1920,"height":1920,"bytes":target.stat().st_size}
 def figure1():
-    req=urllib.request.Request(ORIGINAL,headers={"User-Agent":"Mozilla/5.0 Coffeetableviz non-commercial editorial attribution"})
-    with urllib.request.urlopen(req,timeout=45) as resp: data=resp.read()
-    if len(data)<15000: raise ValueError("University image download unexpectedly small")
-    original=Image.open(BytesIO(data)).convert("RGB")
-    if original.width<900 or original.height<400:raise ValueError("Wrong historical image dimensions")
+    # Read the previously approved byte-identical University artwork from the
+    # pinned repository archive. Do not rely on the source website being online.
     op=OUT/"01_reading_global_2020_original_unmodified.jpg"
-    op.write_bytes(data)
+    if not op.is_file(): raise FileNotFoundError(f"Pinned historical original missing: {op}")
+    data=op.read_bytes()
+    if len(data)<15000: raise ValueError("Historical source image unexpectedly small")
+    original=Image.open(BytesIO(data)).convert("RGB")
+    if original.width!=1200 or original.height!=675: raise ValueError("Historic original dimensions changed")
     # The historical artefact is itself the first figure — no Coffeetableviz wrapper.
     # Never re-colour, annotate, resize or replace its original bytes.
     image_sha = sha256(data).hexdigest()
@@ -83,23 +84,21 @@ def figure1():
             "is_original_unaltered": True}
 
 def figure2():
-    fig=base("02  /  RECONSTRUCTION","The years turn red.","The same 176 annual temperatures, shown two different ways.")
-    txt(fig,.082,.753,"ONE YEAR  =  ONE STRIPE",11.7,weight="bold")
+    fig=base("02  /  RECONSTRUCTION","The years turn red.","One year equals one stripe")
     # Critical geometry: both independent encodings share the EXACT SAME
     # figure-relative x-boundaries and inclusive annual centre coordinates.
     # Any one-year stripe centre therefore falls directly above the line point.
     shared_left=.125
     shared_width=.770
     year_bounds=(1849.5,2025.5)
-    ax=fig.add_axes([shared_left,.608,shared_width,.126])
+    ax=fig.add_axes([shared_left,.618,shared_width,.132])
     ax.imshow(vals[np.newaxis,:],cmap=CMAP,norm=NORM,aspect="auto",
               extent=[year_bounds[0],year_bounds[1],0,1],interpolation="nearest")
     ax.set_xlim(*year_bounds)
     ax.set_axis_off()
-    txt(fig,shared_left,.585,"1850",10.4,color=MUTED)
-    txt(fig,shared_left+shared_width,.585,"2025",10.4,color=MUTED,ha="right")
-    txt(fig,.082,.535,"NOW ADD THE NUMBERS BACK",11.7,weight="bold")
-    ax2=fig.add_axes([shared_left,.284,shared_width,.224],facecolor=BG)
+    txt(fig,shared_left,.595,"1850",10.4,color=MUTED)
+    txt(fig,shared_left+shared_width,.595,"2025",10.4,color=MUTED,ha="right")
+    ax2=fig.add_axes([shared_left,.304,shared_width,.242],facecolor=BG)
     # This vertical panel is a TIME period (1961-1990), not a statistical
     # uncertainty envelope. Boundaries include the full 1961 and 1990 years.
     ax2.axvspan(1960.5,1990.5,color="#DDD6C9",alpha=.66,zorder=0,lw=0)
@@ -133,7 +132,6 @@ def figure2():
         pos_a=stripe_box[0]+stripe_box[2]*(yr-year_bounds[0])/(year_bounds[1]-year_bounds[0])
         pos_b=line_box[0]+line_box[2]*(yr-year_bounds[0])/(year_bounds[1]-year_bounds[0])
         assert abs(pos_a-pos_b)<1e-10,(yr,pos_a,pos_b)
-    txt(fig,.086,.245,"Each stripe aligns with its year; tan = reference years for 0°C anomaly.",11.1)
     txt(fig,.086,.212,"Blue shading shows the published 95% uncertainty range.",10.3,color=MUTED)
     txt(fig,.086,.165,"Source: "+SRC,9.5,color=MUTED)
     txt(fig,.086,.138,"Fixed palette: -1.25 to +1.25°C · not a Reading replica.",9.5,color=MUTED)

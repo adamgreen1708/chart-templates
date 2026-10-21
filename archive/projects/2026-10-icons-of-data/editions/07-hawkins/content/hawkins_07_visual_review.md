@@ -57,3 +57,14 @@ This distinction MUST be explained in article/captions, not implied that Hawkins
 - A control test verified equal axes boundaries, identical time scaling, six cross-panel year positions, pinned data integrity and unchanged approved image bytes. Dataset 1850–2025, native Met Office 1961–1990 anomalies. The arithmetic mean of annual values in that period is approximately +0.008°C, close to zero; it does not affect the period interpretation.
 - GitHub Actions production and Chrome website QA: https://github.com/adamgreen1708/chart-templates/actions/runs/39552686385 — **passed** for 1365, 390 and 320px including true image dimensions, reference/uncertainty caption, 7 Resources entries and zero horizontal overflow. New website QA screenshots and machine report under `qa/site/`.
 - All changes are staged only on PR #139. **Author must review this specific new rendered image before merging.**
+
+## 2026-10-21 — Chart 02 simplified for author review (draft PR #140)
+
+**User request:** Keep the figure a visual reconstruction rather than a narrated explainer. Change the subtitle to **“One year equals one stripe”**; delete the bold internal headings “ONE YEAR = ONE STRIPE” and “NOW ADD THE NUMBERS BACK”; delete the sentence beginning “Each stripe aligns with its year…”.
+
+- Edition-specific GitHub renderer updated; stripe panel/line panel positioned to retain exact annual x-alignment, the 1961–1990 reference shading, the 95% confidence bounds and clear time/temperature units.
+- **New candidate SHA-256:** `3dd2c547ef6d86a0e7fbe6b2d48960c7f9b11b7891742023959a8adca18ecb2c` for `qa/visuals/02_the_century_shifts_colour.png`, 1920×1920. Exact candidate copied to `site/assets/icons-of-data/ed-hawkins/` on the draft branch only.
+- Original artwork SHA `64ac4a7b3ed36fc7448b107caa4b6c222005013862ecf017947e24ad4d16f07f` and Chart 03 SHA `b5eaac606edd53251cc86468a78da17658e16ae855b7be535f56dd7789ca0959` unchanged.
+- Previously the rendering step attempted to redownload the University original and timed out. The renderer now reads its **previously pinned, hash-checked original JPEG already in the GitHub archive**, avoiding remote dependencies.
+- GitHub Actions successful render, original and decoder SHA validation, 176-year x-alignment assertions, Jekyll build and Chromium QA at 1365/390/320px: https://github.com/adamgreen1708/chart-templates/actions/runs/39661278927 .
+- Human visual QA inspected full-size and 390px downsample: headline/subtitle and plot elements remain legible, requested copy removed, chart lines and dates aligned; the period highlight is visible. No website deployment, no merge; **author must review exact new pixels**.
