@@ -14,9 +14,7 @@ social_image: /assets/icons-of-data/ed-hawkins/02_the_century_shifts_colour.png
 
 What if a chart lost its axis, its labels and every last number?
 
-Normally, that sounds like a design review going rather badly.
-
-In 2018, climate scientist **Ed Hawkins** made it work.
+Normally, that sounds like a design review going rather badly but in 2018, climate scientist **Ed Hawkins** made it work.
 
 ## One year. One stripe.
 
