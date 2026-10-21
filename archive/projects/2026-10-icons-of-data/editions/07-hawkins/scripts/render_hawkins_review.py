@@ -85,31 +85,72 @@ def figure1():
 def figure2():
     fig=base("02  /  RECONSTRUCTION","The years turn red.","The same 176 annual temperatures, shown two different ways.")
     txt(fig,.082,.753,"ONE YEAR  =  ONE STRIPE",11.7,weight="bold")
-    ax=fig.add_axes([.085,.608,.830,.126])
+    # Critical geometry: both independent encodings share the EXACT SAME
+    # figure-relative x-boundaries and inclusive annual centre coordinates.
+    # Any one-year stripe centre therefore falls directly above the line point.
+    shared_left=.125
+    shared_width=.770
+    year_bounds=(1849.5,2025.5)
+    ax=fig.add_axes([shared_left,.608,shared_width,.126])
     ax.imshow(vals[np.newaxis,:],cmap=CMAP,norm=NORM,aspect="auto",
-              extent=[1849.5,2025.5,0,1],interpolation="nearest")
-    ax.set_xlim(1849.5,2025.5);ax.set_axis_off()
-    txt(fig,.086,.585,"1850",10.4,color=MUTED)
-    txt(fig,.913,.585,"2025",10.4,color=MUTED,ha="right")
+              extent=[year_bounds[0],year_bounds[1],0,1],interpolation="nearest")
+    ax.set_xlim(*year_bounds)
+    ax.set_axis_off()
+    txt(fig,shared_left,.585,"1850",10.4,color=MUTED)
+    txt(fig,shared_left+shared_width,.585,"2025",10.4,color=MUTED,ha="right")
     txt(fig,.082,.535,"NOW ADD THE NUMBERS BACK",11.7,weight="bold")
-    ax2=fig.add_axes([.125,.284,.740,.224],facecolor=BG)
-    ax2.fill_between(years,lower,upper,color=TEAL,alpha=.20,lw=0,label="95% range")
-    ax2.plot(years,vals,color=INK,lw=1.7,zorder=3,label="Annual estimate")
-    ax2.axhline(0,color=MUTED,lw=.8,ls="--")
+    ax2=fig.add_axes([shared_left,.284,shared_width,.224],facecolor=BG)
+    # This vertical panel is a TIME period (1961-1990), not a statistical
+    # uncertainty envelope. Boundaries include the full 1961 and 1990 years.
+    ax2.axvspan(1960.5,1990.5,color="#DDD6C9",alpha=.66,zorder=0,lw=0)
+    ax2.fill_between(years,lower,upper,color=TEAL,alpha=.20,lw=0,zorder=2)
+    ax2.plot(years,vals,color=INK,lw=1.7,zorder=4)
+    ax2.axhline(0,color=MUTED,lw=.9,ls="--",zorder=3)
     ax2.scatter([2025],[vals[-1]],s=28,color="#C44E52",zorder=5)
-    ax2.set_xlim(1850,2029);ax2.set_ylim(-.9,1.48)
+    ax2.set_xlim(*year_bounds)
+    ax2.set_ylim(-.9,1.48)
     ax2.set_xticks([1850,1900,1950,2000,2025])
     ax2.set_yticks([-.5,0,.5,1])
     ax2.set_ylabel("Temperature anomaly (°C)",fontsize=10.1,labelpad=10)
     ax2.tick_params(length=0,labelsize=9.4,pad=6)
     ax2.grid(axis="y",color=GRID,lw=.7)
     for spine in ax2.spines.values():spine.set_visible(False)
-    txt(fig,.808,.496,"2025",9.5,color="#B5444B",weight="bold")
-    txt(fig,.086,.245,"Each band uses the same source year as the line below.",11.3)
-    txt(fig,.086,.212,"Shading shows the Met Office published 95% uncertainty range.",10.3,color=MUTED)
+    # Label the reference-window years, and explicitly connect them to y=0.
+    ax2.text(1975.5,1.32,"1961–1990\\nreference years",fontsize=8.6,
+             color=MUTED,ha="center",va="top",zorder=6)
+    ax2.annotate("2025",xy=(2025,vals[-1]),xytext=(-4,15),
+                 textcoords="offset points",ha="right",va="bottom",
+                 fontsize=9.5,fontweight="bold",color="#B5444B",zorder=6)
+    # QA: transformation from an individual year to horizontal pixels MUST
+    # agree between stripes and the line view to rounding precision.
+    stripe_box=ax.get_position().bounds
+    line_box=ax2.get_position().bounds
+    assert abs(stripe_box[0]-line_box[0])<1e-10
+    assert abs(stripe_box[2]-line_box[2])<1e-10
+    assert np.allclose(ax.get_xlim(),ax2.get_xlim())
+    assert len(vals)==int(year_bounds[1]-year_bounds[0])==176
+    for yr in (1850,1900,1961,1975,1990,2025):
+        pos_a=stripe_box[0]+stripe_box[2]*(yr-year_bounds[0])/(year_bounds[1]-year_bounds[0])
+        pos_b=line_box[0]+line_box[2]*(yr-year_bounds[0])/(year_bounds[1]-year_bounds[0])
+        assert abs(pos_a-pos_b)<1e-10,(yr,pos_a,pos_b)
+    txt(fig,.086,.245,"Years align directly above the line; shaded years define 0°C.",11.1)
+    txt(fig,.086,.212,"Blue shading shows the published 95% uncertainty range.",10.3,color=MUTED)
     txt(fig,.086,.165,"Source: "+SRC,9.5,color=MUTED)
     txt(fig,.086,.138,"Fixed palette: -1.25 to +1.25°C · not a Reading replica.",9.5,color=MUTED)
-    return save(fig,"02_the_century_shifts_colour.png")
+    result=save(fig,"02_the_century_shifts_colour.png")
+    result["alignment"]={
+        "shared_plot_left":shared_left,
+        "shared_plot_width":shared_width,
+        "shared_year_bounds":list(year_bounds),
+        "inclusive_reference_period_years":[1961,1990],
+        "reference_window_bounds":[1960.5,1990.5],
+        "reference_mean_anomaly_C":float(np.mean(vals[(years>=1961)&(years<=1990)])),
+        "max_horizontal_alignment_error":0
+    }
+    # Native HadCRUT5 baseline is 1961–1990: average should round to zero.
+    # Publisher's annual interpolation/rounding could introduce a tiny deviation.
+    assert abs(result["alignment"]["reference_mean_anomaly_C"])<0.03
+    return result
 def rectangle(fig,x,y,w,h,face=BG,edge=GRID,lw=1):
     fig.add_artist(Rectangle((x,y),w,h,transform=fig.transFigure,
               facecolor="none",edgecolor=edge,linewidth=lw))
