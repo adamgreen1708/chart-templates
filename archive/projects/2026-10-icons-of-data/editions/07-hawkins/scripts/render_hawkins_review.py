@@ -6,7 +6,7 @@ Original source (landscape JPEG) and TWO 1920px Coffeetableviz figures are confi
 from pathlib import Path
 from io import BytesIO
 from hashlib import sha256
-import csv, json, urllib.request
+import csv, json
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
@@ -67,13 +67,14 @@ def save(fig,name):
             im.resize((size,size),Image.Resampling.LANCZOS).save(OUT/(target.stem+f"_preview_{size}.png"))
     return {"sha256":sha256(target.read_bytes()).hexdigest(),"width":1920,"height":1920,"bytes":target.stat().st_size}
 def figure1():
-    req=urllib.request.Request(ORIGINAL,headers={"User-Agent":"Mozilla/5.0 Coffeetableviz non-commercial editorial attribution"})
-    with urllib.request.urlopen(req,timeout=45) as resp: data=resp.read()
-    if len(data)<15000: raise ValueError("University image download unexpectedly small")
-    original=Image.open(BytesIO(data)).convert("RGB")
-    if original.width<900 or original.height<400:raise ValueError("Wrong historical image dimensions")
+    # Read the previously approved byte-identical University artwork from the
+    # pinned repository archive. Do not rely on the source website being online.
     op=OUT/"01_reading_global_2020_original_unmodified.jpg"
-    op.write_bytes(data)
+    if not op.is_file(): raise FileNotFoundError(f"Pinned historical original missing: {op}")
+    data=op.read_bytes()
+    if len(data)<15000: raise ValueError("Historical source image unexpectedly small")
+    original=Image.open(BytesIO(data)).convert("RGB")
+    if original.width!=1200 or original.height!=675: raise ValueError("Historic original dimensions changed")
     # The historical artefact is itself the first figure — no Coffeetableviz wrapper.
     # Never re-colour, annotate, resize or replace its original bytes.
     image_sha = sha256(data).hexdigest()
