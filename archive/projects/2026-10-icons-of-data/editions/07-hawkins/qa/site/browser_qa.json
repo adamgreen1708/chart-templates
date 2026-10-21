@@ -8,7 +8,8 @@
       "resources_stories": 7,
       "article_overflow": 0,
       "resources_overflow": 0,
-      "js_errors": []
+      "js_errors": [],
+      "figure_02_alignment_and_reference_band": "PASS"
     },
     {
       "screen": "mobile",
@@ -17,7 +18,8 @@
       "resources_stories": 7,
       "article_overflow": 0,
       "resources_overflow": 0,
-      "js_errors": []
+      "js_errors": [],
+      "figure_02_alignment_and_reference_band": "PASS"
     },
     {
       "screen": "narrow",
@@ -26,8 +28,10 @@
       "resources_stories": 7,
       "article_overflow": 0,
       "resources_overflow": 0,
-      "js_errors": []
+      "js_errors": [],
+      "figure_02_alignment_and_reference_band": "PASS"
     }
   ],
-  "published": false
+  "published": false,
+  "revision": "aligned years and 1961-1990 reference window"
 }
