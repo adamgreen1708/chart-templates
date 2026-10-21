@@ -116,7 +116,7 @@ def figure2():
     ax2.grid(axis="y",color=GRID,lw=.7)
     for spine in ax2.spines.values():spine.set_visible(False)
     # Label the reference-window years, and explicitly connect them to y=0.
-    ax2.text(1975.5,1.32,"1961–1990\\nreference years",fontsize=8.6,
+    ax2.text(1975.5,1.32,"1961–1990\nreference years",fontsize=8.6,
              color=MUTED,ha="center",va="top",zorder=6)
     ax2.annotate("2025",xy=(2025,vals[-1]),xytext=(-4,15),
                  textcoords="offset points",ha="right",va="bottom",
