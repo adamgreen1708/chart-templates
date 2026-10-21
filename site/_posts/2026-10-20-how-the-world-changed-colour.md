@@ -39,13 +39,9 @@ The stripes emerged from Hawkins' work at the University of Reading, with an ear
 
 ## The chart with almost nothing on it
 
-There is a clever decision hiding inside all that simplicity.
+There is a clever decision hiding inside all that simplicity, each stripe gets the same amount of room: **one year**. Colour carries the temperature information; the order carries time.
 
-Each stripe gets the same amount of room: **one year**. Colour carries the temperature information; the order carries time.
-
-You don't have to know much about charts to see the red gathering on the right.
-
-That's a lot of communication with very little furniture.
+You don't have to know much about charts to see the red gathering on the right. Hawkin successfully packs a lot of communication with very little furniture!
 
 <figure class="story-chart full-bleed">
   <a href="{{ '/assets/icons-of-data/ed-hawkins/02_the_century_shifts_colour.png' | relative_url }}" aria-label="Open The years turn red full-size temperature reconstruction">
