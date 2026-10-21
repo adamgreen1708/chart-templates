@@ -26,10 +26,10 @@
       "is_original_unaltered": true
     },
     "02": {
-      "sha256": "e79346b0b5840e373799bd38cd14f4fe741f162211f9b8c3f8cfd78f0177dfb2",
+      "sha256": "3dd2c547ef6d86a0e7fbe6b2d48960c7f9b11b7891742023959a8adca18ecb2c",
       "width": 1920,
       "height": 1920,
-      "bytes": 298820,
+      "bytes": 251787,
       "alignment": {
         "shared_plot_left": 0.125,
         "shared_plot_width": 0.77,

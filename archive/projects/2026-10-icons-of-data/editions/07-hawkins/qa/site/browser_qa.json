@@ -1,5 +1,7 @@
 {
   "result": "PASS",
+  "published": false,
+  "revision": "clean Chart 02 labels",
   "pages": [
     {
       "screen": "desktop",
@@ -7,9 +9,8 @@
       "article_images": 3,
       "resources_stories": 7,
       "article_overflow": 0,
-      "resources_overflow": 0,
       "js_errors": [],
-      "figure_02_alignment_and_reference_band": "PASS"
+      "chart02": "reduced copy"
     },
     {
       "screen": "mobile",
@@ -17,9 +18,8 @@
       "article_images": 3,
       "resources_stories": 7,
       "article_overflow": 0,
-      "resources_overflow": 0,
       "js_errors": [],
-      "figure_02_alignment_and_reference_band": "PASS"
+      "chart02": "reduced copy"
     },
     {
       "screen": "narrow",
@@ -27,11 +27,8 @@
       "article_images": 3,
       "resources_stories": 7,
       "article_overflow": 0,
-      "resources_overflow": 0,
       "js_errors": [],
-      "figure_02_alignment_and_reference_band": "PASS"
+      "chart02": "reduced copy"
     }
-  ],
-  "published": false,
-  "revision": "aligned years and 1961-1990 reference window"
+  ]
 }
