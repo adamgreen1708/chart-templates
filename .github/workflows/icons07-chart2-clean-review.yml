@@ -5,6 +5,7 @@ on:
       - draft/icons07-chart2-cleaner-headings-20261021
     paths:
       - ".github/workflows/icons07-chart2-clean-review.yml"
+      - "archive/projects/2026-10-icons-of-data/editions/07-hawkins/scripts/render_hawkins_review.py"
   workflow_dispatch:
 permissions:
   contents: write
