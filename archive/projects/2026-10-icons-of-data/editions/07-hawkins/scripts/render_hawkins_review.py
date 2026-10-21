@@ -83,23 +83,21 @@ def figure1():
             "is_original_unaltered": True}
 
 def figure2():
-    fig=base("02  /  RECONSTRUCTION","The years turn red.","The same 176 annual temperatures, shown two different ways.")
-    txt(fig,.082,.753,"ONE YEAR  =  ONE STRIPE",11.7,weight="bold")
+    fig=base("02  /  RECONSTRUCTION","The years turn red.","One year equals one stripe")
     # Critical geometry: both independent encodings share the EXACT SAME
     # figure-relative x-boundaries and inclusive annual centre coordinates.
     # Any one-year stripe centre therefore falls directly above the line point.
     shared_left=.125
     shared_width=.770
     year_bounds=(1849.5,2025.5)
-    ax=fig.add_axes([shared_left,.608,shared_width,.126])
+    ax=fig.add_axes([shared_left,.618,shared_width,.132])
     ax.imshow(vals[np.newaxis,:],cmap=CMAP,norm=NORM,aspect="auto",
               extent=[year_bounds[0],year_bounds[1],0,1],interpolation="nearest")
     ax.set_xlim(*year_bounds)
     ax.set_axis_off()
-    txt(fig,shared_left,.585,"1850",10.4,color=MUTED)
-    txt(fig,shared_left+shared_width,.585,"2025",10.4,color=MUTED,ha="right")
-    txt(fig,.082,.535,"NOW ADD THE NUMBERS BACK",11.7,weight="bold")
-    ax2=fig.add_axes([shared_left,.284,shared_width,.224],facecolor=BG)
+    txt(fig,shared_left,.595,"1850",10.4,color=MUTED)
+    txt(fig,shared_left+shared_width,.595,"2025",10.4,color=MUTED,ha="right")
+    ax2=fig.add_axes([shared_left,.304,shared_width,.242],facecolor=BG)
     # This vertical panel is a TIME period (1961-1990), not a statistical
     # uncertainty envelope. Boundaries include the full 1961 and 1990 years.
     ax2.axvspan(1960.5,1990.5,color="#DDD6C9",alpha=.66,zorder=0,lw=0)
@@ -133,7 +131,6 @@ def figure2():
         pos_a=stripe_box[0]+stripe_box[2]*(yr-year_bounds[0])/(year_bounds[1]-year_bounds[0])
         pos_b=line_box[0]+line_box[2]*(yr-year_bounds[0])/(year_bounds[1]-year_bounds[0])
         assert abs(pos_a-pos_b)<1e-10,(yr,pos_a,pos_b)
-    txt(fig,.086,.245,"Each stripe aligns with its year; tan = reference years for 0°C anomaly.",11.1)
     txt(fig,.086,.212,"Blue shading shows the published 95% uncertainty range.",10.3,color=MUTED)
     txt(fig,.086,.165,"Source: "+SRC,9.5,color=MUTED)
     txt(fig,.086,.138,"Fixed palette: -1.25 to +1.25°C · not a Reading replica.",9.5,color=MUTED)
