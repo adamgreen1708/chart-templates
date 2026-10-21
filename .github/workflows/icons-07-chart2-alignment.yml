@@ -1,0 +1,160 @@
+name: Icons 07 — Align chart and reference band (temporary)
+on:
+  push:
+    branches:
+      - icons-of-data-07-hawkins-20261020
+    paths:
+      - ".github/workflows/icons-07-chart2-alignment.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  alignment-render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install pinned plot dependencies
+        run: python -m pip install numpy==2.1.3 matplotlib==3.9.2 pillow==11.0.0
+      - name: Render all 3 source-governed review images
+        run: python archive/projects/2026-10-icons-of-data/editions/07-hawkins/scripts/render_hawkins_review.py
+      - name: Check alignment invariants, baseline window and source image identity
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from hashlib import sha256
+          import json
+          from PIL import Image
+          root=Path("archive/projects/2026-10-icons-of-data/editions/07-hawkins")
+          m=json.loads((root/"qa/render_manifest.json").read_text())
+          assert m["observations"]==176 and m["end_year"]==2025 and m["year_2026_excluded"]
+          a=m["figures"]["02"]["alignment"]
+          assert a["shared_plot_left"]==.125
+          assert a["shared_plot_width"]==.770
+          assert a["shared_year_bounds"]==[1849.5,2025.5]
+          assert a["inclusive_reference_period_years"]==[1961,1990]
+          assert a["reference_window_bounds"]==[1960.5,1990.5]
+          assert a["max_horizontal_alignment_error"]==0
+          assert abs(a["reference_mean_anomaly_C"])<.03
+          known={
+            "01_reading_global_2020_original_unmodified.jpg":"64ac4a7b3ed36fc7448b107caa4b6c222005013862ecf017947e24ad4d16f07f",
+            "03_decode_the_icon.png":"b5eaac606edd53251cc86468a78da17658e16ae855b7be535f56dd7789ca0959"
+          }
+          for fn,expected in known.items():
+              p=root/"qa/visuals"/fn
+              assert sha256(p.read_bytes()).hexdigest()==expected, fn
+          new=root/"qa/visuals/02_the_century_shifts_colour.png"
+          assert sha256(new.read_bytes()).hexdigest()==m["figures"]["02"]["sha256"]
+          assert m["figures"]["02"]["sha256"]!="cc74466aa9d4bb80f8b9fda6b7f2aeec44a2577d09b67105da5994d87bc42a97"
+          with Image.open(new) as im: assert im.size==(1920,1920)
+          for w in (320,390,600):
+              with Image.open(new.with_name(new.stem+f"_preview_{w}.png")) as im:assert im.size==(w,w)
+          print("PASS: year-to-year stripe/line x alignment, reference-window bounds, unchanged original and Figure 03")
+          PY
+      - name: Replace only Chart 02 staged site PNG
+        run: |
+          set -euo pipefail
+          root=archive/projects/2026-10-icons-of-data/editions/07-hawkins
+          cp "$root/qa/visuals/02_the_century_shifts_colour.png" site/assets/icons-of-data/ed-hawkins/02_the_century_shifts_colour.png
+          cmp "$root/qa/visuals/01_reading_global_2020_original_unmodified.jpg" site/assets/icons-of-data/ed-hawkins/01_reading_global_2020_original_unmodified.jpg
+          cmp "$root/qa/visuals/03_decode_the_icon.png" site/assets/icons-of-data/ed-hawkins/03_decode_the_icon.png
+          cmp "$root/qa/visuals/02_the_century_shifts_colour.png" site/assets/icons-of-data/ed-hawkins/02_the_century_shifts_colour.png
+      - name: Build staged Jekyll site without deploying
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./site
+          destination: ./_site
+      - name: Install Chromium QA dependencies
+        run: |
+          python -m pip install playwright==1.56.0
+          python -m playwright install --with-deps chromium
+      - name: Verify article, new Chart 02 and Resources page at 3 widths
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          import subprocess,sys,time,urllib.request,json
+          from playwright.sync_api import sync_playwright
+          root=Path("archive/projects/2026-10-icons-of-data/editions/07-hawkins/qa/site")
+          root.mkdir(parents=True,exist_ok=True)
+          server=subprocess.Popen([sys.executable,"-m","http.server","8765","--bind","127.0.0.1","--directory","_site"],
+                                  stdout=subprocess.DEVNULL,stderr=subprocess.STDOUT)
+          out=[]
+          try:
+              for _ in range(40):
+                  try:
+                      with urllib.request.urlopen("http://127.0.0.1:8765/",timeout=2) as response:
+                          if response.status==200:break
+                  except Exception:time.sleep(.3)
+              else:raise RuntimeError("Preview server did not start")
+              with sync_playwright() as p:
+                  browser=p.chromium.launch(headless=True)
+                  for width,label in [(1365,"desktop"),(390,"mobile"),(320,"narrow")]:
+                      page=browser.new_page(viewport={"width":width,"height":880},device_scale_factor=1)
+                      errors=[]
+                      page.on("pageerror",lambda ex:errors.append(str(ex)))
+                      url="http://127.0.0.1:8765/icons-of-data/ed-hawkins-warming-stripes/"
+                      r=page.goto(url,wait_until="load",timeout=60000)
+                      assert r.status==200,(label,r.status)
+                      images=page.locator("article.post figure.story-chart img")
+                      assert images.count()==3
+                      for k,dimensions in enumerate([(1200,675),(1920,1920),(1920,1920)]):
+                          el=images.nth(k)
+                          el.scroll_into_view_if_needed()
+                          el.evaluate("(x)=>x.decode()")
+                          dims=el.evaluate("(x)=>[x.naturalWidth,x.naturalHeight,x.getBoundingClientRect().width]")
+                          assert tuple(dims[:2])==dimensions,(label,k,dims)
+                          assert dims[2] <= width+2
+                      text=page.locator("article.post").inner_text()
+                      assert "1961–1990" in text and "stripe" in text
+                      assert "Each stripe sits directly above" in page.locator("article.post").inner_text()
+                      ov=page.evaluate("document.documentElement.scrollWidth-window.innerWidth")
+                      assert ov<=2,(label,ov)
+                      assert not errors
+                      page.screenshot(path=str(root/f"hawkins-article-{label}.png"),full_page=True)
+                      rr=page.goto("http://127.0.0.1:8765/resources/icons-of-data/",wait_until="load")
+                      assert rr.status==200
+                      assert page.locator(".icons-entry").count()==7
+                      assert page.locator(".icons-entry").filter(has_text="Ed Hawkins").count()==1
+                      r_ov=page.evaluate("document.documentElement.scrollWidth-window.innerWidth")
+                      assert r_ov<=2,(label,r_ov)
+                      page.screenshot(path=str(root/f"hawkins-resources-{label}.png"),full_page=True)
+                      out.append({"screen":label,"width":width,"article_images":3,
+                        "resources_stories":7,"article_overflow":ov,"resources_overflow":r_ov,"js_errors":errors,
+                        "figure_02_alignment_and_reference_band":"PASS"})
+                      page.close()
+                  browser.close()
+              (root/"browser_qa.json").write_text(json.dumps(
+                  {"result":"PASS","pages":out,"published":False,"revision":"aligned years and 1961-1990 reference window"},
+                  indent=2)+"\n")
+              print(json.dumps(out,indent=2))
+          finally:
+              server.terminate()
+              server.wait(timeout=10)
+          PY
+      - name: Upload exact reviewed PNG, manifest and screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: icons-07-chart2-alignment-and-baseline
+          path: |
+            archive/projects/2026-10-icons-of-data/editions/07-hawkins/qa/visuals/02_the_century_shifts_colour*.png
+            archive/projects/2026-10-icons-of-data/editions/07-hawkins/qa/render_manifest.json
+            archive/projects/2026-10-icons-of-data/editions/07-hawkins/qa/site/**
+          if-no-files-found: error
+      - name: Commit GH-rendered corrected image and site QA to draft PR
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add archive/projects/2026-10-icons-of-data/editions/07-hawkins/qa/render_manifest.json
+          git add archive/projects/2026-10-icons-of-data/editions/07-hawkins/qa/visuals/
+          git add archive/projects/2026-10-icons-of-data/editions/07-hawkins/qa/site/
+          git add site/assets/icons-of-data/ed-hawkins/02_the_century_shifts_colour.png
+          if git diff --staged --quiet; then echo "No image changes"; exit 0; fi
+          git commit -m "Align Hawkins stripes and line years, mark 1961-1990 zero reference, rerun site QA"
+          git push origin HEAD:icons-of-data-07-hawkins-20261020
