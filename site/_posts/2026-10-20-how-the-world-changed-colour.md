@@ -53,7 +53,7 @@ That's a lot of communication with very little furniture.
          alt="Coffeetableviz reconstruction using 176 years of HadCRUT5 global annual temperatures, 1850–2025. Across the top, blue-to-red vertical stripes become much warmer in recent decades. Directly beneath the corresponding years, a black temperature line shares precisely the same horizontal year positions as the stripes. A faint beige vertical panel marks the 1961–1990 reference period, when the dashed zero-anomaly line is defined; light blue shading around the line shows the Met Office published 95 per cent uncertainty range. The final observation is 2025."
          width="1920" height="1920" loading="lazy" decoding="async">
   </a>
-  <figcaption><strong>The years turn red.</strong> Our independent reconstruction uses the Met Office HadCRUT5 annual global analysis for <strong>1850–2025</strong>, with the original dataset's <strong>1961–1990</strong> reference average. Its colours and input dataset are <em>not</em> pixel-for-pixel reproductions of Hawkins' historical artwork. <strong>Each stripe sits directly above the same year in the line chart.</strong> The subtle beige band highlights the <strong>1961–1990 reference period</strong> that defines the dashed <strong>0°C anomaly</strong> line (not an actual temperature of zero). Light blue shading shows the published measurement-uncertainty interval.</figcaption>
+  <figcaption><strong>The years turn red.</strong> My independent reconstruction uses the Met Office HadCRUT5 annual global analysis for <strong>1850–2025</strong>, with the original dataset's <strong>1961–1990</strong> reference average. Its colours and input dataset are <em>not</em> pixel-for-pixel reproductions of Hawkins' historical artwork. <strong>Each stripe sits directly above the same year in the line chart.</strong> The subtle beige band highlights the <strong>1961–1990 reference period</strong> that defines the dashed <strong>0°C anomaly</strong> line (not an actual temperature of zero). Light blue shading shows the published measurement-uncertainty interval.</figcaption>
 </figure>
 
 But making something immediate also means leaving things out.
@@ -64,7 +64,7 @@ The colours need a reference average: a period against which warmer and cooler y
 
 There's a twist. Hawkins' earlier stripes used **1971–2000**. For the **2023 update**, he changed that to **1961–2010** and adjusted the colour scale to accommodate the unusually extreme temperatures while preserving the familiar look.
 
-Our Met Office reconstruction uses a different, longstanding convention: **1961–1990**. None of these choices changes the actual yearly observations, but they do change which temperatures fall either side of the colour midpoint.
+My Met Office reconstruction uses a different, longstanding convention: **1961–1990**. None of these choices changes the actual yearly observations, but they do change which temperatures fall either side of the colour midpoint.
 
 ## Beautifully clear. Deliberately incomplete.
 
@@ -83,9 +83,7 @@ And colour alone needs a verbal explanation for people who can't reliably distin
 
 ## TLDR
 
-Hawkins didn't make temperature data less serious.
-
-He made the first encounter with it less demanding.
+Hawkins didn't make temperature data less serious. He made the first encounter with it less demanding.
 
 A wonderful way to start a conversation.
 
