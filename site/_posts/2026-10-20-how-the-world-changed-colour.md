@@ -79,7 +79,7 @@ And colour alone needs a verbal explanation for people who can't reliably distin
 
 Hawkins didn't make temperature data less serious. He made the first encounter with it less demanding.
 
-It serves as awonderful way to start a conversation but definitely not quite the last word in it.
+It serves as a wonderful way to start a conversation but definitely not quite the last word in it.
 
 <aside class="method-note">
   <h2>Source and method</h2>
