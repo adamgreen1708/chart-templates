@@ -68,3 +68,20 @@ This distinction MUST be explained in article/captions, not implied that Hawkins
 - Previously the rendering step attempted to redownload the University original and timed out. The renderer now reads its **previously pinned, hash-checked original JPEG already in the GitHub archive**, avoiding remote dependencies.
 - GitHub Actions successful render, original and decoder SHA validation, 176-year x-alignment assertions, Jekyll build and Chromium QA at 1365/390/320px: https://github.com/adamgreen1708/chart-templates/actions/runs/39661278927 .
 - Human visual QA inspected full-size and 390px downsample: headline/subtitle and plot elements remain legible, requested copy removed, chart lines and dates aligned; the period highlight is visible. No website deployment, no merge; **author must review exact new pixels**.
+
+## 2026-10-22 — Estimated absolute 1961–1990 global mean added to Chart 02 (draft PR #142)
+
+**Author request:** The highlighted 1961–1990 zero-anomaly reference band should identify its approximate absolute global mean, not only the years. New in-band label: `1961–1990 / ≈14.0°C / est. global mean`.
+
+**Two independent kinds of temperature measurement:**
+- Chart-data CSV continues to supply *anomalies* and 95% limits from HadCRUT5 version 5.2.0.0, relative to its native 1961–1990 reference; 1850–2025 only.
+- **≈14.0°C** is a published, separately *estimated absolute global average* for that reference period, explicitly given by [Met Office Hadley Centre](https://www.metoffice.gov.uk/hadobs/indicators/) and attributed to Jones et al. (1999). Further context: [Jones & Harpham (2013), DOI 10.1002/jgrd.50359](https://doi.org/10.1002/jgrd.50359). It **cannot be calculated from anomaly-only HadCRUT5 CSV**.
+- A 0°C **anomaly** does not mean 0°C **absolute**; the website caption and accessible image description state this distinction.
+
+**Data integrity:** Added mandatory checksum gate for the pinned numeric source SHA-256 `7f750b673bb34aad722736ee21f122b5ea692c99877fa0b1066df65e51f32c04`. Retained the mathematically identical stripe-year alignment tests and 1961–1990 boundaries. Added actual Matplotlib text-bounding-box assertions to keep the estimated global-mean label within the highlighted time interval.
+
+**Render and QA:** GitHub Actions https://github.com/adamgreen1708/chart-templates/actions/runs/39732178407 — **passed**. Jekyll built; Chromium tested 1365/390/320px with no overflow, three correctly-sized article images and seven Resources stories. Candidate `qa/visuals/02_the_century_shifts_colour.png` is 1920×1920 PNG, SHA-256 **`b242a6e4b37bee2afb990c61effad8b0d8cce5dbc3aac2c596c842d823417887`**, duplicated byte-for-byte in draft `site/assets/icons-of-data/ed-hawkins/`.
+
+**Preservation:** University original SHA-256 `64ac4a7b3ed36fc7448b107caa4b6c222005013862ecf017947e24ad4d16f07f`; unchanged Figure 03 SHA-256 `b5eaac606edd53251cc86468a78da17658e16ae855b7be535f56dd7789ca0959`.
+
+**State:** Draft PR **#142**. Image presented to author for approval. **No merge, no GitHub Pages publication until an explicit author approval.**
