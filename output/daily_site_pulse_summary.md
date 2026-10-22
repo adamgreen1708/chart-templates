@@ -1,9 +1,9 @@
-# Coffeetableviz Daily Pulse — 20 October 2026
+# Coffeetableviz Daily Pulse — 21 October 2026
 
-- **Visits:** 10
-- **7-day context:** 51% below prior 7-day daily average (20.4)
-- **Top pages:** Home (3), Today’s Blockbuster Quote (2), How the world changed colour (1)
-- **Top referrer:** Direct / unknown — 3 visits
-- **Observation:** A noticeably quieter day than the seven-day baseline.
+- **Visits:** 11
+- **7-day context:** 35% below prior 7-day daily average (16.9)
+- **Top pages:** How the world changed colour (3), The grid is a guide, not a verdict (1), Icons of Data (1)
+- **Top referrer:** www.linkedin.com — 1 visits
+- **Observation:** Traffic stayed fairly close to its recent rhythm.
 
 Latest image: `output/daily_site_pulse.png`
