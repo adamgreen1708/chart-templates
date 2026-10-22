@@ -26,10 +26,10 @@
       "is_original_unaltered": true
     },
     "02": {
-      "sha256": "3dd2c547ef6d86a0e7fbe6b2d48960c7f9b11b7891742023959a8adca18ecb2c",
+      "sha256": "b242a6e4b37bee2afb990c61effad8b0d8cce5dbc3aac2c596c842d823417887",
       "width": 1920,
       "height": 1920,
-      "bytes": 251787,
+      "bytes": 254354,
       "alignment": {
         "shared_plot_left": 0.125,
         "shared_plot_width": 0.77,
@@ -46,7 +46,9 @@
           1990.5
         ],
         "reference_mean_anomaly_C": 0.007990693266666665,
-        "max_horizontal_alignment_error": 0
+        "max_horizontal_alignment_error": 0,
+        "absolute_baseline_mean_C_approx": 14.0,
+        "absolute_baseline_source": "Met Office Hadley Centre FAQ, citing Jones et al. (1999); separately estimated, not derived from HadCRUT5 anomalies"
       }
     },
     "03": {

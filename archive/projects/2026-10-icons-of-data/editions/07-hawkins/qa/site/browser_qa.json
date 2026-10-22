@@ -1,7 +1,5 @@
 {
   "result": "PASS",
-  "published": false,
-  "revision": "clean Chart 02 labels",
   "pages": [
     {
       "screen": "desktop",
@@ -10,7 +8,7 @@
       "resources_stories": 7,
       "article_overflow": 0,
       "js_errors": [],
-      "chart02": "reduced copy"
+      "absolute_baseline_label": "\u224814.0\u00b0C estimated global mean"
     },
     {
       "screen": "mobile",
@@ -19,7 +17,7 @@
       "resources_stories": 7,
       "article_overflow": 0,
       "js_errors": [],
-      "chart02": "reduced copy"
+      "absolute_baseline_label": "\u224814.0\u00b0C estimated global mean"
     },
     {
       "screen": "narrow",
@@ -28,7 +26,9 @@
       "resources_stories": 7,
       "article_overflow": 0,
       "js_errors": [],
-      "chart02": "reduced copy"
+      "absolute_baseline_label": "\u224814.0\u00b0C estimated global mean"
     }
-  ]
+  ],
+  "published": false,
+  "revision": "label estimated 1961-1990 absolute global mean in Chart 02"
 }

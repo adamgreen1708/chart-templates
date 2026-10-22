@@ -40,7 +40,12 @@ assert np.all(lower<vals) and np.all(vals<upper)
 offset=float(np.mean(vals[(years>=1961)&(years<=2010)]))
 assert abs(offset-0.18100777836)<1e-9, "Reference-period regression failure"
 assert abs(vals[-1]-1.0732167)<1e-7, "2025 regression failure"
+assert sha256(DATA.read_bytes()).hexdigest()=="7f750b673bb34aad722736ee21f122b5ea692c99877fa0b1066df65e51f32c04", "Pinned HadCRUT5 source CSV changed; do not render"
 SRC="Met Office HadCRUT5 v5.2.0.0  /  1961-1990 reference"
+# Approximate ABSOLUTE global mean is external published context, NOT derived from
+# the HadCRUT5 anomaly CSV. Met Office Hadley Centre FAQs cite Jones et al. (1999):
+# https://www.metoffice.gov.uk/hadobs/indicators/ ; doi:10.1002/jgrd.50359
+BASELINE_ABSOLUTE_GLOBAL_MEAN_C_APPROX=14.0
 ORIGINAL="https://collections.reading.ac.uk/art-collections/wp-content/uploads/sites/2/2021/10/UAC_11018-1200px.jpg"
 def txt(fig,x,y,s,size=13,color=INK,weight="normal",ha="left",va="center"):
     fig.text(x,y,s,fontsize=size,color=color,weight=weight,ha=ha,va=va)
@@ -114,9 +119,11 @@ def figure2():
     ax2.tick_params(length=0,labelsize=9.4,pad=6)
     ax2.grid(axis="y",color=GRID,lw=.7)
     for spine in ax2.spines.values():spine.set_visible(False)
-    # Label the reference-window years, and explicitly connect them to y=0.
-    ax2.text(1975.5,1.44,"1961–1990\nreference years",fontsize=8.6,
-             color=MUTED,ha="center",va="top",zorder=6)
+    # The vertical band marks the years defining 0°C *anomaly*, not absolute 0°C.
+    # 14.0°C is a separately estimated ABSOLUTE global mean (Jones et al. 1999,
+    # reported by Met Office). Never derive it from the anomaly CSV.
+    baseline_label=ax2.text(1975.5,1.44,"1961–1990\n≈14.0°C\nest. global mean",
+             fontsize=8.4,color=MUTED,ha="center",va="top",linespacing=1.25,zorder=6)
     ax2.annotate("2025",xy=(2025,vals[-1]),xytext=(-4,15),
                  textcoords="offset points",ha="right",va="bottom",
                  fontsize=9.5,fontweight="bold",color="#B5444B",zorder=6)
@@ -132,6 +139,16 @@ def figure2():
         pos_a=stripe_box[0]+stripe_box[2]*(yr-year_bounds[0])/(year_bounds[1]-year_bounds[0])
         pos_b=line_box[0]+line_box[2]*(yr-year_bounds[0])/(year_bounds[1]-year_bounds[0])
         assert abs(pos_a-pos_b)<1e-10,(yr,pos_a,pos_b)
+    # Visual geometry regression: all label glyphs must fit inside the
+    # 1961–1990 reference-period band, not overlap adjacent decades.
+    fig.canvas.draw()
+    bounds=baseline_label.get_window_extent(renderer=fig.canvas.get_renderer())
+    ref_x0=ax2.transData.transform((1960.5,0))[0]
+    ref_x1=ax2.transData.transform((1990.5,0))[0]
+    assert bounds.x0 >= ref_x0-1 and bounds.x1 <= ref_x1+1, (
+        "Absolute-baseline label would spill out of highlighted period",bounds,ref_x0,ref_x1)
+    assert bounds.y0 > ax2.bbox.y0 and bounds.y1 < ax2.bbox.y1+2, (
+        "Absolute-baseline label clipped vertically",bounds,ax2.bbox)
     txt(fig,.086,.212,"Blue shading shows the published 95% uncertainty range.",10.3,color=MUTED)
     txt(fig,.086,.165,"Source: "+SRC,9.5,color=MUTED)
     txt(fig,.086,.138,"Fixed palette: -1.25 to +1.25°C · not a Reading replica.",9.5,color=MUTED)
@@ -143,7 +160,9 @@ def figure2():
         "inclusive_reference_period_years":[1961,1990],
         "reference_window_bounds":[1960.5,1990.5],
         "reference_mean_anomaly_C":float(np.mean(vals[(years>=1961)&(years<=1990)])),
-        "max_horizontal_alignment_error":0
+        "max_horizontal_alignment_error":0,
+        "absolute_baseline_mean_C_approx":BASELINE_ABSOLUTE_GLOBAL_MEAN_C_APPROX,
+        "absolute_baseline_source":"Met Office Hadley Centre FAQ, citing Jones et al. (1999); separately estimated, not derived from HadCRUT5 anomalies"
     }
     # Native HadCRUT5 baseline is 1961–1990: average should round to zero.
     # Publisher's annual interpolation/rounding could introduce a tiny deviation.
