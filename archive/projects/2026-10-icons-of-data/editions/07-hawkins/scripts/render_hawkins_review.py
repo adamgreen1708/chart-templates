@@ -139,6 +139,16 @@ def figure2():
         pos_a=stripe_box[0]+stripe_box[2]*(yr-year_bounds[0])/(year_bounds[1]-year_bounds[0])
         pos_b=line_box[0]+line_box[2]*(yr-year_bounds[0])/(year_bounds[1]-year_bounds[0])
         assert abs(pos_a-pos_b)<1e-10,(yr,pos_a,pos_b)
+    # Visual geometry regression: all label glyphs must fit inside the
+    # 1961–1990 reference-period band, not overlap adjacent decades.
+    fig.canvas.draw()
+    bounds=baseline_label.get_window_extent(renderer=fig.canvas.get_renderer())
+    ref_x0=ax2.transData.transform((1960.5,0))[0]
+    ref_x1=ax2.transData.transform((1990.5,0))[0]
+    assert bounds.x0 >= ref_x0-1 and bounds.x1 <= ref_x1+1, (
+        "Absolute-baseline label would spill out of highlighted period",bounds,ref_x0,ref_x1)
+    assert bounds.y0 > ax2.bbox.y0 and bounds.y1 < ax2.bbox.y1+2, (
+        "Absolute-baseline label clipped vertically",bounds,ax2.bbox)
     txt(fig,.086,.212,"Blue shading shows the published 95% uncertainty range.",10.3,color=MUTED)
     txt(fig,.086,.165,"Source: "+SRC,9.5,color=MUTED)
     txt(fig,.086,.138,"Fixed palette: -1.25 to +1.25°C · not a Reading replica.",9.5,color=MUTED)
