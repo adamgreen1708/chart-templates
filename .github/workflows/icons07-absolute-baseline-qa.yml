@@ -1,0 +1,157 @@
+name: Icons 07 — Absolute baseline label QA
+on:
+  push:
+    branches:
+      - draft/icons07-chart2-absolute-baseline-20261022
+    paths:
+      - .github/workflows/icons07-absolute-baseline-qa.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  render-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install rendering dependencies
+        run: python -m pip install numpy==2.1.3 matplotlib==3.9.2 pillow==11.0.0
+      - name: Render all archived images from pinned source files
+        run: python archive/projects/2026-10-icons-of-data/editions/07-hawkins/scripts/render_hawkins_review.py
+      - name: Check data integrity, source provenance, image hashes and period label
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import csv,json,hashlib
+          from PIL import Image
+          root=Path("archive/projects/2026-10-icons-of-data/editions/07-hawkins")
+          src=root/"data/HadCRUT.5.2.0.0.analysis.summary_series.global.annual.snapshot_2026-10-19.csv"
+          assert hashlib.sha256(src.read_bytes()).hexdigest()=="7f750b673bb34aad722736ee21f122b5ea692c99877fa0b1066df65e51f32c04"
+          with src.open() as f: rows=list(csv.DictReader(f))
+          assert len(rows)==177 and [int(x["Time"]) for x in rows if int(x["Time"])<=2025]==list(range(1850,2026))
+          m=json.loads((root/"qa/render_manifest.json").read_text())
+          a=m["figures"]["02"]["alignment"]
+          assert m["observations"]==176 and m["year_2026_excluded"] is True
+          assert a["shared_year_bounds"]==[1849.5,2025.5]
+          assert a["max_horizontal_alignment_error"]==0
+          assert a["inclusive_reference_period_years"]==[1961,1990]
+          assert a["reference_window_bounds"]==[1960.5,1990.5]
+          assert a["absolute_baseline_mean_C_approx"]==14.0
+          assert "not derived from HadCRUT5" in a["absolute_baseline_source"]
+          assert m["source_csv_sha256"]=="7f750b673bb34aad722736ee21f122b5ea692c99877fa0b1066df65e51f32c04"
+          fixed={
+            "01_reading_global_2020_original_unmodified.jpg":"64ac4a7b3ed36fc7448b107caa4b6c222005013862ecf017947e24ad4d16f07f",
+            "03_decode_the_icon.png":"b5eaac606edd53251cc86468a78da17658e16ae855b7be535f56dd7789ca0959"
+          }
+          for f,hash_expected in fixed.items():
+            assert hashlib.sha256((root/"qa/visuals"/f).read_bytes()).hexdigest()==hash_expected,f
+          image=root/"qa/visuals/02_the_century_shifts_colour.png"
+          assert hashlib.sha256(image.read_bytes()).hexdigest()==m["figures"]["02"]["sha256"]
+          assert m["figures"]["02"]["sha256"]!="3dd2c547ef6d86a0e7fbe6b2d48960c7f9b11b7891742023959a8adca18ecb2c"
+          with Image.open(image) as im:assert im.size==(1920,1920)
+          for sz in (600,390,320):
+            with Image.open(root/"qa/visuals"/f"02_the_century_shifts_colour_preview_{sz}.png") as im:
+              assert im.size==(sz,sz)
+          print("PASS: pinned measured data, independently sourced absolute-baseline approximation, aligned reference band, unchanged original and decoder")
+          PY
+      - name: Stage only regenerated Chart 02 PNG as draft asset
+        run: |
+          set -euo pipefail
+          root=archive/projects/2026-10-icons-of-data/editions/07-hawkins
+          cp "$root/qa/visuals/02_the_century_shifts_colour.png" site/assets/icons-of-data/ed-hawkins/02_the_century_shifts_colour.png
+          cmp "$root/qa/visuals/01_reading_global_2020_original_unmodified.jpg" site/assets/icons-of-data/ed-hawkins/01_reading_global_2020_original_unmodified.jpg
+          cmp "$root/qa/visuals/03_decode_the_icon.png" site/assets/icons-of-data/ed-hawkins/03_decode_the_icon.png
+      - name: Validate Jekyll without site publication
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./site
+          destination: ./_site
+      - name: Install browser QA
+        run: |
+          python -m pip install playwright==1.56.0
+          python -m playwright install --with-deps chromium
+      - name: Test rendered website at desktop/mobile/narrow
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import subprocess,sys,time,urllib.request,json
+          from playwright.sync_api import sync_playwright
+          out=Path("archive/projects/2026-10-icons-of-data/editions/07-hawkins/qa/site")
+          out.mkdir(parents=True,exist_ok=True)
+          srv=subprocess.Popen([sys.executable,"-m","http.server","8765","--bind","127.0.0.1","--directory","_site"],stdout=subprocess.DEVNULL,stderr=subprocess.STDOUT)
+          cases=[]
+          try:
+            for _ in range(50):
+              try:
+                with urllib.request.urlopen("http://127.0.0.1:8765/",timeout=2) as resp:
+                  if resp.status==200:break
+              except Exception:time.sleep(.3)
+            else: raise RuntimeError("Local static site did not respond")
+            with sync_playwright() as pw:
+              browser=pw.chromium.launch(headless=True)
+              for width,name in [(1365,"desktop"),(390,"mobile"),(320,"narrow")]:
+                page=browser.new_page(viewport={"width":width,"height":880},device_scale_factor=1)
+                errors=[]
+                page.on("pageerror",lambda e:errors.append(str(e)))
+                resp=page.goto("http://127.0.0.1:8765/icons-of-data/ed-hawkins-warming-stripes/",wait_until="load")
+                assert resp.status==200,(name,resp.status)
+                images=page.locator("article.post figure.story-chart img")
+                assert images.count()==3
+                for i,expected in enumerate([(1200,675),(1920,1920),(1920,1920)]):
+                  el=images.nth(i)
+                  el.scroll_into_view_if_needed()
+                  el.evaluate("(im)=>im.decode()")
+                  dim=el.evaluate("(im)=>[im.naturalWidth,im.naturalHeight,im.getBoundingClientRect().width]")
+                  assert tuple(dim[:2])==expected,(name,i,dim)
+                  assert dim[2]<=width+2,(name,i,dim)
+                text=page.locator("article.post").inner_text()
+                assert "≈14.0°C" in text and "Jones et al. (1999)" in text
+                assert "1961–1990" in text and "not" in text
+                over=page.evaluate("document.documentElement.scrollWidth-window.innerWidth")
+                assert over<=2,(name,over)
+                assert not errors,(name,errors)
+                page.screenshot(path=str(out/f"hawkins-article-{name}.png"),full_page=True)
+                resp=page.goto("http://127.0.0.1:8765/resources/icons-of-data/",wait_until="load")
+                assert resp.status==200
+                assert page.locator(".icons-entry").count()==7
+                assert page.evaluate("document.documentElement.scrollWidth-window.innerWidth")<=2
+                cases.append({"screen":name,"width":width,"article_images":3,
+                              "resources_stories":7,"article_overflow":over,"js_errors":errors,
+                              "absolute_baseline_label":"≈14.0°C estimated global mean"})
+                page.close()
+              browser.close()
+            (out/"browser_qa.json").write_text(json.dumps({
+              "result":"PASS","pages":cases,"published":False,
+              "revision":"label estimated 1961-1990 absolute global mean in Chart 02"
+            },indent=2)+"\n")
+            print(json.dumps(cases,indent=2))
+          finally:
+            srv.terminate()
+            srv.wait(timeout=10)
+          PY
+      - name: Upload approved-source output and QA screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: icons07-baseline-absolute-mean-review
+          path: |
+            archive/projects/2026-10-icons-of-data/editions/07-hawkins/qa/visuals/02_the_century_shifts_colour*.png
+            archive/projects/2026-10-icons-of-data/editions/07-hawkins/qa/render_manifest.json
+            archive/projects/2026-10-icons-of-data/editions/07-hawkins/qa/site/**
+          if-no-files-found: error
+      - name: Commit deterministic chart and QA artifacts to unmerged branch
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add archive/projects/2026-10-icons-of-data/editions/07-hawkins/qa/render_manifest.json
+          git add archive/projects/2026-10-icons-of-data/editions/07-hawkins/qa/visuals/02_the_century_shifts_colour*.png
+          git add archive/projects/2026-10-icons-of-data/editions/07-hawkins/qa/site/
+          git add site/assets/icons-of-data/ed-hawkins/02_the_century_shifts_colour.png
+          if git diff --staged --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "Label Icons 07 baseline as estimated ≈14°C absolute global mean"
+          git push origin HEAD:draft/icons07-chart2-absolute-baseline-20261022
