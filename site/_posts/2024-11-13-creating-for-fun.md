@@ -52,6 +52,8 @@ legacy_url: https://coffeetableviz.wordpress.com/2024/11/13/creating-for-fun/
 
 <p><strong>2. Data Art</strong></p>
 
+<p><strong>Try it yourself:</strong> The <a href="/resources/8x8-pixel-art-builder/">8×8 Pixel Art Builder</a> is now a little interactive studio right here on coffeetableviz. Pick a colour, make something gloriously blocky, then download or share it.</p>
+
 <p>• Tap into Tableau’s artistic potential by creating data art. This could mean arranging shapes and colours to represent a dataset visually, using coordinates to create patterns or even abstract images. Data art doesn’t have to be logical, you make the rules, it just needs to be visually engaging.</p>
 
 <figure class="image-grid">
