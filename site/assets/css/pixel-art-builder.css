@@ -24,7 +24,7 @@
 .pixel-canvas-heading { display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin-bottom: .85rem; }
 .pixel-count { color: #555; font: 500 .74rem "IBM Plex Mono",monospace; }
 .pixel-grid { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 2px; background: #c8c8c8; border: 2px solid #c8c8c8; width: 100%; max-width: 620px; aspect-ratio: 1; touch-action: none; user-select: none; -webkit-user-select: none; }
-.pixel-cell { display: block; border: 0; border-radius: 0; min-width: 0; min-height: 0; width: 100%; height: 100%; padding: 0; background: #fff; cursor: crosshair; touch-action: none; }
+.pixel-cell { display: block; border: 0; border-radius: 0; min-width: 0; min-height: 0; width: 100%; height: 100%; padding: 0; background: #fff; cursor: crosshair; touch-action: none; appearance: none; -webkit-appearance: none; }
 .pixel-cell:focus-visible { position: relative; z-index: 1; outline: 3px solid #111; outline-offset: -4px; }
 .pixel-canvas-foot { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.2rem 0; border-bottom: 1px solid #dedede; }
 .pixel-canvas-foot p { margin: .15rem 0 0; font-size: .8rem; color: #666; }
@@ -40,19 +40,19 @@
 .pixel-story h2 { margin: .55rem 0 1.4rem; font: 700 clamp(2rem, 5vw, 3.6rem)/1.1 "Space Grotesk",sans-serif; letter-spacing: -.045em; }
 .pixel-story p:not(.eyebrow) { font-size: 1rem; line-height: 1.75; margin: 0 0 1.2rem; }
 .pixel-story .pixel-attribution { margin-top: 2rem !important; padding-top: 1.2rem; border-top: 1px solid #ccc; font-size: .85rem !important; color: #555; }
-.pixel-page button:focus-visible { outline: 3px solid #c94545; outline-offset: 3px; }
+.pixel-page button:not(.pixel-cell):focus-visible { outline: 3px solid #c94545; outline-offset: 3px; }
 @media (max-width: 760px) {
   .pixel-studio { grid-template-columns: minmax(0,1fr); }
-  .pixel-palette { grid-template-columns: repeat(8, minmax(0, 1fr)); gap: .25rem; }
-  .pixel-swatch { font-size: .59rem; padding-inline: .05rem; }
-  .pixel-swatch-chip { aspect-ratio: .9; }
+  .pixel-palette { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .5rem; }
+  .pixel-swatch { font-size: .73rem; padding-inline: .15rem; }
+  .pixel-swatch-chip { aspect-ratio: 1.5; }
   .pixel-panel h2 { font-size: 1.55rem; }
   .pixel-divider { margin: 1.2rem 0; }
 }
 @media (max-width: 420px) {
   .pixel-studio { padding: 1rem; }
-  .pixel-palette { gap: 1px; }
-  .pixel-swatch { font-size: .56rem; }
+  .pixel-palette { gap: .35rem; }
+  .pixel-swatch { font-size: .68rem; }
   .pixel-grid { gap: 1px; border-width: 1px; }
   .pixel-actions button { padding: .65rem .72rem; }
 }
