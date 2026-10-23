@@ -4,7 +4,7 @@ date: 2026-10-23 22:15:00 +0100
 slug: i-spent-hours-on-64-squares-ai-rebuilt-them-in-minutes
 description: "My 8×8 pixel-art builder took hours and hours to make in Tableau. ChatGPT rebuilt it for coffeetableviz in minutes. I'm delighted. I'm also a little sad."
 category: Technology
-read_time: 4 minute read
+read_time: 5 minute read
 card_image: /assets/pixel-art-builder/ai-rebuild-feature.svg
 hero_image: /assets/pixel-art-builder/ai-rebuild-feature.svg
 social_image: /assets/pixel-art-builder/ai-rebuild-feature.svg
@@ -128,7 +128,7 @@ All three can be true.
 
 <aside class="method-note">
   <h2>Behind the build</h2>
-  <p>The new builder is plain HTML, CSS and JavaScript, hosted on GitHub Pages. You can inspect the <a href="https://github.com/adamgreen1708/chart-templates/blob/main/site/assets/js/pixel-art-builder.js">drawing code</a> and <a href="https://github.com/adamgreen1708/chart-templates/pull/146">the original pull request</a>. This was a reimplementation based on the public example and the existing site, <strong>not</strong> a line-by-line translation of the Tableau workbook. This article was drafted with ChatGPT using my original project, reaction and editorial direction. Final publication remains my decision.</p>
+  <p>The new builder is plain HTML, CSS and JavaScript, hosted on GitHub Pages. You can inspect the <a href="https://github.com/adamgreen1708/chart-templates/blob/main/site/assets/js/pixel-art-builder.js">drawing code</a> and <a href="https://github.com/adamgreen1708/chart-templates/pull/146">the original pull request</a>. This was a reimplementation based on the public example and the existing site, <strong>not</strong> a line-by-line translation of the Tableau workbook. This article was drafted with ChatGPT using my original project, reaction and editorial direction. The original project, reaction and editorial decisions are mine.</p>
 </aside>
 
 <p class="sign-off"><strong>simple charts. clear stories. and occasionally, 64 squares.</strong></p>
