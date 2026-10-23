@@ -56,3 +56,17 @@
   .pixel-grid { gap: 1px; border-width: 1px; }
   .pixel-actions button { padding: .65rem .72rem; }
 }
+
+/* Pixel art PNG export: always show a saving route when mobile downloads are blocked. */
+.pixel-export-panel[hidden] { display: none; }
+.pixel-export-panel { margin-top: 1.25rem; padding: 1.15rem; border: 1px solid #cfcfcf; background: #f3f4f6; display: grid; grid-template-columns: minmax(0, 1fr) minmax(120px, .48fr); gap: 1rem; align-items: center; }
+.pixel-export-copy { min-width: 0; }
+.pixel-export-copy p:not(.pixel-kicker) { margin: .5rem 0 0; color: #444; font-size: .84rem; line-height: 1.55; }
+#pixel-export-preview { width: 100%; max-width: 240px; height: auto; aspect-ratio: 1; border: 1px solid #bdbdbd; image-rendering: pixelated; image-rendering: crisp-edges; }
+.pixel-export-link { display: inline-flex; grid-column: 1 / -1; width: fit-content; padding: .7rem 1rem; color: #fff; background: #111; text-decoration: none; font: 600 .82rem/1.4 "IBM Plex Sans",sans-serif; }
+.pixel-export-link:hover { background: #343434; }
+.pixel-export-link:focus-visible { outline: 3px solid #c94545; outline-offset: 3px; }
+@media (max-width: 560px) {
+  .pixel-export-panel { grid-template-columns: 1fr; }
+  #pixel-export-preview { max-width: min(100%, 340px); justify-self: center; }
+}
