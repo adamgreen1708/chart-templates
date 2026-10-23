@@ -1,0 +1,74 @@
+---
+layout: default
+title: 8×8 Pixel Art Builder
+description: Paint 64 squares in eight colours. A little interactive playground from coffeetableviz, inspired by the original Tableau Public creation.
+permalink: /resources/8x8-pixel-art-builder/
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/pixel-art-builder.css' | relative_url }}">
+
+<article class="pixel-page shell-wide">
+  <header class="pixel-page-header">
+    <p class="eyebrow">Interactive playground · Design</p>
+    <h1>8×8 pixel art builder<span>.</span></h1>
+    <p class="pixel-lede">64 squares. Eight colours. A surprising amount of creative possibility. Make something small, save it, and share it with someone who needs a tiny distraction.</p>
+  </header>
+
+  <div class="pixel-studio" id="pixel-art-studio">
+    <aside class="pixel-panel" aria-labelledby="pixel-choose-heading">
+      <p class="pixel-kicker">01 / Pick your palette</p>
+      <h2 id="pixel-choose-heading">Choose a colour.</h2>
+      <p id="pixel-instructions">Tap or click a colour, then paint on the canvas. Drag to colour several squares. Tap a square in the same colour again to turn it white.</p>
+      <div class="pixel-palette" role="group" aria-label="Eight paint colours">
+        <button class="pixel-swatch is-active" type="button" data-colour="1" style="--swatch:#111111" aria-pressed="true"><span class="pixel-swatch-chip"></span><span>Black</span></button>
+        <button class="pixel-swatch" type="button" data-colour="2" style="--swatch:#096ba6" aria-pressed="false"><span class="pixel-swatch-chip"></span><span>Blue</span></button>
+        <button class="pixel-swatch" type="button" data-colour="3" style="--swatch:#06ad23" aria-pressed="false"><span class="pixel-swatch-chip"></span><span>Green</span></button>
+        <button class="pixel-swatch" type="button" data-colour="4" style="--swatch:#7b898f" aria-pressed="false"><span class="pixel-swatch-chip"></span><span>Slate</span></button>
+        <button class="pixel-swatch" type="button" data-colour="5" style="--swatch:#e8c94f" aria-pressed="false"><span class="pixel-swatch-chip"></span><span>Yellow</span></button>
+        <button class="pixel-swatch" type="button" data-colour="6" style="--swatch:#c34635" aria-pressed="false"><span class="pixel-swatch-chip"></span><span>Red</span></button>
+        <button class="pixel-swatch" type="button" data-colour="7" style="--swatch:#fb8e31" aria-pressed="false"><span class="pixel-swatch-chip"></span><span>Orange</span></button>
+        <button class="pixel-swatch" type="button" data-colour="8" style="--swatch:#ee3edc" aria-pressed="false"><span class="pixel-swatch-chip"></span><span>Pink</span></button>
+      </div>
+      <button class="pixel-eraser" type="button" id="pixel-eraser" aria-pressed="false">⌫ Eraser / white</button>
+      <div class="pixel-divider"></div>
+      <p class="pixel-kicker">Need a starting point?</p>
+      <p class="pixel-small">Borrow one of these. You can paint straight over it.</p>
+      <div class="pixel-presets">
+        <button type="button" data-preset="heart">♥ Heart</button>
+        <button type="button" data-preset="smile">☺ Smile</button>
+      </div>
+    </aside>
+
+    <section class="pixel-workspace" aria-label="Pixel art workspace">
+      <div class="pixel-canvas-heading">
+        <span class="pixel-kicker">02 / Make something</span>
+        <span class="pixel-count" id="pixel-count">0 / 64 painted</span>
+      </div>
+      <div id="pixel-grid" class="pixel-grid" role="group" aria-label="8 by 8 paintable grid" aria-describedby="pixel-instructions"></div>
+      <div class="pixel-canvas-foot">
+        <div>
+          <span class="pixel-kicker">Tiny preview</span>
+          <p>All the detail, none of the pixels.</p>
+        </div>
+        <canvas id="pixel-preview" width="8" height="8" role="img" aria-label="Live eight by eight pixel art preview"></canvas>
+      </div>
+      <div class="pixel-actions" role="group" aria-label="Drawing actions">
+        <button type="button" id="pixel-undo" disabled>↶ Undo</button>
+        <button type="button" id="pixel-redo" disabled>↷ Redo</button>
+        <button type="button" id="pixel-reset">Clear all</button>
+        <button type="button" id="pixel-download" class="pixel-primary">↓ Save PNG</button>
+        <button type="button" id="pixel-share">↗ Copy design link</button>
+      </div>
+      <p id="pixel-status" class="pixel-status" role="status" aria-live="polite">Ready when you are. Keyboard users: move with the arrow keys and paint with Space or Enter.</p>
+    </section>
+  </div>
+
+  <section class="pixel-story">
+    <p class="eyebrow">A small canvas, a good excuse to play</p>
+    <h2>Not every visualisation needs a spreadsheet.</h2>
+    <p>I first built this experiment in Tableau in January 2023, using parameters and dashboard actions to turn a data visualisation into a drawing tool. This version keeps the eight-by-eight idea, but runs directly in your browser — no Tableau required.</p>
+    <p>Your design stays on your device unless you choose to share its link. Save a sharp 1,024 × 1,024 PNG, or send the link so someone else can open the same 64 squares.</p>
+    <p class="pixel-attribution">Explore <a href="https://public.tableau.com/app/profile/adam.green4310/viz/8x8PixelArtBuilder/8X8PIXELART">my original Tableau Public builder</a>. The first version also credited <a href="https://consult-ant.uk/2020/12/18/makeover-monday-2020-week-50/">Ant Pulley's Paint Your Own Bob Ross experiment</a> as inspiration.</p>
+  </section>
+</article>
+<script defer src="{{ '/assets/js/pixel-art-builder.js' | relative_url }}"></script>
