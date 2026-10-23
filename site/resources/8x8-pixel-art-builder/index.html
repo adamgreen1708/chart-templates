@@ -59,6 +59,14 @@ permalink: /resources/8x8-pixel-art-builder/
         <button type="button" id="pixel-download" class="pixel-primary">↓ Save PNG</button>
         <button type="button" id="pixel-share">↗ Copy design link</button>
       </div>
+      <div id="pixel-export-panel" class="pixel-export-panel" hidden aria-label="Your exported PNG">
+        <div class="pixel-export-copy">
+          <p class="pixel-kicker">03 / Your image is ready</p>
+          <p><strong>On iPhone:</strong> choose Save Image in the Share sheet or touch and hold the preview to save it. On desktop, use Download PNG.</p>
+        </div>
+        <img id="pixel-export-preview" alt="Your pixel art ready to save as a PNG" width="1024" height="1024">
+        <a id="pixel-export-link" class="pixel-export-link" download="coffeetableviz-8x8-pixel-art.png">↓ Download PNG</a>
+      </div>
       <p id="pixel-status" class="pixel-status" role="status" aria-live="polite">Ready when you are. Keyboard users: move with the arrow keys and paint with Space or Enter.</p>
     </section>
   </div>
