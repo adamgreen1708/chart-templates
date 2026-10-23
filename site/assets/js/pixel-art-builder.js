@@ -226,25 +226,75 @@
       if (record(before)) say("A little " + button.dataset.preset + ". Now make it your own.");
     });
   });
-  document.getElementById("pixel-download").addEventListener("click", function () {
+  const exportPanel = document.getElementById("pixel-export-panel");
+  const exportPreview = document.getElementById("pixel-export-preview");
+  const exportLink = document.getElementById("pixel-export-link");
+  const exportName = "coffeetableviz-8x8-pixel-art.png";
+
+  function makePng() {
     const canvas = document.createElement("canvas");
     canvas.width = 1024;
     canvas.height = 1024;
     const context = canvas.getContext("2d");
-    if (!context) { say("PNG export is unavailable in this browser."); return; }
+    if (!context) throw new Error("Canvas unavailable");
     context.imageSmoothingEnabled = false;
     pixels.forEach(function (index, position) {
       context.fillStyle = colours[index].hex;
       context.fillRect((position % 8) * 128, Math.floor(position / 8) * 128, 128, 128);
     });
-    const link = document.createElement("a");
-    link.download = "coffeetableviz-8x8-pixel-art.png";
-    link.href = canvas.toDataURL("image/png");
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    say("Your pixel art has been exported as a 1,024 × 1,024 PNG.");
+    const dataUrl = canvas.toDataURL("image/png");
+    if (!dataUrl.startsWith("data:image/png;base64,")) throw new Error("PNG encoding failed");
+    return dataUrl;
+  }
+
+  document.getElementById("pixel-download").addEventListener("click", function () {
+    let dataUrl;
+    try { dataUrl = makePng(); }
+    catch (_) { say("Sorry, this browser couldn't create the PNG. Your drawing is still here."); return; }
+
+    // Visible fallback: mobile browsers and in-app webviews can ignore scripted downloads.
+    exportPreview.src = dataUrl;
+    exportLink.href = dataUrl;
+    exportLink.download = exportName;
+    exportPanel.hidden = false;
+    const touch = typeof window.matchMedia === "function" &&
+      window.matchMedia("(pointer: coarse)").matches;
+
+    // Invoke share synchronously from the tap (transient user activation is required).
+    if (touch && typeof navigator.share === "function" &&
+        typeof navigator.canShare === "function" && typeof File === "function") {
+      try {
+        const binary = atob(dataUrl.split(",")[1]);
+        const bytes = Uint8Array.from(binary, function (c) { return c.charCodeAt(0); });
+        const png = new File([bytes], exportName, { type: "image/png" });
+        if (navigator.canShare({ files: [png] })) {
+          const sharing = navigator.share({ files: [png], title: "8×8 pixel art" });
+          say("Choose Save Image or Save to Files in the Share sheet. The preview below is a backup.");
+          Promise.resolve(sharing).then(function () {
+            say("Share sheet closed. Your PNG is still available below.");
+          }, function (error) {
+            say(error && error.name === "AbortError"
+              ? "Sharing cancelled. You can save from the preview below."
+              : "Sharing wasn't available. You can save from the preview below.");
+          });
+          return;
+        }
+      } catch (_) { /* Fall back to the visible image and download link. */ }
+    }
+
+    if (touch) {
+      say("PNG ready. Touch and hold the preview below to save it, or try Download PNG.");
+    } else {
+      // Keep the existing one-click desktop download; leave a clickable backup.
+      try {
+        exportLink.click();
+        say("PNG prepared. If it didn't download, use the link or image below.");
+      } catch (_) {
+        say("PNG prepared. Use Download PNG below.");
+      }
+    }
   });
+
   document.getElementById("pixel-share").addEventListener("click", async function () {
     const shareUrl = window.location.origin + window.location.pathname + "#art=" + pixels.join("");
     try {
