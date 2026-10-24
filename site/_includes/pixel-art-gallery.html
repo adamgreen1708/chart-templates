@@ -1,7 +1,7 @@
 <section id="tiny-pixel-zoo" class="pixel-zoo" aria-labelledby="pixel-zoo-title">
   <div class="section-rule">
     <h2 id="pixel-zoo-title">The Tiny Pixel Zoo</h2>
-    <span>Six creatures · 64 squares each</span>
+    <span>{{ site.data.pixel_art_gallery.size }} creatures · 64 squares each</span>
   </div>
   <p class="pixel-zoo-intro">Choose a little creature, open it in the builder and make it your own. They are all real 8×8 designs using the builder's eight colours. No downloads or logins needed.</p>
 
@@ -14,7 +14,7 @@
           role="img" aria-label="8 by 8 pixel art: {{ animal.name | escape }}"></canvas>
       </div>
       <div class="pixel-zoo-card-info">
-        <span class="pixel-zoo-number">{{ forloop.index | prepend: '0' }} / 06</span>
+        <span class="pixel-zoo-number">{{ forloop.index }} / {{ site.data.pixel_art_gallery.size }}</span>
         <h3>{{ animal.emoji }} {{ animal.name }}</h3>
         <p>{{ animal.caption }}</p>
         <a class="pixel-zoo-open" href="{{ '/resources/8x8-pixel-art-builder/' | relative_url }}#art={{ animal.code }}"
