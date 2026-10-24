@@ -1,9 +1,9 @@
-# Coffeetableviz Daily Pulse — 22 October 2026
+# Coffeetableviz Daily Pulse — 23 October 2026
 
-- **Visits:** 12
-- **7-day context:** 8% below prior 7-day daily average (13.0)
-- **Top pages:** How the world changed colour (3), Today’s Blockbuster Quote (2), Borat (1)
-- **Top referrer:** www.linkedin.com — 3 visits
-- **Observation:** Traffic stayed fairly close to its recent rhythm.
+- **Visits:** 21
+- **7-day context:** 75% above prior 7-day daily average (12.0)
+- **Top pages:** 8×8 Pixel Art Builder (7), Today’s Blockbuster Quote (3), I spent hours building 64 squares. AI rebuilt them in minutes. (2)
+- **Top referrer:** www.linkedin.com — 7 visits
+- **Observation:** A noticeably busier day than the seven-day baseline.
 
 Latest image: `output/daily_site_pulse.png`
