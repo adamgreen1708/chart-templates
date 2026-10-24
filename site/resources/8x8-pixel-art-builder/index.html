@@ -6,6 +6,7 @@ permalink: /resources/8x8-pixel-art-builder/
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/pixel-art-builder.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/pixel-art-gallery.css' | relative_url }}">
 
 <article class="pixel-page shell-wide">
   <header class="pixel-page-header">
@@ -71,6 +72,8 @@ permalink: /resources/8x8-pixel-art-builder/
     </section>
   </div>
 
+  {% include pixel-art-gallery.html %}
+
   <section class="pixel-story">
     <p class="eyebrow">A small canvas, a good excuse to play</p>
     <h2>Not every visualisation needs a spreadsheet.</h2>
@@ -80,3 +83,4 @@ permalink: /resources/8x8-pixel-art-builder/
   </section>
 </article>
 <script defer src="{{ '/assets/js/pixel-art-builder.js' | relative_url }}"></script>
+<script defer src="{{ '/assets/js/pixel-art-gallery.js' | relative_url }}"></script>
