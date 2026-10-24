@@ -295,6 +295,41 @@
     }
   });
 
+  // The zoo also lives below this builder. A #art=... link on the same
+  // page does not reload, so apply the selected animal in place.
+  function loadGalleryDesign(code) {
+    if (!validCode(code)) return;
+    const next = decode(code);
+    if (pixels.some(function (value, index) { return value !== next[index]; })) {
+      const before = pixels.slice();
+      pixels = next;
+      stroke = null;
+      record(before);
+      say("Design loaded. Change any pixel to make it yours — Undo restores your previous drawing.");
+    } else {
+      say("This design is already on the canvas. Choose a colour to make it yours.");
+    }
+    if (typeof root.scrollIntoView === "function") {
+      root.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  window.addEventListener("hashchange", function () {
+    const match = window.location.hash.match(/^#art=([0-8]{64})$/);
+    if (match) loadGalleryDesign(match[1]);
+  });
+  const gallery = document.getElementById("tiny-pixel-zoo");
+  if (gallery) gallery.addEventListener("click", function (event) {
+    const link = event.target.closest("a.pixel-zoo-open");
+    if (!link || !gallery.contains(link)) return;
+    const match = (link.getAttribute("href") || "").match(/#art=([0-8]{64})$/);
+    if (!match) return;
+    event.preventDefault();
+    // Reapplying works even when the visitor clicks the same card twice.
+    loadGalleryDesign(match[1]);
+    window.location.hash = "art=" + match[1];
+  });
+
   document.getElementById("pixel-share").addEventListener("click", async function () {
     const shareUrl = window.location.origin + window.location.pathname + "#art=" + pixels.join("");
     try {
