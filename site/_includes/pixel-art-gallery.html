@@ -1,0 +1,33 @@
+<section id="tiny-pixel-zoo" class="pixel-zoo" aria-labelledby="pixel-zoo-title">
+  <div class="section-rule">
+    <h2 id="pixel-zoo-title">The Tiny Pixel Zoo</h2>
+    <span>Six creatures · 64 squares each</span>
+  </div>
+  <p class="pixel-zoo-intro">Choose a little creature, open it in the builder and make it your own. They are all real 8×8 designs using the builder's eight colours. No downloads or logins needed.</p>
+
+  <div class="pixel-zoo-grid">
+    {% for animal in site.data.pixel_art_gallery %}
+    <article class="pixel-zoo-card">
+      <div class="pixel-zoo-card-art">
+        <canvas class="pixel-zoo-preview" width="8" height="8"
+          data-pixel-code="{{ animal.code }}"
+          role="img" aria-label="8 by 8 pixel art: {{ animal.name | escape }}"></canvas>
+      </div>
+      <div class="pixel-zoo-card-info">
+        <span class="pixel-zoo-number">{{ forloop.index | prepend: '0' }} / 06</span>
+        <h3>{{ animal.emoji }} {{ animal.name }}</h3>
+        <p>{{ animal.caption }}</p>
+        <a class="pixel-zoo-open" href="{{ '/resources/8x8-pixel-art-builder/' | relative_url }}#art={{ animal.code }}"
+           aria-label="Open {{ animal.name | escape }} in the Pixel Art Builder to remix it">
+          Open &amp; remix <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+
+  <div class="pixel-zoo-bottom">
+    <p><strong>Made something of your own?</strong> In the builder, select <em>Copy design link</em> and share it with your friends or the #DataFam using <strong>#coffeetableviz</strong>. This is a curated starter gallery — designs aren't automatically uploaded or published here.</p>
+    <a href="{{ '/resources/8x8-pixel-art-builder/' | relative_url }}">Start with a blank canvas →</a>
+  </div>
+</section>

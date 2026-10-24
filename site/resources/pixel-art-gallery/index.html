@@ -1,0 +1,27 @@
+---
+layout: default
+title: The Tiny Pixel Zoo
+description: Six tiny 8×8 animal creations to play with. Open any creature directly in the coffeetableviz Pixel Art Builder and make it your own.
+permalink: /resources/pixel-art-gallery/
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/pixel-art-gallery.css' | relative_url }}">
+
+<article class="pixel-zoo-page shell-wide">
+  <header class="page-hero pixel-zoo-hero">
+    <p class="eyebrow">Interactive playground · 8×8 art</p>
+    <h1>Meet the tiny zoo<span>.</span></h1>
+    <p class="standfirst">Six creatures, eight colours and just 64 squares each. Choose an animal, open it in the Pixel Art Builder, and make a small masterpiece (or a magnificent mess).</p>
+  </header>
+
+  {% include pixel-art-gallery.html %}
+
+  <section class="pixel-zoo-next" aria-labelledby="pixel-zoo-next-heading">
+    <p class="eyebrow">From the original idea</p>
+    <h2 id="pixel-zoo-next-heading">From Tableau experiment to tiny playground.</h2>
+    <p>It started as an 8×8 drawing tool in Tableau. Now it lives right here on coffeetableviz, and every animal opens as an editable drawing in the browser.</p>
+    <p><a href="{{ '/stories/i-spent-hours-on-64-squares-ai-rebuilt-them-in-minutes/' | relative_url }}">Read how it happened →</a></p>
+  </section>
+</article>
+
+<script defer src="{{ '/assets/js/pixel-art-gallery.js' | relative_url }}"></script>
