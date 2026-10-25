@@ -3,15 +3,15 @@ layout: post
 title: "Kimi Antonelli stands on the brink of F1 history"
 slug: kimi-antonelli-on-the-brink-of-f1-history
 description: "At 20, Kimi Antonelli could rewrite F1's youngest champion record. A comparison with season-long champions in tennis, golf and other individual sports puts the milestone into perspective."
-date: 2026-10-25 12:00:00 +0000
+date: 2026-10-25 10:50:00 +0000
 category: Sport
 read_time: "4 minute read"
-card_image: /assets/charts/season_champions_02_cross_sport.png
-hero_image: /assets/charts/season_champions_02_cross_sport.png
-social_image: /assets/charts/season_champions_02_cross_sport.png
-hero_alt: "Coffeetableviz dot plot comparing ages at selected season-long sporting titles: confirmed F1 youngest world champion Sebastian Vettel in red, other motorsport in blue and tennis, golf and other sports in grey."
+card_image: /assets/charts/season_champions_01_f1_record.png
+hero_image: /assets/charts/season_champions_01_f1_record.png
+social_image: /assets/charts/season_champions_01_f1_record.png
+hero_alt: "F1 youngest world champion age-record progression: Fittipaldi, Alonso, Hamilton and Vettel are confirmed record holders; a hollow red dot marks Antonelli's conditional age of 20 years and 61 days if he clinches the 2026 title at the United States Grand Prix."
 tags: [formula-one, motorsport, tennis, golf, sport, data-visualisation]
-published: false
+published: true
 ---
 
 *Ahead of the United States Grand Prix on 25 October 2026. The world championship was not decided when this article was prepared.*
