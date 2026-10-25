@@ -13,7 +13,7 @@
   <p class="pixel-zoo-filter-count" aria-live="polite">Showing {{ site.data.pixel_art_gallery.size }} creatures</p>
   <div class="pixel-zoo-grid">
     {% for animal in site.data.pixel_art_gallery %}
-    {% assign dimension = animal.size | default: 8 %}
+    {% assign dimension = animal.grid_size | default: 8 %}
     <article class="pixel-zoo-card" data-pixel-size="{{ dimension }}">
       <div class="pixel-zoo-card-art">
         <canvas class="pixel-zoo-preview" width="{{ dimension }}" height="{{ dimension }}"
