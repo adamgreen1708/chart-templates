@@ -25,7 +25,7 @@
         <h3>{{ animal.emoji }} {{ animal.name }}</h3>
         <span class="pixel-zoo-size">{{ dimension }}×{{ dimension }} · {% if dimension == 8 %}Classic{% else %}Detail{% endif %}</span>
         <p>{{ animal.caption }}</p>
-        <a class="pixel-zoo-open" href="{{ '/resources/8x8-pixel-art-builder/' | relative_url }}#{% if dimension == 16 %}size=16&{% endif %}art={{ animal.code }}"
+        <a class="pixel-zoo-open" href="{{ '/resources/8x8-pixel-art-builder/' | relative_url }}#{% if dimension == 16 %}size=16&amp;{% endif %}art={{ animal.code }}"
            aria-label="Open {{ animal.name | escape }} in the Pixel Art Builder to remix it">
           Open &amp; remix <span aria-hidden="true">→</span>
         </a>
