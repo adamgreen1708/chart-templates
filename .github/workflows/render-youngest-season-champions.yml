@@ -1,0 +1,121 @@
+name: Render youngest season champions
+
+# Project-scoped rendering. No edits to the shared render_538 workflow.
+# Trigger on source changes on the editorial review branch.
+on:
+  push:
+    branches:
+      - editorial/kimi-brink-of-history-20261025
+    paths:
+      - ".github/workflows/render-youngest-season-champions.yml"
+      - "archive/projects/2026-10-youngest-season-champions/data/**"
+      - "archive/projects/2026-10-youngest-season-champions/scripts/render_charts.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: render-youngest-season-champions-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  render:
+    if: github.ref == 'refs/heads/editorial/kimi-brink-of-history-20261025'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out review branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements-render.txt
+
+      - name: Install locked rendering dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-render.txt
+
+      - name: Validate syntax and research data
+        run: |
+          python -m py_compile archive/projects/2026-10-youngest-season-champions/scripts/render_charts.py
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          base = Path("archive/projects/2026-10-youngest-season-champions/data")
+          with (base / "youngest_season_champions.csv").open(encoding="utf-8-sig", newline="") as fh:
+              rows = list(csv.DictReader(fh))
+          assert len(rows) == 13, f"Expected 13 examples, got {len(rows)}"
+          assert len({(r["athlete"], r["championship"]) for r in rows}) == 13
+          assert all(r["source_primary"].startswith("https://") for r in rows)
+          with (base / "f1_youngest_record_progression.csv").open(encoding="utf-8-sig", newline="") as fh:
+              history = list(csv.DictReader(fh))
+          assert len(history) == 5
+          assert sum(r["status"].startswith("conditional") for r in history) == 1
+          PY
+
+      - name: Render three charts on GitHub Actions
+        run: |
+          python archive/projects/2026-10-youngest-season-champions/scripts/render_charts.py
+
+      - name: Validate GitHub-produced PNGs
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageStat
+          folder = Path("archive/projects/2026-10-youngest-season-champions/output")
+          names = (
+              "season_champions_01_f1_record.png",
+              "season_champions_02_cross_sport.png",
+              "season_champions_03_title_formats.png",
+          )
+          for name in names:
+              path = folder / name
+              assert path.is_file(), f"Missing PNG: {path}"
+              with Image.open(path) as im:
+                  im.verify()
+              with Image.open(path) as im:
+                  assert im.size == (1600, 1600), (name, im.size)
+                  assert im.mode in ("RGB", "RGBA"), (name, im.mode)
+                  stats = ImageStat.Stat(im.convert("RGB"))
+                  assert max(stats.stddev) > 9, (name, "unexpectedly blank image")
+              print(f"OK: {name}: 1600x1600")
+          PY
+
+      - name: Stage website-ready charts
+        run: |
+          set -euo pipefail
+          src="archive/projects/2026-10-youngest-season-champions/output"
+          mkdir -p site/assets/charts
+          cp "$src"/season_champions_01_f1_record.png site/assets/charts/
+          cp "$src"/season_champions_02_cross_sport.png site/assets/charts/
+          cp "$src"/season_champions_03_title_formats.png site/assets/charts/
+
+      - name: Upload GitHub-generated charts for QA
+        uses: actions/upload-artifact@v4
+        with:
+          name: youngest-season-champions-github-render
+          path: |
+            archive/projects/2026-10-youngest-season-champions/output/*.png
+          if-no-files-found: error
+
+      - name: Commit generated PNGs to review branch
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add archive/projects/2026-10-youngest-season-champions/output/*.png
+          git add site/assets/charts/season_champions_*.png
+          if git diff --cached --quiet; then
+            echo "GitHub-rendered PNGs unchanged."
+            exit 0
+          fi
+          git commit -m "Render season champions charts via GitHub Actions"
+          git push origin "HEAD:refs/heads/editorial/kimi-brink-of-history-20261025"
