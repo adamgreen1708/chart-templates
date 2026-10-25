@@ -16,7 +16,11 @@
     { name: "Yellow", hex: "#e8c94f" },
     { name: "Red", hex: "#c34635" },
     { name: "Orange", hex: "#fb8e31" },
-    { name: "Pink", hex: "#ee3edc" }
+    { name: "Pink", hex: "#ee3edc" },
+    { name: "Brown", hex: "#8b5a3c" },
+    { name: "Sand", hex: "#e8cf9a" },
+    { name: "Sky Blue", hex: "#87c9eb" },
+    { name: "Forest Green", hex: "#296647" }
   ];
   const storageKeys = { 8: "coffeetableviz.pixel-art.v1", 16: "coffeetableviz.pixel-art.16.v1" };
   const boards = {
@@ -52,12 +56,12 @@
     return typeof code === "string" &&
       (dimension === 8 || dimension === 16) &&
       code.length === dimension * dimension &&
-      /^[0-8]+$/.test(code);
+      /^[0-9a-c]+$/.test(code);
   }
   function parseHash(fragment) {
-    const legacy = /^#art=([0-8]{64})$/.exec(fragment);
+    const legacy = /^#art=([0-9a-c]{64})$/.exec(fragment);
     if (legacy) return { size: 8, code: legacy[1] };
-    const detailed = /^#size=16&art=([0-8]{256})$/.exec(fragment);
+    const detailed = /^#size=16&art=([0-9a-c]{256})$/.exec(fragment);
     if (detailed) return { size: 16, code: detailed[1] };
     return null;
   }
@@ -70,18 +74,23 @@
       try {
         const saved = localStorage.getItem(storageKeys[dimension]);
         if (validCode(saved, dimension)) {
-          boards[dimension].pixels = saved.split("").map(Number);
+          boards[dimension].pixels = saved.split("").map(function (value) { return parseInt(value, 13); });
         }
       } catch (_) { /* Storage may be disabled. */ }
     });
     const linked = parseHash(window.location.hash);
     if (linked) {
       size = linked.size;
-      boards[size].pixels = linked.code.split("").map(Number);
+      boards[size].pixels = linked.code.split("").map(function (value) { return parseInt(value, 13); });
     }
   }
+  // Encode one palette index per character; 0–8 stay byte-for-byte compatible
+  // with all original links, while 9/a/b/c represent the four new colours.
+  function encodePixels(values) {
+    return values.map(function (value) { return value.toString(13); }).join("");
+  }
   function save() {
-    try { localStorage.setItem(storageKeys[size], current().pixels.join("")); }
+    try { localStorage.setItem(storageKeys[size], encodePixels(current().pixels)); }
     catch (_) { /* Storage may be disabled. */ }
   }
   function clearExport() { exportPanel.hidden = true; }
@@ -211,7 +220,7 @@
     if (size !== info.size) changeSize(info.size, false);
     const st = current();
     const before = st.pixels.slice();
-    st.pixels = info.code.split("").map(Number);
+    st.pixels = info.code.split("").map(function (value) { return parseInt(value, 13); });
     stroke = null;
     if (record(before)) say("Design loaded. Remix it — Undo restores your previous drawing.");
     else { save(); render(); say("This design is on the canvas and ready to remix."); }
@@ -427,7 +436,7 @@
   });
 
   document.getElementById("pixel-share").addEventListener("click", async function () {
-    const shared = fragmentFor(size, current().pixels.join(""));
+    const shared = fragmentFor(size, encodePixels(current().pixels));
     const url = window.location.origin + window.location.pathname + shared;
     try {
       if (!navigator.clipboard || !navigator.clipboard.writeText) throw new Error("Clipboard unavailable");
