@@ -43,3 +43,12 @@
   .pixel-zoo-grid { grid-template-columns: 1fr; }
   .pixel-zoo-card-art { padding: 1.3rem; }
 }
+
+/* Gallery contains real 8×8 and 16×16 creations, filterable in place. */
+.pixel-zoo-card[hidden] { display: none !important; }
+.pixel-zoo-filters { display: flex; flex-wrap: wrap; gap: .55rem; margin: 1.25rem 0 .5rem; }
+.pixel-zoo-filters button { padding: .67rem .9rem; border: 1px solid #bbb; background: #fff; color: #333; cursor: pointer; font: 600 .8rem "IBM Plex Sans",sans-serif; }
+.pixel-zoo-filters button.is-active { background: #111; color: #fff; border-color: #111; }
+.pixel-zoo-filters button:focus-visible { outline: 3px solid #c94545; outline-offset: 3px; }
+.pixel-zoo-filter-count { margin: 0 0 1.15rem; font: 500 .72rem "IBM Plex Mono",monospace; color: #686868; }
+.pixel-zoo-size { display: block; margin: 0 0 .45rem; font: 500 .66rem "IBM Plex Mono",monospace; color: #727272; }

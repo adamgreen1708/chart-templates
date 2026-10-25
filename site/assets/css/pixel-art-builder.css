@@ -70,3 +70,27 @@
   .pixel-export-panel { grid-template-columns: 1fr; }
   #pixel-export-preview { max-width: min(100%, 340px); justify-self: center; }
 }
+
+/* 8×8 Classic / 16×16 Detail: one accessible studio, two saved drawings. */
+.pixel-size-switch { padding-bottom: 1.15rem; margin-bottom: 1.25rem; border-bottom: 1px solid #d3d3d3; }
+.pixel-size-buttons { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .55rem; margin-top: .7rem; }
+.pixel-size-button { display: flex; flex-direction: column; align-items: flex-start; gap: .25rem; padding: .8rem .65rem; background: #f6f6f6; border: 1px solid #bcbcbc; color: #242424; cursor: pointer; font: .83rem "IBM Plex Sans",sans-serif; text-align: left; }
+.pixel-size-button strong { font-weight: 600; }
+.pixel-size-button span { font-size: .69rem; color: #555; }
+.pixel-size-button.is-active { background: #111; border-color: #111; color: #fff; }
+.pixel-size-button.is-active span { color: #d5d5d5; }
+.pixel-grid-viewport { width: 100%; max-width: 620px; overflow: auto; overscroll-behavior: contain; }
+.pixel-grid { grid-template-columns: repeat(var(--pixel-dimension, 8), minmax(0, 1fr)); }
+.pixel-grid.is-zoomed { width: 200%; max-width: none; }
+.pixel-grid.is-panning, .pixel-grid.is-panning .pixel-cell { touch-action: pan-x pan-y; cursor: grab; }
+.pixel-zoom-tools[hidden] { display: none; }
+.pixel-zoom-tools { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin: .85rem 0; }
+.pixel-zoom-tools button { border: 1px solid #aaa; padding: .58rem .7rem; color: #222; background: #f4f4f4; font: 600 .77rem "IBM Plex Sans",sans-serif; cursor: pointer; }
+.pixel-zoom-tools button[aria-pressed="true"] { background: #111; color: #fff; border-color: #111; }
+.pixel-zoom-tools button:disabled { opacity: .5; cursor: not-allowed; }
+.pixel-zoom-tools p { flex-basis: 100%; margin: 0; color: #5c5c5c; font-size: .76rem; line-height: 1.5; }
+@media (max-width: 390px) {
+  .pixel-size-buttons { gap: .35rem; }
+  .pixel-size-button { padding: .7rem .5rem; }
+  .pixel-size-button span { font-size: .65rem; }
+}

@@ -1,23 +1,31 @@
 <section id="tiny-pixel-zoo" class="pixel-zoo" aria-labelledby="pixel-zoo-title">
   <div class="section-rule">
     <h2 id="pixel-zoo-title">The Tiny Pixel Zoo</h2>
-    <span>{{ site.data.pixel_art_gallery.size }} creatures · 64 squares each</span>
+    <span>{{ site.data.pixel_art_gallery.size }} creatures · two canvas sizes</span>
   </div>
-  <p class="pixel-zoo-intro">Choose a little creature, open it in the builder and make it your own. They are all real 8×8 designs using the builder's eight colours. No downloads or logins needed.</p>
+  <p class="pixel-zoo-intro">Choose a little creature, open it in the builder and make it your own. Every design uses the builder's eight colours — choose 8×8 Classic or 16×16 Detail. No downloads or logins needed.</p>
 
+  <div class="pixel-zoo-filters" role="group" aria-label="Filter animals by canvas size">
+    <button type="button" class="is-active" data-gallery-filter="all" aria-pressed="true">All</button>
+    <button type="button" data-gallery-filter="8" aria-pressed="false">8×8 Classic</button>
+    <button type="button" data-gallery-filter="16" aria-pressed="false">16×16 Detail</button>
+  </div>
+  <p class="pixel-zoo-filter-count" aria-live="polite">Showing {{ site.data.pixel_art_gallery.size }} creatures</p>
   <div class="pixel-zoo-grid">
     {% for animal in site.data.pixel_art_gallery %}
-    <article class="pixel-zoo-card">
+    {% assign dimension = animal.size | default: 8 %}
+    <article class="pixel-zoo-card" data-pixel-size="{{ dimension }}">
       <div class="pixel-zoo-card-art">
-        <canvas class="pixel-zoo-preview" width="8" height="8"
-          data-pixel-code="{{ animal.code }}"
-          role="img" aria-label="8 by 8 pixel art: {{ animal.name | escape }}"></canvas>
+        <canvas class="pixel-zoo-preview" width="{{ dimension }}" height="{{ dimension }}"
+          data-pixel-code="{{ animal.code }}" data-pixel-size="{{ dimension }}"
+          role="img" aria-label="{{ dimension }} by {{ dimension }} pixel art: {{ animal.name | escape }}"></canvas>
       </div>
       <div class="pixel-zoo-card-info">
         <span class="pixel-zoo-number">{{ forloop.index }} / {{ site.data.pixel_art_gallery.size }}</span>
         <h3>{{ animal.emoji }} {{ animal.name }}</h3>
+        <span class="pixel-zoo-size">{{ dimension }}×{{ dimension }} · {% if dimension == 8 %}Classic{% else %}Detail{% endif %}</span>
         <p>{{ animal.caption }}</p>
-        <a class="pixel-zoo-open" href="{{ '/resources/8x8-pixel-art-builder/' | relative_url }}#art={{ animal.code }}"
+        <a class="pixel-zoo-open" href="{{ '/resources/8x8-pixel-art-builder/' | relative_url }}#{% if dimension == 16 %}size=16&amp;{% endif %}art={{ animal.code }}"
            aria-label="Open {{ animal.name | escape }} in the Pixel Art Builder to remix it">
           Open &amp; remix <span aria-hidden="true">→</span>
         </a>
