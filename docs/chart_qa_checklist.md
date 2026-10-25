@@ -63,3 +63,17 @@ Before handing back, ask:
 - Is a full replacement file better than a snippet?
 - Have we avoided the common label clipping and margin problems?
 - Have we reduced the chance of another config/render iteration?
+
+## Editorial clarity and cross-chart consistency (25 October 2026)
+
+These are reusable QA checks, not a mandatory colour scheme for every story.
+
+- **Every colour needs a job.** State what each accent encodes; never group unrelated categories solely to add visual variety. Neutral context can stay grey but all text must remain legible.
+- **Keep semantics consistent.** In a multi-chart story the same colour must mean the same category or editorial role across charts. Use a legend when the colour distinction is not self-evident.
+- **Make label-to-mark relationships unambiguous.** Use thin leader lines when labels could be matched to the wrong dot, verifying that lines do not cross text or unrelated marks. Leaders should be subordinate to the data, not decorative arrows.
+- **Provide identification without assumed expertise.** Names that are not universally recognisable need context, such as an athlete's sport in brackets. Specify the measured unit, category and the achievement used to select each subject.
+- **Document the comparison contract.** Check metric, population, definition, temporal basis and title format before comparing. Distinguish season-wide results from one-off events, and conditional future achievements from confirmed records.
+- **Inspect final pixels at full resolution *and* phone-reading size.** Check title/subtitle, every long name and qualifier, leader line, marker, colour key, tick, group header and source/footer for clipping, collisions and safe-margin clearance. A valid config alone does not pass the visual QA gate.
+- **Check headline against evidence.** A curated set of examples cannot support claims about the absolute youngest across all sports, nor averages about which sport produces younger champions without an exhaustive comparable population.
+
+Project-specific example: youngest season champions uses red for Formula 1, blue for other motorsport, grey for all other sports. The reusable rule is semantic colour, not those exact assignments.
