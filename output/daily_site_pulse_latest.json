@@ -1,84 +1,70 @@
 {
-  "report_date": "2026-10-23",
-  "visits": 21,
-  "prior_7d_avg": "12.00",
-  "pct_vs_prior_7d": "75.0",
+  "report_date": "2026-10-24",
+  "visits": 108,
+  "prior_7d_avg": "11.57",
+  "pct_vs_prior_7d": "833.3",
   "top_page_path": "/resources/8x8-pixel-art-builder",
   "top_page_title": "8\u00d78 Pixel Art Builder \u00b7 coffeetableviz",
-  "top_page_visits": 7,
+  "top_page_visits": 83,
   "top_referrer": "www.linkedin.com",
-  "top_referrer_visits": 7,
-  "observation": "A noticeably busier day than the seven-day baseline.",
-  "generated_at_utc": "2026-10-24T12:41:25+00:00",
+  "top_referrer_visits": 75,
+  "observation": "8\u00d78 Pixel Art Builder led the day, reaching 83 of 108 recorded visitors.",
+  "generated_at_utc": "2026-10-25T13:11:55+00:00",
   "top_pages": [
     {
       "path_id": 114429315,
       "path": "/resources/8x8-pixel-art-builder",
       "title": "8\u00d78 Pixel Art Builder \u00b7 coffeetableviz",
       "display": "8\u00d78 Pixel Art Builder",
-      "count": 7
-    },
-    {
-      "path_id": 109446302,
-      "path": "/series/blockbuster-quote",
-      "title": "Today\u2019s Blockbuster Quote \u00b7 coffeetableviz",
-      "display": "Today\u2019s Blockbuster Quote",
-      "count": 3
+      "count": 83
     },
     {
       "path_id": 114436775,
       "path": "/stories/i-spent-hours-on-64-squares-ai-rebuilt-them-in-minutes",
       "title": "I spent hours building 64 squares. AI rebuilt them in minutes. \u00b7 coffeetableviz",
       "display": "I spent hours building 64 squares. AI rebuilt them in minutes.",
-      "count": 2
-    },
-    {
-      "path_id": 114407601,
-      "path": "/series/blockbuster-quote/2026-10-23-deadpool",
-      "title": "Deadpool \u00b7 coffeetableviz",
-      "display": "Deadpool",
-      "count": 2
+      "count": 6
     },
     {
       "path_id": 109453481,
       "path": "/resources",
       "title": "Resources \u00b7 coffeetableviz",
       "display": "Resources",
-      "count": 2
+      "count": 4
     },
     {
       "path_id": 109451764,
       "path": "/",
       "title": "coffeetableviz",
       "display": "Home",
-      "count": 2
+      "count": 4
+    },
+    {
+      "path_id": 114647371,
+      "path": "/resources/pixel-art-gallery",
+      "title": "The Tiny Pixel Zoo \u00b7 coffeetableviz",
+      "display": "The Tiny Pixel Zoo",
+      "count": 3
     },
     {
       "path_id": 109446444,
       "path": "/data-lens",
       "title": "Data Lens \u00b7 coffeetableviz",
       "display": "Data Lens",
+      "count": 3
+    },
+    {
+      "path_id": 109446302,
+      "path": "/series/blockbuster-quote",
+      "title": "Today\u2019s Blockbuster Quote \u00b7 coffeetableviz",
+      "display": "Today\u2019s Blockbuster Quote",
       "count": 2
     },
     {
-      "path_id": 109446267,
-      "path": "/archive",
-      "title": "Archive \u00b7 coffeetableviz",
-      "display": "Archive",
-      "count": 2
-    },
-    {
-      "path_id": 114421424,
-      "path": "/data-lens/daily/2026-10-23-average-kept-rising-after-peak",
-      "title": "The average kept rising six days after the peak. \u00b7 coffeetableviz",
-      "display": "The average kept rising six days after the peak.",
-      "count": 1
-    },
-    {
-      "path_id": 109454582,
-      "path": "/series/blockbuster-quote/2026-09-21-ghostbusters",
-      "title": "Ghostbusters \u00b7 coffeetableviz",
-      "display": "Ghostbusters",
+      "path_id": 111960714,
+      "path": "/stories/max-verstappen-grid-comebacks",
+      "title": "The grid is a guide, not a verdict \u00b7 coffeetableviz",
+      "display": "The grid is a guide, not a verdict",
       "count": 1
     },
     {
@@ -87,32 +73,39 @@
       "title": "About \u00b7 coffeetableviz",
       "display": "About",
       "count": 1
+    },
+    {
+      "path_id": 109446267,
+      "path": "/archive",
+      "title": "Archive \u00b7 coffeetableviz",
+      "display": "Archive",
+      "count": 1
     }
   ],
   "top_referrers": [
     {
       "id": "www.linkedin.com",
       "name": "www.linkedin.com",
-      "count": 7,
+      "count": 75,
       "ref_scheme": "h"
+    },
+    {
+      "id": "com.linkedin.android",
+      "name": "com.linkedin.android",
+      "count": 10,
+      "ref_scheme": "o"
     },
     {
       "id": null,
       "name": "Direct / unknown",
-      "count": 1,
+      "count": 3,
       "ref_scheme": "o"
     },
     {
-      "id": "bing.com",
-      "name": "bing.com",
+      "id": "lnkd.in",
+      "name": "lnkd.in",
       "count": 1,
       "ref_scheme": "h"
-    },
-    {
-      "id": "chatgpt.com",
-      "name": "chatgpt.com",
-      "count": 1,
-      "ref_scheme": "c"
     }
   ]
 }
