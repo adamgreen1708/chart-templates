@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 8×8 Pixel Art Builder
-description: Paint 64 squares in eight colours. A little interactive playground from coffeetableviz, inspired by the original Tableau Public creation.
+title: Pixel Art Studio
+description: Paint in 8×8 Classic or 16×16 Detail. Save, share, and remix small colourful creations from coffeetableviz.
 permalink: /resources/8x8-pixel-art-builder/
 ---
 
@@ -11,13 +11,20 @@ permalink: /resources/8x8-pixel-art-builder/
 <article class="pixel-page shell-wide">
   <header class="pixel-page-header">
     <p class="eyebrow">Interactive playground · Design</p>
-    <h1>8×8 pixel art builder<span>.</span></h1>
-    <p class="pixel-lede">64 squares. Eight colours. A surprising amount of creative possibility. Make something small, save it, and share it with someone who needs a tiny distraction.</p>
+    <h1>Pixel Art Studio<span>.</span></h1>
+    <p class="pixel-lede">Start with the original 8×8 Classic or switch to 16×16 Detail. Eight colours, a little imagination and a lot of tiny squares. Make something, save it and pass it on.</p>
   </header>
 
   <div class="pixel-studio" id="pixel-art-studio">
     <aside class="pixel-panel" aria-labelledby="pixel-choose-heading">
-      <p class="pixel-kicker">01 / Pick your palette</p>
+      <div class="pixel-size-switch" role="group" aria-label="Choose canvas size">
+        <p class="pixel-kicker">01 / Choose your canvas</p>
+        <div class="pixel-size-buttons">
+          <button type="button" class="pixel-size-button is-active" data-pixel-size="8" aria-pressed="true"><strong>8×8 Classic</strong><span>64 squares · quick sketches</span></button>
+          <button type="button" class="pixel-size-button" data-pixel-size="16" aria-pressed="false"><strong>16×16 Detail</strong><span>256 squares · more detail</span></button>
+        </div>
+      </div>
+      <p class="pixel-kicker">02 / Pick your palette</p>
       <h2 id="pixel-choose-heading">Choose a colour.</h2>
       <p id="pixel-instructions">Tap or click a colour, then paint on the canvas. Drag to colour several squares. Tap a square in the same colour again to turn it white.</p>
       <div class="pixel-palette" role="group" aria-label="Eight paint colours">
@@ -42,10 +49,17 @@ permalink: /resources/8x8-pixel-art-builder/
 
     <section class="pixel-workspace" aria-label="Pixel art workspace">
       <div class="pixel-canvas-heading">
-        <span class="pixel-kicker">02 / Make something</span>
+        <span class="pixel-kicker">03 / Make something</span>
         <span class="pixel-count" id="pixel-count">0 / 64 painted</span>
       </div>
-      <div id="pixel-grid" class="pixel-grid" role="group" aria-label="8 by 8 paintable grid" aria-describedby="pixel-instructions"></div>
+      <div class="pixel-grid-viewport" id="pixel-grid-viewport">
+        <div id="pixel-grid" class="pixel-grid" role="group" aria-label="8 by 8 paintable grid" aria-describedby="pixel-instructions"></div>
+      </div>
+      <div class="pixel-zoom-tools" id="pixel-zoom-tools" hidden aria-label="Detailed canvas tools">
+        <button type="button" id="pixel-zoom" aria-pressed="false">Zoom 2×</button>
+        <button type="button" id="pixel-pan" aria-pressed="false" disabled>Move view: OFF</button>
+        <p>On a phone, zoom in for larger squares. Move view ON to swipe around; switch it OFF to paint.</p>
+      </div>
       <div class="pixel-canvas-foot">
         <div>
           <span class="pixel-kicker">Tiny preview</span>
@@ -77,8 +91,8 @@ permalink: /resources/8x8-pixel-art-builder/
   <section class="pixel-story">
     <p class="eyebrow">A small canvas, a good excuse to play</p>
     <h2>Not every visualisation needs a spreadsheet.</h2>
-    <p>I first built this experiment in Tableau in January 2023, using parameters and dashboard actions to turn a data visualisation into a drawing tool. This version keeps the eight-by-eight idea, but runs directly in your browser — no Tableau required.</p>
-    <p>Your design stays on your device unless you choose to share its link. Save a sharp 1,024 × 1,024 PNG, or send the link so someone else can open the same 64 squares.</p>
+    <p>I first built this experiment in Tableau in January 2023, using parameters and dashboard actions to turn a data visualisation into a drawing tool. The original 8×8 lives on as Classic, alongside a more detailed 16×16 canvas — all running in your browser without Tableau.</p>
+    <p>Each canvas size keeps its own drawing in your browser. Save a sharp 1,024 × 1,024 PNG, or share a link that opens your exact artwork — 64 squares in Classic, 256 in Detail.</p>
     <p class="pixel-attribution">Explore <a href="https://public.tableau.com/app/profile/adam.green4310/viz/8x8PixelArtBuilder/8X8PIXELART">my original Tableau Public builder</a>. The first version also credited <a href="https://consult-ant.uk/2020/12/18/makeover-monday-2020-week-50/">Ant Pulley's Paint Your Own Bob Ross experiment</a> as inspiration.</p>
   </section>
 </article>
