@@ -1,6 +1,6 @@
 # Youngest season-long champions — Coffeetableviz
 
-**Stage:** Research-to-production review (25 October 2026, Europe/London). No site publication and no approval of final images implied.
+**Stage:** Research and standalone chart-render QA complete (25 October 2026, Europe/London). Not yet published to site; charts must be refreshed if F1 results change.
 
 ## Editorial question
 
@@ -41,4 +41,4 @@ The standard `src/render_538.py` supports conventional line/dot/scatter/bar char
 
 ## Delivery and approval
 
-This branch is for peer/editorial review. Do not publish the blog post or merge without review and the user's approval. The first rendered previews were shared in chat; the repository renderer script and its output need their own execution and pixel QA before images are marked publication-ready.
+This branch is for peer/editorial review. Do not publish the blog post or merge without review and the user's approval. The exact committed render script was reproduced locally and generated three 1600×1600 PNGs from the research dataset; outputs were opened and inspected full-size for labels, leader lines, colours, footers and clipping. Images have not been added as repository binary assets. No GitHub Actions CI run was detected. Publication still requires updated F1 title status, final content/feature artwork, any necessary generated assets, and final site review.
