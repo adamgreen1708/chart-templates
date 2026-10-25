@@ -1,4 +1,7 @@
-/* coffeetableviz 8×8 Pixel Art Builder — dependency-free, on-device only. */
+/* coffeetableviz Pixel Art Studio: 8×8 Classic and 16×16 Detail.
+ * Both canvases are saved locally. Legacy #art=64-digit links remain valid.
+ * 16×16 links use #size=16&art=256-digits. No network or external libraries.
+ */
 (function () {
   "use strict";
   const root = document.getElementById("pixel-art-studio");
@@ -15,87 +18,181 @@
     { name: "Orange", hex: "#fb8e31" },
     { name: "Pink", hex: "#ee3edc" }
   ];
-  const storageKey = "coffeetableviz.pixel-art.v1";
+  const storageKeys = { 8: "coffeetableviz.pixel-art.v1", 16: "coffeetableviz.pixel-art.16.v1" };
+  const boards = {
+    8: { pixels: new Array(64).fill(0), past: [], future: [] },
+    16: { pixels: new Array(256).fill(0), past: [], future: [] }
+  };
   const board = document.getElementById("pixel-grid");
+  const viewport = document.getElementById("pixel-grid-viewport");
   const preview = document.getElementById("pixel-preview");
-  const previewContext = preview.getContext("2d");
-  const status = document.getElementById("pixel-status");
   const count = document.getElementById("pixel-count");
+  const status = document.getElementById("pixel-status");
   const eraser = document.getElementById("pixel-eraser");
   const undoButton = document.getElementById("pixel-undo");
   const redoButton = document.getElementById("pixel-redo");
+  const zoomTools = document.getElementById("pixel-zoom-tools");
+  const zoomButton = document.getElementById("pixel-zoom");
+  const panButton = document.getElementById("pixel-pan");
+  const exportPanel = document.getElementById("pixel-export-panel");
+  const exportPreview = document.getElementById("pixel-export-preview");
+  const exportLink = document.getElementById("pixel-export-link");
   const swatches = Array.from(root.querySelectorAll("[data-colour]"));
-  const past = [];
-  const future = [];
-  let pixels = new Array(64).fill(0);
+  const sizeButtons = Array.from(root.querySelectorAll("[data-pixel-size]"));
+  const presetButtons = Array.from(root.querySelectorAll("[data-preset]"));
+  let size = 8;
   let active = 1;
   let focusIndex = 0;
   let stroke = null;
+  let zoomed = false;
+  let panMode = false;
 
-  function validCode(value) {
-    return typeof value === "string" && /^[0-8]{64}$/.test(value);
+  function current() { return boards[size]; }
+  function validCode(code, dimension) {
+    return typeof code === "string" &&
+      (dimension === 8 || dimension === 16) &&
+      code.length === dimension * dimension &&
+      /^[0-8]+$/.test(code);
   }
-  function decode(code) {
-    return code.split("").map(Number);
+  function parseHash(fragment) {
+    const legacy = /^#art=([0-8]{64})$/.exec(fragment);
+    if (legacy) return { size: 8, code: legacy[1] };
+    const detailed = /^#size=16&art=([0-8]{256})$/.exec(fragment);
+    if (detailed) return { size: 16, code: detailed[1] };
+    return null;
   }
-  function save() {
-    try { localStorage.setItem(storageKey, pixels.join("")); } catch (_) { /* Storage may be disabled. */ }
-  }
-  function restore() {
-    const share = window.location.hash.match(/^#art=([0-8]{64})$/);
-    if (share) { pixels = decode(share[1]); return; }
-    try {
-      const saved = localStorage.getItem(storageKey);
-      if (validCode(saved)) pixels = decode(saved);
-    } catch (_) { /* Storage may be disabled. */ }
+  function fragmentFor(dimension, code) {
+    return dimension === 8 ? "#art=" + code : "#size=16&art=" + code;
   }
   function say(message) { status.textContent = message; }
-  function setActive(index) {
+  function restoreSaved() {
+    [8, 16].forEach(function (dimension) {
+      try {
+        const saved = localStorage.getItem(storageKeys[dimension]);
+        if (validCode(saved, dimension)) {
+          boards[dimension].pixels = saved.split("").map(Number);
+        }
+      } catch (_) { /* Storage may be disabled. */ }
+    });
+    const linked = parseHash(window.location.hash);
+    if (linked) {
+      size = linked.size;
+      boards[size].pixels = linked.code.split("").map(Number);
+    }
+  }
+  function save() {
+    try { localStorage.setItem(storageKeys[size], current().pixels.join("")); }
+    catch (_) { /* Storage may be disabled. */ }
+  }
+  function clearExport() { exportPanel.hidden = true; }
+  function selectColour(index) {
     active = index;
     swatches.forEach(function (swatch) {
-      const on = Number(swatch.dataset.colour) === active;
-      swatch.classList.toggle("is-active", on);
-      swatch.setAttribute("aria-pressed", String(on));
+      const selected = Number(swatch.dataset.colour) === active;
+      swatch.classList.toggle("is-active", selected);
+      swatch.setAttribute("aria-pressed", String(selected));
     });
-    eraser.classList.toggle("is-active", active === 0);
-    eraser.setAttribute("aria-pressed", String(active === 0));
+    const erasing = active === 0;
+    eraser.classList.toggle("is-active", erasing);
+    eraser.setAttribute("aria-pressed", String(erasing));
+  }
+  function buildGrid() {
+    board.replaceChildren();
+    board.style.setProperty("--pixel-dimension", String(size));
+    board.setAttribute("aria-label", size + " by " + size + " paintable grid");
+    preview.width = size;
+    preview.height = size;
+    focusIndex = 0;
+    const fragment = document.createDocumentFragment();
+    for (let index = 0; index < size * size; index += 1) {
+      const cell = document.createElement("button");
+      cell.type = "button";
+      cell.className = "pixel-cell";
+      cell.dataset.index = String(index);
+      cell.tabIndex = index === 0 ? 0 : -1;
+      fragment.appendChild(cell);
+    }
+    board.appendChild(fragment);
   }
   function render() {
+    const st = current();
     Array.from(board.children).forEach(function (cell, index) {
-      const col = colours[pixels[index]];
-      cell.style.backgroundColor = col.hex;
-      cell.setAttribute("aria-label", "Row " + (Math.floor(index / 8) + 1) + ", column " + ((index % 8) + 1) + ": " + col.name);
+      const ink = colours[st.pixels[index]];
+      cell.style.backgroundColor = ink.hex;
+      cell.setAttribute("aria-label", "Row " + (Math.floor(index / size) + 1) +
+        ", column " + ((index % size) + 1) + ": " + ink.name);
     });
-    if (previewContext) {
-      previewContext.imageSmoothingEnabled = false;
-      pixels.forEach(function (colourIndex, index) {
-        previewContext.fillStyle = colours[colourIndex].hex;
-        previewContext.fillRect(index % 8, Math.floor(index / 8), 1, 1);
+    const context = preview.getContext("2d");
+    if (context) {
+      context.imageSmoothingEnabled = false;
+      st.pixels.forEach(function (ink, index) {
+        context.fillStyle = colours[ink].hex;
+        context.fillRect(index % size, Math.floor(index / size), 1, 1);
       });
     }
-    count.textContent = pixels.filter(function (value) { return value !== 0; }).length + " / 64 painted";
-    undoButton.disabled = past.length === 0;
-    redoButton.disabled = future.length === 0;
+    count.textContent = st.pixels.filter(function (ink) { return ink !== 0; }).length +
+      " / " + (size * size) + " painted";
+    undoButton.disabled = st.past.length === 0;
+    redoButton.disabled = st.future.length === 0;
+    sizeButtons.forEach(function (button) {
+      const selected = Number(button.dataset.pixelSize) === size;
+      button.classList.toggle("is-active", selected);
+      button.setAttribute("aria-pressed", String(selected));
+    });
+    zoomTools.hidden = size !== 16;
+    updateZoom();
+  }
+  function updateZoom() {
+    const on = size === 16 && zoomed;
+    board.classList.toggle("is-zoomed", on);
+    board.classList.toggle("is-panning", on && panMode);
+    viewport.classList.toggle("is-zoomed", on);
+    zoomButton.setAttribute("aria-pressed", String(on));
+    zoomButton.textContent = on ? "Fit grid" : "Zoom 2×";
+    panButton.disabled = !on;
+    panButton.setAttribute("aria-pressed", String(on && panMode));
+    panButton.textContent = on && panMode ? "Move view: ON" : "Move view: OFF";
   }
   function record(before) {
-    if (before.every(function (value, index) { return value === pixels[index]; })) return false;
-    past.push(before);
-    if (past.length > 50) past.shift();
-    future.length = 0;
+    const st = current();
+    if (before.every(function (value, index) { return value === st.pixels[index]; })) return false;
+    st.past.push(before);
+    if (st.past.length > 50) st.past.shift();
+    st.future.length = 0;
     save();
+    clearExport();
     render();
     return true;
   }
-  function paint(index, colour) {
-    if (pixels[index] === colour) return;
-    pixels[index] = colour;
+  function changeSize(nextSize, manual) {
+    if (nextSize !== 8 && nextSize !== 16) return;
+    finish();
+    if (manual && window.history && typeof window.history.replaceState === "function") {
+      window.history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
+    if (size !== nextSize) {
+      size = nextSize;
+      stroke = null;
+      zoomed = false;
+      panMode = false;
+      buildGrid();
+    }
     render();
+    if (manual) say(size + "×" + size + " canvas selected. Your other drawing is saved separately.");
+  }
+  function setPixel(index, ink) {
+    const st = current();
+    if (st.pixels[index] !== ink) {
+      st.pixels[index] = ink;
+      render();
+    }
   }
   function start(index) {
-    if (stroke) return;
-    const colour = active !== 0 && pixels[index] === active ? 0 : active;
-    stroke = { before: pixels.slice(), colour: colour };
-    paint(index, colour);
+    if (stroke || (zoomed && panMode)) return;
+    const st = current();
+    const ink = active !== 0 && st.pixels[index] === active ? 0 : active;
+    stroke = { before: st.pixels.slice(), ink: ink };
+    setPixel(index, ink);
   }
   function finish() {
     if (!stroke) return;
@@ -103,35 +200,59 @@
     stroke = null;
     if (changed) say("Looking good. Keep going, or save your masterpiece.");
   }
-  function changeFocus(index) {
-    const children = board.children;
-    children[focusIndex].tabIndex = -1;
+  function focusCell(index) {
+    board.children[focusIndex].tabIndex = -1;
     focusIndex = index;
-    children[focusIndex].tabIndex = 0;
-    children[focusIndex].focus({ preventScroll: true });
+    board.children[index].tabIndex = 0;
+    board.children[index].focus({ preventScroll: true });
   }
-  for (let index = 0; index < 64; index += 1) {
-    const cell = document.createElement("button");
-    cell.type = "button";
-    cell.className = "pixel-cell";
-    cell.dataset.index = String(index);
-    cell.tabIndex = index === 0 ? 0 : -1;
-    board.appendChild(cell);
+  function applyLinkedArt(info, scroll) {
+    if (!info || !validCode(info.code, info.size)) return;
+    if (size !== info.size) changeSize(info.size, false);
+    const st = current();
+    const before = st.pixels.slice();
+    st.pixels = info.code.split("").map(Number);
+    stroke = null;
+    if (record(before)) say("Design loaded. Remix it — Undo restores your previous drawing.");
+    else { save(); render(); say("This design is on the canvas and ready to remix."); }
+    if (scroll && typeof root.scrollIntoView === "function") {
+      root.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   }
-  restore();
-  render();
-  setActive(active);
 
+  restoreSaved();
+  buildGrid();
+  render();
+  selectColour(active);
+
+  sizeButtons.forEach(function (button) {
+    button.addEventListener("click", function () { changeSize(Number(button.dataset.pixelSize), true); });
+  });
   swatches.forEach(function (swatch) {
     swatch.addEventListener("click", function () {
-      setActive(Number(swatch.dataset.colour));
+      selectColour(Number(swatch.dataset.colour));
       say(colours[active].name + " selected.");
     });
   });
-  eraser.addEventListener("click", function () {
-    setActive(0);
-    say("Eraser selected. Tap or drag to turn squares white.");
+  eraser.addEventListener("click", function () { selectColour(0); say("Eraser selected."); });
+
+  zoomButton.addEventListener("click", function () {
+    if (size !== 16) return;
+    zoomed = !zoomed;
+    panMode = zoomed;
+    updateZoom();
+    if (!zoomed) { viewport.scrollLeft = 0; viewport.scrollTop = 0; }
+    say(zoomed ? "Zoomed in. Swipe to move the view, then turn Move view OFF to paint." :
+      "Whole canvas fits in view. Tap or drag to paint.");
   });
+  panButton.addEventListener("click", function () {
+    if (!zoomed || size !== 16) return;
+    panMode = !panMode;
+    updateZoom();
+    say(panMode ? "Move view ON: swipe to navigate without painting." :
+      "Move view OFF: touch a square to paint.");
+  });
+
   board.addEventListener("focusin", function (event) {
     const cell = event.target.closest(".pixel-cell");
     if (!cell) return;
@@ -145,25 +266,24 @@
   board.addEventListener("pointerdown", function (event) {
     const cell = event.target.closest(".pixel-cell");
     if (!cell || (event.pointerType === "mouse" && event.button !== 0)) return;
+    if (zoomed && panMode) return; // Allow native scrolling of the zoomed grid.
     event.preventDefault();
     if (stroke) return;
-    const index = Number(cell.dataset.index);
-    changeFocus(index);
-    start(index);
-    try { board.setPointerCapture(event.pointerId); } catch (_) { /* Capture is optional. */ }
+    focusCell(Number(cell.dataset.index));
+    start(Number(cell.dataset.index));
+    try { board.setPointerCapture(event.pointerId); } catch (_) { /* Optional. */ }
   });
   board.addEventListener("pointermove", function (event) {
     if (!stroke) return;
-    const underPointer = document.elementFromPoint(event.clientX, event.clientY);
-    const cell = underPointer && underPointer.closest(".pixel-cell");
-    if (cell && board.contains(cell)) paint(Number(cell.dataset.index), stroke.colour);
+    const pointed = document.elementFromPoint(event.clientX, event.clientY);
+    const cell = pointed && pointed.closest(".pixel-cell");
+    if (cell && board.contains(cell)) setPixel(Number(cell.dataset.index), stroke.ink);
   });
   board.addEventListener("pointerup", finish);
   board.addEventListener("pointercancel", finish);
   window.addEventListener("pointerup", finish);
-  // Keyboard activation emits a click with detail=0. Pointer actions are handled above.
   board.addEventListener("click", function (event) {
-    if (event.detail !== 0) return;
+    if (event.detail !== 0) return; // Keyboard activation only.
     const cell = event.target.closest(".pixel-cell");
     if (!cell) return;
     start(Number(cell.dataset.index));
@@ -174,62 +294,65 @@
     if (!cell) return;
     const index = Number(cell.dataset.index);
     let next = index;
-    if (event.key === "ArrowRight") next = Math.min(63, index + 1);
+    if (event.key === "ArrowRight") next = Math.min(size * size - 1, index + 1);
     else if (event.key === "ArrowLeft") next = Math.max(0, index - 1);
-    else if (event.key === "ArrowDown") next = Math.min(63, index + 8);
-    else if (event.key === "ArrowUp") next = Math.max(0, index - 8);
-    else if (event.key === "Home") next = index - (index % 8);
-    else if (event.key === "End") next = index + (7 - (index % 8));
+    else if (event.key === "ArrowDown") next = Math.min(size * size - 1, index + size);
+    else if (event.key === "ArrowUp") next = Math.max(0, index - size);
+    else if (event.key === "Home") next = index - (index % size);
+    else if (event.key === "End") next = index + (size - 1 - (index % size));
     else return;
     event.preventDefault();
-    changeFocus(next);
+    focusCell(next);
   });
 
   undoButton.addEventListener("click", function () {
-    if (!past.length) return;
-    future.push(pixels.slice());
-    pixels = past.pop();
-    save();
-    render();
-    say("Last change undone.");
+    const st = current();
+    if (!st.past.length) return;
+    st.future.push(st.pixels.slice());
+    st.pixels = st.past.pop();
+    save(); clearExport(); render(); say("Last change undone.");
   });
   redoButton.addEventListener("click", function () {
-    if (!future.length) return;
-    past.push(pixels.slice());
-    pixels = future.pop();
-    save();
-    render();
-    say("Change restored.");
+    const st = current();
+    if (!st.future.length) return;
+    st.past.push(st.pixels.slice());
+    st.pixels = st.future.pop();
+    save(); clearExport(); render(); say("Change restored.");
   });
   document.getElementById("pixel-reset").addEventListener("click", function () {
-    const before = pixels.slice();
-    pixels.fill(0);
-    if (record(before)) say("Canvas cleared. Undo will bring it back.");
+    const st = current();
+    const before = st.pixels.slice();
+    st.pixels.fill(0);
+    if (record(before)) say("Canvas cleared. Undo can bring it back.");
     else say("Your canvas is already clear.");
   });
   const presets = {
-    heart: [
-      "00000000", "06600660", "66666666", "66666666",
-      "06666660", "00666600", "00066000", "00000000"
-    ].join(""),
-    smile: [
-      "00000000", "05555550", "55000055", "50100105",
-      "50000005", "50111105", "55000055", "05555550"
-    ].join("")
+    heart: ["00000000","06600660","66666666","66666666","06666660","00666600","00066000","00000000"].join(""),
+    smile: ["00000000","05555550","55000055","50100105","50000005","50111105","55000055","05555550"].join("")
   };
-  root.querySelectorAll("[data-preset]").forEach(function (button) {
+  function presetCode(name) {
+    const source = presets[name];
+    if (!source) return null;
+    if (size === 8) return source;
+    let result = "";
+    for (let row = 0; row < 8; row += 1) {
+      let expanded = "";
+      for (let col = 0; col < 8; col += 1) {
+        const digit = source[row * 8 + col];
+        expanded += digit + digit;
+      }
+      result += expanded + expanded;
+    }
+    return result;
+  }
+  presetButtons.forEach(function (button) {
     button.addEventListener("click", function () {
-      const code = presets[button.dataset.preset];
-      if (!validCode(code)) return;
-      const before = pixels.slice();
-      pixels = decode(code);
-      if (record(before)) say("A little " + button.dataset.preset + ". Now make it your own.");
+      const code = presetCode(button.dataset.preset);
+      if (!validCode(code, size)) return;
+      applyLinkedArt({ size: size, code: code }, false);
+      say("A little " + button.dataset.preset + ". Now make it your own.");
     });
   });
-  const exportPanel = document.getElementById("pixel-export-panel");
-  const exportPreview = document.getElementById("pixel-export-preview");
-  const exportLink = document.getElementById("pixel-export-link");
-  const exportName = "coffeetableviz-8x8-pixel-art.png";
 
   function makePng() {
     const canvas = document.createElement("canvas");
@@ -238,118 +361,92 @@
     const context = canvas.getContext("2d");
     if (!context) throw new Error("Canvas unavailable");
     context.imageSmoothingEnabled = false;
-    pixels.forEach(function (index, position) {
-      context.fillStyle = colours[index].hex;
-      context.fillRect((position % 8) * 128, Math.floor(position / 8) * 128, 128, 128);
+    const side = 1024 / size;
+    current().pixels.forEach(function (ink, index) {
+      context.fillStyle = colours[ink].hex;
+      context.fillRect((index % size) * side, Math.floor(index / size) * side, side, side);
     });
     const dataUrl = canvas.toDataURL("image/png");
     if (!dataUrl.startsWith("data:image/png;base64,")) throw new Error("PNG encoding failed");
     return dataUrl;
   }
-
   document.getElementById("pixel-download").addEventListener("click", function () {
     let dataUrl;
     try { dataUrl = makePng(); }
     catch (_) { say("Sorry, this browser couldn't create the PNG. Your drawing is still here."); return; }
-
-    // Visible fallback: mobile browsers and in-app webviews can ignore scripted downloads.
+    const fileName = "coffeetableviz-" + size + "x" + size + "-pixel-art.png";
     exportPreview.src = dataUrl;
     exportLink.href = dataUrl;
-    exportLink.download = exportName;
+    exportLink.download = fileName;
     exportPanel.hidden = false;
     const touch = typeof window.matchMedia === "function" &&
       window.matchMedia("(pointer: coarse)").matches;
-
-    // Invoke share synchronously from the tap (transient user activation is required).
     if (touch && typeof navigator.share === "function" &&
         typeof navigator.canShare === "function" && typeof File === "function") {
       try {
         const binary = atob(dataUrl.split(",")[1]);
         const bytes = Uint8Array.from(binary, function (c) { return c.charCodeAt(0); });
-        const png = new File([bytes], exportName, { type: "image/png" });
+        const png = new File([bytes], fileName, { type: "image/png" });
         if (navigator.canShare({ files: [png] })) {
-          const sharing = navigator.share({ files: [png], title: "8×8 pixel art" });
-          say("Choose Save Image or Save to Files in the Share sheet. The preview below is a backup.");
+          const sharing = navigator.share({ files: [png], title: size + "×" + size + " pixel art" });
+          say("Choose Save Image or Save to Files in the Share sheet. The preview is a backup.");
           Promise.resolve(sharing).then(function () {
             say("Share sheet closed. Your PNG is still available below.");
           }, function (error) {
-            say(error && error.name === "AbortError"
-              ? "Sharing cancelled. You can save from the preview below."
-              : "Sharing wasn't available. You can save from the preview below.");
+            say(error && error.name === "AbortError" ?
+              "Sharing cancelled. You can save from the preview below." :
+              "Sharing wasn't available. You can save from the preview below.");
           });
           return;
         }
-      } catch (_) { /* Fall back to the visible image and download link. */ }
+      } catch (_) { /* Use the preview fallback. */ }
     }
-
     if (touch) {
-      say("PNG ready. Touch and hold the preview below to save it, or try Download PNG.");
+      say("PNG ready. Touch and hold the preview to save it, or try Download PNG.");
     } else {
-      // Keep the existing one-click desktop download; leave a clickable backup.
-      try {
-        exportLink.click();
-        say("PNG prepared. If it didn't download, use the link or image below.");
-      } catch (_) {
-        say("PNG prepared. Use Download PNG below.");
-      }
+      try { exportLink.click(); say("PNG prepared. If it didn't download, use the link below."); }
+      catch (_) { say("PNG prepared. Use Download PNG below."); }
     }
   });
 
-  // The zoo also lives below this builder. A #art=... link on the same
-  // page does not reload, so apply the selected animal in place.
-  function loadGalleryDesign(code) {
-    if (!validCode(code)) return;
-    const next = decode(code);
-    if (pixels.some(function (value, index) { return value !== next[index]; })) {
-      const before = pixels.slice();
-      pixels = next;
-      stroke = null;
-      record(before);
-      say("Design loaded. Change any pixel to make it yours — Undo restores your previous drawing.");
-    } else {
-      say("This design is already on the canvas. Choose a colour to make it yours.");
-    }
-    if (typeof root.scrollIntoView === "function") {
-      root.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }
-
   window.addEventListener("hashchange", function () {
-    const match = window.location.hash.match(/^#art=([0-8]{64})$/);
-    if (match) loadGalleryDesign(match[1]);
+    const info = parseHash(window.location.hash);
+    if (info) applyLinkedArt(info, true);
   });
   const gallery = document.getElementById("tiny-pixel-zoo");
   if (gallery) gallery.addEventListener("click", function (event) {
     const link = event.target.closest("a.pixel-zoo-open");
     if (!link || !gallery.contains(link)) return;
-    const match = (link.getAttribute("href") || "").match(/#art=([0-8]{64})$/);
-    if (!match) return;
+    const href = link.getAttribute("href") || "";
+    const fragment = href.indexOf("#") >= 0 ? href.slice(href.indexOf("#")) : "";
+    const info = parseHash(fragment);
+    if (!info) return;
     event.preventDefault();
-    // Reapplying works even when the visitor clicks the same card twice.
-    loadGalleryDesign(match[1]);
-    window.location.hash = "art=" + match[1];
+    applyLinkedArt(info, true);
+    window.location.hash = fragment;
   });
 
   document.getElementById("pixel-share").addEventListener("click", async function () {
-    const shareUrl = window.location.origin + window.location.pathname + "#art=" + pixels.join("");
+    const shared = fragmentFor(size, current().pixels.join(""));
+    const url = window.location.origin + window.location.pathname + shared;
     try {
       if (!navigator.clipboard || !navigator.clipboard.writeText) throw new Error("Clipboard unavailable");
-      await navigator.clipboard.writeText(shareUrl);
-      say("Link copied. It opens your design, colours and all.");
+      await navigator.clipboard.writeText(url);
+      say(size + "×" + size + " link copied. It will open your exact design.");
     } catch (_) {
       const input = document.createElement("textarea");
-      input.value = shareUrl;
+      input.value = url;
       input.setAttribute("readonly", "");
       input.style.cssText = "position:fixed;left:-9999px;top:0";
       document.body.appendChild(input);
       input.select();
       let copied = false;
-      try { copied = document.execCommand("copy"); } catch (_) { /* Not supported. */ }
+      try { copied = document.execCommand("copy"); } catch (_) { /* Unsupported. */ }
       input.remove();
-      if (copied) say("Link copied. It opens your design, colours and all.");
+      if (copied) say("Design link copied.");
       else {
-        window.location.hash = "art=" + pixels.join("");
-        say("The share link is now in your address bar, ready to copy.");
+        window.location.hash = shared;
+        say("The share link is in your address bar, ready to copy.");
       }
     }
   });
