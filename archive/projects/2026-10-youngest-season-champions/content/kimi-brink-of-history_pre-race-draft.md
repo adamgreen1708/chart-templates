@@ -13,7 +13,7 @@ At 20, the Mercedes driver could become Formula 1's youngest-ever world champion
 
 ## Article
 
-At 20, Kimi Antonelli is facing a rather unusual problem: he might be about to become a Formula 1 world champion before he's old enough to rent a car in some parts of the world. *[Editorial aside: remove the car-rental reference if its legal/territorial basis cannot be sourced.]*
+At 20, Kimi Antonelli is facing a rather unusual possibility: becoming a Formula 1 world champion while many drivers his age are still working their way towards the top of the sport.
 
 The Mercedes driver arrives at the United States Grand Prix on pole position and with a 102-point lead over team-mate George Russell. Victory in Austin could make him the youngest champion in the sport's history. But there is a catch: Antonelli must win, Russell must finish ninth or lower, and Lewis Hamilton must finish fifth or lower. Even with a commanding championship lead, the maths is rather less straightforward than the headline.
 
