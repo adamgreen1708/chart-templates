@@ -7,11 +7,18 @@
   ];
   document.querySelectorAll("canvas.pixel-zoo-preview[data-pixel-code]").forEach(function (canvas) {
     const code = canvas.dataset.pixelCode;
-    const size = Number(canvas.dataset.pixelSize) || 8;
-    if ((size !== 8 && size !== 16) || code.length !== size * size || !/^[0-8]+$/.test(code)) {
+    // The length of the art code is the source of truth. This also protects
+    // previews from a malformed Liquid size attribute or stale page markup.
+    const size = code.length === 64 ? 8 : code.length === 256 ? 16 : 0;
+    if (!size || !/^[0-8]+$/.test(code)) {
       canvas.setAttribute("aria-label", "Pixel art preview unavailable");
       return;
     }
+    canvas.width = size;
+    canvas.height = size;
+    canvas.dataset.pixelSize = String(size);
+    const card = canvas.closest(".pixel-zoo-card");
+    if (card) card.dataset.pixelSize = String(size);
     const context = canvas.getContext("2d");
     if (!context) return;
     context.imageSmoothingEnabled = false;
