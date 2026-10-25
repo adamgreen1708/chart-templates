@@ -1,7 +1,7 @@
 # Project manifest — youngest season-long sporting champions
 
 - Started: 2026-10-25
-- Status: **Review / awaiting final render verification and approval**
+- Status: **Research/render script QA complete; publication package not started**
 - Repo: `adamgreen1708/chart-templates`
 - Slug: `2026-10-youngest-season-champions`
 - Working headline: **Too young to win? Sport's youngest season champions**
@@ -28,11 +28,11 @@
 ## QA gates
 - Dataset row count and unique titles: checked in original preview; 13 entries.
 - Date-of-birth / award-date consistency: checked in original preview where date present.
-- Repository-specific renderer execution: **pending**.
-- GitHub Actions validation: **pending**.
-- Output image pixel inspection: **pending for repository-produced outputs**.
-- Blog copy, social and hero feature image: **not yet prepared**.
-- Published URL: **none**.
+- Project-scoped repository renderer execution: **PASS** — exact committed Python script content verified against local test copy (Unicode codepoint checksum 0x61e61d79) and executed using 13 matching research records.
+- GitHub Actions validation: **not run** — this project script is standalone and no matching PR CI run was returned.
+- Output image pixel inspection: **PASS on local reproduction** — all three 1600×1600 PNGs were opened and inspected at full size for titles, label clearance, leaders, colour, sport labels, legends, and footers. Files are not yet pushed into repo.
+- 1997 WTA ranking: Hingis 1997 No.1 confirmed by WTA; dated 24 November 1997 ranking corroborated by historical ranking archive (see https://tennis.quickfound.net/history/wta_top_20_1989-present.html).\n- Blog copy, social and hero feature image: **not yet prepared**.
+- Published URL: **none**. Refresh F1 title status after 25 October 2026 United States GP before writing final copy.
 
 ## Publication process
 Finish render + QA, show exact proposed final images for approval, then take the separately approved step to prepare publication assets and submit/merge the relevant PR.
