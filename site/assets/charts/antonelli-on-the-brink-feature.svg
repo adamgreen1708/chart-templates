@@ -8,7 +8,7 @@
 <text x="95" y="95" font-size="22" font-weight="700" letter-spacing="3">COFFEETABLEVIZ  /  SPORT</text>
 <text x="95" y="185" font-size="67" font-weight="800">ON THE</text>
 <text x="95" y="257" font-size="67" font-weight="800">BRINK</text>
-<text x="96" y="306" font-size="20" letter-spacing=".4" fill="#555555">How young can a season champion be?</text>
+<text x="96" y="306" font-size="20" letter-spacing=".4" fill="#555555">How young is a champion?</text>
 </g>
 <g transform="translate(649 280) rotate(-16)">
 <ellipse cx="4" cy="83" rx="240" ry="28" fill="#BEC5CA" opacity=".30"/>
