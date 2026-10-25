@@ -6,10 +6,10 @@ description: "At 20, Kimi Antonelli could rewrite F1's youngest champion record.
 date: 2026-10-25 12:00:00 +0000
 category: Sport
 read_time: "4 minute read"
-card_image: /assets/charts/antonelli-on-the-brink-feature.svg
-hero_image: /assets/charts/antonelli-on-the-brink-feature.svg
-social_image: /assets/charts/antonelli-on-the-brink-feature.svg
-hero_alt: "Editorial graphic of a racing car, comparing Vettel's confirmed record at 23 years with Antonelli's conditional age of 20 if he wins the world title at the 2026 US Grand Prix."
+card_image: /assets/charts/season_champions_02_cross_sport.png
+hero_image: /assets/charts/season_champions_02_cross_sport.png
+social_image: /assets/charts/season_champions_02_cross_sport.png
+hero_alt: "Coffeetableviz dot plot comparing ages at selected season-long sporting titles: confirmed F1 youngest world champion Sebastian Vettel in red, other motorsport in blue and tennis, golf and other sports in grey."
 tags: [formula-one, motorsport, tennis, golf, sport, data-visualisation]
 published: false
 ---
