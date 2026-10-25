@@ -254,3 +254,11 @@ When a project forces a reusable improvement, update the template system in the 
 3. Update `docs/chart_config_prompt.txt` if prompting rules change.
 4. Update tests if renderer or template assumptions change.
 5. Mention the template update in the final handback.
+
+## Semantic colour and editorial labelling QA
+
+When a story uses multiple chart panels, colours must carry a **defined editorial meaning** consistently across the set; arbitrary alternation of category colours is not permitted. Focus/accent/context assignments should be documented per story. The locked palette specifies available colours, not a requirement to use them all.
+
+When labels sit away from the plotted marks, use restrained leader lines if that is necessary to remove ambiguity. Test leaders for crossings and collisions on the final PNG. Add concise contextual identifiers (such as a sport in brackets after an athlete's name) when readers may not recognise the names. Source, unit and provisional status must remain explicit.
+
+Final QA must inspect the exported image pixels at full size and mobile-readable size, including all labels, lines, legend, footers and safe margins. See `docs/chart_qa_checklist.md` for the full reusable checklist.
