@@ -1,28 +1,28 @@
 {
-  "report_date": "2026-10-26",
-  "visits": 7,
-  "prior_7d_avg": "29.86",
-  "pct_vs_prior_7d": "-76.6",
+  "report_date": "2026-10-27",
+  "visits": 5,
+  "prior_7d_avg": "30.14",
+  "pct_vs_prior_7d": "-83.4",
   "top_page_path": "/resources/8x8-pixel-art-builder",
   "top_page_title": "8\u00d78 Pixel Art Builder \u00b7 coffeetableviz",
-  "top_page_visits": 6,
+  "top_page_visits": 4,
   "top_referrer": "www.linkedin.com",
-  "top_referrer_visits": 7,
-  "observation": "8\u00d78 Pixel Art Builder led the day, reaching 6 of 7 recorded visitors.",
-  "generated_at_utc": "2026-10-27T14:29:11+00:00",
+  "top_referrer_visits": 4,
+  "observation": "8\u00d78 Pixel Art Builder led the day, reaching 4 of 5 recorded visitors.",
+  "generated_at_utc": "2026-10-28T15:06:32+00:00",
   "top_pages": [
     {
       "path_id": 114429315,
       "path": "/resources/8x8-pixel-art-builder",
       "title": "8\u00d78 Pixel Art Builder \u00b7 coffeetableviz",
       "display": "8\u00d78 Pixel Art Builder",
-      "count": 6
+      "count": 4
     },
     {
-      "path_id": 112389112,
-      "path": "/2026/09/23/how-do-you-measure-a-chameleon",
-      "title": "How do you measure a chameleon? \u00b7 coffeetableviz",
-      "display": "How do you measure a chameleon?",
+      "path_id": 109451764,
+      "path": "/",
+      "title": "coffeetableviz",
+      "display": "Home",
       "count": 1
     }
   ],
@@ -30,7 +30,7 @@
     {
       "id": "www.linkedin.com",
       "name": "www.linkedin.com",
-      "count": 7,
+      "count": 4,
       "ref_scheme": "h"
     }
   ]
