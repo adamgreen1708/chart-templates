@@ -77,3 +77,15 @@ These are reusable QA checks, not a mandatory colour scheme for every story.
 - **Check headline against evidence.** A curated set of examples cannot support claims about the absolute youngest across all sports, nor averages about which sport produces younger champions without an exhaustive comparable population.
 
 Project-specific example: youngest season champions uses red for Formula 1, blue for other motorsport, grey for all other sports. The reusable rule is semantic colour, not those exact assignments.
+
+
+## Social and mobile QA (proposed vNext)
+
+- Render in GitHub from verified data + CHART_CONFIG; never retype/redraw charts in PDF tools.
+- Keep original chart assets unchanged; write proposed social output to distinct files and attach artifacts.
+- Inspect the actual final export at 390px and 320px (alongside full resolution), not just bounding boxes.
+- Read every subtitle, legend, important annotation, axis/tick, source/date and caveat at phone size.
+- Check clipping, plot overlap, collisions, safe margins, marker contrast and semantic colours.
+- Prefer less copy, fewer annotations and better layouts rather than smaller essential text.
+- Use shared canonical footer; do not allow individual projects to drift without documented approval.
+- No publish, replacing originals or merging profile changes before Adam explicitly signs off.
