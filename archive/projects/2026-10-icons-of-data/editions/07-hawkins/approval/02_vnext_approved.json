@@ -1,0 +1,12 @@
+{
+  "status": "approved_for_exact_asset_replacement",
+  "approved_on": "2026-10-30",
+  "approved_by": "site author in ChatGPT conversation",
+  "review_pr": 165,
+  "review_run_id": 41139172256,
+  "source_artifact": "hawkins-vnext-phone-review/hawkins_vnext_preview.png",
+  "approved_sha256": "d0e9e680f5e044caad61a96de248ea0d8891570db8ddc3cef718715fd5a8212d",
+  "target": "site/assets/icons-of-data/ed-hawkins/02_the_century_shifts_colour.png",
+  "preserve_original": "archive/projects/2026-10-icons-of-data/editions/07-hawkins/legacy/02_the_century_shifts_colour_2026-10_original.png",
+  "notes": "Author approved the displayed 1600px visual and phone previews. Publish by copying identical GitHub QA bytes; never regenerate during publication."
+}
