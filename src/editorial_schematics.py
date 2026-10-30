@@ -17,7 +17,7 @@ SUBTEXT = "#555555"
 WHITE = "#FFFFFF"
 
 
-EDITORIAL_TYPES = {"route_zigzag", "route_longitude", "mode_clusters", "position_shift", "nightingale_rates", "hawkins_stripes"}
+EDITORIAL_TYPES = {"route_zigzag", "route_longitude", "mode_clusters", "position_shift", "nightingale_rates", "hawkins_stripes", "minard_campaign"}
 
 
 def _wrap(text, width, max_lines=2):
@@ -558,4 +558,7 @@ def render_editorial_schematic(repo_root, config, rows, columns=None):
     if chart_type == "hawkins_stripes":
         from editorial_hawkins import render_hawkins_stripes
         return render_hawkins_stripes(repo_root, config, rows)
+    if chart_type == "minard_campaign":
+        from editorial_minard import render_minard_campaign
+        return render_minard_campaign(repo_root, config, rows)
     raise ValueError(f"Unsupported editorial schematic chart_type: {chart_type}")
