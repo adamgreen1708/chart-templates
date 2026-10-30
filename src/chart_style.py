@@ -1,7 +1,8 @@
-"""Shared, opt-in Coffeetableviz rendering profiles.
+"""Central Coffeetableviz rendering profiles.
 
-Standard continues respecting existing project overrides. Social takes
-precedence over legacy project sizes and only allows documented exceptions.
+New production configs use social_square (approved vNext house style).
+Existing configs without a render_profile stay on the legacy standard profile
+until they are migrated and visually approved, avoiding silent changes.
 """
 BG="#F3F4F6"
 PRIMARY="#1F8FA8"
@@ -33,6 +34,7 @@ SOCIAL_SQUARE={**STANDARD,
  "footer_left_x":.09,"footer_right_x":.91,"footer_y":.09,
  "plot_top":.72,"plot_bottom":.22,"plot_left":.17,"plot_right":.87,
 }
+PRODUCTION_PROFILE = "social_square"  # the default for all NEW chart configs
 PROFILES={"standard":STANDARD,"social_square":SOCIAL_SQUARE}
 
 def resolve_style(config):
