@@ -33,3 +33,26 @@ def test_social_shared_safe_frame():
     assert st["footer_right_x"] == .91
     assert st["title_y"] == .91 and st["footer_y"] == .09
     assert st["plot_left"] > st["title_x"] and st["plot_right"] < st["footer_right_x"]
+
+
+
+def test_new_chart_template_uses_approved_house_vnext_by_default():
+    from src.chart_config_template import CHART_CONFIG as template
+    from src.chart_style import PRODUCTION_PROFILE
+    assert PRODUCTION_PROFILE == "social_square"
+    assert template["render_profile"] == PRODUCTION_PROFILE
+    assert template["profile_overrides"] == {}
+    style = resolve_style(template)
+    assert (style["title_fontsize"], style["subtitle_fontsize"]) == (26, 16)
+    assert (style["tick_label_fontsize"], style["axis_label_fontsize"]) == (12, 12)
+    assert (style["title_x"], style["footer_right_x"]) == (.09, .91)
+    assert style["plot_bottom"] == .22
+    assert footer_left(template) == "Adam Green | coffeetableviz"
+
+
+def test_old_configs_keep_legacy_layout_until_migrated():
+    legacy = {"title_fontsize": 21, "subtitle_fontsize": 11, "plot_bottom": .14}
+    style = resolve_style(legacy)
+    assert style["subtitle_fontsize"] == 11
+    assert style["plot_bottom"] == .14
+    assert label_fontsize(legacy, 8) == 8

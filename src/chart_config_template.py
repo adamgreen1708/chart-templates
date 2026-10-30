@@ -4,7 +4,7 @@ CHART_CONFIG = {
     # ---------------------------
     "data_file": "data/your_file.csv",
     "data_format": "wide",
-    "chart_type": "dot",  # line | bar | dot | scatter | route_zigzag | route_longitude | mode_clusters
+    "chart_type": "dot",  # line | bar | dot | scatter | route_zigzag | route_longitude | mode_clusters | position_shift
     "orientation": None,  # None | horizontal for bar charts
 
     "x_col": "x_column",
@@ -21,8 +21,8 @@ CHART_CONFIG = {
     "subtitle": "Your explanatory subtitle",
     "source_text": "Source: ...",
     "footer_left": "Adam Green | coffeetableviz",
-    "render_profile": "standard",  # standard | social_square; explicit opt-in
-    "profile_overrides": {},  # exceptional size/layout values need QA
+    "render_profile": "social_square",  # approved vNext house default for NEW charts
+    "profile_overrides": {},  # documented exceptions only; legacy standard for archived charts
 
     "story_angle": "ranked_comparison",
     "focus_series": None,
@@ -147,20 +147,20 @@ CHART_CONFIG = {
         "label_col": None,
         "label_format": "{}",
         "position": "right",
-        "fontsize": 8
+        "fontsize": 11.5
     },
 
     # ---------------------------
     # TYPOGRAPHY
     # ---------------------------
-    "title_fontsize": 22,
-    "subtitle_fontsize": 12,
-    "tick_label_fontsize": 10,
-    "axis_label_fontsize": 10,
-    "footer_fontsize": 10,
+    "title_fontsize": 26,
+    "subtitle_fontsize": 16,
+    "tick_label_fontsize": 12,
+    "axis_label_fontsize": 12,
+    "footer_fontsize": 10.5,
 
-    "title_wrap_width": 40,
-    "subtitle_wrap_width": 74,
+    "title_wrap_width": 32,
+    "subtitle_wrap_width": 54,
     "title_max_lines": 2,
     "subtitle_max_lines": 2,
 
@@ -170,19 +170,19 @@ CHART_CONFIG = {
     "fig_width": 8.0,
     "fig_height": 8.0,
 
-    "title_x": 0.10,
-    "title_y": 0.92,
-    "subtitle_x": 0.10,
-    "subtitle_y": 0.86,
+    "title_x": 0.09,
+    "title_y": 0.91,
+    "subtitle_x": 0.09,
+    "subtitle_y": 0.84,
 
-    "footer_left_x": 0.10,
-    "footer_right_x": 0.90,
-    "footer_y": 0.08,
+    "footer_left_x": 0.09,
+    "footer_right_x": 0.91,
+    "footer_y": 0.09,
 
-    "plot_top": 0.75,
-    "plot_bottom": 0.14,
-    "plot_left": 0.12,
-    "plot_right": 0.90,
+    "plot_top": 0.72,
+    "plot_bottom": 0.22,
+    "plot_left": 0.17,
+    "plot_right": 0.87,
 
     "vertical_gridlines": False,
 

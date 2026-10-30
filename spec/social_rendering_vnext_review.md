@@ -1,6 +1,6 @@
 # Coffeetableviz social vNext: October 2026 retrospective and review
 
-**Status: draft, opt-in; existing 538 standard remains locked.**
+**Status update (30 October 2026): three vNext designs approved by Adam. This document records the original trial and lessons. New charts use the approved vNext profile by default; previously published charts remain on their legacy configs until migrated and approved.**
 
 ## Root cause and evidence
 
