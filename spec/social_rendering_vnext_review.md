@@ -50,3 +50,11 @@ Legacy scripts for Minard, Nightingale, Ed Hawkins and other editorial series ne
 ## Trial finding from actual 390px/320px previews
 
 The first Simon Reeve social render visibly collided with the explainer and had unreadable dense stop/country labels. The review branch now moves the map below the larger heading and displays selected country names, preserving all ten numbered positions while directing readers to the full route. This is a social **editorial reduction**, not a replacement for the full website chart. Compare the updated pixels before approving. Verify the subtitle and country labels still clear the plot; automated tests alone cannot certify this.
+
+## October review correction — layout and canvas (30 October)
+
+The first mobile prototypes repeated three problems identified by Adam: unequal whitespace/padding on the four edges, a disconnected Simon Reeve subtitle/explainer stack, and a default white Matplotlib plot patch on Verstappen. All are upstream rendering defects, not PDF defects. The updated social profile uses a shared 8.5% reference safe frame with figure text aligned near 9%/91% and the plot inset further for axis labels. The rendered-pixel QA job enforces at least **7% clear margin** on all four edges and rejects white plot panels. This minimum allows for antialiasing and modest label width but never authorises edge bleed.
+
+For editorial schematics the social heading is now stacked based on the text's rendered bounding boxes rather than hard-coded gap guesses. The mobile Simon Reeve variant shortens its wording and tightens the bracket/tick panel while retaining the exact source geometry and ten numbered country markers. Never apply the social simplification to the approved web image without explicit review.
+
+A clean CI run is necessary but not enough: final decision still depends on Adam seeing the actual 390px and 320px previews and confirming visual consistency.
