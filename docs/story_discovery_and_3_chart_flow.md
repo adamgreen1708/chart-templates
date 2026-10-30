@@ -133,3 +133,8 @@ Next build step:
 Do not treat `CHART_CONFIG` creation as the first analytical step.
 
 For blog/data-story work, `CHART_CONFIG` creation comes after dataset inspection, story discovery, and the 3-chart editorial plan.
+
+
+## Production chart rendering standard (30 October 2026)
+
+For **all new** projects, the normal project `config/*.py` files must use the approved Coffeetableviz vNext `render_profile: social_square` as supplied by `src/chart_config_template.py`. That is the canonical house layout for both website and social use, not a separate style path. Render and check the final output through GitHub `src/render_538.py`, with 390px and 320px mobile QA. Existing published project configs remain unchanged until their replacements have been reviewed and approved.
