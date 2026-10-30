@@ -1,0 +1,67 @@
+name: Stage approved Nightingale PNG (exact artifact only)
+
+on:
+  pull_request:
+    paths:
+      - "archive/projects/2026-10-icons-of-data/editions/04-nightingale/approval/02_vnext_approved.json"
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  stage-approved-png:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - name: Fetch the exact approved image from the previously reviewed QA artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/nightingale-approved
+          gh run download 41137909829 --repo "$GITHUB_REPOSITORY" \
+            --name nightingale-vnext-phone-review --dir /tmp/nightingale-approved
+      - name: Verify approved artifact and preserve the original
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json, hashlib, shutil
+          meta=Path("archive/projects/2026-10-icons-of-data/editions/04-nightingale/approval/02_vnext_approved.json")
+          approval=json.loads(meta.read_text())
+          src=Path("/tmp/nightingale-approved/nightingale_vnext_preview.png")
+          original=Path("site/assets/icons-of-data/nightingale/02_what_the_numbers_reveal.png")
+          archive=Path("archive/projects/2026-10-icons-of-data/editions/04-nightingale/legacy/02_what_the_numbers_reveal_2026-10_original.png")
+          assert approval["review_run_id"]==41137909829
+          assert src.exists() and original.exists()
+          digest=hashlib.sha256(src.read_bytes()).hexdigest()
+          assert digest==approval["approved_sha256"],(digest,approval["approved_sha256"])
+          from PIL import Image
+          assert Image.open(src).size==(1600,1600)
+          archive.parent.mkdir(parents=True,exist_ok=True)
+          if archive.exists():
+              assert archive.read_bytes()==original.read_bytes(), "Legacy copy differs: stop instead of overwriting"
+          else:
+              shutil.copyfile(original,archive)
+          shutil.copyfile(src,original)
+          assert hashlib.sha256(original.read_bytes()).hexdigest()==approval["approved_sha256"]
+          print("Approved artifact staged exactly; original backed up.",digest)
+          PY
+      - name: Commit exact approved replacement to this PR branch only
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/assets/icons-of-data/nightingale/02_what_the_numbers_reveal.png \
+            archive/projects/2026-10-icons-of-data/editions/04-nightingale/legacy/02_what_the_numbers_reveal_2026-10_original.png
+          git diff --cached --stat
+          if git diff --cached --quiet; then
+            echo "Approved image already staged; no change."
+            exit 0
+          fi
+          git commit -m "Stage exact author-approved Nightingale vNext PNG and preserve original"
+          git push origin HEAD:"${{ github.event.pull_request.head.ref }}"
