@@ -31,7 +31,7 @@ SOCIAL_SQUARE={**STANDARD,
  "title_x":.09,"title_y":.91,
  "subtitle_x":.09,"subtitle_y":.84,
  "footer_left_x":.09,"footer_right_x":.91,"footer_y":.09,
- "plot_top":.72,"plot_bottom":.16,"plot_left":.17,"plot_right":.87,
+ "plot_top":.72,"plot_bottom":.22,"plot_left":.17,"plot_right":.87,
 }
 PROFILES={"standard":STANDARD,"social_square":SOCIAL_SQUARE}
 
