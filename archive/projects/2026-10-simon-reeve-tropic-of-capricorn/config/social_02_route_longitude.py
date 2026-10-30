@@ -28,6 +28,9 @@ CHART_CONFIG = {
 # Isolated vNext comparison. Source/project/default PNGs remain unchanged.
 CHART_CONFIG.update({
     "render_profile": "social_square",
+    "title": "Simon Reeve's journey",
+    "subtitle": "Ten countries along the Tropic of Capricorn",
+    "explainer": "Longitude-based route · latitude exaggerated 3×",
     "profile_overrides": {},
     "output_file": "archive/projects/2026-10-simon-reeve-tropic-of-capricorn/output/social_review_simon_route_longitude.png",
 })
