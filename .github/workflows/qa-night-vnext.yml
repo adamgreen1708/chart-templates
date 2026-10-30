@@ -1,0 +1,54 @@
+name: QA Nightingale house-vNext migration (review only)
+
+on:
+  pull_request:
+    paths:
+      - "src/editorial_nightingale.py"
+      - "src/editorial_schematics.py"
+      - "archive/projects/2026-10-icons-of-data/editions/04-nightingale/config/review_02_nightingale_vnext.py"
+      - "tests/test_nightingale_vnext.py"
+      - ".github/workflows/qa-night-vnext.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  nightingale-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install renderer and QA dependencies
+        run: |
+          python -m pip install -r requirements-render.txt
+          python -m pip install pytest pillow
+      - name: Validate exact 24-month series and regression checks
+        run: python -m pytest tests/test_nightingale_vnext.py tests/test_social_profile.py -q
+      - name: Render pinned Nightingale data through central CHART_CONFIG
+        run: |
+          cp archive/projects/2026-10-icons-of-data/editions/04-nightingale/config/review_02_nightingale_vnext.py src/chart_config.py
+          python src/render_538.py
+          git checkout -- src/chart_config.py
+      - name: Check final rendered border, canvas, and create phone previews
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          from scripts.qa_social_rendered import check_chart
+
+          path=Path("output/nightingale_vnext_preview.png")
+          check_chart(path)
+          source=Image.open(path).convert("RGB")
+          for size in (390,320):
+              out=path.with_name(f"nightingale_vnext_preview_{size}.png")
+              source.resize((size,size),Image.Resampling.LANCZOS).save(out)
+              print("Preview:",out)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nightingale-vnext-phone-review
+          path: output/nightingale_vnext_preview*.png
+          if-no-files-found: error
