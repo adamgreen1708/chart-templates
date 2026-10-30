@@ -1,8 +1,8 @@
-# 538 Chart Template (LOCKED)
+# Coffeetableviz 538 Chart Template — approved vNext house standard
 
 This is the source of truth for the coffeetableviz 538-style renderer.
 
-The current production standard is the square coffeetableviz renderer used by `src/render_538.py` and the CHART_CONFIG template.
+The production standard for **new projects** is the approved mobile-readable `social_square` house profile, configured and rendered through `src/render_538.py` and `src/chart_config_template.py`. Existing archived configs without `render_profile` are treated as legacy `standard` until their chart is deliberately migrated and reviewed. This is one future-facing house style, not two competing designs.
 
 ## Canvas
 
@@ -35,32 +35,34 @@ Use these defaults unless a specific chart needs more room.
 "fig_width": 8.0
 "fig_height": 8.0
 
-"title_x": 0.10
-"title_y": 0.92
-"subtitle_x": 0.10
-"subtitle_y": 0.86
+"render_profile": "social_square"
 
-"footer_left_x": 0.10
-"footer_right_x": 0.90
-"footer_y": 0.08
+"title_x": 0.09
+"title_y": 0.91
+"subtitle_x": 0.09
+"subtitle_y": 0.84
 
-"plot_top": 0.75
-"plot_bottom": 0.14
-"plot_left": 0.12
-"plot_right": 0.90
+"footer_left_x": 0.09
+"footer_right_x": 0.91
+"footer_y": 0.09
+
+"plot_top": 0.72
+"plot_bottom": 0.22
+"plot_left": 0.17
+"plot_right": 0.87
 ```
 
 ## Typography defaults
 
 ```python
-"title_fontsize": 22
-"subtitle_fontsize": 12
-"tick_label_fontsize": 10
-"axis_label_fontsize": 10
-"footer_fontsize": 10
+"title_fontsize": 26
+"subtitle_fontsize": 16
+"tick_label_fontsize": 12
+"axis_label_fontsize": 12
+"footer_fontsize": 10.5
 
-"title_wrap_width": 40
-"subtitle_wrap_width": 74
+"title_wrap_width": 32
+"subtitle_wrap_width": 54
 "title_max_lines": 2
 "subtitle_max_lines": 2
 ```
@@ -264,15 +266,19 @@ When labels sit away from the plotted marks, use restrained leader lines if that
 Final QA must inspect the exported image pixels at full size and mobile-readable size, including all labels, lines, legend, footers and safe margins. See `docs/chart_qa_checklist.md` for the full reusable checklist.
 
 
-## Draft social-square profile — vNext review (does NOT alter locked defaults)
+## Approved house-vNext profile and legacy compatibility
 
-The production standard above remains locked. New social/phone PNGs may opt in with `"render_profile": "social_square"`. The central `src/chart_style.py` resolver wins over legacy project-specific typography, except values deliberately documented under `"profile_overrides": {}`. Do not mutate existing published outputs.
+**Approved for new charts on 30 October 2026.** New project configs must specify `"render_profile": "social_square"`. This is the **normal** Coffeetableviz layout for publication and phone use, not a second rendering workflow. Both statistical and specialist chart geometry call the shared style and render through GitHub.
 
-Trial fonts: 26 pt title, 16 pt subtitle, 12 pt axis/tick, at least 11.5 pt callouts, 10.5 pt footer. Standard is unchanged. Keep square 8×8, 200 DPI, background #F3F4F6, focus #1F8FA8, red accent #C44E52. The left social footer uses `Adam Green | coffeetableviz`; right-hand source credit remains mandatory.
+- Square 8 × 8 inches, 200 DPI, light-grey canvas and plot `#F3F4F6`.
+- Title 26 pt, subtitle 16 pt, axes/ticks 12 pt, key annotations at least 11.5 pt, footer 10.5 pt.
+- Title/subtitle and footer share consistent ~9% inset alignment. Minimum clear border 7% all edges; target ~8.5% safe frame.
+- Use a consistent `Adam Green | coffeetableviz` left footer and source/caveat on the right, with sensible space between captions and credits.
+- Review actual 390px and 320px rendered PNGs. Fail a chart for clipped labels, overlapping subtitle/explainer, white axes patches or unequal padding.
+- Source-defined or historical colours retain meaningful semantics. Palette consistency does not erase historical encodings.
+- `profile_overrides` may be used only when justified and reviewed. Do not silently shrink key text.
 
-Validate the **actual PNG pixels** at 1600/1920, 390px and 320px. A resize/metadata check is not proof of legibility. Shorten captions, remove non-essential labels or revise geometry before shrinking text. Respect semantic palette exceptions for historical subjects. All production charts, including bespoke geometry, must have CHART_CONFIG, deterministic rendering and reproducible GitHub data/outputs. Review approach: `spec/social_rendering_vnext_review.md`.
+**Compatibility:** the `standard` profile is retained only for archived charts not yet migrated, to avoid unintentionally changing published image files. `social_*.py` files in October project folders are *test fixtures*, intentionally excluded from the normal publication loop. Production `config/*.py` charts with the approved profile are **not excluded** and use the regular GitHub renderer and publishing path.
 
+**Migration:** update archived project configurations/renderer types one chart at a time, show phone previews for approval, then publish the replacements through the normal GitHub PR flow. See `spec/house-vnext-migration.md`.
 
-### Draft vNext frame and background safeguards
-
-In the opt-in `social_square` profile the shared frame uses ~8.5% reference padding, with chart text anchored at 9% left/right and 9% top/bottom and plot content inset further for axes. GitHub QA enforces a minimum empty **7% outer band on all four edges** in the actual rendered PNG. Blank space beyond this is fine when the chart geometry demands it, but no content may bleed into that band. Social specialist renderers must explicitly set plot `facecolor="#F3F4F6"`; white patches are rejected. Social subtitle and explainer spacing must be measured and consistent, not guessed with per-project y-coordinates. Original locked `standard` rendering must remain compatible.
