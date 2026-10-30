@@ -89,3 +89,12 @@ Project-specific example: youngest season champions uses red for Formula 1, blue
 - Prefer less copy, fewer annotations and better layouts rather than smaller essential text.
 - Use shared canonical footer; do not allow individual projects to drift without documented approval.
 - No publish, replacing originals or merging profile changes before Adam explicitly signs off.
+
+
+### Four-edge padding and plot-background checks (mandatory for social-square)
+
+- Target a consistent ~8.5% reference safe frame on **top, left, right and bottom**; title and footer anchors should be visually aligned.
+- The automated render QA must fail when significant foreground pixels enter the outer 7% of **any** side; do not let charts bleed to edges.
+- Do not allow a separate white axes card: all plot and figure background pixels should use the matching light grey `#F3F4F6` unless an explicitly documented meaningful encoding requires otherwise.
+- Stack title, subheader and explainer using measured glyph boxes; no excessive vertical gaps and no overlap with data marks.
+- Reinspect the exported source PNG and phone previews after every typography, margin or plot-geometry change.
