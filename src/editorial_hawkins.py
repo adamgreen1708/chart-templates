@@ -106,10 +106,9 @@ def render_hawkins_stripes(repo_root, config, rows):
         if abs(x1-x2)>1e-12:
             raise ValueError(f"Stripe alignment failed in {year}")
 
-    fig.text(.09,.281,"Blue shading: published 95% uncertainty range.",fontsize=12.0,color=MUTED)
-    fig.text(.09,.242,"Shaded years: 1961–1990 anomaly reference period.",fontsize=12.0,color=MUTED)
-    fig.text(.09,.190,"1850–2025 complete years · 2026 excluded",fontsize=11.7,color=MUTED)
-    fig.text(.09,.152,"Reconstructed from HadCRUT5 · not Reading's original stripes.",fontsize=10.9,color=MUTED)
+    fig.text(.09,.281,"Blue band: 95% uncertainty · tan: 1961–1990 reference.",fontsize=12.4,color=MUTED)
+    fig.text(.09,.241,"HadCRUT5 reconstruction · completed years 1850–2025",fontsize=12.2,color=MUTED)
+    fig.text(.09,.199,"2026 excluded · not Reading's original stripes.",fontsize=12.1,color=MUTED)
 
     _add_footer(fig,"Adam Green | coffeetableviz",config["source_text"],config=config)
     return _save(fig,repo_root,config)
