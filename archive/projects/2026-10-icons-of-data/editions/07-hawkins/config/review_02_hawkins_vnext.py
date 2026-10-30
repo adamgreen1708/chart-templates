@@ -1,0 +1,21 @@
+"""Review-only chart 02; no original or site asset is changed."""
+CHART_CONFIG={
+    "data_file": "archive/projects/2026-10-icons-of-data/editions/07-hawkins/data/HadCRUT.5.2.0.0.analysis.summary_series.global.annual.snapshot_2026-10-19.csv",
+    "data_format": "wide",
+    "chart_type": "hawkins_stripes",
+    "x_col": "Time",
+    "y_col": "Anomaly (deg C)",
+    "series_col": None,
+    "value_col": None,
+    "filters": [],
+    "render_profile": "social_square",
+    "profile_overrides": {},
+    "title": "The years turn red.",
+    "subtitle": "One year equals one stripe · 1850–2025",
+    "source_text": "Source: HadCRUT5 v5.2 · 1961–1990",
+    "footer_left": "Adam Green | coffeetableviz",
+    "fig_width": 8.0,
+    "fig_height": 8.0,
+    "dpi": 200,
+    "output_file": "output/hawkins_vnext_preview.png",
+}

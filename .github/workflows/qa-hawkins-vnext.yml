@@ -1,0 +1,53 @@
+name: QA Hawkins house-vNext (review only)
+
+on:
+  pull_request:
+    paths:
+      - "src/editorial_hawkins.py"
+      - "src/editorial_schematics.py"
+      - "archive/projects/2026-10-icons-of-data/editions/07-hawkins/config/review_02_hawkins_vnext.py"
+      - "tests/test_hawkins_vnext.py"
+      - ".github/workflows/qa-hawkins-vnext.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  hawkins-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install renderer and QA tools
+        run: |
+          python -m pip install -r requirements-render.txt
+          python -m pip install pytest pillow
+      - name: Validate real HadCRUT5 data and house regression tests
+        run: python -m pytest tests/test_hawkins_vnext.py tests/test_social_profile.py -q
+      - name: Render vNext Hawkins from pinned GitHub data
+        run: |
+          cp archive/projects/2026-10-icons-of-data/editions/07-hawkins/config/review_02_hawkins_vnext.py src/chart_config.py
+          python src/render_538.py
+          git checkout -- src/chart_config.py
+      - name: Verify final pixels and export 390px / 320px
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          from scripts.qa_social_rendered import check_chart
+          path=Path("output/hawkins_vnext_preview.png")
+          check_chart(path)
+          im=Image.open(path).convert("RGB")
+          for w in (390,320):
+              out=path.with_name(f"hawkins_vnext_preview_{w}.png")
+              im.resize((w,w),Image.Resampling.LANCZOS).save(out)
+              print("Created phone preview:",out)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hawkins-vnext-phone-review
+          path: output/hawkins_vnext_preview*.png
+          if-no-files-found: error

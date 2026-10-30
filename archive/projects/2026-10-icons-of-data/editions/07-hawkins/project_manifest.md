@@ -47,3 +47,12 @@ Authoritative Hawkins first-person 2024 source confirms the **2023** baseline ch
 - Stage: `site/_posts/2026-10-20-how-the-world-changed-colour.md`, `site/resources/icons-of-data/index.html` and 3 immutable image assets in `site/assets/icons-of-data/ed-hawkins/`.
 - Jekyll build, real Chrome screenshots and layout/link/image QA at 1365, 390, 320px passed: https://github.com/adamgreen1708/chart-templates/actions/runs/39508118680 . `qa/site/browser_qa.json` and screenshots stored in this edition archive.
 - **Final approval needed:** Review the page screenshots and linked draft PR #138, then obtain a separate explicit author decision before merging to main and activating GitHub Pages. Original stays original; no fake historic frame.
+
+
+## Chart #02 vNext author approval and exact-image staging — 30 October 2026
+
+Adam approved the new `02_the_century_shifts_colour.png` in ChatGPT after seeing the full-size 1600×1600 rendering and 390px/320px phone previews. The replacement was copied from the already-reviewed [successful GitHub QA run 41139172256](https://github.com/adamgreen1708/chart-templates/actions/runs/41139172256), with **no regeneration during staging**.
+
+Approved file SHA-256: `d0e9e680f5e044caad61a96de248ea0d8891570db8ddc3cef718715fd5a8212d`, Git blob `4cf1544d1a65c345762b0fb886aaf3631e5515ff`. Previous site PNG preserved byte-identically at `legacy/02_the_century_shifts_colour_2026-10_original.png`, Git blob `f00cd1d21baae9cac16e1c8a83c9128d3ebdf0a4`.
+
+The original University of Reading artwork (#01), decoder chart (#03), pinned HadCRUT5 snapshot, original standalone renderer and website article remain unmodified. The new shared renderer `src/editorial_hawkins.py` validates 1850–2025 complete years, 176 stripe/line alignment, native 1961–1990 anomaly reference, 95% uncertainty bounds and source checksum. The temporary one-shot image-staging workflow was removed once it had staged the exact approved bytes. Publication is controlled through PR #165.
