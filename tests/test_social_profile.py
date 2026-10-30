@@ -6,6 +6,9 @@ def test_standard_retains_project_values():
     st=resolve_style({"title_fontsize":21,"subtitle_fontsize":11,"footer_fontsize":8})
     assert (st["title_fontsize"],st["subtitle_fontsize"],st["footer_fontsize"])==(21,11,8)
 
+def test_standard_missing_footer_preserves_previous_empty_value():
+    assert footer_left({}) == ""
+
 def test_social_overrides_legacy_sizes():
     cfg={"render_profile":"social_square","title_fontsize":19,"subtitle_fontsize":8}
     st=resolve_style(cfg)
