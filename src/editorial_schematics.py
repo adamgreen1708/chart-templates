@@ -167,6 +167,7 @@ def _panel_x(longitude, panel):
 
 def render_route_longitude(repo_root, config, rows):
     rows = sorted(rows, key=lambda r: int(r["stop_order"]))
+    social = config.get("render_profile", "standard") == "social_square"
     fig = plt.figure(figsize=(8, 8), facecolor=BG)
     _add_header(
         fig,
@@ -176,7 +177,8 @@ def render_route_longitude(repo_root, config, rows):
         config=config,
     )
 
-    ax = fig.add_axes([0.00, 0.10, 1.00, 0.68])
+    # Social version moves the dense route below the larger deck/explainer.
+    ax = fig.add_axes([0.00, 0.14, 1.00, 0.51] if social else [0.00, 0.10, 1.00, 0.68])
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.axis("off")
@@ -235,7 +237,8 @@ def render_route_longitude(repo_root, config, rows):
         for r, x, y in zip(values, xs, ys):
             point_xy[int(r["stop_order"])] = (x, y)
 
-        label_values = [r for r in values if r["place"] not in label_exclusions]
+        # Full map detail stays in the web version. Social summarises by country.
+        label_values = [] if social else [r for r in values if r["place"] not in label_exclusions]
         x0, x1 = panels[panel]
         if len(label_values) == 1:
             label_slots = [(x0 + x1) / 2]
@@ -291,12 +294,18 @@ def render_route_longitude(repo_root, config, rows):
             fontsize=13.5, fontweight="bold", color=WHITE, zorder=6,
         )
         country_label_y = marker_y + (0.067 if seq % 2 else 0.102)
+        if social and seq not in (1, 3, 5, 6, 7, 10):
+            continue
         ax.text(
             marker_x, country_label_y, _wrap(row["country"], 10, 2),
             ha="center", va="bottom",
-            fontsize=8.1, color=TEXT, linespacing=0.95,
+            fontsize=10 if social else 8.1, color=TEXT, linespacing=0.95,
             fontweight="bold" if seq in (1, 10) else "normal",
         )
+
+    if social:
+        fig.text(.10, .117, "Selected labels only · all ten countries and stops in the full story",
+                 color=SUBTEXT, fontsize=10, ha="left", va="center")
 
     _add_footer(
         fig,
