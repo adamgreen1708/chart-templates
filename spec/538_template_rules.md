@@ -262,3 +262,12 @@ When a story uses multiple chart panels, colours must carry a **defined editoria
 When labels sit away from the plotted marks, use restrained leader lines if that is necessary to remove ambiguity. Test leaders for crossings and collisions on the final PNG. Add concise contextual identifiers (such as a sport in brackets after an athlete's name) when readers may not recognise the names. Source, unit and provisional status must remain explicit.
 
 Final QA must inspect the exported image pixels at full size and mobile-readable size, including all labels, lines, legend, footers and safe margins. See `docs/chart_qa_checklist.md` for the full reusable checklist.
+
+
+## Draft social-square profile — vNext review (does NOT alter locked defaults)
+
+The production standard above remains locked. New social/phone PNGs may opt in with `"render_profile": "social_square"`. The central `src/chart_style.py` resolver wins over legacy project-specific typography, except values deliberately documented under `"profile_overrides": {}`. Do not mutate existing published outputs.
+
+Trial fonts: 26 pt title, 16 pt subtitle, 12 pt axis/tick, at least 11.5 pt callouts, 10.5 pt footer. Standard is unchanged. Keep square 8×8, 200 DPI, background #F3F4F6, focus #1F8FA8, red accent #C44E52. The left social footer uses `Adam Green | coffeetableviz`; right-hand source credit remains mandatory.
+
+Validate the **actual PNG pixels** at 1600/1920, 390px and 320px. A resize/metadata check is not proof of legibility. Shorten captions, remove non-essential labels or revise geometry before shrinking text. Respect semantic palette exceptions for historical subjects. All production charts, including bespoke geometry, must have CHART_CONFIG, deterministic rendering and reproducible GitHub data/outputs. Review approach: `spec/social_rendering_vnext_review.md`.
