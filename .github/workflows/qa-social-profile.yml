@@ -9,6 +9,7 @@ on:
       - "tests/test_social_profile.py"
       - "archive/projects/**/config/social_*.py"
       - ".github/workflows/qa-social-profile.yml"
+      - "scripts/qa_social_rendered.py"
   workflow_dispatch:
 
 permissions:
@@ -43,6 +44,8 @@ jobs:
             python src/render_538.py
           done
           git checkout -- src/chart_config.py
+      - name: Enforce consistent social safe margins and grey plot backgrounds
+        run: python scripts/qa_social_rendered.py
       - name: Export phone-size previews and verify dimensions
         run: |
           python - <<'PY'
