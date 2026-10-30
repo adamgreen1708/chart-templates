@@ -49,4 +49,4 @@ def label_fontsize(config,size):
     return size
 
 def footer_left(config):
-    return BRAND_FOOTER if config.get("render_profile","standard")=="social_square" else config.get("footer_left",BRAND_FOOTER)
+    return BRAND_FOOTER if config.get("render_profile","standard")=="social_square" else config.get("footer_left","")
