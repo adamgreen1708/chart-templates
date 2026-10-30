@@ -29,29 +29,57 @@ def _wrap(text, width, max_lines=2):
 
 
 def _add_header(fig, title, subtitle, explainer=None, config=None):
+    """Shared header for bespoke geometry; social text stacks by measured height.
+
+    Standard remains unchanged while social avoids fixed gaps and overlap.
+    """
     social = (config or {}).get("render_profile") == "social_square"
     st = resolve_style(config or {})
-    title_text = _wrap(title, 34 if social else 36, 2)
-    title_lines = title_text.count("\n") + 1
+    if social:
+        def text_bottom(t):
+            fig.canvas.draw()
+            box = t.get_window_extent(renderer=fig.canvas.get_renderer())
+            return fig.transFigure.inverted().transform((box.x0, box.y0))[1]
+
+        header = fig.text(
+            st["title_x"], st["title_y"], _wrap(title, 33, 2),
+            ha="left", va="top", fontsize=st["title_fontsize"],
+            fontweight="bold", color=TEXT, linespacing=1.05,
+        )
+        sub_y = text_bottom(header) - 0.025
+        deck = fig.text(
+            st["subtitle_x"], sub_y, _wrap(subtitle, 53, 2),
+            ha="left", va="top", fontsize=st["subtitle_fontsize"],
+            color=SUBTEXT, linespacing=1.16,
+        )
+        bottom = text_bottom(deck)
+        if explainer:
+            note = fig.text(
+                st["subtitle_x"], bottom - 0.023, _wrap(explainer, 58, 2),
+                ha="left", va="top", fontsize=13.5,
+                color=SUBTEXT, linespacing=1.14,
+            )
+            bottom = text_bottom(note)
+        return bottom - 0.026
+
+    title_text = _wrap(title, 36, 2)
+    title_lines = title_text.count("\\n") + 1
     fig.text(
-        st["title_x"] if social else 0.06, st["title_y"] if social else 0.95, title_text,
-        ha="left", va="top",
-        fontsize=st["title_fontsize"] if social else 25, fontweight="bold", color=TEXT, linespacing=1.02,
+        0.06, 0.95, title_text, ha="left", va="top",
+        fontsize=25, fontweight="bold", color=TEXT, linespacing=1.02,
     )
-    subtitle_y = (0.84 if title_lines == 1 else 0.76) if social else (0.865 if title_lines == 1 else 0.805)
+    subtitle_y = 0.865 if title_lines == 1 else 0.805
     fig.text(
-        st["subtitle_x"] if social else 0.06, subtitle_y, _wrap(subtitle, 52 if social else 72, 2),
-        ha="left", va="top",
-        fontsize=st["subtitle_fontsize"] if social else 14, color=SUBTEXT, linespacing=1.20,
+        0.06, subtitle_y, _wrap(subtitle, 72, 2),
+        ha="left", va="top", fontsize=14, color=SUBTEXT, linespacing=1.20,
     )
     if explainer:
         fig.text(
-            st["subtitle_x"] if social else 0.06, subtitle_y - (0.11 if social else 0.088), _wrap(explainer, 62 if social else 72, 2),
-            ha="left", va="top",
-            fontsize=13.5 if social else 12.5, color=SUBTEXT, linespacing=1.18,
+            0.06, subtitle_y - 0.088, _wrap(explainer, 72, 2),
+            ha="left", va="top", fontsize=12.5, color=SUBTEXT, linespacing=1.18,
         )
-        return subtitle_y - (0.20 if social else 0.16)
-    return subtitle_y - (0.13 if social else 0.10)
+        return subtitle_y - 0.16
+    return subtitle_y - 0.10
 
 
 def _add_footer(fig, left, right, config=None):
@@ -178,7 +206,7 @@ def render_route_longitude(repo_root, config, rows):
     )
 
     # Social version moves the dense route below the larger deck/explainer.
-    ax = fig.add_axes([0.00, 0.14, 1.00, 0.51] if social else [0.00, 0.10, 1.00, 0.68])
+    ax = fig.add_axes([0.085, 0.185, 0.83, 0.57] if social else [0.00, 0.10, 1.00, 0.68])
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.axis("off")
@@ -304,7 +332,7 @@ def render_route_longitude(repo_root, config, rows):
         )
 
     if social:
-        fig.text(.10, .117, "Selected labels only · all ten countries and stops in the full story",
+        fig.text(.09, .145, "Selected country labels · full route in the article",
                  color=SUBTEXT, fontsize=10, ha="left", va="center")
 
     _add_footer(
@@ -468,7 +496,7 @@ def render_position_shift(repo_root, config, rows):
     st=resolve_style(config)
     fig=plt.figure(figsize=(8,8),facecolor=BG)
     _add_header(fig,config["title"],config["subtitle"],config=config)
-    ax=fig.add_axes([.43,.22,.46,.48])
+    ax=fig.add_axes([.43,.235,.44,.455], facecolor=BG)  # match canvas, no white plot card
     ax.set_xlim(20.5,.5)
     ax.set_ylim(-.5,len(rows)-.5)
     ax.invert_yaxis()
@@ -503,9 +531,9 @@ def render_position_shift(repo_root, config, rows):
                     ha="center",va="bottom",fontsize=10.3 if social else 9.0,color=SUBTEXT)
         ax.annotate(f"P{finish}",(finish,i),xytext=(-2,-11),textcoords="offset points",
                     ha="right",va="top",fontsize=10.7 if social else 9.5,color=ACCENT if focus else PRIMARY)
-    fig.text(.10,.149,"Grey: starting grid   ·   Blue/red: classified finish",
+    fig.text(.09,.171,"Grey: starting grid   ·   Blue/red: classified finish",
              color=SUBTEXT,fontsize=11.4 if social else 10.5)
-    fig.text(.10,.113,"Net change is not overtakes. "+config.get("source_text",""),
+    fig.text(.09,.133,"Net change is not overtakes. "+config.get("source_text",""),
              color=SUBTEXT,fontsize=10.0)
     _add_footer(fig,config.get("footer_left","Adam Green | coffeetableviz"),
                 config.get("footer_right","SHORTS IN SPORTS"),config=config)
