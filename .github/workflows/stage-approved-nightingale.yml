@@ -40,8 +40,10 @@ jobs:
           assert src.exists() and original.exists()
           digest=hashlib.sha256(src.read_bytes()).hexdigest()
           assert digest==approval["approved_sha256"],(digest,approval["approved_sha256"])
-          from PIL import Image
-          assert Image.open(src).size==(1600,1600)
+          import struct
+          png=src.read_bytes()
+          assert png[:8] == b"\x89PNG\r\n\x1a\n", "Approved artifact is not a PNG"
+          assert struct.unpack(">II", png[16:24]) == (1600,1600), "Wrong approved dimensions"
           archive.parent.mkdir(parents=True,exist_ok=True)
           if archive.exists():
               assert archive.read_bytes()==original.read_bytes(), "Legacy copy differs: stop instead of overwriting"
