@@ -20,13 +20,18 @@ STANDARD={
  "footer_left_x":.10,"footer_right_x":.90,"footer_y":.08,
  "plot_top":.75,"plot_bottom":.14,"plot_left":.12,"plot_right":.90,
 }
+# Every social render shares this outer safe frame. The plot sits farther
+# inside it to leave room for tick labels and y-axis units.
+SOCIAL_SAFE_MARGIN = 0.085
 SOCIAL_SQUARE={**STANDARD,
  "title_fontsize":26,"subtitle_fontsize":16,
  "tick_label_fontsize":12,"axis_label_fontsize":12,
  "footer_fontsize":10.5,"annotation_fontsize":11.5,
- "title_wrap_width":34,"subtitle_wrap_width":56,
- "title_y":.93,"subtitle_y":.85,
- "footer_y":.065,"plot_top":.72,"plot_bottom":.15,
+ "title_wrap_width":32,"subtitle_wrap_width":54,
+ "title_x":.09,"title_y":.91,
+ "subtitle_x":.09,"subtitle_y":.84,
+ "footer_left_x":.09,"footer_right_x":.91,"footer_y":.09,
+ "plot_top":.72,"plot_bottom":.16,"plot_left":.17,"plot_right":.87,
 }
 PROFILES={"standard":STANDARD,"social_square":SOCIAL_SQUARE}
 
