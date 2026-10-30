@@ -94,10 +94,10 @@ def render_minard_campaign(repo_root, config, rows):
     legend_y=.748
     fig.add_artist(Line2D([.13,.174],[legend_y,legend_y],
                     transform=fig.transFigure,lw=7,color=OUTWARD,solid_capstyle="butt"))
-    fig.text(.19,legend_y,"Into Russia",fontsize=12.2,color=TEXT,va="center")
+    fig.text(.19,legend_y,"Into Russia",fontsize=13.0,color=TEXT,va="center")
     fig.add_artist(Line2D([.445,.485],[legend_y,legend_y],
                     transform=fig.transFigure,lw=5,color=RETURN,solid_capstyle="butt"))
-    fig.text(.505,legend_y,"Retreat",fontsize=12.2,color=TEXT,va="center")
+    fig.text(.505,legend_y,"Retreat",fontsize=13.0,color=TEXT,va="center")
 
     ax=fig.add_axes([.155,.444,.715,.268],facecolor=BG)
     ax.set_xlim(23.25,38.6)
@@ -120,14 +120,14 @@ def render_minard_campaign(repo_root, config, rows):
             raise ValueError(f"Missing historical city: {name}")
         ax.annotate("MOSCOW" if name=="Moscou" else name.upper(),
                     xy=(x,y),xytext=shift,textcoords="offset points",ha=side,va="center",
-                    fontsize=11.0,color=TEXT,fontweight="bold",
+                    fontsize=12.2,color=TEXT,fontweight="bold",
                     arrowprops={"arrowstyle":"-","color":MUTED,"lw":.7},zorder=8)
 
-    fig.text(.09,.401,"Western start: 340k + 60k + 22k = 422k across three plotted groups.",
-            fontsize=11.7,color=MUTED)
+    fig.text(.09,.410,"Western start: 422k across three plotted groups.",
+            fontsize=12.3,color=MUTED)
 
-    fig.text(.09,.363,"THE RETREAT GETS COLDER",fontsize=12.0,fontweight="bold",color=TEXT)
-    fig.text(.91,.363,"Temperature (°Réaumur)",fontsize=11.1,ha="right",color=MUTED)
+    fig.text(.09,.377,"THE RETREAT GETS COLDER",fontsize=12.7,fontweight="bold",color=TEXT)
+    fig.text(.91,.377,"Temperature (°Réaumur)",fontsize=11.3,ha="right",color=MUTED)
     temperature=fig.add_axes([.155,.219,.715,.126],facecolor=BG)
     tx=np.array([float(r["long"]) for r in temps])
     ty=np.array([float(r["temp"]) for r in temps])
@@ -140,7 +140,7 @@ def render_minard_campaign(repo_root, config, rows):
     temperature.tick_params(length=0,pad=6,colors=MUTED)
     temperature.grid(axis="y",color=GRID,lw=.8)
     for sp in temperature.spines.values():sp.set_visible(False)
-    temperature.annotate("18 Oct · 0°Ré",(37.6,0),xytext=(-3,7),
+    temperature.annotate("18 Oct · 0°Ré",(37.6,0),xytext=(-3,3),
         textcoords="offset points",ha="right",fontsize=10.6,color=MUTED)
     temperature.annotate("6 Dec · −30°Ré",(26.7,-30),xytext=(6,-11),
         textcoords="offset points",ha="left",va="top",fontsize=10.6,
