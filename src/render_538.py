@@ -1143,7 +1143,9 @@ def main():
         left=style["plot_left"],
         right=style["plot_right"],
         top=style["plot_top"],
-        bottom=style["plot_bottom"],
+        # Legacy second-adjust default is 0.18; keep standard PNG geometry unchanged.
+        bottom=style["plot_bottom"] if CHART_CONFIG.get("render_profile","standard")=="social_square"
+        else CHART_CONFIG.get("plot_bottom", 0.18),
     )
 
     output_file = CHART_CONFIG.get("output_file", "output/chart.png")
