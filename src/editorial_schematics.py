@@ -4,7 +4,7 @@ import textwrap
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.patches import Circle, Ellipse, Polygon, Rectangle
-from src.chart_style import resolve_style, label_fontsize, footer_left as house_footer_left
+from chart_style import resolve_style, label_fontsize, footer_left as house_footer_left
 
 
 BG = "#F3F4F6"
