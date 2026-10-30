@@ -4,6 +4,7 @@ import textwrap
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.patches import Circle, Ellipse, Polygon, Rectangle
+from src.chart_style import resolve_style, label_fontsize, footer_left as house_footer_left
 
 
 BG = "#F3F4F6"
@@ -16,7 +17,7 @@ SUBTEXT = "#555555"
 WHITE = "#FFFFFF"
 
 
-EDITORIAL_TYPES = {"route_zigzag", "route_longitude", "mode_clusters"}
+EDITORIAL_TYPES = {"route_zigzag", "route_longitude", "mode_clusters", "position_shift"}
 
 
 def _wrap(text, width, max_lines=2):
@@ -27,33 +28,39 @@ def _wrap(text, width, max_lines=2):
     return "\n".join(lines)
 
 
-def _add_header(fig, title, subtitle, explainer=None):
-    title_text = _wrap(title, 36, 2)
+def _add_header(fig, title, subtitle, explainer=None, config=None):
+    social = (config or {}).get("render_profile") == "social_square"
+    st = resolve_style(config or {})
+    title_text = _wrap(title, 34 if social else 36, 2)
     title_lines = title_text.count("\n") + 1
     fig.text(
-        0.06, 0.95, title_text,
+        st["title_x"] if social else 0.06, st["title_y"] if social else 0.95, title_text,
         ha="left", va="top",
-        fontsize=25, fontweight="bold", color=TEXT, linespacing=1.02,
+        fontsize=st["title_fontsize"] if social else 25, fontweight="bold", color=TEXT, linespacing=1.02,
     )
-    subtitle_y = 0.865 if title_lines == 1 else 0.805
+    subtitle_y = (0.84 if title_lines == 1 else 0.76) if social else (0.865 if title_lines == 1 else 0.805)
     fig.text(
-        0.06, subtitle_y, _wrap(subtitle, 72, 2),
+        st["subtitle_x"] if social else 0.06, subtitle_y, _wrap(subtitle, 52 if social else 72, 2),
         ha="left", va="top",
-        fontsize=14, color=SUBTEXT, linespacing=1.20,
+        fontsize=st["subtitle_fontsize"] if social else 14, color=SUBTEXT, linespacing=1.20,
     )
     if explainer:
         fig.text(
-            0.06, subtitle_y - 0.088, _wrap(explainer, 72, 2),
+            st["subtitle_x"] if social else 0.06, subtitle_y - (0.11 if social else 0.088), _wrap(explainer, 62 if social else 72, 2),
             ha="left", va="top",
-            fontsize=12.5, color=SUBTEXT, linespacing=1.18,
+            fontsize=13.5 if social else 12.5, color=SUBTEXT, linespacing=1.18,
         )
-        return subtitle_y - 0.16
-    return subtitle_y - 0.10
+        return subtitle_y - (0.20 if social else 0.16)
+    return subtitle_y - (0.13 if social else 0.10)
 
 
-def _add_footer(fig, left, right):
-    fig.text(0.06, 0.045, left, ha="left", va="bottom", fontsize=9.5, color=SUBTEXT)
-    fig.text(0.94, 0.045, right, ha="right", va="bottom", fontsize=9.5, color=SUBTEXT)
+def _add_footer(fig, left, right, config=None):
+    social = (config or {}).get("render_profile") == "social_square"
+    st = resolve_style(config or {})
+    if social:
+        left = house_footer_left(config)
+    fig.text(st["footer_left_x"] if social else 0.06, st["footer_y"] if social else 0.045, left, ha="left", va="bottom", fontsize=st["footer_fontsize"] if social else 9.5, color=SUBTEXT)
+    fig.text(st["footer_right_x"] if social else 0.94, st["footer_y"] if social else 0.045, right, ha="right", va="bottom", fontsize=st["footer_fontsize"] if social else 9.5, color=SUBTEXT)
 
 
 def _save(fig, repo_root, config):
@@ -83,6 +90,7 @@ def render_route_zigzag(repo_root, config, rows):
         config["title"],
         config["subtitle"],
         config.get("explainer"),
+        config=config,
     )
 
     ax = fig.add_axes([0.04, 0.18, 0.92, max(0.46, plot_top - 0.18)])
@@ -139,6 +147,7 @@ def render_route_zigzag(repo_root, config, rows):
         fig,
         config.get("footer_left", "Adam Green | coffeetableviz"),
         config.get("source_text", "Schematic: stops evenly spaced"),
+        config=config,
     )
     return _save(fig, repo_root, config)
 
@@ -164,6 +173,7 @@ def render_route_longitude(repo_root, config, rows):
         config["title"],
         config["subtitle"],
         config.get("explainer"),
+        config=config,
     )
 
     ax = fig.add_axes([0.00, 0.10, 1.00, 0.68])
@@ -292,6 +302,7 @@ def render_route_longitude(repo_root, config, rows):
         fig,
         config.get("footer_left", "Adam Green | coffeetableviz"),
         config.get("source_text", "Positions approximate"),
+        config=config,
     )
     return _save(fig, repo_root, config)
 
@@ -376,7 +387,7 @@ def render_mode_clusters(repo_root, config, rows):
         raise ValueError("mode_clusters expects Ground=4, Air=2, Water=1, Animal=1.")
 
     fig = plt.figure(figsize=(8, 8), facecolor=BG)
-    plot_top = _add_header(fig, config["title"], config["subtitle"])
+    plot_top = _add_header(fig, config["title"], config["subtitle"], config=config)
 
     ax = fig.add_axes([0.03, 0.18, 0.94, max(0.46, plot_top - 0.16)])
     ax.set_xlim(0, 1)
@@ -422,9 +433,74 @@ def render_mode_clusters(repo_root, config, rows):
         fig,
         config.get("footer_left", "Adam Green | coffeetableviz"),
         config.get("source_text", "Source: Simon Reeve official site"),
+        config=config,
     )
     return _save(fig, repo_root, config)
 
+
+
+def render_position_shift(repo_root, config, rows):
+    """Shared CHART_CONFIG-backed start/finish comparison.
+
+    All values are from the supplied rows; no race data are hard-coded.
+    """
+    import matplotlib.pyplot as plt
+    from matplotlib.lines import Line2D
+
+    expected={"race","starting_grid","classified_finish","net_positions_gained"}
+    if not rows or not expected.issubset(rows[0]):
+        raise ValueError(f"position_shift requires: {sorted(expected)}")
+    for row in rows:
+        a,b,g=(int(row[k]) for k in ("starting_grid","classified_finish","net_positions_gained"))
+        if a-b!=g:
+            raise ValueError(f"Net gains mismatch for {row['race']}")
+    rows=sorted(rows,key=lambda r:-int(r["net_positions_gained"]))
+    social=config.get("render_profile")=="social_square"
+    st=resolve_style(config)
+    fig=plt.figure(figsize=(8,8),facecolor=BG)
+    _add_header(fig,config["title"],config["subtitle"],config=config)
+    ax=fig.add_axes([.43,.22,.46,.48])
+    ax.set_xlim(20.5,.5)
+    ax.set_ylim(-.5,len(rows)-.5)
+    ax.invert_yaxis()
+    for sp in ax.spines.values():sp.set_visible(False)
+    ax.set_yticks([])
+    ax.set_xticks([20,15,10,5,1])
+    ax.set_xticklabels(["P20","P15","P10","P5","P1"],fontsize=st["tick_label_fontsize"])
+    ax.tick_params(axis="x",length=0,pad=8,colors=SUBTEXT)
+    ax.grid(axis="x",color="#D9D9D9",linewidth=.8)
+    focus_name=config.get("focus_item","São Paulo · 2024")
+    for i,row in enumerate(rows):
+        start=int(row["starting_grid"]);finish=int(row["classified_finish"])
+        focus=(row["race"]==focus_name)
+        col=ACCENT if focus else PRIMARY
+        ax.plot([start,finish],[i,i],color=ACCENT if focus else "#B7C4CC",
+                lw=5.1 if focus else 3.7,solid_capstyle="round",zorder=2)
+        ax.scatter([start],[i],s=85,color="#A8B5BE",edgecolor=BG,linewidth=1,zorder=3)
+        ax.scatter([finish],[i],s=136 if focus else 95,color=col,edgecolor=BG,linewidth=1,zorder=4)
+    fig.canvas.draw()
+    for i,row in enumerate(rows):
+        focus=(row["race"]==focus_name)
+        start=int(row["starting_grid"]);finish=int(row["classified_finish"])
+        gain=int(row["net_positions_gained"])
+        y_fig=fig.transFigure.inverted().transform(ax.transData.transform((10,i)))[1]
+        fig.text(.328,y_fig,row["race"],ha="right",va="center",
+                 color=ACCENT if focus else TEXT,fontsize=12.6 if social else 11.5,
+                 fontweight="bold" if focus else "normal")
+        fig.text(.414,y_fig,f"+{gain}",ha="right",va="center",
+                 color=ACCENT if focus else TEXT,fontsize=13.3 if social else 12.0,
+                 fontweight="bold")
+        ax.annotate(f"P{start}",(start,i),xytext=(0,8),textcoords="offset points",
+                    ha="center",va="bottom",fontsize=10.3 if social else 9.0,color=SUBTEXT)
+        ax.annotate(f"P{finish}",(finish,i),xytext=(-2,-11),textcoords="offset points",
+                    ha="right",va="top",fontsize=10.7 if social else 9.5,color=ACCENT if focus else PRIMARY)
+    fig.text(.10,.149,"Grey: starting grid   ·   Blue/red: classified finish",
+             color=SUBTEXT,fontsize=11.4 if social else 10.5)
+    fig.text(.10,.113,"Net change is not overtakes. "+config.get("source_text",""),
+             color=SUBTEXT,fontsize=10.0)
+    _add_footer(fig,config.get("footer_left","Adam Green | coffeetableviz"),
+                config.get("footer_right","SHORTS IN SPORTS"),config=config)
+    return _save(fig,repo_root,config)
 
 def render_editorial_schematic(repo_root, config, rows, columns=None):
     chart_type = config.get("chart_type")
@@ -434,4 +510,6 @@ def render_editorial_schematic(repo_root, config, rows, columns=None):
         return render_route_longitude(repo_root, config, rows)
     if chart_type == "mode_clusters":
         return render_mode_clusters(repo_root, config, rows)
+    if chart_type == "position_shift":
+        return render_position_shift(repo_root, config, rows)
     raise ValueError(f"Unsupported editorial schematic chart_type: {chart_type}")
