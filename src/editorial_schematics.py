@@ -216,6 +216,9 @@ def render_route_longitude(repo_root, config, rows):
     y_base = 0.49
     y_scale = 0.0105 * exaggeration
 
+    bracket_y = 0.22 if social else 0.15
+    country_band_y = 0.12 if social else 0.055
+    tick_y = 0.18 if social else 0.105
     panels = {
         "Africa": (0.055, 0.395),
         "Australia": (0.445, 0.695),
@@ -227,17 +230,17 @@ def render_route_longitude(repo_root, config, rows):
             y_base, x0, x1,
             color="#999999", linewidth=1.2, linestyles=(0, (4, 4)), zorder=1,
         )
-        ax.hlines(0.15, x0, x1, color="#999999", linewidth=1.2)
-        ax.plot([x0, x0], [0.14, 0.16], color="#999999", linewidth=1.1)
-        ax.plot([x1, x1], [0.14, 0.16], color="#999999", linewidth=1.1)
+        ax.hlines(bracket_y, x0, x1, color="#999999", linewidth=1.2)
+        ax.plot([x0, x0], [bracket_y-0.01, bracket_y+0.01], color="#999999", linewidth=1.1)
+        ax.plot([x1, x1], [bracket_y-0.01, bracket_y+0.01], color="#999999", linewidth=1.1)
         ax.text(
-            (x0 + x1) / 2, 0.055, panel,
+            (x0 + x1) / 2, country_band_y, panel,
             ha="center", va="center",
             fontsize=13, color=SUBTEXT, fontweight="bold",
         )
 
-    ax.text(0.420, 0.15, "//", ha="center", va="center", fontsize=18, color="#9A9A9A")
-    ax.text(0.720, 0.15, "//", ha="center", va="center", fontsize=18, color="#9A9A9A")
+    ax.text(0.420, bracket_y, "//", ha="center", va="center", fontsize=18, color="#9A9A9A")
+    ax.text(0.720, bracket_y, "//", ha="center", va="center", fontsize=18, color="#9A9A9A")
 
     tick_defs = {
         "Africa": [(20, "20°E"), (40, "40°E")],
@@ -247,8 +250,8 @@ def render_route_longitude(repo_root, config, rows):
     for panel, ticks in tick_defs.items():
         for value, label in ticks:
             x = _panel_x(value, panel)
-            ax.plot([x, x], [0.15, 0.13], color="#999999", linewidth=1.0)
-            ax.text(x, 0.105, label, ha="center", va="top", fontsize=11, color=SUBTEXT)
+            ax.plot([x, x], [bracket_y, bracket_y-0.02], color="#999999", linewidth=1.0)
+            ax.text(x, tick_y, label, ha="center", va="top", fontsize=11, color=SUBTEXT)
 
     grouped = {"Africa": [], "Australia": [], "South America": []}
     for row in rows:
