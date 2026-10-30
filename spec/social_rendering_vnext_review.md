@@ -46,3 +46,7 @@ Manual checks before promotion:
 ## Later migration backlog
 
 Legacy scripts for Minard, Nightingale, Ed Hawkins and other editorial series need gradual, chart-by-chart migration. Do not rewrite them in bulk or weaken their distinctive encodings. Record remaining exceptions and the exact source PNG hash at migration time.
+
+## Trial finding from actual 390px/320px previews
+
+The first Simon Reeve social render visibly collided with the explainer and had unreadable dense stop/country labels. The review branch now moves the map below the larger heading and displays selected country names, preserving all ten numbered positions while directing readers to the full route. This is a social **editorial reduction**, not a replacement for the full website chart. Compare the updated pixels before approving. Verify the subtitle and country labels still clear the plot; automated tests alone cannot certify this.
