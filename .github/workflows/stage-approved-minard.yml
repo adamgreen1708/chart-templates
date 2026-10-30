@@ -1,0 +1,70 @@
+name: Stage exact author-approved Minard PNG
+
+on:
+  pull_request:
+    paths:
+      - "archive/projects/2026-10-icons-of-data/approval/minard_02_vnext_approved.json"
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  stage-approved-png:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - name: Download exact already-reviewed GitHub render
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/minard-approved
+          gh run download 41140184070 --repo "$GITHUB_REPOSITORY" \
+            --name minard-vnext-phone-review --dir /tmp/minard-approved
+      - name: Validate approved checksum and preserve previous site PNG
+        run: |
+          python - <<'PY'
+          import hashlib, json, shutil, struct
+          from pathlib import Path
+          approval = json.loads(Path("archive/projects/2026-10-icons-of-data/approval/minard_02_vnext_approved.json").read_text())
+          source = Path("/tmp/minard-approved/minard_vnext_preview.png")
+          target = Path("site/assets/icons-of-data/minard/02_shrinking_army.png")
+          archived = Path("archive/projects/2026-10-icons-of-data/legacy/02_shrinking_army_2026-10_original.png")
+          assert approval["review_run_id"] == 41140184070
+          assert source.is_file() and target.is_file()
+          original = target.read_bytes()
+          def git_blob_sha(contents):
+              return hashlib.sha1(f"blob {len(contents)}\\0".encode() + contents).hexdigest()
+          assert git_blob_sha(original) == "404cd6665f4fb1e558dd1280daf4c5ab9c63b12b", "Previous original site PNG changed"
+          reviewed = source.read_bytes()
+          sha256 = hashlib.sha256(reviewed).hexdigest()
+          assert sha256 == approval["approved_sha256"], (sha256, approval["approved_sha256"])
+          assert reviewed[:8] == bytes([137,80,78,71,13,10,26,10])
+          assert struct.unpack(">II", reviewed[16:24]) == (1600,1600)
+          archived.parent.mkdir(parents=True, exist_ok=True)
+          if archived.exists():
+              assert archived.read_bytes() == original, "Original archive is inconsistent"
+          else:
+              shutil.copyfile(target, archived)
+          shutil.copyfile(source, target)
+          assert hashlib.sha256(target.read_bytes()).hexdigest() == sha256
+          print("Staged approved 1600px Minard, preserved original. SHA-256:", sha256)
+          PY
+      - name: Commit approved Minard PNGs to PR branch only
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/assets/icons-of-data/minard/02_shrinking_army.png \
+            archive/projects/2026-10-icons-of-data/legacy/02_shrinking_army_2026-10_original.png
+          if git diff --cached --quiet; then
+            echo "Approved image already committed"
+            exit 0
+          fi
+          git commit -m "Stage exact approved Minard vNext PNG and archive original"
+          git push origin HEAD:"${{ github.event.pull_request.head.ref }}"
