@@ -1,0 +1,67 @@
+name: Stage approved Hawkins PNG (exact GitHub QA artifact)
+
+on:
+  pull_request:
+    paths:
+      - "archive/projects/2026-10-icons-of-data/editions/07-hawkins/approval/02_vnext_approved.json"
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  stage-approved-png:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - name: Fetch exact already-approved image from the successful QA run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/hawkins-approved
+          gh run download 41139172256 --repo "$GITHUB_REPOSITORY" \
+            --name hawkins-vnext-phone-review --dir /tmp/hawkins-approved
+      - name: Verify author-approved image and preserve the original PNG
+        run: |
+          python - <<'PY'
+          import hashlib, json, shutil, struct
+          from pathlib import Path
+          meta=Path("archive/projects/2026-10-icons-of-data/editions/07-hawkins/approval/02_vnext_approved.json")
+          approval=json.loads(meta.read_text())
+          source=Path("/tmp/hawkins-approved/hawkins_vnext_preview.png")
+          original=Path("site/assets/icons-of-data/ed-hawkins/02_the_century_shifts_colour.png")
+          archived=Path("archive/projects/2026-10-icons-of-data/editions/07-hawkins/legacy/02_the_century_shifts_colour_2026-10_original.png")
+          assert approval["review_run_id"]==41139172256
+          assert source.exists() and original.exists()
+          contents=source.read_bytes()
+          digest=hashlib.sha256(contents).hexdigest()
+          assert digest==approval["approved_sha256"],(digest,approval["approved_sha256"])
+          assert contents[:8]==bytes([137,80,78,71,13,10,26,10])
+          assert struct.unpack(">II",contents[16:24])==(1600,1600)
+          archived.parent.mkdir(parents=True,exist_ok=True)
+          if archived.exists():
+              assert archived.read_bytes()==original.read_bytes(),"Existing legacy copy differs"
+          else:
+              shutil.copyfile(original,archived)
+          shutil.copyfile(source,original)
+          assert hashlib.sha256(original.read_bytes()).hexdigest()==approval["approved_sha256"]
+          print("Verified, preserved old PNG, and staged exact approved Hawkins image:",digest)
+          PY
+      - name: Commit approved image into this PR branch only
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/assets/icons-of-data/ed-hawkins/02_the_century_shifts_colour.png \
+            archive/projects/2026-10-icons-of-data/editions/07-hawkins/legacy/02_the_century_shifts_colour_2026-10_original.png
+          if git diff --cached --quiet; then
+            echo "No binary change: approved image already staged"
+            exit 0
+          fi
+          git commit -m "Stage exact approved Hawkins vNext image and preserve original"
+          git push origin HEAD:"${{ github.event.pull_request.head.ref }}"
