@@ -271,3 +271,8 @@ The production standard above remains locked. New social/phone PNGs may opt in w
 Trial fonts: 26 pt title, 16 pt subtitle, 12 pt axis/tick, at least 11.5 pt callouts, 10.5 pt footer. Standard is unchanged. Keep square 8×8, 200 DPI, background #F3F4F6, focus #1F8FA8, red accent #C44E52. The left social footer uses `Adam Green | coffeetableviz`; right-hand source credit remains mandatory.
 
 Validate the **actual PNG pixels** at 1600/1920, 390px and 320px. A resize/metadata check is not proof of legibility. Shorten captions, remove non-essential labels or revise geometry before shrinking text. Respect semantic palette exceptions for historical subjects. All production charts, including bespoke geometry, must have CHART_CONFIG, deterministic rendering and reproducible GitHub data/outputs. Review approach: `spec/social_rendering_vnext_review.md`.
+
+
+### Draft vNext frame and background safeguards
+
+In the opt-in `social_square` profile the shared frame uses ~8.5% reference padding, with chart text anchored at 9% left/right and 9% top/bottom and plot content inset further for axes. GitHub QA enforces a minimum empty **7% outer band on all four edges** in the actual rendered PNG. Blank space beyond this is fine when the chart geometry demands it, but no content may bleed into that band. Social specialist renderers must explicitly set plot `facecolor="#F3F4F6"`; white patches are rejected. Social subtitle and explainer spacing must be measured and consistent, not guessed with per-project y-coordinates. Original locked `standard` rendering must remain compatible.
