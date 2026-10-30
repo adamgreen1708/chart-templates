@@ -1,0 +1,12 @@
+{
+  "status": "approved_for_exact_asset_replacement",
+  "approved_on": "2026-10-30",
+  "approved_by": "site author in ChatGPT conversation",
+  "review_pr": 164,
+  "review_run_id": 41137909829,
+  "source_artifact": "nightingale-vnext-phone-review/nightingale_vnext_preview.png",
+  "approved_sha256": "96af9804ce12887a59a21ac4c881c25ce78c28033a7117b554f95539b08a1f97",
+  "target": "site/assets/icons-of-data/nightingale/02_what_the_numbers_reveal.png",
+  "preserve_original": "archive/projects/2026-10-icons-of-data/editions/04-nightingale/legacy/02_what_the_numbers_reveal_2026-10_original.png",
+  "notes": "No re-render allowed during publication; copy verified PNG bytes from the approved GitHub Actions artifact."
+}

@@ -17,7 +17,7 @@ SUBTEXT = "#555555"
 WHITE = "#FFFFFF"
 
 
-EDITORIAL_TYPES = {"route_zigzag", "route_longitude", "mode_clusters", "position_shift"}
+EDITORIAL_TYPES = {"route_zigzag", "route_longitude", "mode_clusters", "position_shift", "nightingale_rates"}
 
 
 def _wrap(text, width, max_lines=2):
@@ -552,4 +552,7 @@ def render_editorial_schematic(repo_root, config, rows, columns=None):
         return render_mode_clusters(repo_root, config, rows)
     if chart_type == "position_shift":
         return render_position_shift(repo_root, config, rows)
+    if chart_type == "nightingale_rates":
+        from editorial_nightingale import render_nightingale_rates
+        return render_nightingale_rates(repo_root, config, rows)
     raise ValueError(f"Unsupported editorial schematic chart_type: {chart_type}")
