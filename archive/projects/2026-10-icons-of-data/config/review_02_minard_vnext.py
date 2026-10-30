@@ -1,0 +1,21 @@
+"""Review-only Minard campaign: no site PNG changes before visual approval."""
+CHART_CONFIG={
+    "data_file": "archive/projects/2026-10-icons-of-data/data/minard_troops.csv",
+    "data_format": "wide",
+    "chart_type": "minard_campaign",
+    "x_col": "long",
+    "y_col": "lat",
+    "series_col": None,
+    "value_col": None,
+    "filters": [],
+    "render_profile": "social_square",
+    "profile_overrides": {},
+    "title": "One journey. A shrinking army.",
+    "subtitle": "Line width represents Minard's estimated troop strength.",
+    "source_text": "Source: Minard / HistData",
+    "footer_left": "Adam Green | coffeetableviz",
+    "fig_width": 8.0,
+    "fig_height": 8.0,
+    "dpi": 200,
+    "output_file": "output/minard_vnext_preview.png",
+}
