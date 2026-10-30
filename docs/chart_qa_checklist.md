@@ -98,3 +98,5 @@ Project-specific example: youngest season champions uses red for Formula 1, blue
 - Do not allow a separate white axes card: all plot and figure background pixels should use the matching light grey `#F3F4F6` unless an explicitly documented meaningful encoding requires otherwise.
 - Stack title, subheader and explainer using measured glyph boxes; no excessive vertical gaps and no overlap with data marks.
 - Reinspect the exported source PNG and phone previews after every typography, margin or plot-geometry change.
+
+- Enforce a visible gap between x-axis title and footer credits in the shared renderer; outer margins passing does **not** prove interior elements are separated. Inspect this at 320px as well.
