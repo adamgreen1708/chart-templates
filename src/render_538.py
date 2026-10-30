@@ -1148,6 +1148,23 @@ def main():
         else CHART_CONFIG.get("plot_bottom", 0.18),
     )
 
+    # Social: ensure the x-axis caption does not collide with bottom credits.
+    if CHART_CONFIG.get("render_profile", "standard") == "social_square":
+        fig.canvas.draw()
+        canvas_renderer = fig.canvas.get_renderer()
+        if ax.xaxis.label.get_text():
+            axis_label = ax.xaxis.label.get_window_extent(canvas_renderer)
+            footer_boxes = [
+                item.get_window_extent(canvas_renderer) for item in fig.texts[-2:]
+            ]
+            footer_top = max(item.y1 for item in footer_boxes)
+            min_gap_px = fig.bbox.height * 0.025
+            if axis_label.y0 < footer_top + min_gap_px:
+                raise ValueError(
+                    "Social x-axis label is too close to the footer; "
+                    "raise plot_bottom or shorten axis text."
+                )
+
     output_file = CHART_CONFIG.get("output_file", "output/chart.png")
 
     if "/" not in output_file:
