@@ -58,7 +58,7 @@ jobs:
             printf '%s\n' "${{ inputs.project_dir }}" >> /tmp/project_dirs.txt
           else
             git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" \
-              | awk -F/ '$1=="archive" && $2=="projects" && ($4=="config" || $4=="data" || $4=="project_manifest.md") {print $1"/"$2"/"$3}' \
+              | awk -F/ '$1=="archive" && $2=="projects" && ($4=="config" || $4=="data" || $4=="project_manifest.md") {if ($4=="config" && $5 ~ /^social_/) next; print $1"/"$2"/"$3}' \
               | sort -u >> /tmp/project_dirs.txt
           fi
 
@@ -89,12 +89,19 @@ jobs:
             fi
 
             shopt -s nullglob
-            configs=("$project_dir"/config/*.py)
+            all_configs=("$project_dir"/config/*.py)
             shopt -u nullglob
+            configs=()
+            for candidate in "${all_configs[@]}"; do
+              case "$candidate" in
+                */social_*.py) continue ;; # review-only; never publish as a production output
+              esac
+              configs+=("$candidate")
+            done
 
             if (( ${#configs[@]} == 0 )); then
-              echo "No chart configs found in $project_dir/config"
-              exit 1
+              echo "No production configs found in $project_dir/config (social review files excluded)."
+              continue
             fi
 
             if [[ -f "$project_dir/scripts/build_chart_views.py" ]]; then
