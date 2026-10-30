@@ -420,3 +420,8 @@ CHART_CONFIG = {
     ...
 }
 ```
+
+
+## Opt-in mobile/social profile (draft, not production default)
+
+Keep `render_profile="standard"` unless the user requests a mobile/social trial. For new social output set `render_profile="social_square"` and a **separate** `output_file`. Use `profile_overrides` only after a recorded exception and mobile-sized pixel QA. Shared `src/chart_style.py` owns typography/brand rules: don't copy styles into standalone bespoke scripts. Specialist visual geometry must be incorporated into a CHART_CONFIG-backed GitHub renderer rather than a standalone output. Inspect the final 390px and 320px charts. Keep original quantitative and source semantics.

@@ -1,0 +1,71 @@
+name: QA social-square chart profile (draft)
+
+on:
+  pull_request:
+    paths:
+      - "src/chart_style.py"
+      - "src/render_538.py"
+      - "src/editorial_schematics.py"
+      - "tests/test_social_profile.py"
+      - "archive/projects/**/config/social_*.py"
+      - ".github/workflows/qa-social-profile.yml"
+      - "scripts/qa_social_rendered.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install renderer and QA dependencies
+        run: |
+          python -m pip install -r requirements-render.txt
+          python -m pip install pytest pillow
+      - name: Run existing and social profile tests
+        run: python -m pytest tests/test_538_rules.py tests/test_social_profile.py -q
+      - name: Render three social comparison charts using CHART_CONFIG
+        shell: bash
+        run: |
+          set -euo pipefail
+          configs=(
+            archive/projects/2026-10-uk-changing-population/config/social_01_age_profile.py
+            archive/projects/2026-10-simon-reeve-tropic-of-capricorn/config/social_02_route_longitude.py
+            archive/projects/2026-10-shorts-in-sports-verstappen/config/social_03_comebacks.py
+          )
+          for config in "${configs[@]}"; do
+            echo "Rendering social review: $config"
+            cp "$config" src/chart_config.py
+            python src/render_538.py
+          done
+          git checkout -- src/chart_config.py
+      - name: Enforce consistent social safe margins and grey plot backgrounds
+        run: python scripts/qa_social_rendered.py
+      - name: Export phone-size previews and verify dimensions
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          files=list(Path("archive/projects").glob("2026-10-*/output/social_review_*.png"))
+          assert len(files)==3, f"Expected three social charts, found {len(files)}"
+          out=Path("output/social_qa")
+          out.mkdir(parents=True,exist_ok=True)
+          for p in files:
+              im=Image.open(p).convert("RGB")
+              assert im.size==(1600,1600), (p,im.size)
+              for size in (390,320):
+                  im.resize((size,size),Image.Resampling.LANCZOS).save(out/f"{p.stem}_{size}.png")
+                  print(f"{p.name} phone {size} generated; manual legibility inspection still required")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: coffeetableviz-social-vnext-review
+          path: |
+            archive/projects/**/output/social_review_*.png
+            output/social_qa/*.png
+          if-no-files-found: error

@@ -23,6 +23,7 @@ if str(SRC_DIR) not in sys.path:
 
 from chart_config import CHART_CONFIG
 from editorial_schematics import EDITORIAL_TYPES, render_editorial_schematic
+from chart_style import resolve_style, label_fontsize, footer_left
 
 
 BG = "#F3F4F6"
@@ -734,7 +735,7 @@ def _plot_annotations(ax, rows=None):
             textcoords="offset points",
             ha=p.get("ha", "left"),
             va=p.get("va", "center"),
-            fontsize=p.get("fontsize", 9),
+            fontsize=label_fontsize(CHART_CONFIG, p.get("fontsize", 9)),
             color=p.get("color", p.get("colour", "#333333")),
             fontweight=p.get("fontweight", "normal"),
             bbox=p.get("bbox"),
@@ -764,7 +765,7 @@ def _plot_labels(ax, rows):
     x_col = CHART_CONFIG["x_col"]
     y_col = CHART_CONFIG["y_col"]
     label_format = label_style.get("label_format", "{}")
-    fontsize = label_style.get("fontsize", 8)
+    fontsize = label_fontsize(CHART_CONFIG, label_style.get("fontsize", 8))
     position = label_style.get("position", "right")
     strategy = CHART_CONFIG.get("label_strategy", "all")
     focus_series = CHART_CONFIG.get("focus_series")
@@ -1013,7 +1014,7 @@ def _plot_end_labels(ax):
             textcoords="offset points",
             ha="left",
             va="center",
-            fontsize=label.get("fontsize", 9),
+            fontsize=label_fontsize(CHART_CONFIG, label.get("fontsize", 9)),
             color=label.get("color", "#333333"),
             fontweight=label.get("fontweight", "normal"),
             clip_on=False,
@@ -1049,6 +1050,7 @@ def main():
     rows = _apply_sort(rows)
 
     chart_type = CHART_CONFIG.get("chart_type")
+    style = resolve_style(CHART_CONFIG)
 
     if chart_type in EDITORIAL_TYPES:
         if not rows:
@@ -1086,8 +1088,8 @@ def main():
     ax.set_xlabel(CHART_CONFIG.get("x_label", ""))
     ax.set_ylabel(CHART_CONFIG.get("y_label", ""))
 
-    ax.xaxis.label.set_size(CHART_CONFIG.get("axis_label_fontsize", 10))
-    ax.yaxis.label.set_size(CHART_CONFIG.get("axis_label_fontsize", 10))
+    ax.xaxis.label.set_size(style["axis_label_fontsize"])
+    ax.yaxis.label.set_size(style["axis_label_fontsize"])
 
     _apply_axis_config(ax)
 
@@ -1114,35 +1116,54 @@ def main():
         title=CHART_CONFIG.get("title", ""),
         subtitle=CHART_CONFIG.get("subtitle", ""),
         source_text=CHART_CONFIG.get("source_text", ""),
-        footer_left=CHART_CONFIG.get("footer_left", ""),
+        footer_left=footer_left(CHART_CONFIG),
         vertical_gridlines=CHART_CONFIG.get("vertical_gridlines", False),
-        title_fontsize=CHART_CONFIG.get("title_fontsize", 22),
-        subtitle_fontsize=CHART_CONFIG.get("subtitle_fontsize", 12),
-        tick_label_fontsize=CHART_CONFIG.get("tick_label_fontsize", 10),
-        footer_fontsize=CHART_CONFIG.get("footer_fontsize", 10),
-        title_wrap_width=CHART_CONFIG.get("title_wrap_width", 40),
-        subtitle_wrap_width=CHART_CONFIG.get("subtitle_wrap_width", 74),
-        title_max_lines=CHART_CONFIG.get("title_max_lines", 2),
-        subtitle_max_lines=CHART_CONFIG.get("subtitle_max_lines", 2),
-        title_x=CHART_CONFIG.get("title_x", 0.10),
-        title_y=CHART_CONFIG.get("title_y", 0.92),
-        subtitle_x=CHART_CONFIG.get("subtitle_x", 0.10),
-        subtitle_y=CHART_CONFIG.get("subtitle_y", 0.86),
-        footer_left_x=CHART_CONFIG.get("footer_left_x", 0.10),
-        footer_right_x=CHART_CONFIG.get("footer_right_x", 0.90),
-        footer_y=CHART_CONFIG.get("footer_y", 0.08),
-        plot_top=CHART_CONFIG.get("plot_top", 0.75),
-        plot_bottom=CHART_CONFIG.get("plot_bottom", 0.14),
-        plot_left=CHART_CONFIG.get("plot_left", 0.12),
-        plot_right=CHART_CONFIG.get("plot_right", 0.90),
+        title_fontsize=style["title_fontsize"],
+        subtitle_fontsize=style["subtitle_fontsize"],
+        tick_label_fontsize=style["tick_label_fontsize"],
+        footer_fontsize=style["footer_fontsize"],
+        title_wrap_width=style["title_wrap_width"],
+        subtitle_wrap_width=style["subtitle_wrap_width"],
+        title_max_lines=style["title_max_lines"],
+        subtitle_max_lines=style["subtitle_max_lines"],
+        title_x=style["title_x"],
+        title_y=style["title_y"],
+        subtitle_x=style["subtitle_x"],
+        subtitle_y=style["subtitle_y"],
+        footer_left_x=style["footer_left_x"],
+        footer_right_x=style["footer_right_x"],
+        footer_y=style["footer_y"],
+        plot_top=style["plot_top"],
+        plot_bottom=style["plot_bottom"],
+        plot_left=style["plot_left"],
+        plot_right=style["plot_right"],
     )
 
     plt.subplots_adjust(
-        left=CHART_CONFIG.get("plot_left", 0.12),
-        right=CHART_CONFIG.get("plot_right", 0.90),
-        top=CHART_CONFIG.get("plot_top", 0.75),
-        bottom=CHART_CONFIG.get("plot_bottom", 0.18),
+        left=style["plot_left"],
+        right=style["plot_right"],
+        top=style["plot_top"],
+        # Legacy second-adjust default is 0.18; keep standard PNG geometry unchanged.
+        bottom=style["plot_bottom"] if CHART_CONFIG.get("render_profile","standard")=="social_square"
+        else CHART_CONFIG.get("plot_bottom", 0.18),
     )
+
+    # Social: ensure the x-axis caption does not collide with bottom credits.
+    if CHART_CONFIG.get("render_profile", "standard") == "social_square":
+        fig.canvas.draw()
+        canvas_renderer = fig.canvas.get_renderer()
+        if ax.xaxis.label.get_text():
+            axis_label = ax.xaxis.label.get_window_extent(canvas_renderer)
+            footer_boxes = [
+                item.get_window_extent(canvas_renderer) for item in fig.texts[-2:]
+            ]
+            footer_top = max(item.y1 for item in footer_boxes)
+            min_gap_px = fig.bbox.height * 0.025
+            if axis_label.y0 < footer_top + min_gap_px:
+                raise ValueError(
+                    "Social x-axis label is too close to the footer; "
+                    "raise plot_bottom or shorten axis text."
+                )
 
     output_file = CHART_CONFIG.get("output_file", "output/chart.png")
 

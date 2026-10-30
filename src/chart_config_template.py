@@ -21,6 +21,8 @@ CHART_CONFIG = {
     "subtitle": "Your explanatory subtitle",
     "source_text": "Source: ...",
     "footer_left": "Adam Green | coffeetableviz",
+    "render_profile": "standard",  # standard | social_square; explicit opt-in
+    "profile_overrides": {},  # exceptional size/layout values need QA
 
     "story_angle": "ranked_comparison",
     "focus_series": None,
