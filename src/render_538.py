@@ -23,7 +23,7 @@ if str(SRC_DIR) not in sys.path:
 
 from chart_config import CHART_CONFIG
 from editorial_schematics import EDITORIAL_TYPES, render_editorial_schematic
-from src.chart_style import resolve_style, label_fontsize, footer_left
+from chart_style import resolve_style, label_fontsize, footer_left
 
 
 BG = "#F3F4F6"
