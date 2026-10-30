@@ -32,3 +32,12 @@
 **Distinguish image fidelity:** the two original user-approved review images had SHA-256 `46dd37c432fed14efb09b04f0f408af66de219e4fd0b20b21f73a309cddf03d3` (Chart 2) and `65c95c6eb2b3c899eebc383dba8ae8f9bba7047ea6ec2cb2fa53d3cc60184a1e` (Chart 3). GitHub's runner produced visibly equivalent but **pixel-different** image bytes: `4e5be0fb9c37895e74ce3a799582acee05887b5c48d908c94a8f56cab5162ade` and `e6d201aae4134239a5bae10d8e4b09a2e67cf183135c410fbc15ee36ffa63c86` respectively. **Do not claim byte identity; final visual approval is required.**
 
 Actual Jekyll/browser QA (GitHub Actions run [38072120585](https://github.com/adamgreen1708/chart-templates/actions/runs/38072120585)) passed at desktop 1365px, mobile 390px and narrow 320px, verifying three images, alt text, citations, Wellcome CC BY licensing, no page overflow and all four Resources entries. Saved branch screenshots under `qa/site/`. Temporary workflow and compressed transfer helper removed. No merge/Pages publication authorised.
+
+
+## Chart #02 vNext migration approval — 30 October 2026
+
+The site author approved the exact vNext replacement of `02_what_the_numbers_reveal.png` in the ChatGPT review conversation, after seeing full-size and 390px/320px previews. The image was originally generated in [GitHub QA run 41137909829](https://github.com/adamgreen1708/chart-templates/actions/runs/41137909829) and was **copied byte-for-byte from the approved workflow artifact** (not regenerated for publication). Verified SHA-256: `96af9804ce12887a59a21ac4c881c25ce78c28033a7117b554f95539b08a1f97`; Git blob `57eae36148052d6ea6d202c1eb7bd8d45e40af58`.
+
+The previous published chart #02 is preserved unchanged at `legacy/02_what_the_numbers_reveal_2026-10_original.png`, whose Git blob is `48f4199232faab2ccac58ddd705484439f03fcca`. The source 24-month HistData transcription, historical original #01, decoder #03, and original renderer script remain unmodified.
+
+The new chart uses `src/editorial_nightingale.py` registered via `src/editorial_schematics.py`; source QA covers annualised rates, exact period death totals, historical caveats and final-pixel checks. Publication via PR #164; no direct pushes to main.
