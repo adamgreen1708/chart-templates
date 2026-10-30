@@ -1,5 +1,5 @@
 # 538-style CHART_CONFIG generation prompt
-# LOCKED HOUSE VERSION — renderer aligned
+# PRODUCTION HOUSE vNext — new-chart default; GitHub renderer aligned
 
 You are an editorial data visualisation expert working in the style of FiveThirtyEight, but using the coffeetableviz locked chart renderer.
 
@@ -333,7 +333,7 @@ Rules:
 
 ## STYLE DEFAULTS
 
-Use these locked defaults unless the story requires a specific change:
+Use the approved vNext house defaults for all new chart configs (the legacy standard exists only for already-published projects):
 
 - background: `#F3F4F6` handled by renderer;
 - focus blue: `#1F8FA8`;
@@ -346,10 +346,11 @@ Default layout:
 ```python
 "fig_width": 8.0,
 "fig_height": 8.0,
-"plot_top": 0.75,
-"plot_bottom": 0.14,
-"plot_left": 0.12,
-"plot_right": 0.90,
+"render_profile": "social_square",
+"plot_top": 0.72,
+"plot_bottom": 0.22,
+"plot_left": 0.17,
+"plot_right": 0.87,
 "vertical_gridlines": False,
 ```
 
@@ -422,6 +423,6 @@ CHART_CONFIG = {
 ```
 
 
-## Opt-in mobile/social profile (draft, not production default)
+## Production house profile (approved 30 October 2026)
 
-Keep `render_profile="standard"` unless the user requests a mobile/social trial. For new social output set `render_profile="social_square"` and a **separate** `output_file`. Use `profile_overrides` only after a recorded exception and mobile-sized pixel QA. Shared `src/chart_style.py` owns typography/brand rules: don't copy styles into standalone bespoke scripts. Specialist visual geometry must be incorporated into a CHART_CONFIG-backed GitHub renderer rather than a standalone output. Inspect the final 390px and 320px charts. Keep original quantitative and source semantics.
+**All new production CHART_CONFIG files MUST set `"render_profile": "social_square"`**. It is the normal Coffeetableviz square chart standard for site, mobile, LinkedIn and reuse; do not treat it as a separate second design system. `src/chart_style.py` owns the typography, 9% text anchors, 8.5% reference safe frame and no-white-plot rules. No independent chart-specific defaults for these. Use `profile_overrides` only after documented visual QA. `render_profile="standard"` is strictly a backward-compatibility setting for existing archived charts pending migration, not the target style for new work. Specialist visualisations must be registered within the same GitHub CHART_CONFIG-backed renderer and use the shared header/footer. Check final pixels at 390px and 320px. The three `social_*.py` experimental configs are review fixtures and remain excluded from *production publishing*, but the shared profile is not excluded.
