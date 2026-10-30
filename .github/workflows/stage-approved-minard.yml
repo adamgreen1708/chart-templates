@@ -39,7 +39,7 @@ jobs:
           assert source.is_file() and target.is_file()
           original = target.read_bytes()
           def git_blob_sha(contents):
-              return hashlib.sha1(f"blob {len(contents)}\\0".encode() + contents).hexdigest()
+              return hashlib.sha1(f"blob {len(contents)}".encode() + bytes([0]) + contents).hexdigest()
           assert git_blob_sha(original) == "404cd6665f4fb1e558dd1280daf4c5ab9c63b12b", "Previous original site PNG changed"
           reviewed = source.read_bytes()
           sha256 = hashlib.sha256(reviewed).hexdigest()
