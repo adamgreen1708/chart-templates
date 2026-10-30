@@ -88,15 +88,15 @@ def render_nightingale_rates(repo_root, config, rows):
         ax.plot(x, vals, color=colour, lw=lw, zorder=3, solid_capstyle="round",
                 marker="o", markersize=3.5 if key=="Disease.rate" else 2.1)
     ax.scatter([9],[1022.8],color=PRIMARY,s=72,edgecolor=BG,linewidths=2.0,zorder=7)
-    ax.annotate("Jan 1855 peak\\n1,022.8",xy=(9,1022.8),xytext=(13.3,995),
+    ax.annotate("Jan 1855 peak" + chr(10) + "1,022.8",xy=(9,1022.8),xytext=(13.3,995),
         fontsize=11.7,color=TEXT,fontweight="bold",va="top",ha="left",zorder=8,
         arrowprops={"arrowstyle":"-","color":MUTED,"lw":.9})
     ax.set_xlim(-.5,23.45)
     ax.set_ylim(0,1140)
     ax.set_yticks([0,200,400,600,800,1000])
     ax.set_yticklabels(["0","200","400","600","800","1,000"])
-    ax.set_xticks([0,3,6,9,12,15,18,21,23])
-    ax.set_xticklabels(["Apr\\n1854","Jul","Oct","Jan\\n1855","Apr","Jul","Oct","Jan\\n1856","Mar"])
+    ax.set_xticks([0,6,12,18,23])
+    ax.set_xticklabels(["Apr 1854","Oct","Apr 1855","Oct","Mar 1856"])
     ax.tick_params(axis="both",which="both",length=0,colors=MUTED,labelsize=st["tick_label_fontsize"])
     ax.tick_params(axis="x",pad=8)
     ax.tick_params(axis="y",pad=6)
@@ -108,13 +108,13 @@ def render_nightingale_rates(repo_root, config, rows):
     fig.text(.555,.661,"APR 1855–MAR 1856",fontsize=11,color=MUTED,weight="bold")
 
     fig.text(.09,.271,"RATE = monthly deaths ÷ estimated army strength × 12,000",
-             fontsize=11.2,color=TEXT)
+             fontsize=12.6,color=TEXT)
     fig.text(.09,.236,"Annualised rates are not deaths in a single month.",
-             fontsize=11.5,color=MUTED)
+             fontsize=12.4,color=MUTED)
     fig.text(.09,.187,"The sharp decline is clear in these records.",
              fontsize=14.1,color=TEXT,weight="bold")
     fig.text(.09,.158,"The chart alone cannot tell us what caused it.",
-             fontsize=11.7,color=MUTED)
+             fontsize=12.3,color=MUTED)
 
     _add_footer(fig,"Adam Green | coffeetableviz",
                 config["source_text"],config=config)
