@@ -282,3 +282,14 @@ Final QA must inspect the exported image pixels at full size and mobile-readable
 
 **Migration:** update archived project configurations/renderer types one chart at a time, show phone previews for approval, then publish the replacements through the normal GitHub PR flow. See `spec/house-vnext-migration.md`.
 
+
+
+## Per-highlight colour overrides (review proposal, 31 October 2026)
+
+Bar and scatter highlights may supply `color` (or `colour`), alongside row-matching fields, to override the global highlight colour. Scatter highlights may also override `size` and `alpha`. The first matching highlight wins. Without per-highlight overrides, existing global styles and PNG behaviour remain unchanged. Example: `{"character_group": "Picard", "color": "#C44E52"}` and `{"character_group": "Xavier", "color": "#1F8FA8"}`. These styling keys are not dataset-matching columns. Keep a visible key and consistent category semantics across related charts.
+
+
+## Optional ranked table layout
+
+Horizontal bars may use `table_layout` to place data-driven columns beside bars, with explicit consecutive ranks, display titles, years and exact counts. Every row is read from the CSV; never hard-code measured values in drawing code. The layout validates ranks, descending values and text-column collisions. Bars share a zero-based linear scale; plot and canvas remain square and light grey. Columns specify `column`, `label`, figure-fraction `x`, optional `ha`, numeric `format`, and `semantic_color`. `rank_column`, `header_y`, `bar_header`, `legend_y`, `legend` and `notes` control layout. This extension is opt-in and leaves existing charts unchanged.
+

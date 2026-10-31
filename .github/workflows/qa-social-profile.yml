@@ -28,7 +28,7 @@ jobs:
           python -m pip install -r requirements-render.txt
           python -m pip install pytest pillow
       - name: Run existing and social profile tests
-        run: python -m pytest tests/test_538_rules.py tests/test_social_profile.py -q
+        run: python -m pytest tests/test_538_rules.py tests/test_social_profile.py tests/test_highlight_styles.py tests/test_ranked_table.py -q
       - name: Render three social comparison charts using CHART_CONFIG
         shell: bash
         run: |

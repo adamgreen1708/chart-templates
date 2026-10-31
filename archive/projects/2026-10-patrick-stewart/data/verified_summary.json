@@ -1,0 +1,43 @@
+{
+  "films": 70,
+  "rated": 68,
+  "total_votes": 8739244,
+  "top25_share": 0.9516101163899303,
+  "groups": {
+    "Xavier": {
+      "titles": 8,
+      "votes": 5338592,
+      "share": 0.6108757233463215
+    },
+    "Picard": {
+      "titles": 4,
+      "votes": 404702,
+      "share": 0.046308582298423065
+    },
+    "Other": {
+      "titles": 58,
+      "votes": 2995950,
+      "share": 0.34281569435525544
+    }
+  },
+  "highest_rated_other": [
+    {
+      "tconst": "tt0087544",
+      "primaryTitle": "Nausica\u00e4 of the Valley of the Wind",
+      "rating": "8.0",
+      "votes": "200096"
+    },
+    {
+      "tconst": "tt0393597",
+      "primaryTitle": "Earth",
+      "rating": "7.9",
+      "votes": "15006"
+    },
+    {
+      "tconst": "tt0084509",
+      "primaryTitle": "The Plague Dogs",
+      "rating": "7.7",
+      "votes": "10301"
+    }
+  ]
+}
