@@ -1,28 +1,63 @@
 {
-  "report_date": "2026-10-29",
-  "visits": 9,
-  "prior_7d_avg": "28.57",
-  "pct_vs_prior_7d": "-68.5",
+  "report_date": "2026-10-30",
+  "visits": 22,
+  "prior_7d_avg": "28.14",
+  "pct_vs_prior_7d": "-21.8",
   "top_page_path": "/resources/8x8-pixel-art-builder",
   "top_page_title": "8\u00d78 Pixel Art Builder \u00b7 coffeetableviz",
-  "top_page_visits": 5,
+  "top_page_visits": 4,
   "top_referrer": "www.linkedin.com",
-  "top_referrer_visits": 6,
-  "observation": "8\u00d78 Pixel Art Builder led the day, reaching 5 of 9 recorded visitors.",
-  "generated_at_utc": "2026-10-30T15:02:07+00:00",
+  "top_referrer_visits": 3,
+  "observation": "Traffic stayed fairly close to its recent rhythm.",
+  "generated_at_utc": "2026-10-31T14:32:02+00:00",
   "top_pages": [
     {
       "path_id": 114429315,
       "path": "/resources/8x8-pixel-art-builder",
       "title": "8\u00d78 Pixel Art Builder \u00b7 coffeetableviz",
       "display": "8\u00d78 Pixel Art Builder",
-      "count": 5
+      "count": 4
+    },
+    {
+      "path_id": 109451764,
+      "path": "/",
+      "title": "coffeetableviz",
+      "display": "Home",
+      "count": 2
+    },
+    {
+      "path_id": 115014807,
+      "path": "/stories/kimi-antonelli-on-the-brink-of-f1-history",
+      "title": "Kimi Antonelli stands on the brink of F1 history \u00b7 coffeetableviz",
+      "display": "Kimi Antonelli stands on the brink of F1 history",
+      "count": 1
     },
     {
       "path_id": 114436775,
       "path": "/stories/i-spent-hours-on-64-squares-ai-rebuilt-them-in-minutes",
       "title": "I spent hours building 64 squares. AI rebuilt them in minutes. \u00b7 coffeetableviz",
       "display": "I spent hours building 64 squares. AI rebuilt them in minutes.",
+      "count": 1
+    },
+    {
+      "path_id": 113344023,
+      "path": "/icons-of-data/ed-hawkins-warming-stripes",
+      "title": "How the world changed colour \u00b7 coffeetableviz",
+      "display": "How the world changed colour",
+      "count": 1
+    },
+    {
+      "path_id": 111967189,
+      "path": "/icons-of-data/braille",
+      "title": "Six dots. Rather a lot to say. \u00b7 coffeetableviz",
+      "display": "Six dots. Rather a lot to say.",
+      "count": 1
+    },
+    {
+      "path_id": 111967004,
+      "path": "/icons-of-data/john-snow-cholera-map",
+      "title": "The map that put a pump on trial \u00b7 coffeetableviz",
+      "display": "The map that put a pump on trial",
       "count": 1
     },
     {
@@ -33,6 +68,48 @@
       "count": 1
     },
     {
+      "path_id": 111792201,
+      "path": "/icons-of-data/dubois-spiral",
+      "title": "The spiral that tells a bigger story \u00b7 coffeetableviz",
+      "display": "The spiral that tells a bigger story",
+      "count": 1
+    },
+    {
+      "path_id": 110989424,
+      "path": "/icons-of-data/nightingale-mortality",
+      "title": "The chart that made disease impossible to ignore \u00b7 coffeetableviz",
+      "display": "The chart that made disease impossible to ignore",
+      "count": 1
+    },
+    {
+      "path_id": 110776881,
+      "path": "/icons-of-data/beck-tube-map",
+      "title": "The map that put connections first \u00b7 coffeetableviz",
+      "display": "The map that put connections first",
+      "count": 1
+    },
+    {
+      "path_id": 110548893,
+      "path": "/resources/icons-of-data",
+      "title": "Icons of Data \u00b7 coffeetableviz",
+      "display": "Icons of Data",
+      "count": 1
+    },
+    {
+      "path_id": 110546630,
+      "path": "/icons-of-data/minard",
+      "title": "A line that disappears \u00b7 coffeetableviz",
+      "display": "A line that disappears",
+      "count": 1
+    },
+    {
+      "path_id": 109455079,
+      "path": "/stories/one-invisible-line-23000-miles-of-detours",
+      "title": "One invisible line. 23,000 miles of detours. \u00b7 coffeetableviz",
+      "display": "One invisible line. 23,000 miles of detours.",
+      "count": 1
+    },
+    {
       "path_id": 109453481,
       "path": "/resources",
       "title": "Resources \u00b7 coffeetableviz",
@@ -40,10 +117,24 @@
       "count": 1
     },
     {
-      "path_id": 109451764,
-      "path": "/",
-      "title": "coffeetableviz",
-      "display": "Home",
+      "path_id": 109446444,
+      "path": "/data-lens",
+      "title": "Data Lens \u00b7 coffeetableviz",
+      "display": "Data Lens",
+      "count": 1
+    },
+    {
+      "path_id": 109446272,
+      "path": "/2026/09/27/can-one-bowie-song-tell-you-the-whole-album",
+      "title": "Can one Bowie song tell you the whole album? \u00b7 coffeetableviz",
+      "display": "Can one Bowie song tell you the whole album?",
+      "count": 1
+    },
+    {
+      "path_id": 109446267,
+      "path": "/archive",
+      "title": "Archive \u00b7 coffeetableviz",
+      "display": "Archive",
       "count": 1
     }
   ],
@@ -51,8 +142,14 @@
     {
       "id": "www.linkedin.com",
       "name": "www.linkedin.com",
-      "count": 6,
+      "count": 3,
       "ref_scheme": "h"
+    },
+    {
+      "id": null,
+      "name": "Direct / unknown",
+      "count": 1,
+      "ref_scheme": "o"
     }
   ]
 }
