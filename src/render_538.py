@@ -883,6 +883,29 @@ def _plot_dot(ax, rows):
         )
 
 
+def _row_highlight_style(row):
+    style = CHART_CONFIG.get("highlight_style", {}).copy()
+    for point in CHART_CONFIG.get("highlight_points", []):
+        if _point_matches_row(point, row):
+            for key in ("color", "size", "alpha"):
+                if key in point:
+                    style[key] = point[key]
+            if "colour" in point and "color" not in point:
+                style["color"] = point["colour"]
+            break
+    return style
+
+
+def _highlight_values(rows, key, default):
+    # Keep scalar Matplotlib inputs for legacy configs: array alpha can change
+    # edge antialiasing even when every array value equals the old scalar.
+    keys = ("color", "colour") if key == "color" else (key,)
+    if not any(any(k in point for k in keys)
+               for point in CHART_CONFIG.get("highlight_points", [])):
+        return default
+    return [_row_highlight_style(row).get(key, default) for row in rows]
+
+
 def _plot_bar(ax, rows):
     x_col = CHART_CONFIG["x_col"]
     y_col = CHART_CONFIG["y_col"]
@@ -896,7 +919,7 @@ def _plot_bar(ax, rows):
     )
 
     colors = [
-        highlight_style.get("color", "#C44E52") if _row_matches_any_highlight(r) else default_color
+        _row_highlight_style(r).get("color", "#C44E52") if _row_matches_any_highlight(r) else default_color
         for r in rows
     ]
 
@@ -942,9 +965,9 @@ def _plot_scatter(ax, rows):
         ax.scatter(
             [r[x_col] for r in highlight_rows],
             [r[y_col] for r in highlight_rows],
-            s=highlight_style.get("size", CHART_CONFIG.get("highlight_point_size", 90)),
-            color=highlight_style.get("color", CHART_CONFIG.get("highlight_colour", "#C44E52")),
-            alpha=highlight_style.get("alpha", 1.0),
+            s=_highlight_values(highlight_rows, "size", highlight_style.get("size", CHART_CONFIG.get("highlight_point_size", 90))),
+            color=_highlight_values(highlight_rows, "color", highlight_style.get("color", CHART_CONFIG.get("highlight_colour", "#C44E52"))),
+            alpha=_highlight_values(highlight_rows, "alpha", highlight_style.get("alpha", 1.0)),
             zorder=6,
         )
 
@@ -1148,6 +1171,10 @@ def main():
         else CHART_CONFIG.get("plot_bottom", 0.18),
     )
 
+    if CHART_CONFIG.get('table_layout'):
+        from ranked_table import apply_table_layout
+        apply_table_layout(fig, ax, rows, CHART_CONFIG, lambda row: _row_highlight_style(row) if _row_matches_any_highlight(row) else CHART_CONFIG.get("bar_style", {}))
+
     # Social: ensure the x-axis caption does not collide with bottom credits.
     if CHART_CONFIG.get("render_profile", "standard") == "social_square":
         fig.canvas.draw()
@@ -1184,3 +1211,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

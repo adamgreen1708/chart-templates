@@ -138,6 +138,7 @@ CHART_CONFIG = {
     # ---------------------------
     # ANNOTATIONS
     # ---------------------------
+    # Per-row colours: [{"group": "A", "color": "#C44E52"}, {"group": "B", "color": "#1F8FA8"}]
     "highlight_points": [],
     "annotate_points": [],
     "end_labels": [],
@@ -192,3 +193,8 @@ CHART_CONFIG = {
     "dpi": 200,
     "output_file": "output/chart.png"
 }
+
+# Optional table_layout on horizontal bars adds data-column text and explicit ranks.
+# See spec/538_template_rules.md for the reusable ranked-table contract.
+
+
