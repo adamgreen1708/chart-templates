@@ -33,7 +33,7 @@ That tells us about voting activity around these films. Picard’s television wo
 
 Stewart joined the [Royal Shakespeare Company](https://www.rsc.org.uk/news/in-tribute-to-rsc-honorary-associate-artist-sir-patrick-stewart) in **1966**, 21 years before Picard’s television debut.
 
-The tempting version of that story is a move from Shakespeare to Hollywood. The later dates make it rather more interesting.
+The tempting version of that story is a move from Shakespeare to Hollywood. But for Stewart his love and talents bridges both with equal mastery.
 
 In **2006**, he was both Prospero in The Tempest and Xavier in X-Men: The Last Stand. He played Claudius and the Ghost in Hamlet in 2008, then Shylock in The Merchant of Venice in 2011.
 
