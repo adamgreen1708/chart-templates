@@ -202,7 +202,7 @@ var imported=null,MAX_BYTES=2*1024*1024,githubLoadId=0,filterCategories=[],dataH
 var visual={layout:'grid',marks:'mixed',colour:'bands',colourField:-1,sort:'source',scale:'zero',preset:'patchwork'};
 var markNames={mixed:'mixed shapes',circle:'circles',square:'squares',triangle:'triangles',half:'semicircles',quarter:'quarter circles'};
 var layoutNames={grid:'grid',orbit:'orbit',ribbon:'ribbon'};
-var colourNames={bands:'four value bands',median:'above/below median',category:'category',decorative:'decorative sequence'};
+var colourNames={bands:'four equal-width value bands',median:'above/below median',category:'category',decorative:'decorative sequence (not data)'};
 function status(s){$('status').textContent=s;}
 function hash(x,y,s){var h=Math.imul(x+21,374761393)^Math.imul(y+47,668265263)^Math.imul(state.seed+s,2246822519);h=Math.imul(h^(h>>>13),1274126177);return(h^(h>>>16))>>>0;}
 function base(x,y){var n=state.n,c=(n-1)/2,dx=x-c,dy=y-c,t,r,k;if(state.mode==='free')return{t:-1,r:0,k:0};if(state.mode==='hidden')return{t:7,r:(x+y)%4,k:(x+y)%2};if(state.mode==='random')return{t:hash(x,y,7)%8,r:hash(x,y,19)%4,k:hash(x,y,22)%4};if(state.mode==='radial'){t=[0,5,3,1,6,2][Math.floor(Math.hypot(dx,dy))%6];r=(Math.round(Math.atan2(dy,dx)*2/Math.PI+4)+4)%4;k=Math.floor(Math.hypot(dx,dy))%4;}else{t=(x*3+y*5+Math.floor(x/2))%8;r=(x+y)%4;k=(x+2*y)%4;}if(hash(x,y,41)/4294967296<state.chaos/100){t=hash(x,y,52)%8;r=hash(x,y,60)%4;k=hash(x,y,69)%4;}return{t:t,r:r,k:k};}
@@ -233,7 +233,7 @@ function editorCopy(){
  return {
   headline:metric+' in '+n+' forms',
   deck:shown+' · '+shape+' · '+scale+' · colour: '+cols+(visual.marks==='mixed'&&visual.colourField>=0&&!state.isDemo?' · shapes use '+formatField(imported&&imported.headers[visual.colourField]||'category'):''),
-  credit:'Source: '+source+' · '+state.totalSelected+' matching rows'+(state.totalSelected>n?'; first '+n+' shown':'')+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]+' layout'
+  credit:'Source: '+source+' · '+state.totalSelected+' matching rows'+(state.totalSelected>n?'; first '+n+' shown':'')+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]+' layout'+(visual.sort==='source'?'':' · ordered '+(visual.sort==='desc'?'high–low':'low–high'))
  };
 }
 function syncEditor(){
@@ -385,7 +385,7 @@ function chooseFilter(){
  v.disabled=false;v.value='-1';$('filter-info').textContent=filterCategories.length+' categories available. Choose one before creating the artwork.';
 }
 function receiveCsv(source,name,prefs,origin){
- imported=parseCSV(source);imported.sourceLabel=origin;imported.name=name.replace(/^GitHub: /,'');
+ imported=parseCSV(source);imported.sourceLabel=origin;imported.name=name.replace(/^GitHub: /,'');editorOverrides={headline:null,deck:null,credit:null};
  fillSelectors(imported);
  if(prefs){['label','value'].forEach(function(k){var pos=imported.headers.indexOf(prefs[k]);if(pos>=0)$(k).value=String(pos);});}
  var filter=$('filter');filter.innerHTML='';makeOption(filter,-1,'No category filter');
@@ -484,7 +484,7 @@ $('data-presets').addEventListener('click',function(e){
 $('auto-text').addEventListener('click',function(){editorOverrides={headline:null,deck:null,credit:null};syncEditor();if(state.mode==='data')render();status('Headline, explanation and source regenerated from your current data.');});
 syncVisualControls();
 $('apply').addEventListener('click',applyImported);
-$('demo').addEventListener('click',function(){state.rows=demo.map(function(r,i){return{label:r.label,value:r.value,sourceIndex:i};});state.isDemo=true;visual.colourField=-1;syncVisualControls();state.metric='Miles (illustrative)';state.totalSelected=12;state.sourceLabel='ILLUSTRATIVE SAMPLE';state.sourceName='Illustrative example';state.filterName='';syncEditor();state.mode='data';refresh();status('Illustrative 12-month running example. Not actual running data.');});
+$('demo').addEventListener('click',function(){state.rows=demo.map(function(r,i){return{label:r.label,value:r.value,sourceIndex:i};});state.isDemo=true;editorOverrides={headline:null,deck:null,credit:null};visual.colourField=-1;syncVisualControls();state.metric='Miles (illustrative)';state.totalSelected=12;state.sourceLabel='ILLUSTRATIVE SAMPLE';state.sourceName='Illustrative example';state.filterName='';syncEditor();state.mode='data';refresh();status('Illustrative 12-month running example. Not actual running data.');});
 $('modes').addEventListener('click',function(e){var b=e.target.closest('[data-mode]');if(!b)return;state.mode=b.dataset.mode;state.edits={};state.history=[];if(state.mode==='hidden')state.pal=1;if(state.mode==='data')syncEditor();refresh();status(names[state.mode]+' selected.');});
 $('palettes').addEventListener('click',function(e){var b=e.target.closest('[data-pal]');if(!b)return;state.pal=+b.dataset.pal;refresh();status('Palette updated.');});
 $('brushes').addEventListener('click',function(e){var b=e.target.closest('[data-shape]');if(!b)return;state.brush=+b.dataset.shape;refresh();});
