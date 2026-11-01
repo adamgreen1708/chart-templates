@@ -186,7 +186,7 @@ permalink: /resources/bauhaus-art-studio/
 <p id="bh-status" class="status" role="status" aria-live="polite">Ready. Pick a shape or change the pattern.</p>
 <div id="bh-export" class="export" hidden><strong>Your square artwork is ready.</strong><p>On an iPhone, touch and hold the image to save it. On desktop, use the PNG link.</p><img id="bh-preview" alt="Your finished Bauhaus artwork as a PNG" width="960" height="960"><a href="#" id="bh-download" download="coffeetableviz-bauhaus.png">↓ Download PNG</a></div>
 </section></div>
-<section class="story"><strong>Form follows data.</strong> Pixel Art gives you squares to paint. Truchet gives you a rule to repeat. Bauhaus Art Studio adds circles, triangles, colour and — if you want — your own numbers. In Data Art mode, the circles are measured rather than arbitrary: area, not radius, tracks the numeric value. Load a local CSV or a public dataset from the Coffeetableviz GitHub repository on main. Larger CSVs can be explored with their first 64 rows; this limit is shown rather than hidden. Change the composition, shape family, colour rule and sorting, then make the headline, explanation and source line your own. The zero-based proportional area option preserves actual magnitude, while the optional contrast scale is explicitly labelled as min–max. The rest is an exercise in creative freedom. Inspired by <a href="{{ '/2024/12/31/running-in-shapes-a-bauhaus-inspired-journey-through-data/' | relative_url }}">Running in Shapes</a> and the original <a href="https://public.tableau.com/app/profile/adam.green4310/viz/HiddenMiles/Bauhausrunningtotal">Hidden Miles Tableau artwork</a>.</section>
+<section class="story"><strong>Form follows data.</strong> Pixel Art gives you squares to paint. Truchet gives you a rule to repeat. Bauhaus Art Studio adds circles, triangles, colour and — if you want — your own numbers. In Data Art mode, the solid shapes are measured rather than arbitrary: their filled areas represent the values when the zero-based proportional scale is selected. Load a local CSV or a public dataset from the Coffeetableviz GitHub repository on main. Larger CSVs can be explored with their first 64 rows; this limit is shown rather than hidden. Change the composition, shape family, colour rule and sorting, then make the headline, explanation and source line your own. The zero-based proportional area option preserves actual magnitude, while the optional contrast scale is explicitly labelled as min–max. The rest is an exercise in creative freedom. Inspired by <a href="{{ '/2024/12/31/running-in-shapes-a-bauhaus-inspired-journey-through-data/' | relative_url }}">Running in Shapes</a> and the original <a href="https://public.tableau.com/app/profile/adam.green4310/viz/HiddenMiles/Bauhausrunningtotal">Hidden Miles Tableau artwork</a>.</section>
 </div></article>
 <script>
 (function(){
@@ -220,7 +220,8 @@ case 7:ctx.beginPath();ctx.moveTo(-u,u);ctx.lineTo(-u,-u*.15);ctx.lineTo(u*.2,-u
 ctx.restore();}
 function text(t,x,y,font,colour,align){ctx.fillStyle=colour;ctx.font=font;ctx.textAlign=align||'left';ctx.fillText(t,x,y);}
 
-function formatField(raw){return String(raw||'Value').replace(/_/g,' ').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/\s+/g,' ').trim();}
+function formatField(raw){var txt=String(raw||'Value').replace(/_/g,' ').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/\s+/g,' ').trim();txt=txt.charAt(0).toUpperCase()+txt.slice(1);return txt.replace(/^(Uk|Us|Eu|Gdp|Kpi|Imdb|Nba)\b/,function(s){return s.toUpperCase();});}
+function hasShapeCategories(){return !state.isDemo&&visual.colourField>=0&&imported&&new Set(state.rows.map(function(r){var cells=imported.records[r.sourceIndex];return cells?cells[visual.colourField]:'';})).size>1;}
 function dataRows(){
  var rows=state.rows.slice();
  if(visual.sort!=='source')rows.sort(function(a,b){return visual.sort==='desc'?b.value-a.value:a.value-b.value;});
@@ -232,7 +233,7 @@ function editorCopy(){
  var source=state.isDemo?'Illustrative sample — not recorded running data':(state.sourceName||'CSV');
  return {
   headline:metric+' in '+n+' forms',
-  deck:shown+' · '+shape+' · '+scale+' · colour: '+cols+(visual.marks==='mixed'&&visual.colourField>=0&&!state.isDemo?' · shapes use '+formatField(imported&&imported.headers[visual.colourField]||'category'):''),
+  deck:shown+' · '+shape+' · '+scale+' · colour: '+cols+(visual.marks==='mixed'&&hasShapeCategories()?' · shapes use '+formatField(imported&&imported.headers[visual.colourField]||'category'):''),
   credit:'Source: '+source+' · '+state.totalSelected+' matching rows'+(state.totalSelected>n?'; first '+n+' shown':'')+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]+' layout'+(visual.sort==='source'?'':' · ordered '+(visual.sort==='desc'?'high–low':'low–high'))
  };
 }
@@ -321,9 +322,9 @@ function renderData(p,dark){
   var row=item.row,value=row.value,ratio=visual.scale==='contrast'?(max===min?.65:.10+.9*(value-min)/(max-min)):(max>0?value/max:0);
   var category=(!state.isDemo&&imported&&categoryField>=0&&imported.records[row.sourceIndex])?imported.records[row.sourceIndex][categoryField]:null;
   var ci=category===null?-1:categoryList.indexOf(category);
-  var cidx=visual.colour==='median'||(visual.colour==='category'&&ci<0)?(value>=median?0:2):visual.colour==='bands'?(max===min?1:Math.min(3,Math.floor(4*(value-min)/(max-min+Number.EPSILON)))):visual.colour==='category'?ci%4:i%4;
-  var kind=visual.marks==='mixed'?['circle','quarter','square','triangle','half'][(ci>=0?ci:i)%5]:visual.marks;
-  var angle=(kind==='circle'||kind==='square'?0:(i%4)*Math.PI/2);
+  var cidx=visual.colour==='median'||(visual.colour==='category'&&ci<0)?(value>=median?0:2):visual.colour==='bands'?(max===min?1:Math.min(3,Math.floor(4*(value-min)/(max-min+Number.EPSILON)))):visual.colour==='category'?ci%4:(i+state.seed)%4;
+  var kind=visual.marks==='mixed'?['circle','quarter','square','triangle','half'][((ci>=0&&categoryList.length>1?ci:i)+state.seed)%5]:visual.marks;
+  var angle=(kind==='circle'||kind==='square'?0:((i+state.seed)%4)*Math.PI/2);
   var area=.34*item.s*item.s*ratio;
   if(visual.layout==='grid'){
    ctx.strokeStyle=state.pal===3?'#585960':'#d9d3c6';ctx.lineWidth=.9;
@@ -351,7 +352,7 @@ function render(){
  }
  $('title').textContent=names[state.mode];
 }
-function refresh(){root.querySelectorAll('[data-mode]').forEach(function(b){var a=b.dataset.mode===state.mode;b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a));});root.querySelectorAll('[data-pal]').forEach(function(b){var a=+b.dataset.pal===state.pal;b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a));});root.querySelectorAll('[data-shape]').forEach(function(b){var a=+b.dataset.shape===state.brush;b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a));});$('scale').hidden=state.mode==='data';$('brushes-section').hidden=state.mode==='data';$('data').hidden=state.mode!=='data';$('reroll').disabled=state.mode==='data';$('undo').disabled=state.mode==='data';$('reset').disabled=state.mode==='data';$('share').disabled=state.mode==='data';$('size-out').textContent=state.n+' × '+state.n;$('chaos-out').textContent=state.chaos+'%';$('size').value=state.n;$('chaos').value=state.chaos;render();}
+function refresh(){root.querySelectorAll('[data-mode]').forEach(function(b){var a=b.dataset.mode===state.mode;b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a));});root.querySelectorAll('[data-pal]').forEach(function(b){var a=+b.dataset.pal===state.pal;b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a));});root.querySelectorAll('[data-shape]').forEach(function(b){var a=+b.dataset.shape===state.brush;b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a));});$('scale').hidden=state.mode==='data';$('brushes-section').hidden=state.mode==='data';$('data').hidden=state.mode!=='data';$('reroll').disabled=false;$('undo').disabled=state.mode==='data';$('reset').disabled=state.mode==='data';$('share').disabled=state.mode==='data';$('size-out').textContent=state.n+' × '+state.n;$('chaos-out').textContent=state.chaos+'%';$('size').value=state.n;$('chaos').value=state.chaos;render();}
 function parseCSV(source){var raw=source.replace(/^\uFEFF/,'').replace(/\r\n?/g,'\n');var delimiter=',',first=raw.split('\n')[0],counts=[',',';','\t'].map(function(d){var q=false,n=0;for(var i=0;i<first.length;i++){if(first[i]==='"'){if(q&&first[i+1]==='"')i++;else q=!q;}else if(!q&&first[i]===d)n++;}return n;});delimiter=[',',';','\t'][counts.indexOf(Math.max.apply(null,counts))];var rows=[],row=[],field='',quoted=false;for(var k=0;k<raw.length;k++){var ch=raw[k];if(ch==='"'){if(quoted&&raw[k+1]==='"'){field+='"';k++;}else if(field.trim()===''||quoted){quoted=!quoted;}else{throw Error('Unexpected quote on row '+(rows.length+1)+'.');}}else if(ch===delimiter&&!quoted){row.push(field.trim());field='';}else if(ch==='\n'&&!quoted){row.push(field.trim());if(row.some(function(v){return v!=='';}))rows.push(row);row=[];field='';}else field+=ch;}if(quoted)throw Error('CSV contains an unclosed quoted field.');row.push(field.trim());if(row.some(function(v){return v!=='';}))rows.push(row);
 if(rows.length<2)throw Error('CSV needs column headers and at least one data row.');if(rows.length>10001)throw Error('This edition supports up to 10,000 input rows.');var headers=rows[0];if(headers.length<2||headers.some(function(h){return!h;}))throw Error('CSV needs two or more named columns.');if(new Set(headers).size!==headers.length)throw Error('CSV header names must be unique.');if(rows.slice(1).some(function(r){return r.length!==headers.length;}))throw Error('Some CSV rows have a different number of columns.');return{headers:headers,records:rows.slice(1)};}
 function numeric(v){var s=String(v).trim().replace(/,/g,'');if(!s)return NaN;return Number(s);}
@@ -493,7 +494,7 @@ $('chaos').addEventListener('input',function(){state.chaos=+this.value;refresh()
 canvas.addEventListener('pointerdown',function(e){var b=canvas.getBoundingClientRect(),px=(e.clientX-b.left)/b.width*960,py=(e.clientY-b.top)/b.height*960;
 if(state.mode==='data'){var closest=null,dist=Infinity;dataHitRegions.forEach(function(h){var d=Math.hypot(px-h.x,py-h.y);if(d<h.s*.53&&d<dist){closest=h;dist=d;}});if(closest)status(closest.order+'. '+closest.row.label+': '+closest.row.value+(state.isDemo?' (illustrative)':''));return;}
 var ss=760/state.n,x=Math.floor((px-100)/ss),y=Math.floor((py-118)/ss);if(x<0||y<0||x>=state.n||y>=state.n)return;state.history.push(JSON.stringify(state.edits));if(state.history.length>40)state.history.shift();var i=y*state.n+x,old=cell(x,y);state.edits[i]={t:state.brush,r:old.t===state.brush?(old.r+1)%4:0,k:old.k};render();status('Tile '+(i+1)+' updated.');});
-$('reroll').addEventListener('click',function(){state.seed++;state.edits={};state.history=[];refresh();status('Fresh arrangement.');});
+$('reroll').addEventListener('click',function(){state.seed++;if(state.mode==='data'){render();status('Decorative shapes and rotations remixed. Data values and mappings unchanged.');}else{state.edits={};state.history=[];refresh();status('Fresh arrangement.');}});
 $('reset').addEventListener('click',function(){state.edits={};state.history=[];refresh();status('Manual edits reset.');});
 $('undo').addEventListener('click',function(){if(state.history.length){state.edits=JSON.parse(state.history.pop());render();status('Last tile edit undone.');}else status('Nothing to undo.');});
 $('save').addEventListener('click',function(){var url=canvas.toDataURL('image/png');$('preview').src=url;$('download').href=url;$('export').hidden=false;status('960 × 960 PNG ready. Save it using the link or the image preview below.');});
