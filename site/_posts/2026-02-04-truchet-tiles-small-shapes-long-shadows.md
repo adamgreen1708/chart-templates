@@ -18,6 +18,8 @@ Sometimes the simplest visual ingredients have the most enduring charm. Truchet 
 
 So I set about creating the first version of my [Truchet Tile generator in Tableau](https://public.tableau.com/views/Truchettiles/TRUCHET?) along with this accompanying post.
 
+If you'd rather play than just look, [Truchet Tile Studio]({{ '/resources/truchet-tile-studio/' | relative_url }}) lets you rotate tiles, explore symmetry and chaos, and save your own square designs — all in the browser.
+
 ## A short history (ish)
 
 In 1704, Sébastien Truchet published *Mémoire sur les combinaisons*, exploring how decorative patterns could be constructed from variations of a simple geometric tile.
