@@ -192,7 +192,7 @@ function receiveCsv(source,name,prefs,origin){
  filter.value=String(prefs&&imported.headers.indexOf(prefs.filter)>=0?imported.headers.indexOf(prefs.filter):-1);
  chooseFilter();
  if(prefs&&prefs.filterDefaultFirst&&filterCategories.length>0)$('filter-value').value='0';
- $('file-info').textContent=name+' · '+imported.records.length+' rows · '+imported.headers.length+' columns'+(imported.records.length>64?' · only first 64 rendered':'');
+ $('file-info').textContent=name+' · '+imported.records.length+' rows · '+imported.headers.length+' columns'+(imported.records.length>64?' · category filter available; 64 maximum per image':'');
  status('CSV ready. Choose your label and value columns, then create artwork.');
 }
 function repoCsvUrl(input){
