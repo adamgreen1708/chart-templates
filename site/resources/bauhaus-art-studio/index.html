@@ -47,6 +47,13 @@ permalink: /resources/bauhaus-art-studio/
 .bauhaus-page .section-caption{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#b4493a}
 .bauhaus-page .studio .field-help{font-size:11px;line-height:1.5;color:#636e74;margin-top:5px}
 .bauhaus-page .data-styling select{margin-bottom:5px}
+.bauhaus-page .label-tools{margin-top:18px;padding:14px;background:#f6f7f7;border:1px solid #d8dddf;border-radius:3px}
+.bauhaus-page .label-toggle{display:flex;align-items:center;gap:10px;min-height:35px;font-size:13px;font-weight:700;cursor:pointer}
+.bauhaus-page .label-toggle input{width:18px;height:18px;accent-color:#bd493d}
+.bauhaus-page .label-options[hidden]{display:none}
+.bauhaus-page .label-options{padding:6px 0 0}
+.bauhaus-page .label-options .label-toggle{margin-top:10px;font-weight:500}
+.bauhaus-page .label-options select{width:100%}
 .bauhaus-page .primarybutton{display:block;width:100%;background:#1d2225;color:white;margin-top:12px}
 .bauhaus-page .data-box[hidden],.bauhaus-page .creative-box[hidden],.bauhaus-page .export[hidden]{display:none!important}
 .bauhaus-page .view-head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;font-weight:700;margin-bottom:12px}
@@ -160,6 +167,21 @@ permalink: /resources/bauhaus-art-studio/
     <option value="contrast">Emphasise differences (min–max)</option>
   </select>
   <p class="field-help">The min–max option exaggerates small differences: the poster will label this clearly. Original values appear when you tap a mark.</p>
+  <div class="label-tools" aria-label="Optional shape labels">
+    <span class="section-caption">Labels / Optional</span>
+    <label class="label-toggle" for="bh-show-labels"><input id="bh-show-labels" type="checkbox"> Show labels on shapes</label>
+    <div class="label-options" id="bh-label-options" hidden>
+      <label class="field" for="bh-label-content">What should labels show?</label>
+      <select id="bh-label-content">
+        <option value="label">Label</option>
+        <option value="value">Value</option>
+        <option value="both">Label + value</option>
+        <option value="index">Index / displayed order</option>
+      </select>
+      <label class="label-toggle" for="bh-hide-small"><input id="bh-hide-small" type="checkbox" checked> Auto-hide when cramped</label>
+      <p id="bh-label-note" class="field-help">Long labels are shortened. Full labels and values remain available by tapping a mark.</p>
+    </div>
+  </div>
 </div>
 <div class="editor-fields" aria-label="Edit poster text">
   <span class="section-caption">06 / Tell the story</span>
@@ -186,7 +208,7 @@ permalink: /resources/bauhaus-art-studio/
 <p id="bh-status" class="status" role="status" aria-live="polite">Ready. Pick a shape or change the pattern.</p>
 <div id="bh-export" class="export" hidden><strong>Your square artwork is ready.</strong><p>On an iPhone, touch and hold the image to save it. On desktop, use the PNG link.</p><img id="bh-preview" alt="Your finished Bauhaus artwork as a PNG" width="960" height="960"><a href="#" id="bh-download" download="coffeetableviz-bauhaus.png">↓ Download PNG</a></div>
 </section></div>
-<section class="story"><strong>Form follows data.</strong> Pixel Art gives you squares to paint. Truchet gives you a rule to repeat. Bauhaus Art Studio adds circles, triangles, colour and — if you want — your own numbers. In Data Art mode, the solid shapes are measured rather than arbitrary: their filled areas represent the values when the zero-based proportional scale is selected. Load a local CSV or a public dataset from the Coffeetableviz GitHub repository on main. Larger CSVs can be explored with their first 64 rows; this limit is shown rather than hidden. Change the composition, shape family, colour rule and sorting, then make the headline, explanation and source line your own. The zero-based proportional area option preserves actual magnitude, while the optional contrast scale is explicitly labelled as min–max. The rest is an exercise in creative freedom. Inspired by <a href="{{ '/2024/12/31/running-in-shapes-a-bauhaus-inspired-journey-through-data/' | relative_url }}">Running in Shapes</a> and the original <a href="https://public.tableau.com/app/profile/adam.green4310/viz/HiddenMiles/Bauhausrunningtotal">Hidden Miles Tableau artwork</a>.</section>
+<section class="story"><strong>Form follows data.</strong> Pixel Art gives you squares to paint. Truchet gives you a rule to repeat. Bauhaus Art Studio adds circles, triangles, colour and — if you want — your own numbers. In Data Art mode, the solid shapes are measured rather than arbitrary: their filled areas represent the values when the zero-based proportional scale is selected. Load a local CSV or a public dataset from the Coffeetableviz GitHub repository on main. Larger CSVs can be explored with their first 64 rows; this limit is shown rather than hidden. Change the composition, shape family, colour rule and sorting, then make the headline, explanation and source line your own. The zero-based proportional area option preserves actual magnitude, while the optional contrast scale is explicitly labelled as min–max. Turn optional shape labels on to show the label, value, both, or displayed index; cramped labels are suppressed rather than colliding with their neighbours. The rest is an exercise in creative freedom. Inspired by <a href="{{ '/2024/12/31/running-in-shapes-a-bauhaus-inspired-journey-through-data/' | relative_url }}">Running in Shapes</a> and the original <a href="https://public.tableau.com/app/profile/adam.green4310/viz/HiddenMiles/Bauhausrunningtotal">Hidden Miles Tableau artwork</a>.</section>
 </div></article>
 <script>
 (function(){
@@ -199,7 +221,7 @@ var names={rhythm:'Geometric rhythm',radial:'Around the centre',hidden:'Hidden M
 var demo=[42,58,74,63,85,91,68,82,60,95,70,65].map(function(value,i){return{label:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][i],value:value};});
 var state={mode:'rhythm',n:8,chaos:12,pal:0,seed:15,brush:0,edits:{},history:[],rows:demo.slice(),isDemo:true,metric:'Miles (illustrative)',sourceLabel:'ILLUSTRATIVE SAMPLE',totalSelected:12};
 var imported=null,MAX_BYTES=2*1024*1024,githubLoadId=0,filterCategories=[],dataHitRegions=[],editorOverrides={headline:null,deck:null,credit:null};
-var visual={layout:'grid',marks:'mixed',colour:'bands',colourField:-1,sort:'source',scale:'zero',preset:'patchwork'};
+var visual={layout:'grid',marks:'mixed',colour:'bands',colourField:-1,sort:'source',scale:'zero',preset:'patchwork',showLabels:false,labelContent:'label',hideSmall:true};
 var markNames={mixed:'mixed shapes',circle:'circles',square:'squares',triangle:'triangles',half:'semicircles',quarter:'quarter circles'};
 var layoutNames={grid:'grid',orbit:'orbit',ribbon:'ribbon'};
 var colourNames={bands:'four equal-width value bands',median:'above/below median',category:'category',decorative:'decorative sequence (not data)'};
@@ -298,6 +320,72 @@ function layoutMarks(rows){
  });
  return items;
 }
+
+function labelLines(row,index){
+ var value=String(row.value);
+ if(visual.labelContent==='value')return[value];
+ if(visual.labelContent==='index')return[String(index+1)];
+ if(visual.labelContent==='both')return[String(row.label),value];
+ return[String(row.label)];
+}
+function labelTextFit(raw,available,font){
+ var label=String(raw);
+ ctx.font='bold '+font+'px Arial';
+ if(ctx.measureText(label).width<=available)return label;
+ var dots='…';
+ if(ctx.measureText(dots).width>available)return '';
+ var cut=label;
+ while(cut.length>0&&ctx.measureText(cut+dots).width>available)cut=cut.slice(0,-1);
+ return cut?cut+dots:'';
+}
+function overlapRect(a,b,margin){
+ return a.left<b.right+margin&&a.right>b.left-margin&&a.top<b.bottom+margin&&a.bottom>b.top-margin;
+}
+function drawShapeLabels(positions,ink){
+ if(!visual.showLabels)return{shown:0,hidden:0};
+ var taken=[],shown=0,hidden=0;
+ var marks=positions.map(function(p){return{left:p.cx-p.s*.33,right:p.cx+p.s*.33,top:p.cy-p.s*.41,bottom:p.cy+p.s*.36};});
+ // Keep labels away from the header / footer and inside the visible square artwork.
+ positions.forEach(function(pos,index){
+  var lines=labelLines(pos.row,index),isOrbit=visual.layout==='orbit',isBoth=visual.labelContent==='both';
+  var font=Math.min(13,Math.max(9,Math.floor(pos.s*.14)));
+  var minSize=isBoth?92:visual.labelContent==='index'?44:64;
+  if(isOrbit)minSize=isBoth?130:visual.labelContent==='index'?66:104;
+  if(visual.hideSmall&&pos.s<minSize){hidden++;return;}
+  if(!visual.hideSmall&&pos.s<minSize)font=Math.max(8,Math.floor(pos.s*.115));
+  var widthLimit=Math.min(isOrbit?Math.max(42,pos.s*1.1):Math.max(22,pos.s-8),isOrbit?145:160);
+  var ready=lines.map(function(line){return labelTextFit(line,widthLimit,font);});
+  if(ready.some(function(x){return !x})){hidden++;return;}
+  var lineHeight=font+3,totalH=ready.length*lineHeight;
+  var widest=0;ctx.font='bold '+font+'px Arial';
+  ready.forEach(function(line){widest=Math.max(widest,ctx.measureText(line).width);});
+  var gap=visual.layout==='orbit'?5:1;
+  var candidates=[];
+  if(isOrbit){
+   // Try beneath, above, to the left and to the right of a mark.
+   candidates.push({x:pos.cx,top:pos.cy+pos.s*.34+gap});
+   candidates.push({x:pos.cx,top:pos.cy-pos.s*.34-gap-totalH});
+   candidates.push({x:pos.cx-pos.s*.34-gap-widest/2,top:pos.cy-totalH/2});
+   candidates.push({x:pos.cx+pos.s*.34+gap+widest/2,top:pos.cy-totalH/2});
+  }else{
+   candidates.push({x:pos.cx,top:pos.cy+pos.s*.5-totalH-4});
+   if(!visual.hideSmall)candidates.push({x:pos.cx,top:pos.cy-pos.s*.5+3});
+  }
+  var placed=null;
+  for(var c=0;c<candidates.length;c++){
+   var at=candidates[c],rect={left:at.x-widest/2-2,right:at.x+widest/2+2,top:at.top-1,bottom:at.top+totalH+1};
+   if(rect.left<84||rect.right>876||rect.top<277||rect.bottom>835)continue;
+   if(taken.some(function(r){return overlapRect(rect,r,3)}))continue;
+   if(isOrbit&&marks.some(function(m,j){return j!==index&&overlapRect(rect,m,2)}))continue;
+   placed={at:at,rect:rect};break;
+  }
+  if(!placed){hidden++;return;}
+  taken.push(placed.rect);ctx.fillStyle=ink;ctx.textAlign='center';
+  ready.forEach(function(line,i){text(line,placed.at.x,placed.at.top+font+i*lineHeight,'bold '+font+'px Arial',ink,'center');});
+  shown++;
+ });
+ return{shown:shown,hidden:hidden};
+}
 function renderData(p,dark){
  var rows=dataRows(),n=rows.length,values=rows.map(function(r){return r.value;}),max=Math.max.apply(null,values),min=Math.min.apply(null,values),sorted=values.slice().sort(function(a,b){return a-b;}),median=n%2?sorted[(n-1)/2]:(sorted[n/2-1]+sorted[n/2])/2;
  var auto=editorCopy(),headline=editorOverrides.headline===null?auto.headline:editorOverrides.headline,deck=editorOverrides.deck===null?auto.deck:editorOverrides.deck,credit=editorOverrides.credit===null?auto.credit:editorOverrides.credit;
@@ -331,14 +419,13 @@ function renderData(p,dark){
    ctx.strokeRect(item.x+.5,item.y+.5,item.s-1,item.s-1);
   }
   shapeArea(item.cx,item.cy-(visual.layout==='grid'?item.s*.08:0),item.s,kind,area,p.c[Math.max(0,cidx)],angle);
-  if(visual.layout==='grid'&&item.s>49){
-   text(String(i+1),item.cx,item.y+item.s-7,'bold '+Math.min(13,item.s*.13)+'px Arial',dark,'center');
-  }
   dataHitRegions.push({x:item.cx,y:item.cy,s:item.s,row:row,order:i+1});
  });
+ var labelResult=drawShapeLabels(positions,dark);
  drawWrapped(credit,83,868,13,790,2,19,p.muted,false);
- $('meta').textContent=n+' rows · '+markNames[visual.marks]+' · '+layoutNames[visual.layout];
- $('hint').textContent='Tap a mark to inspect its actual label and value. '+(visual.scale==='contrast'?'Area uses min–max contrast with a 10% minimum. It is not zero-based.':'Shape area represents the value from zero.');
+ $('meta').textContent=n+' rows · '+markNames[visual.marks]+' · '+layoutNames[visual.layout]+(visual.showLabels?' · '+labelResult.shown+' labels shown':'');
+ $('label-note').textContent=visual.showLabels?labelResult.shown+' shown · '+labelResult.hidden+' omitted to protect legibility. Tap a mark to read its full label/value.':'Full labels and values remain available by tapping a mark.';
+ $('hint').textContent='Tap a mark to inspect its actual label and value. '+(visual.showLabels&&labelResult.hidden?'Some labels are hidden to avoid collisions. ':'')+(visual.scale==='contrast'?'Area uses min–max contrast with a 10% minimum. It is not zero-based.':'Shape area represents the value from zero.');
 }
 function render(){
  var p=palettes[state.pal],dark=state.pal===3?'#f6f0df':'#1c1c1c';ctx.fillStyle=p.bg;ctx.fillRect(0,0,960,960);
@@ -455,6 +542,9 @@ $('github-load').addEventListener('click',function(){
 });
 $('github-link').addEventListener('click',function(){loadGithub($('github-url').value,null);});
 $('filter').addEventListener('change',chooseFilter);
+$('show-labels').addEventListener('change',function(){visual.showLabels=this.checked;$('label-options').hidden=!this.checked;if(state.mode==='data')render();status(visual.showLabels?'Shape labels enabled; overcrowded labels may be omitted.':'Shape labels hidden; the data and marks are unchanged.');});
+$('label-content').addEventListener('change',function(){visual.labelContent=this.value;if(state.mode==='data')render();status('Label content changed; source data is unchanged.');});
+$('hide-small').addEventListener('change',function(){visual.hideSmall=this.checked;if(state.mode==='data')render();status(this.checked?'Automatic label spacing enabled.':'Trying more labels; collisions and unsafe margins are still prevented.');});
 ['layout','marks','colour-rule','colour-field','sort','value-scale'].forEach(function(id){
  $(id).addEventListener('change',function(){
   var key={'layout':'layout','marks':'marks','colour-rule':'colour','colour-field':'colourField','sort':'sort','value-scale':'scale'}[id];
