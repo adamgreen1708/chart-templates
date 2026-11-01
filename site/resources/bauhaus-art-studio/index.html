@@ -229,7 +229,7 @@ function dataRows(){
 }
 function editorCopy(){
  var n=state.rows.length,metric=formatField(state.metric),shown=n+' row'+(n===1?'':'s'),cols=visual.colour==='category'&&visual.colourField<0?'above/below median':colourNames[visual.colour],shape=visual.marks==='mixed'?'mixed Bauhaus shapes':markNames[visual.marks];
- var scale=visual.scale==='contrast'?'min–max area scale (not zero-based)':'area proportional to '+metric;
+ var scale=visual.scale==='contrast'?'min–max contrast (10% minimum area; not zero-based)':'area proportional to '+metric;
  var source=state.isDemo?'Illustrative sample — not recorded running data':(state.sourceName||'CSV');
  return {
   headline:metric+' in '+n+' forms',
@@ -338,7 +338,7 @@ function renderData(p,dark){
  });
  drawWrapped(credit,83,868,13,790,2,19,p.muted,false);
  $('meta').textContent=n+' rows · '+markNames[visual.marks]+' · '+layoutNames[visual.layout];
- $('hint').textContent='Tap a mark to inspect its actual label and value. '+(visual.scale==='contrast'?'Area uses a min–max contrast scale, not zero.':'Shape area represents the value from zero.');
+ $('hint').textContent='Tap a mark to inspect its actual label and value. '+(visual.scale==='contrast'?'Area uses min–max contrast with a 10% minimum. It is not zero-based.':'Shape area represents the value from zero.');
 }
 function render(){
  var p=palettes[state.pal],dark=state.pal===3?'#f6f0df':'#1c1c1c';ctx.fillStyle=p.bg;ctx.fillRect(0,0,960,960);
