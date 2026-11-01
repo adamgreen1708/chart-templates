@@ -35,6 +35,18 @@ permalink: /resources/bauhaus-art-studio/
 .bauhaus-page input[type=url]{width:100%;min-height:40px;border:1px solid #bdc5c9;border-radius:3px;padding:9px;font-size:12px;background:white}
 .bauhaus-page .github-import{background:#f6f7f8;border:1px solid #d9dddf;padding:13px;margin:15px 0}
 .bauhaus-page .github-import .primarybutton{margin-top:8px}
+.bauhaus-page .data-styling{border-top:2px solid #242526;margin:22px 0 0;padding-top:17px}
+.bauhaus-page .data-styling h2{font-size:21px}
+.bauhaus-page .data-styling .buttons{margin:9px 0 15px}
+.bauhaus-page .data-styling .field{margin-top:13px}
+.bauhaus-page .editor-fields{margin-top:20px;border-top:2px solid #242526;padding-top:16px}
+.bauhaus-page .editor-fields input[type=text]{display:block;width:100%;min-height:39px;border:1px solid #bdc5c9;background:white;border-radius:3px;padding:8px 9px;font-size:13px}
+.bauhaus-page .editor-fields textarea{min-height:74px;line-height:1.45}
+.bauhaus-page .editor-fields .muted{margin-top:8px}
+.bauhaus-page .editor-fields button{margin-top:12px}
+.bauhaus-page .section-caption{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#b4493a}
+.bauhaus-page .studio .field-help{font-size:11px;line-height:1.5;color:#636e74;margin-top:5px}
+.bauhaus-page .data-styling select{margin-bottom:5px}
 .bauhaus-page .primarybutton{display:block;width:100%;background:#1d2225;color:white;margin-top:12px}
 .bauhaus-page .data-box[hidden],.bauhaus-page .creative-box[hidden],.bauhaus-page .export[hidden]{display:none!important}
 .bauhaus-page .view-head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;font-weight:700;margin-bottom:12px}
@@ -101,6 +113,67 @@ permalink: /resources/bauhaus-art-studio/
 <label class="field" for="bh-filter-value">Select category</label><select id="bh-filter-value" disabled><option value="-1">All categories</option></select>
 <p id="bh-filter-info" class="muted">For larger datasets, select a category to keep the artwork meaningful.</p>
 <button type="button" id="bh-apply" class="primarybutton" disabled>Create artwork from selected data</button>
+<div class="data-styling" aria-label="Creative data artwork controls">
+  <span class="section-caption">05 / Compose the artwork</span>
+  <h2>Same numbers. Different story.</h2>
+  <p class="muted">Try a composition, then change the shapes, colours and ordering. Every solid mark keeps an area encoding you can explain.</p>
+  <div class="buttons" id="bh-data-presets" role="group" aria-label="Bauhaus composition presets">
+    <button type="button" data-preset="patchwork" class="active">◩ Patchwork</button>
+    <button type="button" data-preset="orbit">◎ Orbit</button>
+    <button type="button" data-preset="ribbon">▥ Rhythm ribbon</button>
+    <button type="button" data-preset="minimal">◼ Minimal blocks</button>
+  </div>
+  <label class="field" for="bh-layout">Composition</label>
+  <select id="bh-layout">
+    <option value="grid">Geometric grid</option>
+    <option value="orbit">Orbit / constellation</option>
+    <option value="ribbon">Rhythm ribbon</option>
+  </select>
+  <label class="field" for="bh-marks">Shape family</label>
+  <select id="bh-marks">
+    <option value="mixed">Mixed Bauhaus shapes</option>
+    <option value="circle">Circles</option>
+    <option value="square">Squares</option>
+    <option value="triangle">Triangles</option>
+    <option value="half">Semicircles</option>
+    <option value="quarter">Quarter circles</option>
+  </select>
+  <label class="field" for="bh-colour-rule">What controls the colours?</label>
+  <select id="bh-colour-rule">
+    <option value="bands">Four value bands</option>
+    <option value="median">Above / below median</option>
+    <option value="category">Category field</option>
+    <option value="decorative">Decorative sequence (not data)</option>
+  </select>
+  <label class="field" for="bh-colour-field">Category field (optional)</label>
+  <select id="bh-colour-field" disabled><option value="-1">No category selected</option></select>
+  <p class="field-help">Mixed shapes follow the category when selected, otherwise repeat decoratively. Four palette colours repeat when there are more than four categories.</p>
+  <label class="field" for="bh-sort">Arrangement order</label>
+  <select id="bh-sort">
+    <option value="source">Original row order</option>
+    <option value="desc">Largest first</option>
+    <option value="asc">Smallest first</option>
+  </select>
+  <label class="field" for="bh-value-scale">Area scale</label>
+  <select id="bh-value-scale">
+    <option value="zero">Proportional to value (starts at zero)</option>
+    <option value="contrast">Emphasise differences (min–max)</option>
+  </select>
+  <p class="field-help">The min–max option exaggerates small differences: the poster will label this clearly. Original values appear when you tap a mark.</p>
+</div>
+<div class="editor-fields" aria-label="Edit poster text">
+  <span class="section-caption">06 / Tell the story</span>
+  <h2>Your words. Or ours.</h2>
+  <p class="muted">A headline, explanation and source line are generated from the selected data and mappings. Edit anything, or restore automatic text.</p>
+  <label class="field" for="bh-headline">Headline</label>
+  <input id="bh-headline" type="text" maxlength="90" placeholder="Automatically generated headline">
+  <label class="field" for="bh-deck">Small explanatory line</label>
+  <textarea id="bh-deck" maxlength="220" rows="2" placeholder="Automatically generated explanation"></textarea>
+  <label class="field" for="bh-credit">Source / footer</label>
+  <textarea id="bh-credit" maxlength="220" rows="2" placeholder="Automatically generated source"></textarea>
+  <button class="primarybutton" type="button" id="bh-auto-text">↺ Restore automatic text</button>
+  <p id="bh-copy-status" class="field-help">Change the fields or composition to regenerate any text you haven't edited.</p>
+</div>
 <div class="measure" style="margin-top:20px"><span>Try an example</span><span>Illustrative only</span></div>
 <button type="button" class="primarybutton" id="bh-demo">Use 12 sample running months</button>
 <p class="muted">Circle area is proportional to value. Colour marks values at or above the median. The original row order is preserved.</p>
@@ -113,7 +186,7 @@ permalink: /resources/bauhaus-art-studio/
 <p id="bh-status" class="status" role="status" aria-live="polite">Ready. Pick a shape or change the pattern.</p>
 <div id="bh-export" class="export" hidden><strong>Your square artwork is ready.</strong><p>On an iPhone, touch and hold the image to save it. On desktop, use the PNG link.</p><img id="bh-preview" alt="Your finished Bauhaus artwork as a PNG" width="960" height="960"><a href="#" id="bh-download" download="coffeetableviz-bauhaus.png">↓ Download PNG</a></div>
 </section></div>
-<section class="story"><strong>Form follows data.</strong> Pixel Art gives you squares to paint. Truchet gives you a rule to repeat. Bauhaus Art Studio adds circles, triangles, colour and — if you want — your own numbers. In Data Art mode, the circles are measured rather than arbitrary: area, not radius, tracks the numeric value. Load a local CSV or a public dataset from the Coffeetableviz GitHub repository on main. Larger CSVs can be explored with their first 64 rows; this limit is shown rather than hidden. The rest is an exercise in creative freedom. Inspired by <a href="{{ '/2024/12/31/running-in-shapes-a-bauhaus-inspired-journey-through-data/' | relative_url }}">Running in Shapes</a> and the original <a href="https://public.tableau.com/app/profile/adam.green4310/viz/HiddenMiles/Bauhausrunningtotal">Hidden Miles Tableau artwork</a>.</section>
+<section class="story"><strong>Form follows data.</strong> Pixel Art gives you squares to paint. Truchet gives you a rule to repeat. Bauhaus Art Studio adds circles, triangles, colour and — if you want — your own numbers. In Data Art mode, the solid shapes are measured rather than arbitrary: their filled areas represent the values when the zero-based proportional scale is selected. Load a local CSV or a public dataset from the Coffeetableviz GitHub repository on main. Larger CSVs can be explored with their first 64 rows; this limit is shown rather than hidden. Change the composition, shape family, colour rule and sorting, then make the headline, explanation and source line your own. The zero-based proportional area option preserves actual magnitude, while the optional contrast scale is explicitly labelled as min–max. The rest is an exercise in creative freedom. Inspired by <a href="{{ '/2024/12/31/running-in-shapes-a-bauhaus-inspired-journey-through-data/' | relative_url }}">Running in Shapes</a> and the original <a href="https://public.tableau.com/app/profile/adam.green4310/viz/HiddenMiles/Bauhausrunningtotal">Hidden Miles Tableau artwork</a>.</section>
 </div></article>
 <script>
 (function(){
@@ -125,7 +198,11 @@ var palettes=[{bg:'#f7f0db',c:['#c7412e','#e9b725','#26599c','#191919'],muted:'#
 var names={rhythm:'Geometric rhythm',radial:'Around the centre',hidden:'Hidden Miles · homage',random:'Beautiful chaos',free:'Blank canvas',data:'Form follows data'};
 var demo=[42,58,74,63,85,91,68,82,60,95,70,65].map(function(value,i){return{label:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][i],value:value};});
 var state={mode:'rhythm',n:8,chaos:12,pal:0,seed:15,brush:0,edits:{},history:[],rows:demo.slice(),isDemo:true,metric:'Miles (illustrative)',sourceLabel:'ILLUSTRATIVE SAMPLE',totalSelected:12};
-var imported=null,MAX_BYTES=2*1024*1024,githubLoadId=0,filterCategories=[];
+var imported=null,MAX_BYTES=2*1024*1024,githubLoadId=0,filterCategories=[],dataHitRegions=[],editorOverrides={headline:null,deck:null,credit:null};
+var visual={layout:'grid',marks:'mixed',colour:'bands',colourField:-1,sort:'source',scale:'zero',preset:'patchwork'};
+var markNames={mixed:'mixed shapes',circle:'circles',square:'squares',triangle:'triangles',half:'semicircles',quarter:'quarter circles'};
+var layoutNames={grid:'grid',orbit:'orbit',ribbon:'ribbon'};
+var colourNames={bands:'four equal-width value bands',median:'above/below median',category:'category',decorative:'decorative sequence (not data)'};
 function status(s){$('status').textContent=s;}
 function hash(x,y,s){var h=Math.imul(x+21,374761393)^Math.imul(y+47,668265263)^Math.imul(state.seed+s,2246822519);h=Math.imul(h^(h>>>13),1274126177);return(h^(h>>>16))>>>0;}
 function base(x,y){var n=state.n,c=(n-1)/2,dx=x-c,dy=y-c,t,r,k;if(state.mode==='free')return{t:-1,r:0,k:0};if(state.mode==='hidden')return{t:7,r:(x+y)%4,k:(x+y)%2};if(state.mode==='random')return{t:hash(x,y,7)%8,r:hash(x,y,19)%4,k:hash(x,y,22)%4};if(state.mode==='radial'){t=[0,5,3,1,6,2][Math.floor(Math.hypot(dx,dy))%6];r=(Math.round(Math.atan2(dy,dx)*2/Math.PI+4)+4)%4;k=Math.floor(Math.hypot(dx,dy))%4;}else{t=(x*3+y*5+Math.floor(x/2))%8;r=(x+y)%4;k=(x+2*y)%4;}if(hash(x,y,41)/4294967296<state.chaos/100){t=hash(x,y,52)%8;r=hash(x,y,60)%4;k=hash(x,y,69)%4;}return{t:t,r:r,k:k};}
@@ -142,18 +219,140 @@ case 6:ctx.fillRect(-u*.87,-u*.87,s*.87,s*.87);ctx.fillStyle=p.c[(d.k+1)%4];ctx.
 case 7:ctx.beginPath();ctx.moveTo(-u,u);ctx.lineTo(-u,-u*.15);ctx.lineTo(u*.2,-u);ctx.lineTo(u,-u);ctx.lineTo(u,0);ctx.lineTo(0,u);ctx.closePath();ctx.fill();ctx.fillStyle=p.c[(d.k+1)%4];ctx.fillRect(0,-u,u,u);break;}
 ctx.restore();}
 function text(t,x,y,font,colour,align){ctx.fillStyle=colour;ctx.font=font;ctx.textAlign=align||'left';ctx.fillText(t,x,y);}
-function render(){var p=palettes[state.pal],dark=state.pal===3?'#f6f0df':'#1c1c1c';ctx.fillStyle=p.bg;ctx.fillRect(0,0,960,960);text('C O F F E E T A B L E V I Z   /   G E O M E T R I C   S T U D I E S',82,69,'bold 14px Arial',p.muted);ctx.fillStyle=dark;ctx.fillRect(82,89,796,3);
-if(state.mode==='data'){
-var rows=state.rows,n=rows.length,cols=Math.ceil(Math.sqrt(n*4/3)),rws=Math.ceil(n/cols),gap=n>32?5:11,areaW=770,areaH=600,s=Math.min((areaW-(cols-1)*gap)/cols,(areaH-(rws-1)*gap)/rws),totalW=cols*s+(cols-1)*gap,x0=(960-totalW)/2,y0=225,max=Math.max.apply(null,rows.map(function(r){return r.value;})),sorted=rows.map(function(r){return r.value;}).sort(function(a,b){return a-b;}),median=sorted.length%2?sorted[(n-1)/2]:(sorted[n/2-1]+sorted[n/2])/2;
-text('FORM FOLLOWS DATA',83,147,'bold 46px Arial',dark);text('ONE CIRCLE PER ROW   /   VALUE: '+state.metric.slice(0,45).toUpperCase(),84,176,'bold 13px Arial',p.muted);
-rows.forEach(function(row,i){var x=x0+(i%cols)*(s+gap),y=y0+Math.floor(i/cols)*(s+gap),radius=.43*s*Math.sqrt(row.value/max);ctx.strokeStyle=state.pal===3?'#55565d':'#d8d1c7';ctx.lineWidth=1;ctx.strokeRect(x,y,s,s);ctx.fillStyle=row.value>=median?p.c[0]:p.c[2];if(radius>0){ctx.beginPath();ctx.arc(x+s/2,y+s*.43,radius,0,2*Math.PI);ctx.fill();}if(s>=135){text(row.label.slice(0,23),x+8,y+s-28,'bold 13px Arial',dark);text(String(row.value),x+8,y+s-10,'bold 13px Arial',dark);}else{text(String(i+1),x+s/2,y+s-5,'bold 10px Arial',dark,'center');}});
-text('CIRCLE AREA IS PROPORTIONAL TO VALUE   /   FIRST COLOUR ≥ MEDIAN   /   THIRD COLOUR < MEDIAN',83,870,'bold 12px Arial',p.muted);
-text(state.isDemo?'ILLUSTRATIVE SAMPLE · NOT REAL RUNNING DATA':state.sourceLabel+' · '+rows.length+' OF '+state.totalSelected+' ROWS',83,900,'12px Arial',p.muted);
-$('meta').textContent=n+' rows · circle area = value';$('hint').textContent='Tap a shape to see its label and number. Circle area is proportional to value, not radius.';
-}else{var s=760/state.n;for(var y=0;y<state.n;y++)for(var x=0;x<state.n;x++)shape(100+x*s,118+y*s,s,cell(x,y),p);text('BAUHAUS / FORM STUDY  No. '+String(state.seed).padStart(3,'0'),100,920,'bold 13px Arial',p.muted);$('meta').textContent=state.n*state.n+' tiles · hand-editable';$('hint').textContent='Tap a tile to paint the selected shape. Tap it again to rotate.';}
-$('title').textContent=names[state.mode];
+
+function formatField(raw){var txt=String(raw||'Value').replace(/_/g,' ').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/\s+/g,' ').trim();txt=txt.charAt(0).toUpperCase()+txt.slice(1);return txt.replace(/^(Uk|Us|Eu|Gdp|Kpi|Imdb|Nba)\b/,function(s){return s.toUpperCase();});}
+function hasShapeCategories(){return !state.isDemo&&visual.colourField>=0&&imported&&new Set(state.rows.map(function(r){var cells=imported.records[r.sourceIndex];return cells?cells[visual.colourField]:'';})).size>1;}
+function dataRows(){
+ var rows=state.rows.slice();
+ if(visual.sort!=='source')rows.sort(function(a,b){return visual.sort==='desc'?b.value-a.value:a.value-b.value;});
+ return rows;
 }
-function refresh(){root.querySelectorAll('[data-mode]').forEach(function(b){var a=b.dataset.mode===state.mode;b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a));});root.querySelectorAll('[data-pal]').forEach(function(b){var a=+b.dataset.pal===state.pal;b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a));});root.querySelectorAll('[data-shape]').forEach(function(b){var a=+b.dataset.shape===state.brush;b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a));});$('scale').hidden=state.mode==='data';$('brushes-section').hidden=state.mode==='data';$('data').hidden=state.mode!=='data';$('reroll').disabled=state.mode==='data';$('undo').disabled=state.mode==='data';$('reset').disabled=state.mode==='data';$('share').disabled=state.mode==='data';$('size-out').textContent=state.n+' × '+state.n;$('chaos-out').textContent=state.chaos+'%';$('size').value=state.n;$('chaos').value=state.chaos;render();}
+function editorCopy(){
+ var n=state.rows.length,metric=formatField(state.metric),shown=n+' row'+(n===1?'':'s'),cols=visual.colour==='category'&&visual.colourField<0?'above/below median':colourNames[visual.colour],shape=visual.marks==='mixed'?'mixed Bauhaus shapes':markNames[visual.marks];
+ var scale=visual.scale==='contrast'?'min–max contrast (10% minimum area; not zero-based)':'area proportional to '+metric;
+ var source=state.isDemo?'Illustrative sample — not recorded running data':(state.sourceName||'CSV');
+ return {
+  headline:metric+' in '+n+' forms',
+  deck:shown+' · '+shape+' · '+scale+' · colour: '+cols+(visual.marks==='mixed'&&hasShapeCategories()?' · shapes use '+formatField(imported&&imported.headers[visual.colourField]||'category'):''),
+  credit:'Source: '+source+' · '+state.totalSelected+' matching rows'+(state.totalSelected>n?'; first '+n+' shown':'')+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]+' layout'+(visual.sort==='source'?'':' · ordered '+(visual.sort==='desc'?'high–low':'low–high'))
+ };
+}
+function syncEditor(){
+ var auto=editorCopy();
+ ['headline','deck','credit'].forEach(function(k){$(k).value=editorOverrides[k]===null?auto[k]:editorOverrides[k];});
+ $('copy-status').textContent=Object.keys(editorOverrides).some(function(k){return editorOverrides[k]!==null;})?'Custom text kept. Restore automatic text to regenerate all three lines.':'Automatic text reflects current data, layout and mappings.';
+}
+function metrics(str,size){if(ctx.measureText){ctx.font=size+'px Arial';return ctx.measureText(str).width;}return String(str).length*size*.56;}
+function wrapped(str,maxWidth,baseSize,maxLines){
+ var size=baseSize,words=String(str||'').trim().split(/\s+/).filter(Boolean),lines=[];
+ for(var tries=0;tries<3;tries++){
+  lines=[];var active='';
+  words.forEach(function(word){var candidate=active?active+' '+word:word;
+    if(metrics(candidate,size)<=maxWidth){active=candidate;}else{if(active)lines.push(active);active=word;}});
+  if(active)lines.push(active);
+  if(lines.length<=maxLines)break;
+  size=Math.max(baseSize*.77,size*.88);
+ }
+ if(lines.length>maxLines){lines=lines.slice(0,maxLines);
+  var tail=lines[maxLines-1];while(metrics(tail+'…',size)>maxWidth&&tail.length>1)tail=tail.slice(0,-1);
+  lines[maxLines-1]=tail+'…';
+ }
+ lines=lines.map(function(line){if(metrics(line,size)<=maxWidth)return line;var cut=line;while(metrics(cut+'…',size)>maxWidth&&cut.length>1)cut=cut.slice(0,-1);return cut+'…';});
+ return{lines:lines,size:size};
+}
+function drawWrapped(str,x,y,size,maxWidth,maxLines,lineHeight,fill,bold){
+ var info=wrapped(str,maxWidth,size,maxLines);
+ info.lines.forEach(function(line,i){text(line,x,y+i*lineHeight,(bold?'bold ':'')+info.size+'px Arial',fill);});
+ return info.lines.length;
+}
+function shapeArea(cx,cy,s,type,area,colour,rotation){
+ if(!(area>0))return;
+ var radius,side,high;
+ ctx.save();ctx.translate(cx,cy);ctx.rotate(rotation);ctx.fillStyle=colour;ctx.beginPath();
+ if(type==='circle'){radius=Math.sqrt(area/Math.PI);ctx.arc(0,0,radius,0,2*Math.PI);}
+ else if(type==='square'){side=Math.sqrt(area);ctx.rect(-side/2,-side/2,side,side);}
+ else if(type==='triangle'){side=Math.sqrt(4*area/Math.sqrt(3));high=side*Math.sqrt(3)/2;ctx.moveTo(0,-high*2/3);ctx.lineTo(side/2,high/3);ctx.lineTo(-side/2,high/3);ctx.closePath();}
+ else if(type==='half'){radius=Math.sqrt(2*area/Math.PI);ctx.arc(0,0,radius,Math.PI,2*Math.PI);ctx.closePath();}
+ else if(type==='quarter'){radius=Math.sqrt(4*area/Math.PI);ctx.moveTo(-radius/2,radius/2);ctx.arc(-radius/2,radius/2,radius,-Math.PI/2,0);ctx.closePath();}
+ ctx.fill();ctx.restore();
+}
+function layoutMarks(rows){
+ var n=rows.length,items=[],cols,rs,s,gap,x0,y0,areaW=768,areaH=533;
+ if(visual.layout==='orbit'){
+  s=Math.min(150,490/Math.sqrt(n*1.75));
+  rows.forEach(function(row,i){
+   var angle=i*2.399963229728653,rad=249*Math.sqrt((i+.45)/(n+.2));
+   items.push({row:row,cx:480+Math.cos(angle)*rad,cy:551+Math.sin(angle)*rad,s:s,index:i});
+  });
+  return items;
+ }
+ cols=visual.layout==='ribbon'?Math.ceil(Math.sqrt(n*1.65)):Math.ceil(Math.sqrt(n*1.24));
+ rs=Math.ceil(n/cols);gap=n>36?6:10;
+ s=Math.min((areaW-(cols-1)*gap)/cols,(areaH-(rs-1)*gap)/rs);
+ x0=(960-(cols*s+(cols-1)*gap))/2;y0=283+(areaH-(rs*s+(rs-1)*gap))/2;
+ rows.forEach(function(row,i){
+  var ry=Math.floor(i/cols),cx=i%cols;
+  if(visual.layout==='ribbon'&&ry%2===1)cx=cols-1-cx;
+  var x=x0+cx*(s+gap),y=y0+ry*(s+gap);
+  items.push({row:row,cx:x+s/2,cy:y+s/2,s:s,index:i,x:x,y:y});
+ });
+ return items;
+}
+function renderData(p,dark){
+ var rows=dataRows(),n=rows.length,values=rows.map(function(r){return r.value;}),max=Math.max.apply(null,values),min=Math.min.apply(null,values),sorted=values.slice().sort(function(a,b){return a-b;}),median=n%2?sorted[(n-1)/2]:(sorted[n/2-1]+sorted[n/2])/2;
+ var auto=editorCopy(),headline=editorOverrides.headline===null?auto.headline:editorOverrides.headline,deck=editorOverrides.deck===null?auto.deck:editorOverrides.deck,credit=editorOverrides.credit===null?auto.credit:editorOverrides.credit;
+ drawWrapped(headline,82,147,45,794,2,46,dark,true);
+ drawWrapped(deck,83,225,16,790,2,22,p.muted,false);
+ var positions=layoutMarks(rows);
+ if(visual.layout==='orbit'){
+  ctx.strokeStyle=state.pal===3?'#5b5c62':'#d8d3c9';ctx.lineWidth=1.4;
+  [110,205,286].forEach(function(r){ctx.beginPath();ctx.arc(480,551,r,0,Math.PI*2);ctx.stroke();});
+ }
+ if(visual.layout==='ribbon'){
+  var bands=[p.c[0],p.c[2],p.c[1],p.c[3]];
+  ctx.globalAlpha=.08;
+  var rowsInBand=new Map();positions.forEach(function(item){var key=Math.round(item.cy);if(!rowsInBand.has(key))rowsInBand.set(key,[]);rowsInBand.get(key).push(item);});
+  [...rowsInBand.values()].forEach(function(items,i){var y=items[0].cy-items[0].s*.57;ctx.fillStyle=bands[i%4];ctx.fillRect(78,y,804,items[0].s*1.14);});
+  ctx.globalAlpha=1;
+ }
+ var categoryField=visual.colourField,categoryList=[];
+ if(!state.isDemo&&imported&&categoryField>=0){rows.forEach(function(r){var v=imported.records[r.sourceIndex]&&imported.records[r.sourceIndex][categoryField];if(v!==undefined&&!categoryList.includes(v))categoryList.push(v);});}
+ dataHitRegions=[];
+ positions.forEach(function(item,i){
+  var row=item.row,value=row.value,ratio=visual.scale==='contrast'?(max===min?.65:.10+.9*(value-min)/(max-min)):(max>0?value/max:0);
+  var category=(!state.isDemo&&imported&&categoryField>=0&&imported.records[row.sourceIndex])?imported.records[row.sourceIndex][categoryField]:null;
+  var ci=category===null?-1:categoryList.indexOf(category);
+  var cidx=visual.colour==='median'||(visual.colour==='category'&&ci<0)?(value>=median?0:2):visual.colour==='bands'?(max===min?1:Math.min(3,Math.floor(4*(value-min)/(max-min+Number.EPSILON)))):visual.colour==='category'?ci%4:(i+state.seed)%4;
+  var kind=visual.marks==='mixed'?['circle','quarter','square','triangle','half'][((ci>=0&&categoryList.length>1?ci:i)+state.seed)%5]:visual.marks;
+  var angle=(kind==='circle'||kind==='square'?0:((i+state.seed)%4)*Math.PI/2);
+  var area=.34*item.s*item.s*ratio;
+  if(visual.layout==='grid'){
+   ctx.strokeStyle=state.pal===3?'#585960':'#d9d3c6';ctx.lineWidth=.9;
+   ctx.strokeRect(item.x+.5,item.y+.5,item.s-1,item.s-1);
+  }
+  shapeArea(item.cx,item.cy-(visual.layout==='grid'?item.s*.08:0),item.s,kind,area,p.c[Math.max(0,cidx)],angle);
+  if(visual.layout==='grid'&&item.s>49){
+   text(String(i+1),item.cx,item.y+item.s-7,'bold '+Math.min(13,item.s*.13)+'px Arial',dark,'center');
+  }
+  dataHitRegions.push({x:item.cx,y:item.cy,s:item.s,row:row,order:i+1});
+ });
+ drawWrapped(credit,83,868,13,790,2,19,p.muted,false);
+ $('meta').textContent=n+' rows · '+markNames[visual.marks]+' · '+layoutNames[visual.layout];
+ $('hint').textContent='Tap a mark to inspect its actual label and value. '+(visual.scale==='contrast'?'Area uses min–max contrast with a 10% minimum. It is not zero-based.':'Shape area represents the value from zero.');
+}
+function render(){
+ var p=palettes[state.pal],dark=state.pal===3?'#f6f0df':'#1c1c1c';ctx.fillStyle=p.bg;ctx.fillRect(0,0,960,960);
+ text('C O F F E E T A B L E V I Z   /   G E O M E T R I C   S T U D I E S',82,69,'bold 14px Arial',p.muted);ctx.fillStyle=dark;ctx.fillRect(82,89,796,3);
+ if(state.mode==='data'){renderData(p,dark);}
+ else{
+ dataHitRegions=[];
+ var z=760/state.n;for(var y=0;y<state.n;y++)for(var x=0;x<state.n;x++)shape(100+x*z,118+y*z,z,cell(x,y),p);
+ text('BAUHAUS / FORM STUDY  No. '+String(state.seed).padStart(3,'0'),100,920,'bold 13px Arial',p.muted);
+ $('meta').textContent=state.n*state.n+' tiles · hand-editable';$('hint').textContent='Tap a tile to paint the selected shape. Tap it again to rotate.';
+ }
+ $('title').textContent=names[state.mode];
+}
+function refresh(){root.querySelectorAll('[data-mode]').forEach(function(b){var a=b.dataset.mode===state.mode;b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a));});root.querySelectorAll('[data-pal]').forEach(function(b){var a=+b.dataset.pal===state.pal;b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a));});root.querySelectorAll('[data-shape]').forEach(function(b){var a=+b.dataset.shape===state.brush;b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a));});$('scale').hidden=state.mode==='data';$('brushes-section').hidden=state.mode==='data';$('data').hidden=state.mode!=='data';$('reroll').disabled=false;$('undo').disabled=state.mode==='data';$('reset').disabled=state.mode==='data';$('share').disabled=state.mode==='data';$('size-out').textContent=state.n+' × '+state.n;$('chaos-out').textContent=state.chaos+'%';$('size').value=state.n;$('chaos').value=state.chaos;render();}
 function parseCSV(source){var raw=source.replace(/^\uFEFF/,'').replace(/\r\n?/g,'\n');var delimiter=',',first=raw.split('\n')[0],counts=[',',';','\t'].map(function(d){var q=false,n=0;for(var i=0;i<first.length;i++){if(first[i]==='"'){if(q&&first[i+1]==='"')i++;else q=!q;}else if(!q&&first[i]===d)n++;}return n;});delimiter=[',',';','\t'][counts.indexOf(Math.max.apply(null,counts))];var rows=[],row=[],field='',quoted=false;for(var k=0;k<raw.length;k++){var ch=raw[k];if(ch==='"'){if(quoted&&raw[k+1]==='"'){field+='"';k++;}else if(field.trim()===''||quoted){quoted=!quoted;}else{throw Error('Unexpected quote on row '+(rows.length+1)+'.');}}else if(ch===delimiter&&!quoted){row.push(field.trim());field='';}else if(ch==='\n'&&!quoted){row.push(field.trim());if(row.some(function(v){return v!=='';}))rows.push(row);row=[];field='';}else field+=ch;}if(quoted)throw Error('CSV contains an unclosed quoted field.');row.push(field.trim());if(row.some(function(v){return v!=='';}))rows.push(row);
 if(rows.length<2)throw Error('CSV needs column headers and at least one data row.');if(rows.length>10001)throw Error('This edition supports up to 10,000 input rows.');var headers=rows[0];if(headers.length<2||headers.some(function(h){return!h;}))throw Error('CSV needs two or more named columns.');if(new Set(headers).size!==headers.length)throw Error('CSV header names must be unique.');if(rows.slice(1).some(function(r){return r.length!==headers.length;}))throw Error('Some CSV rows have a different number of columns.');return{headers:headers,records:rows.slice(1)};}
 function numeric(v){var s=String(v).trim().replace(/,/g,'');if(!s)return NaN;return Number(s);}
@@ -166,10 +365,13 @@ function applyImported(){
  var records=imported.records,filterField=Number($('filter').value),categoryIndex=Number($('filter-value').value);
  if(filterField>=0&&categoryIndex>=0&&categoryIndex<filterCategories.length)records=records.filter(function(r){return r[filterField]===filterCategories[categoryIndex];});
  if(!records.length){status('There are no rows in this category.');return;}
- var vals=records.slice(0,64).map(function(r,i){return{label:r[li]||'Row '+(i+1),value:numeric(r[vi])};});
- if(vals.some(function(v){return !Number.isFinite(v.value)||v.value<0;})){status('Selected value column must contain non-negative numbers in the first 64 rows. Blank or negative values are not supported.');return;}
+ var sourcePositions=new Map(imported.records.map(function(r,i){return[r,i];}));
+ var vals=records.map(function(r,i){return{label:r[li]||'Row '+(i+1),value:numeric(r[vi]),sourceIndex:sourcePositions.get(r)};});
+ if(vals.some(function(v){return !Number.isFinite(v.value)||v.value<0;})){status('Selected value column contains missing or negative values in the matching rows. Please choose another field or filter.');return;}
+ vals=vals.slice(0,64);
+ // All matching rows are validated before the first 64 are selected.
  if(!vals.some(function(v){return v.value>0;})){status('At least one value must be greater than zero.');return;}
- state.rows=vals;state.mode='data';state.isDemo=false;state.metric=imported.headers[vi];state.totalSelected=records.length;state.sourceLabel=imported.sourceLabel;refresh();
+ state.rows=vals;state.mode='data';state.isDemo=false;state.metric=imported.headers[vi];state.totalSelected=records.length;state.sourceLabel=imported.sourceLabel;state.sourceName=imported.name||'CSV';state.filterName=filterField>=0&&categoryIndex>=0?imported.headers[filterField]+' = '+filterCategories[categoryIndex]:'';syncEditor();refresh();
  status('Created '+vals.length+' shapes from '+imported.headers[vi]+'.'+(records.length>64?' Only the FIRST 64 of '+records.length+' matching source rows are shown.':''));
 }
 function makeOption(sel,value,label){
@@ -184,7 +386,7 @@ function chooseFilter(){
  v.disabled=false;v.value='-1';$('filter-info').textContent=filterCategories.length+' categories available. Choose one before creating the artwork.';
 }
 function receiveCsv(source,name,prefs,origin){
- imported=parseCSV(source);imported.sourceLabel=origin;
+ imported=parseCSV(source);imported.sourceLabel=origin;imported.name=name.replace(/^GitHub: /,'');editorOverrides={headline:null,deck:null,credit:null};
  fillSelectors(imported);
  if(prefs){['label','value'].forEach(function(k){var pos=imported.headers.indexOf(prefs[k]);if(pos>=0)$(k).value=String(pos);});}
  var filter=$('filter');filter.innerHTML='';makeOption(filter,-1,'No category filter');
@@ -192,6 +394,7 @@ function receiveCsv(source,name,prefs,origin){
  filter.value=String(prefs&&imported.headers.indexOf(prefs.filter)>=0?imported.headers.indexOf(prefs.filter):-1);
  chooseFilter();
  if(prefs&&prefs.filterDefaultFirst&&filterCategories.length>0)$('filter-value').value='0';
+ var colorField=$('colour-field');colorField.innerHTML='';makeOption(colorField,-1,'No category selected');imported.headers.forEach(function(h,i){makeOption(colorField,i,h);});colorField.disabled=false;colorField.value=String(imported.headers.indexOf(prefs&&prefs.filter||''));visual.colourField=Number(colorField.value);
  $('file-info').textContent=name+' · '+imported.records.length+' rows · '+imported.headers.length+' columns'+(imported.records.length>64?' · category filter available; 64 maximum per image':'');
  status('CSV ready. Choose your label and value columns, then create artwork.');
 }
@@ -252,17 +455,46 @@ $('github-load').addEventListener('click',function(){
 });
 $('github-link').addEventListener('click',function(){loadGithub($('github-url').value,null);});
 $('filter').addEventListener('change',chooseFilter);
+['layout','marks','colour-rule','colour-field','sort','value-scale'].forEach(function(id){
+ $(id).addEventListener('change',function(){
+  var key={'layout':'layout','marks':'marks','colour-rule':'colour','colour-field':'colourField','sort':'sort','value-scale':'scale'}[id];
+  visual[key]=id==='colour-field'?Number(this.value):this.value;visual.preset='';
+  syncEditor();if(state.mode==='data')render();
+  status('Composition updated. The selected numeric values have not changed.');
+ });
+});
+var presets={
+ patchwork:{layout:'grid',marks:'mixed',colour:'bands',sort:'source',scale:'zero'},
+ orbit:{layout:'orbit',marks:'mixed',colour:'median',sort:'source',scale:'zero'},
+ ribbon:{layout:'ribbon',marks:'half',colour:'bands',sort:'asc',scale:'zero'},
+ minimal:{layout:'grid',marks:'square',colour:'median',sort:'desc',scale:'zero'}
+};
+function syncVisualControls(){
+ ['layout','marks','sort'].forEach(function(k){$(k).value=visual[k];});
+ $('colour-rule').value=visual.colour;$('value-scale').value=visual.scale;$('colour-field').value=String(visual.colourField);
+ root.querySelectorAll('[data-preset]').forEach(function(b){var ok=b.dataset.preset===visual.preset;b.classList.toggle('active',ok);b.setAttribute('aria-pressed',String(ok));});
+}
+$('data-presets').addEventListener('click',function(e){
+ var b=e.target.closest('[data-preset]');if(!b||!presets[b.dataset.preset])return;
+ Object.assign(visual,presets[b.dataset.preset]);visual.preset=b.dataset.preset;syncVisualControls();syncEditor();if(state.mode==='data')render();
+ status('New '+b.textContent.trim()+' arrangement. Data values unchanged.');
+});
+['headline','deck','credit'].forEach(function(k){
+ $(k).addEventListener('input',function(){editorOverrides[k]=this.value;syncEditor();if(state.mode==='data')render();});
+});
+$('auto-text').addEventListener('click',function(){editorOverrides={headline:null,deck:null,credit:null};syncEditor();if(state.mode==='data')render();status('Headline, explanation and source regenerated from your current data.');});
+syncVisualControls();
 $('apply').addEventListener('click',applyImported);
-$('demo').addEventListener('click',function(){state.rows=demo.slice();state.isDemo=true;state.metric='Miles (illustrative)';state.totalSelected=12;state.sourceLabel='ILLUSTRATIVE SAMPLE';state.mode='data';refresh();status('Illustrative 12-month running example. Not actual running data.');});
-$('modes').addEventListener('click',function(e){var b=e.target.closest('[data-mode]');if(!b)return;state.mode=b.dataset.mode;state.edits={};state.history=[];if(state.mode==='hidden')state.pal=1;refresh();status(names[state.mode]+' selected.');});
+$('demo').addEventListener('click',function(){state.rows=demo.map(function(r,i){return{label:r.label,value:r.value,sourceIndex:i};});state.isDemo=true;editorOverrides={headline:null,deck:null,credit:null};visual.colourField=-1;syncVisualControls();state.metric='Miles (illustrative)';state.totalSelected=12;state.sourceLabel='ILLUSTRATIVE SAMPLE';state.sourceName='Illustrative example';state.filterName='';syncEditor();state.mode='data';refresh();status('Illustrative 12-month running example. Not actual running data.');});
+$('modes').addEventListener('click',function(e){var b=e.target.closest('[data-mode]');if(!b)return;state.mode=b.dataset.mode;state.edits={};state.history=[];if(state.mode==='hidden')state.pal=1;if(state.mode==='data')syncEditor();refresh();status(names[state.mode]+' selected.');});
 $('palettes').addEventListener('click',function(e){var b=e.target.closest('[data-pal]');if(!b)return;state.pal=+b.dataset.pal;refresh();status('Palette updated.');});
 $('brushes').addEventListener('click',function(e){var b=e.target.closest('[data-shape]');if(!b)return;state.brush=+b.dataset.shape;refresh();});
 $('size').addEventListener('input',function(){state.n=+this.value;state.edits={};state.history=[];refresh();status('Grid resized; previous manual edits cleared.');});
 $('chaos').addEventListener('input',function(){state.chaos=+this.value;refresh();});
 canvas.addEventListener('pointerdown',function(e){var b=canvas.getBoundingClientRect(),px=(e.clientX-b.left)/b.width*960,py=(e.clientY-b.top)/b.height*960;
-if(state.mode==='data'){var n=state.rows.length,cols=Math.ceil(Math.sqrt(n*4/3)),rws=Math.ceil(n/cols),gap=n>32?5:11,s=Math.min((770-(cols-1)*gap)/cols,(600-(rws-1)*gap)/rws),x0=(960-(cols*s+(cols-1)*gap))/2,y0=225,c=Math.floor((px-x0)/(s+gap)),r=Math.floor((py-y0)/(s+gap)),i=r*cols+c;if(c>=0&&c<cols&&r>=0&&r<rws&&i<n&&px>=x0+c*(s+gap)&&px<x0+c*(s+gap)+s&&py>=y0+r*(s+gap)&&py<y0+r*(s+gap)+s){var d=state.rows[i];status(d.label+': '+d.value+(state.isDemo?' (illustrative)':''));}return;}
+if(state.mode==='data'){var closest=null,dist=Infinity;dataHitRegions.forEach(function(h){var d=Math.hypot(px-h.x,py-h.y);if(d<h.s*.53&&d<dist){closest=h;dist=d;}});if(closest)status(closest.order+'. '+closest.row.label+': '+closest.row.value+(state.isDemo?' (illustrative)':''));return;}
 var ss=760/state.n,x=Math.floor((px-100)/ss),y=Math.floor((py-118)/ss);if(x<0||y<0||x>=state.n||y>=state.n)return;state.history.push(JSON.stringify(state.edits));if(state.history.length>40)state.history.shift();var i=y*state.n+x,old=cell(x,y);state.edits[i]={t:state.brush,r:old.t===state.brush?(old.r+1)%4:0,k:old.k};render();status('Tile '+(i+1)+' updated.');});
-$('reroll').addEventListener('click',function(){state.seed++;state.edits={};state.history=[];refresh();status('Fresh arrangement.');});
+$('reroll').addEventListener('click',function(){state.seed++;if(state.mode==='data'){render();status('Decorative shapes and rotations remixed. Data values and mappings unchanged.');}else{state.edits={};state.history=[];refresh();status('Fresh arrangement.');}});
 $('reset').addEventListener('click',function(){state.edits={};state.history=[];refresh();status('Manual edits reset.');});
 $('undo').addEventListener('click',function(){if(state.history.length){state.edits=JSON.parse(state.history.pop());render();status('Last tile edit undone.');}else status('Nothing to undo.');});
 $('save').addEventListener('click',function(){var url=canvas.toDataURL('image/png');$('preview').src=url;$('download').href=url;$('export').hidden=false;status('960 × 960 PNG ready. Save it using the link or the image preview below.');});
