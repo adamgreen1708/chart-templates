@@ -97,6 +97,9 @@ permalink: /resources/bauhaus-art-studio/
 </div>
 <label class="field" for="bh-label">Label column</label><select id="bh-label" disabled><option>Choose a CSV first</option></select>
 <label class="field" for="bh-value">Numeric value column</label><select id="bh-value" disabled><option>Choose a CSV first</option></select>
+<label class="field" for="bh-filter">Optional category filter</label><select id="bh-filter" disabled><option value="-1">All rows</option></select>
+<label class="field" for="bh-filter-value">Select category</label><select id="bh-filter-value" disabled><option value="-1">All categories</option></select>
+<p id="bh-filter-info" class="muted">For larger datasets, select a category to keep the artwork meaningful.</p>
 <button type="button" id="bh-apply" class="primarybutton" disabled>Create artwork from selected data</button>
 <div class="measure" style="margin-top:20px"><span>Try an example</span><span>Illustrative only</span></div>
 <button type="button" class="primarybutton" id="bh-demo">Use 12 sample running months</button>
@@ -122,7 +125,7 @@ var palettes=[{bg:'#f7f0db',c:['#c7412e','#e9b725','#26599c','#191919'],muted:'#
 var names={rhythm:'Geometric rhythm',radial:'Around the centre',hidden:'Hidden Miles · homage',random:'Beautiful chaos',free:'Blank canvas',data:'Form follows data'};
 var demo=[42,58,74,63,85,91,68,82,60,95,70,65].map(function(value,i){return{label:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][i],value:value};});
 var state={mode:'rhythm',n:8,chaos:12,pal:0,seed:15,brush:0,edits:{},history:[],rows:demo.slice(),isDemo:true,metric:'Miles (illustrative)',sourceLabel:'ILLUSTRATIVE SAMPLE',totalSelected:12};
-var imported=null,MAX_BYTES=2*1024*1024,githubLoadId=0;
+var imported=null,MAX_BYTES=2*1024*1024,githubLoadId=0,filterCategories=[];
 function status(s){$('status').textContent=s;}
 function hash(x,y,s){var h=Math.imul(x+21,374761393)^Math.imul(y+47,668265263)^Math.imul(state.seed+s,2246822519);h=Math.imul(h^(h>>>13),1274126177);return(h^(h>>>16))>>>0;}
 function base(x,y){var n=state.n,c=(n-1)/2,dx=x-c,dy=y-c,t,r,k;if(state.mode==='free')return{t:-1,r:0,k:0};if(state.mode==='hidden')return{t:7,r:(x+y)%4,k:(x+y)%2};if(state.mode==='random')return{t:hash(x,y,7)%8,r:hash(x,y,19)%4,k:hash(x,y,22)%4};if(state.mode==='radial'){t=[0,5,3,1,6,2][Math.floor(Math.hypot(dx,dy))%6];r=(Math.round(Math.atan2(dy,dx)*2/Math.PI+4)+4)%4;k=Math.floor(Math.hypot(dx,dy))%4;}else{t=(x*3+y*5+Math.floor(x/2))%8;r=(x+y)%4;k=(x+2*y)%4;}if(hash(x,y,41)/4294967296<state.chaos/100){t=hash(x,y,52)%8;r=hash(x,y,60)%4;k=hash(x,y,69)%4;}return{t:t,r:r,k:k};}
@@ -160,16 +163,35 @@ function applyImported(){
  if(!imported){status('Choose a local CSV or load a GitHub dataset first.');return;}
  var li=Number($('label').value),vi=Number($('value').value);
  if(li===vi){status('Choose different columns for labels and values.');return;}
- var vals=imported.records.slice(0,64).map(function(r,i){return{label:r[li]||'Row '+(i+1),value:numeric(r[vi])};});
+ var records=imported.records,filterField=Number($('filter').value),categoryIndex=Number($('filter-value').value);
+ if(filterField>=0&&categoryIndex>=0&&categoryIndex<filterCategories.length)records=records.filter(function(r){return r[filterField]===filterCategories[categoryIndex];});
+ if(!records.length){status('There are no rows in this category.');return;}
+ var vals=records.slice(0,64).map(function(r,i){return{label:r[li]||'Row '+(i+1),value:numeric(r[vi])};});
  if(vals.some(function(v){return !Number.isFinite(v.value)||v.value<0;})){status('Selected value column must contain non-negative numbers in the first 64 rows. Blank or negative values are not supported.');return;}
  if(!vals.some(function(v){return v.value>0;})){status('At least one value must be greater than zero.');return;}
- state.rows=vals;state.mode='data';state.isDemo=false;state.metric=imported.headers[vi];state.totalSelected=imported.records.length;state.sourceLabel=imported.sourceLabel;refresh();
- status('Created '+vals.length+' shapes from '+imported.headers[vi]+'.'+(imported.records.length>64?' Only the FIRST 64 of '+imported.records.length+' source rows are shown.':''));
+ state.rows=vals;state.mode='data';state.isDemo=false;state.metric=imported.headers[vi];state.totalSelected=records.length;state.sourceLabel=imported.sourceLabel;refresh();
+ status('Created '+vals.length+' shapes from '+imported.headers[vi]+'.'+(records.length>64?' Only the FIRST 64 of '+records.length+' matching source rows are shown.':''));
+}
+function makeOption(sel,value,label){
+ var opt=document.createElement('option');opt.value=String(value);opt.textContent=label;sel.appendChild(opt);
+}
+function chooseFilter(){
+ var column=Number($('filter').value),v=$('filter-value');v.innerHTML='';filterCategories=[];makeOption(v,-1,'All categories');
+ if(!imported||column<0){v.disabled=true;$('filter-info').textContent='All rows; first 64 shown if there are more than 64.';return;}
+ filterCategories=[...new Set(imported.records.map(function(r){return r[column];}))].filter(function(s){return s!=='';});
+ if(filterCategories.length>120){filterCategories=[];v.disabled=true;$('filter-info').textContent='This column has more than 120 categories; try another filter column.';return;}
+ filterCategories.forEach(function(cat,i){makeOption(v,i,cat.length>90?cat.slice(0,87)+'…':cat);});
+ v.disabled=false;v.value='-1';$('filter-info').textContent=filterCategories.length+' categories available. Choose one before creating the artwork.';
 }
 function receiveCsv(source,name,prefs,origin){
  imported=parseCSV(source);imported.sourceLabel=origin;
  fillSelectors(imported);
  if(prefs){['label','value'].forEach(function(k){var pos=imported.headers.indexOf(prefs[k]);if(pos>=0)$(k).value=String(pos);});}
+ var filter=$('filter');filter.innerHTML='';makeOption(filter,-1,'No category filter');
+ imported.headers.forEach(function(h,i){makeOption(filter,i,h);});filter.disabled=false;
+ filter.value=String(prefs&&imported.headers.indexOf(prefs.filter)>=0?imported.headers.indexOf(prefs.filter):-1);
+ chooseFilter();
+ if(prefs&&prefs.filterDefaultFirst&&filterCategories.length>0)$('filter-value').value='0';
  $('file-info').textContent=name+' · '+imported.records.length+' rows · '+imported.headers.length+' columns'+(imported.records.length>64?' · only first 64 rendered':'');
  status('CSV ready. Choose your label and value columns, then create artwork.');
 }
@@ -225,10 +247,11 @@ $('file').addEventListener('change',async function(){
 $('github-load').addEventListener('click',function(){
  var path=$('github-preset').value;
  if(!path){status('Choose a curated repository dataset first.');return;}
- var prefs=path==='data/site_analytics_daily.csv'?{label:'report_date',value:'visits'}:{label:'track_title',value:'duration_seconds'};
+ var prefs=path==='data/site_analytics_daily.csv'?{label:'report_date',value:'visits'}:{label:'track_title',value:'duration_seconds',filter:'album_title',filterDefaultFirst:true};
  loadGithub('https://github.com/adamgreen1708/chart-templates/blob/main/'+path,prefs);
 });
 $('github-link').addEventListener('click',function(){loadGithub($('github-url').value,null);});
+$('filter').addEventListener('change',chooseFilter);
 $('apply').addEventListener('click',applyImported);
 $('demo').addEventListener('click',function(){state.rows=demo.slice();state.isDemo=true;state.metric='Miles (illustrative)';state.totalSelected=12;state.sourceLabel='ILLUSTRATIVE SAMPLE';state.mode='data';refresh();status('Illustrative 12-month running example. Not actual running data.');});
 $('modes').addEventListener('click',function(e){var b=e.target.closest('[data-mode]');if(!b)return;state.mode=b.dataset.mode;state.edits={};state.history=[];if(state.mode==='hidden')state.pal=1;refresh();status(names[state.mode]+' selected.');});
