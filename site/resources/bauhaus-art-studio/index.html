@@ -232,7 +232,7 @@ function editorCopy(){
  var source=state.isDemo?'Illustrative sample — not recorded running data':(state.sourceName||'CSV');
  return {
   headline:metric+' in '+n+' forms',
-  deck:shown+' · '+shape+' · '+scale+' · colour: '+cols,
+  deck:shown+' · '+shape+' · '+scale+' · colour: '+cols+(visual.marks==='mixed'&&visual.colourField>=0&&!state.isDemo?' · shapes use '+formatField(imported&&imported.headers[visual.colourField]||'category'):''),
   credit:'Source: '+source+' · '+state.totalSelected+' matching rows'+(state.totalSelected>n?'; first '+n+' shown':'')+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]+' layout'
  };
 }
@@ -241,7 +241,7 @@ function syncEditor(){
  ['headline','deck','credit'].forEach(function(k){$(k).value=editorOverrides[k]===null?auto[k]:editorOverrides[k];});
  $('copy-status').textContent=Object.keys(editorOverrides).some(function(k){return editorOverrides[k]!==null;})?'Custom text kept. Restore automatic text to regenerate all three lines.':'Automatic text reflects current data, layout and mappings.';
 }
-function metrics(str,size){return ctx.measureText?ctx.measureText(str).width:String(str).length*size*.56;}
+function metrics(str,size){if(ctx.measureText){ctx.font=size+'px Arial';return ctx.measureText(str).width;}return String(str).length*size*.56;}
 function wrapped(str,maxWidth,baseSize,maxLines){
  var size=baseSize,words=String(str||'').trim().split(/\s+/).filter(Boolean),lines=[];
  for(var tries=0;tries<3;tries++){
@@ -305,7 +305,7 @@ function renderData(p,dark){
  var positions=layoutMarks(rows);
  if(visual.layout==='orbit'){
   ctx.strokeStyle=state.pal===3?'#5b5c62':'#d8d3c9';ctx.lineWidth=1.4;
-  [110,215,305].forEach(function(r){ctx.beginPath();ctx.arc(480,551,r,0,Math.PI*2);ctx.stroke();});
+  [110,205,286].forEach(function(r){ctx.beginPath();ctx.arc(480,551,r,0,Math.PI*2);ctx.stroke();});
  }
  if(visual.layout==='ribbon'){
   var bands=[p.c[0],p.c[2],p.c[1],p.c[3]];
@@ -315,11 +315,11 @@ function renderData(p,dark){
   ctx.globalAlpha=1;
  }
  var categoryField=visual.colourField,categoryList=[];
- if(imported&&categoryField>=0){rows.forEach(function(r){var v=imported.records[r.sourceIndex]&&imported.records[r.sourceIndex][categoryField];if(v!==undefined&&!categoryList.includes(v))categoryList.push(v);});}
+ if(!state.isDemo&&imported&&categoryField>=0){rows.forEach(function(r){var v=imported.records[r.sourceIndex]&&imported.records[r.sourceIndex][categoryField];if(v!==undefined&&!categoryList.includes(v))categoryList.push(v);});}
  dataHitRegions=[];
  positions.forEach(function(item,i){
   var row=item.row,value=row.value,ratio=visual.scale==='contrast'?(max===min?.65:.10+.9*(value-min)/(max-min)):(max>0?value/max:0);
-  var category=(imported&&categoryField>=0&&imported.records[row.sourceIndex])?imported.records[row.sourceIndex][categoryField]:null;
+  var category=(!state.isDemo&&imported&&categoryField>=0&&imported.records[row.sourceIndex])?imported.records[row.sourceIndex][categoryField]:null;
   var ci=category===null?-1:categoryList.indexOf(category);
   var cidx=visual.colour==='median'||(visual.colour==='category'&&ci<0)?(value>=median?0:2):visual.colour==='bands'?(max===min?1:Math.min(3,Math.floor(4*(value-min)/(max-min+Number.EPSILON)))):visual.colour==='category'?ci%4:i%4;
   var kind=visual.marks==='mixed'?['circle','quarter','square','triangle','half'][(ci>=0?ci:i)%5]:visual.marks;
@@ -364,7 +364,8 @@ function applyImported(){
  var records=imported.records,filterField=Number($('filter').value),categoryIndex=Number($('filter-value').value);
  if(filterField>=0&&categoryIndex>=0&&categoryIndex<filterCategories.length)records=records.filter(function(r){return r[filterField]===filterCategories[categoryIndex];});
  if(!records.length){status('There are no rows in this category.');return;}
- var vals=records.map(function(r,i){return{label:r[li]||'Row '+(i+1),value:numeric(r[vi]),sourceIndex:imported.records.indexOf(r)};});
+ var sourcePositions=new Map(imported.records.map(function(r,i){return[r,i];}));
+ var vals=records.map(function(r,i){return{label:r[li]||'Row '+(i+1),value:numeric(r[vi]),sourceIndex:sourcePositions.get(r)};});
  if(vals.some(function(v){return !Number.isFinite(v.value)||v.value<0;})){status('Selected value column contains missing or negative values in the matching rows. Please choose another field or filter.');return;}
  vals=vals.slice(0,64);
  // All matching rows are validated before the first 64 are selected.
@@ -483,8 +484,8 @@ $('data-presets').addEventListener('click',function(e){
 $('auto-text').addEventListener('click',function(){editorOverrides={headline:null,deck:null,credit:null};syncEditor();if(state.mode==='data')render();status('Headline, explanation and source regenerated from your current data.');});
 syncVisualControls();
 $('apply').addEventListener('click',applyImported);
-$('demo').addEventListener('click',function(){state.rows=demo.map(function(r,i){return{label:r.label,value:r.value,sourceIndex:i};});state.isDemo=true;state.metric='Miles (illustrative)';state.totalSelected=12;state.sourceLabel='ILLUSTRATIVE SAMPLE';state.sourceName='Illustrative example';state.filterName='';syncEditor();state.mode='data';refresh();status('Illustrative 12-month running example. Not actual running data.');});
-$('modes').addEventListener('click',function(e){var b=e.target.closest('[data-mode]');if(!b)return;state.mode=b.dataset.mode;state.edits={};state.history=[];if(state.mode==='hidden')state.pal=1;refresh();status(names[state.mode]+' selected.');});
+$('demo').addEventListener('click',function(){state.rows=demo.map(function(r,i){return{label:r.label,value:r.value,sourceIndex:i};});state.isDemo=true;visual.colourField=-1;syncVisualControls();state.metric='Miles (illustrative)';state.totalSelected=12;state.sourceLabel='ILLUSTRATIVE SAMPLE';state.sourceName='Illustrative example';state.filterName='';syncEditor();state.mode='data';refresh();status('Illustrative 12-month running example. Not actual running data.');});
+$('modes').addEventListener('click',function(e){var b=e.target.closest('[data-mode]');if(!b)return;state.mode=b.dataset.mode;state.edits={};state.history=[];if(state.mode==='hidden')state.pal=1;if(state.mode==='data')syncEditor();refresh();status(names[state.mode]+' selected.');});
 $('palettes').addEventListener('click',function(e){var b=e.target.closest('[data-pal]');if(!b)return;state.pal=+b.dataset.pal;refresh();status('Palette updated.');});
 $('brushes').addEventListener('click',function(e){var b=e.target.closest('[data-shape]');if(!b)return;state.brush=+b.dataset.shape;refresh();});
 $('size').addEventListener('input',function(){state.n=+this.value;state.edits={};state.history=[];refresh();status('Grid resized; previous manual edits cleared.');});
