@@ -31,6 +31,22 @@ Three editable fields:
 
 Any field can be overwritten by the user. A **Restore automatic text** action resets all three. Loading a different dataset resets custom wording to avoid accidentally reusing an outdated source or metric. Text is wrapped inside safe boundaries of the square canvas and clipped only with an ellipsis if longer than the available two lines. The constant Coffeetableviz series eyebrow is not an editable headline.
 
+## Optional labels on shapes
+
+A **Show labels on shapes** checkbox (default off) reveals a label-content selector:
+- **Label** — selected label column's original text
+- **Value** — selected numeric measure's original value
+- **Label + value** — two lines when there is space
+- **Index / displayed order** — position in the currently sorted and filtered artwork; never imply statistical rank unless the order actually represents a ranking
+
+**Auto-hide when cramped** defaults on. The label renderer first checks the available tile/mark size, then attempts collision-safe placement. All layouts (Grid, Ribbon, Orbit) shorten long labels with ellipses. No labels may enter the headline, deck or footer bands, clip beyond square art boundaries, or collide with another label. Orbit additionally avoids other marks. Disabling automatic hiding allows extra attempts at small font size but does **not** override collision protection.
+
+The displayed label count and number suppressed are reported in the workspace. **Tap-to-inspect always keeps the complete source label and numeric value** regardless of truncation/omission. Labels overlay the artwork; they must never change numeric area, category colours, source order, sorting, or data contents.
+
+PNG saving exports the actual on-canvas labels. Existing local/GitHub CSV and free-play behaviours remain unchanged.
+
+Label QA: toggle on/off; test all four contents and three layouts; long/short labels; close-packed 64 records; different palettes and sorting; safe margins and inter-label collision; no hidden data value coercion; export PNG and mobile tap interaction.
+
 ## Data safety and export
 
 - Keep both local CSV upload and public GitHub CSV import on \`main\`; no GitHub credentials are embedded.
