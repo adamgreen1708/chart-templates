@@ -235,7 +235,7 @@ var palettes=[{bg:'#f7f0db',c:['#c7412e','#e9b725','#26599c','#191919'],muted:'#
 var names={rhythm:'Geometric rhythm',radial:'Around the centre',hidden:'Hidden Miles · homage',random:'Beautiful chaos',free:'Blank canvas',data:'Form follows data'};
 var demo=[42,58,74,63,85,91,68,82,60,95,70,65].map(function(value,i){return{label:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][i],value:value};});
 var state={mode:'rhythm',n:8,chaos:12,pal:0,seed:15,brush:0,edits:{},history:[],rows:demo.slice(),isDemo:true,metric:'Miles (illustrative)',sourceLabel:'ILLUSTRATIVE SAMPLE',totalSelected:12};
-var imported=null,MAX_BYTES=2*1024*1024,githubLoadId=0,filterCategories=[],dataHitRegions=[],editorOverrides={headline:null,deck:null,credit:null};
+var imported=null,MAX_BYTES=2*1024*1024,githubLoadId=0,filterCategories=[],dataHitRegions=[],editorOverrides={headline:null,deck:null,credit:null},activeArtworkSource=null;
 var visual={layout:'grid',marks:'mixed',colour:'bands',colourField:-1,sort:'source',scale:'zero',preset:'patchwork',showLabels:false,labelContent:'label',hideSmall:true};
 var markNames={mixed:'mixed shapes',circle:'circles',square:'squares',triangle:'triangles',half:'semicircles',quarter:'quarter circles'};
 var layoutNames={grid:'grid',orbit:'orbit',ribbon:'ribbon',mosaic:'data mosaic',broadside:'typographic broadside'};
@@ -594,7 +594,7 @@ function applyImported(){
  vals=vals.slice(0,64);
  // All matching rows are validated before the first 64 are selected.
  if(!vals.some(function(v){return v.value>0;})){status('At least one value must be greater than zero.');return;}
- state.rows=vals;state.mode='data';state.isDemo=false;state.metric=imported.headers[vi];state.totalSelected=records.length;state.sourceLabel=imported.sourceLabel;state.sourceName=imported.name||'CSV';state.filterName=filterField>=0&&categoryIndex>=0?imported.headers[filterField]+' = '+filterCategories[categoryIndex]:'';syncEditor();refresh();
+ state.rows=vals;state.mode='data';state.isDemo=false;activeArtworkSource=imported;state.metric=imported.headers[vi];state.totalSelected=records.length;state.sourceLabel=imported.sourceLabel;state.sourceName=imported.name||'CSV';state.filterName=filterField>=0&&categoryIndex>=0?imported.headers[filterField]+' = '+filterCategories[categoryIndex]:'';syncEditor();refresh();
  status('Created '+vals.length+' shapes from '+imported.headers[vi]+'.'+(records.length>64?' Only the FIRST 64 of '+records.length+' matching source rows are shown.':''));
 }
 function makeOption(sel,value,label){
@@ -606,7 +606,7 @@ function chooseFilter(){
  filterCategories=[...new Set(imported.records.map(function(r){return r[column];}))].filter(function(s){return s!=='';});
  if(filterCategories.length>120){filterCategories=[];v.disabled=true;$('filter-info').textContent='This column has more than 120 categories; try another filter column.';return;}
  filterCategories.forEach(function(cat,i){makeOption(v,i,cat.length>90?cat.slice(0,87)+'…':cat);});
- v.disabled=false;v.value='-1';$('filter-info').textContent=filterCategories.length+' categories available. Choose one before creating the artwork.';
+ v.disabled=false;v.value='-1';$('filter-info').textContent=filterCategories.length+' categories available. Select one to filter the artwork after your first Create.';
 }
 function receiveCsv(source,name,prefs,origin){
  imported=parseCSV(source);imported.sourceLabel=origin;imported.name=name.replace(/^GitHub: /,'');editorOverrides={headline:null,deck:null,credit:null};
@@ -692,7 +692,17 @@ $('github-load').addEventListener('click',function(){
  loadGithub('https://github.com/adamgreen1708/chart-templates/blob/main/'+path,prefs);
 });
 $('github-link').addEventListener('click',function(){loadGithub($('github-url').value,null);});
-$('filter').addEventListener('change',chooseFilter);
+function refreshSelectedCategory(){
+ // A new CSV must be explicitly mapped and created once. Thereafter, category
+ // changes immediately reapply the same verified source, metric and label field.
+ if(!imported||activeArtworkSource!==imported||state.mode!=='data'){
+  status('Category selected. Choose your label and value fields, then press Create artwork.');
+  return;
+ }
+ applyImported();
+}
+$('filter').addEventListener('change',function(){chooseFilter();refreshSelectedCategory();});
+$('filter-value').addEventListener('change',refreshSelectedCategory);
 $('show-labels').addEventListener('change',function(){visual.showLabels=this.checked;$('label-options').hidden=!this.checked;if(state.mode==='data')render();status(visual.showLabels?'Shape labels enabled; overcrowded labels may be omitted.':'Shape labels hidden; the data and marks are unchanged.');});
 $('label-content').addEventListener('change',function(){visual.labelContent=this.value;if(state.mode==='data')render();status('Label content changed; source data is unchanged.');});
 $('hide-small').addEventListener('change',function(){visual.hideSmall=this.checked;if(state.mode==='data')render();status(this.checked?'Automatic label spacing enabled.':'Trying more labels; collisions and unsafe margins are still prevented.');});
@@ -740,7 +750,7 @@ $('data-presets').addEventListener('click',function(e){
 $('auto-text').addEventListener('click',function(){editorOverrides={headline:null,deck:null,credit:null};syncEditor();if(state.mode==='data')render();status('Headline, explanation and source regenerated from your current data.');});
 syncVisualControls();
 $('apply').addEventListener('click',applyImported);
-$('demo').addEventListener('click',function(){state.rows=demo.map(function(r,i){return{label:r.label,value:r.value,sourceIndex:i};});state.isDemo=true;editorOverrides={headline:null,deck:null,credit:null};visual.colourField=-1;syncVisualControls();state.metric='Miles (illustrative)';state.totalSelected=12;state.sourceLabel='ILLUSTRATIVE SAMPLE';state.sourceName='Illustrative example';state.filterName='';syncEditor();state.mode='data';refresh();status('Illustrative 12-month running example. Not actual running data.');});
+$('demo').addEventListener('click',function(){state.rows=demo.map(function(r,i){return{label:r.label,value:r.value,sourceIndex:i};});state.isDemo=true;activeArtworkSource=null;editorOverrides={headline:null,deck:null,credit:null};visual.colourField=-1;syncVisualControls();state.metric='Miles (illustrative)';state.totalSelected=12;state.sourceLabel='ILLUSTRATIVE SAMPLE';state.sourceName='Illustrative example';state.filterName='';syncEditor();state.mode='data';refresh();status('Illustrative 12-month running example. Not actual running data.');});
 $('modes').addEventListener('click',function(e){var b=e.target.closest('[data-mode]');if(!b)return;state.mode=b.dataset.mode;state.edits={};state.history=[];if(state.mode==='hidden')state.pal=1;if(state.mode==='data')syncEditor();refresh();status(names[state.mode]+' selected.');});
 $('palettes').addEventListener('click',function(e){var b=e.target.closest('[data-pal]');if(!b)return;state.pal=+b.dataset.pal;refresh();status('Palette updated.');});
 $('brushes').addEventListener('click',function(e){var b=e.target.closest('[data-shape]');if(!b)return;state.brush=+b.dataset.shape;refresh();});
