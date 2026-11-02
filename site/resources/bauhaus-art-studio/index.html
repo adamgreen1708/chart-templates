@@ -566,14 +566,24 @@ function posterSafeText(raw,x,top,width,height,preferred,minFont,maxLines,colour
  lines.forEach(function(line,i){text(line,x,top+size+i*lineHeight,(bold?'bold ':'')+size+'px Arial',colour);});
  return{lines:lines.length,font:size,truncated:words.length>0&&lines.some(function(line){return line.endsWith('…');})};
 }
+// Poster typography hierarchy. Fixed small labels retain visual rhythm across
+// Mosaic, Broadside, Stripe, Circle and the four gallery finishes.
+var posterType={headline:42,deck:16,footer:12,section:11,label:11,heroCircle:43};
+function posterSmallLabel(raw,x,y,maxWidth,ink,align){
+ if(!(maxWidth>=18))return false;
+ var fitted=labelTextFit(String(raw),maxWidth,posterType.label);
+ if(!fitted)return false;
+ text(fitted,x,y,posterType.label+'px Arial',ink,align||'left');
+ return true;
+}
 function posterEditorCopy(p,dark){
  var automatic=editorCopy();
- posterSafeText(editorOverrides.headline===null?automatic.headline:editorOverrides.headline,82,110,793,93,43,30,2,dark,true);
- posterSafeText(editorOverrides.deck===null?automatic.deck:editorOverrides.deck,83,211,793,64,17,14,2,p.muted,false);
+ posterSafeText(editorOverrides.headline===null?automatic.headline:editorOverrides.headline,82,110,793,93,posterType.headline,30,2,dark,true);
+ posterSafeText(editorOverrides.deck===null?automatic.deck:editorOverrides.deck,83,211,793,64,posterType.deck,14,2,p.muted,false);
 }
 function posterSourceCopy(p){
  var automatic=editorCopy();
- posterSafeText(editorOverrides.credit===null?automatic.credit:editorOverrides.credit,83,849,792,66,14,12,2,p.muted,false);
+ posterSafeText(editorOverrides.credit===null?automatic.credit:editorOverrides.credit,83,849,792,66,posterType.footer,12,2,p.muted,false);
 }
 
 // Ink-line poster engine. The three parallel lines per record are an ornamental
@@ -581,7 +591,6 @@ function posterSourceCopy(p){
 function renderStripeStudy(rows,p,dark,max){
  var top=312,bottom=820,space=(bottom-top)/rows.length;
  var withLabels=visual.showLabels,left=withLabels?315:123,width=withLabels?515:708;
- var thin=visual.galleryFinish==='ink'||visual.galleryFinish==='paper';
  var rowHits=[];
  ctx.save();ctx.strokeStyle=p.c[3];ctx.lineWidth=1.2;
  ctx.beginPath();ctx.moveTo(left,297);ctx.lineTo(left,bottom+8);ctx.stroke();
@@ -594,8 +603,7 @@ function renderStripeStudy(rows,p,dark,max){
   if(withLabels&&space>=15){
    var label=visual.labelContent==='value'?v3Value(row.value):visual.labelContent==='index'?String(i+1):
     visual.labelContent==='both'?row.label+' · '+v3Value(row.value):row.label;
-   var fitted=labelTextFit(label,left-104,Math.min(12,Math.max(9,space*.39)));
-   if(fitted)text(fitted,90,y+4,'bold '+Math.min(12,Math.max(9,space*.39))+'px Arial',dark);
+   posterSmallLabel(label,90,y+4,left-105,dark);
   }
   ctx.fillStyle=colour;
   offsets.forEach(function(shift){if(len>0)ctx.fillRect(left,y+shift-thick/2,len,thick);});
@@ -605,8 +613,7 @@ function renderStripeStudy(rows,p,dark,max){
  $('hint').textContent='All stripes share a zero baseline and proportional length. Multiple parallel strokes per row are purely graphic repetition. '+(rows.length>24?'For print clarity, try filtering to 8–24 records. ':'')+'Tap any row to inspect exact values.';
  $('label-note').textContent=withLabels?'Short labels appear where rows are tall enough. Tap a stripe row for the complete label.':'Labels are off. Tap a stripe row for its source value.';
 }
-// The large hero ring is purely decorative. Smaller discs/ring sweeps on the
-// right carry the numeric encoding at one consistent maximum scale.
+// The hero rings and the individual marks both carry numeric encodings.
 // Four distribution statistics are source-derived: max, upper quartile (R7),
 // median and min. The hero rings use the SAME geometric encoding as the marks.
 function circleSummaryStatistics(rows){
@@ -649,23 +656,22 @@ function renderCircleStudy(rows,p,dark,max){
   }
  });
  ctx.restore();
- text('SUMMARY / '+(isArc?'ARC SWEEP':'ENCLOSED AREA'),113,337,'bold 12px Arial',dark);
- text('MAXIMUM',269,521,'bold 13px Arial',accent,'center');
+ text('SUMMARY / '+(isArc?'ARC SWEEP':'ENCLOSED AREA'),113,337,'bold '+posterType.section+'px Arial',dark);
+ text('MAXIMUM',269,521,'bold '+posterType.section+'px Arial',accent,'center');
  var maximum=rows.reduce(function(a,b){return b.value>a.value?b:a;},rows[0]);
- var heroValue=v3Value(maximum.value),heroFont=43;
+ var heroValue=v3Value(maximum.value),heroFont=posterType.heroCircle;
  ctx.font='bold '+heroFont+'px Arial';
  while(heroFont>21&&ctx.measureText(heroValue).width>178){heroFont-=2;ctx.font='bold '+heroFont+'px Arial';}
  text(heroValue,269,560,'bold '+heroFont+'px Arial',dark,'center');
- var heroName=labelTextFit(maximum.label,176,12);
- if(heroName)text(heroName,269,580,'bold 12px Arial',dark,'center');
+ posterSmallLabel(maximum.label,269,580,176,dark,'center');
  // In-poster key: every ring maps to a derived, explicitly named statistic.
  stats.forEach(function(stat,i){
   var y=721+i*27;
   ctx.fillStyle=colours[i];ctx.fillRect(116,y-11,12,12);
-  text(stat.name,140,y,'bold 12px Arial',dark);
-  text(v3Value(stat.value),401,y,'bold 12px Arial',dark,'right');
+  text(stat.name,140,y,'bold '+posterType.section+'px Arial',dark);
+  posterSmallLabel(v3Value(stat.value),401,y,84,dark,'right');
  });
- text('INDIVIDUAL '+(isArc?'ARCS':'DISCS'),471,312,'bold 12px Arial',dark);
+ text('INDIVIDUAL '+(isArc?'ARCS':'DISCS'),471,312,'bold '+posterType.section+'px Arial',dark);
  dataHitRegions=[];
  rows.forEach(function(row,i){
   var cx=x0+cellW*(i%cols+.5),cy=y0+cellH*(Math.floor(i/cols)+.5),fraction=max>0?row.value/max:0;
@@ -685,8 +691,7 @@ function renderCircleStudy(rows,p,dark,max){
   if(visual.showLabels&&Math.min(cellW,cellH)>58&&n<=24){
    var label=visual.labelContent==='value'?v3Value(row.value):visual.labelContent==='index'?String(i+1):
     visual.labelContent==='both'?row.label+' · '+v3Value(row.value):row.label;
-   var font=Math.min(12,Math.max(9,cellW*.12)),t=labelTextFit(label,cellW-8,font);
-   if(t)text(t,cx,cy+cellH*.47,'bold '+font+'px Arial',dark,'center');
+   posterSmallLabel(label,cx,cy+cellH*.47,cellW-10,dark,'center');
   }
   dataHitRegions.push({x:cx,y:cy,s:Math.min(cellW,cellH),bounds:{left:x0+(i%cols)*cellW,top:y0+Math.floor(i/cols)*cellH,
     right:x0+(i%cols+1)*cellW,bottom:y0+(Math.floor(i/cols)+1)*cellH},row:row,order:i+1});
@@ -722,9 +727,7 @@ function renderPosterV3(rows,p,dark){
    }else galleryTileOrnament(x,y,w,h,p,v3Ink(colour),i);
    if(visual.showLabels&&w>53&&h>40){
     var label=visual.labelContent==='value'?v3Value(t.row.value):visual.labelContent==='index'?String(rank+1):visual.labelContent==='both'?t.row.label+' · '+v3Value(t.row.value):t.row.label;
-    var font=Math.min(17,Math.max(10,Math.floor(Math.min(w,h)*.13)));
-    var textLabel=labelTextFit(label,w-16,font);
-    if(textLabel&&(!visual.hideSmall||Math.min(w,h)>68))text(textLabel,x+8,y+Math.min(27,h-10),'bold '+font+'px Arial',v3Ink(colour));
+    if(!visual.hideSmall||Math.min(w,h)>68)posterSmallLabel(label,x+8,y+Math.min(25,h-10),w-16,v3Ink(colour));
    }
    dataHitRegions.push({x:t.x+t.w/2,y:t.y+t.h/2,s:Math.min(t.w,t.h),bounds:{left:t.x,top:t.y,right:t.x+t.w,bottom:t.y+t.h},row:t.row,order:rank+1});
   });
@@ -745,10 +748,9 @@ function renderPosterV3(rows,p,dark){
    ctx.fillStyle=visual.galleryFinish==='ink'?(row.value===max?p.c[1]:p.c[0]):(row.value===max?p.c[0]:p.c[2]);
    var markH=visual.galleryFinish==='ink'?Math.min(6.5,Math.max(2,barH*.36)):barH;
    ctx.fillRect(left,barY+(barH-markH)/2,width*(max>0?row.value/max:0),markH);
-   if(visual.showLabels&&h>=12){
+   if(visual.showLabels&&h>=14){
     var label=visual.labelContent==='value'?v3Value(row.value):visual.labelContent==='index'?String(i+1):visual.labelContent==='both'?row.label+' · '+v3Value(row.value):row.label;
-    var font=Math.max(10,Math.min(13,h*.52)),fitted=labelTextFit(label,left-108,font);
-    if(fitted)text(fitted,90,barY+barH-1,'bold '+font+'px Arial',dark);
+    posterSmallLabel(label,90,yy+Math.min(h-2,13),left-108,dark);
    }
    dataHitRegions.push({x:479,y:yy+h/2,s:h,bounds:{left:82,top:yy,right:878,bottom:yy+h},row:row,order:i+1});
   });
