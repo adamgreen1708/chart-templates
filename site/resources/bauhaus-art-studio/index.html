@@ -49,6 +49,10 @@ permalink: /resources/bauhaus-art-studio/
 .bauhaus-page .data-styling select{margin-bottom:5px}
 .bauhaus-page .poster-v3{border:1px solid #bdc4c6;background:#fffdf4;padding:13px;margin:14px 0 18px}
 .bauhaus-page .poster-v3 .buttons{margin:10px 0 8px}
+.bauhaus-page .gallery-finish{display:grid;grid-template-columns:1fr;gap:4px;padding:11px;margin:12px 0 8px;background:#f2eee4;border-left:3px solid #b54432}
+.bauhaus-page .gallery-finish select{width:100%;min-height:42px;border:1px solid #b7b5af;background:#fff;padding:8px 10px;color:#272727}
+.bauhaus-page .gallery-finish .field{margin:0}
+.bauhaus-page .gallery-finish .field-help{line-height:1.5}
 .bauhaus-page .poster-v3 button.active{background:#c43f2e;border-color:#c43f2e;color:white}
 .bauhaus-page .label-tools{margin-top:18px;padding:14px;background:#f6f7f7;border:1px solid #d8dddf;border-radius:3px}
 .bauhaus-page .label-toggle{display:flex;align-items:center;gap:10px;min-height:35px;font-size:13px;font-weight:700;cursor:pointer}
@@ -134,6 +138,16 @@ permalink: /resources/bauhaus-art-studio/
     <div class="buttons" id="bh-poster-presets" role="group" aria-label="New data-art poster styles">
       <button type="button" data-poster="mosaic">◩ Data Mosaic</button>
       <button type="button" data-poster="broadside">▰ Typographic Broadside</button>
+    </div>
+    <div class="gallery-finish">
+      <label class="field" for="bh-gallery-finish">Poster finish / inspired by Bauhaus prints</label>
+      <select id="bh-gallery-finish">
+        <option value="paper">Gallery Paper · brick / ochre / ink</option>
+        <option value="chromatic">Colour Study · coral / cobalt / teal</option>
+        <option value="ink">Ink Study · monochrome / red accent</option>
+        <option value="studio">Studio Original · existing palette</option>
+      </select>
+      <p class="field-help" id="bh-gallery-info">Warm paper, an economical palette and delicate geometric linework. Gallery finishes override the standard palette swatches; tapping a palette swatch switches back to Studio Original. These artworks are original, not reproductions.</p>
     </div>
     <p class="field-help" id="bh-poster-info">Mosaic: proportional tile areas. Broadside: proportional bar lengths with a typographic highlight for the largest value.</p>
   </div>
@@ -236,7 +250,7 @@ var names={rhythm:'Geometric rhythm',radial:'Around the centre',hidden:'Hidden M
 var demo=[42,58,74,63,85,91,68,82,60,95,70,65].map(function(value,i){return{label:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][i],value:value};});
 var state={mode:'rhythm',n:8,chaos:12,pal:0,seed:15,brush:0,edits:{},history:[],rows:demo.slice(),isDemo:true,metric:'Miles (illustrative)',sourceLabel:'ILLUSTRATIVE SAMPLE',totalSelected:12};
 var imported=null,MAX_BYTES=2*1024*1024,githubLoadId=0,filterCategories=[],dataHitRegions=[],editorOverrides={headline:null,deck:null,credit:null},activeArtworkSource=null;
-var visual={layout:'grid',marks:'mixed',colour:'bands',colourField:-1,sort:'source',scale:'zero',preset:'patchwork',showLabels:false,labelContent:'label',hideSmall:true};
+var visual={layout:'grid',marks:'mixed',colour:'bands',colourField:-1,sort:'source',scale:'zero',preset:'patchwork',showLabels:false,labelContent:'label',hideSmall:true,galleryFinish:'paper'};
 var markNames={mixed:'mixed shapes',circle:'circles',square:'squares',triangle:'triangles',half:'semicircles',quarter:'quarter circles'};
 var layoutNames={grid:'grid',orbit:'orbit',ribbon:'ribbon',mosaic:'data mosaic',broadside:'typographic broadside'};
 var colourNames={bands:'four equal-width value bands',median:'above/below median',category:'category',decorative:'decorative sequence (not data)'};
@@ -457,6 +471,41 @@ function v3Treemap(rows){
  }
  split(rows.filter(function(r){return r.value>0;}),82,302,796,526);return out;
 }
+
+var galleryFinishes={
+ paper:{bg:'#f4efe3',c:['#bf4632','#d2a43f','#285576','#222327'],muted:'#777166'},
+ chromatic:{bg:'#f2eadb',c:['#d35c42','#d8b83a','#247983','#263455'],muted:'#6f665e'},
+ ink:{bg:'#efede4',c:['#242424','#b33c30','#88877e','#212126'],muted:'#68655f'}
+};
+function galleryPalette(original){
+ if(visual.galleryFinish==='studio')return original;
+ return galleryFinishes[visual.galleryFinish]||galleryFinishes.paper;
+}
+function galleryMasthead(p){
+ if(visual.galleryFinish==='studio')return;
+ ctx.save();
+ // A small original registration motif, not a numerical marker.
+ ctx.fillStyle=p.c[0];ctx.beginPath();ctx.arc(860,53,17,0,Math.PI*2);ctx.fill();
+ ctx.strokeStyle=p.c[3];ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(835,29);ctx.lineTo(883,77);ctx.stroke();
+ ctx.globalAlpha=.45;ctx.strokeStyle=p.c[2];ctx.beginPath();ctx.moveTo(82,103);ctx.lineTo(256,103);ctx.stroke();
+ ctx.restore();
+}
+function galleryTileOrnament(x,y,w,h,p,ink,i){
+ if(visual.galleryFinish==='studio'||w<92||h<95||i%3!==0)return;
+ ctx.save();ctx.beginPath();ctx.rect(x+4,y+4,w-8,h-8);ctx.clip();
+ ctx.strokeStyle=ink;ctx.globalAlpha=.35;ctx.lineWidth=2;
+ var size=Math.min(w,h),radius=size*.35,cx=x+w-14,cy=y+13;
+ for(var k=0;k<3;k++){ctx.beginPath();ctx.arc(cx,cy,radius*(1-k*.24),Math.PI*.12,Math.PI*.94);ctx.stroke();}
+ ctx.restore();
+}
+function galleryHeroOrnament(p){
+ if(visual.galleryFinish==='studio')return;
+ ctx.save();ctx.beginPath();ctx.rect(690,294,182,150);ctx.clip();
+ ctx.strokeStyle=p.c[1];ctx.globalAlpha=.45;ctx.lineWidth=3;
+ for(var i=0;i<4;i++){ctx.beginPath();ctx.arc(849,370,20+i*20,0,Math.PI*2);ctx.stroke();}
+ ctx.globalAlpha=1;ctx.fillStyle=p.c[0];ctx.fillRect(849,288,10,165);
+ ctx.restore();
+}
 function renderPosterV3(rows,p,dark){
  var values=rows.map(function(r){return r.value;}),max=Math.max.apply(null,values),min=Math.min.apply(null,values),v=values.slice().sort(function(a,b){return a-b;}),n=rows.length,median=n%2?v[(n-1)/2]:(v[n/2-1]+v[n/2])/2;
  var source=editorCopy(),headline=editorOverrides.headline===null?source.headline:editorOverrides.headline,deck=editorOverrides.deck===null?source.deck:editorOverrides.deck,credit=editorOverrides.credit===null?source.credit:editorOverrides.credit;
@@ -472,8 +521,10 @@ function renderPosterV3(rows,p,dark){
    var rank=index.get(t.row),colour=v3Colour(t.row,rank,rows,median,min,max,categories,p),gap=3;
    var x=t.x+gap/2,y=t.y+gap/2,w=Math.max(0,t.w-gap),h=Math.max(0,t.h-gap);
    ctx.fillStyle=colour;ctx.fillRect(x,y,w,h);
-   // These corner arcs are explicitly decorative; rectangular tile area carries the value.
-   if(w>110&&h>90&&i%4===0){ctx.save();ctx.strokeStyle=v3Ink(colour);ctx.globalAlpha=.45;ctx.lineWidth=2;ctx.beginPath();ctx.arc(x+w-16,y+16,Math.min(w,h)*.16,Math.PI/2,Math.PI);ctx.stroke();ctx.restore();}
+   // Print-like arcs are decoration only. Original treemap bounds still encode area.
+   if(visual.galleryFinish==='studio'){
+    if(w>110&&h>90&&i%4===0){ctx.save();ctx.strokeStyle=v3Ink(colour);ctx.globalAlpha=.45;ctx.lineWidth=2;ctx.beginPath();ctx.arc(x+w-16,y+16,Math.min(w,h)*.16,Math.PI/2,Math.PI);ctx.stroke();ctx.restore();}
+   }else galleryTileOrnament(x,y,w,h,p,v3Ink(colour),i);
    if(visual.showLabels&&w>53&&h>40){
     var label=visual.labelContent==='value'?v3Value(t.row.value):visual.labelContent==='index'?String(rank+1):visual.labelContent==='both'?t.row.label+' · '+v3Value(t.row.value):t.row.label;
     var font=Math.min(17,Math.max(10,Math.floor(Math.min(w,h)*.13)));
@@ -486,6 +537,7 @@ function renderPosterV3(rows,p,dark){
  }else{
   var maxRow=rows.reduce(function(a,b){return b.value>a.value?b:a;},rows[0]),hero=v3Value(maxRow.value);
   ctx.fillStyle=p.c[3];ctx.fillRect(82,288,796,164);
+  galleryHeroOrnament(p);
   text('LARGEST OBSERVATION / '+formatField(state.metric).toUpperCase(),110,320,'bold 14px Arial',v3Ink(p.c[3]));
   drawWrapped(hero,105,427,90,355,1,90,v3Ink(p.c[3]),true);
   drawWrapped(maxRow.label,514,355,28,324,2,33,v3Ink(p.c[3]),true);
@@ -550,11 +602,13 @@ function renderData(p,dark){
  $('hint').textContent='Tap a mark to inspect its actual label and value. '+(visual.showLabels&&labelResult.hidden?'Some labels are hidden to avoid collisions. ':'')+(visual.scale==='contrast'?'Area uses min–max contrast with a 10% minimum. It is not zero-based.':'Shape area represents the value from zero.');
 }
 function render(){
- var p=palettes[state.pal],dark=state.pal===3?'#f6f0df':'#1c1c1c';
+ var basePalette=palettes[state.pal],isGallery=state.mode==='data'&&['mosaic','broadside'].includes(visual.layout);
+ var p=isGallery?galleryPalette(basePalette):basePalette,dark=isGallery?v3Ink(p.bg):(state.pal===3?'#f6f0df':'#1c1c1c');
  ctx.fillStyle=p.bg;ctx.fillRect(0,0,960,960);
  if(state.mode!=='hidden'){
   text('C O F F E E T A B L E V I Z   /   G E O M E T R I C   S T U D I E S',82,69,'bold 14px Arial',p.muted);
   ctx.fillStyle=dark;ctx.fillRect(82,89,796,3);
+  if(isGallery)galleryMasthead(p);
  }
  if(state.mode==='data'){renderData(p,dark);}
  else{
@@ -727,6 +781,8 @@ function syncVisualControls(){
  root.querySelectorAll('[data-preset]').forEach(function(b){var ok=b.dataset.preset===visual.preset;b.classList.toggle('active',ok);b.setAttribute('aria-pressed',String(ok));});
  root.querySelectorAll('[data-poster]').forEach(function(b){var ok=b.dataset.poster===visual.layout;b.classList.toggle('active',ok);b.setAttribute('aria-pressed',String(ok));});
  var isPoster=['mosaic','broadside'].includes(visual.layout);
+ $('gallery-finish').disabled=!isPoster;
+ $('gallery-finish').value=visual.galleryFinish;
  $('marks').disabled=isPoster;$('value-scale').disabled=isPoster;$('colour-rule').disabled=visual.layout==='broadside';
  $('poster-info').textContent=visual.layout==='mosaic'?
   'Measured rectangle area = original value / total. The chosen colour rule is applied; ornamental details do not represent extra data.':
@@ -734,6 +790,16 @@ function syncVisualControls(){
   'Pick Data Mosaic or Typographic Broadside above to produce an editorial poster rather than a regular tile grid.';
  if(state.mode==='data')$('reroll').disabled=isPoster;
 }
+$('gallery-finish').addEventListener('change',function(){
+ visual.galleryFinish=this.value;
+ var messages={paper:'Gallery Paper: warm ivory ground, brick red, ochre, ink and thin geometric arcs.',
+  chromatic:'Colour Study: muted cobalt, coral and teal, with original fine-line geometry.',
+  ink:'Ink Study: mostly black and stone, with a single red accent.',
+  studio:'Studio Original: the existing palette and decorative treatment.'};
+ $('gallery-info').textContent=messages[this.value]+' Shape area and bar length still represent the same source values.';
+ if(state.mode==='data'&&['mosaic','broadside'].includes(visual.layout))render();
+ status('Poster finish updated. Data values and category mapping unchanged.');
+});
 $('poster-presets').addEventListener('click',function(e){
  var b=e.target.closest('[data-poster]');if(!b)return;
  visual.layout=b.dataset.poster;visual.preset='';
@@ -753,7 +819,14 @@ syncVisualControls();
 $('apply').addEventListener('click',applyImported);
 $('demo').addEventListener('click',function(){state.rows=demo.map(function(r,i){return{label:r.label,value:r.value,sourceIndex:i};});state.isDemo=true;activeArtworkSource=null;editorOverrides={headline:null,deck:null,credit:null};visual.colourField=-1;syncVisualControls();state.metric='Miles (illustrative)';state.totalSelected=12;state.sourceLabel='ILLUSTRATIVE SAMPLE';state.sourceName='Illustrative example';state.filterName='';syncEditor();state.mode='data';refresh();status('Illustrative 12-month running example. Not actual running data.');});
 $('modes').addEventListener('click',function(e){var b=e.target.closest('[data-mode]');if(!b)return;state.mode=b.dataset.mode;state.edits={};state.history=[];if(state.mode==='hidden')state.pal=1;if(state.mode==='data')syncEditor();refresh();status(names[state.mode]+' selected.');});
-$('palettes').addEventListener('click',function(e){var b=e.target.closest('[data-pal]');if(!b)return;state.pal=+b.dataset.pal;refresh();status('Palette updated.');});
+$('palettes').addEventListener('click',function(e){var b=e.target.closest('[data-pal]');if(!b)return;state.pal=+b.dataset.pal;
+ // Directly choosing a Studio palette takes precedence over a gallery finish,
+ // so the user's palette choice always produces a visible change.
+ if(state.mode==='data'&&['mosaic','broadside'].includes(visual.layout)){
+  visual.galleryFinish='studio';$('gallery-finish').value='studio';
+  $('gallery-info').textContent='Studio Original: manual palette applied. Choose another Poster finish to restore a gallery colour treatment.';
+ }
+ refresh();status('Palette updated.');});
 $('brushes').addEventListener('click',function(e){var b=e.target.closest('[data-shape]');if(!b)return;state.brush=+b.dataset.shape;refresh();});
 $('size').addEventListener('input',function(){state.n=+this.value;state.edits={};state.history=[];refresh();status('Grid resized; previous manual edits cleared.');});
 $('chaos').addEventListener('input',function(){state.chaos=+this.value;refresh();});
