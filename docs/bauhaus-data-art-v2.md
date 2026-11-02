@@ -49,11 +49,23 @@ Label QA: toggle on/off; test all four contents and three layouts; long/short la
 
 ## Data safety and export
 
-- Keep both local CSV upload and public GitHub CSV import on \`main\`; no GitHub credentials are embedded.
+- Keep both local CSV upload and public GitHub CSV import. GitHub URLs can point to \`main\` (latest on reload) or a full 40-character commit SHA (a pinned historical snapshot); no GitHub credentials are embedded.
 - Import maximum 2 MB and 10,000 source rows. Render a maximum of 64 **matching** rows, prominently disclosing the first-64 restriction if it applies.
 - Reject missing, negative, non-finite numeric values in the selected data before rendering; do not silently drop them.
 - Tap a mark to inspect its actual source label and value.
 - Export a 960 × 960 PNG. Preserve the creative-only design-link privacy guardrail: dataset values are never embedded in a share URL.
+
+## GitHub CSV link compatibility
+
+The public URL importer accepts links within \`adamgreen1708/chart-templates\` using these forms:
+
+- \`https://github.com/adamgreen1708/chart-templates/blob/main/<file>.csv\`
+- \`https://github.com/adamgreen1708/chart-templates/blob/<40-char-commit-sha>/<file>.csv\`
+- Matching \`https://raw.githubusercontent.com/adamgreen1708/chart-templates/<ref>/<file>.csv\` variants.
+
+The requested ref is **retained**, not silently rewritten to \`main\`. A commit URL is an immutable historical snapshot; \`main\` may change on refresh. The studio explicitly says which kind it loaded and includes the abbreviated commit in the auto-generated source line. Other repositories, branches, non-CSV paths and malformed links remain rejected. Fetches retain their timeout and size limits.
+
+Regression fixture: \`archive/projects/2026-10-shorts-in-sports-verstappen/data/grid_finish_derived.csv\` at commit \`64c1bd6e8d59087593991411b581c9101d3ab98f\`. Verify that the same path on \`main\` also works, then exercise column mapping, first-64 disclosure and PNG export.
 
 ## Required QA before merge
 
