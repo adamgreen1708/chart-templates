@@ -308,8 +308,8 @@ function editorCopy(){
   var maxRow=state.rows.reduce(function(a,b){return b.value>a.value?b:a;},state.rows[0]);
   return{
    headline:visual.layout==='mosaic'?metric+': '+n+' pieces':
-     visual.layout==='stripes'?'The '+metric+' rhythm':
-     visual.layout==='circles'?metric+' in circles':
+     visual.layout==='stripes'?metric+' / '+n+' stripes':
+     visual.layout==='circles'?metric+' / '+n+' circles':
       (state.rows.filter(function(r){return r.value===maxRow.value;}).length>1?'Joint maximum: ':'Largest: ')+maxRow.label,
    deck:visual.layout==='mosaic'?n+' observations · rectangle area ∝ '+metric+' · colour: '+cols:
      visual.layout==='stripes'?n+' observations · stripe length ∝ '+metric+' · red highlights maximum':
@@ -958,7 +958,7 @@ $('gallery-finish').addEventListener('change',function(){
   chromatic:'Colour Study: muted cobalt, coral and teal, with original fine-line geometry.',
   ink:'Ink Study: mostly black and stone, with a single red accent.',
   studio:'Studio Original: the existing palette and decorative treatment.'};
- $('gallery-info').textContent=messages[this.value]+' Shape area and bar length still represent the same source values.';
+ $('gallery-info').textContent=messages[this.value]+' The geometric data encoding is unchanged: '+(visual.layout==='mosaic'?'rectangle area':visual.layout==='broadside'?'bar length':visual.layout==='stripes'?'stripe length':visual.circleEncoding==='arc'?'arc sweep':'disc area')+'.';
  if(state.mode==='data'&&['mosaic','broadside','stripes','circles'].includes(visual.layout))render();
  status('Poster finish updated. Data values and category mapping unchanged.');
 });
