@@ -110,10 +110,10 @@ permalink: /resources/bauhaus-art-studio/
     <option value="archive/projects/2026-09-david-bowie-track-distributions/data/bowie_track_distribution_rows.csv">David Bowie · Track distributions</option>
   </select>
   <button type="button" class="primarybutton" id="bh-github-load">Load this dataset</button>
-  <label class="field" for="bh-github-url">Or paste a CSV file link from GitHub</label>
+  <label class="field" for="bh-github-url">Or paste a GitHub CSV link (main or commit permalink)</label>
   <input type="url" id="bh-github-url" placeholder="https://github.com/adamgreen1708/chart-templates/blob/main/…csv" autocomplete="off">
   <button type="button" class="primarybutton" id="bh-github-link">Load GitHub link</button>
-  <p class="muted" id="bh-github-info" role="status">Only public CSVs in adamgreen1708/chart-templates on main. GitHub receives the file request; no login or token is needed.</p>
+  <p class="muted" id="bh-github-info" role="status">Paste a public CSV link from main or a specific Git commit. GitHub receives the request; no login or token is needed. Pinned commit links always load that exact snapshot.</p>
 </div>
 <label class="field" for="bh-label">Label column</label><select id="bh-label" disabled><option>Choose a CSV first</option></select>
 <label class="field" for="bh-value">Numeric value column</label><select id="bh-value" disabled><option>Choose a CSV first</option></select>
@@ -515,16 +515,24 @@ function receiveCsv(source,name,prefs,origin){
 }
 function repoCsvUrl(input){
  var u;
- try{u=new URL(input.trim());}catch(e){throw Error('Please enter a full public GitHub CSV link.');}
+ try{u=new URL(String(input||'').trim());}
+ catch(e){throw Error('Please enter a complete public GitHub CSV link.');}
  if(u.protocol!=='https:'||u.username||u.password||u.port||!['github.com','raw.githubusercontent.com'].includes(u.hostname))throw Error('Only HTTPS GitHub file URLs are supported.');
- var parts=u.pathname.split('/').filter(Boolean).map(function(x){return decodeURIComponent(x);});
+ var parts;
+ try{parts=u.pathname.split('/').filter(Boolean).map(function(x){return decodeURIComponent(x);});}
+ catch(e){throw Error('The GitHub file link contains invalid URL encoding.');}
  if(parts[0]!=='adamgreen1708'||parts[1]!=='chart-templates')throw Error('Choose a CSV from adamgreen1708/chart-templates.');
- var offset;
- if(u.hostname==='github.com'){if(!['blob','raw'].includes(parts[2])||parts[3]!=='main')throw Error('Choose a CSV from main.');offset=4;}
- else {if(parts[2]!=='main')throw Error('Choose a CSV from main.');offset=3;}
+ var offset,ref;
+ if(u.hostname==='github.com'){
+  if(!['blob','raw'].includes(parts[2]))throw Error('Use a GitHub CSV file link, not a folder or repository home page.');
+  ref=parts[3];offset=4;
+ }else{ref=parts[2];offset=3;}
+ var isCommit=/^[0-9a-f]{40}$/i.test(ref||'');
+ if(ref!=='main'&&!isCommit)throw Error('Use a CSV link from main or a full 40-character commit permalink.');
+ if(isCommit)ref=ref.toLowerCase();
  var path=parts.slice(offset);
- if(!path.length||!path[path.length-1].toLowerCase().endsWith('.csv')||path.some(function(v){return !v||v==='.'||v==='..'||!(/^[\w.\- ]+$/).test(v);}))throw Error('Choose a valid CSV path within the repository.');
- return 'https://raw.githubusercontent.com/adamgreen1708/chart-templates/main/'+path.map(encodeURIComponent).join('/');
+ if(!path.length||!path[path.length-1].toLowerCase().endsWith('.csv')||path.some(function(v){return !v||v==='.'||v==='..'||!/^[\w.\- ]+$/.test(v);}))throw Error('Choose a valid CSV file within this repository.');
+ return {url:'https://raw.githubusercontent.com/adamgreen1708/chart-templates/'+ref+'/'+path.map(encodeURIComponent).join('/'),ref:ref,isCommit:isCommit};
 }
 async function readGithub(url){
  var ctrl=new AbortController(),timer=setTimeout(function(){ctrl.abort();},15000);
@@ -544,16 +552,23 @@ async function readGithub(url){
  }finally{clearTimeout(timer);}
 }
 async function loadGithub(input,prefs){
- var id=++githubLoadId,url;
- try{url=repoCsvUrl(input);}catch(e){status(e.message);$('github-info').textContent=e.message;return;}
+ var id=++githubLoadId,link;
+ try{link=repoCsvUrl(input);}
+ catch(e){status(e.message);$('github-info').textContent=e.message;return;}
  $('github-load').disabled=true;$('github-link').disabled=true;
- $('github-info').textContent='Loading public CSV from GitHub…';
+ $('github-info').textContent=link.isCommit?'Loading pinned GitHub CSV snapshot…':'Loading latest public CSV from main…';
  try{
-  var source=await readGithub(url);if(id!==githubLoadId)return;
-  receiveCsv(source,'GitHub: '+decodeURIComponent(url.split('/').pop()),prefs,'PUBLIC GITHUB DATA');
-  $('github-info').textContent='Loaded from main. Reload this dataset to pick up future GitHub changes.';
- }catch(e){if(id!==githubLoadId)return;var msg=e.name==='AbortError'?'GitHub request timed out. Please try again.':'Could not load GitHub CSV: '+e.message;status(msg);$('github-info').textContent=msg;}
- finally{if(id===githubLoadId){$('github-load').disabled=false;$('github-link').disabled=false;}}
+  var source=await readGithub(link.url);if(id!==githubLoadId)return;
+  var shortRef=link.ref.slice(0,8),filename=decodeURIComponent(link.url.split('/').pop());
+  receiveCsv(source,'GitHub: '+filename+(link.isCommit?' @ '+shortRef:''),prefs,link.isCommit?'PUBLIC GITHUB SNAPSHOT':'PUBLIC GITHUB DATA');
+  $('github-info').textContent=link.isCommit?
+   'Loaded pinned commit '+link.ref+'. This exact CSV snapshot stays fixed even if main changes.':
+   'Loaded from main. Reload this dataset to pick up future GitHub changes.';
+ }catch(e){
+  if(id!==githubLoadId)return;
+  var msg=e.name==='AbortError'?'GitHub request timed out. Please try again.':'Could not load GitHub CSV: '+e.message;
+  status(msg);$('github-info').textContent=msg;
+ }finally{if(id===githubLoadId){$('github-load').disabled=false;$('github-link').disabled=false;}}
 }
 $('file').addEventListener('change',async function(){
  var file=this.files&&this.files[0];if(!file)return;
