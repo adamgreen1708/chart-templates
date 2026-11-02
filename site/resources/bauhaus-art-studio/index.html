@@ -652,7 +652,10 @@ function renderCircleStudy(rows,p,dark,max){
  text('SUMMARY / '+(isArc?'ARC SWEEP':'ENCLOSED AREA'),113,337,'bold 12px Arial',dark);
  text('MAXIMUM',269,521,'bold 13px Arial',accent,'center');
  var maximum=rows.reduce(function(a,b){return b.value>a.value?b:a;},rows[0]);
- posterSafeText(v3Value(maximum.value),194,527,150,56,40,30,1,dark,true);
+ var heroValue=v3Value(maximum.value),heroFont=43;
+ ctx.font='bold '+heroFont+'px Arial';
+ while(heroFont>21&&ctx.measureText(heroValue).width>178){heroFont-=2;ctx.font='bold '+heroFont+'px Arial';}
+ text(heroValue,269,560,'bold '+heroFont+'px Arial',dark,'center');
  var heroName=labelTextFit(maximum.label,176,12);
  if(heroName)text(heroName,269,580,'bold 12px Arial',dark,'center');
  // In-poster key: every ring maps to a derived, explicitly named statistic.
