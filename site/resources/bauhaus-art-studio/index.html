@@ -47,6 +47,9 @@ permalink: /resources/bauhaus-art-studio/
 .bauhaus-page .section-caption{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#b4493a}
 .bauhaus-page .studio .field-help{font-size:11px;line-height:1.5;color:#636e74;margin-top:5px}
 .bauhaus-page .data-styling select{margin-bottom:5px}
+.bauhaus-page .poster-v3{border:1px solid #bdc4c6;background:#fffdf4;padding:13px;margin:14px 0 18px}
+.bauhaus-page .poster-v3 .buttons{margin:10px 0 8px}
+.bauhaus-page .poster-v3 button.active{background:#c43f2e;border-color:#c43f2e;color:white}
 .bauhaus-page .label-tools{margin-top:18px;padding:14px;background:#f6f7f7;border:1px solid #d8dddf;border-radius:3px}
 .bauhaus-page .label-toggle{display:flex;align-items:center;gap:10px;min-height:35px;font-size:13px;font-weight:700;cursor:pointer}
 .bauhaus-page .label-toggle input{width:18px;height:18px;accent-color:#bd493d}
@@ -124,7 +127,16 @@ permalink: /resources/bauhaus-art-studio/
 <div class="data-styling" aria-label="Creative data artwork controls">
   <span class="section-caption">05 / Compose the artwork</span>
   <h2>Same numbers. Different story.</h2>
-  <p class="muted">Try a composition, then change the shapes, colours and ordering. Every solid mark keeps an area encoding you can explain.</p>
+  <p class="muted">Choose a designed poster, or keep experimenting with the original geometric modes. Real data determines the measurements; decoration never invents a value.</p>
+  <div class="poster-v3">
+    <span class="section-caption">New / Poster Composer v3</span>
+    <p class="field-help">Two genuinely different print-inspired compositions using the CSV you selected.</p>
+    <div class="buttons" id="bh-poster-presets" role="group" aria-label="New data-art poster styles">
+      <button type="button" data-poster="mosaic">◩ Data Mosaic</button>
+      <button type="button" data-poster="broadside">▰ Typographic Broadside</button>
+    </div>
+    <p class="field-help" id="bh-poster-info">Mosaic: proportional tile areas. Broadside: proportional bar lengths with a typographic highlight for the largest value.</p>
+  </div>
   <div class="buttons" id="bh-data-presets" role="group" aria-label="Bauhaus composition presets">
     <button type="button" data-preset="patchwork" class="active">◩ Patchwork</button>
     <button type="button" data-preset="orbit">◎ Orbit</button>
@@ -136,6 +148,8 @@ permalink: /resources/bauhaus-art-studio/
     <option value="grid">Geometric grid</option>
     <option value="orbit">Orbit / constellation</option>
     <option value="ribbon">Rhythm ribbon</option>
+    <option value="mosaic">Data Mosaic (new)</option>
+    <option value="broadside">Typographic Broadside (new)</option>
   </select>
   <label class="field" for="bh-marks">Shape family</label>
   <select id="bh-marks">
@@ -209,7 +223,7 @@ permalink: /resources/bauhaus-art-studio/
 <p id="bh-status" class="status" role="status" aria-live="polite">Ready. Pick a shape or change the pattern.</p>
 <div id="bh-export" class="export" hidden><strong>Your square artwork is ready.</strong><p>On an iPhone, touch and hold the image to save it. On desktop, use the PNG link.</p><img id="bh-preview" alt="Your finished Bauhaus artwork as a PNG" width="960" height="960"><a href="#" id="bh-download" download="coffeetableviz-bauhaus.png">↓ Download PNG</a></div>
 </section></div>
-<section class="story"><strong>Form follows data.</strong> Pixel Art gives you squares to paint. Truchet gives you a rule to repeat. Bauhaus Art Studio adds circles, triangles, colour and — if you want — your own numbers. In Data Art mode, the solid shapes are measured rather than arbitrary: their filled areas represent the values when the zero-based proportional scale is selected. Load a local CSV or a public dataset from the Coffeetableviz GitHub repository on main. Larger CSVs can be explored with their first 64 rows; this limit is shown rather than hidden. Change the composition, shape family, colour rule and sorting, then make the headline, explanation and source line your own. The zero-based proportional area option preserves actual magnitude, while the optional contrast scale is explicitly labelled as min–max. Turn optional shape labels on to show the label, value, both, or displayed index; cramped labels are suppressed rather than colliding with their neighbours. The Hidden Miles preset recreates a fixed 3 × 4 stepped diagonal with a cream cutout in the top-right of every tile. Choose its palette for red geometry on yellow; the individually editable Cutout shape works in all palettes. The rest is an exercise in creative freedom. Inspired by <a href="{{ '/2024/12/31/running-in-shapes-a-bauhaus-inspired-journey-through-data/' | relative_url }}">Running in Shapes</a> and the original <a href="https://public.tableau.com/app/profile/adam.green4310/viz/HiddenMiles/Bauhausrunningtotal">Hidden Miles Tableau artwork</a>.</section>
+<section class="story"><strong>Form follows data.</strong> Pixel Art gives you squares to paint. Truchet gives you a rule to repeat. Bauhaus Art Studio adds circles, triangles, colour and — if you want — your own numbers. In Data Art mode, the solid shapes are measured rather than arbitrary: their filled areas represent the values when the zero-based proportional scale is selected. Load a local CSV or a public dataset from the Coffeetableviz GitHub repository on main. Larger CSVs can be explored with their first 64 rows; this limit is shown rather than hidden. Change the composition, shape family, colour rule and sorting, then make the headline, explanation and source line your own. The zero-based proportional area option preserves actual magnitude, while the optional contrast scale is explicitly labelled as min–max. Turn optional shape labels on to show the label, value, both, or displayed index; cramped labels are suppressed rather than colliding with their neighbours. Poster Composer v3 adds proportional-area Data Mosaic and zero-based Typographic Broadside designs, with separate composition rules instead of simply rearranging the same shapes. The Hidden Miles preset recreates a fixed 3 × 4 stepped diagonal with a cream cutout in the top-right of every tile. Choose its palette for red geometry on yellow; the individually editable Cutout shape works in all palettes. The rest is an exercise in creative freedom. Inspired by <a href="{{ '/2024/12/31/running-in-shapes-a-bauhaus-inspired-journey-through-data/' | relative_url }}">Running in Shapes</a> and the original <a href="https://public.tableau.com/app/profile/adam.green4310/viz/HiddenMiles/Bauhausrunningtotal">Hidden Miles Tableau artwork</a>.</section>
 </div></article>
 <script>
 (function(){
@@ -224,7 +238,7 @@ var state={mode:'rhythm',n:8,chaos:12,pal:0,seed:15,brush:0,edits:{},history:[],
 var imported=null,MAX_BYTES=2*1024*1024,githubLoadId=0,filterCategories=[],dataHitRegions=[],editorOverrides={headline:null,deck:null,credit:null};
 var visual={layout:'grid',marks:'mixed',colour:'bands',colourField:-1,sort:'source',scale:'zero',preset:'patchwork',showLabels:false,labelContent:'label',hideSmall:true};
 var markNames={mixed:'mixed shapes',circle:'circles',square:'squares',triangle:'triangles',half:'semicircles',quarter:'quarter circles'};
-var layoutNames={grid:'grid',orbit:'orbit',ribbon:'ribbon'};
+var layoutNames={grid:'grid',orbit:'orbit',ribbon:'ribbon',mosaic:'data mosaic',broadside:'typographic broadside'};
 var colourNames={bands:'four equal-width value bands',median:'above/below median',category:'category',decorative:'decorative sequence (not data)'};
 function status(s){$('status').textContent=s;}
 function hash(x,y,s){var h=Math.imul(x+21,374761393)^Math.imul(y+47,668265263)^Math.imul(state.seed+s,2246822519);h=Math.imul(h^(h>>>13),1274126177);return(h^(h>>>16))>>>0;}
@@ -267,6 +281,15 @@ function editorCopy(){
  var n=state.rows.length,metric=formatField(state.metric),shown=n+' row'+(n===1?'':'s'),cols=visual.colour==='category'&&visual.colourField<0?'above/below median':colourNames[visual.colour],shape=visual.marks==='mixed'?'mixed Bauhaus shapes':markNames[visual.marks];
  var scale=visual.scale==='contrast'?'min–max contrast (10% minimum area; not zero-based)':'area proportional to '+metric;
  var source=state.isDemo?'Illustrative sample — not recorded running data':(state.sourceName||'CSV');
+ if(visual.layout==='mosaic'||visual.layout==='broadside'){
+  var maxRow=state.rows.reduce(function(a,b){return b.value>a.value?b:a;},state.rows[0]);
+  return{
+   headline:visual.layout==='mosaic'?metric+': '+n+' pieces':(state.rows.filter(function(r){return r.value===maxRow.value;}).length>1?'Joint maximum: ':'Largest: ')+maxRow.label,
+   deck:visual.layout==='mosaic'?n+' observations · rectangle area ∝ '+metric+' · colour: '+cols:
+     n+' observations · bar length ∝ '+metric+' · standout: '+v3Value(maxRow.value),
+   credit:'Source: '+source+' · '+state.totalSelected+' matching rows'+(state.totalSelected>n?'; first '+n+' shown':'')+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]
+  };
+ }
  return {
   headline:metric+' in '+n+' forms',
   deck:shown+' · '+shape+' · '+scale+' · colour: '+cols+(visual.marks==='mixed'&&hasShapeCategories()?' · shapes use '+formatField(imported&&imported.headers[visual.colourField]||'category'):''),
@@ -400,8 +423,93 @@ function drawShapeLabels(positions,ink){
  });
  return{shown:shown,hidden:hidden};
 }
+
+function v3Format(v){
+ return Number(v).toLocaleString('en-GB',{maximumFractionDigits:2});
+}
+function v3Value(v){
+ var secs=Math.round(v);return /duration.*seconds/i.test(state.metric)?Math.floor(secs/60)+':'+String(secs%60).padStart(2,'0'):v3Format(v);
+}
+function v3Ink(hex){
+ var h=String(hex).replace('#',''),r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);
+ return .2126*r+.7152*g+.0722*b>155?'#242426':'#fff8e5';
+}
+function v3Colour(row,i,rows,median,min,max,categories,p){
+ if(visual.colour==='category'&&imported&&visual.colourField>=0&&!state.isDemo){
+  var record=imported.records[row.sourceIndex]||[];
+  var ci=categories.indexOf(record[visual.colourField]);
+  return p.c[ci>=0?ci%4:0];
+ }
+ if(visual.colour==='median'||visual.colour==='category')return p.c[row.value>=median?0:2];
+ if(visual.colour==='bands')return p.c[max===min?0:Math.min(3,Math.floor(4*(row.value-min)/(max-min+Number.EPSILON)))];
+ return p.c[(i+state.seed)%4];
+}
+function v3Treemap(rows){
+ var out=[];
+ function split(arr,x,y,w,h){
+  if(!arr.length||w<=0||h<=0)return;
+  if(arr.length===1){out.push({row:arr[0],x:x,y:y,w:w,h:h});return;}
+  var total=arr.reduce(function(n,r){return n+r.value;},0),sum=0,mid=1,error=Infinity;
+  for(var j=1;j<arr.length;j++){sum+=arr[j-1].value;var diff=Math.abs(total/2-sum);if(diff<error){error=diff;mid=j;}}
+  var ratio=arr.slice(0,mid).reduce(function(n,r){return n+r.value;},0)/total;
+  if(w>=h){split(arr.slice(0,mid),x,y,w*ratio,h);split(arr.slice(mid),x+w*ratio,y,w*(1-ratio),h);}
+  else{split(arr.slice(0,mid),x,y,w,h*ratio);split(arr.slice(mid),x,y+h*ratio,w,h*(1-ratio));}
+ }
+ split(rows.filter(function(r){return r.value>0;}),82,302,796,526);return out;
+}
+function renderPosterV3(rows,p,dark){
+ var values=rows.map(function(r){return r.value;}),max=Math.max.apply(null,values),min=Math.min.apply(null,values),v=values.slice().sort(function(a,b){return a-b;}),n=rows.length,median=n%2?v[(n-1)/2]:(v[n/2-1]+v[n/2])/2;
+ var source=editorCopy(),headline=editorOverrides.headline===null?source.headline:editorOverrides.headline,deck=editorOverrides.deck===null?source.deck:editorOverrides.deck,credit=editorOverrides.credit===null?source.credit:editorOverrides.credit;
+ drawWrapped(headline,82,146,45,792,2,46,dark,true);
+ drawWrapped(deck,83,226,15,790,2,21,p.muted,false);
+ var categories=[];
+ if(imported&&visual.colourField>=0&&!state.isDemo)rows.forEach(function(r){var c=imported.records[r.sourceIndex]&&imported.records[r.sourceIndex][visual.colourField];if(c!==undefined&&!categories.includes(c))categories.push(c);});
+ dataHitRegions=[];
+ if(visual.layout==='mosaic'){
+  ctx.fillStyle=p.c[3];ctx.fillRect(82,286,796,7);
+  var tiles=v3Treemap(rows);var index=new Map(rows.map(function(r,i){return[r,i];}));
+  tiles.forEach(function(t,i){
+   var rank=index.get(t.row),colour=v3Colour(t.row,rank,rows,median,min,max,categories,p),gap=3;
+   var x=t.x+gap/2,y=t.y+gap/2,w=Math.max(0,t.w-gap),h=Math.max(0,t.h-gap);
+   ctx.fillStyle=colour;ctx.fillRect(x,y,w,h);
+   // These corner arcs are explicitly decorative; rectangular tile area carries the value.
+   if(w>110&&h>90&&i%4===0){ctx.save();ctx.strokeStyle=v3Ink(colour);ctx.globalAlpha=.45;ctx.lineWidth=2;ctx.beginPath();ctx.arc(x+w-16,y+16,Math.min(w,h)*.16,Math.PI/2,Math.PI);ctx.stroke();ctx.restore();}
+   if(visual.showLabels&&w>53&&h>40){
+    var label=visual.labelContent==='value'?v3Value(t.row.value):visual.labelContent==='index'?String(rank+1):visual.labelContent==='both'?t.row.label+' · '+v3Value(t.row.value):t.row.label;
+    var font=Math.min(17,Math.max(10,Math.floor(Math.min(w,h)*.13)));
+    var textLabel=labelTextFit(label,w-16,font);
+    if(textLabel&&(!visual.hideSmall||Math.min(w,h)>68))text(textLabel,x+8,y+Math.min(27,h-10),'bold '+font+'px Arial',v3Ink(colour));
+   }
+   dataHitRegions.push({x:t.x+t.w/2,y:t.y+t.h/2,s:Math.min(t.w,t.h),bounds:{left:t.x,top:t.y,right:t.x+t.w,bottom:t.y+t.h},row:t.row,order:rank+1});
+  });
+  $('hint').textContent='Each rectangle area is proportional to the source value. '+(rows.length>tiles.length?rows.length-tiles.length+' zero-valued observations have no area. ':'')+'Tap any tile for its label and value.';
+ }else{
+  var maxRow=rows.reduce(function(a,b){return b.value>a.value?b:a;},rows[0]),hero=v3Value(maxRow.value);
+  ctx.fillStyle=p.c[3];ctx.fillRect(82,288,796,164);
+  text('LARGEST OBSERVATION / '+formatField(state.metric).toUpperCase(),110,320,'bold 14px Arial',v3Ink(p.c[3]));
+  drawWrapped(hero,105,427,90,355,1,90,v3Ink(p.c[3]),true);
+  drawWrapped(maxRow.label,514,355,28,324,2,33,v3Ink(p.c[3]),true);
+  var h=(824-479)/n,left=visual.showLabels?299:112,width=visual.showLabels?449:664;
+  rows.forEach(function(row,i){
+   var yy=479+i*h,barY=yy+h*.17,barH=Math.max(2,h*.64);
+   ctx.fillStyle=row.value===max?p.c[0]:p.c[2];ctx.fillRect(left,barY,width*(max>0?row.value/max:0),barH);
+   if(visual.showLabels&&h>=12){
+    var label=visual.labelContent==='value'?v3Value(row.value):visual.labelContent==='index'?String(i+1):visual.labelContent==='both'?row.label+' · '+v3Value(row.value):row.label;
+    var font=Math.max(10,Math.min(13,h*.52)),fitted=labelTextFit(label,left-108,font);
+    if(fitted)text(fitted,90,barY+barH-1,'bold '+font+'px Arial',dark);
+   }
+   dataHitRegions.push({x:479,y:yy+h/2,s:h,bounds:{left:82,top:yy,right:878,bottom:yy+h},row:row,order:i+1});
+  });
+  ctx.strokeStyle=p.c[3];ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(82,839);ctx.lineTo(878,839);ctx.stroke();
+  $('hint').textContent='Bar length represents each original value from zero; any tied maxima share the accent colour. '+(n>24?'For a less crowded poster, filter to about 8–24 records. ':'')+'Tap any row to inspect its source value.';
+ }
+ drawWrapped(credit,83,868,13,793,2,18,p.muted,false);
+ $('meta').textContent=n+' rows · '+layoutNames[visual.layout];
+ $('label-note').textContent=visual.showLabels?'Labels shown where space allows; inspect rows by tapping.':'Optional labels are off; tap a mark for the underlying value.';
+}
 function renderData(p,dark){
  var rows=dataRows(),n=rows.length,values=rows.map(function(r){return r.value;}),max=Math.max.apply(null,values),min=Math.min.apply(null,values),sorted=values.slice().sort(function(a,b){return a-b;}),median=n%2?sorted[(n-1)/2]:(sorted[n/2-1]+sorted[n/2])/2;
+ if(visual.layout==='mosaic'||visual.layout==='broadside'){renderPosterV3(rows,p,dark);return;}
  var auto=editorCopy(),headline=editorOverrides.headline===null?auto.headline:editorOverrides.headline,deck=editorOverrides.deck===null?auto.deck:editorOverrides.deck,credit=editorOverrides.credit===null?auto.credit:editorOverrides.credit;
  drawWrapped(headline,82,147,45,794,2,46,dark,true);
  drawWrapped(deck,83,225,16,790,2,22,p.muted,false);
@@ -465,9 +573,9 @@ function render(){
    $('hint').textContent='Tap a tile to paint the selected shape. Tap it again to rotate.';
   }
  }
- $('title').textContent=names[state.mode];
+ $('title').textContent=state.mode==='data'&&['mosaic','broadside'].includes(visual.layout)?'Poster Composer / '+layoutNames[visual.layout]:names[state.mode];
 }
-function refresh(){root.querySelectorAll('[data-mode]').forEach(function(b){var a=b.dataset.mode===state.mode;b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a));});root.querySelectorAll('[data-pal]').forEach(function(b){var a=+b.dataset.pal===state.pal;b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a));});root.querySelectorAll('[data-shape]').forEach(function(b){var a=+b.dataset.shape===state.brush;b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a));});$('scale').hidden=state.mode==='data';$('reference-note').hidden=state.mode!=='hidden';$('size').disabled=state.mode==='hidden';$('chaos').disabled=state.mode==='hidden';$('brushes-section').hidden=state.mode==='data';$('data').hidden=state.mode!=='data';$('reroll').disabled=state.mode==='hidden';$('undo').disabled=state.mode==='data';$('reset').disabled=state.mode==='data';$('share').disabled=state.mode==='data';$('size-out').textContent=state.mode==='hidden'?'3 × 4':state.n+' × '+state.n;$('chaos-out').textContent=state.chaos+'%';$('size').value=state.n;$('chaos').value=state.chaos;render();}
+function refresh(){root.querySelectorAll('[data-mode]').forEach(function(b){var a=b.dataset.mode===state.mode;b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a));});root.querySelectorAll('[data-pal]').forEach(function(b){var a=+b.dataset.pal===state.pal;b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a));});root.querySelectorAll('[data-shape]').forEach(function(b){var a=+b.dataset.shape===state.brush;b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a));});$('scale').hidden=state.mode==='data';$('reference-note').hidden=state.mode!=='hidden';$('size').disabled=state.mode==='hidden';$('chaos').disabled=state.mode==='hidden';$('brushes-section').hidden=state.mode==='data';$('data').hidden=state.mode!=='data';$('reroll').disabled=state.mode==='hidden'||(state.mode==='data'&&['mosaic','broadside'].includes(visual.layout));$('undo').disabled=state.mode==='data';$('reset').disabled=state.mode==='data';$('share').disabled=state.mode==='data';$('size-out').textContent=state.mode==='hidden'?'3 × 4':state.n+' × '+state.n;$('chaos-out').textContent=state.chaos+'%';$('size').value=state.n;$('chaos').value=state.chaos;render();}
 function parseCSV(source){var raw=source.replace(/^\uFEFF/,'').replace(/\r\n?/g,'\n');var delimiter=',',first=raw.split('\n')[0],counts=[',',';','\t'].map(function(d){var q=false,n=0;for(var i=0;i<first.length;i++){if(first[i]==='"'){if(q&&first[i+1]==='"')i++;else q=!q;}else if(!q&&first[i]===d)n++;}return n;});delimiter=[',',';','\t'][counts.indexOf(Math.max.apply(null,counts))];var rows=[],row=[],field='',quoted=false;for(var k=0;k<raw.length;k++){var ch=raw[k];if(ch==='"'){if(quoted&&raw[k+1]==='"'){field+='"';k++;}else if(field.trim()===''||quoted){quoted=!quoted;}else{throw Error('Unexpected quote on row '+(rows.length+1)+'.');}}else if(ch===delimiter&&!quoted){row.push(field.trim());field='';}else if(ch==='\n'&&!quoted){row.push(field.trim());if(row.some(function(v){return v!=='';}))rows.push(row);row=[];field='';}else field+=ch;}if(quoted)throw Error('CSV contains an unclosed quoted field.');row.push(field.trim());if(row.some(function(v){return v!=='';}))rows.push(row);
 if(rows.length<2)throw Error('CSV needs column headers and at least one data row.');if(rows.length>10001)throw Error('This edition supports up to 10,000 input rows.');var headers=rows[0];if(headers.length<2||headers.some(function(h){return!h;}))throw Error('CSV needs two or more named columns.');if(new Set(headers).size!==headers.length)throw Error('CSV header names must be unique.');if(rows.slice(1).some(function(r){return r.length!==headers.length;}))throw Error('Some CSV rows have a different number of columns.');return{headers:headers,records:rows.slice(1)};}
 function numeric(v){var s=String(v).trim().replace(/,/g,'');if(!s)return NaN;return Number(s);}
@@ -592,7 +700,7 @@ $('hide-small').addEventListener('change',function(){visual.hideSmall=this.check
  $(id).addEventListener('change',function(){
   var key={'layout':'layout','marks':'marks','colour-rule':'colour','colour-field':'colourField','sort':'sort','value-scale':'scale'}[id];
   visual[key]=id==='colour-field'?Number(this.value):this.value;visual.preset='';
-  syncEditor();if(state.mode==='data')render();
+  syncVisualControls();syncEditor();if(state.mode==='data')render();
   status('Composition updated. The selected numeric values have not changed.');
  });
 });
@@ -606,7 +714,21 @@ function syncVisualControls(){
  ['layout','marks','sort'].forEach(function(k){$(k).value=visual[k];});
  $('colour-rule').value=visual.colour;$('value-scale').value=visual.scale;$('colour-field').value=String(visual.colourField);
  root.querySelectorAll('[data-preset]').forEach(function(b){var ok=b.dataset.preset===visual.preset;b.classList.toggle('active',ok);b.setAttribute('aria-pressed',String(ok));});
+ root.querySelectorAll('[data-poster]').forEach(function(b){var ok=b.dataset.poster===visual.layout;b.classList.toggle('active',ok);b.setAttribute('aria-pressed',String(ok));});
+ var isPoster=['mosaic','broadside'].includes(visual.layout);
+ $('marks').disabled=isPoster;$('value-scale').disabled=isPoster;$('colour-rule').disabled=visual.layout==='broadside';
+ $('poster-info').textContent=visual.layout==='mosaic'?
+  'Measured rectangle area = original value / total. The chosen colour rule is applied; ornamental details do not represent extra data.':
+  visual.layout==='broadside'?'Bar length starts at zero. The maximum is highlighted. Colour and shape controls are unavailable here because they do not encode extra fields.':
+  'Pick Data Mosaic or Typographic Broadside above to produce an editorial poster rather than a regular tile grid.';
+ if(state.mode==='data')$('reroll').disabled=isPoster;
 }
+$('poster-presets').addEventListener('click',function(e){
+ var b=e.target.closest('[data-poster]');if(!b)return;
+ visual.layout=b.dataset.poster;visual.preset='';
+ syncVisualControls();syncEditor();if(state.mode==='data')render();
+ status(visual.layout==='mosaic'?'Data Mosaic: each rectangle has a proportional area.':'Typographic Broadside: bars are proportional and the maximum gets the headline.');
+});
 $('data-presets').addEventListener('click',function(e){
  var b=e.target.closest('[data-preset]');if(!b||!presets[b.dataset.preset])return;
  Object.assign(visual,presets[b.dataset.preset]);visual.preset=b.dataset.preset;syncVisualControls();syncEditor();if(state.mode==='data')render();
@@ -625,7 +747,12 @@ $('brushes').addEventListener('click',function(e){var b=e.target.closest('[data-
 $('size').addEventListener('input',function(){state.n=+this.value;state.edits={};state.history=[];refresh();status('Grid resized; previous manual edits cleared.');});
 $('chaos').addEventListener('input',function(){state.chaos=+this.value;refresh();});
 canvas.addEventListener('pointerdown',function(e){var b=canvas.getBoundingClientRect(),px=(e.clientX-b.left)/b.width*960,py=(e.clientY-b.top)/b.height*960;
-if(state.mode==='data'){var closest=null,dist=Infinity;dataHitRegions.forEach(function(h){var d=Math.hypot(px-h.x,py-h.y);if(d<h.s*.53&&d<dist){closest=h;dist=d;}});if(closest)status(closest.order+'. '+closest.row.label+': '+closest.row.value+(state.isDemo?' (illustrative)':''));return;}
+if(state.mode==='data'){var closest=null,dist=Infinity;
+ dataHitRegions.forEach(function(h){
+  if(h.bounds){if(px>=h.bounds.left&&px<=h.bounds.right&&py>=h.bounds.top&&py<=h.bounds.bottom){closest=h;dist=0;}return;}
+  var d=Math.hypot(px-h.x,py-h.y);if(d<h.s*.53&&d<dist){closest=h;dist=d;}
+ });
+ if(closest)status(closest.order+'. '+closest.row.label+': '+closest.row.value+(state.isDemo?' (illustrative)':''));return;}
 var layout=patternLayout(),ss=layout.z,x=Math.floor((px-layout.left)/ss),y=Math.floor((py-layout.top)/ss);if(x<0||y<0||x>=layout.cols||y>=layout.rows)return;state.history.push(JSON.stringify(state.edits));if(state.history.length>40)state.history.shift();var i=y*layout.cols+x,old=cell(x,y);state.edits[i]={t:state.brush,r:old.t===state.brush?(old.r+1)%4:0,k:old.k};render();status('Tile '+(i+1)+' updated.');});
 $('reroll').addEventListener('click',function(){state.seed++;if(state.mode==='data'){render();status('Decorative shapes and rotations remixed. Data values and mappings unchanged.');}else{state.edits={};state.history=[];refresh();status('Fresh arrangement.');}});
 $('reset').addEventListener('click',function(){state.edits={};state.history=[];refresh();status('Manual edits reset.');});
