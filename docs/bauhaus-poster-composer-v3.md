@@ -58,6 +58,14 @@ These two SVGs are *deterministic illustrative renders using the same source val
 - The existing label checkbox, sorting, palettes, local CSV and GitHub CSV source selection remain wired into the new modes.
 - Reverting to Patchwork still renders the existing engine; no chart renderers, blog output or data files are altered.
 
+## Category filter interaction — regression
+
+- After the user creates an artwork from a mapped CSV, changing **Select category** must automatically reapply the same source, label, numeric measure, category subset and current poster mode. The headline, row count, source credit and marks redraw together.
+- Changing **Optional category filter** back to all rows must also update the artwork and disclose the first-64 limit if relevant.
+- A local or GitHub CSV **newly loaded but not yet created** must not silently replace the previously rendered artwork. The user maps it and presses Create once; subsequent category changes are live.
+- Confirm the count and live update alongside the filter selector on mobile, rather than relying on a status message below the canvas.
+- Regression datasets: Bowie `album_title` (first album 14 tracks; second album 10; third album 9), plus the current site-analytics CSV. Test Mosaic, Broadside and an original creative layout. Preserve custom editorial text until the user explicitly restores automatic text.
+
 ## Before approving merge
 
 - Test *actual mobile Safari* interactions: GitHub file link and local upload, changing filters/modes, touch-to-inspect, optional labels and Save PNG.
