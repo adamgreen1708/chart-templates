@@ -284,7 +284,7 @@ function editorCopy(){
  if(visual.layout==='mosaic'||visual.layout==='broadside'){
   var maxRow=state.rows.reduce(function(a,b){return b.value>a.value?b:a;},state.rows[0]);
   return{
-   headline:visual.layout==='mosaic'?metric+': '+n+' pieces':'Largest: '+maxRow.label,
+   headline:visual.layout==='mosaic'?metric+': '+n+' pieces':(state.rows.filter(function(r){return r.value===maxRow.value;}).length>1?'Joint maximum: ':'Largest: ')+maxRow.label,
    deck:visual.layout==='mosaic'?n+' observations · rectangle area ∝ '+metric+' · colour: '+cols:
      n+' observations · bar length ∝ '+metric+' · standout: '+v3Value(maxRow.value),
    credit:'Source: '+source+' · '+state.totalSelected+' matching rows'+(state.totalSelected>n?'; first '+n+' shown':'')+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]
@@ -428,7 +428,7 @@ function v3Format(v){
  return Number(v).toLocaleString('en-GB',{maximumFractionDigits:2});
 }
 function v3Value(v){
- return /duration.*seconds/i.test(state.metric)?Math.floor(v/60)+':'+String(Math.round(v%60)).padStart(2,'0'):v3Format(v);
+ var secs=Math.round(v);return /duration.*seconds/i.test(state.metric)?Math.floor(secs/60)+':'+String(secs%60).padStart(2,'0'):v3Format(v);
 }
 function v3Ink(hex){
  var h=String(hex).replace('#',''),r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);
@@ -492,7 +492,7 @@ function renderPosterV3(rows,p,dark){
   var h=(824-479)/n,left=visual.showLabels?299:112,width=visual.showLabels?449:664;
   rows.forEach(function(row,i){
    var yy=479+i*h,barY=yy+h*.17,barH=Math.max(2,h*.64);
-   ctx.fillStyle=row===maxRow?p.c[0]:p.c[2];ctx.fillRect(left,barY,width*(max>0?row.value/max:0),barH);
+   ctx.fillStyle=row.value===max?p.c[0]:p.c[2];ctx.fillRect(left,barY,width*(max>0?row.value/max:0),barH);
    if(visual.showLabels&&h>=12){
     var label=visual.labelContent==='value'?v3Value(row.value):visual.labelContent==='index'?String(i+1):visual.labelContent==='both'?row.label+' · '+v3Value(row.value):row.label;
     var font=Math.max(10,Math.min(13,h*.52)),fitted=labelTextFit(label,left-108,font);
@@ -501,7 +501,7 @@ function renderPosterV3(rows,p,dark){
    dataHitRegions.push({x:479,y:yy+h/2,s:h,bounds:{left:82,top:yy,right:878,bottom:yy+h},row:row,order:i+1});
   });
   ctx.strokeStyle=p.c[3];ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(82,839);ctx.lineTo(878,839);ctx.stroke();
-  $('hint').textContent='Each bar length is proportional to the source value. The longest bar sets the scale; tap a row to inspect its value.';
+  $('hint').textContent='Bar length represents each original value from zero; any tied maxima share the accent colour. '+(n>24?'For a less crowded poster, filter to about 8–24 records. ':'')+'Tap any row to inspect its source value.';
  }
  drawWrapped(credit,83,868,13,793,2,18,p.muted,false);
  $('meta').textContent=n+' rows · '+layoutNames[visual.layout];
