@@ -942,6 +942,10 @@ function syncVisualControls(){
  $('circle-encoding').value=visual.circleEncoding;
  $('gallery-finish').disabled=!isPoster;
  $('gallery-finish').value=visual.galleryFinish;
+ if(isPoster){
+  var encoding=visual.layout==='mosaic'?'rectangle area':visual.layout==='broadside'?'bar length':visual.layout==='stripes'?'stripe length':visual.circleEncoding==='arc'?'arc sweep':'disc area';
+  $('gallery-info').textContent='Poster finish changes colours and graphic styling only. '+encoding+' remains the active numeric encoding; existing source values do not change.';
+ }
  $('marks').disabled=isPoster;$('value-scale').disabled=isPoster;
  $('colour-rule').disabled=['broadside','stripes','circles'].includes(visual.layout);
  $('colour-field').disabled=['broadside','stripes','circles'].includes(visual.layout);
