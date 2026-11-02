@@ -69,6 +69,29 @@ Deterministic, original, source-based SVG design previews, **not deployed app sc
 - [Bowie Circle Study: disc area](previews/bauhaus-v4-bowie-circle-area.svg)
 - [Bowie Circle Study: arc sweep](previews/bauhaus-v4-bowie-circle-arcs.svg)
 
+## Typography system — pre-merge editorial QA
+
+The poster now has one shared type hierarchy across **Data Mosaic, Typographic Broadside, Stripe Study and Circle Study**, independent of colour finish. Keep the data labels small, but avoid solving collisions by shrinking them below legibility.
+
+| Text role | Canvas type | Rule |
+|---|---|---|
+| Headline | 42px preferred, fitting down to 30px | Up to two lines, confined to the top headline band |
+| Explanation/deck | 16px preferred, fitting down to 14px | Up to two lines, below headline |
+| Source | 12px | Up to two lines, entirely below plotted data |
+| Small section headings | 11px bold | Same size for SUMMARY, INDIVIDUAL ARCS/DISCS and MAXIMUM |
+| Summary statistic names | 11px bold | MAX / UPPER Q / MEDIAN / MIN are consistently aligned |
+| Summary statistic values | 11px normal | Right-aligned against a common edge; source numbers unchanged |
+| Data mark labels | 11px normal | Constant size in Mosaic, Broadside, Stripe and Circle |
+| Featured maximum | Larger editorial type | The deliberate focal number, not an annotation |
+
+**Fitting and omission:** All small labels are measured using Canvas font metrics at a fixed 11px size. A too-long label receives a width-safe ellipsis; no tiny 8–9px fallback. A label is omitted where the cell or row lacks the necessary height, preserving interactive tap-to-inspect for the full original name and numerical value. In dense 64-row layouts, individual labels are intentionally suppressed rather than drawn on top of one another. The Ring Summary key remains visible even when individual labels are suppressed.
+
+**Contrast and consistency:** Normal data annotations are calm, not all bold. Section headings and key names are semantically distinct through weight rather than inconsistent size. The controlled source and title layout from Stage 1 remains in place, and the original free-play studio's typography is unchanged.
+
+**Tests completed in the branch:** embedded JS syntax; actual Bowie CSV with 14 rows; 14 small labels each in Mosaic, Broadside, Stripe; 11px summary key and 11px individual labels in Circle, including area and arc modes; all Label / Value / Both / Index mappings; 64-row label suppression in Stripe and Circle; same dataset/source footer, category changes, PNG action and legacy Patchwork regression. Refreshed the three Bowie SVG design previews to match the small-label typography.
+
+**Further visual gate:** Inspect rendered PNG output on mobile Safari and a desktop browser to confirm font weight, truncation, caption spacing and the four statistic labels remain readable. The automated Canvas tests verify draw operations, not real-device font rasterisation.
+
 ## Completed checks
 
 - Embedded JavaScript syntax valid on the Stage 2 branch.
