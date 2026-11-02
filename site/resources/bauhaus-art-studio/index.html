@@ -147,7 +147,7 @@ permalink: /resources/bauhaus-art-studio/
         <option value="ink">Ink Study · monochrome / red accent</option>
         <option value="studio">Studio Original · existing palette</option>
       </select>
-      <p class="field-help" id="bh-gallery-info">Warm paper, an economical palette and delicate geometric linework. The artwork and graphic hierarchy are original, not reproductions of posters for sale.</p>
+      <p class="field-help" id="bh-gallery-info">Warm paper, an economical palette and delicate geometric linework. Gallery finishes override the standard palette swatches; tapping a palette swatch switches back to Studio Original. These artworks are original, not reproductions.</p>
     </div>
     <p class="field-help" id="bh-poster-info">Mosaic: proportional tile areas. Broadside: proportional bar lengths with a typographic highlight for the largest value.</p>
   </div>
@@ -819,7 +819,14 @@ syncVisualControls();
 $('apply').addEventListener('click',applyImported);
 $('demo').addEventListener('click',function(){state.rows=demo.map(function(r,i){return{label:r.label,value:r.value,sourceIndex:i};});state.isDemo=true;activeArtworkSource=null;editorOverrides={headline:null,deck:null,credit:null};visual.colourField=-1;syncVisualControls();state.metric='Miles (illustrative)';state.totalSelected=12;state.sourceLabel='ILLUSTRATIVE SAMPLE';state.sourceName='Illustrative example';state.filterName='';syncEditor();state.mode='data';refresh();status('Illustrative 12-month running example. Not actual running data.');});
 $('modes').addEventListener('click',function(e){var b=e.target.closest('[data-mode]');if(!b)return;state.mode=b.dataset.mode;state.edits={};state.history=[];if(state.mode==='hidden')state.pal=1;if(state.mode==='data')syncEditor();refresh();status(names[state.mode]+' selected.');});
-$('palettes').addEventListener('click',function(e){var b=e.target.closest('[data-pal]');if(!b)return;state.pal=+b.dataset.pal;refresh();status('Palette updated.');});
+$('palettes').addEventListener('click',function(e){var b=e.target.closest('[data-pal]');if(!b)return;state.pal=+b.dataset.pal;
+ // Directly choosing a Studio palette takes precedence over a gallery finish,
+ // so the user's palette choice always produces a visible change.
+ if(state.mode==='data'&&['mosaic','broadside'].includes(visual.layout)){
+  visual.galleryFinish='studio';$('gallery-finish').value='studio';
+  $('gallery-info').textContent='Studio Original: manual palette applied. Choose another Poster finish to restore a gallery colour treatment.';
+ }
+ refresh();status('Palette updated.');});
 $('brushes').addEventListener('click',function(e){var b=e.target.closest('[data-shape]');if(!b)return;state.brush=+b.dataset.shape;refresh();});
 $('size').addEventListener('input',function(){state.n=+this.value;state.edits={};state.history=[];refresh();status('Grid resized; previous manual edits cleared.');});
 $('chaos').addEventListener('input',function(){state.chaos=+this.value;refresh();});
