@@ -313,7 +313,7 @@ function editorCopy(){
       (state.rows.filter(function(r){return r.value===maxRow.value;}).length>1?'Joint maximum: ':'Largest: ')+maxRow.label,
    deck:visual.layout==='mosaic'?n+' observations · rectangle area ∝ '+metric+' · colour: '+cols:
      visual.layout==='stripes'?n+' observations · stripe length ∝ '+metric+' · red highlights maximum':
-     visual.layout==='circles'?n+' observations · '+(visual.circleEncoding==='area'?'disc area ∝ '+metric:'arc sweep ∝ value / maximum')+' · decorative centre rings':
+     visual.layout==='circles'?n+' observations · '+(visual.circleEncoding==='area'?'summary ring and disc area ∝ '+metric:'summary ring and mark arc sweep ∝ value / maximum')+' · max / upper quartile / median / min':
      n+' observations · bar length ∝ '+metric+' · standout: '+v3Value(maxRow.value),
    credit:'Source: '+source+' · '+state.totalSelected+' matching rows'+(state.totalSelected>n?'; first '+n+' shown':'')+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]
   };
@@ -607,28 +607,68 @@ function renderStripeStudy(rows,p,dark,max){
 }
 // The large hero ring is purely decorative. Smaller discs/ring sweeps on the
 // right carry the numeric encoding at one consistent maximum scale.
+// Four distribution statistics are source-derived: max, upper quartile (R7),
+// median and min. The hero rings use the SAME geometric encoding as the marks.
+function circleSummaryStatistics(rows){
+ var sorted=rows.map(function(r){return r.value;}).slice().sort(function(a,b){return a-b;});
+ function percentile(frac){
+  var position=(sorted.length-1)*frac,lo=Math.floor(position),hi=Math.ceil(position),weight=position-lo;
+  return sorted[lo]*(1-weight)+sorted[hi]*weight;
+ }
+ return[
+  {name:'MAX',value:sorted[sorted.length-1]},
+  {name:'UPPER Q',value:percentile(.75)},
+  {name:'MEDIAN',value:percentile(.5)},
+  {name:'MIN',value:sorted[0]}
+ ];
+}
 function renderCircleStudy(rows,p,dark,max){
  var n=rows.length,cols=Math.ceil(Math.sqrt(n)),rws=Math.ceil(n/cols);
  var x0=460,x1=860,y0=332,y1=811,cellW=(x1-x0)/cols,cellH=(y1-y0)/rws;
  var rmax=Math.min(cellW,cellH)*.37;
+ var stats=circleSummaryStatistics(rows),isArc=visual.circleEncoding==='arc';
+ var accent=visual.galleryFinish==='ink'?p.c[1]:p.c[0];
+ var colours=[accent,p.c[1],p.c[2],p.c[3]];
+ if(visual.galleryFinish==='ink')colours=[accent,p.c[0],p.c[2],p.c[3]];
+ // Four original summary rings, not visual filler:
+ // Area mode: area ENCLOSED by each outline circle / max area = stat/max.
+ // Arc mode: angle swept at fixed radii / full circle = stat/max.
  ctx.save();
- ctx.strokeStyle=p.c[3];ctx.lineWidth=2;
- for(var j=0;j<4;j++){
-  ctx.globalAlpha=j===0?1:.48;
-  ctx.beginPath();ctx.arc(269,543,95+j*20,0,Math.PI*2);ctx.stroke();
- }
- ctx.globalAlpha=1;ctx.fillStyle=p.c[0];ctx.beginPath();ctx.arc(269,543,13,0,Math.PI*2);ctx.fill();
+ stats.forEach(function(stat,i){
+  var ratio=max>0?stat.value/max:0,outer=156,trackRadius=156-i*27;
+  var radius=isArc?trackRadius:outer*Math.sqrt(ratio);
+  if(radius<=0)return;
+  if(isArc){
+   ctx.strokeStyle=dark;ctx.globalAlpha=.11;ctx.lineWidth=5;
+   ctx.beginPath();ctx.arc(269,541,radius,-Math.PI/2,Math.PI*1.5);ctx.stroke();
+   ctx.globalAlpha=1;ctx.strokeStyle=colours[i];ctx.lineWidth=5;
+   ctx.beginPath();ctx.arc(269,541,radius,-Math.PI/2,-Math.PI/2+2*Math.PI*ratio);ctx.stroke();
+  }else{
+   ctx.globalAlpha=1;ctx.strokeStyle=colours[i];ctx.lineWidth=3.8;
+   ctx.beginPath();ctx.arc(269,541,radius,0,Math.PI*2);ctx.stroke();
+  }
+ });
  ctx.restore();
+ text('SUMMARY / '+(isArc?'ARC SWEEP':'ENCLOSED AREA'),113,337,'bold 12px Arial',dark);
+ text('MAXIMUM',269,521,'bold 13px Arial',accent,'center');
  var maximum=rows.reduce(function(a,b){return b.value>a.value?b:a;},rows[0]);
- posterSafeText('MAX / '+formatField(state.metric).toUpperCase(),113,714,307,25,14,12,1,visual.galleryFinish==='ink'?p.c[1]:p.c[0],true);
- posterSafeText(v3Value(maximum.value),112,743,305,57,45,31,1,dark,true);
- posterSafeText(maximum.label,112,804,319,30,14,12,1,dark,false);
+ posterSafeText(v3Value(maximum.value),194,527,150,56,40,30,1,dark,true);
+ var heroName=labelTextFit(maximum.label,176,12);
+ if(heroName)text(heroName,269,580,'bold 12px Arial',dark,'center');
+ // In-poster key: every ring maps to a derived, explicitly named statistic.
+ stats.forEach(function(stat,i){
+  var y=721+i*27;
+  ctx.fillStyle=colours[i];ctx.fillRect(116,y-11,12,12);
+  text(stat.name,140,y,'bold 12px Arial',dark);
+  text(v3Value(stat.value),401,y,'bold 12px Arial',dark,'right');
+ });
+ text('INDIVIDUAL '+(isArc?'ARCS':'DISCS'),471,312,'bold 12px Arial',dark);
  dataHitRegions=[];
  rows.forEach(function(row,i){
   var cx=x0+cellW*(i%cols+.5),cy=y0+cellH*(Math.floor(i/cols)+.5),fraction=max>0?row.value/max:0;
-  var stroke=row.value===max?(visual.galleryFinish==='ink'?p.c[1]:p.c[0]):(visual.galleryFinish==='ink'?p.c[0]:p.c[2]);
+  var stroke=row.value===max?accent:(visual.galleryFinish==='ink'?p.c[0]:p.c[2]);
   ctx.save();
-  if(visual.circleEncoding==='arc'){
+  if(isArc){
    ctx.strokeStyle=p.c[3];ctx.globalAlpha=.18;ctx.lineWidth=Math.max(2,Math.min(8,rmax*.18));
    ctx.beginPath();ctx.arc(cx,cy,rmax,-Math.PI/2,Math.PI*1.5);ctx.stroke();
    ctx.globalAlpha=1;ctx.strokeStyle=stroke;
@@ -642,16 +682,16 @@ function renderCircleStudy(rows,p,dark,max){
   if(visual.showLabels&&Math.min(cellW,cellH)>58&&n<=24){
    var label=visual.labelContent==='value'?v3Value(row.value):visual.labelContent==='index'?String(i+1):
     visual.labelContent==='both'?row.label+' · '+v3Value(row.value):row.label;
-   var t=labelTextFit(label,cellW-8,Math.min(12,Math.max(9,cellW*.12)));
-   if(t)text(t,cx,cy+cellH*.47,'bold '+Math.min(12,Math.max(9,cellW*.12))+'px Arial',dark,'center');
+   var font=Math.min(12,Math.max(9,cellW*.12)),t=labelTextFit(label,cellW-8,font);
+   if(t)text(t,cx,cy+cellH*.47,'bold '+font+'px Arial',dark,'center');
   }
   dataHitRegions.push({x:cx,y:cy,s:Math.min(cellW,cellH),bounds:{left:x0+(i%cols)*cellW,top:y0+Math.floor(i/cols)*cellH,
     right:x0+(i%cols+1)*cellW,bottom:y0+(Math.floor(i/cols)+1)*cellH},row:row,order:i+1});
  });
- $('hint').textContent=visual.circleEncoding==='arc'?
-  'Each arc uses one constant radius and line width; angular sweep represents value / maximum. Large concentric hero rings are decorative.':
-  'Each small filled disc area represents value from zero; its radius is proportional to √value. Large concentric hero rings are decorative.';
- $('label-note').textContent=visual.showLabels?'Circle labels appear where space allows; tap any disc or arc cell for the complete value.':'Circle labels are off; tap any disc or arc cell for the original value.';
+ $('hint').textContent=isArc?
+  'Both large summary rings and individual arcs encode angle swept / full circle = value / maximum. Summary: max, upper quartile (linear interpolation), median and minimum.':
+  'Both large summary rings and individual discs encode enclosed area proportional to values. Summary: max, upper quartile (linear interpolation), median and minimum. Equal statistics may overlap.';
+ $('label-note').textContent=visual.showLabels?'Circle labels appear where space allows; tap any individual disc or arc cell for the complete value.':'Circle labels are off; tap any individual disc or arc cell for the original value.';
 }
 function renderPosterV3(rows,p,dark){
  var values=rows.map(function(r){return r.value;}),max=Math.max.apply(null,values),min=Math.min.apply(null,values),v=values.slice().sort(function(a,b){return a-b;}),n=rows.length,median=n%2?v[(n-1)/2]:(v[n/2-1]+v[n/2])/2;
