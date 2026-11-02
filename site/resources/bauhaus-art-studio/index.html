@@ -122,7 +122,7 @@ permalink: /resources/bauhaus-art-studio/
 <label class="field" for="bh-value">Numeric value column</label><select id="bh-value" disabled><option>Choose a CSV first</option></select>
 <label class="field" for="bh-filter">Optional category filter</label><select id="bh-filter" disabled><option value="-1">All rows</option></select>
 <label class="field" for="bh-filter-value">Select category</label><select id="bh-filter-value" disabled><option value="-1">All categories</option></select>
-<p id="bh-filter-info" class="muted">For larger datasets, select a category to keep the artwork meaningful.</p>
+<p id="bh-filter-info" class="muted">After creating an artwork, selecting a category updates it immediately. For larger datasets, filter to keep the result meaningful.</p>
 <button type="button" id="bh-apply" class="primarybutton" disabled>Create artwork from selected data</button>
 <div class="data-styling" aria-label="Creative data artwork controls">
   <span class="section-caption">05 / Compose the artwork</span>
@@ -595,6 +595,7 @@ function applyImported(){
  // All matching rows are validated before the first 64 are selected.
  if(!vals.some(function(v){return v.value>0;})){status('At least one value must be greater than zero.');return;}
  state.rows=vals;state.mode='data';state.isDemo=false;activeArtworkSource=imported;state.metric=imported.headers[vi];state.totalSelected=records.length;state.sourceLabel=imported.sourceLabel;state.sourceName=imported.name||'CSV';state.filterName=filterField>=0&&categoryIndex>=0?imported.headers[filterField]+' = '+filterCategories[categoryIndex]:'';syncEditor();refresh();
+ $('filter-info').textContent=records.length+' matching rows'+(records.length>64?' · first 64 displayed':'')+' · artwork updated below.';
  status('Created '+vals.length+' shapes from '+imported.headers[vi]+'.'+(records.length>64?' Only the FIRST 64 of '+records.length+' matching source rows are shown.':''));
 }
 function makeOption(sel,value,label){
