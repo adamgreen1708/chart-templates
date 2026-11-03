@@ -134,7 +134,7 @@ permalink: /resources/bauhaus-art-studio/
   <p class="muted">Choose a designed poster, or keep experimenting with the original geometric modes. Real data determines the measurements; decoration never invents a value.</p>
   <div class="poster-v3">
     <span class="section-caption">New / Poster Composer v3</span>
-    <p class="field-help">Two genuinely different print-inspired compositions using the CSV you selected.</p>
+    <p class="field-help">Four data-driven poster families. Geometry is calculated from your CSV; colour finishes stay separate.</p>
     <div class="buttons" id="bh-poster-presets" role="group" aria-label="New data-art poster styles">
       <button type="button" data-poster="mosaic">◩ Data Mosaic</button>
       <button type="button" data-poster="broadside">▰ Typographic Broadside</button>
@@ -151,11 +151,33 @@ permalink: /resources/bauhaus-art-studio/
       </select>
       <p class="field-help" id="bh-gallery-info">Warm paper, an economical palette and delicate geometric linework. Gallery finishes override the standard palette swatches; tapping a palette swatch switches back to Studio Original. These artworks are original, not reproductions.</p>
     </div>
-    <label class="field" for="bh-circle-encoding">Circle Study mapping</label>
-    <select id="bh-circle-encoding" disabled>
-      <option value="area">Disc area ∝ value</option>
-      <option value="arc">Arc sweep ∝ value / maximum</option>
-    </select>
+    <div id="bh-broadside-options">
+      <label class="field" for="bh-broadside-style">Typographic composition</label>
+      <select id="bh-broadside-style" disabled>
+        <option value="architectural">Architectural type / oversized figures</option>
+        <option value="diagonal">Diagonal type / rotated words</option>
+      </select>
+    </div>
+    <div id="bh-stripe-options">
+      <label class="field" for="bh-stripe-style">Stripe Study composition</label>
+      <select id="bh-stripe-style" disabled>
+        <option value="sun">Stripe + Sun / measured verticals</option>
+        <option value="flow">Flow Lines / equal-length paths</option>
+        <option value="classic">Classic horizontal stripes</option>
+      </select>
+    </div>
+    <div id="bh-circle-options">
+      <label class="field" for="bh-circle-encoding">Circle Study mapping</label>
+      <select id="bh-circle-encoding" disabled>
+        <option value="area">Concentric Area / circle area ∝ value</option>
+        <option value="arc">Concentric Arcs / sweep ∝ value / maximum</option>
+      </select>
+      <label class="field" for="bh-circle-scope">Which values?</label>
+      <select id="bh-circle-scope" disabled>
+        <option value="range">Actual minimum and maximum</option>
+        <option value="records">Individual records (first 16 displayed)</option>
+      </select>
+    </div>
     <p class="field-help" id="bh-poster-info">Choose a poster style to see its precise data-to-geometry mapping.</p>
   </div>
   <div class="buttons" id="bh-data-presets" role="group" aria-label="Bauhaus composition presets">
@@ -171,8 +193,8 @@ permalink: /resources/bauhaus-art-studio/
     <option value="ribbon">Rhythm ribbon</option>
     <option value="mosaic">Data Mosaic (new)</option>
     <option value="broadside">Typographic Broadside</option>
-    <option value="stripes">Stripe Study (new)</option>
-    <option value="circles">Circle Study (new)</option>
+    <option value="stripes">Stripe Study</option>
+    <option value="circles">Circle Study</option>
   </select>
   <label class="field" for="bh-marks">Shape family</label>
   <select id="bh-marks">
@@ -259,7 +281,7 @@ var names={rhythm:'Geometric rhythm',radial:'Around the centre',hidden:'Hidden M
 var demo=[42,58,74,63,85,91,68,82,60,95,70,65].map(function(value,i){return{label:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][i],value:value};});
 var state={mode:'rhythm',n:8,chaos:12,pal:0,seed:15,brush:0,edits:{},history:[],rows:demo.slice(),isDemo:true,metric:'Miles (illustrative)',sourceLabel:'ILLUSTRATIVE SAMPLE',totalSelected:12};
 var imported=null,MAX_BYTES=2*1024*1024,githubLoadId=0,filterCategories=[],dataHitRegions=[],editorOverrides={headline:null,deck:null,credit:null},activeArtworkSource=null;
-var visual={layout:'grid',marks:'mixed',colour:'bands',colourField:-1,sort:'source',scale:'zero',preset:'patchwork',showLabels:false,labelContent:'label',hideSmall:true,galleryFinish:'paper',circleEncoding:'area'};
+var visual={layout:'grid',marks:'mixed',colour:'bands',colourField:-1,sort:'source',scale:'zero',preset:'patchwork',showLabels:false,labelContent:'label',hideSmall:true,galleryFinish:'paper',circleEncoding:'area',circleScope:'range',stripeStyle:'sun',broadsideStyle:'architectural'};
 var markNames={mixed:'mixed shapes',circle:'circles',square:'squares',triangle:'triangles',half:'semicircles',quarter:'quarter circles'};
 var layoutNames={grid:'grid',orbit:'orbit',ribbon:'ribbon',mosaic:'data mosaic',broadside:'typographic broadside',stripes:'stripe study',circles:'circle study'};
 var colourNames={bands:'four equal-width value bands',median:'above/below median',category:'category',decorative:'decorative sequence (not data)'};
@@ -569,6 +591,14 @@ function posterSafeText(raw,x,top,width,height,preferred,minFont,maxLines,colour
 // Poster typography hierarchy. Fixed small labels retain visual rhythm across
 // Mosaic, Broadside, Stripe, Circle and the four gallery finishes.
 var posterType={headline:42,deck:16,footer:12,section:11,label:11,heroCircle:43};
+function posterExactValue(raw,x,y,maxWidth,ink,align){
+ // Numeric values must not be shortened to ambiguous strings.
+ var value=String(raw);
+ ctx.font=posterType.label+'px Arial';
+ if(ctx.measureText(value).width>maxWidth)return false;
+ text(value,x,y,posterType.label+'px Arial',ink,align||'left');
+ return true;
+}
 function posterSmallLabel(raw,x,y,maxWidth,ink,align){
  if(!(maxWidth>=18))return false;
  var fitted=labelTextFit(String(raw),maxWidth,posterType.label);
@@ -726,8 +756,18 @@ function renderPosterV3(rows,p,dark){
     if(w>110&&h>90&&i%4===0){ctx.save();ctx.strokeStyle=v3Ink(colour);ctx.globalAlpha=.45;ctx.lineWidth=2;ctx.beginPath();ctx.arc(x+w-16,y+16,Math.min(w,h)*.16,Math.PI/2,Math.PI);ctx.stroke();ctx.restore();}
    }else galleryTileOrnament(x,y,w,h,p,v3Ink(colour),i);
    if(visual.showLabels&&w>53&&h>40){
-    var label=visual.labelContent==='value'?v3Value(t.row.value):visual.labelContent==='index'?String(rank+1):visual.labelContent==='both'?t.row.label+' · '+v3Value(t.row.value):t.row.label;
-    if(!visual.hideSmall||Math.min(w,h)>68)posterSmallLabel(label,x+8,y+Math.min(25,h-10),w-16,v3Ink(colour));
+    var ink=v3Ink(colour);
+    if(visual.labelContent==='both'){
+     // Two independent measurements: first line may ellipsise; the value never does.
+     if(h>=48&&w>=57&&(!visual.hideSmall||Math.min(w,h)>68)){
+      posterSmallLabel(t.row.label,x+8,y+18,w-16,ink);
+      posterExactValue(v3Value(t.row.value),x+8,y+33,w-16,ink);
+     }
+    }else if(!visual.hideSmall||Math.min(w,h)>68){
+     var label=visual.labelContent==='value'?v3Value(t.row.value):visual.labelContent==='index'?String(rank+1):t.row.label;
+     if(visual.labelContent==='value')posterExactValue(label,x+8,y+Math.min(25,h-10),w-16,ink);
+     else posterSmallLabel(label,x+8,y+Math.min(25,h-10),w-16,ink);
+    }
    }
    dataHitRegions.push({x:t.x+t.w/2,y:t.y+t.h/2,s:Math.min(t.w,t.h),bounds:{left:t.x,top:t.y,right:t.x+t.w,bottom:t.y+t.h},row:t.row,order:rank+1});
   });
@@ -983,8 +1023,17 @@ function syncVisualControls(){
  root.querySelectorAll('[data-preset]').forEach(function(b){var ok=b.dataset.preset===visual.preset;b.classList.toggle('active',ok);b.setAttribute('aria-pressed',String(ok));});
  root.querySelectorAll('[data-poster]').forEach(function(b){var ok=b.dataset.poster===visual.layout;b.classList.toggle('active',ok);b.setAttribute('aria-pressed',String(ok));});
  var isPoster=['mosaic','broadside','stripes','circles'].includes(visual.layout);
+ $('broadside-options').hidden=visual.layout!=='broadside';
+ $('broadside-style').disabled=visual.layout!=='broadside';
+ $('broadside-style').value=visual.broadsideStyle;
+ $('stripe-options').hidden=visual.layout!=='stripes';
+ $('stripe-style').disabled=visual.layout!=='stripes';
+ $('stripe-style').value=visual.stripeStyle;
+ $('circle-options').hidden=visual.layout!=='circles';
  $('circle-encoding').disabled=visual.layout!=='circles';
  $('circle-encoding').value=visual.circleEncoding;
+ $('circle-scope').disabled=visual.layout!=='circles';
+ $('circle-scope').value=visual.circleScope;
  $('gallery-finish').disabled=!isPoster;
  $('gallery-finish').value=visual.galleryFinish;
  if(isPoster){
@@ -1011,6 +1060,21 @@ $('gallery-finish').addEventListener('change',function(){
  $('gallery-info').textContent=messages[this.value]+' The geometric data encoding is unchanged: '+(visual.layout==='mosaic'?'rectangle area':visual.layout==='broadside'?'bar length':visual.layout==='stripes'?'stripe length':visual.circleEncoding==='arc'?'arc sweep':'disc area')+'.';
  if(state.mode==='data'&&['mosaic','broadside','stripes','circles'].includes(visual.layout))render();
  status('Poster finish updated. Data values and category mapping unchanged.');
+});
+$('broadside-style').addEventListener('change',function(){
+ visual.broadsideStyle=this.value;syncVisualControls();syncEditor();
+ if(state.mode==='data'&&visual.layout==='broadside')render();
+ status('Typography composition updated. Values remain unchanged.');
+});
+$('stripe-style').addEventListener('change',function(){
+ visual.stripeStyle=this.value;syncVisualControls();syncEditor();
+ if(state.mode==='data'&&visual.layout==='stripes')render();
+ status('Stripe composition updated; exact source values preserved.');
+});
+$('circle-scope').addEventListener('change',function(){
+ visual.circleScope=this.value;syncVisualControls();syncEditor();
+ if(state.mode==='data'&&visual.layout==='circles')render();
+ status('Circle source scope updated; no quartile or median summary is calculated.');
 });
 $('circle-encoding').addEventListener('change',function(){
  visual.circleEncoding=this.value;
