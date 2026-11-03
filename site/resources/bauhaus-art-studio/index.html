@@ -618,7 +618,98 @@ function posterSourceCopy(p){
 
 // Ink-line poster engine. The three parallel lines per record are an ornamental
 // constant; each line shares the same zero-based proportional length.
+
+function renderStripeSun(rows,p,dark,max){
+ var minimum=Math.min.apply(null,rows.map(function(r){return r.value;}));
+ var x0=108,x1=852,step=(x1-x0)/rows.length,baseline=800,top=355,barMax=419;
+ var mid=(x0+x1)/2,cy=552,outer=190;
+ // Behind the stripes, the outlined disc is the maximum-area reference.
+ // The filled circle area / max circle area = min / max.
+ if(max>0){
+  ctx.save();
+  ctx.strokeStyle=p.c[3];ctx.globalAlpha=.46;ctx.lineWidth=2;
+  ctx.beginPath();ctx.arc(mid,cy,outer,0,Math.PI*2);ctx.stroke();
+  ctx.globalAlpha=.87;ctx.fillStyle=p.c[0];
+  ctx.beginPath();ctx.arc(mid,cy,outer*Math.sqrt(minimum/max),0,Math.PI*2);ctx.fill();
+  ctx.restore();
+ }
+ text('VERTICAL STRIPES / VALUE FROM ZERO',115,324,'bold 11px Arial',dark);
+ text('DISC AREA / MIN ÷ MAX',648,324,'bold 11px Arial',dark);
+ rows.forEach(function(row,i){
+  var centre=x0+(i+.5)*step,width=Math.min(12,Math.max(3,step*.42)),height=max>0?barMax*row.value/max:0;
+  if(height>0){ctx.fillStyle=dark;ctx.fillRect(centre-width/2,baseline-height,width,height);}
+  if(visual.showLabels&&step>=33){
+   var label=visual.labelContent==='value'?v3Value(row.value):visual.labelContent==='index'?String(i+1):
+      visual.labelContent==='both'?row.label+' · '+v3Value(row.value):row.label;
+   posterSmallLabel(label,centre,817,step-4,dark,'center');
+  }
+  dataHitRegions.push({x:centre,y:600,s:step,bounds:{left:x0+i*step,top:top,right:x0+(i+1)*step,bottom:829},row:row,order:i+1});
+ });
+ ctx.strokeStyle=dark;ctx.lineWidth=1.7;ctx.beginPath();ctx.moveTo(x0,baseline+2);ctx.lineTo(x1,baseline+2);ctx.stroke();
+ text('MIN '+v3Value(minimum)+' / MAX '+v3Value(max),119,347,'bold 11px Arial',dark);
+ $('hint').textContent='Every vertical stripe height equals value / maximum, from a shared zero baseline. The red circle has an enclosed area proportional to the actual minimum relative to an outlined maximum reference. '+(rows.length>24?'Filter to fewer records for visible labels. ':'')+'Tap any stripe column to inspect its value.';
+ $('label-note').textContent='Stripe labels are shown only where the columns fit 11px text; all values remain available on tap.';
+}
+// Elliptical U paths use exact, numerically integrated path lengths.
+// Every full path is L px long; only its coloured portion encodes value/max.
+function flowGeometry(i,count){
+ var t=count<=1?.5:i/(count-1),rx=67+200*t,ry=26+117*t,cx=480,bend=618,arcPoints=[],arcLength=0,steps=80;
+ for(var j=0;j<=steps;j++){
+  var angle=Math.PI-Math.PI*j/steps;
+  arcPoints.push({x:cx+rx*Math.cos(angle),y:bend+ry*Math.sin(angle)});
+  if(j)arcLength+=Math.hypot(arcPoints[j].x-arcPoints[j-1].x,arcPoints[j].y-arcPoints[j-1].y);
+ }
+ var total=760,leg=(total-arcLength)/2;
+ if(leg<0)throw Error('Flow path too long for common length.');
+ var pts=[{x:cx-rx,y:bend-leg},{x:cx-rx,y:bend}].concat(arcPoints.slice(1),[{x:cx+rx,y:bend-leg}]);
+ return{points:pts,length:total,arcLength:arcLength,straightLength:leg};
+}
+function drawMeasuredPolyline(points,limit,colour,width){
+ if(points.length<2||limit<=0)return;
+ ctx.save();ctx.strokeStyle=colour;ctx.lineWidth=width;ctx.lineJoin='round';ctx.lineCap='round';
+ ctx.beginPath();ctx.moveTo(points[0].x,points[0].y);
+ var used=0;
+ for(var j=1;j<points.length;j++){
+  var a=points[j-1],b=points[j],segment=Math.hypot(b.x-a.x,b.y-a.y);
+  if(used+segment<=limit+1e-8){ctx.lineTo(b.x,b.y);used+=segment;}
+  else{var fraction=Math.max(0,Math.min(1,(limit-used)/segment));ctx.lineTo(a.x+(b.x-a.x)*fraction,a.y+(b.y-a.y)*fraction);break;}
+ }
+ ctx.stroke();ctx.restore();
+}
+function renderStripeFlow(rows,p,dark,max){
+ var total=760,all=rows.length;
+ text('FLOW LINES / EQUAL FULL PATH LENGTHS',110,311,'bold 11px Arial',dark);
+ text('COLOURED PATH / VALUE ÷ MAXIMUM',110,329,'bold 11px Arial',dark);
+ var categoryNames=[];
+ if(visual.colour==='category'&&visual.colourField>=0&&imported&&!state.isDemo){
+  rows.forEach(function(r){var cat=imported.records[r.sourceIndex]&&imported.records[r.sourceIndex][visual.colourField];if(cat!==undefined&&!categoryNames.includes(cat))categoryNames.push(cat);});
+ }
+ rows.forEach(function(row,i){
+  var flow=flowGeometry(i,all),length=total*(max>0?row.value/max:0),colour=row.value===max?p.c[0]:p.c[2];
+  if(categoryNames.length){
+   var c=imported.records[row.sourceIndex][visual.colourField];
+   colour=p.c[Math.max(0,categoryNames.indexOf(c))%4];
+  }
+  drawMeasuredPolyline(flow.points,total,p.c[3],all>28?1.5:4);
+  // Pale reference tracks at low opacity, coloured measured portion on top.
+  // Full paths are all 760px, even though different bend radii are used.
+  drawMeasuredPolyline(flow.points,total,p.bg,all>28?1:2);
+  drawMeasuredPolyline(flow.points,length,colour,all>28?2:5);
+  var first=flow.points[0];
+  if(visual.showLabels&&all<=16){
+   var label=visual.labelContent==='value'?v3Value(row.value):visual.labelContent==='index'?String(i+1):
+     visual.labelContent==='both'?row.label+' · '+v3Value(row.value):row.label;
+   posterSmallLabel(label,first.x-10,first.y+4,Math.max(38,first.x-88),dark,'right');
+  }
+  dataHitRegions.push({row:row,order:i+1,polyline:flow.points,fullLength:total,usedLength:length});
+ });
+ text(all+' EQUALLY LONG CURVES · REFERENCE LENGTH '+total,110,820,'bold 11px Arial',dark);
+ $('hint').textContent='Every flowing path measures exactly '+total+' pixels from end to end. Only the coloured length is proportional to the original value / maximum. '+(categoryNames.length?'Colours represent the selected source category. ':'Colours highlight the maximum and otherwise follow the selected finish. ')+'Tap near a line for its exact label/value.';
+ $('label-note').textContent='Flow captions are optional 11px labels; curves remain inspectable by tapping near each path.';
+}
 function renderStripeStudy(rows,p,dark,max){
+ if(visual.stripeStyle==='sun'){renderStripeSun(rows,p,dark,max);return;}
+ if(visual.stripeStyle==='flow'){renderStripeFlow(rows,p,dark,max);return;}
  var top=312,bottom=820,space=(bottom-top)/rows.length;
  var withLabels=visual.showLabels,left=withLabels?315:123,width=withLabels?515:708;
  var rowHits=[];
@@ -1150,6 +1241,15 @@ $('chaos').addEventListener('input',function(){state.chaos=+this.value;refresh()
 canvas.addEventListener('pointerdown',function(e){var b=canvas.getBoundingClientRect(),px=(e.clientX-b.left)/b.width*960,py=(e.clientY-b.top)/b.height*960;
 if(state.mode==='data'){var closest=null,dist=Infinity;
  dataHitRegions.forEach(function(h){
+  if(h.polyline){
+   for(var z=1;z<h.polyline.length;z++){
+    var a=h.polyline[z-1],b=h.polyline[z],dx=b.x-a.x,dy=b.y-a.y;
+    var frac=Math.max(0,Math.min(1,((px-a.x)*dx+(py-a.y)*dy)/(dx*dx+dy*dy||1)));
+    var dd=Math.hypot(px-(a.x+frac*dx),py-(a.y+frac*dy));
+    if(dd<Math.min(dist,16)){closest=h;dist=dd;}
+   }
+   return;
+  }
   if(h.bounds){if(px>=h.bounds.left&&px<=h.bounds.right&&py>=h.bounds.top&&py<=h.bounds.bottom){closest=h;dist=0;}return;}
   var d=Math.hypot(px-h.x,py-h.y);if(d<h.s*.53&&d<dist){closest=h;dist=d;}
  });
