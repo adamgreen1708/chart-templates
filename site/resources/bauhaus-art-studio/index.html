@@ -336,7 +336,7 @@ function editorCopy(){
    deck:visual.layout==='mosaic'?n+' observations · rectangle area ∝ '+metric+' · colour: '+cols:
      visual.layout==='stripes'?n+' observations · '+(visual.stripeStyle==='sun'?'vertical stripe height ∝ '+metric+'; circle area = minimum / maximum':visual.stripeStyle==='flow'?'coloured path length ∝ '+metric+' / maximum; equal full paths':'stripe length ∝ '+metric+'; red highlights maximum'):
      visual.layout==='circles'?n+' selected records · '+(visual.circleScope==='range'?'minimum and maximum only':Math.min(n,16)+' actual values shown'+(n>16?' (first in sorted order)':''))+' · '+(visual.circleEncoding==='area'?'whole circle area ∝ '+metric:'arc sweep ∝ value / maximum'):
-     n+' observations · bar length ∝ '+metric+' · standout: '+v3Value(maxRow.value),
+     n+' observations · '+(visual.broadsideStyle==='diagonal'?'diagonal stripe length':'upright stripe height')+' ∝ '+metric+' · actual maximum '+v3Value(maxRow.value),
    credit:'Source: '+source+' · '+state.totalSelected+' matching rows'+(state.totalSelected>n?'; first '+n+' shown':'')+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]
   };
  }
@@ -817,55 +817,115 @@ function posterHeroNumber(value,x,y,maxWidth,maxFont,ink){
  if(ctx.measureText(txt).width>maxWidth)txt=labelTextFit(txt,maxWidth,font);
  text(txt,x,y,'bold '+font+'px Arial',ink);
 }
-function posterBroadsideBars(rows,p,dark,max,left,top,width,height){
- var step=height/rows.length,barWidth=width-46;
+
+// In the two type-led posters, the *stripes* are the quantitative layer.
+// Letter size, layout, cropped/rotated words, circles and blocks are editorial.
+function broadsideFittedType(raw,x,baseline,width,preferred,minimum,ink){
+ var value=String(raw).replace(/\s+/g,' ').trim(),font=preferred;
+ ctx.font='900 '+font+'px Arial';
+ while(font>minimum&&ctx.measureText(value).width>width){
+  font-=2;ctx.font='900 '+font+'px Arial';
+ }
+ if(ctx.measureText(value).width>width){
+  var limit=String(value);
+  while(limit.length&&ctx.measureText(limit+'…').width>width)limit=limit.slice(0,-1);
+  value=limit?limit+'…':'';
+ }
+ if(value)text(value,x,baseline,'900 '+font+'px Arial',ink);
+ return font;
+}
+function broadsideTwoLineName(name,x,top,width,ink,firstSize){
+ var words=String(name).toUpperCase().split(/\s+/).filter(Boolean),cut=Math.max(1,Math.ceil(words.length/2));
+ var first=words.slice(0,cut).join(' '),second=words.slice(cut).join(' ');
+ var lineHeight=70;
+ broadsideFittedType(first,x,top+62,width,firstSize,32,ink);
+ if(second)broadsideFittedType(second,x,top+lineHeight+62,width,firstSize,32,ink);
+}
+function broadsideVerticalData(rows,p,dark,max){
+ var x0=123,x1=827,top=320,baseline=518,maximumHeight=172,step=(x1-x0)/rows.length;
+ text('MEASURED HEIGHT / ZERO AT BASE',119,299,'bold 11px Arial',dark);
  rows.forEach(function(row,i){
-  var centre=top+(i+.5)*step,bw=max>0?row.value/max*barWidth:0;
-  var thickness=Math.min(7,Math.max(1.2,step*.43));
-  if(bw>0){ctx.fillStyle=row.value===max?p.c[0]:dark;ctx.fillRect(left,centre-thickness/2,bw,thickness);}
-  if(step>=14){
-   posterSmallLabel(String(i+1).padStart(2,'0'),left-25,centre+3,22,p.muted,'right');
-   if(visual.showLabels)posterExactValue(v3Value(row.value),left+barWidth+7,centre+3,45,dark);
+  var xx=x0+(i+.5)*step,barWidth=Math.max(1.8,Math.min(14,step*.41)),
+   barHeight=max>0?maximumHeight*row.value/max:0;
+  if(barHeight>0){
+   ctx.fillStyle=row.value===max?p.c[0]:dark;
+   ctx.fillRect(xx-barWidth/2,baseline-barHeight,barWidth,barHeight);
   }
-  dataHitRegions.push({x:left+barWidth/2,y:centre,s:step,
-   bounds:{left:left-32,top:top+i*step,right:left+width+1,bottom:top+(i+1)*step},row:row,order:i+1});
+  dataHitRegions.push({row:row,order:i+1,bounds:{
+   left:x0+i*step,top:top,right:x0+(i+1)*step,bottom:baseline+14}});
  });
+ ctx.strokeStyle=dark;ctx.lineWidth=1.7;
+ ctx.beginPath();ctx.moveTo(x0,baseline+2);ctx.lineTo(x1,baseline+2);ctx.stroke();
+}
+function broadsideDiagonalData(rows,p,dark,max){
+ // Each angled rule starts at a consistent zero line in its own row;
+ // Euclidean line length encodes original value / maximum.
+ var x=526,top=356,step=262/rows.length,maximumLength=236,angle=-.18;
+ text('MEASURED / LENGTH',514,330,'bold 11px Arial',dark);
+ rows.forEach(function(row,i){
+  var y=top+(i+.5)*step,length=max>0?maximumLength*row.value/max:0,
+    dx=Math.cos(angle)*length,dy=Math.sin(angle)*length;
+  var a={x:x,y:y},b={x:x+dx,y:y+dy};
+  if(length>0){
+   ctx.strokeStyle=row.value===max?p.c[0]:dark;
+   ctx.lineWidth=Math.max(1.5,Math.min(5,step*.22));
+   ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
+  }
+  dataHitRegions.push({row:row,order:i+1,polyline:[a,b],bounds:{
+   left:500,top:top+i*step-4,right:790,bottom:top+(i+1)*step+4}});
+ });
+ ctx.strokeStyle=p.c[2];ctx.lineWidth=1.3;
+ ctx.beginPath();ctx.moveTo(x,top);ctx.lineTo(x,top+262);ctx.stroke();
 }
 function renderBroadsideV5(rows,p,dark,max){
- var main=rows.reduce(function(a,b){return b.value>a.value?b:a;},rows[0]);
- var isDiagonal=visual.broadsideStyle==='diagonal',name=String(main.label),hero=v3Value(main.value);
- var px=p.c[0],ink=v3Ink(p.bg);
- // Geometric framework is graphic scaffolding, not a second numerical encoding.
+ var primary=rows.reduce(function(a,b){return b.value>a.value?b:a;},rows[0]);
+ var name=String(primary.label).toUpperCase(),hero=v3Value(primary.value),count=String(rows.length).padStart(2,'0');
+ var cutup=visual.broadsideStyle==='diagonal',accent=p.c[0],contrast=v3Ink(p.bg);
  ctx.save();ctx.beginPath();ctx.rect(82,285,796,550);ctx.clip();
- if(!isDiagonal){
-  // Type-led architecture with a quiet vertical data rail.
-  ctx.fillStyle=px;ctx.fillRect(103,298,7,462);
-  ctx.strokeStyle=p.c[2];ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(119,492);ctx.lineTo(872,492);ctx.stroke();
-  text('MAX / '+formatField(state.metric).toUpperCase(),126,338,'bold 12px Arial',ink);
-  posterHeroNumber(hero,121,476,474,150,ink);
-  posterSafeText(name.toUpperCase(),128,522,469,142,66,31,2,ink,true);
-  // A count is source-derived typography, deliberately not a size encoding.
-  text(String(rows.length).padStart(2,'0'),730,390,'bold 90px Arial',px);
-  text('OBSERVATIONS',733,416,'bold 11px Arial',ink);
-  text('ZERO-BASED VALUES',647,473,'bold 11px Arial',ink);
-  posterBroadsideBars(rows,p,ink,max,659,509,205,306);
+ if(!cutup){
+  // TYPE MONUMENT. The actual numeric series forms a striped roof over
+  // the giant typography. The red disc marks a compositor's focal point,
+  // and never represents an unreported numerical value.
+  ctx.fillStyle=accent;ctx.globalAlpha=.91;
+  ctx.beginPath();ctx.arc(716,624,164,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;
+  broadsideVerticalData(rows,p,contrast,max);
+  text('NO.',111,553,'bold 11px Arial',contrast);
+  text(count,757,579,'900 78px Arial',contrast);
+  text('ROWS',763,602,'bold 11px Arial',contrast);
+  // Oversized actual maximum spans the full editorial width.
+  broadsideFittedType(hero,99,703,746,239,80,contrast);
+  // The selected source label is split across large typographic lines.
+  broadsideTwoLineName(name,113,711,711,contrast,70);
+  // Two construction lines intentionally break normal chart symmetry.
+  ctx.strokeStyle=contrast;ctx.lineWidth=1.6;
+  ctx.beginPath();ctx.moveTo(82,738);ctx.lineTo(861,738);ctx.stroke();
  }else{
-  // Use actual row text as a large rotated typographic element.
-  ctx.save();ctx.translate(147,389);ctx.rotate(-.19);
-  posterSafeText(name.toUpperCase(),0,0,581,180,89,37,2,px,true);
+  // CUT-UP TYPE: collage-like lettering and colour planes. The geometric
+  // panels are an original composition, not additional quantitative marks.
+  ctx.fillStyle=p.c[2];ctx.fillRect(100,354,188,165);
+  ctx.fillStyle=p.c[1];ctx.fillRect(297,354,111,223);
+  ctx.fillStyle=accent;ctx.beginPath();ctx.arc(752,691,120,0,Math.PI*2);ctx.fill();
+  // An editorial, rotated source label slices across the colour blocks.
+  ctx.save();ctx.translate(118,522);ctx.rotate(-Math.PI/2);
+  broadsideFittedType(name,0,0,302,73,30,contrast);
   ctx.restore();
-  ctx.strokeStyle=px;ctx.lineWidth=6;
-  ctx.beginPath();ctx.moveTo(121,611);ctx.lineTo(557,516);ctx.stroke();
-  text('LARGEST / '+formatField(state.metric).toUpperCase(),124,652,'bold 12px Arial',ink);
-  posterHeroNumber(hero,117,792,490,144,ink);
-  text(String(rows.length).padStart(2,'0'),682,407,'bold 91px Arial',px);
-  text('RECORDS',701,433,'bold 11px Arial',ink);
-  text('MEASURED LENGTHS',647,471,'bold 11px Arial',ink);
-  posterBroadsideBars(rows,p,ink,max,659,494,205,313);
+  // A second angled source-derived type line cuts the layout in half.
+  ctx.save();ctx.translate(290,485);ctx.rotate(-.27);
+  broadsideFittedType(name,0,0,467,100,38,contrast);
+  ctx.restore();
+  broadsideDiagonalData(rows,p,contrast,max);
+  broadsideFittedType(hero,178,799,645,215,70,contrast);
+  ctx.save();ctx.translate(836,801);ctx.rotate(-Math.PI/2);
+  text(count+' / RECORDS',0,0,'bold 22px Arial',contrast);
+  ctx.restore();
+  ctx.strokeStyle=p.c[2];ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(110,810);ctx.lineTo(690,810);ctx.stroke();
  }
  ctx.restore();
- $('hint').textContent='Experimental typography presents the actual maximum and selected label. Small bars on the right encode every row using a shared zero baseline; font size and rotation do not encode quantity. '+(rows.length>24?'Filter to about 8–24 records for clearer labels. ':'')+'Tap a small bar row to inspect its value.';
- $('label-note').textContent='The largest value is actual source data. Caption labels are 11px when room permits; the full value is available by tapping.';
+ $('hint').textContent=cutup?
+  'Cut-up Type: diagonal stripe lengths, not type size, represent each source value from zero against the selected maximum. Rotated words, colour planes and circular shapes are editorial. Tap near a stripe to inspect the exact value.':
+  'Type Monument: upright stripe heights represent individual source values against a common zero baseline. The giant number is the actual selected maximum; its font size and the red circle are editorial, not encoded measures. Tap a stripe column to inspect its value.';
+ $('label-note').textContent='Small measured stripe marks are kept free of long captions; each can be tapped for the full original label and value.';
 }
 function renderPosterV3(rows,p,dark){
  var values=rows.map(function(r){return r.value;}),max=Math.max.apply(null,values),min=Math.min.apply(null,values),v=values.slice().sort(function(a,b){return a-b;}),n=rows.length,median=n%2?v[(n-1)/2]:(v[n/2-1]+v[n/2])/2;
@@ -1162,7 +1222,7 @@ function syncVisualControls(){
  $('colour-field').disabled=['broadside','circles'].includes(visual.layout)||(visual.layout==='stripes'&&!flowColour)||visual.colour!=='category'||!imported;
  $('poster-info').textContent=visual.layout==='mosaic'?
   'Measured rectangle area = original value / total. The chosen colour rule is applied; ornamental details do not represent extra data.':
-  visual.layout==='broadside'?'Oversized source-grounded typography plus accurate zero-based miniature bars. The two designs differ in layout, not values.':
+  visual.layout==='broadside'?(visual.broadsideStyle==='diagonal'?'Cut-up letters, intersecting geometry and measured diagonal stripe lengths.':'Monumental source typography and measured vertical stripes from a common zero baseline.'):
   visual.layout==='stripes'?(visual.stripeStyle==='sun'?'Vertical height = source value / maximum; circle enclosed area = minimum / maximum.':
    visual.stripeStyle==='flow'?'Every full flow path has identical length; its coloured portion = source value / maximum. Optional category colours come from the mapped source column.':
    'Classic stripes: zero-based proportional lengths.'):
