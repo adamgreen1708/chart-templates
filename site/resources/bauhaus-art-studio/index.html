@@ -133,8 +133,8 @@ permalink: /resources/bauhaus-art-studio/
   <h2>Same numbers. Different story.</h2>
   <p class="muted">Choose a designed poster, or keep experimenting with the original geometric modes. Real data determines the measurements; decoration never invents a value.</p>
   <div class="poster-v3">
-    <span class="section-caption">New / Poster Composer v3</span>
-    <p class="field-help">Two genuinely different print-inspired compositions using the CSV you selected.</p>
+    <span class="section-caption">Poster Composer / Four art families</span>
+    <p class="field-help">Four data-driven poster families. Geometry is calculated from your CSV; colour finishes stay separate.</p>
     <div class="buttons" id="bh-poster-presets" role="group" aria-label="New data-art poster styles">
       <button type="button" data-poster="mosaic">◩ Data Mosaic</button>
       <button type="button" data-poster="broadside">▰ Typographic Broadside</button>
@@ -151,11 +151,33 @@ permalink: /resources/bauhaus-art-studio/
       </select>
       <p class="field-help" id="bh-gallery-info">Warm paper, an economical palette and delicate geometric linework. Gallery finishes override the standard palette swatches; tapping a palette swatch switches back to Studio Original. These artworks are original, not reproductions.</p>
     </div>
-    <label class="field" for="bh-circle-encoding">Circle Study mapping</label>
-    <select id="bh-circle-encoding" disabled>
-      <option value="area">Disc area ∝ value</option>
-      <option value="arc">Arc sweep ∝ value / maximum</option>
-    </select>
+    <div id="bh-broadside-options">
+      <label class="field" for="bh-broadside-style">Typographic composition</label>
+      <select id="bh-broadside-style" disabled>
+        <option value="architectural">Type Monument / number + measured stripes</option>
+        <option value="diagonal">Cut-up Type / rotated letters + diagonal stripes</option>
+      </select>
+    </div>
+    <div id="bh-stripe-options">
+      <label class="field" for="bh-stripe-style">Stripe Study composition</label>
+      <select id="bh-stripe-style" disabled>
+        <option value="sun">Stripe + Sun / measured verticals</option>
+        <option value="flow">Flow Lines / equal-length paths</option>
+        <option value="classic">Classic horizontal stripes</option>
+      </select>
+    </div>
+    <div id="bh-circle-options">
+      <label class="field" for="bh-circle-encoding">Circle Study mapping</label>
+      <select id="bh-circle-encoding" disabled>
+        <option value="area">Concentric Area / circle area ∝ value</option>
+        <option value="arc">Concentric Arcs / sweep ∝ value / maximum</option>
+      </select>
+      <label class="field" for="bh-circle-scope">Which values?</label>
+      <select id="bh-circle-scope" disabled>
+        <option value="records">Individual records (first 16 displayed)</option>
+        <option value="range">Actual minimum and maximum</option>
+      </select>
+    </div>
     <p class="field-help" id="bh-poster-info">Choose a poster style to see its precise data-to-geometry mapping.</p>
   </div>
   <div class="buttons" id="bh-data-presets" role="group" aria-label="Bauhaus composition presets">
@@ -171,8 +193,8 @@ permalink: /resources/bauhaus-art-studio/
     <option value="ribbon">Rhythm ribbon</option>
     <option value="mosaic">Data Mosaic (new)</option>
     <option value="broadside">Typographic Broadside</option>
-    <option value="stripes">Stripe Study (new)</option>
-    <option value="circles">Circle Study (new)</option>
+    <option value="stripes">Stripe Study</option>
+    <option value="circles">Circle Study</option>
   </select>
   <label class="field" for="bh-marks">Shape family</label>
   <select id="bh-marks">
@@ -259,7 +281,7 @@ var names={rhythm:'Geometric rhythm',radial:'Around the centre',hidden:'Hidden M
 var demo=[42,58,74,63,85,91,68,82,60,95,70,65].map(function(value,i){return{label:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][i],value:value};});
 var state={mode:'rhythm',n:8,chaos:12,pal:0,seed:15,brush:0,edits:{},history:[],rows:demo.slice(),isDemo:true,metric:'Miles (illustrative)',sourceLabel:'ILLUSTRATIVE SAMPLE',totalSelected:12};
 var imported=null,MAX_BYTES=2*1024*1024,githubLoadId=0,filterCategories=[],dataHitRegions=[],editorOverrides={headline:null,deck:null,credit:null},activeArtworkSource=null;
-var visual={layout:'grid',marks:'mixed',colour:'bands',colourField:-1,sort:'source',scale:'zero',preset:'patchwork',showLabels:false,labelContent:'label',hideSmall:true,galleryFinish:'paper',circleEncoding:'area'};
+var visual={layout:'grid',marks:'mixed',colour:'bands',colourField:-1,sort:'source',scale:'zero',preset:'patchwork',showLabels:false,labelContent:'label',hideSmall:true,galleryFinish:'paper',circleEncoding:'area',circleScope:'records',stripeStyle:'sun',broadsideStyle:'architectural'};
 var markNames={mixed:'mixed shapes',circle:'circles',square:'squares',triangle:'triangles',half:'semicircles',quarter:'quarter circles'};
 var layoutNames={grid:'grid',orbit:'orbit',ribbon:'ribbon',mosaic:'data mosaic',broadside:'typographic broadside',stripes:'stripe study',circles:'circle study'};
 var colourNames={bands:'four equal-width value bands',median:'above/below median',category:'category',decorative:'decorative sequence (not data)'};
@@ -309,12 +331,12 @@ function editorCopy(){
   return{
    headline:visual.layout==='mosaic'?metric+': '+n+' pieces':
      visual.layout==='stripes'?metric+' / '+n+' stripes':
-     visual.layout==='circles'?metric+' / '+n+' circles':
-      (state.rows.filter(function(r){return r.value===maxRow.value;}).length>1?'Joint maximum: ':'Largest: ')+maxRow.label,
+     visual.layout==='circles'?metric+' / '+(visual.circleScope==='range'?'min + max':Math.min(n,16)+' circles'):
+      'TYPE / '+metric.toUpperCase(),
    deck:visual.layout==='mosaic'?n+' observations · rectangle area ∝ '+metric+' · colour: '+cols:
-     visual.layout==='stripes'?n+' observations · stripe length ∝ '+metric+' · red highlights maximum':
-     visual.layout==='circles'?n+' observations · '+(visual.circleEncoding==='area'?'summary ring and disc area ∝ '+metric:'summary ring and mark arc sweep ∝ value / maximum')+' · max / upper quartile / median / min':
-     n+' observations · bar length ∝ '+metric+' · standout: '+v3Value(maxRow.value),
+     visual.layout==='stripes'?n+' observations · '+(visual.stripeStyle==='sun'?'vertical stripe height ∝ '+metric+'; circle area = minimum / maximum':visual.stripeStyle==='flow'?'coloured path length ∝ '+metric+' / maximum; equal full paths':'stripe length ∝ '+metric+'; red highlights maximum'):
+     visual.layout==='circles'?n+' selected records · '+(visual.circleScope==='range'?'minimum and maximum only':Math.min(n,16)+' actual values shown'+(n>16?' (first in sorted order)':''))+' · '+(visual.circleEncoding==='area'?'whole circle area ∝ '+metric:'arc sweep ∝ value / maximum'):
+     'MAX: '+maxRow.label+' · '+v3Value(maxRow.value)+' · '+n+' records · '+(visual.broadsideStyle==='diagonal'?'measured diagonal stripe lengths':'measured upright stripe heights'),
    credit:'Source: '+source+' · '+state.totalSelected+' matching rows'+(state.totalSelected>n?'; first '+n+' shown':'')+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]
   };
  }
@@ -569,6 +591,14 @@ function posterSafeText(raw,x,top,width,height,preferred,minFont,maxLines,colour
 // Poster typography hierarchy. Fixed small labels retain visual rhythm across
 // Mosaic, Broadside, Stripe, Circle and the four gallery finishes.
 var posterType={headline:42,deck:16,footer:12,section:11,label:11,heroCircle:43};
+function posterExactValue(raw,x,y,maxWidth,ink,align){
+ // Numeric values must not be shortened to ambiguous strings.
+ var value=String(raw);
+ ctx.font=posterType.label+'px Arial';
+ if(ctx.measureText(value).width>maxWidth)return false;
+ text(value,x,y,posterType.label+'px Arial',ink,align||'left');
+ return true;
+}
 function posterSmallLabel(raw,x,y,maxWidth,ink,align){
  if(!(maxWidth>=18))return false;
  var fitted=labelTextFit(String(raw),maxWidth,posterType.label);
@@ -588,7 +618,98 @@ function posterSourceCopy(p){
 
 // Ink-line poster engine. The three parallel lines per record are an ornamental
 // constant; each line shares the same zero-based proportional length.
+
+function renderStripeSun(rows,p,dark,max){
+ var minimum=Math.min.apply(null,rows.map(function(r){return r.value;}));
+ var x0=108,x1=852,step=(x1-x0)/rows.length,baseline=800,top=355,barMax=419;
+ var mid=(x0+x1)/2,cy=552,outer=190;
+ // Behind the stripes, the outlined disc is the maximum-area reference.
+ // The filled circle area / max circle area = min / max.
+ if(max>0){
+  ctx.save();
+  ctx.strokeStyle=p.c[3];ctx.globalAlpha=.46;ctx.lineWidth=2;
+  ctx.beginPath();ctx.arc(mid,cy,outer,0,Math.PI*2);ctx.stroke();
+  ctx.globalAlpha=.87;ctx.fillStyle=p.c[0];
+  ctx.beginPath();ctx.arc(mid,cy,outer*Math.sqrt(minimum/max),0,Math.PI*2);ctx.fill();
+  ctx.restore();
+ }
+ text('VERTICAL STRIPES / VALUE FROM ZERO',115,324,'bold 11px Arial',dark);
+ text('DISC AREA / MIN ÷ MAX',648,324,'bold 11px Arial',dark);
+ rows.forEach(function(row,i){
+  var centre=x0+(i+.5)*step,width=Math.min(12,Math.max(3,step*.42)),height=max>0?barMax*row.value/max:0;
+  if(height>0){ctx.fillStyle=dark;ctx.fillRect(centre-width/2,baseline-height,width,height);}
+  if(visual.showLabels&&step>=33){
+   var label=visual.labelContent==='value'?v3Value(row.value):visual.labelContent==='index'?String(i+1):
+      visual.labelContent==='both'?row.label+' · '+v3Value(row.value):row.label;
+   posterSmallLabel(label,centre,817,step-4,dark,'center');
+  }
+  dataHitRegions.push({x:centre,y:600,s:step,bounds:{left:x0+i*step,top:top,right:x0+(i+1)*step,bottom:829},row:row,order:i+1});
+ });
+ ctx.strokeStyle=dark;ctx.lineWidth=1.7;ctx.beginPath();ctx.moveTo(x0,baseline+2);ctx.lineTo(x1,baseline+2);ctx.stroke();
+ text('MIN '+v3Value(minimum)+' / MAX '+v3Value(max),119,347,'bold 11px Arial',dark);
+ $('hint').textContent='Every vertical stripe height equals value / maximum, from a shared zero baseline. The red circle has an enclosed area proportional to the actual minimum relative to an outlined maximum reference. '+(rows.length>24?'Filter to fewer records for visible labels. ':'')+'Tap any stripe column to inspect its value.';
+ $('label-note').textContent='Stripe labels are shown only where the columns fit 11px text; all values remain available on tap.';
+}
+// Elliptical U paths use exact, numerically integrated path lengths.
+// Every full path is L px long; only its coloured portion encodes value/max.
+function flowGeometry(i,count){
+ var t=count<=1?.5:i/(count-1),rx=67+200*t,ry=26+117*t,cx=480,bend=618,arcPoints=[],arcLength=0,steps=80;
+ for(var j=0;j<=steps;j++){
+  var angle=Math.PI-Math.PI*j/steps;
+  arcPoints.push({x:cx+rx*Math.cos(angle),y:bend+ry*Math.sin(angle)});
+  if(j)arcLength+=Math.hypot(arcPoints[j].x-arcPoints[j-1].x,arcPoints[j].y-arcPoints[j-1].y);
+ }
+ var total=760,leg=(total-arcLength)/2;
+ if(leg<0)throw Error('Flow path too long for common length.');
+ var pts=[{x:cx-rx,y:bend-leg},{x:cx-rx,y:bend}].concat(arcPoints.slice(1),[{x:cx+rx,y:bend-leg}]);
+ return{points:pts,length:total,arcLength:arcLength,straightLength:leg};
+}
+function drawMeasuredPolyline(points,limit,colour,width){
+ if(points.length<2||limit<=0)return;
+ ctx.save();ctx.strokeStyle=colour;ctx.lineWidth=width;ctx.lineJoin='round';ctx.lineCap='round';
+ ctx.beginPath();ctx.moveTo(points[0].x,points[0].y);
+ var used=0;
+ for(var j=1;j<points.length;j++){
+  var a=points[j-1],b=points[j],segment=Math.hypot(b.x-a.x,b.y-a.y);
+  if(used+segment<=limit+1e-8){ctx.lineTo(b.x,b.y);used+=segment;}
+  else{var fraction=Math.max(0,Math.min(1,(limit-used)/segment));ctx.lineTo(a.x+(b.x-a.x)*fraction,a.y+(b.y-a.y)*fraction);break;}
+ }
+ ctx.stroke();ctx.restore();
+}
+function renderStripeFlow(rows,p,dark,max){
+ var total=760,all=rows.length;
+ text('FLOW LINES / EQUAL FULL PATH LENGTHS',110,311,'bold 11px Arial',dark);
+ text('COLOURED PATH / VALUE ÷ MAXIMUM',110,329,'bold 11px Arial',dark);
+ var categoryNames=[];
+ if(visual.colour==='category'&&visual.colourField>=0&&imported&&!state.isDemo){
+  rows.forEach(function(r){var cat=imported.records[r.sourceIndex]&&imported.records[r.sourceIndex][visual.colourField];if(cat!==undefined&&!categoryNames.includes(cat))categoryNames.push(cat);});
+ }
+ rows.forEach(function(row,i){
+  var flow=flowGeometry(i,all),length=total*(max>0?row.value/max:0),colour=row.value===max?p.c[0]:p.c[2];
+  if(categoryNames.length){
+   var c=imported.records[row.sourceIndex][visual.colourField];
+   colour=p.c[Math.max(0,categoryNames.indexOf(c))%4];
+  }
+  drawMeasuredPolyline(flow.points,total,p.c[3],all>28?1.5:4);
+  // Pale reference tracks at low opacity, coloured measured portion on top.
+  // Full paths are all 760px, even though different bend radii are used.
+  drawMeasuredPolyline(flow.points,total,p.bg,all>28?1:2);
+  drawMeasuredPolyline(flow.points,length,colour,all>28?2:5);
+  var first=flow.points[0];
+  if(visual.showLabels&&all<=16){
+   var label=visual.labelContent==='value'?v3Value(row.value):visual.labelContent==='index'?String(i+1):
+     visual.labelContent==='both'?row.label+' · '+v3Value(row.value):row.label;
+   posterSmallLabel(label,first.x-10,first.y+4,Math.max(38,first.x-88),dark,'right');
+  }
+  dataHitRegions.push({row:row,order:i+1,polyline:flow.points,fullLength:total,usedLength:length});
+ });
+ text(all+' EQUALLY LONG CURVES · REFERENCE LENGTH '+total,110,820,'bold 11px Arial',dark);
+ $('hint').textContent='Every flowing path measures exactly '+total+' pixels from end to end. Only the coloured length is proportional to the original value / maximum. '+(categoryNames.length?'Colours represent the selected source category. ':'Colours highlight the maximum and otherwise follow the selected finish. ')+'Tap near a line for its exact label/value.';
+ $('label-note').textContent='Flow captions are optional 11px labels; curves remain inspectable by tapping near each path.';
+}
 function renderStripeStudy(rows,p,dark,max){
+ if(visual.stripeStyle==='sun'){renderStripeSun(rows,p,dark,max);return;}
+ if(visual.stripeStyle==='flow'){renderStripeFlow(rows,p,dark,max);return;}
  var top=312,bottom=820,space=(bottom-top)/rows.length;
  var withLabels=visual.showLabels,left=withLabels?315:123,width=withLabels?515:708;
  var rowHits=[];
@@ -613,93 +734,197 @@ function renderStripeStudy(rows,p,dark,max){
  $('hint').textContent='All stripes share a zero baseline and proportional length. Multiple parallel strokes per row are purely graphic repetition. '+(rows.length>24?'For print clarity, try filtering to 8–24 records. ':'')+'Tap any row to inspect exact values.';
  $('label-note').textContent=withLabels?'Short labels appear where rows are tall enough. Tap a stripe row for the complete label.':'Labels are off. Tap a stripe row for its source value.';
 }
-// The hero rings and the individual marks both carry numeric encodings.
-// Four distribution statistics are source-derived: max, upper quartile (R7),
-// median and min. The hero rings use the SAME geometric encoding as the marks.
-function circleSummaryStatistics(rows){
- var sorted=rows.map(function(r){return r.value;}).slice().sort(function(a,b){return a-b;});
- function percentile(frac){
-  var position=(sorted.length-1)*frac,lo=Math.floor(position),hi=Math.ceil(position),weight=position-lo;
-  return sorted[lo]*(1-weight)+sorted[hi]*weight;
- }
- return[
-  {name:'MAX',value:sorted[sorted.length-1]},
-  {name:'UPPER Q',value:percentile(.75)},
-  {name:'MEDIAN',value:percentile(.5)},
-  {name:'MIN',value:sorted[0]}
- ];
+// Circle Study is generated only from actual row values, without quartiles or medians.
+// In Range scope the chart uses min and max; in Records scope it uses up to
+// sixteen selected original values and transparently discloses that display cap.
+function circleSelectedRows(rows){
+ if(visual.circleScope==='records')return rows.slice(0,16);
+ var smallest=rows.reduce(function(a,b){return b.value<a.value?b:a;},rows[0]);
+ var largest=rows.reduce(function(a,b){return b.value>a.value?b:a;},rows[0]);
+ return smallest.value===largest.value?[largest]:[largest,smallest];
+}
+function circlePaintColour(p,index,count){
+ // Deliberately contrasting concentric layers; not an extra metric.
+ if(visual.galleryFinish==='ink')return [p.c[1],p.c[0],p.c[2],p.c[3]][index%4];
+ return p.c[(index+count)%4];
 }
 function renderCircleStudy(rows,p,dark,max){
- var n=rows.length,cols=Math.ceil(Math.sqrt(n)),rws=Math.ceil(n/cols);
- var x0=460,x1=860,y0=332,y1=811,cellW=(x1-x0)/cols,cellH=(y1-y0)/rws;
- var rmax=Math.min(cellW,cellH)*.37;
- var stats=circleSummaryStatistics(rows),isArc=visual.circleEncoding==='arc';
- var accent=visual.galleryFinish==='ink'?p.c[1]:p.c[0];
- var colours=[accent,p.c[1],p.c[2],p.c[3]];
- if(visual.galleryFinish==='ink')colours=[accent,p.c[0],p.c[2],p.c[3]];
- // Four original summary rings, not visual filler:
- // Area mode: area ENCLOSED by each outline circle / max area = stat/max.
- // Arc mode: angle swept at fixed radii / full circle = stat/max.
- ctx.save();
- stats.forEach(function(stat,i){
-  var ratio=max>0?stat.value/max:0,outer=156,trackRadius=156-i*27;
-  var radius=isArc?trackRadius:outer*Math.sqrt(ratio);
-  if(radius<=0)return;
-  if(isArc){
-   ctx.strokeStyle=dark;ctx.globalAlpha=.11;ctx.lineWidth=5;
-   ctx.beginPath();ctx.arc(269,541,radius,-Math.PI/2,Math.PI*1.5);ctx.stroke();
-   ctx.globalAlpha=1;ctx.strokeStyle=colours[i];ctx.lineWidth=5;
-   ctx.beginPath();ctx.arc(269,541,radius,-Math.PI/2,-Math.PI/2+2*Math.PI*ratio);ctx.stroke();
-  }else{
-   ctx.globalAlpha=1;ctx.strokeStyle=colours[i];ctx.lineWidth=3.8;
-   ctx.beginPath();ctx.arc(269,541,radius,0,Math.PI*2);ctx.stroke();
-  }
- });
- ctx.restore();
- text('SUMMARY / '+(isArc?'ARC SWEEP':'ENCLOSED AREA'),113,337,'bold '+posterType.section+'px Arial',dark);
- text('MAXIMUM',269,521,'bold '+posterType.section+'px Arial',accent,'center');
- var maximum=rows.reduce(function(a,b){return b.value>a.value?b:a;},rows[0]);
- var heroValue=v3Value(maximum.value),heroFont=posterType.heroCircle;
- ctx.font='bold '+heroFont+'px Arial';
- while(heroFont>21&&ctx.measureText(heroValue).width>178){heroFont-=2;ctx.font='bold '+heroFont+'px Arial';}
- text(heroValue,269,560,'bold '+heroFont+'px Arial',dark,'center');
- posterSmallLabel(maximum.label,269,580,176,dark,'center');
- // In-poster key: every ring maps to a derived, explicitly named statistic.
- stats.forEach(function(stat,i){
-  var y=721+i*27;
-  ctx.fillStyle=colours[i];ctx.fillRect(116,y-11,12,12);
-  text(stat.name,140,y,'bold '+posterType.section+'px Arial',dark);
-  posterSmallLabel(v3Value(stat.value),401,y,84,dark,'right');
- });
- text('INDIVIDUAL '+(isArc?'ARCS':'DISCS'),471,312,'bold '+posterType.section+'px Arial',dark);
- dataHitRegions=[];
+ var selected=circleSelectedRows(rows),bySize=selected.slice().sort(function(a,b){return b.value-a.value;});
+ var shown=selected.length,originalN=rows.length,range=visual.circleScope==='range',isArc=visual.circleEncoding==='arc';
+ var maximum=bySize[0],minimum=bySize[bySize.length-1],localMax=maximum.value;
+ var cx=480,cy=541,rmax=198,radial=[],layers=[];
+ text(range?'RANGE / SOURCE MINIMUM + MAXIMUM':'RECORDS / SOURCE VALUES',112,315,'bold 11px Arial',dark);
+ text(isArc?'ARC SWEEP / VALUE ÷ MAXIMUM':'FULL CIRCLE AREA / VALUE',112,333,'bold 11px Arial',dark);
+ // Render largest to smallest; nested fills are overlapping FULL discs.
+ // The visible coloured annulus is NOT the encoded area.
+ if(!isArc){
+  bySize.forEach(function(row,i){
+   var fraction=localMax>0?row.value/localMax:0,radius=rmax*Math.sqrt(fraction);
+   layers.push({row:row,radius:radius,index:rows.indexOf(row)+1});
+   if(radius>0){ctx.fillStyle=circlePaintColour(p,i,shown);ctx.beginPath();ctx.arc(cx,cy,radius,0,2*Math.PI);ctx.fill();}
+  });
+  // A thin boundary keeps the original outer disc's extent understandable.
+  if(localMax>0){ctx.strokeStyle=dark;ctx.lineWidth=1.2;ctx.beginPath();ctx.arc(cx,cy,rmax,0,2*Math.PI);ctx.stroke();}
+  layers.forEach(function(layer,i){
+   var next=i+1<layers.length?layers[i+1].radius:0;
+   if(layer.radius>next+0.05){
+    radial.push({row:layer.row,order:layer.index,radial:{cx:cx,cy:cy,inner:next,outer:layer.radius}});
+   }
+  });
+ }else{
+  // Equal stroke width; ring position distinguishes records, sweep is the value.
+  var lowRadius=range?155:62;
+  bySize.forEach(function(row,i){
+   var radius=shown===1?rmax:rmax-(rmax-lowRadius)*i/(shown-1);
+   var fraction=localMax>0?row.value/localMax:0;
+   ctx.save();ctx.lineWidth=shown>12?5:7;
+   ctx.strokeStyle=dark;ctx.globalAlpha=.13;
+   ctx.beginPath();ctx.arc(cx,cy,radius,-Math.PI/2,1.5*Math.PI);ctx.stroke();
+   ctx.globalAlpha=1;ctx.strokeStyle=circlePaintColour(p,i,shown);
+   if(fraction>0){ctx.beginPath();ctx.arc(cx,cy,radius,-Math.PI/2,-Math.PI/2+2*Math.PI*fraction);ctx.stroke();}
+   ctx.restore();
+   radial.push({row:row,order:rows.indexOf(row)+1,radial:{cx:cx,cy:cy,radius:radius,tolerance:Math.max(5,Math.min(10,(rmax-lowRadius)/Math.max(1,shown-1)*.47))}});
+  });
+ }
+ dataHitRegions=radial;
+ // The printed key is also touch-inspectable, including when a value is zero
+ // and therefore has no measured circle area.
+ var minValue=Math.min.apply(null,selected.map(function(r){return r.value;}));
+ var maxValue=Math.max.apply(null,selected.map(function(r){return r.value;}));
+ var plottedMax=selected.reduce(function(a,b){return b.value>a.value?b:a;},selected[0]);
+ var plottedMin=selected.reduce(function(a,b){return b.value<a.value?b:a;},selected[0]);
+ text(range?'MAX':'PLOTTED MAX',117,775,'bold 11px Arial',dark);
+ posterExactValue(v3Value(maxValue),235,775,120,dark);
+ text(range?'MIN':'PLOTTED MIN',366,775,'bold 11px Arial',dark);
+ posterExactValue(v3Value(minValue),488,775,120,dark);
+ dataHitRegions.push({row:plottedMax,order:rows.indexOf(plottedMax)+1,bounds:{left:105,top:756,right:353,bottom:786}});
+ dataHitRegions.push({row:plottedMin,order:rows.indexOf(plottedMin)+1,bounds:{left:360,top:756,right:605,bottom:786}});
+ var disclosure=range?'RANGE OF '+originalN+' SOURCE ROW'+(originalN===1?'':'S')+' · ONLY MIN / MAX ENCODED':
+  shown+' OF '+originalN+' RECORDS DISPLAYED'+(shown<originalN?' · FILTER FOR MORE':'');
+ text(disclosure,117,801,'bold 11px Arial',dark);
+ if(!range&&shown<originalN)text('ONLY THE FIRST '+shown+' IN THE CURRENT SORT ARE ENCODED',117,819,'11px Arial',dark);
+ $('hint').textContent=localMax===0?
+  'All plotted values are zero, so no measured rings or arcs are drawn. Tap a MIN or MAX key value to inspect the actual zero source record.':
+  isArc?
+  'Concentric arc sweep represents original value / maximum using constant-width tracks. '+(range?'Only source min and max are shown.':'The first '+shown+' records in current sort are shown. ')+'Tap near a ring or its key to inspect.':
+  'Whole-circle area is proportional to the actual value; visible coloured bands are not the measurement. '+(range?'Only source min/max are shown.':'The first '+shown+' selected source values are shown. ')+'Tap a visible band or the key to inspect.';
+ $('label-note').textContent='The circle key uses true source min/max, not quartiles or medians. Individual labels are kept off the measured rings to prevent collisions; tap to inspect.';
+}
+function posterHeroNumber(value,x,y,maxWidth,maxFont,ink){
+ var font=maxFont,txt=String(value);
+ ctx.font='bold '+font+'px Arial';
+ while(font>34&&ctx.measureText(txt).width>maxWidth){font-=3;ctx.font='bold '+font+'px Arial';}
+ if(ctx.measureText(txt).width>maxWidth)txt=labelTextFit(txt,maxWidth,font);
+ text(txt,x,y,'bold '+font+'px Arial',ink);
+}
+
+// In the two type-led posters, the *stripes* are the quantitative layer.
+// Letter size, layout, cropped/rotated words, circles and blocks are editorial.
+function broadsideFittedType(raw,x,baseline,width,preferred,minimum,ink){
+ var value=String(raw).replace(/\s+/g,' ').trim(),font=preferred;
+ ctx.font='900 '+font+'px Arial';
+ while(font>minimum&&ctx.measureText(value).width>width){
+  font-=2;ctx.font='900 '+font+'px Arial';
+ }
+ if(ctx.measureText(value).width>width){
+  var limit=String(value);
+  while(limit.length&&ctx.measureText(limit+'…').width>width)limit=limit.slice(0,-1);
+  value=limit?limit+'…':'';
+ }
+ if(value)text(value,x,baseline,'900 '+font+'px Arial',ink);
+ return font;
+}
+function broadsideTwoLineName(name,x,top,width,ink,firstSize){
+ var words=String(name).toUpperCase().split(/\s+/).filter(Boolean),cut=Math.max(1,Math.ceil(words.length/2));
+ var first=words.slice(0,cut).join(' '),second=words.slice(cut).join(' ');
+ var lineHeight=53;
+ broadsideFittedType(first,x,top+62,width,firstSize,32,ink);
+ if(second)broadsideFittedType(second,x,top+lineHeight+62,width,firstSize,32,ink);
+}
+function broadsideVerticalData(rows,p,dark,max){
+ var x0=123,x1=827,top=320,baseline=518,maximumHeight=172,step=(x1-x0)/rows.length;
+ text('MEASURED HEIGHT / ZERO AT BASE',119,299,'bold 11px Arial',dark);
  rows.forEach(function(row,i){
-  var cx=x0+cellW*(i%cols+.5),cy=y0+cellH*(Math.floor(i/cols)+.5),fraction=max>0?row.value/max:0;
-  var stroke=row.value===max?accent:(visual.galleryFinish==='ink'?p.c[0]:p.c[2]);
-  ctx.save();
-  if(isArc){
-   ctx.strokeStyle=p.c[3];ctx.globalAlpha=.18;ctx.lineWidth=Math.max(2,Math.min(8,rmax*.18));
-   ctx.beginPath();ctx.arc(cx,cy,rmax,-Math.PI/2,Math.PI*1.5);ctx.stroke();
-   ctx.globalAlpha=1;ctx.strokeStyle=stroke;
-   if(fraction>0){ctx.beginPath();ctx.arc(cx,cy,rmax,-Math.PI/2,-Math.PI/2+2*Math.PI*fraction);ctx.stroke();}
-  }else{
-   ctx.fillStyle=stroke;
-   var rad=rmax*Math.sqrt(fraction); // disc area ∝ value
-   if(rad>0){ctx.beginPath();ctx.arc(cx,cy,rad,0,Math.PI*2);ctx.fill();}
+  var xx=x0+(i+.5)*step,barWidth=Math.max(1.8,Math.min(14,step*.41)),
+   barHeight=max>0?maximumHeight*row.value/max:0;
+  if(barHeight>0){
+   ctx.fillStyle=row.value===max?p.c[0]:dark;
+   ctx.fillRect(xx-barWidth/2,baseline-barHeight,barWidth,barHeight);
   }
-  ctx.restore();
-  if(visual.showLabels&&Math.min(cellW,cellH)>58&&n<=24){
-   var label=visual.labelContent==='value'?v3Value(row.value):visual.labelContent==='index'?String(i+1):
-    visual.labelContent==='both'?row.label+' · '+v3Value(row.value):row.label;
-   posterSmallLabel(label,cx,cy+cellH*.47,cellW-10,dark,'center');
-  }
-  dataHitRegions.push({x:cx,y:cy,s:Math.min(cellW,cellH),bounds:{left:x0+(i%cols)*cellW,top:y0+Math.floor(i/cols)*cellH,
-    right:x0+(i%cols+1)*cellW,bottom:y0+(Math.floor(i/cols)+1)*cellH},row:row,order:i+1});
+  dataHitRegions.push({row:row,order:i+1,bounds:{
+   left:x0+i*step,top:top,right:x0+(i+1)*step,bottom:baseline+14}});
  });
- $('hint').textContent=isArc?
-  'Both large summary rings and individual arcs encode angle swept / full circle = value / maximum. Summary: max, upper quartile (linear interpolation), median and minimum.':
-  'Both large summary rings and individual discs encode enclosed area proportional to values. Summary: max, upper quartile (linear interpolation), median and minimum. Equal statistics may overlap.';
- $('label-note').textContent=visual.showLabels?'Circle labels appear where space allows; tap any individual disc or arc cell for the complete value.':'Circle labels are off; tap any individual disc or arc cell for the original value.';
+ ctx.strokeStyle=dark;ctx.lineWidth=1.7;
+ ctx.beginPath();ctx.moveTo(x0,baseline+2);ctx.lineTo(x1,baseline+2);ctx.stroke();
+}
+function broadsideDiagonalData(rows,p,dark,max){
+ // Each angled rule starts at a consistent zero line in its own row;
+ // Euclidean line length encodes original value / maximum.
+ var x=526,top=356,step=262/rows.length,maximumLength=236,angle=-.18;
+ text('MEASURED / LENGTH',514,330,'bold 11px Arial',dark);
+ rows.forEach(function(row,i){
+  var y=top+(i+.5)*step,length=max>0?maximumLength*row.value/max:0,
+    dx=Math.cos(angle)*length,dy=Math.sin(angle)*length;
+  var a={x:x,y:y},b={x:x+dx,y:y+dy};
+  if(length>0){
+   ctx.strokeStyle=row.value===max?p.c[0]:dark;
+   ctx.lineWidth=Math.max(1.5,Math.min(5,step*.22));
+   ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
+  }
+  dataHitRegions.push({row:row,order:i+1,polyline:[a,b],bounds:{
+   left:500,top:top+i*step-4,right:790,bottom:top+(i+1)*step+4}});
+ });
+ ctx.strokeStyle=p.c[2];ctx.lineWidth=1.3;
+ ctx.beginPath();ctx.moveTo(x,top);ctx.lineTo(x,top+262);ctx.stroke();
+}
+function renderBroadsideV5(rows,p,dark,max){
+ var primary=rows.reduce(function(a,b){return b.value>a.value?b:a;},rows[0]);
+ var name=String(primary.label).toUpperCase(),hero=v3Value(primary.value),count=String(rows.length).padStart(2,'0');
+ var cutup=visual.broadsideStyle==='diagonal',accent=p.c[0],contrast=v3Ink(p.bg);
+ ctx.save();ctx.beginPath();ctx.rect(82,285,796,550);ctx.clip();
+ if(!cutup){
+  // TYPE MONUMENT. The actual numeric series forms a striped roof over
+  // the giant typography. The red disc marks a compositor's focal point,
+  // and never represents an unreported numerical value.
+  ctx.fillStyle=accent;ctx.globalAlpha=.91;
+  ctx.beginPath();ctx.arc(716,624,164,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;
+  broadsideVerticalData(rows,p,contrast,max);
+   text(count,757,579,'900 78px Arial',contrast);
+  text('ROWS',763,602,'bold 11px Arial',contrast);
+  // Oversized actual maximum spans the full editorial width.
+  broadsideFittedType(hero,99,703,746,239,80,contrast);
+  // The selected source label is split across large typographic lines.
+  broadsideTwoLineName(name,113,711,711,contrast,70);
+  // Two construction lines intentionally break normal chart symmetry.
+  ctx.strokeStyle=contrast;ctx.lineWidth=1.6;
+  ctx.beginPath();ctx.moveTo(82,738);ctx.lineTo(861,738);ctx.stroke();
+ }else{
+  // CUT-UP TYPE: collage-like lettering and colour planes. The geometric
+  // panels are an original composition, not additional quantitative marks.
+  ctx.fillStyle=p.c[2];ctx.fillRect(100,354,188,165);
+  ctx.fillStyle=p.c[1];ctx.fillRect(297,354,111,223);
+  ctx.fillStyle=accent;ctx.beginPath();ctx.arc(752,691,120,0,Math.PI*2);ctx.fill();
+  // An editorial, rotated source label slices across the colour blocks.
+  ctx.save();ctx.translate(172,694);ctx.rotate(-Math.PI/2);
+  broadsideFittedType(name,0,0,302,73,30,contrast);
+  ctx.restore();
+  // A second angled source-derived type line cuts the layout in half.
+  ctx.save();ctx.translate(290,485);ctx.rotate(-.27);
+  broadsideFittedType(name,0,0,467,100,38,contrast);
+  ctx.restore();
+  broadsideDiagonalData(rows,p,contrast,max);
+  broadsideFittedType(hero,178,799,645,215,70,contrast);
+  ctx.save();ctx.translate(836,801);ctx.rotate(-Math.PI/2);
+  text(count+' / RECORDS',0,0,'bold 22px Arial',contrast);
+  ctx.restore();
+  ctx.strokeStyle=p.c[2];ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(110,810);ctx.lineTo(690,810);ctx.stroke();
+ }
+ ctx.restore();
+ $('hint').textContent=cutup?
+  'Cut-up Type: diagonal stripe lengths, not type size, represent each source value from zero against the selected maximum. Rotated words, colour planes and circular shapes are editorial. Tap near a stripe to inspect the exact value.':
+  'Type Monument: upright stripe heights represent individual source values against a common zero baseline. The giant number is the actual selected maximum; its font size and the red circle are editorial, not encoded measures. Tap a stripe column to inspect its value.';
+ $('label-note').textContent='Small measured stripe marks are kept free of long captions; each can be tapped for the full original label and value.';
 }
 function renderPosterV3(rows,p,dark){
  var values=rows.map(function(r){return r.value;}),max=Math.max.apply(null,values),min=Math.min.apply(null,values),v=values.slice().sort(function(a,b){return a-b;}),n=rows.length,median=n%2?v[(n-1)/2]:(v[n/2-1]+v[n/2])/2;
@@ -711,7 +936,7 @@ function renderPosterV3(rows,p,dark){
   if(visual.layout==='stripes')renderStripeStudy(rows,p,dark,max);
   else renderCircleStudy(rows,p,dark,max);
   posterSourceCopy(p);
-  $('meta').textContent=n+' rows · '+layoutNames[visual.layout];
+  $('meta').textContent=n+' row'+(n===1?'':'s')+' · '+layoutNames[visual.layout];
   return;
  }
  if(visual.layout==='mosaic'){
@@ -726,36 +951,24 @@ function renderPosterV3(rows,p,dark){
     if(w>110&&h>90&&i%4===0){ctx.save();ctx.strokeStyle=v3Ink(colour);ctx.globalAlpha=.45;ctx.lineWidth=2;ctx.beginPath();ctx.arc(x+w-16,y+16,Math.min(w,h)*.16,Math.PI/2,Math.PI);ctx.stroke();ctx.restore();}
    }else galleryTileOrnament(x,y,w,h,p,v3Ink(colour),i);
    if(visual.showLabels&&w>53&&h>40){
-    var label=visual.labelContent==='value'?v3Value(t.row.value):visual.labelContent==='index'?String(rank+1):visual.labelContent==='both'?t.row.label+' · '+v3Value(t.row.value):t.row.label;
-    if(!visual.hideSmall||Math.min(w,h)>68)posterSmallLabel(label,x+8,y+Math.min(25,h-10),w-16,v3Ink(colour));
+    var ink=v3Ink(colour);
+    if(visual.labelContent==='both'){
+     // Two independent measurements: first line may ellipsise; the value never does.
+     if(h>=48&&w>=57&&(!visual.hideSmall||Math.min(w,h)>68)){
+      posterSmallLabel(t.row.label,x+8,y+18,w-16,ink);
+      posterExactValue(v3Value(t.row.value),x+8,y+33,w-16,ink);
+     }
+    }else if(!visual.hideSmall||Math.min(w,h)>68){
+     var label=visual.labelContent==='value'?v3Value(t.row.value):visual.labelContent==='index'?String(rank+1):t.row.label;
+     if(visual.labelContent==='value')posterExactValue(label,x+8,y+Math.min(25,h-10),w-16,ink);
+     else posterSmallLabel(label,x+8,y+Math.min(25,h-10),w-16,ink);
+    }
    }
    dataHitRegions.push({x:t.x+t.w/2,y:t.y+t.h/2,s:Math.min(t.w,t.h),bounds:{left:t.x,top:t.y,right:t.x+t.w,bottom:t.y+t.h},row:t.row,order:rank+1});
   });
-  $('hint').textContent='Each rectangle area is proportional to the source value. '+(rows.length>tiles.length?rows.length-tiles.length+' zero-valued observations have no area. ':'')+'Tap any tile for its label and value.';
+  $('hint').textContent='Each rectangle area is proportional to its source value. '+(rows.length>tiles.length?(rows.length-tiles.length)+' zero-valued observation'+(rows.length-tiles.length===1?' has':'s have')+' no area. ':'')+(tiles.length?'Tap any visible tile for its original label/value.':'There are no positive-area tiles; the selected source values are all zero.');
  }else{
-  var maxRow=rows.reduce(function(a,b){return b.value>a.value?b:a;},rows[0]),hero=v3Value(maxRow.value);
-  var isInk=visual.galleryFinish==='ink';
-  if(!isInk){ctx.fillStyle=p.c[3];ctx.fillRect(82,288,796,164);}
-  else{ctx.fillStyle=p.c[1];ctx.fillRect(82,286,119,5);ctx.strokeStyle=p.c[0];ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(82,454);ctx.lineTo(878,454);ctx.stroke();}
-  galleryHeroOrnament(p);
-  var heroInk=isInk?v3Ink(p.bg):v3Ink(p.c[3]);
-  posterSafeText('LARGEST OBSERVATION / '+formatField(state.metric).toUpperCase(),110,295,465,30,14,12,1,isInk?p.c[0]:heroInk,true);
-  posterSafeText(hero,105,329,355,111,90,53,1,heroInk,true);
-  posterSafeText(maxRow.label,514,325,isInk?207:320,102,28,18,2,heroInk,true);
-  var h=(824-479)/n,left=visual.showLabels?299:112,width=visual.showLabels?449:664;
-  rows.forEach(function(row,i){
-   var yy=479+i*h,barY=yy+h*.17,barH=Math.max(2,h*.64);
-   ctx.fillStyle=visual.galleryFinish==='ink'?(row.value===max?p.c[1]:p.c[0]):(row.value===max?p.c[0]:p.c[2]);
-   var markH=visual.galleryFinish==='ink'?Math.min(6.5,Math.max(2,barH*.36)):barH;
-   ctx.fillRect(left,barY+(barH-markH)/2,width*(max>0?row.value/max:0),markH);
-   if(visual.showLabels&&h>=14){
-    var label=visual.labelContent==='value'?v3Value(row.value):visual.labelContent==='index'?String(i+1):visual.labelContent==='both'?row.label+' · '+v3Value(row.value):row.label;
-    posterSmallLabel(label,90,yy+Math.min(h-2,13),left-108,dark);
-   }
-   dataHitRegions.push({x:479,y:yy+h/2,s:h,bounds:{left:82,top:yy,right:878,bottom:yy+h},row:row,order:i+1});
-  });
-  ctx.strokeStyle=p.c[3];ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(82,839);ctx.lineTo(878,839);ctx.stroke();
-  $('hint').textContent='Bar length represents each original value from zero; any tied maxima share the accent colour. '+(n>24?'For a less crowded poster, filter to about 8–24 records. ':'')+'Tap any row to inspect its source value.';
+  renderBroadsideV5(rows,p,dark,max);
  }
  posterSourceCopy(p);
  $('meta').textContent=n+' rows · '+layoutNames[visual.layout];
@@ -799,7 +1012,7 @@ function renderData(p,dark){
  });
  var labelResult=drawShapeLabels(positions,dark);
  drawWrapped(credit,83,868,13,790,2,19,p.muted,false);
- $('meta').textContent=n+' rows · '+markNames[visual.marks]+' · '+layoutNames[visual.layout]+(visual.showLabels?' · '+labelResult.shown+' labels shown':'');
+ $('meta').textContent=n+' row'+(n===1?'':'s')+' · '+markNames[visual.marks]+' · '+layoutNames[visual.layout]+(visual.showLabels?' · '+labelResult.shown+' labels shown':'');
  $('label-note').textContent=visual.showLabels?labelResult.shown+' shown · '+labelResult.hidden+' omitted to protect legibility. Tap a mark to read its full label/value.':'Full labels and values remain available by tapping a mark.';
  $('hint').textContent='Tap a mark to inspect its actual label and value. '+(visual.showLabels&&labelResult.hidden?'Some labels are hidden to avoid collisions. ':'')+(visual.scale==='contrast'?'Area uses min–max contrast with a 10% minimum. It is not zero-based.':'Shape area represents the value from zero.');
 }
@@ -849,10 +1062,12 @@ function applyImported(){
  if(vals.some(function(v){return !Number.isFinite(v.value)||v.value<0;})){status('Selected value column contains missing or negative values in the matching rows. Please choose another field or filter.');return;}
  vals=vals.slice(0,64);
  // All matching rows are validated before the first 64 are selected.
- if(!vals.some(function(v){return v.value>0;})){status('At least one value must be greater than zero.');return;}
+ // An all-zero series is valid source data. It produces a correctly empty
+ // proportional geometry rather than silently switching to illustrative data.
+ var allZero=!vals.some(function(v){return v.value>0;});
  state.rows=vals;state.mode='data';state.isDemo=false;activeArtworkSource=imported;state.metric=imported.headers[vi];state.totalSelected=records.length;state.sourceLabel=imported.sourceLabel;state.sourceName=imported.name||'CSV';state.filterName=filterField>=0&&categoryIndex>=0?imported.headers[filterField]+' = '+filterCategories[categoryIndex]:'';syncEditor();refresh();
  $('filter-info').textContent=records.length+' matching rows'+(records.length>64?' · first 64 displayed':'')+' · artwork updated below.';
- status('Created '+vals.length+' shapes from '+imported.headers[vi]+'.'+(records.length>64?' Only the FIRST 64 of '+records.length+' matching source rows are shown.':''));
+ status((allZero?'All selected values are zero, so proportional marks have no area. ':'Created '+vals.length+' shape'+(vals.length===1?'':'s')+' from '+imported.headers[vi]+'. ')+(records.length>64?'Only the FIRST 64 of '+records.length+' matching source rows are shown.':''));
 }
 function makeOption(sel,value,label){
  var opt=document.createElement('option');opt.value=String(value);opt.textContent=label;sel.appendChild(opt);
@@ -983,22 +1198,34 @@ function syncVisualControls(){
  root.querySelectorAll('[data-preset]').forEach(function(b){var ok=b.dataset.preset===visual.preset;b.classList.toggle('active',ok);b.setAttribute('aria-pressed',String(ok));});
  root.querySelectorAll('[data-poster]').forEach(function(b){var ok=b.dataset.poster===visual.layout;b.classList.toggle('active',ok);b.setAttribute('aria-pressed',String(ok));});
  var isPoster=['mosaic','broadside','stripes','circles'].includes(visual.layout);
+ $('broadside-options').hidden=visual.layout!=='broadside';
+ $('broadside-style').disabled=visual.layout!=='broadside';
+ $('broadside-style').value=visual.broadsideStyle;
+ $('stripe-options').hidden=visual.layout!=='stripes';
+ $('stripe-style').disabled=visual.layout!=='stripes';
+ $('stripe-style').value=visual.stripeStyle;
+ $('circle-options').hidden=visual.layout!=='circles';
  $('circle-encoding').disabled=visual.layout!=='circles';
  $('circle-encoding').value=visual.circleEncoding;
+ $('circle-scope').disabled=visual.layout!=='circles';
+ $('circle-scope').value=visual.circleScope;
  $('gallery-finish').disabled=!isPoster;
  $('gallery-finish').value=visual.galleryFinish;
  if(isPoster){
   var encoding=visual.layout==='mosaic'?'rectangle area':visual.layout==='broadside'?'bar length':visual.layout==='stripes'?'stripe length':visual.circleEncoding==='arc'?'arc sweep':'disc area';
-  $('gallery-info').textContent='Poster finish changes colours and graphic styling only. '+encoding+' remains the active numeric encoding; existing source values do not change.';
+  $('gallery-info').textContent='Poster finish changes colours and graphical styling only. Measurements stay fixed: '+(visual.layout==='stripes'&&visual.stripeStyle==='sun'?'stripe height and min/max circle area':visual.layout==='stripes'&&visual.stripeStyle==='flow'?'coloured length along equal-size curves':visual.layout==='circles'?(visual.circleEncoding==='arc'?'arc sweep':'whole-circle area'):encoding)+'.';
  }
  $('marks').disabled=isPoster;$('value-scale').disabled=isPoster;
- $('colour-rule').disabled=['broadside','stripes','circles'].includes(visual.layout);
- $('colour-field').disabled=['broadside','stripes','circles'].includes(visual.layout);
+ var flowColour=visual.layout==='stripes'&&visual.stripeStyle==='flow';
+ $('colour-rule').disabled=['broadside','circles'].includes(visual.layout)||(visual.layout==='stripes'&&!flowColour);
+ $('colour-field').disabled=['broadside','circles'].includes(visual.layout)||(visual.layout==='stripes'&&!flowColour)||visual.colour!=='category'||!imported;
  $('poster-info').textContent=visual.layout==='mosaic'?
   'Measured rectangle area = original value / total. The chosen colour rule is applied; ornamental details do not represent extra data.':
-  visual.layout==='broadside'?'Bar length starts at zero. The maximum is highlighted. Shape and additional colour controls are unavailable.':
-  visual.layout==='stripes'?'Black stripe lengths start at zero; red highlights every maximum. Parallel strokes per row are decorative.':
-  visual.layout==='circles'?(visual.circleEncoding==='arc'?'The sweep of a constant-width arc represents value relative to the maximum.':'Small disc areas are proportional to the values, with a decorative central hero ring.'):
+  visual.layout==='broadside'?(visual.broadsideStyle==='diagonal'?'Cut-up letters, intersecting geometry and measured diagonal stripe lengths.':'Monumental source typography and measured vertical stripes from a common zero baseline.'):
+  visual.layout==='stripes'?(visual.stripeStyle==='sun'?'Vertical height = source value / maximum; circle enclosed area = minimum / maximum.':
+   visual.stripeStyle==='flow'?'Every full flow path has identical length; its coloured portion = source value / maximum. Optional category colours come from the mapped source column.':
+   'Classic stripes: zero-based proportional lengths.'):
+  visual.layout==='circles'?(visual.circleEncoding==='arc'?'Concentric arc sweep = source value / maximum.':'Concentric WHOLE-circle area = source value, not visible band area.'):
   'Pick Data Mosaic or Typographic Broadside above to produce an editorial poster rather than a regular tile grid.';
  if(state.mode==='data')$('reroll').disabled=isPoster;
 }
@@ -1011,6 +1238,21 @@ $('gallery-finish').addEventListener('change',function(){
  $('gallery-info').textContent=messages[this.value]+' The geometric data encoding is unchanged: '+(visual.layout==='mosaic'?'rectangle area':visual.layout==='broadside'?'bar length':visual.layout==='stripes'?'stripe length':visual.circleEncoding==='arc'?'arc sweep':'disc area')+'.';
  if(state.mode==='data'&&['mosaic','broadside','stripes','circles'].includes(visual.layout))render();
  status('Poster finish updated. Data values and category mapping unchanged.');
+});
+$('broadside-style').addEventListener('change',function(){
+ visual.broadsideStyle=this.value;syncVisualControls();syncEditor();
+ if(state.mode==='data'&&visual.layout==='broadside')render();
+ status('Typography composition updated. Values remain unchanged.');
+});
+$('stripe-style').addEventListener('change',function(){
+ visual.stripeStyle=this.value;syncVisualControls();syncEditor();
+ if(state.mode==='data'&&visual.layout==='stripes')render();
+ status('Stripe composition updated; exact source values preserved.');
+});
+$('circle-scope').addEventListener('change',function(){
+ visual.circleScope=this.value;syncVisualControls();syncEditor();
+ if(state.mode==='data'&&visual.layout==='circles')render();
+ status('Circle source scope updated; no quartile or median summary is calculated.');
 });
 $('circle-encoding').addEventListener('change',function(){
  visual.circleEncoding=this.value;
@@ -1050,6 +1292,22 @@ $('chaos').addEventListener('input',function(){state.chaos=+this.value;refresh()
 canvas.addEventListener('pointerdown',function(e){var b=canvas.getBoundingClientRect(),px=(e.clientX-b.left)/b.width*960,py=(e.clientY-b.top)/b.height*960;
 if(state.mode==='data'){var closest=null,dist=Infinity;
  dataHitRegions.forEach(function(h){
+  if(h.radial){
+   var rad=Math.hypot(px-h.radial.cx,py-h.radial.cy);
+   var delta=h.radial.radius!==undefined?Math.abs(rad-h.radial.radius):
+     (rad>=h.radial.inner&&rad<=h.radial.outer?0:Infinity);
+   if(delta<= (h.radial.tolerance===undefined?0:h.radial.tolerance) &&delta<dist){closest=h;dist=delta;}
+   return;
+  }
+  if(h.polyline){
+   for(var z=1;z<h.polyline.length;z++){
+    var a=h.polyline[z-1],b=h.polyline[z],dx=b.x-a.x,dy=b.y-a.y;
+    var frac=Math.max(0,Math.min(1,((px-a.x)*dx+(py-a.y)*dy)/(dx*dx+dy*dy||1)));
+    var dd=Math.hypot(px-(a.x+frac*dx),py-(a.y+frac*dy));
+    if(dd<Math.min(dist,16)){closest=h;dist=dd;}
+   }
+   return;
+  }
   if(h.bounds){if(px>=h.bounds.left&&px<=h.bounds.right&&py>=h.bounds.top&&py<=h.bounds.bottom){closest=h;dist=0;}return;}
   var d=Math.hypot(px-h.x,py-h.y);if(d<h.s*.53&&d<dist){closest=h;dist=d;}
  });
