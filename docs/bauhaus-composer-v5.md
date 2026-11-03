@@ -54,7 +54,7 @@ Two minimal, print-like concentric compositions, with a separate **scope** selec
 
 Canvas is **960 × 960**. Headline preferably 42px, shrinking to at least 30px when needed; deck 16px preferred (floor 14px); source 12px; section and mark labels 11px, with appropriate semibold/regular hierarchy.
 
-Safe bands (canvas coordinates): masthead 35–105, headline 110–203, deck 211–275, artwork 285–835, footer 849–915. Full source text remains editable; printed overflow is ellipsised within band limits. If a mark label cannot fit it may be omitted, but interactive inspection must still provide original values.
+Safe bands (canvas coordinates): masthead 35–105, headline 110–203, deck 211–275, artwork 285–835, footer 849–915. Full source text remains editable; printed overflow is ellipsised within band limits. If a mark label cannot fit it may be omitted, but interactive inspection must still provide original values. Circle min/max keys can also be tapped, including for zero-valued records. All-zero datasets remain valid; they produce no positive-area marks and a clear status message rather than fabricated geometry.
 
 ## Real-data regression fixture and previews
 
