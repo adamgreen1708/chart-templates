@@ -17,15 +17,27 @@ Keep the existing deterministic proportional binary treemap and palette rules.
 - Source labels may be shortened with an ellipsis. **Numeric values are never truncated.** If there is not enough space for the complete number or two lines, that specific printed value/label is omitted. The full row remains available on tap.
 - No change to the underlying outer rectangle area: `area / total mosaic area = positive row value / total positive plotted values`. Gaps and occasional ornamental arcs are not additional measures.
 
-## 02 / Typographic Broadside
+## 02 / Typographic Broadside — expressive type revision
 
-Replace the previous thick hero band and conventional bar-chart treatment with two editable compositions.
+Revised following user feedback that the previous Architectural/Diagonal options were too ordinary. The previous composition was essentially a large number beside a small bar-chart rail; the new poster integrates the data marks into the graphic construction and gives the original words and number most of the art region.
 
-- **Architectural Type:** large maximum number, oversized actual source label, vertical structural rule and small column of measured marks.
-- **Diagonal Type:** original source label appears in large rotated/angled type with the actual maximum as a second focal point. Thin rules and counts establish an original modernist editorial hierarchy.
-- Font size, rotation, counts and geometric scaffolding are *not* numerical encodings. The **mini bars** remain the quantitative evidence: length `= source value / displayed maximum × common available width` with a shared zero baseline; tied maxima retain the same scale and highlight.
-- The maximum and source label are determined entirely from the selected mapped numeric field. Long words are fitted inside the art region; headlines, deck and footer retain the common text-safe bands.
-- Show optional small index/value annotations only where row height permits. Tap a mini-bar row for its complete label and numeric value.
+**Type Monument** (replaces the old Architectural Type):
+- The actual largest value becomes a monumental typographic object. Its actual source label is split into high-contrast display lines; an actual record count provides a secondary text anchor.
+- The 14 (or selected N) thin **upright measured stripes** form a graphic rhythmic roof, aligned from the same zero baseline. Each height is `172 × value / selected maximum`, within the fixed art region.
+- A red (finish-defined) disc, overprinting, alignment rules and contrast are **unencoded editorial geometry**, expressly not a fictitious numerical category.
+- The source label may be shortened only if even the fitted large font cannot fit the reserved composition, while the exact original remains inspectable in the source rows.
+
+**Cut-up Type** (replaces the old Diagonal Type):
+- The actual original source label is repeated at different scales and rotations, intersecting original red/blue/ochre planes. Huge numerical type gives the true maximum.
+- A tilted **measured stripe field** is integrated into the letterforms: each stripe has a common origin line, identical rotation and length `236 × value / selected maximum`. The diagonal position and colour planes are graphic decisions, not numeric encodings.
+- Every stripe remains interactive through the original source row, including automatic re-filtering when another category is selected.
+- Make text dramatic, but keep the bounded headline/deck/source, correct hue contrast and a measurable stripe field.
+
+**Both compositions:** the default small headline is now `TYPE / <metric>` rather than redundantly repeating `Largest: <source title>`. The deck identifies the actual maximum, exact formatted value, row count and which measure the stripes carry. Neither font size, glyph rotation, decorative circles nor block shapes encode quantity.
+
+**QA:** the two Bowie previews and interactive canvas renderer were updated together. JS syntax and simulated tests pass for both modes: 14 upright data stripes in Monument and 14 diagonal data strokes in Cut-up, accurate 3:54 / Silly Boy Blue from the selected album; changing category to Space Oddity updates the maximum to 9:36 / Cygnet Committee. Original free-play/Patchwork still renders.
+
+**Review gate:** compare the two revised poster images with the uploaded reference artworks for boldness, asymmetry and typography. The two saved SVGs are independent data-derived concept previews, not captures from the hosted canvas. Real mobile/browser PNG QA remains outstanding.
 
 ## 03 / Stripe Study
 
