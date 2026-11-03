@@ -133,7 +133,7 @@ permalink: /resources/bauhaus-art-studio/
   <h2>Same numbers. Different story.</h2>
   <p class="muted">Choose a designed poster, or keep experimenting with the original geometric modes. Real data determines the measurements; decoration never invents a value.</p>
   <div class="poster-v3">
-    <span class="section-caption">New / Poster Composer v3</span>
+    <span class="section-caption">Poster Composer / Four art families</span>
     <p class="field-help">Four data-driven poster families. Geometry is calculated from your CSV; colour finishes stay separate.</p>
     <div class="buttons" id="bh-poster-presets" role="group" aria-label="New data-art poster styles">
       <button type="button" data-poster="mosaic">◩ Data Mosaic</button>
@@ -1148,13 +1148,14 @@ function syncVisualControls(){
   $('gallery-info').textContent='Poster finish changes colours and graphical styling only. Measurements stay fixed: '+(visual.layout==='stripes'&&visual.stripeStyle==='sun'?'stripe height and min/max circle area':visual.layout==='stripes'&&visual.stripeStyle==='flow'?'coloured length along equal-size curves':visual.layout==='circles'?(visual.circleEncoding==='arc'?'arc sweep':'whole-circle area'):encoding)+'.';
  }
  $('marks').disabled=isPoster;$('value-scale').disabled=isPoster;
- $('colour-rule').disabled=['broadside','stripes','circles'].includes(visual.layout);
- $('colour-field').disabled=['broadside','stripes','circles'].includes(visual.layout);
+ var flowColour=visual.layout==='stripes'&&visual.stripeStyle==='flow';
+ $('colour-rule').disabled=['broadside','circles'].includes(visual.layout)||(visual.layout==='stripes'&&!flowColour);
+ $('colour-field').disabled=['broadside','circles'].includes(visual.layout)||(visual.layout==='stripes'&&!flowColour)||visual.colour!=='category'||!imported;
  $('poster-info').textContent=visual.layout==='mosaic'?
   'Measured rectangle area = original value / total. The chosen colour rule is applied; ornamental details do not represent extra data.':
   visual.layout==='broadside'?'Oversized source-grounded typography plus accurate zero-based miniature bars. The two designs differ in layout, not values.':
   visual.layout==='stripes'?(visual.stripeStyle==='sun'?'Vertical height = source value / maximum; circle enclosed area = minimum / maximum.':
-   visual.stripeStyle==='flow'?'Every full flow path is identical in length; the coloured portion = source value / maximum.':
+   visual.stripeStyle==='flow'?'Every full flow path has identical length; its coloured portion = source value / maximum. Optional category colours come from the mapped source column.':
    'Classic stripes: zero-based proportional lengths.'):
   visual.layout==='circles'?(visual.circleEncoding==='arc'?'Concentric arc sweep = source value / maximum.':'Concentric WHOLE-circle area = source value, not visible band area.'):
   'Pick Data Mosaic or Typographic Broadside above to produce an editorial poster rather than a regular tile grid.';
