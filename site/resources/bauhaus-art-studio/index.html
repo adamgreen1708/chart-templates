@@ -803,9 +803,11 @@ function renderCircleStudy(rows,p,dark,max){
   shown+' OF '+originalN+' RECORDS DISPLAYED'+(shown<originalN?' · FILTER FOR MORE':'');
  text(disclosure,117,801,'bold 11px Arial',dark);
  if(!range&&shown<originalN)text('ONLY THE FIRST '+shown+' IN THE CURRENT SORT ARE ENCODED',117,819,'11px Arial',dark);
- $('hint').textContent=isArc?
-  'Concentric arc sweep represents original value / maximum using constant-width tracks. '+(range?'Only source min and max are shown.':'Only the first '+shown+' records in the current sort are shown. ')+'Tap near a ring to inspect its actual value.':
-  'Each whole, overlapping concentric circle area is proportional to its source value. Visible coloured bands are NOT the area encoding. '+(range?'Source min/max only.':'The first '+shown+' displayed source values are used. ')+'Tap a visible band to inspect.';
+ $('hint').textContent=localMax===0?
+  'All plotted values are zero, so no measured rings or arcs are drawn. Tap a MIN or MAX key value to inspect the actual zero source record.':
+  isArc?
+  'Concentric arc sweep represents original value / maximum using constant-width tracks. '+(range?'Only source min and max are shown.':'The first '+shown+' records in current sort are shown. ')+'Tap near a ring or its key to inspect.':
+  'Whole-circle area is proportional to the actual value; visible coloured bands are not the measurement. '+(range?'Only source min/max are shown.':'The first '+shown+' selected source values are shown. ')+'Tap a visible band or the key to inspect.';
  $('label-note').textContent='The circle key uses true source min/max, not quartiles or medians. Individual labels are kept off the measured rings to prevent collisions; tap to inspect.';
 }
 function posterHeroNumber(value,x,y,maxWidth,maxFont,ink){
@@ -875,7 +877,7 @@ function renderPosterV3(rows,p,dark){
   if(visual.layout==='stripes')renderStripeStudy(rows,p,dark,max);
   else renderCircleStudy(rows,p,dark,max);
   posterSourceCopy(p);
-  $('meta').textContent=n+' rows · '+layoutNames[visual.layout];
+  $('meta').textContent=n+' row'+(n===1?'':'s')+' · '+layoutNames[visual.layout];
   return;
  }
  if(visual.layout==='mosaic'){
@@ -905,7 +907,7 @@ function renderPosterV3(rows,p,dark){
    }
    dataHitRegions.push({x:t.x+t.w/2,y:t.y+t.h/2,s:Math.min(t.w,t.h),bounds:{left:t.x,top:t.y,right:t.x+t.w,bottom:t.y+t.h},row:t.row,order:rank+1});
   });
-  $('hint').textContent='Each rectangle area is proportional to the source value. '+(rows.length>tiles.length?rows.length-tiles.length+' zero-valued observations have no area. ':'')+'Tap any tile for its label and value.';
+  $('hint').textContent='Each rectangle area is proportional to its source value. '+(rows.length>tiles.length?(rows.length-tiles.length)+' zero-valued observation'+(rows.length-tiles.length===1?' has':'s have')+' no area. ':'')+(tiles.length?'Tap any visible tile for its original label/value.':'There are no positive-area tiles; the selected source values are all zero.');
  }else{
   renderBroadsideV5(rows,p,dark,max);
  }
@@ -951,7 +953,7 @@ function renderData(p,dark){
  });
  var labelResult=drawShapeLabels(positions,dark);
  drawWrapped(credit,83,868,13,790,2,19,p.muted,false);
- $('meta').textContent=n+' rows · '+markNames[visual.marks]+' · '+layoutNames[visual.layout]+(visual.showLabels?' · '+labelResult.shown+' labels shown':'');
+ $('meta').textContent=n+' row'+(n===1?'':'s')+' · '+markNames[visual.marks]+' · '+layoutNames[visual.layout]+(visual.showLabels?' · '+labelResult.shown+' labels shown':'');
  $('label-note').textContent=visual.showLabels?labelResult.shown+' shown · '+labelResult.hidden+' omitted to protect legibility. Tap a mark to read its full label/value.':'Full labels and values remain available by tapping a mark.';
  $('hint').textContent='Tap a mark to inspect its actual label and value. '+(visual.showLabels&&labelResult.hidden?'Some labels are hidden to avoid collisions. ':'')+(visual.scale==='contrast'?'Area uses min–max contrast with a 10% minimum. It is not zero-based.':'Shape area represents the value from zero.');
 }
@@ -1006,7 +1008,7 @@ function applyImported(){
  var allZero=!vals.some(function(v){return v.value>0;});
  state.rows=vals;state.mode='data';state.isDemo=false;activeArtworkSource=imported;state.metric=imported.headers[vi];state.totalSelected=records.length;state.sourceLabel=imported.sourceLabel;state.sourceName=imported.name||'CSV';state.filterName=filterField>=0&&categoryIndex>=0?imported.headers[filterField]+' = '+filterCategories[categoryIndex]:'';syncEditor();refresh();
  $('filter-info').textContent=records.length+' matching rows'+(records.length>64?' · first 64 displayed':'')+' · artwork updated below.';
- status((allZero?'All selected values are zero, so proportional marks have no area. ':'Created '+vals.length+' shapes from '+imported.headers[vi]+'. ')+(records.length>64?'Only the FIRST 64 of '+records.length+' matching source rows are shown.':''));
+ status((allZero?'All selected values are zero, so proportional marks have no area. ':'Created '+vals.length+' shape'+(vals.length===1?'':'s')+' from '+imported.headers[vi]+'. ')+(records.length>64?'Only the FIRST 64 of '+records.length+' matching source rows are shown.':''));
 }
 function makeOption(sel,value,label){
  var opt=document.createElement('option');opt.value=String(value);opt.textContent=label;sel.appendChild(opt);
