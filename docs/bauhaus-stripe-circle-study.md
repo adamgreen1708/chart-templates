@@ -1,3 +1,5 @@
+**Historical v4 specification.** The currently proposed four-family poster redesign is described in [`bauhaus-composer-v5.md`](bauhaus-composer-v5.md), which supersedes the v4 Circle Study treatment of quartiles, medians and its old grid layout. Keep this document as a record of the earlier design.
+
 # Bauhaus Poster Composer v4 — Stripe Study and Circle Study
 
 ## Status and PR dependency
