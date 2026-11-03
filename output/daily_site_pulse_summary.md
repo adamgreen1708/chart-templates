@@ -1,9 +1,9 @@
-# Coffeetableviz Daily Pulse — 1 November 2026
+# Coffeetableviz Daily Pulse — 2 November 2026
 
-- **Visits:** 7
-- **7-day context:** 51% below prior 7-day daily average (14.1)
-- **Top pages:** Bauhaus Art Studio (1), Truchet Tile Studio (1), Truchet Tiles: Small Shapes, Long Shadows (1)
-- **Top referrer:** Direct / unknown — 1 visits
-- **Observation:** A noticeably quieter day than the seven-day baseline.
+- **Visits:** 12
+- **7-day context:** 24% above prior 7-day daily average (9.7)
+- **Top pages:** Bauhaus Art Studio (2), Resources (2), Home (2)
+- **Top referrer:** No referrer recorded — 0 visits
+- **Observation:** Traffic stayed fairly close to its recent rhythm.
 
 Latest image: `output/daily_site_pulse.png`

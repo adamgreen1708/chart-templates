@@ -1,22 +1,43 @@
 {
-  "report_date": "2026-11-01",
-  "visits": 7,
-  "prior_7d_avg": "14.14",
-  "pct_vs_prior_7d": "-50.5",
+  "report_date": "2026-11-02",
+  "visits": 12,
+  "prior_7d_avg": "9.71",
+  "pct_vs_prior_7d": "23.5",
   "top_page_path": "/resources/bauhaus-art-studio",
   "top_page_title": "Bauhaus Art Studio \u00b7 coffeetableviz",
-  "top_page_visits": 1,
-  "top_referrer": "Direct / unknown",
-  "top_referrer_visits": 1,
-  "observation": "A noticeably quieter day than the seven-day baseline.",
-  "generated_at_utc": "2026-11-02T18:20:54+00:00",
+  "top_page_visits": 2,
+  "top_referrer": "No referrer recorded",
+  "top_referrer_visits": 0,
+  "observation": "Traffic stayed fairly close to its recent rhythm.",
+  "generated_at_utc": "2026-11-03T00:55:10+00:00",
   "top_pages": [
     {
       "path_id": 117603735,
       "path": "/resources/bauhaus-art-studio",
       "title": "Bauhaus Art Studio \u00b7 coffeetableviz",
       "display": "Bauhaus Art Studio",
-      "count": 1
+      "count": 2
+    },
+    {
+      "path_id": 109453481,
+      "path": "/resources",
+      "title": "Resources \u00b7 coffeetableviz",
+      "display": "Resources",
+      "count": 2
+    },
+    {
+      "path_id": 109451764,
+      "path": "/",
+      "title": "coffeetableviz",
+      "display": "Home",
+      "count": 2
+    },
+    {
+      "path_id": 109446444,
+      "path": "/data-lens",
+      "title": "Data Lens \u00b7 coffeetableviz",
+      "display": "Data Lens",
+      "count": 2
     },
     {
       "path_id": 117597360,
@@ -26,31 +47,17 @@
       "count": 1
     },
     {
-      "path_id": 117589810,
-      "path": "/2026/02/04/truchet-tiles-small-shapes-long-shadows",
-      "title": "Truchet Tiles: Small Shapes, Long Shadows \u00b7 coffeetableviz",
-      "display": "Truchet Tiles: Small Shapes, Long Shadows",
+      "path_id": 109453963,
+      "path": "/resources/choosing-the-right-chart",
+      "title": "Choosing the right chart \u00b7 coffeetableviz",
+      "display": "Choosing the right chart",
       "count": 1
     },
     {
-      "path_id": 114429315,
-      "path": "/resources/8x8-pixel-art-builder",
-      "title": "8\u00d78 Pixel Art Builder \u00b7 coffeetableviz",
-      "display": "8\u00d78 Pixel Art Builder",
-      "count": 1
-    },
-    {
-      "path_id": 109453481,
-      "path": "/resources",
-      "title": "Resources \u00b7 coffeetableviz",
-      "display": "Resources",
-      "count": 1
-    },
-    {
-      "path_id": 109451764,
-      "path": "/",
-      "title": "coffeetableviz",
-      "display": "Home",
+      "path_id": 109446272,
+      "path": "/2026/09/27/can-one-bowie-song-tell-you-the-whole-album",
+      "title": "Can one Bowie song tell you the whole album? \u00b7 coffeetableviz",
+      "display": "Can one Bowie song tell you the whole album?",
       "count": 1
     },
     {
@@ -61,18 +68,5 @@
       "count": 1
     }
   ],
-  "top_referrers": [
-    {
-      "id": null,
-      "name": "Direct / unknown",
-      "count": 1,
-      "ref_scheme": "o"
-    },
-    {
-      "id": "www.linkedin.com",
-      "name": "www.linkedin.com",
-      "count": 1,
-      "ref_scheme": "h"
-    }
-  ]
+  "top_referrers": []
 }
