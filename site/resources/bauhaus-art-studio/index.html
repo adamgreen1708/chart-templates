@@ -154,8 +154,8 @@ permalink: /resources/bauhaus-art-studio/
     <div id="bh-broadside-options">
       <label class="field" for="bh-broadside-style">Typographic composition</label>
       <select id="bh-broadside-style" disabled>
-        <option value="architectural">Architectural type / oversized figures</option>
-        <option value="diagonal">Diagonal type / rotated words</option>
+        <option value="architectural">Type Monument / number + measured stripes</option>
+        <option value="diagonal">Cut-up Type / rotated letters + diagonal stripes</option>
       </select>
     </div>
     <div id="bh-stripe-options">
@@ -332,11 +332,11 @@ function editorCopy(){
    headline:visual.layout==='mosaic'?metric+': '+n+' pieces':
      visual.layout==='stripes'?metric+' / '+n+' stripes':
      visual.layout==='circles'?metric+' / '+(visual.circleScope==='range'?'min + max':Math.min(n,16)+' circles'):
-      (state.rows.filter(function(r){return r.value===maxRow.value;}).length>1?'Joint maximum: ':'Largest: ')+maxRow.label,
+      'TYPE / '+metric.toUpperCase(),
    deck:visual.layout==='mosaic'?n+' observations · rectangle area ∝ '+metric+' · colour: '+cols:
      visual.layout==='stripes'?n+' observations · '+(visual.stripeStyle==='sun'?'vertical stripe height ∝ '+metric+'; circle area = minimum / maximum':visual.stripeStyle==='flow'?'coloured path length ∝ '+metric+' / maximum; equal full paths':'stripe length ∝ '+metric+'; red highlights maximum'):
      visual.layout==='circles'?n+' selected records · '+(visual.circleScope==='range'?'minimum and maximum only':Math.min(n,16)+' actual values shown'+(n>16?' (first in sorted order)':''))+' · '+(visual.circleEncoding==='area'?'whole circle area ∝ '+metric:'arc sweep ∝ value / maximum'):
-     n+' observations · '+(visual.broadsideStyle==='diagonal'?'diagonal stripe length':'upright stripe height')+' ∝ '+metric+' · actual maximum '+v3Value(maxRow.value),
+     'MAX: '+maxRow.label+' · '+v3Value(maxRow.value)+' · '+n+' records · '+(visual.broadsideStyle==='diagonal'?'measured diagonal stripe lengths':'measured upright stripe heights'),
    credit:'Source: '+source+' · '+state.totalSelected+' matching rows'+(state.totalSelected>n?'; first '+n+' shown':'')+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]
   };
  }
@@ -837,7 +837,7 @@ function broadsideFittedType(raw,x,baseline,width,preferred,minimum,ink){
 function broadsideTwoLineName(name,x,top,width,ink,firstSize){
  var words=String(name).toUpperCase().split(/\s+/).filter(Boolean),cut=Math.max(1,Math.ceil(words.length/2));
  var first=words.slice(0,cut).join(' '),second=words.slice(cut).join(' ');
- var lineHeight=70;
+ var lineHeight=53;
  broadsideFittedType(first,x,top+62,width,firstSize,32,ink);
  if(second)broadsideFittedType(second,x,top+lineHeight+62,width,firstSize,32,ink);
 }
@@ -889,8 +889,7 @@ function renderBroadsideV5(rows,p,dark,max){
   ctx.fillStyle=accent;ctx.globalAlpha=.91;
   ctx.beginPath();ctx.arc(716,624,164,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;
   broadsideVerticalData(rows,p,contrast,max);
-  text('NO.',111,553,'bold 11px Arial',contrast);
-  text(count,757,579,'900 78px Arial',contrast);
+   text(count,757,579,'900 78px Arial',contrast);
   text('ROWS',763,602,'bold 11px Arial',contrast);
   // Oversized actual maximum spans the full editorial width.
   broadsideFittedType(hero,99,703,746,239,80,contrast);
@@ -906,7 +905,7 @@ function renderBroadsideV5(rows,p,dark,max){
   ctx.fillStyle=p.c[1];ctx.fillRect(297,354,111,223);
   ctx.fillStyle=accent;ctx.beginPath();ctx.arc(752,691,120,0,Math.PI*2);ctx.fill();
   // An editorial, rotated source label slices across the colour blocks.
-  ctx.save();ctx.translate(118,522);ctx.rotate(-Math.PI/2);
+  ctx.save();ctx.translate(172,694);ctx.rotate(-Math.PI/2);
   broadsideFittedType(name,0,0,302,73,30,contrast);
   ctx.restore();
   // A second angled source-derived type line cuts the layout in half.
