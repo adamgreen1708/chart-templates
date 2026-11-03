@@ -787,13 +787,18 @@ function renderCircleStudy(rows,p,dark,max){
   });
  }
  dataHitRegions=radial;
- // Small, grounded legend. No median, percentile or dummy values.
+ // The printed key is also touch-inspectable, including when a value is zero
+ // and therefore has no measured circle area.
  var minValue=Math.min.apply(null,selected.map(function(r){return r.value;}));
  var maxValue=Math.max.apply(null,selected.map(function(r){return r.value;}));
- text('MAX',117,775,'bold 11px Arial',dark);
- posterExactValue(v3Value(maxValue),208,775,130,dark);
- text('MIN',366,775,'bold 11px Arial',dark);
- posterExactValue(v3Value(minValue),457,775,130,dark);
+ var plottedMax=selected.reduce(function(a,b){return b.value>a.value?b:a;},selected[0]);
+ var plottedMin=selected.reduce(function(a,b){return b.value<a.value?b:a;},selected[0]);
+ text(range?'MAX':'PLOTTED MAX',117,775,'bold 11px Arial',dark);
+ posterExactValue(v3Value(maxValue),235,775,120,dark);
+ text(range?'MIN':'PLOTTED MIN',366,775,'bold 11px Arial',dark);
+ posterExactValue(v3Value(minValue),488,775,120,dark);
+ dataHitRegions.push({row:plottedMax,order:rows.indexOf(plottedMax)+1,bounds:{left:105,top:756,right:353,bottom:786}});
+ dataHitRegions.push({row:plottedMin,order:rows.indexOf(plottedMin)+1,bounds:{left:360,top:756,right:605,bottom:786}});
  var disclosure=range?'RANGE OF '+originalN+' SOURCE ROW'+(originalN===1?'':'S')+' · ONLY MIN / MAX ENCODED':
   shown+' OF '+originalN+' RECORDS DISPLAYED'+(shown<originalN?' · FILTER FOR MORE':'');
  text(disclosure,117,801,'bold 11px Arial',dark);
