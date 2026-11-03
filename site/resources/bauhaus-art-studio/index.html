@@ -331,10 +331,10 @@ function editorCopy(){
   return{
    headline:visual.layout==='mosaic'?metric+': '+n+' pieces':
      visual.layout==='stripes'?metric+' / '+n+' stripes':
-     visual.layout==='circles'?metric+' / '+n+' circles':
+     visual.layout==='circles'?metric+' / '+(visual.circleScope==='range'?'min + max':Math.min(n,16)+' circles'):
       (state.rows.filter(function(r){return r.value===maxRow.value;}).length>1?'Joint maximum: ':'Largest: ')+maxRow.label,
    deck:visual.layout==='mosaic'?n+' observations · rectangle area ∝ '+metric+' · colour: '+cols:
-     visual.layout==='stripes'?n+' observations · stripe length ∝ '+metric+' · red highlights maximum':
+     visual.layout==='stripes'?n+' observations · '+(visual.stripeStyle==='sun'?'vertical stripe height ∝ '+metric+'; circle area = minimum / maximum':visual.stripeStyle==='flow'?'coloured path length ∝ '+metric+' / maximum; equal full paths':'stripe length ∝ '+metric+'; red highlights maximum'):
      visual.layout==='circles'?n+' selected records · '+(visual.circleScope==='range'?'minimum and maximum only':Math.min(n,16)+' actual values shown'+(n>16?' (first in sorted order)':''))+' · '+(visual.circleEncoding==='area'?'whole circle area ∝ '+metric:'arc sweep ∝ value / maximum'):
      n+' observations · bar length ∝ '+metric+' · standout: '+v3Value(maxRow.value),
    credit:'Source: '+source+' · '+state.totalSelected+' matching rows'+(state.totalSelected>n?'; first '+n+' shown':'')+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]
@@ -794,10 +794,10 @@ function renderCircleStudy(rows,p,dark,max){
  posterExactValue(v3Value(maxValue),208,775,130,dark);
  text('MIN',366,775,'bold 11px Arial',dark);
  posterExactValue(v3Value(minValue),457,775,130,dark);
- var disclosure=range?'RANGE: '+originalN+' SOURCE ROW'+(originalN===1?'':'S'):
+ var disclosure=range?'RANGE OF '+originalN+' SOURCE ROW'+(originalN===1?'':'S')+' · ONLY MIN / MAX ENCODED':
   shown+' OF '+originalN+' RECORDS DISPLAYED'+(shown<originalN?' · FILTER FOR MORE':'');
  text(disclosure,117,801,'bold 11px Arial',dark);
- if(shown<originalN)text('ONLY THE FIRST '+shown+' IN THE CURRENT SORT ARE ENCODED',117,819,'11px Arial',dark);
+ if(!range&&shown<originalN)text('ONLY THE FIRST '+shown+' IN THE CURRENT SORT ARE ENCODED',117,819,'11px Arial',dark);
  $('hint').textContent=isArc?
   'Concentric arc sweep represents original value / maximum using constant-width tracks. '+(range?'Only source min and max are shown.':'Only the first '+shown+' records in the current sort are shown. ')+'Tap near a ring to inspect its actual value.':
   'Each whole, overlapping concentric circle area is proportional to its source value. Visible coloured bands are NOT the area encoding. '+(range?'Source min/max only.':'The first '+shown+' displayed source values are used. ')+'Tap a visible band to inspect.';
@@ -1145,16 +1145,18 @@ function syncVisualControls(){
  $('gallery-finish').value=visual.galleryFinish;
  if(isPoster){
   var encoding=visual.layout==='mosaic'?'rectangle area':visual.layout==='broadside'?'bar length':visual.layout==='stripes'?'stripe length':visual.circleEncoding==='arc'?'arc sweep':'disc area';
-  $('gallery-info').textContent='Poster finish changes colours and graphic styling only. '+encoding+' remains the active numeric encoding; existing source values do not change.';
+  $('gallery-info').textContent='Poster finish changes colours and graphical styling only. Measurements stay fixed: '+(visual.layout==='stripes'&&visual.stripeStyle==='sun'?'stripe height and min/max circle area':visual.layout==='stripes'&&visual.stripeStyle==='flow'?'coloured length along equal-size curves':visual.layout==='circles'?(visual.circleEncoding==='arc'?'arc sweep':'whole-circle area'):encoding)+'.';
  }
  $('marks').disabled=isPoster;$('value-scale').disabled=isPoster;
  $('colour-rule').disabled=['broadside','stripes','circles'].includes(visual.layout);
  $('colour-field').disabled=['broadside','stripes','circles'].includes(visual.layout);
  $('poster-info').textContent=visual.layout==='mosaic'?
   'Measured rectangle area = original value / total. The chosen colour rule is applied; ornamental details do not represent extra data.':
-  visual.layout==='broadside'?'Bar length starts at zero. The maximum is highlighted. Shape and additional colour controls are unavailable.':
-  visual.layout==='stripes'?'Black stripe lengths start at zero; red highlights every maximum. Parallel strokes per row are decorative.':
-  visual.layout==='circles'?(visual.circleEncoding==='arc'?'The sweep of a constant-width arc represents value relative to the maximum.':'Small disc areas are proportional to the values, with a decorative central hero ring.'):
+  visual.layout==='broadside'?'Oversized source-grounded typography plus accurate zero-based miniature bars. The two designs differ in layout, not values.':
+  visual.layout==='stripes'?(visual.stripeStyle==='sun'?'Vertical height = source value / maximum; circle enclosed area = minimum / maximum.':
+   visual.stripeStyle==='flow'?'Every full flow path is identical in length; the coloured portion = source value / maximum.':
+   'Classic stripes: zero-based proportional lengths.'):
+  visual.layout==='circles'?(visual.circleEncoding==='arc'?'Concentric arc sweep = source value / maximum.':'Concentric WHOLE-circle area = source value, not visible band area.'):
   'Pick Data Mosaic or Typographic Broadside above to produce an editorial poster rather than a regular tile grid.';
  if(state.mode==='data')$('reroll').disabled=isPoster;
 }
