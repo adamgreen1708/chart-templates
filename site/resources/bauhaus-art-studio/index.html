@@ -174,8 +174,8 @@ permalink: /resources/bauhaus-art-studio/
       </select>
       <label class="field" for="bh-circle-scope">Which values?</label>
       <select id="bh-circle-scope" disabled>
-        <option value="range">Actual minimum and maximum</option>
         <option value="records">Individual records (first 16 displayed)</option>
+        <option value="range">Actual minimum and maximum</option>
       </select>
     </div>
     <p class="field-help" id="bh-poster-info">Choose a poster style to see its precise data-to-geometry mapping.</p>
@@ -281,7 +281,7 @@ var names={rhythm:'Geometric rhythm',radial:'Around the centre',hidden:'Hidden M
 var demo=[42,58,74,63,85,91,68,82,60,95,70,65].map(function(value,i){return{label:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][i],value:value};});
 var state={mode:'rhythm',n:8,chaos:12,pal:0,seed:15,brush:0,edits:{},history:[],rows:demo.slice(),isDemo:true,metric:'Miles (illustrative)',sourceLabel:'ILLUSTRATIVE SAMPLE',totalSelected:12};
 var imported=null,MAX_BYTES=2*1024*1024,githubLoadId=0,filterCategories=[],dataHitRegions=[],editorOverrides={headline:null,deck:null,credit:null},activeArtworkSource=null;
-var visual={layout:'grid',marks:'mixed',colour:'bands',colourField:-1,sort:'source',scale:'zero',preset:'patchwork',showLabels:false,labelContent:'label',hideSmall:true,galleryFinish:'paper',circleEncoding:'area',circleScope:'range',stripeStyle:'sun',broadsideStyle:'architectural'};
+var visual={layout:'grid',marks:'mixed',colour:'bands',colourField:-1,sort:'source',scale:'zero',preset:'patchwork',showLabels:false,labelContent:'label',hideSmall:true,galleryFinish:'paper',circleEncoding:'area',circleScope:'records',stripeStyle:'sun',broadsideStyle:'architectural'};
 var markNames={mixed:'mixed shapes',circle:'circles',square:'squares',triangle:'triangles',half:'semicircles',quarter:'quarter circles'};
 var layoutNames={grid:'grid',orbit:'orbit',ribbon:'ribbon',mosaic:'data mosaic',broadside:'typographic broadside',stripes:'stripe study',circles:'circle study'};
 var colourNames={bands:'four equal-width value bands',median:'above/below median',category:'category',decorative:'decorative sequence (not data)'};
@@ -335,7 +335,7 @@ function editorCopy(){
       (state.rows.filter(function(r){return r.value===maxRow.value;}).length>1?'Joint maximum: ':'Largest: ')+maxRow.label,
    deck:visual.layout==='mosaic'?n+' observations · rectangle area ∝ '+metric+' · colour: '+cols:
      visual.layout==='stripes'?n+' observations · stripe length ∝ '+metric+' · red highlights maximum':
-     visual.layout==='circles'?n+' observations · '+(visual.circleEncoding==='area'?'summary ring and disc area ∝ '+metric:'summary ring and mark arc sweep ∝ value / maximum')+' · max / upper quartile / median / min':
+     visual.layout==='circles'?n+' selected records · '+(visual.circleScope==='range'?'minimum and maximum only':Math.min(n,16)+' actual values shown'+(n>16?' (first in sorted order)':''))+' · '+(visual.circleEncoding==='area'?'whole circle area ∝ '+metric:'arc sweep ∝ value / maximum'):
      n+' observations · bar length ∝ '+metric+' · standout: '+v3Value(maxRow.value),
    credit:'Source: '+source+' · '+state.totalSelected+' matching rows'+(state.totalSelected>n?'; first '+n+' shown':'')+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]
   };
@@ -734,95 +734,75 @@ function renderStripeStudy(rows,p,dark,max){
  $('hint').textContent='All stripes share a zero baseline and proportional length. Multiple parallel strokes per row are purely graphic repetition. '+(rows.length>24?'For print clarity, try filtering to 8–24 records. ':'')+'Tap any row to inspect exact values.';
  $('label-note').textContent=withLabels?'Short labels appear where rows are tall enough. Tap a stripe row for the complete label.':'Labels are off. Tap a stripe row for its source value.';
 }
-// The hero rings and the individual marks both carry numeric encodings.
-// Four distribution statistics are source-derived: max, upper quartile (R7),
-// median and min. The hero rings use the SAME geometric encoding as the marks.
-function circleSummaryStatistics(rows){
- var sorted=rows.map(function(r){return r.value;}).slice().sort(function(a,b){return a-b;});
- function percentile(frac){
-  var position=(sorted.length-1)*frac,lo=Math.floor(position),hi=Math.ceil(position),weight=position-lo;
-  return sorted[lo]*(1-weight)+sorted[hi]*weight;
- }
- return[
-  {name:'MAX',value:sorted[sorted.length-1]},
-  {name:'UPPER Q',value:percentile(.75)},
-  {name:'MEDIAN',value:percentile(.5)},
-  {name:'MIN',value:sorted[0]}
- ];
+// Circle Study is generated only from actual row values, without quartiles or medians.
+// In Range scope the chart uses min and max; in Records scope it uses up to
+// sixteen selected original values and transparently discloses that display cap.
+function circleSelectedRows(rows){
+ if(visual.circleScope==='records')return rows.slice(0,16);
+ var smallest=rows.reduce(function(a,b){return b.value<a.value?b:a;},rows[0]);
+ var largest=rows.reduce(function(a,b){return b.value>a.value?b:a;},rows[0]);
+ return smallest.value===largest.value?[largest]:[largest,smallest];
+}
+function circlePaintColour(p,index,count){
+ // Deliberately contrasting concentric layers; not an extra metric.
+ if(visual.galleryFinish==='ink')return [p.c[1],p.c[0],p.c[2],p.c[3]][index%4];
+ return p.c[(index+count)%4];
 }
 function renderCircleStudy(rows,p,dark,max){
- var n=rows.length,cols=Math.ceil(Math.sqrt(n)),rws=Math.ceil(n/cols);
- var x0=460,x1=860,y0=332,y1=811,cellW=(x1-x0)/cols,cellH=(y1-y0)/rws;
- var rmax=Math.min(cellW,cellH)*.37;
- var stats=circleSummaryStatistics(rows),isArc=visual.circleEncoding==='arc';
- var accent=visual.galleryFinish==='ink'?p.c[1]:p.c[0];
- var colours=[accent,p.c[1],p.c[2],p.c[3]];
- if(visual.galleryFinish==='ink')colours=[accent,p.c[0],p.c[2],p.c[3]];
- // Four original summary rings, not visual filler:
- // Area mode: area ENCLOSED by each outline circle / max area = stat/max.
- // Arc mode: angle swept at fixed radii / full circle = stat/max.
- ctx.save();
- stats.forEach(function(stat,i){
-  var ratio=max>0?stat.value/max:0,outer=156,trackRadius=156-i*27;
-  var radius=isArc?trackRadius:outer*Math.sqrt(ratio);
-  if(radius<=0)return;
-  if(isArc){
-   ctx.strokeStyle=dark;ctx.globalAlpha=.11;ctx.lineWidth=5;
-   ctx.beginPath();ctx.arc(269,541,radius,-Math.PI/2,Math.PI*1.5);ctx.stroke();
-   ctx.globalAlpha=1;ctx.strokeStyle=colours[i];ctx.lineWidth=5;
-   ctx.beginPath();ctx.arc(269,541,radius,-Math.PI/2,-Math.PI/2+2*Math.PI*ratio);ctx.stroke();
-  }else{
-   ctx.globalAlpha=1;ctx.strokeStyle=colours[i];ctx.lineWidth=3.8;
-   ctx.beginPath();ctx.arc(269,541,radius,0,Math.PI*2);ctx.stroke();
-  }
- });
- ctx.restore();
- text('SUMMARY / '+(isArc?'ARC SWEEP':'ENCLOSED AREA'),113,337,'bold '+posterType.section+'px Arial',dark);
- text('MAXIMUM',269,521,'bold '+posterType.section+'px Arial',accent,'center');
- var maximum=rows.reduce(function(a,b){return b.value>a.value?b:a;},rows[0]);
- var heroValue=v3Value(maximum.value),heroFont=posterType.heroCircle;
- ctx.font='bold '+heroFont+'px Arial';
- while(heroFont>21&&ctx.measureText(heroValue).width>178){heroFont-=2;ctx.font='bold '+heroFont+'px Arial';}
- text(heroValue,269,560,'bold '+heroFont+'px Arial',dark,'center');
- posterSmallLabel(maximum.label,269,580,176,dark,'center');
- // In-poster key: every ring maps to a derived, explicitly named statistic.
- stats.forEach(function(stat,i){
-  var y=721+i*27;
-  ctx.fillStyle=colours[i];ctx.fillRect(116,y-11,12,12);
-  text(stat.name,140,y,'bold '+posterType.section+'px Arial',dark);
-  posterSmallLabel(v3Value(stat.value),401,y,84,dark,'right');
- });
- text('INDIVIDUAL '+(isArc?'ARCS':'DISCS'),471,312,'bold '+posterType.section+'px Arial',dark);
- dataHitRegions=[];
- rows.forEach(function(row,i){
-  var cx=x0+cellW*(i%cols+.5),cy=y0+cellH*(Math.floor(i/cols)+.5),fraction=max>0?row.value/max:0;
-  var stroke=row.value===max?accent:(visual.galleryFinish==='ink'?p.c[0]:p.c[2]);
-  ctx.save();
-  if(isArc){
-   ctx.strokeStyle=p.c[3];ctx.globalAlpha=.18;ctx.lineWidth=Math.max(2,Math.min(8,rmax*.18));
-   ctx.beginPath();ctx.arc(cx,cy,rmax,-Math.PI/2,Math.PI*1.5);ctx.stroke();
-   ctx.globalAlpha=1;ctx.strokeStyle=stroke;
-   if(fraction>0){ctx.beginPath();ctx.arc(cx,cy,rmax,-Math.PI/2,-Math.PI/2+2*Math.PI*fraction);ctx.stroke();}
-  }else{
-   ctx.fillStyle=stroke;
-   var rad=rmax*Math.sqrt(fraction); // disc area ∝ value
-   if(rad>0){ctx.beginPath();ctx.arc(cx,cy,rad,0,Math.PI*2);ctx.fill();}
-  }
-  ctx.restore();
-  if(visual.showLabels&&Math.min(cellW,cellH)>58&&n<=24){
-   var label=visual.labelContent==='value'?v3Value(row.value):visual.labelContent==='index'?String(i+1):
-    visual.labelContent==='both'?row.label+' · '+v3Value(row.value):row.label;
-   posterSmallLabel(label,cx,cy+cellH*.47,cellW-10,dark,'center');
-  }
-  dataHitRegions.push({x:cx,y:cy,s:Math.min(cellW,cellH),bounds:{left:x0+(i%cols)*cellW,top:y0+Math.floor(i/cols)*cellH,
-    right:x0+(i%cols+1)*cellW,bottom:y0+(Math.floor(i/cols)+1)*cellH},row:row,order:i+1});
- });
+ var selected=circleSelectedRows(rows),bySize=selected.slice().sort(function(a,b){return b.value-a.value;});
+ var shown=selected.length,originalN=rows.length,range=visual.circleScope==='range',isArc=visual.circleEncoding==='arc';
+ var maximum=bySize[0],minimum=bySize[bySize.length-1],localMax=maximum.value;
+ var cx=480,cy=541,rmax=198,radial=[],layers=[];
+ text(range?'RANGE / SOURCE MINIMUM + MAXIMUM':'RECORDS / SOURCE VALUES',112,315,'bold 11px Arial',dark);
+ text(isArc?'ARC SWEEP / VALUE ÷ MAXIMUM':'FULL CIRCLE AREA / VALUE',112,333,'bold 11px Arial',dark);
+ // Render largest to smallest; nested fills are overlapping FULL discs.
+ // The visible coloured annulus is NOT the encoded area.
+ if(!isArc){
+  bySize.forEach(function(row,i){
+   var fraction=localMax>0?row.value/localMax:0,radius=rmax*Math.sqrt(fraction);
+   layers.push({row:row,radius:radius,index:rows.indexOf(row)+1});
+   if(radius>0){ctx.fillStyle=circlePaintColour(p,i,shown);ctx.beginPath();ctx.arc(cx,cy,radius,0,2*Math.PI);ctx.fill();}
+  });
+  // A thin boundary keeps the original outer disc's extent understandable.
+  if(localMax>0){ctx.strokeStyle=dark;ctx.lineWidth=1.2;ctx.beginPath();ctx.arc(cx,cy,rmax,0,2*Math.PI);ctx.stroke();}
+  layers.forEach(function(layer,i){
+   var next=i+1<layers.length?layers[i+1].radius:0;
+   if(layer.radius>next+0.05){
+    radial.push({row:layer.row,order:layer.index,radial:{cx:cx,cy:cy,inner:next,outer:layer.radius}});
+   }
+  });
+ }else{
+  // Equal stroke width; ring position distinguishes records, sweep is the value.
+  var lowRadius=range?155:62;
+  bySize.forEach(function(row,i){
+   var radius=shown===1?rmax:rmax-(rmax-lowRadius)*i/(shown-1);
+   var fraction=localMax>0?row.value/localMax:0;
+   ctx.save();ctx.lineWidth=shown>12?5:7;
+   ctx.strokeStyle=dark;ctx.globalAlpha=.13;
+   ctx.beginPath();ctx.arc(cx,cy,radius,-Math.PI/2,1.5*Math.PI);ctx.stroke();
+   ctx.globalAlpha=1;ctx.strokeStyle=circlePaintColour(p,i,shown);
+   if(fraction>0){ctx.beginPath();ctx.arc(cx,cy,radius,-Math.PI/2,-Math.PI/2+2*Math.PI*fraction);ctx.stroke();}
+   ctx.restore();
+   radial.push({row:row,order:rows.indexOf(row)+1,radial:{cx:cx,cy:cy,radius:radius,tolerance:Math.max(5,Math.min(10,(rmax-lowRadius)/Math.max(1,shown-1)*.47))}});
+  });
+ }
+ dataHitRegions=radial;
+ // Small, grounded legend. No median, percentile or dummy values.
+ var minValue=Math.min.apply(null,selected.map(function(r){return r.value;}));
+ var maxValue=Math.max.apply(null,selected.map(function(r){return r.value;}));
+ text('MAX',117,775,'bold 11px Arial',dark);
+ posterExactValue(v3Value(maxValue),208,775,130,dark);
+ text('MIN',366,775,'bold 11px Arial',dark);
+ posterExactValue(v3Value(minValue),457,775,130,dark);
+ var disclosure=range?'RANGE: '+originalN+' SOURCE ROW'+(originalN===1?'':'S'):
+  shown+' OF '+originalN+' RECORDS DISPLAYED'+(shown<originalN?' · FILTER FOR MORE':'');
+ text(disclosure,117,801,'bold 11px Arial',dark);
+ if(shown<originalN)text('ONLY THE FIRST '+shown+' IN THE CURRENT SORT ARE ENCODED',117,819,'11px Arial',dark);
  $('hint').textContent=isArc?
-  'Both large summary rings and individual arcs encode angle swept / full circle = value / maximum. Summary: max, upper quartile (linear interpolation), median and minimum.':
-  'Both large summary rings and individual discs encode enclosed area proportional to values. Summary: max, upper quartile (linear interpolation), median and minimum. Equal statistics may overlap.';
- $('label-note').textContent=visual.showLabels?'Circle labels appear where space allows; tap any individual disc or arc cell for the complete value.':'Circle labels are off; tap any individual disc or arc cell for the original value.';
+  'Concentric arc sweep represents original value / maximum using constant-width tracks. '+(range?'Only source min and max are shown.':'Only the first '+shown+' records in the current sort are shown. ')+'Tap near a ring to inspect its actual value.':
+  'Each whole, overlapping concentric circle area is proportional to its source value. Visible coloured bands are NOT the area encoding. '+(range?'Source min/max only.':'The first '+shown+' displayed source values are used. ')+'Tap a visible band to inspect.';
+ $('label-note').textContent='The circle key uses true source min/max, not quartiles or medians. Individual labels are kept off the measured rings to prevent collisions; tap to inspect.';
 }
-
 function posterHeroNumber(value,x,y,maxWidth,maxFont,ink){
  var font=maxFont,txt=String(value);
  ctx.font='bold '+font+'px Arial';
@@ -1241,6 +1221,13 @@ $('chaos').addEventListener('input',function(){state.chaos=+this.value;refresh()
 canvas.addEventListener('pointerdown',function(e){var b=canvas.getBoundingClientRect(),px=(e.clientX-b.left)/b.width*960,py=(e.clientY-b.top)/b.height*960;
 if(state.mode==='data'){var closest=null,dist=Infinity;
  dataHitRegions.forEach(function(h){
+  if(h.radial){
+   var rad=Math.hypot(px-h.radial.cx,py-h.radial.cy);
+   var delta=h.radial.radius!==undefined?Math.abs(rad-h.radial.radius):
+     (rad>=h.radial.inner&&rad<=h.radial.outer?0:Infinity);
+   if(delta<= (h.radial.tolerance===undefined?0:h.radial.tolerance) &&delta<dist){closest=h;dist=delta;}
+   return;
+  }
   if(h.polyline){
    for(var z=1;z<h.polyline.length;z++){
     var a=h.polyline[z-1],b=h.polyline[z],dx=b.x-a.x,dy=b.y-a.y;
