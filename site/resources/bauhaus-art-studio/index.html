@@ -126,7 +126,7 @@ permalink: /resources/bauhaus-art-studio/
 <label class="field" for="bh-value">Numeric value column</label><select id="bh-value" disabled><option>Choose a CSV first</option></select>
 <label class="field" for="bh-filter">Optional category filter</label><select id="bh-filter" disabled><option value="-1">All rows</option></select>
 <label class="field" for="bh-filter-value">Select category</label><select id="bh-filter-value" disabled><option value="-1">All categories</option></select>
-<p id="bh-filter-info" class="muted">After creating an artwork, selecting a category updates it immediately. For larger datasets, filter to keep the result meaningful.</p>
+<p id="bh-filter-info" class="muted">After the first Create, changing a label, numeric value or category automatically updates the artwork. Missing numeric values are excluded and counted, never treated as zero.</p>
 <button type="button" id="bh-apply" class="primarybutton" disabled>Create artwork from selected data</button>
 <div class="data-styling" aria-label="Creative data artwork controls">
   <span class="section-caption">05 / Compose the artwork</span>
@@ -322,6 +322,14 @@ function dataRows(){
  if(visual.sort!=='source')rows.sort(function(a,b){return visual.sort==='desc'?b.value-a.value:a.value-b.value;});
  return rows;
 }
+function sourceRowNote(n){
+ var total=state.totalSelected||0,excluded=state.invalidValueCount||0,valid=total-excluded;
+ var msg=excluded?
+  valid+' valid of '+total+' matching rows ('+excluded+' missing/invalid value'+(excluded===1?'':'s')+' excluded)':
+  total+' matching rows';
+ if(valid>n)msg+='; first '+n+' valid shown';
+ return msg;
+}
 function editorCopy(){
  var n=state.rows.length,metric=formatField(state.metric),shown=n+' row'+(n===1?'':'s'),cols=visual.colour==='category'&&visual.colourField<0?'above/below median':colourNames[visual.colour],shape=visual.marks==='mixed'?'mixed Bauhaus shapes':markNames[visual.marks];
  var scale=visual.scale==='contrast'?'min–max contrast (10% minimum area; not zero-based)':'area proportional to '+metric;
@@ -337,13 +345,13 @@ function editorCopy(){
      visual.layout==='stripes'?n+' observations · '+(visual.stripeStyle==='sun'?'vertical stripe height ∝ '+metric+'; circle area = minimum / maximum':visual.stripeStyle==='flow'?'coloured path length ∝ '+metric+' / maximum; equal full paths':'stripe length ∝ '+metric+'; red highlights maximum'):
      visual.layout==='circles'?n+' selected records · '+(visual.circleScope==='range'?'minimum and maximum only':Math.min(n,16)+' actual values shown'+(n>16?' (first in sorted order)':''))+' · '+(visual.circleEncoding==='area'?'whole circle area ∝ '+metric:'arc sweep ∝ value / maximum'):
      'MAX: '+maxRow.label+' · '+v3Value(maxRow.value)+' · '+n+' records · '+(visual.broadsideStyle==='diagonal'?'measured diagonal stripe lengths':'measured upright stripe heights'),
-   credit:'Source: '+source+' · '+state.totalSelected+' matching rows'+(state.totalSelected>n?'; first '+n+' shown':'')+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]
+   credit:'Source: '+source+' · '+sourceRowNote(n)+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]
   };
  }
  return {
   headline:metric+' in '+n+' forms',
   deck:shown+' · '+shape+' · '+scale+' · colour: '+cols+(visual.marks==='mixed'&&hasShapeCategories()?' · shapes use '+formatField(imported&&imported.headers[visual.colourField]||'category'):''),
-  credit:'Source: '+source+' · '+state.totalSelected+' matching rows'+(state.totalSelected>n?'; first '+n+' shown':'')+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]+' layout'+(visual.sort==='source'?'':' · ordered '+(visual.sort==='desc'?'high–low':'low–high'))
+  credit:'Source: '+source+' · '+sourceRowNote(n)+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]+' layout'+(visual.sort==='source'?'':' · ordered '+(visual.sort==='desc'?'high–low':'low–high'))
  };
 }
 function syncEditor(){
@@ -1051,23 +1059,54 @@ function numeric(v){var s=String(v).trim().replace(/,/g,'');if(!s)return NaN;ret
 function fillSelectors(data){['label','value'].forEach(function(id){var sel=$(id);sel.innerHTML='';data.headers.forEach(function(h,i){var o=document.createElement('option');o.value=String(i);o.textContent=h;sel.appendChild(o);});sel.disabled=false;});var numericIndices=data.headers.map(function(h,i){return i;}).filter(function(i){return data.records.every(function(r){return Number.isFinite(numeric(r[i]))&&numeric(r[i])>=0;});});$('label').value=String(data.headers.findIndex(function(_,i){return numericIndices.indexOf(i)===-1;})>=0?data.headers.findIndex(function(_,i){return numericIndices.indexOf(i)===-1;}):0);$('value').value=String(numericIndices.find(function(i){return i!==Number($('label').value);})===undefined?(numericIndices[0]===undefined?1:numericIndices[0]):numericIndices.find(function(i){return i!==Number($('label').value);}));$('apply').disabled=false;}
 
 function applyImported(){
- if(!imported){status('Choose a local CSV or load a GitHub dataset first.');return;}
+ if(!imported){status('Choose a local CSV or load a GitHub dataset first.');return false;}
  var li=Number($('label').value),vi=Number($('value').value);
- if(li===vi){status('Choose different columns for labels and values.');return;}
+ if(!Number.isInteger(li)||!Number.isInteger(vi)||li<0||vi<0||
+    li>=imported.headers.length||vi>=imported.headers.length){
+  status('Choose valid label and numeric value columns.');return false;
+ }
+ if(li===vi){status('Choose different columns for labels and values.');return false;}
  var records=imported.records,filterField=Number($('filter').value),categoryIndex=Number($('filter-value').value);
- if(filterField>=0&&categoryIndex>=0&&categoryIndex<filterCategories.length)records=records.filter(function(r){return r[filterField]===filterCategories[categoryIndex];});
- if(!records.length){status('There are no rows in this category.');return;}
+ if(filterField>=0&&categoryIndex>=0&&categoryIndex<filterCategories.length){
+  records=records.filter(function(r){return r[filterField]===filterCategories[categoryIndex];});
+ }
+ if(!records.length){
+  status('There are no rows in this category. The previous artwork was kept.');
+  $('filter-info').textContent='No matching rows. The previous artwork has not changed.';
+  return false;
+ }
  var sourcePositions=new Map(imported.records.map(function(r,i){return[r,i];}));
- var vals=records.map(function(r,i){return{label:r[li]||'Row '+(i+1),value:numeric(r[vi]),sourceIndex:sourcePositions.get(r)};});
- if(vals.some(function(v){return !Number.isFinite(v.value)||v.value<0;})){status('Selected value column contains missing or negative values in the matching rows. Please choose another field or filter.');return;}
- vals=vals.slice(0,64);
- // All matching rows are validated before the first 64 are selected.
- // An all-zero series is valid source data. It produces a correctly empty
- // proportional geometry rather than silently switching to illustrative data.
- var allZero=!vals.some(function(v){return v.value>0;});
- state.rows=vals;state.mode='data';state.isDemo=false;activeArtworkSource=imported;state.metric=imported.headers[vi];state.totalSelected=records.length;state.sourceLabel=imported.sourceLabel;state.sourceName=imported.name||'CSV';state.filterName=filterField>=0&&categoryIndex>=0?imported.headers[filterField]+' = '+filterCategories[categoryIndex]:'';syncEditor();refresh();
- $('filter-info').textContent=records.length+' matching rows'+(records.length>64?' · first 64 displayed':'')+' · artwork updated below.';
- status((allZero?'All selected values are zero, so proportional marks have no area. ':'Created '+vals.length+' shape'+(vals.length===1?'':'s')+' from '+imported.headers[vi]+'. ')+(records.length>64?'Only the FIRST 64 of '+records.length+' matching source rows are shown.':''));
+ var omitted=0,valid=[];
+ records.forEach(function(r,i){
+  var value=numeric(r[vi]);
+  if(!Number.isFinite(value)||value<0){omitted++;return;}
+  valid.push({label:r[li]||'Row '+(i+1),value:value,sourceIndex:sourcePositions.get(r)});
+ });
+ if(!valid.length){
+  status('No valid non-negative numeric values in '+imported.headers[vi]+
+   ' for this category. The previous artwork was kept.');
+  $('filter-info').textContent=records.length+
+   ' matching rows, but none has a usable non-negative '+imported.headers[vi]+' value. Previous artwork unchanged.';
+  return false;
+ }
+ var vals=valid.slice(0,64),allZero=!vals.some(function(v){return v.value>0;});
+ // All filtered source rows are checked BEFORE the first-64 display cap.
+ // Missing or invalid values are excluded, not misrepresented as zero.
+ state.rows=vals;state.mode='data';state.isDemo=false;activeArtworkSource=imported;
+ state.metric=imported.headers[vi];state.totalSelected=records.length;
+ state.invalidValueCount=omitted;state.sourceLabel=imported.sourceLabel;state.sourceName=imported.name||'CSV';
+ state.filterName=filterField>=0&&categoryIndex>=0?imported.headers[filterField]+' = '+filterCategories[categoryIndex]:'';
+ state.activeMapping={label:li,value:vi,filter:filterField,category:categoryIndex};
+ syncEditor();refresh();
+ var included=valid.length,warning=omitted?
+   ' · '+omitted+' missing/invalid '+imported.headers[vi]+' value'+(omitted===1?'':'s')+' excluded (not zero)':'';
+ var cap=included>64?' · first 64 valid rows displayed':'';
+ $('filter-info').textContent=vals.length+' plotted of '+records.length+' matching rows'+warning+cap+' · artwork updated.';
+ status((allZero?'All plotted values are zero; no positive-area marks. ':
+   'Artwork updated: '+vals.length+' row'+(vals.length===1?'':'s')+' using '+imported.headers[vi]+'. ')+
+   (omitted?omitted+' missing/invalid value'+(omitted===1?' was':'s were')+' excluded, never counted as zero. ':'')+
+   (included>64?'Only the first 64 valid rows are displayed.':''));
+ return true;
 }
 function makeOption(sel,value,label){
  var opt=document.createElement('option');opt.value=String(value);opt.textContent=label;sel.appendChild(opt);
@@ -1164,17 +1203,27 @@ $('github-load').addEventListener('click',function(){
  loadGithub('https://github.com/adamgreen1708/chart-templates/blob/main/'+path,prefs);
 });
 $('github-link').addEventListener('click',function(){loadGithub($('github-url').value,null);});
-function refreshSelectedCategory(){
- // A new CSV must be explicitly mapped and created once. Thereafter, category
- // changes immediately reapply the same verified source, metric and label field.
- if(!imported||activeArtworkSource!==imported||state.mode!=='data'){
-  status('Category selected. Choose your label and value fields, then press Create artwork.');
+function refreshSelectedArtwork(){
+ // A freshly imported CSV requires its first explicit Create. All subsequent
+ // mapping edits for that same active source are live (without refetching).
+ if(!imported||activeArtworkSource!==imported){
+  status('Columns selected. Press Create artwork once for this newly loaded CSV.');
   return;
  }
- applyImported();
+ if(applyImported())return;
+ // If the new mapping cannot be plotted, restore the last *successful* form
+ // selection rather than displaying old art underneath misleading selectors.
+ var last=state.activeMapping;
+ if(!last)return;
+ $('label').value=String(last.label);$('value').value=String(last.value);
+ $('filter').value=String(last.filter);chooseFilter();
+ $('filter-value').value=String(last.category);
+ $('filter-info').textContent='This selection has no usable source values; restored the previous valid category and numeric field. Artwork unchanged.';
 }
-$('filter').addEventListener('change',function(){chooseFilter();refreshSelectedCategory();});
-$('filter-value').addEventListener('change',refreshSelectedCategory);
+$('filter').addEventListener('change',function(){chooseFilter();refreshSelectedArtwork();});
+$('filter-value').addEventListener('change',refreshSelectedArtwork);
+$('label').addEventListener('change',refreshSelectedArtwork);
+$('value').addEventListener('change',refreshSelectedArtwork);
 $('show-labels').addEventListener('change',function(){visual.showLabels=this.checked;$('label-options').hidden=!this.checked;if(state.mode==='data')render();status(visual.showLabels?'Shape labels enabled; overcrowded labels may be omitted.':'Shape labels hidden; the data and marks are unchanged.');});
 $('label-content').addEventListener('change',function(){visual.labelContent=this.value;if(state.mode==='data')render();status('Label content changed; source data is unchanged.');});
 $('hide-small').addEventListener('change',function(){visual.hideSmall=this.checked;if(state.mode==='data')render();status(this.checked?'Automatic label spacing enabled.':'Trying more labels; collisions and unsafe margins are still prevented.');});
@@ -1276,7 +1325,7 @@ $('data-presets').addEventListener('click',function(e){
 $('auto-text').addEventListener('click',function(){editorOverrides={headline:null,deck:null,credit:null};syncEditor();if(state.mode==='data')render();status('Headline, explanation and source regenerated from your current data.');});
 syncVisualControls();
 $('apply').addEventListener('click',applyImported);
-$('demo').addEventListener('click',function(){state.rows=demo.map(function(r,i){return{label:r.label,value:r.value,sourceIndex:i};});state.isDemo=true;activeArtworkSource=null;editorOverrides={headline:null,deck:null,credit:null};visual.colourField=-1;syncVisualControls();state.metric='Miles (illustrative)';state.totalSelected=12;state.sourceLabel='ILLUSTRATIVE SAMPLE';state.sourceName='Illustrative example';state.filterName='';syncEditor();state.mode='data';refresh();status('Illustrative 12-month running example. Not actual running data.');});
+$('demo').addEventListener('click',function(){state.rows=demo.map(function(r,i){return{label:r.label,value:r.value,sourceIndex:i};});state.isDemo=true;activeArtworkSource=null;state.invalidValueCount=0;state.activeMapping=null;editorOverrides={headline:null,deck:null,credit:null};visual.colourField=-1;syncVisualControls();state.metric='Miles (illustrative)';state.totalSelected=12;state.sourceLabel='ILLUSTRATIVE SAMPLE';state.sourceName='Illustrative example';state.filterName='';syncEditor();state.mode='data';refresh();status('Illustrative 12-month running example. Not actual running data.');});
 $('modes').addEventListener('click',function(e){var b=e.target.closest('[data-mode]');if(!b)return;state.mode=b.dataset.mode;state.edits={};state.history=[];if(state.mode==='hidden')state.pal=1;if(state.mode==='data')syncEditor();refresh();status(names[state.mode]+' selected.');});
 $('palettes').addEventListener('click',function(e){var b=e.target.closest('[data-pal]');if(!b)return;state.pal=+b.dataset.pal;
  // Directly choosing a Studio palette takes precedence over a gallery finish,
