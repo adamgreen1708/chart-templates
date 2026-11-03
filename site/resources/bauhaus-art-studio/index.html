@@ -996,10 +996,12 @@ function applyImported(){
  if(vals.some(function(v){return !Number.isFinite(v.value)||v.value<0;})){status('Selected value column contains missing or negative values in the matching rows. Please choose another field or filter.');return;}
  vals=vals.slice(0,64);
  // All matching rows are validated before the first 64 are selected.
- if(!vals.some(function(v){return v.value>0;})){status('At least one value must be greater than zero.');return;}
+ // An all-zero series is valid source data. It produces a correctly empty
+ // proportional geometry rather than silently switching to illustrative data.
+ var allZero=!vals.some(function(v){return v.value>0;});
  state.rows=vals;state.mode='data';state.isDemo=false;activeArtworkSource=imported;state.metric=imported.headers[vi];state.totalSelected=records.length;state.sourceLabel=imported.sourceLabel;state.sourceName=imported.name||'CSV';state.filterName=filterField>=0&&categoryIndex>=0?imported.headers[filterField]+' = '+filterCategories[categoryIndex]:'';syncEditor();refresh();
  $('filter-info').textContent=records.length+' matching rows'+(records.length>64?' · first 64 displayed':'')+' · artwork updated below.';
- status('Created '+vals.length+' shapes from '+imported.headers[vi]+'.'+(records.length>64?' Only the FIRST 64 of '+records.length+' matching source rows are shown.':''));
+ status((allZero?'All selected values are zero, so proportional marks have no area. ':'Created '+vals.length+' shapes from '+imported.headers[vi]+'. ')+(records.length>64?'Only the FIRST 64 of '+records.length+' matching source rows are shown.':''));
 }
 function makeOption(sel,value,label){
  var opt=document.createElement('option');opt.value=String(value);opt.textContent=label;sel.appendChild(opt);
