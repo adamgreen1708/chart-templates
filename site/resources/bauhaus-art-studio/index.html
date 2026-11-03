@@ -731,6 +731,64 @@ function renderCircleStudy(rows,p,dark,max){
   'Both large summary rings and individual discs encode enclosed area proportional to values. Summary: max, upper quartile (linear interpolation), median and minimum. Equal statistics may overlap.';
  $('label-note').textContent=visual.showLabels?'Circle labels appear where space allows; tap any individual disc or arc cell for the complete value.':'Circle labels are off; tap any individual disc or arc cell for the original value.';
 }
+
+function posterHeroNumber(value,x,y,maxWidth,maxFont,ink){
+ var font=maxFont,txt=String(value);
+ ctx.font='bold '+font+'px Arial';
+ while(font>34&&ctx.measureText(txt).width>maxWidth){font-=3;ctx.font='bold '+font+'px Arial';}
+ if(ctx.measureText(txt).width>maxWidth)txt=labelTextFit(txt,maxWidth,font);
+ text(txt,x,y,'bold '+font+'px Arial',ink);
+}
+function posterBroadsideBars(rows,p,dark,max,left,top,width,height){
+ var step=height/rows.length,barWidth=width-46;
+ rows.forEach(function(row,i){
+  var centre=top+(i+.5)*step,bw=max>0?row.value/max*barWidth:0;
+  var thickness=Math.min(7,Math.max(1.2,step*.43));
+  if(bw>0){ctx.fillStyle=row.value===max?p.c[0]:dark;ctx.fillRect(left,centre-thickness/2,bw,thickness);}
+  if(step>=14){
+   posterSmallLabel(String(i+1).padStart(2,'0'),left-25,centre+3,22,p.muted,'right');
+   if(visual.showLabels)posterExactValue(v3Value(row.value),left+barWidth+7,centre+3,45,dark);
+  }
+  dataHitRegions.push({x:left+barWidth/2,y:centre,s:step,
+   bounds:{left:left-32,top:top+i*step,right:left+width+1,bottom:top+(i+1)*step},row:row,order:i+1});
+ });
+}
+function renderBroadsideV5(rows,p,dark,max){
+ var main=rows.reduce(function(a,b){return b.value>a.value?b:a;},rows[0]);
+ var isDiagonal=visual.broadsideStyle==='diagonal',name=String(main.label),hero=v3Value(main.value);
+ var px=p.c[0],ink=v3Ink(p.bg);
+ // Geometric framework is graphic scaffolding, not a second numerical encoding.
+ ctx.save();ctx.beginPath();ctx.rect(82,285,796,550);ctx.clip();
+ if(!isDiagonal){
+  // Type-led architecture with a quiet vertical data rail.
+  ctx.fillStyle=px;ctx.fillRect(103,298,7,462);
+  ctx.strokeStyle=p.c[2];ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(119,492);ctx.lineTo(872,492);ctx.stroke();
+  text('MAX / '+formatField(state.metric).toUpperCase(),126,338,'bold 12px Arial',ink);
+  posterHeroNumber(hero,121,476,474,150,ink);
+  posterSafeText(name.toUpperCase(),128,522,469,142,66,31,2,ink,true);
+  // A count is source-derived typography, deliberately not a size encoding.
+  text(String(rows.length).padStart(2,'0'),730,390,'bold 90px Arial',px);
+  text('OBSERVATIONS',733,416,'bold 11px Arial',ink);
+  text('ZERO-BASED VALUES',647,473,'bold 11px Arial',ink);
+  posterBroadsideBars(rows,p,ink,max,659,509,205,306);
+ }else{
+  // Use actual row text as a large rotated typographic element.
+  ctx.save();ctx.translate(147,389);ctx.rotate(-.19);
+  posterSafeText(name.toUpperCase(),0,0,581,180,89,37,2,px,true);
+  ctx.restore();
+  ctx.strokeStyle=px;ctx.lineWidth=6;
+  ctx.beginPath();ctx.moveTo(121,611);ctx.lineTo(557,516);ctx.stroke();
+  text('LARGEST / '+formatField(state.metric).toUpperCase(),124,652,'bold 12px Arial',ink);
+  posterHeroNumber(hero,117,792,490,144,ink);
+  text(String(rows.length).padStart(2,'0'),682,407,'bold 91px Arial',px);
+  text('RECORDS',701,433,'bold 11px Arial',ink);
+  text('MEASURED LENGTHS',647,471,'bold 11px Arial',ink);
+  posterBroadsideBars(rows,p,ink,max,659,494,205,313);
+ }
+ ctx.restore();
+ $('hint').textContent='Experimental typography presents the actual maximum and selected label. Small bars on the right encode every row using a shared zero baseline; font size and rotation do not encode quantity. '+(rows.length>24?'Filter to about 8–24 records for clearer labels. ':'')+'Tap a small bar row to inspect its value.';
+ $('label-note').textContent='The largest value is actual source data. Caption labels are 11px when room permits; the full value is available by tapping.';
+}
 function renderPosterV3(rows,p,dark){
  var values=rows.map(function(r){return r.value;}),max=Math.max.apply(null,values),min=Math.min.apply(null,values),v=values.slice().sort(function(a,b){return a-b;}),n=rows.length,median=n%2?v[(n-1)/2]:(v[n/2-1]+v[n/2])/2;
  posterEditorCopy(p,dark);
@@ -773,29 +831,7 @@ function renderPosterV3(rows,p,dark){
   });
   $('hint').textContent='Each rectangle area is proportional to the source value. '+(rows.length>tiles.length?rows.length-tiles.length+' zero-valued observations have no area. ':'')+'Tap any tile for its label and value.';
  }else{
-  var maxRow=rows.reduce(function(a,b){return b.value>a.value?b:a;},rows[0]),hero=v3Value(maxRow.value);
-  var isInk=visual.galleryFinish==='ink';
-  if(!isInk){ctx.fillStyle=p.c[3];ctx.fillRect(82,288,796,164);}
-  else{ctx.fillStyle=p.c[1];ctx.fillRect(82,286,119,5);ctx.strokeStyle=p.c[0];ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(82,454);ctx.lineTo(878,454);ctx.stroke();}
-  galleryHeroOrnament(p);
-  var heroInk=isInk?v3Ink(p.bg):v3Ink(p.c[3]);
-  posterSafeText('LARGEST OBSERVATION / '+formatField(state.metric).toUpperCase(),110,295,465,30,14,12,1,isInk?p.c[0]:heroInk,true);
-  posterSafeText(hero,105,329,355,111,90,53,1,heroInk,true);
-  posterSafeText(maxRow.label,514,325,isInk?207:320,102,28,18,2,heroInk,true);
-  var h=(824-479)/n,left=visual.showLabels?299:112,width=visual.showLabels?449:664;
-  rows.forEach(function(row,i){
-   var yy=479+i*h,barY=yy+h*.17,barH=Math.max(2,h*.64);
-   ctx.fillStyle=visual.galleryFinish==='ink'?(row.value===max?p.c[1]:p.c[0]):(row.value===max?p.c[0]:p.c[2]);
-   var markH=visual.galleryFinish==='ink'?Math.min(6.5,Math.max(2,barH*.36)):barH;
-   ctx.fillRect(left,barY+(barH-markH)/2,width*(max>0?row.value/max:0),markH);
-   if(visual.showLabels&&h>=14){
-    var label=visual.labelContent==='value'?v3Value(row.value):visual.labelContent==='index'?String(i+1):visual.labelContent==='both'?row.label+' · '+v3Value(row.value):row.label;
-    posterSmallLabel(label,90,yy+Math.min(h-2,13),left-108,dark);
-   }
-   dataHitRegions.push({x:479,y:yy+h/2,s:h,bounds:{left:82,top:yy,right:878,bottom:yy+h},row:row,order:i+1});
-  });
-  ctx.strokeStyle=p.c[3];ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(82,839);ctx.lineTo(878,839);ctx.stroke();
-  $('hint').textContent='Bar length represents each original value from zero; any tied maxima share the accent colour. '+(n>24?'For a less crowded poster, filter to about 8–24 records. ':'')+'Tap any row to inspect its source value.';
+  renderBroadsideV5(rows,p,dark,max);
  }
  posterSourceCopy(p);
  $('meta').textContent=n+' rows · '+layoutNames[visual.layout];
