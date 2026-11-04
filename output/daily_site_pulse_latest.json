@@ -1,15 +1,15 @@
 {
-  "report_date": "2026-11-02",
-  "visits": 12,
-  "prior_7d_avg": "9.71",
-  "pct_vs_prior_7d": "23.5",
+  "report_date": "2026-11-03",
+  "visits": 4,
+  "prior_7d_avg": "10.43",
+  "pct_vs_prior_7d": "-61.6",
   "top_page_path": "/resources/bauhaus-art-studio",
   "top_page_title": "Bauhaus Art Studio \u00b7 coffeetableviz",
   "top_page_visits": 2,
   "top_referrer": "No referrer recorded",
   "top_referrer_visits": 0,
-  "observation": "Traffic stayed fairly close to its recent rhythm.",
-  "generated_at_utc": "2026-11-03T16:14:55+00:00",
+  "observation": "Bauhaus Art Studio led the day, reaching 2 of 4 recorded visitors.",
+  "generated_at_utc": "2026-11-04T16:18:24+00:00",
   "top_pages": [
     {
       "path_id": 117603735,
@@ -23,48 +23,13 @@
       "path": "/resources",
       "title": "Resources \u00b7 coffeetableviz",
       "display": "Resources",
-      "count": 2
-    },
-    {
-      "path_id": 109451764,
-      "path": "/",
-      "title": "coffeetableviz",
-      "display": "Home",
-      "count": 2
-    },
-    {
-      "path_id": 109446444,
-      "path": "/data-lens",
-      "title": "Data Lens \u00b7 coffeetableviz",
-      "display": "Data Lens",
-      "count": 2
-    },
-    {
-      "path_id": 117597360,
-      "path": "/resources/truchet-tile-studio",
-      "title": "Truchet Tile Studio \u00b7 coffeetableviz",
-      "display": "Truchet Tile Studio",
       "count": 1
     },
     {
-      "path_id": 109453963,
-      "path": "/resources/choosing-the-right-chart",
-      "title": "Choosing the right chart \u00b7 coffeetableviz",
-      "display": "Choosing the right chart",
-      "count": 1
-    },
-    {
-      "path_id": 109446272,
-      "path": "/2026/09/27/can-one-bowie-song-tell-you-the-whole-album",
-      "title": "Can one Bowie song tell you the whole album? \u00b7 coffeetableviz",
-      "display": "Can one Bowie song tell you the whole album?",
-      "count": 1
-    },
-    {
-      "path_id": 109446267,
-      "path": "/archive",
-      "title": "Archive \u00b7 coffeetableviz",
-      "display": "Archive",
+      "path_id": 109446302,
+      "path": "/series/blockbuster-quote",
+      "title": "Today\u2019s Blockbuster Quote \u00b7 coffeetableviz",
+      "display": "Today\u2019s Blockbuster Quote",
       "count": 1
     }
   ],
