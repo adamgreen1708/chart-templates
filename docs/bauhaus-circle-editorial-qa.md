@@ -19,6 +19,21 @@ Original user screenshot: a square Spotify-streams artwork with 11 concentric so
 - The two **MAX/MIN** stat blocks use larger tabular-like numbers, small 11px headings and the actual source record names. Their values and catalogue rows are tappable. With 16-of-N records the titles explicitly say `MAX / SHOWN`, `MIN / SHOWN`.
 - All count/disclosure context moves into the actual source footer: `all 11 records shown`, `first 16 of 64 records shown`, or `source MIN/MAX from N valid rows`; preserve existing missing-value exclusions and CSV first-64 disclosures.
 
+## Layout balance refinement — keeping the circle dominant
+
+After reviewing the first editorial catalogue, the user identified an imbalance: the left table started too high and drew too much attention away from the circle. This subsequent layout pass:
+
+- **Enlarges the source-driven circle**: centre `(646, 534)`, radius `196`, rather than `(619, 531)` / `181`. Its full extent stays inside x=450–842 and y=338–730.
+- **Centres the catalogue vertically against the circle** rather than placing its header at a fixed y=311. Text uses the same source entries, same value order and same ring-matched colour swatches. The calculation is `firstRowY = circleY - (N-1)*rowStep/2`; the column heading is 35px above the first baseline.
+- **Condenses the small text hierarchy**: 11px source labels and numbers for readability, 10px row indices, smaller colour ticks and a muted text tone for non-numeric metadata. Space between row baselines is 24px for N≤6, 23px for N≤10, 21px for N≤13, or 18.5px for N≤16.
+- For 11 actual Ziggy tracks: circle top=338, catalogue heading=394, row baselines=429–639, centre=534, circle bottom=730; **the list is visually centred rather than beginning above the circle**.
+- For the maximum 16 displayed source values: heading≈360, row baselines≈395–673; neither rows nor headings overlap the circle, the MAX/MIN summary or the footer.
+- **Reduces the two MAX/MIN focal numbers** slightly from 25px to 23px so that their information stays clear without competing with the larger circles.
+- The circle area and arc sweep maths, records selected, 16-record cap, sort/filter behaviour, colour associations and source values remain unchanged. All prior catalogue and stat-block tap targets remain in the actual page.
+- The two Bowie area/arc SVG previews were regenerated to use the final positions and condensed typography. They are deterministic source-derived examples, **not actual browser canvas exports**.
+
+**Test evidence:** Embedded JavaScript compiles; mock Canvas interaction checks verified 11 record rows in both Area and Arc; 2 in Range; 16 in all-album subset; recorded catalogue heading always below the top of the focal circle, its first and last row baselines centred on the circle y-axis, and its last record ending above the MIN/MAX stat row. Tested mobile-style source data, count-in-footer, correct displayed-only extrema and PNG export action. Inspect rasterised 960×960 area and arc previews for spacing and clipping before approving.
+
 ## Source-verified example — the exact screenshot case
 
 Repository CSV: `archive/projects/2026-09-david-bowie-track-distributions/data/bowie_track_distribution_rows.csv` from `main`.
