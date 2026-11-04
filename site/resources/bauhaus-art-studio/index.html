@@ -345,7 +345,7 @@ function editorCopy(){
      visual.layout==='stripes'?n+' observations · '+(visual.stripeStyle==='sun'?'vertical stripe height ∝ '+metric+'; circle area = minimum / maximum':visual.stripeStyle==='flow'?'coloured path length ∝ '+metric+' / maximum; equal full paths':'stripe length ∝ '+metric+'; red highlights maximum'):
      visual.layout==='circles'?(visual.circleEncoding==='area'?'Whole circle area ∝ '+metric:'Arc sweep ∝ '+metric+' / maximum')+' · listed from largest to smallest':
      'MAX: '+maxRow.label+' · '+v3Value(maxRow.value)+' · '+n+' records · '+(visual.broadsideStyle==='diagonal'?'measured diagonal stripe lengths':'measured upright stripe heights'),
-   credit:'Source: '+source+' · '+(visual.layout==='circles'?(visual.circleScope==='range'?'source MIN/MAX from '+n+' valid rows':Math.min(n,16)+' of '+n+' records plotted')+' · ':'')+sourceRowNote(n)+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]
+   credit:'Source: '+source+' · '+(visual.layout==='circles'?(visual.circleScope==='range'?'source MIN/MAX from '+n+' valid rows':n>16?'first 16 of '+n+' records shown':'all '+n+' records shown')+' · ':'')+sourceRowNote(n)+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]
   };
  }
  return {
@@ -757,7 +757,7 @@ function circlePaintColour(p,index,count){
  return p.c[(index+count)%4];
 }
 
-function circleEditorialRecords(sorted,p,dark,cxCircle){
+function circleEditorialRecords(sorted,p,dark,allRows){
  // An unobtrusive catalogue, largest-to-smallest: the same order as the
  // concentric geometry. Colour ticks match each measured layer.
  var labelHeader='RECORD',valueHeader=formatField(state.metric).toUpperCase();
@@ -778,7 +778,7 @@ function circleEditorialRecords(sorted,p,dark,cxCircle){
   var left=148,valueRight=403,maxLabelWidth=Math.max(0,Math.min(161,valueRight-valueWidth-13-left));
   posterSmallLabel(row.label,left,y,maxLabelWidth,dark);
   posterExactValue(value,valueRight,y,136,dark,'right');
-  dataHitRegions.push({row:row,order:row.displayOrder||i+1,bounds:{
+  dataHitRegions.push({row:row,order:allRows.indexOf(row)+1,bounds:{
    left:101,top:y-step*.47,right:411,bottom:y+step*.48
   }});
  });
@@ -797,7 +797,7 @@ function circleStatBlock(name,row,left,top,width,p,dark){
   text(actual,left,top+49,'bold '+size+'px Arial',dark);
  }
  posterSmallLabel(row.label,left,top+70,width,p.muted);
- dataHitRegions.push({row:row,order:row.displayOrder||1,bounds:{
+ dataHitRegions.push({row:row,order:1,bounds:{
   left:left-3,top:top,right:left+width,bottom:top+80
  }});
 }
@@ -808,7 +808,7 @@ function renderCircleStudy(rows,p,dark,max){
  var cx=619,cy=531,rmax=181,radial=[],layers=[];
  // Keep the left column free for the original per-record catalogue; the
  // circles take the right-hand half of the original square poster.
- bySize.forEach(function(row){row.displayOrder=rows.indexOf(row)+1;});
+ // Original rows are not mutated when arranging the measured circles by size.
  // Render largest to smallest; nested fills are overlapping FULL discs.
  // The visible coloured annulus is NOT the encoded area.
  if(!isArc){
@@ -843,17 +843,17 @@ function renderCircleStudy(rows,p,dark,max){
  dataHitRegions=radial;
  // Small editorial data catalogue replaces the two redundant explanation
  // labels. It lists precisely the plotted values, never unplotted records.
- circleEditorialRecords(bySize,p,dark,cx);
+ circleEditorialRecords(bySize,p,dark,rows);
  // Displayed extrema remain useful but now have visual hierarchy, original
  // source labels, full numbers and generous separation from the chart.
  var plottedMax=bySize[0],plottedMin=bySize[bySize.length-1];
- circleStatBlock(range?'MAX':'MAX',plottedMax,108,746,318,p,dark);
- circleStatBlock(range?'MIN':'MIN',plottedMin,516,746,324,p,dark);
+ circleStatBlock(!range&&originalN>shown?'MAX / SHOWN':'MAX',plottedMax,108,746,318,p,dark);
+ circleStatBlock(!range&&originalN>shown?'MIN / SHOWN':'MIN',plottedMin,516,746,324,p,dark);
  $('hint').textContent=localMax===0?
   'All plotted values are zero, so no measured rings or arcs are drawn. Tap a MIN or MAX key value to inspect the actual zero source record.':
   isArc?
-  'Concentric arc sweep represents original value / maximum using constant-width tracks. '+(range?'Only source min and max are shown.':'The first '+shown+' records in current sort are shown. ')+'Tap near a ring or its key to inspect.':
-  'Whole-circle area is proportional to the actual value; visible coloured bands are not the measurement. '+(range?'Only source min/max are shown.':'The first '+shown+' selected source values are shown. ')+'Tap a visible band or the key to inspect.';
+  'Concentric arc sweep represents original value / maximum using constant-width tracks. '+(range?'Only source min and max are shown. ':'The first '+shown+' records in the current sort are shown. ')+'Tap near a ring, catalogue row or MAX/MIN block to inspect.':
+  'Whole-circle area is proportional to the actual value; visible coloured bands are not the measurement. '+(range?'Only source min/max are shown. ':'The first '+shown+' selected source values are shown. ')+'Tap a visible band, catalogue row or MAX/MIN block to inspect.';
  $('label-note').textContent='The compact catalogue lists only plotted source records, from largest outer circle to smallest inner circle. Tap a row, measured circle or MIN/MAX block to inspect its full original value.';
 }
 function posterHeroNumber(value,x,y,maxWidth,maxFont,ink){
