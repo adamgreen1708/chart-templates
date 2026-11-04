@@ -46,7 +46,7 @@ Version 3 is a proposed follow-up to **merged PR #185**, retaining all three mea
 ### Sun Stripe — vertical source labels
 - Vertical stripe **height** remains `419 × current_value / max`, from the same y=800 horizontal zero baseline.
 - The source record **labels now run vertically upwards alongside each individual bar**, not along the bottom. Labels use the existing Show labels control; this control is **enabled on entry** to Sun Stripe (and can be switched off later). Use 11px at ordinary spacing, 9px for narrower spacing; fit to at most 305px along the rotated text axis, shrink and ellipsise when necessary. On dense selections with less than 23px per bar, omit labels rather than crowding. Tapping a bar still yields the full source name.
-- The headline stays small and vertical in the coloured 57px back bar. The source-derived minimum-filled-area circle and maximum outline remain unchanged. The descriptive **deck line is restored above the main artwork**.
+- **The main editorial headline is restored horizontally above the explanatory deck** in the same safely fitted x=82 / y=111 heading band as Flow and Classic. Sun also **retains the small vertical title on the 57px back bar**; the two are complementary, not alternatives. Both honour the currently edited or auto-generated headline. The source-derived minimum-filled-area circle and maximum outline remain unchanged. The descriptive deck remains visible below the horizontal headline.
 - [Review SVG](previews/bauhaus-stripe-v3-sun.svg)
 
 ### Flow Snake — extended, thinner, still measured correctly
