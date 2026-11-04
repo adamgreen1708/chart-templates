@@ -1108,9 +1108,10 @@ function renderBroadsideV5(rows,p,dark,max){
 function renderPosterV3(rows,p,dark){
  var values=rows.map(function(r){return r.value;}),max=Math.max.apply(null,values),min=Math.min.apply(null,values),v=values.slice().sort(function(a,b){return a-b;}),n=rows.length,median=n%2?v[(n-1)/2]:(v[n/2-1]+v[n/2])/2;
  if(visual.layout==='stripes'){
-  // One short, safe explanatory line is restored across all Stripe charts.
-  // Sun retains its vertical headline; Flow and Classic keep a top headline.
-  if(visual.stripeStyle!=='sun')stripePosterHeadline(p,dark);
+  // All three Stripe compositions show the editable MAIN headline above
+  // the explanatory deck. Sun additionally retains the small vertical
+  // back-bar inscription: neither treatment replaces the main heading.
+  stripePosterHeadline(p,dark);
   stripePosterDeck(p);
  }else posterEditorCopy(p,dark);
  var categories=[];
