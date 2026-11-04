@@ -343,9 +343,9 @@ function editorCopy(){
       'TYPE / '+metric.toUpperCase(),
    deck:visual.layout==='mosaic'?n+' observations · rectangle area ∝ '+metric+' · colour: '+cols:
      visual.layout==='stripes'?n+' observations · '+(visual.stripeStyle==='sun'?'vertical stripe height ∝ '+metric+'; circle area = minimum / maximum':visual.stripeStyle==='flow'?'coloured path length ∝ '+metric+' / maximum; equal full paths':'stripe length ∝ '+metric+'; red highlights maximum'):
-     visual.layout==='circles'?n+' selected records · '+(visual.circleScope==='range'?'minimum and maximum only':Math.min(n,16)+' actual values shown'+(n>16?' (first in sorted order)':''))+' · '+(visual.circleEncoding==='area'?'whole circle area ∝ '+metric:'arc sweep ∝ value / maximum'):
+     visual.layout==='circles'?(visual.circleEncoding==='area'?'Whole-circle area represents '+metric:'Arc sweep represents '+metric+' relative to the maximum')+' · largest first':
      'MAX: '+maxRow.label+' · '+v3Value(maxRow.value)+' · '+n+' records · '+(visual.broadsideStyle==='diagonal'?'measured diagonal stripe lengths':'measured upright stripe heights'),
-   credit:'Source: '+source+' · '+sourceRowNote(n)+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]
+   credit:'Source: '+source+' · '+(visual.layout==='circles'?(visual.circleScope==='range'?'source MIN/MAX from '+n+' valid rows':n>16?'first 16 of '+n+' records shown':'all '+n+' records shown')+' · ':'')+sourceRowNote(n)+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]
   };
  }
  return {
@@ -756,13 +756,66 @@ function circlePaintColour(p,index,count){
  if(visual.galleryFinish==='ink')return [p.c[1],p.c[0],p.c[2],p.c[3]][index%4];
  return p.c[(index+count)%4];
 }
+
+function circleEditorialRecords(sorted,p,dark,allRows){
+ // The measured circle is the hero. Centre the narrower, quiet editorial
+ // catalogue against the CIRCLE rather than anchoring text above the circle.
+ // Dynamic row spacing accommodates 1–16 values without creeping into
+ // header, artwork edge or footer. Typography stays readable at 11px.
+ var n=sorted.length,step=n>13?18.5:n>10?21:n>6?23:24;
+ var centreY=534,firstY=centreY-(n-1)*step/2,headerY=firstY-35;
+ var left=147,valueRight=414;
+ var labelHeader='RECORD',valueHeader=formatField(state.metric).toUpperCase();
+ var labelColumn=state.activeMapping&&imported&&imported.headers[state.activeMapping.label];
+ if(labelColumn)labelHeader=formatField(labelColumn).toUpperCase();
+ posterSmallLabel(labelHeader,147,headerY,153,p.muted);
+ posterSmallLabel(valueHeader,valueRight,headerY,137,p.muted,'right');
+ ctx.save();
+ ctx.fillStyle=p.c[0];ctx.fillRect(110,headerY+10,22,2);
+ ctx.fillStyle=dark;ctx.globalAlpha=.12;ctx.fillRect(110,headerY+19,304,1);
+ ctx.restore();
+ sorted.forEach(function(row,i){
+  var y=firstY+i*step,order=String(i+1).padStart(2,'0'),value=v3Value(row.value);
+  var ink=circlePaintColour(p,i,n);
+  ctx.fillStyle=ink;ctx.fillRect(111,y-7,3,7);
+  text(order,122,y,'10px Arial',p.muted);
+  ctx.font=posterType.label+'px Arial';
+  var valueWidth=ctx.measureText(value).width;
+  var maxLabelWidth=Math.max(0,Math.min(157,valueRight-valueWidth-12-left));
+  posterSmallLabel(row.label,left,y,maxLabelWidth,p.muted);
+  posterExactValue(value,valueRight,y,140,dark,'right');
+  dataHitRegions.push({row:row,order:allRows.indexOf(row)+1,bounds:{
+   left:108,top:y-step*.48,right:420,bottom:y+step*.48
+  }});
+ });
+ return{lastBaseline:firstY+(n-1)*step};
+}
+function circleStatBlock(name,row,left,top,width,p,dark,allRows){
+ // Two compact, neighbouring stats below the record catalogue, not a
+ // competing full-width summary strip. Original values stay complete.
+ ctx.save();ctx.fillStyle=p.c[0];ctx.fillRect(left,top,20,2);ctx.restore();
+ text(name,left,top+17,'bold 10px Arial',p.muted);
+ var actual=v3Value(row.value),size=19;
+ ctx.font='bold '+size+'px Arial';
+ while(size>13&&ctx.measureText(actual).width>width){
+  size-=1;ctx.font='bold '+size+'px Arial';
+ }
+ if(ctx.measureText(actual).width<=width){
+  text(actual,left,top+41,'bold '+size+'px Arial',dark);
+ }
+ posterSmallLabel(row.label,left,top+59,width,p.muted);
+ dataHitRegions.push({row:row,order:allRows.indexOf(row)+1,bounds:{
+  left:left-3,top:top,right:left+width+2,bottom:top+70
+ }});
+}
 function renderCircleStudy(rows,p,dark,max){
  var selected=circleSelectedRows(rows),bySize=selected.slice().sort(function(a,b){return b.value-a.value;});
  var shown=selected.length,originalN=rows.length,range=visual.circleScope==='range',isArc=visual.circleEncoding==='arc';
  var maximum=bySize[0],minimum=bySize[bySize.length-1],localMax=maximum.value;
- var cx=480,cy=541,rmax=198,radial=[],layers=[];
- text(range?'RANGE / SOURCE MINIMUM + MAXIMUM':'RECORDS / SOURCE VALUES',112,315,'bold 11px Arial',dark);
- text(isArc?'ARC SWEEP / VALUE ÷ MAXIMUM':'FULL CIRCLE AREA / VALUE',112,333,'bold 11px Arial',dark);
+ var cx=646,cy=534,rmax=196,radial=[],layers=[];
+ // Keep the left column free for the original per-record catalogue; the
+ // circles take the right-hand half of the original square poster.
+ // Original rows are not mutated when arranging the measured circles by size.
  // Render largest to smallest; nested fills are overlapping FULL discs.
  // The visible coloured annulus is NOT the encoded area.
  if(!isArc){
@@ -795,28 +848,21 @@ function renderCircleStudy(rows,p,dark,max){
   });
  }
  dataHitRegions=radial;
- // The printed key is also touch-inspectable, including when a value is zero
- // and therefore has no measured circle area.
- var minValue=Math.min.apply(null,selected.map(function(r){return r.value;}));
- var maxValue=Math.max.apply(null,selected.map(function(r){return r.value;}));
- var plottedMax=selected.reduce(function(a,b){return b.value>a.value?b:a;},selected[0]);
- var plottedMin=selected.reduce(function(a,b){return b.value<a.value?b:a;},selected[0]);
- text(range?'MAX':'PLOTTED MAX',117,775,'bold 11px Arial',dark);
- posterExactValue(v3Value(maxValue),235,775,120,dark);
- text(range?'MIN':'PLOTTED MIN',366,775,'bold 11px Arial',dark);
- posterExactValue(v3Value(minValue),488,775,120,dark);
- dataHitRegions.push({row:plottedMax,order:rows.indexOf(plottedMax)+1,bounds:{left:105,top:756,right:353,bottom:786}});
- dataHitRegions.push({row:plottedMin,order:rows.indexOf(plottedMin)+1,bounds:{left:360,top:756,right:605,bottom:786}});
- var disclosure=range?'RANGE OF '+originalN+' SOURCE ROW'+(originalN===1?'':'S')+' · ONLY MIN / MAX ENCODED':
-  shown+' OF '+originalN+' RECORDS DISPLAYED'+(shown<originalN?' · FILTER FOR MORE':'');
- text(disclosure,117,801,'bold 11px Arial',dark);
- if(!range&&shown<originalN)text('ONLY THE FIRST '+shown+' IN THE CURRENT SORT ARE ENCODED',117,819,'11px Arial',dark);
+ // Small editorial data catalogue replaces the two redundant explanation
+ // labels. It lists precisely the plotted values, never unplotted records.
+ var catalogue=circleEditorialRecords(bySize,p,dark,rows);
+ // Keep extrema together directly below the left catalogue. The circle
+ // remains uncluttered and visually dominant on the right.
+ var plottedMax=bySize[0],plottedMin=bySize[bySize.length-1];
+ var statY=catalogue.lastBaseline+24;
+ circleStatBlock(!range&&originalN>shown?'MAX / SHOWN':'MAX',plottedMax,111,statY,143,p,dark,rows);
+ circleStatBlock(!range&&originalN>shown?'MIN / SHOWN':'MIN',plottedMin,278,statY,138,p,dark,rows);
  $('hint').textContent=localMax===0?
   'All plotted values are zero, so no measured rings or arcs are drawn. Tap a MIN or MAX key value to inspect the actual zero source record.':
   isArc?
-  'Concentric arc sweep represents original value / maximum using constant-width tracks. '+(range?'Only source min and max are shown.':'The first '+shown+' records in current sort are shown. ')+'Tap near a ring or its key to inspect.':
-  'Whole-circle area is proportional to the actual value; visible coloured bands are not the measurement. '+(range?'Only source min/max are shown.':'The first '+shown+' selected source values are shown. ')+'Tap a visible band or the key to inspect.';
- $('label-note').textContent='The circle key uses true source min/max, not quartiles or medians. Individual labels are kept off the measured rings to prevent collisions; tap to inspect.';
+  'Concentric arc sweep represents original value / maximum using constant-width tracks. '+(range?'Only source min and max are shown. ':'The first '+shown+' records in the current sort are shown. ')+'Tap near a ring, catalogue row or MAX/MIN block to inspect.':
+  'Whole-circle area is proportional to the actual value; visible coloured bands are not the measurement. '+(range?'Only source min/max are shown. ':'The first '+shown+' selected source values are shown. ')+'Tap a visible band, catalogue row or MAX/MIN block to inspect.';
+ $('label-note').textContent='The compact catalogue lists only plotted source records, from largest outer circle to smallest inner circle. Tap a row, measured circle or MIN/MAX block to inspect its full original value.';
 }
 function posterHeroNumber(value,x,y,maxWidth,maxFont,ink){
  var font=maxFont,txt=String(value);

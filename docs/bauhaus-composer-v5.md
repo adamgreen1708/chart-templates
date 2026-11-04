@@ -51,16 +51,29 @@ Flow colours use the currently selected finish. Where the category-colour rule a
 
 **Interaction:** Sun stripes have per-column inspection. Flow lines have nearest-polyline inspection using the original path coordinates. Labels remain 11px and are omitted on dense layouts, rather than compressed.
 
-## 04 / Circle Study
+## 04 / Circle Study — concentric geometry with editorial record catalogue
 
-Two minimal, print-like concentric compositions, with a separate **scope** selector:
+The **geometric encodings stay unchanged**:
 
-- **Concentric Area:** a circle's entire enclosed area is proportional to its original source value, using `radius = rMax × sqrt(value / maximum)`. For overlapping filled circles the visible colour ring/annulus is *not* itself the measurement. The largest disc is drawn first, then progressively smaller measured discs.
-- **Concentric Arcs:** every track has an explicitly fixed radius and equal stroke width; the **angular sweep**, not the ring radius, represents `2π × value / maximum`. Faint tracks show the full 100% reference.
-- **Record scope** (default): use individual records from the current filter/sort. **Maximum 16 visible records** for a legible concentric composition. If more than 16 exist, the canvas explicitly says **16 of N displayed; first 16 in current sorted order**. The source file and existing first-64 import disclosure remain intact.
-- **Range scope:** show **only the actual minimum and maximum** from *all selected rows*. If the values are identical, the area composition has a single identical-size ring/disc with an explanatory min/max key; do not fabricate a difference.
-- **Explicitly no median, upper quartile or any other unrequested statistical summary.** The key gives actual maximum and minimum values drawn from the selected scope. No decorative centre rings whose appearance could be mistaken for measurements.
-- Measured circle/arc geometry uses the selected source data, with source values inspectable by radial/touch hit testing. Labels live in a small unobtrusive key, not cluttered inside the rings.
+- **Concentric Area:** entire original circle area, not the visible coloured annulus, is proportional to the source value. Radius uses `rMax × sqrt(value / maximum)`.
+- **Concentric Arcs:** fixed-radius concentric tracks with consistent stroke width; measured angular sweep is `2π × value / maximum`. Faint full tracks show 100%.
+- **Records scope (default):** first 16 selected values in the current source/sort order are plotted. The artwork reorders those selected values **largest to smallest** for outer-to-inner ring alignment. Do not silently substitute other rows.
+- **Range scope:** actual minimum and maximum from all selected rows, with both explicitly identified; if equal, preserve the truthful coincident geometry.
+- No quartiles, median or fabricated summary rings.
+
+**Editorial text refinement (November 2026):**
+
+- Remove the former upper-left `RECORDS / SOURCE VALUES` and `FULL CIRCLE AREA / VALUE` labels. The deck already explains the mathematical mapping.
+- Replace them with a **narrow original editorial data catalogue on the left**, aligned beside the measured circles on the right. For every ring/arc, show its order, source label and **full formatted numeric value**. The list is largest-to-smallest, matching the geometric ordering of the rings. Small colour ticks correspond to the actual measured layers.
+- **Quiet, condensed catalogue styling:** the source label and numeric value remain legible **11px**, but the ordinal steps down to **10px** and labels/headings use muted ink. Rows use dynamic 18.5–24px baseline spacing depending on the number of records, centred around the circle's vertical midpoint. This keeps the circle dominant rather than visually competing with a tall table. Long original source labels safely ellipsise. Numeric values are never shortened. List rows are touch-inspectable, giving the complete original label and unrounded value.
+- **Rebalanced composition:** the primary measured circle is the focal point, centred at **(646, 534)** with outer radius **196px** (8.3% wider than the earlier 181px study), still entirely within the reserved art area. The catalogue has its own narrow column and is **vertically centred against the circle**, not aligned above the circle's top. For 11 records its heading is at y=394 and rows run y=429–639 while the circle spans y=338–730. For 16 records the heading is at y≈360 and rows y≈395–673. Both keep the footer and MIN/MAX blocks clear.
+- **Final balancing adjustment:** group the two MAX/MIN stat blocks **side by side directly below the left-hand catalogue**, not spread across the poster beneath the circle. The compact blocks occupy x=111–254 (MAX) and x=278–416 (MIN), leaving the focal circles on the right entirely unobstructed. The blocks use small **10px** headings, complete values up to **19px**, and source labels at **11px**. Their vertical position follows the last catalogue row (+24px), so both short and 16-record lists remain balanced. Both blocks remain tappable.
+- When a 16-record display limit applies, the statistic headings say `MAX / SHOWN` and `MIN / SHOWN`, so they do not imply extrema across undisplayed rows. In Range scope, they remain source-wide extrema.
+- Remove the in-art `11 OF 11 RECORDS DISPLAYED` line. The full source credit/footer carries `all N records shown`, `first 16 of N records shown`, or `source MIN/MAX from N valid rows` as appropriate. Existing exclusions and first-64 CSV import disclosures remain visible in provenance.
+- The default deck uses normal readable words (e.g. `Whole-circle area represents Spotify streams · largest first`), avoiding special symbols that may render poorly in some fonts.
+- Do not introduce a decorative list panel or recreate an existing commercial poster; borrow only the general narrow editorial typography and balanced graphic layout from the supplied reference.
+
+**Accurate data and responsive QA:** see [the Circle Study editorial QA checklist](bauhaus-circle-editorial-qa.md) and the two data-grounded [Area](previews/bauhaus-circle-editorial-ziggy-area.svg) / [Arcs](previews/bauhaus-circle-editorial-ziggy-arcs.svg) previews. These previews are original vectors, not screenshots of the deployed renderer.
 
 ## Shared typography and visual QA
 
