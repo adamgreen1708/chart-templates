@@ -343,7 +343,7 @@ function editorCopy(){
       'TYPE / '+metric.toUpperCase(),
    deck:visual.layout==='mosaic'?n+' observations · rectangle area ∝ '+metric+' · colour: '+cols:
      visual.layout==='stripes'?n+' observations · '+(visual.stripeStyle==='sun'?'vertical stripe height ∝ '+metric+'; circle area = minimum / maximum':visual.stripeStyle==='flow'?'coloured path length ∝ '+metric+' / maximum; equal full paths':'stripe length ∝ '+metric+'; red highlights maximum'):
-     visual.layout==='circles'?(visual.circleEncoding==='area'?'Whole circle area ∝ '+metric:'Arc sweep ∝ '+metric+' / maximum')+' · listed from largest to smallest':
+     visual.layout==='circles'?(visual.circleEncoding==='area'?'Whole-circle area represents '+metric:'Arc sweep represents '+metric+' relative to the maximum')+' · largest first':
      'MAX: '+maxRow.label+' · '+v3Value(maxRow.value)+' · '+n+' records · '+(visual.broadsideStyle==='diagonal'?'measured diagonal stripe lengths':'measured upright stripe heights'),
    credit:'Source: '+source+' · '+(visual.layout==='circles'?(visual.circleScope==='range'?'source MIN/MAX from '+n+' valid rows':n>16?'first 16 of '+n+' records shown':'all '+n+' records shown')+' · ':'')+sourceRowNote(n)+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]
   };
