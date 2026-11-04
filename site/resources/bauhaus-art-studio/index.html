@@ -788,23 +788,24 @@ function circleEditorialRecords(sorted,p,dark,allRows){
    left:108,top:y-step*.48,right:420,bottom:y+step*.48
   }});
  });
+ return{lastBaseline:firstY+(n-1)*step};
 }
 function circleStatBlock(name,row,left,top,width,p,dark,allRows){
- // A bounded poster-like three-line metric: understated label, readable
- // complete value, original source label. No invented or shortened numbers.
- ctx.save();ctx.fillStyle=p.c[0];ctx.fillRect(left,top,30,3);ctx.restore();
- text(name,left,top+20,'bold 11px Arial',dark);
- var actual=v3Value(row.value),size=23;
+ // Two compact, neighbouring stats below the record catalogue, not a
+ // competing full-width summary strip. Original values stay complete.
+ ctx.save();ctx.fillStyle=p.c[0];ctx.fillRect(left,top,20,2);ctx.restore();
+ text(name,left,top+17,'bold 10px Arial',p.muted);
+ var actual=v3Value(row.value),size=19;
  ctx.font='bold '+size+'px Arial';
- while(size>14&&ctx.measureText(actual).width>width){
+ while(size>13&&ctx.measureText(actual).width>width){
   size-=1;ctx.font='bold '+size+'px Arial';
  }
  if(ctx.measureText(actual).width<=width){
-  text(actual,left,top+49,'bold '+size+'px Arial',dark);
+  text(actual,left,top+41,'bold '+size+'px Arial',dark);
  }
- posterSmallLabel(row.label,left,top+70,width,p.muted);
+ posterSmallLabel(row.label,left,top+59,width,p.muted);
  dataHitRegions.push({row:row,order:allRows.indexOf(row)+1,bounds:{
-  left:left-3,top:top,right:left+width,bottom:top+80
+  left:left-3,top:top,right:left+width+2,bottom:top+70
  }});
 }
 function renderCircleStudy(rows,p,dark,max){
@@ -849,12 +850,13 @@ function renderCircleStudy(rows,p,dark,max){
  dataHitRegions=radial;
  // Small editorial data catalogue replaces the two redundant explanation
  // labels. It lists precisely the plotted values, never unplotted records.
- circleEditorialRecords(bySize,p,dark,rows);
- // Displayed extrema remain useful but now have visual hierarchy, original
- // source labels, full numbers and generous separation from the chart.
+ var catalogue=circleEditorialRecords(bySize,p,dark,rows);
+ // Keep extrema together directly below the left catalogue. The circle
+ // remains uncluttered and visually dominant on the right.
  var plottedMax=bySize[0],plottedMin=bySize[bySize.length-1];
- circleStatBlock(!range&&originalN>shown?'MAX / SHOWN':'MAX',plottedMax,108,746,318,p,dark,rows);
- circleStatBlock(!range&&originalN>shown?'MIN / SHOWN':'MIN',plottedMin,516,746,324,p,dark,rows);
+ var statY=catalogue.lastBaseline+24;
+ circleStatBlock(!range&&originalN>shown?'MAX / SHOWN':'MAX',plottedMax,111,statY,143,p,dark,rows);
+ circleStatBlock(!range&&originalN>shown?'MIN / SHOWN':'MIN',plottedMin,278,statY,138,p,dark,rows);
  $('hint').textContent=localMax===0?
   'All plotted values are zero, so no measured rings or arcs are drawn. Tap a MIN or MAX key value to inspect the actual zero source record.':
   isArc?
