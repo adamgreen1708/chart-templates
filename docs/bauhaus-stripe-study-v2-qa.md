@@ -15,8 +15,9 @@
 - Connect each source row with a **44px horizontal lead-in** followed by a two-bend, sampled cubic S curve, deliberately styled as **unmeasured artwork**. This is the user-selected **A / short horizontal label ledge** revision. The first path segment is horizontal, then the S starts; the curve ends precisely at the shared measured zero baseline **y=365**, not at the source-dependent bar endpoint. The original labels (when Show labels is enabled) align on the same y as the lead-in, immediately to its left, rather than following a vertical stem.
 - The **measured** element is the straight, coloured right-hand segment, fixed at its record's x position, from **the shared y=365 zero baseline** to `y=365 + 237 × value / maximum`.
 - The subtle shared zero rule is an axis reference, unlike the removed decorative masthead line.
-- Optional compact labels (11px) are attached to left starting points for up to 15 records, constrained to the printable area. A line or its measured bar remains tappable to recover the full label/value.
-- Palette finishes and an explicitly selected source-category mapping may change colour, not the measured vertical height.
+- **Final pre-merge visual refinement:** the S connector (including the 44px horizontal ledge) and measured right-hand vertical segment use the **same source/palette colour, full opacity and stroke width**: 5px for ≤16 records, 3px for 17–28, 2px for ≥29. The connector still ends at y=365, regardless of value; *only* the subsequent right-hand vertical height encodes data.
+- **Label safety:** optional 11px names align horizontally at the left-hand starts for up to 15 records. Actual `ctx.measureText` fits the entire label where possible at 11, 10 or 9px; otherwise an ellipsis fits **within the x=82 canvas margin**. The full original name/value remains accessible on tap. The measured bar and whole S path remain tappable.
+- Palette finishes and an explicitly selected source-category mapping update colour for **both segments together**, without changing measured height.
 
 ### Classic — stacked horizontal bars with circle
 - The old tripled strokes per row are retired. Draw **one clean rectangular bar per record**, arranged in stacked horizontal rows.
@@ -61,3 +62,11 @@ Original square SVG **design previews**, not screenshots of a deployed browser-r
 - [Stripe + Sun](previews/bauhaus-stripe-v2-sun.svg)
 - [Flow Snake](previews/bauhaus-stripe-v2-snake.svg)
 - [Classic Bars](previews/bauhaus-stripe-v2-classic.svg)
+
+### Final colour/label verification
+
+- JavaScript compilation passed. Tested with the **ten real Aladdin Sane track durations**: 10 S connectors and 10 measured endpoints; all matched **colour + opacity + width** per track at 5px. Both formats keep the same zero baseline and original value proportions.
+- Synthetic long uninterrupted names and multiword labels with 1, 2, 8, 14, 15, 16, 24 and 64 rows. All displayed labels stayed at or to the right of the **82px left safety margin**, using 9–11px type and ellipses only when necessary. For dense 16+ row selections, labels were correctly omitted while line hit regions remain active.
+- Measured segments correctly remained hidden for truly zero values; nonzero heights matched the numeric formula. All line colour/stroke invariants held across 2px/3px/5px density thresholds.
+- The updated [Flow Snake SVG preview](previews/bauhaus-stripe-v2-snake.svg) uses matching connector/measured colours and 5px strokes on all ten source series. This is a data-derived preview, **not** an exported canvas screenshot.
+- Actual browser rendering, precise font metrics and mobile touch/PNG QA are still the remaining release checks.
