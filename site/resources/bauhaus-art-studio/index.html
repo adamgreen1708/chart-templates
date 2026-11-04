@@ -706,15 +706,20 @@ function snakeCurveSample(out,p0,c1,c2,p3,steps){
 function flowGeometry(i,count,value,max){
  var t=count<=1?.5:i/(count-1),leftX=294+56*t,midX=484+63*t,
   rightX=655+155*t,leftY=345+205*t,bottomY=709-64*t,topY=304+9*t,
-  zeroY=365,maxHeight=237,measuredHeight=max>0?maxHeight*value/max:0,endY=zeroY+measuredHeight;
- var points=[{x:leftX,y:leftY},{x:leftX,y:bottomY-53}];
+  zeroY=365,maxHeight=237,measuredHeight=max>0?maxHeight*value/max:0,endY=zeroY+measuredHeight,
+  leadLength=44,leadX=leftX-leadLength;
+ // A short horizontal starting ledge lets the source name read along the
+ // same row before the unmeasured connector turns into the S snake.
+ var points=[{x:leadX,y:leftY},{x:leftX,y:leftY},{x:leftX,y:bottomY-53}];
  snakeCurveSample(points,points[points.length-1],
   {x:leftX,y:bottomY+18},{x:midX,y:bottomY+18},{x:midX,y:bottomY-53},32);
  points.push({x:midX,y:topY+49});
  snakeCurveSample(points,points[points.length-1],
   {x:midX,y:topY-35},{x:rightX,y:topY-35},{x:rightX,y:topY+49},32);
- points.push({x:rightX,y:endY});
- return{points:points,left:{x:leftX,y:leftY},rightX:rightX,zeroY:zeroY,
+ // The neutral connector must finish at zero, not at the data-dependent end:
+ // only the separately coloured right-hand vertical stroke carries value.
+ points.push({x:rightX,y:zeroY});
+ return{points:points,left:{x:leadX,y:leftY},leadEndX:leftX,rightX:rightX,zeroY:zeroY,
   endY:endY,barLength:measuredHeight,referenceLength:maxHeight};
 }
 function drawMeasuredPolyline(points,limit,colour,width){
@@ -754,17 +759,18 @@ function renderStripeFlow(rows,p,dark,max){
   if(visual.showLabels&&all<=15){
    var label=visual.labelContent==='value'?v3Value(row.value):visual.labelContent==='index'?String(i+1):
     visual.labelContent==='both'?row.label+' · '+v3Value(row.value):row.label;
-   posterSmallLabel(label,shape.left.x-12,shape.left.y+4,shape.left.x-102,p.muted,'right');
+   posterSmallLabel(label,shape.left.x-11,shape.left.y+4,
+    Math.min(210,shape.left.x-92),p.muted,'right');
   }
   // Enable precise inspection both along the S and on its measured straight
   // segment. The original value is never derived from decorative curvature.
   var points=shape.points.slice();
-  points.push({x:shape.rightX,y:barZero},{x:shape.rightX,y:shape.endY});
+  points.push({x:shape.rightX,y:shape.endY});
   dataHitRegions.push({row:row,order:i+1,polyline:points,barLength:shape.barLength,
    zeroY:shape.zeroY,barX:shape.rightX});
  });
- $('hint').textContent='Each decorative S path connects the original record to its measurement. Only the straight coloured right-hand segment encodes value: height = source value / maximum, starting at a shared horizontal zero baseline. Tap a path or measured bar for its exact label and value.';
- $('label-note').textContent='Small labels attach to the beginning of the snake when there is room. Change category or numeric column and the measured right-hand bars update.';
+ $('hint').textContent='Each record begins with a short horizontal label ledge and flows into an unmeasured S-shaped connector. Only its straight coloured right-hand segment encodes value: height = source value / maximum, starting at a shared horizontal zero baseline. Tap a path or measured bar for the exact source value.';
+ $('label-note').textContent='When Show labels is on, small names align with the horizontal start of each snake. Dense layouts omit labels but stay tappable. Category and metric changes update the measured bars.';
 }
 function renderStripeStudy(rows,p,dark,max){
  if(visual.stripeStyle==='sun'){renderStripeSun(rows,p,dark,max);return;}
