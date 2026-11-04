@@ -342,7 +342,7 @@ function editorCopy(){
      visual.layout==='circles'?metric+' / '+(visual.circleScope==='range'?'min + max':Math.min(n,16)+' circles'):
       'TYPE / '+metric.toUpperCase(),
    deck:visual.layout==='mosaic'?n+' observations · rectangle area ∝ '+metric+' · colour: '+cols:
-     visual.layout==='stripes'?n+' observations · '+(visual.stripeStyle==='sun'?'vertical stripe height ∝ '+metric+'; circle area = minimum / maximum':visual.stripeStyle==='flow'?'coloured path length ∝ '+metric+' / maximum; equal full paths':'stripe length ∝ '+metric+'; red highlights maximum'):
+     visual.layout==='stripes'?n+' observations · '+(visual.stripeStyle==='sun'?'vertical stripe height ∝ '+metric+'; filled circle area = minimum / maximum':visual.stripeStyle==='flow'?'straight right-hand segment height ∝ '+metric+' / maximum; S curves unencoded':'stacked bar length ∝ '+metric+'; circle is decorative'):
      visual.layout==='circles'?(visual.circleEncoding==='area'?'Whole-circle area represents '+metric:'Arc sweep represents '+metric+' relative to the maximum')+' · largest first':
      'MAX: '+maxRow.label+' · '+v3Value(maxRow.value)+' · '+n+' records · '+(visual.broadsideStyle==='diagonal'?'measured diagonal stripe lengths':'measured upright stripe heights'),
    credit:'Source: '+source+' · '+(visual.layout==='circles'?(visual.circleScope==='range'?'source MIN/MAX from '+n+' valid rows':n>16?'first 16 of '+n+' records shown':'all '+n+' records shown')+' · ':'')+sourceRowNote(n)+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]
@@ -627,52 +627,98 @@ function posterSourceCopy(p){
 // Ink-line poster engine. The three parallel lines per record are an ornamental
 // constant; each line shares the same zero-based proportional length.
 
+// Stripe Study artwork. The visible geometry carries values; its restrained
+// title, colour fields and connective curves must not imply a second metric.
+function stripePosterTitle(){
+ var auto=editorCopy();
+ return editorOverrides.headline===null?auto.headline:editorOverrides.headline;
+}
+function stripePosterHeadline(p,dark){
+ posterSafeText(stripePosterTitle(),82,111,793,81,29,17,2,dark,true);
+}
+function stripeVerticalTitle(title,x,centreY,maxLength,fill){
+ var value=String(title||'').replace(/\s+/g,' ').trim();
+ var size=14;
+ ctx.save();ctx.font='bold '+size+'px Arial';
+ while(size>9&&ctx.measureText(value).width>maxLength){
+  size-=1;ctx.font='bold '+size+'px Arial';
+ }
+ if(ctx.measureText(value).width>maxLength){
+  value=labelTextFit(value,maxLength,size);
+ }
+ ctx.translate(x,centreY);ctx.rotate(-Math.PI/2);
+ text(value,0,0,'bold '+size+'px Arial',fill,'center');
+ ctx.restore();
+}
+function stripeMappedColour(row,rows,p,max){
+ if(visual.colour==='category'&&visual.colourField>=0&&imported&&!state.isDemo){
+  var cats=[];
+  rows.forEach(function(r){
+   var cells=imported.records[r.sourceIndex]||[],cat=cells[visual.colourField];
+   if(cat!==undefined&&!cats.includes(cat))cats.push(cat);
+  });
+  var current=(imported.records[row.sourceIndex]||[])[visual.colourField],index=cats.indexOf(current);
+  return p.c[Math.max(0,index)%4];
+ }
+ return row.value===max?p.c[0]:p.c[2];
+}
 function renderStripeSun(rows,p,dark,max){
  var minimum=Math.min.apply(null,rows.map(function(r){return r.value;}));
- var x0=108,x1=852,step=(x1-x0)/rows.length,baseline=800,top=355,barMax=419;
- var mid=(x0+x1)/2,cy=552,outer=190;
- // Behind the stripes, the outlined disc is the maximum-area reference.
- // The filled circle area / max circle area = min / max.
+ var x0=201,x1=849,step=(x1-x0)/rows.length,baseline=800,top=335,barMax=419;
+ var mid=513,cy=542,outer=177;
+ // The outlined circle is max, and the filled disc area / reference area
+ // represents ACTUAL min/max. The vertical title bar is editorial.
+ ctx.save();ctx.fillStyle=p.c[1];ctx.fillRect(112,308,57,495);ctx.restore();
+ stripeVerticalTitle(stripePosterTitle(),144,555,461,v3Ink(p.c[1]));
  if(max>0){
   ctx.save();
-  ctx.strokeStyle=p.c[3];ctx.globalAlpha=.46;ctx.lineWidth=2;
+  ctx.strokeStyle=p.c[3];ctx.globalAlpha=.40;ctx.lineWidth=2;
   ctx.beginPath();ctx.arc(mid,cy,outer,0,Math.PI*2);ctx.stroke();
-  ctx.globalAlpha=.87;ctx.fillStyle=p.c[0];
+  ctx.globalAlpha=.86;ctx.fillStyle=p.c[0];
   ctx.beginPath();ctx.arc(mid,cy,outer*Math.sqrt(minimum/max),0,Math.PI*2);ctx.fill();
   ctx.restore();
  }
- text('VERTICAL STRIPES / VALUE FROM ZERO',115,324,'bold 11px Arial',dark);
- text('DISC AREA / MIN ÷ MAX',648,324,'bold 11px Arial',dark);
  rows.forEach(function(row,i){
-  var centre=x0+(i+.5)*step,width=Math.min(12,Math.max(3,step*.42)),height=max>0?barMax*row.value/max:0;
+  var centre=x0+(i+.5)*step,width=Math.min(12,Math.max(2,step*.41)),height=max>0?barMax*row.value/max:0;
   if(height>0){ctx.fillStyle=dark;ctx.fillRect(centre-width/2,baseline-height,width,height);}
-  if(visual.showLabels&&step>=33){
+  if(visual.showLabels&&step>=37){
    var label=visual.labelContent==='value'?v3Value(row.value):visual.labelContent==='index'?String(i+1):
-      visual.labelContent==='both'?row.label+' · '+v3Value(row.value):row.label;
-   posterSmallLabel(label,centre,817,step-4,dark,'center');
+    visual.labelContent==='both'?row.label+' · '+v3Value(row.value):row.label;
+   posterSmallLabel(label,centre,816,step-5,dark,'center');
   }
-  dataHitRegions.push({x:centre,y:600,s:step,bounds:{left:x0+i*step,top:top,right:x0+(i+1)*step,bottom:829},row:row,order:i+1});
+  dataHitRegions.push({bounds:{left:x0+i*step,top:top,right:x0+(i+1)*step,bottom:829},row:row,order:i+1});
  });
- ctx.strokeStyle=dark;ctx.lineWidth=1.7;ctx.beginPath();ctx.moveTo(x0,baseline+2);ctx.lineTo(x1,baseline+2);ctx.stroke();
- text('MIN '+v3Value(minimum)+' / MAX '+v3Value(max),119,347,'bold 11px Arial',dark);
- $('hint').textContent='Every vertical stripe height equals value / maximum, from a shared zero baseline. The red circle has an enclosed area proportional to the actual minimum relative to an outlined maximum reference. '+(rows.length>24?'Filter to fewer records for visible labels. ':'')+'Tap any stripe column to inspect its value.';
- $('label-note').textContent='Stripe labels are shown only where the columns fit 11px text; all values remain available on tap.';
+ ctx.strokeStyle=dark;ctx.lineWidth=1;ctx.globalAlpha=.30;
+ ctx.beginPath();ctx.moveTo(x0,baseline+2);ctx.lineTo(x1,baseline+2);ctx.stroke();ctx.globalAlpha=1;
+ $('hint').textContent='Vertical stripe height encodes each original value from a common zero baseline. The filled circle area relative to the reference outline encodes actual minimum / maximum. The narrow title bar is decorative. Tap a stripe column for its exact value.';
+ $('label-note').textContent='The title fits vertically inside the left bar; optional small labels appear only where width permits. Tap stripes for full source data.';
 }
-// Elliptical U paths use exact, numerically integrated path lengths.
-// Every full path is L px long; only its coloured portion encodes value/max.
-function flowGeometry(i,count){
- var t=count<=1?.5:i/(count-1),rx=67+200*t,ry=26+117*t,cx=480,bend=618,arcPoints=[],arcLength=0,steps=80;
- for(var j=0;j<=steps;j++){
-  var angle=Math.PI-Math.PI*j/steps;
-  arcPoints.push({x:cx+rx*Math.cos(angle),y:bend+ry*Math.sin(angle)});
-  if(j)arcLength+=Math.hypot(arcPoints[j].x-arcPoints[j-1].x,arcPoints[j].y-arcPoints[j-1].y);
+// A sampled cubic Bézier is used only as an ornamental, unmeasured S-shaped
+// connector. The measurable component is a separate straight right-hand
+// vertical bar, every one starting at the SAME 365px horizontal baseline.
+function snakeCurveSample(out,p0,c1,c2,p3,steps){
+ for(var k=1;k<=steps;k++){
+  var t=k/steps,u=1-t;
+  out.push({x:u*u*u*p0.x+3*u*u*t*c1.x+3*u*t*t*c2.x+t*t*t*p3.x,
+    y:u*u*u*p0.y+3*u*u*t*c1.y+3*u*t*t*c2.y+t*t*t*p3.y});
  }
- var total=760,leg=(total-arcLength)/2;
- if(leg<0)throw Error('Flow path too long for common length.');
- var pts=[{x:cx-rx,y:bend-leg},{x:cx-rx,y:bend}].concat(arcPoints.slice(1),[{x:cx+rx,y:bend-leg}]);
- return{points:pts,length:total,arcLength:arcLength,straightLength:leg};
+}
+function flowGeometry(i,count,value,max){
+ var t=count<=1?.5:i/(count-1),leftX=294+56*t,midX=484+63*t,
+  rightX=655+155*t,leftY=345+205*t,bottomY=709-64*t,topY=304+9*t,
+  zeroY=365,maxHeight=237,measuredHeight=max>0?maxHeight*value/max:0,endY=zeroY+measuredHeight;
+ var points=[{x:leftX,y:leftY},{x:leftX,y:bottomY-53}];
+ snakeCurveSample(points,points[points.length-1],
+  {x:leftX,y:bottomY+18},{x:midX,y:bottomY+18},{x:midX,y:bottomY-53},32);
+ points.push({x:midX,y:topY+49});
+ snakeCurveSample(points,points[points.length-1],
+  {x:midX,y:topY-35},{x:rightX,y:topY-35},{x:rightX,y:topY+49},32);
+ points.push({x:rightX,y:endY});
+ return{points:points,left:{x:leftX,y:leftY},rightX:rightX,zeroY:zeroY,
+  endY:endY,barLength:measuredHeight,referenceLength:maxHeight};
 }
 function drawMeasuredPolyline(points,limit,colour,width){
+ // Original helper remains available for other compositions.
  if(points.length<2||limit<=0)return;
  ctx.save();ctx.strokeStyle=colour;ctx.lineWidth=width;ctx.lineJoin='round';ctx.lineCap='round';
  ctx.beginPath();ctx.moveTo(points[0].x,points[0].y);
@@ -685,62 +731,76 @@ function drawMeasuredPolyline(points,limit,colour,width){
  ctx.stroke();ctx.restore();
 }
 function renderStripeFlow(rows,p,dark,max){
- var total=760,all=rows.length;
- text('FLOW LINES / EQUAL FULL PATH LENGTHS',110,311,'bold 11px Arial',dark);
- text('COLOURED PATH / VALUE ÷ MAXIMUM',110,329,'bold 11px Arial',dark);
- var categoryNames=[];
- if(visual.colour==='category'&&visual.colourField>=0&&imported&&!state.isDemo){
-  rows.forEach(function(r){var cat=imported.records[r.sourceIndex]&&imported.records[r.sourceIndex][visual.colourField];if(cat!==undefined&&!categoryNames.includes(cat))categoryNames.push(cat);});
- }
+ var all=rows.length,barZero=365,barHeight=237;
+ // Straight horizontal zero reference exists ONLY in the measured plot area.
+ ctx.save();ctx.globalAlpha=.22;ctx.strokeStyle=dark;ctx.lineWidth=1;
+ ctx.beginPath();ctx.moveTo(640,barZero);ctx.lineTo(823,barZero);ctx.stroke();ctx.restore();
  rows.forEach(function(row,i){
-  var flow=flowGeometry(i,all),length=total*(max>0?row.value/max:0),colour=row.value===max?p.c[0]:p.c[2];
-  if(categoryNames.length){
-   var c=imported.records[row.sourceIndex][visual.colourField];
-   colour=p.c[Math.max(0,categoryNames.indexOf(c))%4];
+  var shape=flowGeometry(i,all,row.value,max);
+  var col=stripeMappedColour(row,rows,p,max),stroke=all>28?1.1:all>16?1.6:2.4;
+  // The full S is context, not the measured quantity. Every series gets the
+  // same thin connector colour; only the coloured straight segment measures.
+  ctx.save();ctx.strokeStyle=dark;ctx.globalAlpha=.60;ctx.lineWidth=stroke;
+  ctx.lineCap='round';ctx.lineJoin='round';
+  ctx.beginPath();ctx.moveTo(shape.points[0].x,shape.points[0].y);
+  for(var j=1;j<shape.points.length;j++)ctx.lineTo(shape.points[j].x,shape.points[j].y);
+  ctx.stroke();ctx.restore();
+  if(shape.barLength>0){
+   ctx.save();ctx.strokeStyle=col;ctx.lineWidth=all>28?2:all>16?3:5;
+   ctx.lineCap='round';ctx.beginPath();
+   ctx.moveTo(shape.rightX,barZero);ctx.lineTo(shape.rightX,shape.endY);
+   ctx.stroke();ctx.restore();
   }
-  drawMeasuredPolyline(flow.points,total,p.c[3],all>28?1.5:4);
-  // Pale reference tracks at low opacity, coloured measured portion on top.
-  // Full paths are all 760px, even though different bend radii are used.
-  drawMeasuredPolyline(flow.points,total,p.bg,all>28?1:2);
-  drawMeasuredPolyline(flow.points,length,colour,all>28?2:5);
-  var first=flow.points[0];
-  if(visual.showLabels&&all<=16){
+  if(visual.showLabels&&all<=15){
    var label=visual.labelContent==='value'?v3Value(row.value):visual.labelContent==='index'?String(i+1):
-     visual.labelContent==='both'?row.label+' · '+v3Value(row.value):row.label;
-   posterSmallLabel(label,first.x-10,first.y+4,Math.max(38,first.x-88),dark,'right');
+    visual.labelContent==='both'?row.label+' · '+v3Value(row.value):row.label;
+   posterSmallLabel(label,shape.left.x-12,shape.left.y+4,shape.left.x-102,p.muted,'right');
   }
-  dataHitRegions.push({row:row,order:i+1,polyline:flow.points,fullLength:total,usedLength:length});
+  // Enable precise inspection both along the S and on its measured straight
+  // segment. The original value is never derived from decorative curvature.
+  var points=shape.points.slice();
+  points.push({x:shape.rightX,y:barZero},{x:shape.rightX,y:shape.endY});
+  dataHitRegions.push({row:row,order:i+1,polyline:points,barLength:shape.barLength,
+   zeroY:shape.zeroY,barX:shape.rightX});
  });
- text(all+' EQUALLY LONG CURVES · REFERENCE LENGTH '+total,110,820,'bold 11px Arial',dark);
- $('hint').textContent='Every flowing path measures exactly '+total+' pixels from end to end. Only the coloured length is proportional to the original value / maximum. '+(categoryNames.length?'Colours represent the selected source category. ':'Colours highlight the maximum and otherwise follow the selected finish. ')+'Tap near a line for its exact label/value.';
- $('label-note').textContent='Flow captions are optional 11px labels; curves remain inspectable by tapping near each path.';
+ $('hint').textContent='Each decorative S path connects the original record to its measurement. Only the straight coloured right-hand segment encodes value: height = source value / maximum, starting at a shared horizontal zero baseline. Tap a path or measured bar for its exact label and value.';
+ $('label-note').textContent='Small labels attach to the beginning of the snake when there is room. Change category or numeric column and the measured right-hand bars update.';
 }
 function renderStripeStudy(rows,p,dark,max){
  if(visual.stripeStyle==='sun'){renderStripeSun(rows,p,dark,max);return;}
  if(visual.stripeStyle==='flow'){renderStripeFlow(rows,p,dark,max);return;}
- var top=312,bottom=820,space=(bottom-top)/rows.length;
- var withLabels=visual.showLabels,left=withLabels?315:123,width=withLabels?515:708;
- var rowHits=[];
- ctx.save();ctx.strokeStyle=p.c[3];ctx.lineWidth=1.2;
- ctx.beginPath();ctx.moveTo(left,297);ctx.lineTo(left,bottom+8);ctx.stroke();
- ctx.restore();
+ // Classic: row-stacked black/red length bars with in-bar source labels.
+ // The large poster circle is explicitly *unencoded* editorial geometry.
+ var top=299,bottom=826,space=(bottom-top)/rows.length,left=163,width=696;
+ var radius=214,circleX=564,circleY=543;
+ ctx.save();ctx.fillStyle=visual.galleryFinish==='ink'?p.c[1]:p.c[1];
+ ctx.globalAlpha=visual.galleryFinish==='ink'?.58:.86;
+ ctx.beginPath();ctx.arc(circleX,circleY,radius,0,Math.PI*2);ctx.fill();ctx.restore();
  rows.forEach(function(row,i){
-  var y=top+(i+.5)*space,len=max>0?width*row.value/max:0;
-  var thick=Math.min(5,Math.max(1.7,space*.12));
-  var offsets=space>=19?[-5,0,5]:[0]; // same count for every row
-  var colour=row.value===max?(visual.galleryFinish==='ink'?p.c[1]:p.c[0]):(visual.galleryFinish==='ink'||visual.galleryFinish==='paper'?'#222326':p.c[3]);
-  if(withLabels&&space>=15){
-   var label=visual.labelContent==='value'?v3Value(row.value):visual.labelContent==='index'?String(i+1):
-    visual.labelContent==='both'?row.label+' · '+v3Value(row.value):row.label;
-   posterSmallLabel(label,90,y+4,left-105,dark);
+  var y=top+i*space,barHeight=Math.min(32,space*.61),barTop=y+(space-barHeight)/2;
+  var len=max>0?width*row.value/max:0;
+  var colour=row.value===max?p.c[0]:p.c[3];
+  if(len>0){
+   ctx.fillStyle=colour;ctx.fillRect(left,barTop,len,barHeight);
   }
-  ctx.fillStyle=colour;
-  offsets.forEach(function(shift){if(len>0)ctx.fillRect(left,y+shift-thick/2,len,thick);});
-  rowHits.push({x:left+len/2,y:y,s:space,bounds:{left:82,top:top+i*space,right:880,bottom:top+(i+1)*space},row:row,order:i+1});
+  if(len>0&&barHeight>=14){
+   // Readable compact in-bar labels; reserve actual value at the right end.
+   // Both label and value come from the original current CSV selection.
+   var number=v3Value(row.value),small=11,ink=v3Ink(colour),maxText=len-20;
+   ctx.font=small+'px Arial';var valWidth=ctx.measureText(number).width;
+   if(valWidth+18<=maxText){
+    posterExactValue(number,left+len-10,barTop+barHeight*.5+4,valWidth+2,ink,'right');
+    posterSmallLabel(row.label,left+11,barTop+barHeight*.5+4,
+       Math.min(490,maxText-valWidth-18),ink);
+   }else if(maxText>40){
+    posterSmallLabel(row.label,left+10,barTop+barHeight*.5+4,maxText,ink);
+   }
+  }
+  dataHitRegions.push({row:row,order:i+1,bounds:{
+   left:left-3,top:y,right:left+width+4,bottom:y+space}});
  });
- dataHitRegions=rowHits;
- $('hint').textContent='All stripes share a zero baseline and proportional length. Multiple parallel strokes per row are purely graphic repetition. '+(rows.length>24?'For print clarity, try filtering to 8–24 records. ':'')+'Tap any row to inspect exact values.';
- $('label-note').textContent=withLabels?'Short labels appear where rows are tall enough. Tap a stripe row for the complete label.':'Labels are off. Tap a stripe row for its source value.';
+ $('hint').textContent='The stacked black/red bars use original source values, with bar length proportional to value from a shared left baseline. Integrated labels and values are shown where they fit; the large circle behind is decorative. Tap any bar for full source data.';
+ $('label-note').textContent='Track labels sit inside each bar at a consistent small size. Long names shorten rather than clip; complete values remain available by tapping.';
 }
 // Circle Study is generated only from actual row values, without quartiles or medians.
 // In Range scope the chart uses min and max; in Records scope it uses up to
@@ -982,7 +1042,11 @@ function renderBroadsideV5(rows,p,dark,max){
 }
 function renderPosterV3(rows,p,dark){
  var values=rows.map(function(r){return r.value;}),max=Math.max.apply(null,values),min=Math.min.apply(null,values),v=values.slice().sort(function(a,b){return a-b;}),n=rows.length,median=n%2?v[(n-1)/2]:(v[n/2-1]+v[n/2])/2;
- posterEditorCopy(p,dark);
+ if(visual.layout==='stripes'){
+  // Remove the redundant deck and large chart-title block from Stripe + Sun,
+  // and reserve a single unobtrusive, safely fitted headline for Flow/Classic.
+  if(visual.stripeStyle!=='sun')stripePosterHeadline(p,dark);
+ }else posterEditorCopy(p,dark);
  var categories=[];
  if(imported&&visual.colourField>=0&&!state.isDemo)rows.forEach(function(r){var c=imported.records[r.sourceIndex]&&imported.records[r.sourceIndex][visual.colourField];if(c!==undefined&&!categories.includes(c))categories.push(c);});
  dataHitRegions=[];
@@ -1076,8 +1140,10 @@ function render(){
  ctx.fillStyle=p.bg;ctx.fillRect(0,0,960,960);
  if(state.mode!=='hidden'){
   text('C O F F E E T A B L E V I Z   /   G E O M E T R I C   S T U D I E S',82,69,'bold 14px Arial',p.muted);
-  ctx.fillStyle=dark;ctx.fillRect(82,89,796,3);
-  if(isGallery)galleryMasthead(p);
+  if(!(state.mode==='data'&&visual.layout==='stripes')){
+   ctx.fillStyle=dark;ctx.fillRect(82,89,796,3);
+   if(isGallery)galleryMasthead(p);
+  }
  }
  if(state.mode==='data'){renderData(p,dark);}
  else{
@@ -1308,7 +1374,7 @@ function syncVisualControls(){
  $('gallery-finish').value=visual.galleryFinish;
  if(isPoster){
   var encoding=visual.layout==='mosaic'?'rectangle area':visual.layout==='broadside'?'bar length':visual.layout==='stripes'?'stripe length':visual.circleEncoding==='arc'?'arc sweep':'disc area';
-  $('gallery-info').textContent='Poster finish changes colours and graphical styling only. Measurements stay fixed: '+(visual.layout==='stripes'&&visual.stripeStyle==='sun'?'stripe height and min/max circle area':visual.layout==='stripes'&&visual.stripeStyle==='flow'?'coloured length along equal-size curves':visual.layout==='circles'?(visual.circleEncoding==='arc'?'arc sweep':'whole-circle area'):encoding)+'.';
+  $('gallery-info').textContent='Poster finish changes colours and graphical styling only. Measurements stay fixed: '+(visual.layout==='stripes'&&visual.stripeStyle==='sun'?'stripe height and min/max circle area':visual.layout==='stripes'&&visual.stripeStyle==='flow'?'right-hand bar height from a shared baseline':visual.layout==='circles'?(visual.circleEncoding==='arc'?'arc sweep':'whole-circle area'):encoding)+'.';
  }
  $('marks').disabled=isPoster;$('value-scale').disabled=isPoster;
  var flowColour=visual.layout==='stripes'&&visual.stripeStyle==='flow';
@@ -1317,9 +1383,9 @@ function syncVisualControls(){
  $('poster-info').textContent=visual.layout==='mosaic'?
   'Measured rectangle area = original value / total. The chosen colour rule is applied; ornamental details do not represent extra data.':
   visual.layout==='broadside'?(visual.broadsideStyle==='diagonal'?'Cut-up letters, intersecting geometry and measured diagonal stripe lengths.':'Monumental source typography and measured vertical stripes from a common zero baseline.'):
-  visual.layout==='stripes'?(visual.stripeStyle==='sun'?'Vertical height = source value / maximum; circle enclosed area = minimum / maximum.':
-   visual.stripeStyle==='flow'?'Every full flow path has identical length; its coloured portion = source value / maximum. Optional category colours come from the mapped source column.':
-   'Classic stripes: zero-based proportional lengths.'):
+  visual.layout==='stripes'?(visual.stripeStyle==='sun'?'Vertical bar height = source value / maximum; measured filled circle area = minimum / maximum; vertical title is editorial.':
+   visual.stripeStyle==='flow'?'Nested S curves are decorative; only right-hand straight segments measure values from a shared zero baseline. Optional category colours come from the mapped source.':
+   'Classic bars are proportional, stacked vertically; circle is decorative and labels sit inside the bars.'):
   visual.layout==='circles'?(visual.circleEncoding==='arc'?'Concentric arc sweep = source value / maximum.':'Concentric WHOLE-circle area = source value, not visible band area.'):
   'Pick Data Mosaic or Typographic Broadside above to produce an editorial poster rather than a regular tile grid.';
  if(state.mode==='data')$('reroll').disabled=isPoster;
