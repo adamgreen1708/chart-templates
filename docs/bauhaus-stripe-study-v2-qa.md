@@ -12,7 +12,7 @@
 
 ### Flow Lines — nested S snake
 - The previous equal-full-path-length U chart is retired. Do **not** claim the new snake curves have identical lengths or that coloured lengths *along the curves* measure values.
-- Connect each selected source row to a corresponding bar with a continuous two-bend, sampled cubic S curve, deliberately styled as **unmeasured artwork**.
+- Connect each source row with a **44px horizontal lead-in** followed by a two-bend, sampled cubic S curve, deliberately styled as **unmeasured artwork**. This is the user-selected **A / short horizontal label ledge** revision. The first path segment is horizontal, then the S starts; the curve ends precisely at the shared measured zero baseline **y=365**, not at the source-dependent bar endpoint. The original labels (when Show labels is enabled) align on the same y as the lead-in, immediately to its left, rather than following a vertical stem.
 - The **measured** element is the straight, coloured right-hand segment, fixed at its record's x position, from **the shared y=365 zero baseline** to `y=365 + 237 × value / maximum`.
 - The subtle shared zero rule is an axis reference, unlike the removed decorative masthead line.
 - Optional compact labels (11px) are attached to left starting points for up to 15 records, constrained to the printable area. A line or its measured bar remains tappable to recover the full label/value.
