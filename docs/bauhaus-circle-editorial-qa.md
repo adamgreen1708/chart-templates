@@ -6,7 +6,7 @@
 
 Original user screenshot: a square Spotify-streams artwork with 11 concentric source circles, two redundant small explainer labels on the upper left and a separate `11 OF 11 RECORDS DISPLAYED` callout below. User also supplied a modernist typographic reference and requested a small editorial block listing each plotted track name and stream count.
 
-**New layout:** preserve the established masthead, title, explanatory deck and footer. Move measured concentric geometry to the right; build an uncluttered typographic record list on the left. Remove the redundant explainer labels and displayed-count callout. Use a larger, two-column source-grounded MAX/MIN typographic summary below the artwork. All text stays within the existing 960×960 safe zones.
+**New layout:** preserve the masthead, title, deck and footer. The measured concentric geometry is the dominant form on the right. A narrow, vertically centred catalogue sits to the left. Remove redundant labels and count callouts. **MAX and MIN are grouped in two smaller blocks directly beneath the catalogue**, rather than spanning the entire poster; each block remains source-grounded and touch-inspectable. All content remains within the existing 960×960 safe zones.
 
 ## Data mapping and truthfulness
 
@@ -33,6 +33,18 @@ After reviewing the first editorial catalogue, the user identified an imbalance:
 - The two Bowie area/arc SVG previews were regenerated to use the final positions and condensed typography. They are deterministic source-derived examples, **not actual browser canvas exports**.
 
 **Test evidence:** Embedded JavaScript compiles; mock Canvas interaction checks verified 11 record rows in both Area and Arc; 2 in Range; 16 in all-album subset; recorded catalogue heading always below the top of the focal circle, its first and last row baselines centred on the circle y-axis, and its last record ending above the MIN/MAX stat row. Tested mobile-style source data, count-in-footer, correct displayed-only extrema and PNG export action. Inspect rasterised 960×960 area and arc previews for spacing and clipping before approving.
+
+## Final layout refinement — compact MAX/MIN under the list
+
+Following approval of the larger focal circle and centred catalogue, the earlier MAX/MIN row still spread across the poster and felt visually heavy. The two statistics now sit **together at the bottom of the text column**, clearly secondary to the circles.
+
+- Left MAX: x=111, width=143. Right MIN: x=278, width=138. Both are bounded within x=108–420; no statistic text intrudes into the measured circle (which begins at x=450).
+- The summary row follows the displayed catalogue length. Top `= last listed record baseline + 24px` rather than a hard-coded poster-wide y=746. At 11 records, top=663; headings y=680, values y=704 and original labels y=722. At 16 records, top≈697 and the final source names are at y≈756 — safely above the footer.
+- Each summary has a restrained short accent rule, **10px** MAX/MIN heading, **up to 19px bold complete number** (responsive down to 13px when necessary) and **11px** ellipsised source label. Numeric values are never truncated. Both blocks retain their original tap-to-inspect bounds.
+- The independent Area/Arc SVG previews are updated to show the two compact statistics under the list. Circle geometry, row selection, source order, proportional areas, arcs and colour rules are **not changed**.
+- For a 16-of-N truncated record selection, `MAX / SHOWN` and `MIN / SHOWN` are preserved; the full original record remains accessible on tap. Min/max scope continues to derive the extrema from the selected source subset.
+
+**Layout regression:** In simulated Canvas checks, the 11-record examples place both headings at y=680 with full 829,880,663 / 23,172,806 values at y=704. Two-record Range places both at y=587 and the 16-record cap at y≈714. All are below the final listed record, within the left column, and clear of the source footer. The PNG export control is still wired. Real mobile Safari/pixel inspection remains outstanding.
 
 ## Source-verified example — the exact screenshot case
 
