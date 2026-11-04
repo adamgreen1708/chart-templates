@@ -342,7 +342,7 @@ function editorCopy(){
      visual.layout==='circles'?metric+' / '+(visual.circleScope==='range'?'min + max':Math.min(n,16)+' circles'):
       'TYPE / '+metric.toUpperCase(),
    deck:visual.layout==='mosaic'?n+' observations · rectangle area ∝ '+metric+' · colour: '+cols:
-     visual.layout==='stripes'?n+' observations · '+(visual.stripeStyle==='sun'?'vertical stripe height ∝ '+metric+'; filled circle area = minimum / maximum':visual.stripeStyle==='flow'?'straight right-hand segment height ∝ '+metric+' / maximum; S curves unencoded':'stacked bar length ∝ '+metric+'; circle area MIN / MAX from source values'):
+     visual.layout==='stripes'?n+' observations · '+(visual.stripeStyle==='sun'?'stripe height scales with '+metric+'; min/max shown by circle area':visual.stripeStyle==='flow'?'right-hand segment height scales with '+metric+'; S curves are decorative':'bar length scales with '+metric+'; MIN/MAX shown by circle area'):
      visual.layout==='circles'?(visual.circleEncoding==='area'?'Whole-circle area represents '+metric:'Arc sweep represents '+metric+' relative to the maximum')+' · largest first':
      'MAX: '+maxRow.label+' · '+v3Value(maxRow.value)+' · '+n+' records · '+(visual.broadsideStyle==='diagonal'?'measured diagonal stripe lengths':'measured upright stripe heights'),
    credit:'Source: '+source+' · '+(visual.layout==='circles'?(visual.circleScope==='range'?'source MIN/MAX from '+n+' valid rows':n>16?'first 16 of '+n+' records shown':'all '+n+' records shown')+' · ':'')+sourceRowNote(n)+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]
