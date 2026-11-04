@@ -758,28 +758,34 @@ function circlePaintColour(p,index,count){
 }
 
 function circleEditorialRecords(sorted,p,dark,allRows){
- // An unobtrusive catalogue, largest-to-smallest: the same order as the
- // concentric geometry. Colour ticks match each measured layer.
+ // The measured circle is the hero. Centre the narrower, quiet editorial
+ // catalogue against the CIRCLE rather than anchoring text above the circle.
+ // Dynamic row spacing accommodates 1–16 values without creeping into
+ // header, artwork edge or footer. Typography stays readable at 11px.
+ var n=sorted.length,step=n>13?18.5:n>10?21:n>6?23:24;
+ var centreY=534,firstY=centreY-(n-1)*step/2,headerY=firstY-35;
+ var left=147,valueRight=414;
  var labelHeader='RECORD',valueHeader=formatField(state.metric).toUpperCase();
  var labelColumn=state.activeMapping&&imported&&imported.headers[state.activeMapping.label];
  if(labelColumn)labelHeader=formatField(labelColumn).toUpperCase();
- posterSmallLabel(labelHeader,115,311,159,dark);
- posterSmallLabel(valueHeader,402,311,137,dark,'right');
- ctx.save();ctx.fillStyle=p.c[0];ctx.fillRect(103,322,36,3);
- ctx.fillStyle=dark;ctx.globalAlpha=.18;ctx.fillRect(103,330,301,1);ctx.restore();
- var step=sorted.length>12?22:29,start=352;
+ posterSmallLabel(labelHeader,147,headerY,153,p.muted);
+ posterSmallLabel(valueHeader,valueRight,headerY,137,p.muted,'right');
+ ctx.save();
+ ctx.fillStyle=p.c[0];ctx.fillRect(110,headerY+10,22,2);
+ ctx.fillStyle=dark;ctx.globalAlpha=.12;ctx.fillRect(110,headerY+19,304,1);
+ ctx.restore();
  sorted.forEach(function(row,i){
-  var y=start+i*step,order=String(i+1).padStart(2,'0'),value=v3Value(row.value);
-  var ink=circlePaintColour(p,i,sorted.length);
-  ctx.fillStyle=ink;ctx.fillRect(105,y-8,5,8);
-  text(order,119,y,'11px Arial',p.muted);
+  var y=firstY+i*step,order=String(i+1).padStart(2,'0'),value=v3Value(row.value);
+  var ink=circlePaintColour(p,i,n);
+  ctx.fillStyle=ink;ctx.fillRect(111,y-7,3,7);
+  text(order,122,y,'10px Arial',p.muted);
   ctx.font=posterType.label+'px Arial';
   var valueWidth=ctx.measureText(value).width;
-  var left=148,valueRight=403,maxLabelWidth=Math.max(0,Math.min(161,valueRight-valueWidth-13-left));
-  posterSmallLabel(row.label,left,y,maxLabelWidth,dark);
-  posterExactValue(value,valueRight,y,136,dark,'right');
+  var maxLabelWidth=Math.max(0,Math.min(157,valueRight-valueWidth-12-left));
+  posterSmallLabel(row.label,left,y,maxLabelWidth,p.muted);
+  posterExactValue(value,valueRight,y,140,dark,'right');
   dataHitRegions.push({row:row,order:allRows.indexOf(row)+1,bounds:{
-   left:101,top:y-step*.47,right:411,bottom:y+step*.48
+   left:108,top:y-step*.48,right:420,bottom:y+step*.48
   }});
  });
 }
@@ -788,7 +794,7 @@ function circleStatBlock(name,row,left,top,width,p,dark,allRows){
  // complete value, original source label. No invented or shortened numbers.
  ctx.save();ctx.fillStyle=p.c[0];ctx.fillRect(left,top,30,3);ctx.restore();
  text(name,left,top+20,'bold 11px Arial',dark);
- var actual=v3Value(row.value),size=25;
+ var actual=v3Value(row.value),size=23;
  ctx.font='bold '+size+'px Arial';
  while(size>14&&ctx.measureText(actual).width>width){
   size-=1;ctx.font='bold '+size+'px Arial';
@@ -805,7 +811,7 @@ function renderCircleStudy(rows,p,dark,max){
  var selected=circleSelectedRows(rows),bySize=selected.slice().sort(function(a,b){return b.value-a.value;});
  var shown=selected.length,originalN=rows.length,range=visual.circleScope==='range',isArc=visual.circleEncoding==='arc';
  var maximum=bySize[0],minimum=bySize[bySize.length-1],localMax=maximum.value;
- var cx=619,cy=531,rmax=181,radial=[],layers=[];
+ var cx=646,cy=534,rmax=196,radial=[],layers=[];
  // Keep the left column free for the original per-record catalogue; the
  // circles take the right-hand half of the original square poster.
  // Original rows are not mutated when arranging the measured circles by size.
@@ -827,7 +833,7 @@ function renderCircleStudy(rows,p,dark,max){
   });
  }else{
   // Equal stroke width; ring position distinguishes records, sweep is the value.
-  var lowRadius=range?145:57;
+  var lowRadius=range?155:62;
   bySize.forEach(function(row,i){
    var radius=shown===1?rmax:rmax-(rmax-lowRadius)*i/(shown-1);
    var fraction=localMax>0?row.value/localMax:0;
