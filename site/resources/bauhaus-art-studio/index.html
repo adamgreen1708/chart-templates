@@ -735,6 +735,29 @@ function drawMeasuredPolyline(points,limit,colour,width){
  }
  ctx.stroke();ctx.restore();
 }
+function stripeFlowFittedLabel(raw,rightX,baseline,ink){
+ // Keep names fully inside the 82px poster margin. Use measured text width:
+ // reduce the font size from 11px to 9px, then ellipsise if still necessary.
+ // Full source names remain available via tap inspection.
+ var safeLeft=82,safeRight=rightX-4,available=safeRight-safeLeft;
+ if(available<24)return false;
+ var value=String(raw===null||raw===undefined?'':raw).replace(/\s+/g,' ').trim();
+ if(!value)return false;
+ var size=11;
+ for(;size>9;size--){
+  ctx.font=size+'px Arial';
+  if(ctx.measureText(value).width<=available)break;
+ }
+ ctx.font=size+'px Arial';
+ if(ctx.measureText(value).width>available){
+  var ellipsis='…',cut=value;
+  if(ctx.measureText(ellipsis).width>available)return false;
+  while(cut.length&&ctx.measureText(cut+ellipsis).width>available)cut=cut.slice(0,-1);
+  value=cut?cut+ellipsis:ellipsis;
+ }
+ text(value,safeRight,baseline,size+'px Arial',ink,'right');
+ return true;
+}
 function renderStripeFlow(rows,p,dark,max){
  var all=rows.length,barZero=365,barHeight=237;
  // Straight horizontal zero reference exists ONLY in the measured plot area.
@@ -742,25 +765,23 @@ function renderStripeFlow(rows,p,dark,max){
  ctx.beginPath();ctx.moveTo(640,barZero);ctx.lineTo(823,barZero);ctx.stroke();ctx.restore();
  rows.forEach(function(row,i){
   var shape=flowGeometry(i,all,row.value,max);
-  var col=stripeMappedColour(row,rows,p,max),stroke=all>28?1.1:all>16?1.6:2.4;
-  // The full S is context, not the measured quantity. Every series gets the
-  // same thin connector colour; only the coloured straight segment measures.
-  ctx.save();ctx.strokeStyle=dark;ctx.globalAlpha=.60;ctx.lineWidth=stroke;
+  var col=stripeMappedColour(row,rows,p,max),stroke=all>28?2:all>16?3:5;
+  // One continuous visual series. Connector and measured end share EXACT
+  // colour, opacity and thickness; only the straight end height is data.
+  ctx.save();ctx.strokeStyle=col;ctx.globalAlpha=1;ctx.lineWidth=stroke;
   ctx.lineCap='round';ctx.lineJoin='round';
   ctx.beginPath();ctx.moveTo(shape.points[0].x,shape.points[0].y);
   for(var j=1;j<shape.points.length;j++)ctx.lineTo(shape.points[j].x,shape.points[j].y);
-  ctx.stroke();ctx.restore();
+  ctx.stroke();
   if(shape.barLength>0){
-   ctx.save();ctx.strokeStyle=col;ctx.lineWidth=all>28?2:all>16?3:5;
-   ctx.lineCap='round';ctx.beginPath();
-   ctx.moveTo(shape.rightX,barZero);ctx.lineTo(shape.rightX,shape.endY);
-   ctx.stroke();ctx.restore();
+   ctx.beginPath();ctx.moveTo(shape.rightX,barZero);
+   ctx.lineTo(shape.rightX,shape.endY);ctx.stroke();
   }
+  ctx.restore();
   if(visual.showLabels&&all<=15){
    var label=visual.labelContent==='value'?v3Value(row.value):visual.labelContent==='index'?String(i+1):
     visual.labelContent==='both'?row.label+' · '+v3Value(row.value):row.label;
-   posterSmallLabel(label,shape.left.x-11,shape.left.y+4,
-    Math.min(210,shape.left.x-93),p.muted,'right');
+   stripeFlowFittedLabel(label,shape.left.x-10,shape.left.y+4,p.muted);
   }
   // Enable precise inspection both along the S and on its measured straight
   // segment. The original value is never derived from decorative curvature.
@@ -770,7 +791,7 @@ function renderStripeFlow(rows,p,dark,max){
    zeroY:shape.zeroY,barX:shape.rightX});
  });
  $('hint').textContent='Each record begins with a short horizontal label ledge and flows into an unmeasured S-shaped connector. Only its straight coloured right-hand segment encodes value: height = source value / maximum, starting at a shared horizontal zero baseline. Tap a path or measured bar for the exact source value.';
- $('label-note').textContent='When Show labels is on, small names align with the horizontal start of each snake. Dense layouts omit labels but stay tappable. Category and metric changes update the measured bars.';
+ $('label-note').textContent='Labels fit the horizontal start (11px down to 9px, then a safe ellipsis). Snake and measured bar have identical colour and stroke width. Tap the line for the full original label and value.';
 }
 function renderStripeStudy(rows,p,dark,max){
  if(visual.stripeStyle==='sun'){renderStripeSun(rows,p,dark,max);return;}
