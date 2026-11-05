@@ -332,17 +332,22 @@ function sourceRowNote(n){
 }
 function editorCopy(){
  var n=state.rows.length,metric=formatField(state.metric),shown=n+' row'+(n===1?'':'s'),cols=visual.colour==='category'&&visual.colourField<0?'above/below median':colourNames[visual.colour],shape=visual.marks==='mixed'?'mixed Bauhaus shapes':markNames[visual.marks];
+ // The user-approved Bowie example calls this source field "Track duration".
+ // Only Sun's editorial wording is affected: other posters and all numeric
+ // geometry continue to use the original selected CSV field unchanged.
+ var approvedSunDuration=visual.layout==='stripes'&&visual.stripeStyle==='sun'&&state.metric==='duration_seconds';
+ var stripeMetric=approvedSunDuration?'Track duration':metric;
  var scale=visual.scale==='contrast'?'min–max contrast (10% minimum area; not zero-based)':'area proportional to '+metric;
  var source=state.isDemo?'Illustrative sample — not recorded running data':(state.sourceName||'CSV');
  if(['mosaic','broadside','stripes','circles'].includes(visual.layout)){
   var maxRow=state.rows.reduce(function(a,b){return b.value>a.value?b:a;},state.rows[0]);
   return{
    headline:visual.layout==='mosaic'?metric+': '+n+' pieces':
-     visual.layout==='stripes'?metric+' / '+n+' stripes':
+     visual.layout==='stripes'?stripeMetric+' / '+n+' stripes':
      visual.layout==='circles'?metric+' / '+(visual.circleScope==='range'?'min + max':Math.min(n,16)+' circles'):
       'TYPE / '+metric.toUpperCase(),
    deck:visual.layout==='mosaic'?n+' observations · rectangle area ∝ '+metric+' · colour: '+cols:
-     visual.layout==='stripes'?n+' observations · '+(visual.stripeStyle==='sun'?'stripe height scales with '+metric+'; min/max shown by circle area':visual.stripeStyle==='flow'?'right-hand segment height scales with '+metric+'; S curves are decorative':'bar length scales with '+metric+'; MIN/MAX shown by circle area'):
+     visual.layout==='stripes'?n+' observations · '+(visual.stripeStyle==='sun'?'stripe height scales with '+(approvedSunDuration?'duration':metric)+'; min/max shown by circle area':visual.stripeStyle==='flow'?'right-hand segment height scales with '+metric+'; S curves are decorative':'bar length scales with '+metric+'; MIN/MAX shown by circle area'):
      visual.layout==='circles'?(visual.circleEncoding==='area'?'Whole-circle area represents '+metric:'Arc sweep represents '+metric+' relative to the maximum')+' · largest first':
      'MAX: '+maxRow.label+' · '+v3Value(maxRow.value)+' · '+n+' records · '+(visual.broadsideStyle==='diagonal'?'measured diagonal stripe lengths':'measured upright stripe heights'),
    credit:'Source: '+source+' · '+(visual.layout==='circles'?(visual.circleScope==='range'?'source MIN/MAX from '+n+' valid rows':n>16?'first 16 of '+n+' records shown':'all '+n+' records shown')+' · ':'')+sourceRowNote(n)+(state.filterName?' · '+state.filterName:'')+' · '+layoutNames[visual.layout]
@@ -1306,7 +1311,11 @@ function receiveCsv(source,name,prefs,origin){
  imported.headers.forEach(function(h,i){makeOption(filter,i,h);});filter.disabled=false;
  filter.value=String(prefs&&imported.headers.indexOf(prefs.filter)>=0?imported.headers.indexOf(prefs.filter):-1);
  chooseFilter();
- if(prefs&&prefs.filterDefaultFirst&&filterCategories.length>0)$('filter-value').value='0';
+ if(prefs&&typeof prefs.filterValue==='string'&&filterCategories.includes(prefs.filterValue)){
+  $('filter-value').value=String(filterCategories.indexOf(prefs.filterValue));
+ }else if(prefs&&prefs.filterDefaultFirst&&filterCategories.length>0){
+  $('filter-value').value='0';
+ }
  var colorField=$('colour-field');colorField.innerHTML='';makeOption(colorField,-1,'No category selected');imported.headers.forEach(function(h,i){makeOption(colorField,i,h);});colorField.disabled=false;colorField.value=String(imported.headers.indexOf(prefs&&prefs.filter||''));visual.colourField=Number(colorField.value);
  $('file-info').textContent=name+' · '+imported.records.length+' rows · '+imported.headers.length+' columns'+(imported.records.length>64?' · category filter available; 64 maximum per image':'');
  status('CSV ready. Choose your label and value columns, then create artwork.');
@@ -1362,10 +1371,12 @@ async function loadGithub(input,prefs){
   $('github-info').textContent=link.isCommit?
    'Loaded pinned commit '+link.ref+'. This exact CSV snapshot stays fixed even if main changes.':
    'Loaded from main. Reload this dataset to pick up future GitHub changes.';
+  return true;
  }catch(e){
   if(id!==githubLoadId)return;
   var msg=e.name==='AbortError'?'GitHub request timed out. Please try again.':'Could not load GitHub CSV: '+e.message;
   status(msg);$('github-info').textContent=msg;
+  return false;
  }finally{if(id===githubLoadId){$('github-load').disabled=false;$('github-link').disabled=false;}}
 }
 $('file').addEventListener('change',async function(){
@@ -1556,5 +1567,24 @@ $('save').addEventListener('click',function(){var url=canvas.toDataURL('image/pn
 $('share').addEventListener('click',async function(){if(state.mode==='data'){status('For privacy, dataset contents are never included in a shared design link. Save a PNG instead.');return;}var design={v:1,mode:state.mode,n:state.n,chaos:state.chaos,pal:state.pal,seed:state.seed,edits:state.edits};var u=location.href.split('#')[0]+'#design='+encodeURIComponent(JSON.stringify(design));try{await navigator.clipboard.writeText(u);status('Design link copied.');}catch(e){status('Clipboard access is unavailable here. Use Save PNG instead.');}});
 try{var h=location.hash;if(h.indexOf('#design=')===0){var d=JSON.parse(decodeURIComponent(h.slice(8)));if(d.v===1&&names[d.mode]&&d.mode!=='data'&&[4,6,8,10,12].includes(d.n)&&Number.isInteger(d.chaos)&&d.chaos>=0&&d.chaos<=100&&Number.isInteger(d.pal)&&d.pal>=0&&d.pal<4&&Number.isInteger(d.seed)&&d.seed>=0&&d.edits&&typeof d.edits==='object'&&!Array.isArray(d.edits)){state.mode=d.mode;state.n=d.n;state.chaos=d.chaos;state.pal=d.pal;state.seed=d.seed;Object.keys(d.edits).slice(0,144).forEach(function(k){var v=d.edits[k];if(/^\d+$/.test(k)&&+k<d.n*d.n&&v&&Number.isInteger(v.t)&&v.t>=-1&&v.t<=7&&Number.isInteger(v.r)&&v.r>=0&&v.r<4&&Number.isInteger(v.k)&&v.k>=0&&v.k<4)state.edits[k]=v;});status('Shared design restored.');}}}catch(e){status('Shared design link could not be read. Starting fresh.');}
 refresh();
+// Review link: reproduce the PR #186 Sun poster with its ACTUAL input records.
+// This is opt-in and does not affect the default blank studio or other datasets.
+// We do not store or expose user data in links; only the public Bowie CSV is read.
+if(new URLSearchParams(location.search).get('example')==='aladdin-sun'){
+ var showcasePath='archive/projects/2026-09-david-bowie-track-distributions/data/bowie_track_distribution_rows.csv';
+ visual.layout='stripes';visual.stripeStyle='sun';visual.galleryFinish='paper';
+ visual.sort='source';visual.showLabels=true;visual.labelContent='label';
+ $('show-labels').checked=true;$('label-options').hidden=false;
+ $('github-preset').value=showcasePath;
+ syncVisualControls();
+ loadGithub('https://github.com/adamgreen1708/chart-templates/blob/main/'+showcasePath,{
+  label:'track_title',value:'duration_seconds',filter:'album_title',filterValue:'Aladdin Sane'
+ }).then(function(loaded){
+  if(!loaded)return;
+  if(!applyImported())return;
+  syncVisualControls();syncEditor();render();
+  status('Reference poster loaded: 10 real Aladdin Sane tracks, duration_seconds, Sun Stripe, Gallery Paper.');
+ });
+}
 })();
 </script>
