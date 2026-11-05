@@ -741,18 +741,19 @@ function flowGeometry(i,count,value,max){
  var t=count<=1?.5:i/(count-1),leftX=310+58*t,midX=492+73*t,
   rightX=655+191*t,leftY=316+297*t,bottomY=749-34*t,topY=311+12*t,
   zeroY=342,maxHeight=390,measuredHeight=max>0?maxHeight*value/max:0,endY=zeroY+measuredHeight,
-  leadLength=44,leadX=leftX-leadLength;
- // A short horizontal starting ledge lets the source name read along the
- // same row before the unmeasured connector turns into the S snake.
+  leadX=266;
+ // The track names remain HORIZONTAL in one aligned text column: every
+ // start-of-line ledge begins at the SAME x, then extends to its own snake.
+ // No label rotation or staggering across the vertical list.
  var points=[{x:leadX,y:leftY},{x:leftX,y:leftY},{x:leftX,y:bottomY-53}];
  snakeCurveSample(points,points[points.length-1],
   {x:leftX,y:bottomY+18},{x:midX,y:bottomY+18},{x:midX,y:bottomY-53},32);
  points.push({x:midX,y:topY+49});
  snakeCurveSample(points,points[points.length-1],
-  {x:midX,y:topY-35},{x:rightX,y:topY-35},{x:rightX,y:topY+49},32);
- // The artistic connector finishes at the shared measured zero; the
- // continuously coloured vertical end alone encodes quantity.
- points.push({x:rightX,y:zeroY});
+  {x:midX,y:topY-35},{x:rightX,y:zeroY-54},{x:rightX,y:zeroY},64);
+ // The decorative S arrives at the shared ZERO baseline with a vertical
+ // downward tangent. The measured end continues from this exact point,
+ // avoiding the previous upward hairpin/backtracking at the join.
  return{points:points,left:{x:leadX,y:leftY},leadEndX:leftX,rightX:rightX,zeroY:zeroY,
   endY:endY,barLength:measuredHeight,referenceLength:maxHeight};
 }
@@ -806,26 +807,24 @@ function renderStripeFlow(rows,p,dark,max){
   ctx.lineCap='round';ctx.lineJoin='round';
   ctx.beginPath();ctx.moveTo(shape.points[0].x,shape.points[0].y);
   for(var j=1;j<shape.points.length;j++)ctx.lineTo(shape.points[j].x,shape.points[j].y);
-  ctx.stroke();
-  if(shape.barLength>0){
-   ctx.beginPath();ctx.moveTo(shape.rightX,barZero);
-   ctx.lineTo(shape.rightX,shape.endY);ctx.stroke();
-  }
-  ctx.restore();
+  if(shape.barLength>0)ctx.lineTo(shape.rightX,shape.endY);
+  // One uninterrupted Canvas stroke, with identical colour, thickness and
+  // caps across the flowing curve and its source-measured vertical end.
+  ctx.stroke();ctx.restore();
   if(visual.showLabels&&all<=15){
    var label=visual.labelContent==='value'?v3Value(row.value):visual.labelContent==='index'?String(i+1):
     visual.labelContent==='both'?row.label+' · '+v3Value(row.value):row.label;
-   stripeFlowFittedLabel(label,shape.left.x-10,shape.left.y+4,p.muted);
+   stripeFlowFittedLabel(label,shape.left.x+2,shape.left.y+4,p.muted);
   }
   // Enable precise inspection both along the S and on its measured straight
   // segment. The original value is never derived from decorative curvature.
   var points=shape.points.slice();
-  points.push({x:shape.rightX,y:shape.endY});
+  if(shape.barLength>0)points.push({x:shape.rightX,y:shape.endY});
   dataHitRegions.push({row:row,order:i+1,polyline:points,barLength:shape.barLength,
    zeroY:shape.zeroY,barX:shape.rightX});
  });
  $('hint').textContent='The wider, finer S is artistic; its straight right-hand end alone measures the source value / maximum from a shared zero baseline. Each source colour and stroke width remains consistent from the horizontal label ledge to the measured end.';
- $('label-note').textContent='Labels fit the horizontal start (11px down to 9px, then a safe ellipsis). Snake and measured bar have identical colour and stroke width. Tap the line for the full original label and value.';
+ $('label-note').textContent='Track names read horizontally in one right-aligned vertical column, with level connector lines extending to each S snake. The measured end joins seamlessly in one continuous stroke; tap any line for its full original name and value.';
 }
 function renderStripeStudy(rows,p,dark,max){
  if(visual.stripeStyle==='sun'){renderStripeSun(rows,p,dark,max);return;}

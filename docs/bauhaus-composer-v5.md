@@ -49,13 +49,14 @@ Version 3 is a proposed follow-up to **merged PR #185**, retaining all three mea
 - **The main editorial headline is restored horizontally above the explanatory deck** in the same safely fitted x=82 / y=111 heading band as Flow and Classic. Sun also **retains the small vertical title on the 57px back bar**; the two are complementary, not alternatives. Both honour the currently edited or auto-generated headline. The source-derived minimum-filled-area circle and maximum outline remain unchanged. The descriptive deck remains visible below the horizontal headline.
 - [Review SVG](previews/bauhaus-stripe-v3-sun.svg)
 
-### Flow Snake — extended, thinner, still measured correctly
-- Keep the horizontal 44px labelled start and the S-shaped lines, with **exactly matched colour and thickness along each complete series**, including its right-hand measured segment.
-- Expand the artistic S across the composition: nominal x≈266–846 and y≈297–749 for multiple observations, while keeping within the 82px/878px sides, y275 art top and y827 art bottom.
-- Thin each continuous snake/measurement stroke from 5/3/2px to **3.2px** for ≤16 records, **2.1px** for 17–28, **1.5px** for 29+.
-- The right-hand straight segment uses the **common y=342 zero baseline** and height `390 × original_value / max`. The curved portion is never interpreted as quantity. A subtle shared zero rule remains a legitimate scale reference, unlike the removed decorative top rule.
-- Keep 11–9px safely fitted left-hand track labels (omitted for >15 records) and nearest-line tap inspection. Restore the **small explanatory deck line above the artwork**.
-- [Review SVG](previews/bauhaus-stripe-v3-flow.svg)
+### Flow Snake — horizontal label column and continuous measured ends (v4 review)
+- **Horizontal text, not vertical text:** track names read left-to-right, in one **right-aligned vertical column at x=264**. A short 2px visual gap separates each name from its horizontal lead-in, which now **always begins at x=266** and extends further right to that track's S snake; the snake's own first upright varies x≈310–368. The variable-length straight leads preserve the editorial graphic while all labels line up neatly.
+- Labels remain 11px where they fit, down to 9px and ellipsised inside the x=82 print-safe boundary if needed. They can still be hidden with Show labels; for more than 15 plotted source records they are suppressed rather than collided. Clicking the corresponding path reveals the original full source label and value.
+- Keep the fine S shape and gallery palette. **The curve finishes at the same y=342 zero line, with a vertical downward tangent** rather than an upward jog. The series is rendered as **one uninterrupted Canvas stroke** through the curve **and** into the measured right-hand vertical bar; no independently stroked segment, visible break or mismatch of colour/thickness is permitted.
+- The measured right-hand straight segment remains the **only quantity encoding**, `height = 390 × source_value / selected_maximum`; the decorative S length/curvature and the length of the horizontal lead-in do not encode the metric. Colour and stroke width remain consistent end-to-end (3.2px up to 16 records, 2.1px at 17–28, 1.5px at 29+).
+- The artwork remains within the printable square and retains the headline, explanatory line and source attribution.
+- **Regression source:** [Never Let Me Down, 11-track review preview](previews/bauhaus-flow-v4-never-let-me-down.svg), matching the album in the user's screenshot. [Aladdin Sane, 10-track revised comparison](previews/bauhaus-stripe-v3-flow.svg). Both SVGs are data-derived independent illustrations; the implementation is the interactive Canvas draw code.
+- See [Flow Snake v4 QA](bauhaus-flow-v4-qa.md). This design is a **proposed PR change**, not yet published to main.
 
 ### Classic — data-driven MIN/MAX circles
 - Retain the stacked bars: each width is `696 × current_value / max` from x=163, with track name and exact value integrated into each bar where they fit.
