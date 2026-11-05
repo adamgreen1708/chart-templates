@@ -1582,7 +1582,9 @@ if(new URLSearchParams(location.search).get('example')==='aladdin-sun'){
  }).then(function(loaded){
   if(!loaded)return;
   if(!applyImported())return;
-  syncVisualControls();syncEditor();render();
+  // applyImported already refreshes the Canvas; avoid a redundant second
+  // render so the reference poster and tap regions remain in sync.
+  syncVisualControls();
   status('Reference poster loaded: 10 real Aladdin Sane tracks, duration_seconds, Sun Stripe, Gallery Paper.');
  });
 }
