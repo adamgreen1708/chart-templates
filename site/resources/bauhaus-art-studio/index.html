@@ -536,7 +536,8 @@ function galleryMasthead(p){
  // A small original registration motif, not a numerical marker.
  ctx.fillStyle=p.c[0];ctx.beginPath();ctx.arc(860,53,17,0,Math.PI*2);ctx.fill();
  ctx.strokeStyle=p.c[3];ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(835,29);ctx.lineTo(883,77);ctx.stroke();
- ctx.globalAlpha=.45;ctx.strokeStyle=p.c[2];ctx.beginPath();ctx.moveTo(82,103);ctx.lineTo(256,103);ctx.stroke();
+ // Short grey registration line removed across all data-art poster families.
+ // Keep the main horizontal header divider and the corner circle motif.
  ctx.restore();
 }
 function galleryTileOrnament(x,y,w,h,p,ink,i){
