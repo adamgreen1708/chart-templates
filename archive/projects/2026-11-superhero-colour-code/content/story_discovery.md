@@ -1,6 +1,6 @@
 # Story discovery — superhero colour code
 
-**Stage:** provisional dataset / editorial selection. No chart configs, rendered PNGs or site publication yet.
+**Stage:** pilot dataset, three rendered review charts, phone-size layout QA complete; source-art verification and site publication still blocked.
 
 ## Ranked routes
 
