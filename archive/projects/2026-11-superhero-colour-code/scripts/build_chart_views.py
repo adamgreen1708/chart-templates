@@ -59,6 +59,21 @@ def main():
         if (r["role"]=="Hero" and not is_primary) or (r["role"]=="Villain" and is_primary):
             exceptions.append(dict(character=r["character"],publisher=r["publisher"],role=r["role"],dominant_colour=r["dominant_colour"],chart_label=f'{r["character"]} ({r["publisher"]})',primary_dominant=int(is_primary),exception_type="Hero without primary dominant" if r["role"]=="Hero" else "Villain with primary dominant"))
     write_csv(out/"chart_03_exceptions.csv",["character","publisher","role","dominant_colour","chart_label","primary_dominant","exception_type"],exceptions)
+    # Six-row diverging hue comparison: positive = more frequent among heroes.
+    palette={"red":"#C44E52","blue":"#1F8FA8","yellow":"#D4A017","green":"#2D9067","purple":"#8654A8","orange":"#D4863F"}
+    frequency={(r["role"],r["colour"]):r for r in freq}
+    differences=[]
+    for colour in ("red","blue","yellow","green","purple","orange"):
+        hero=frequency[("Hero",colour)]
+        villain=frequency[("Villain",colour)]
+        diff=round(hero["share_percent"]-villain["share_percent"],1)
+        differences.append(dict(colour=colour,display_label=colour.title(),
+            hero_count=hero["n_characters"],villain_count=villain["n_characters"],
+            hero_pct=hero["share_percent"],villain_pct=villain["share_percent"],
+            hero_minus_villain_pct=diff,role_skew="heroes" if diff>0 else "villains" if diff<0 else "equal",
+            colour_hex=palette[colour]))
+    differences.sort(key=lambda r:r["hero_minus_villain_pct"],reverse=True)
+    write_csv(out/"chart_01_hue_skew.csv",["colour","display_label","hero_count","villain_count","hero_pct","villain_pct","hero_minus_villain_pct","role_skew","colour_hex"],differences)
     # Publisher-text-supported uncertainties: possible costume/era variants, NOT measured areas.
     with (ROOT/"data/colour_coding_alternatives.csv").open(encoding="utf-8",newline="") as fh:
         alternatives=list(csv.DictReader(fh))
