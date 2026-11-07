@@ -27,3 +27,12 @@ Show **heroes without a primary dominant hue** and **villains with a primary dom
 - Actual art/colour verification of all 24 observations not complete.
 - Sampling is editorial, not random or exhaustive; avoid population generalisations.
 - No PNG render/phone-sized QA yet. Keep this branch research-only until validated.
+
+## Updated phone-first chart-1 decision (7 November 2026)
+Twelve separate tiny hero/villain bars for six colours are likely to be cramped at 320px. The **recommended production chart 1** is now a **six-row diverging horizontal bar**:
+- `data/chart_01_hue_skew.csv` stores each colour's hero and villain counts, shares, plus the signed difference in **percentage points** (positive = more frequent among heroes).
+- Use a zero reference line and clear `More common among heroes` / `More common among villains` axis captions. Keep actual hue as an unambiguous row label; use documented semantic highlights rather than decorative multicolour bars when a shared chart colour is also being used for role.
+- Actual sample result from the provisional dataset: **red +33.3 percentage points** towards heroes, **green −41.7 pp** towards villains; six family rows fit the square canvas more easily than 12 category labels. Black and grey are still counted in both denominators.
+- Note orange is **more common among heroes (one Aquaman vs zero villains)** in this deliberately curated sample, a useful counterexample to a simplistic 'secondaries mean evil' headline.
+- The story plan remains **1. Hue skew by role; 2. Four publisher/role primary shares; 3. Seven named exceptions**.
+- Do not describe any percentage-point difference as percentage of costume coverage, or test significance from the purposive sample.
