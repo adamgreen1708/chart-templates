@@ -51,7 +51,7 @@ def main():
         for role in ROLES:
             subset=[r for r in rows if r["publisher"]==publisher and r["role"]==role]
             n=sum(r["dominant_colour"] in PRIMARY for r in subset)
-            pub_view.append(dict(publisher=publisher,role=role,chart_label=f"{publisher} {role.lower()}s",n_primary_dominant=n,n_in_group=len(subset),share_percent=round(100*n/len(subset),1)))
+            pub_view.append(dict(publisher=publisher,role=role,chart_label=f"{publisher} {'heroes' if role == 'Hero' else 'villains'}",n_primary_dominant=n,n_in_group=len(subset),share_percent=round(100*n/len(subset),1)))
     write_csv(out/"chart_02_primary_by_publisher.csv",["publisher","role","chart_label","n_primary_dominant","n_in_group","share_percent"],pub_view)
     exceptions=[]
     for r in rows:
