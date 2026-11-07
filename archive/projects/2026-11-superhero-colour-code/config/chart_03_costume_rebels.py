@@ -9,7 +9,7 @@ CHART_CONFIG = {
     "source_text": "Source: Marvel/DC; coded pilot",
     "footer_left": "Adam Green | coffeetableviz",
     "render_profile": "social_square",
-    "profile_overrides": {"plot_left": 0.32, "plot_right": 0.88},
+    "profile_overrides": {"plot_left": 0.45, "plot_right": 0.89, "tick_label_fontsize": 15},
     "story_angle": "ranked_comparison",
     "focus_series": None,
     "secondary_series": None,

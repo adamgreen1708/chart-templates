@@ -16,7 +16,7 @@ CHART_CONFIG = {
     "label_strategy": "focus_only",
     "x_is_datetime": False,
     "x_tick_rotation": 0,
-    "x_label": "Characters with primary dominant colour (%)",
+    "x_label": "Primary-dominant costumes (%)",
     "y_label": "",
     "x_margin": 0.08,
     "x_axis": {
@@ -136,6 +136,6 @@ CHART_CONFIG = {
     "chart_type": "bar",
     "x_col": "share_percent",
     "y_col": "chart_label",
-    "title": "Marvel favours the primaries",
-    "subtitle": "5 of 6 Marvel heroes wear primary colours; DC has 3 of 6."
+    "title": "Marvel leads on primaries here",
+    "subtitle": "Among six selected heroes each: Marvel 5, DC 3."
 }

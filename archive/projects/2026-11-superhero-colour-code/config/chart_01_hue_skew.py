@@ -16,7 +16,7 @@ CHART_CONFIG = {
     "label_strategy": "focus_only",
     "x_is_datetime": False,
     "x_tick_rotation": 0,
-    "x_label": "Hero share minus villain share (pp)",
+    "x_label": "Hero - villain share (pp)",
     "y_label": "",
     "x_margin": 0.08,
     "x_axis": {
@@ -168,5 +168,5 @@ CHART_CONFIG = {
     "x_col": "hero_minus_villain_pct",
     "y_col": "display_label",
     "title": "Red heroes, green villains?",
-    "subtitle": "In 24 classic costumes, red tilts heroic and green villainous."
+    "subtitle": "Red favours heroes; green villains (24 costumes)."
 }
