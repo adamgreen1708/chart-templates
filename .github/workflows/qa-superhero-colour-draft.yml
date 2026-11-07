@@ -6,6 +6,7 @@ on:
       - "draft/2026-11-superhero-colour-preview"
     paths:
       - ".github/workflows/qa-superhero-colour-draft.yml"
+      - "archive/projects/2026-11-superhero-colour-code/output/*.png"
 
 permissions:
   contents: write
