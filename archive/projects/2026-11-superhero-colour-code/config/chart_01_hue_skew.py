@@ -167,6 +167,6 @@ CHART_CONFIG = {
     "chart_type": "bar",
     "x_col": "hero_minus_villain_pct",
     "y_col": "display_label",
-    "title": "Red leans hero. Green leans villain.",
+    "title": "In this line-up, red leans heroic.",
     "subtitle": "Which dominant costume colours favour each side in 24 familiar comic characters?"
 }
