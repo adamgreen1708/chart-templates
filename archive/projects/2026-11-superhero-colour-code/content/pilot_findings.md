@@ -31,7 +31,7 @@ These differences are **not** representative estimates of publisher-wide costume
 **Next production gate:** find and review specific full-body comic-costume references for all 24 characters; agree the dominant coding and the 3-chart story; then create configs and render through the repo's `social_square` renderer.
 
 ## Publisher reference audit and alternate-coding check (7 November 2026)
-Of the 24 pilot records, **10 publisher pages or articles directly describe the relevant colour combination**; the other 14 are only character/era context. No exact full-body art review has been passed for any record; all are provisional. See `data/source_evidence_audit.csv`.
+Of the 24 pilot records, **11 publisher pages or articles directly describe the relevant colour combination**; the other 13 are only character/era context. No exact full-body art review has been passed for any record; all are provisional. See `data/source_evidence_audit.csv`.
 
 **The six-colour contrast in this pilot** (hero share minus villain share, **percentage points**, not fabric-area ratios):
 - Red **+33.3 pp** (5/12 heroes vs 1/12 villains)
