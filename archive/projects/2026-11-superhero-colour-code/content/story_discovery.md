@@ -12,8 +12,8 @@
 ## Recommended 3-chart editorial sequence
 
 ### 1 — Is there a colour code for good and evil?
-Compare **dominant costume hue**, by hero and villain: red, blue, yellow, green, purple, orange (plus explicit neutral-colour caveat). Source: `data/chart_01_colour_frequency.csv`.
-Recommended form: compact paired horizontal bar comparison, percent of 12 heroes/villains per hue; six hue families, two role bars each. A note must state black/grey have been omitted from these six bars (but remain in the denominator).
+Compare **dominant costume hue**, by hero and villain: red, blue, yellow, green, purple, orange (plus explicit neutral-colour caveat). Source: `data/chart_01_hue_skew.csv` (built from `data/chart_01_colour_frequency.csv`).
+Recommended form: six-row diverging horizontal bar comparison of **hero share minus villain share, in percentage points** (positive = more frequent among heroes). State that grey, black and other hues are omitted from these six rows but still included in both denominators. The six-row form is deliberately chosen for phone readability.
 
 ### 2 — Does Marvel follow DC's rules?
 Compare the **share of characters whose dominant hue is a strict primary** for the four publisher × hero/villain groups. Source: `data/chart_02_primary_by_publisher.csv`. Recommended form: four labelled horizontal bars (all denominators six), visually pair the two roles within publisher.
