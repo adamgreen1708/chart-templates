@@ -1,0 +1,36 @@
+name: Superhero comic palette draft phone QA
+
+on:
+  push:
+    branches:
+      - "draft/2026-11-superhero-colour-preview"
+    paths:
+      - ".github/workflows/qa-superhero-colour-draft.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install image QA dependency
+        run: pip install Pillow
+      - name: Create and inspect exact phone-size review images
+        run: python archive/projects/2026-11-superhero-colour-code/scripts/qa_phone.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: superhero-colour-mobile-previews
+          path: archive/projects/2026-11-superhero-colour-code/output/qa/*.png
+          if-no-files-found: error
+      - name: Save draft previews for editorial inspection
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add archive/projects/2026-11-superhero-colour-code/output/qa
+          git diff --staged --quiet || git commit -m "Add 320px and 390px review previews"
+          git push
