@@ -66,7 +66,7 @@ def main():
     for colour in ("red","blue","yellow","green","purple","orange"):
         hero=frequency[("Hero",colour)]
         villain=frequency[("Villain",colour)]
-        diff=round(hero["share_percent"]-villain["share_percent"],1)
+        diff=round(100*(hero["n_characters"]-villain["n_characters"])/12,1)
         differences.append(dict(colour=colour,display_label=colour.title(),
             hero_count=hero["n_characters"],villain_count=villain["n_characters"],
             hero_pct=hero["share_percent"],villain_pct=villain["share_percent"],
