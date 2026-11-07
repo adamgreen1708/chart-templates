@@ -17,7 +17,7 @@ CHART_CONFIG = {
     "source_text": "Source: Marvel/DC · curated 24",
     "data_file": "archive/projects/2026-11-superhero-colour-code/data/chart_v2_01_costume_gallery.csv",
     "layout_variant": "gallery",
-    "title": "Who wore it better: good or evil?",
-    "subtitle": "Twelve recognisable comic costumes. Their colours are doing the talking.",
+    "title": "Who wore it better?",
+    "subtitle": "Twelve hero and villain costumes. Their colours are doing the talking." ,
     "output_file": "output/superhero_v2_01_costume_gallery.png",
 }

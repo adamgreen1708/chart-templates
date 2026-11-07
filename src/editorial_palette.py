@@ -35,7 +35,7 @@ def _colour(code):
 
 def _text(fig,x,y,value,fontsize=12,colour=INK,weight="normal",ha="left",va="center"):
     return fig.text(x,y,str(value),ha=ha,va=va,color=colour,fontsize=fontsize,
-                    fontweight=weight)
+                    fontweight=weight,zorder=8)
 
 def _swatch(fig,x,y,colour,w=.046,h=.03,border=False):
     fig.add_artist(Rectangle((x,y),w,h,transform=fig.transFigure,
@@ -80,10 +80,8 @@ def render_gallery(fig,rows,top,config):
                     _swatch(fig,x1+.223+j*.056,y-.022,code,w=.047,h=.035,
                             border=(str(code).upper()=="#FFFFFF"))
             _rule(fig,x1,y-.046,x2)
-    _text(fig,.09,top-.505,"MAIN     SECOND     ACCENT",fontsize=10.7,
-          colour=MUTED)
-    _text(fig,.53,top-.505,"MAIN     SECOND     ACCENT",fontsize=10.7,
-          colour=MUTED)
+    _text(fig,.09,top-.505,"Reading each costume: MAIN  /  SECOND  /  ACCENT",
+          fontsize=11.0,colour=MUTED)
     _footer_note(fig,"Swatches show colour roles, NOT costume-area percentages.")
 
 def render_scorecard(fig,rows,top,config):
@@ -130,7 +128,7 @@ def render_twins(fig,rows,top,config):
         raise ValueError("Twin pair ranks must be 1..5")
     top=min(top,.72)
     _heading(fig,top,"HERO",.09,.36,HERO)
-    _heading(fig,top,"SAME MAIN HUE",.415,.635,MUTED)
+    _heading(fig,top,"MATCHING HUE",.415,.635,MUTED)
     _heading(fig,top,"VILLAIN",.68,.91,VILLAIN)
     for i,r in enumerate(ordered):
         y=top-.085-i*.079
@@ -139,10 +137,16 @@ def render_twins(fig,rows,top,config):
         _text(fig,.09,y-.019,
               "plus "+(r["hero_secondary"] or "no second hue"),
               fontsize=10.9,colour=MUTED)
+        if r["hero_secondary_hex"]:
+            _swatch(fig,.312,y-.029,r["hero_secondary_hex"],w=.021,h=.018,
+                    border=str(r["hero_secondary_hex"]).upper()=="#FFFFFF")
         _text(fig,.68,y+.009,r["villain_display"],fontsize=14.2,weight="bold")
         _text(fig,.68,y-.019,
               "plus "+(r["villain_secondary"] or "no second hue"),
               fontsize=10.9,colour=MUTED)
+        if r["villain_secondary_hex"]:
+            _swatch(fig,.881,y-.029,r["villain_secondary_hex"],w=.021,h=.018,
+                    border=str(r["villain_secondary_hex"]).upper()=="#FFFFFF")
         fig.add_artist(Line2D([.34,.45],[y,y],transform=fig.transFigure,
                                lw=1.25,color=RULE,zorder=1))
         fig.add_artist(Line2D([.60,.67],[y,y],transform=fig.transFigure,
@@ -153,7 +157,7 @@ def render_twins(fig,rows,top,config):
         _text(fig,.525,y+.002,r["shared_colour"].upper(),fontsize=11.9,
               weight="bold",colour="#FFFFFF" if luminance<.52 else INK,ha="center")
         _rule(fig,.09,y-.050,.91,alpha=.85)
-    _text(fig,.09,.204,"Five real pairings from the selected 24 costume versions.",
+    _text(fig,.09,.204,"Five coded pairings from the selected 24 costume versions.",
           fontsize=11.3,colour=INK)
     _footer_note(fig,"Shared colour = coded dominant hue; supporting colour can differ.")
 
