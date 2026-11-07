@@ -1,0 +1,13 @@
+character,display,publisher,role,sort_order,dominant_colour,secondary_colour,accent_colour,dominant_hex,secondary_hex,accent_hex
+Superman,Superman,DC,Hero,1,blue,red,yellow,#1F8FA8,#C44E52,#E2B221
+The Flash (Barry Allen),The Flash,DC,Hero,2,red,yellow,,#C44E52,#E2B221,
+Green Lantern (Hal Jordan),Green Lantern,DC,Hero,3,green,black,white,#2F9568,#252931,#FFFFFF
+Spider-Man (Peter Parker),Spider-Man,Marvel,Hero,4,red,blue,black,#C44E52,#1F8FA8,#252931
+Wolverine (Logan),Wolverine,Marvel,Hero,5,yellow,blue,black,#E2B221,#1F8FA8,#252931
+Iron Man (Tony Stark),Iron Man,Marvel,Hero,6,red,gold,,#C44E52,#C59B32,
+The Joker,The Joker,DC,Villain,1,purple,green,orange,#8756A5,#2F9568,#E38A3E
+Riddler (Edward Nygma),The Riddler,DC,Villain,2,green,purple,,#2F9568,#8756A5,
+Lex Luthor,Lex Luthor,DC,Villain,3,green,purple,,#2F9568,#8756A5,
+Green Goblin (Norman Osborn),Green Goblin,Marvel,Villain,4,green,purple,,#2F9568,#8756A5,
+Doctor Doom (Victor von Doom),Doctor Doom,Marvel,Villain,5,green,silver,,#2F9568,#BCC1C7,
+Magneto (Max Eisenhardt),Magneto,Marvel,Villain,6,red,purple,,#C44E52,#8756A5,
