@@ -1,0 +1,5 @@
+publisher,role,chart_label,n_primary_dominant,n_in_group,share_percent
+DC,Hero,DC heros,3,6,50
+DC,Villain,DC villains,1,6,16.7
+Marvel,Hero,Marvel heros,5,6,83.3
+Marvel,Villain,Marvel villains,2,6,33.3
