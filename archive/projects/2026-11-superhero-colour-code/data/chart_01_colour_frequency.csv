@@ -1,0 +1,13 @@
+role,colour,chart_label,n_characters,n_in_role,share_percent
+Hero,red,Hero · red,5,12,41.7
+Hero,blue,Hero · blue,2,12,16.7
+Hero,yellow,Hero · yellow,1,12,8.3
+Hero,green,Hero · green,1,12,8.3
+Hero,purple,Hero · purple,0,12,0
+Hero,orange,Hero · orange,1,12,8.3
+Villain,red,Villain · red,1,12,8.3
+Villain,blue,Villain · blue,1,12,8.3
+Villain,yellow,Villain · yellow,1,12,8.3
+Villain,green,Villain · green,6,12,50
+Villain,purple,Villain · purple,1,12,8.3
+Villain,orange,Villain · orange,0,12,0
