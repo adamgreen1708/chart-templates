@@ -59,6 +59,27 @@ def main():
         if (r["role"]=="Hero" and not is_primary) or (r["role"]=="Villain" and is_primary):
             exceptions.append(dict(character=r["character"],publisher=r["publisher"],role=r["role"],dominant_colour=r["dominant_colour"],chart_label=f'{r["character"]} ({r["publisher"]})',primary_dominant=int(is_primary),exception_type="Hero without primary dominant" if r["role"]=="Hero" else "Villain with primary dominant"))
     write_csv(out/"chart_03_exceptions.csv",["character","publisher","role","dominant_colour","chart_label","primary_dominant","exception_type"],exceptions)
+    # Publisher-text-supported uncertainties: possible costume/era variants, NOT measured areas.
+    with (ROOT/"data/colour_coding_alternatives.csv").open(encoding="utf-8",newline="") as fh:
+        alternatives=list(csv.DictReader(fh))
+    assert len(alternatives)==5, "Keep the manually curated sensitivity cases explicit"
+    by_character={r["character"]:r for r in rows}
+    alt={}
+    for r in alternatives:
+        assert r["character"] in by_character, f"Unknown alternative {r['character']}"
+        assert by_character[r["character"]]["dominant_colour"]==r["current_dominant"]
+        assert r["alternate_dominant"] in ALLOWED
+        alt[r["character"]]=r["alternate_dominant"]
+    bounds=[]
+    for role in ROLES:
+        subset=[r for r in rows if r["role"]==role]
+        base=sum(r["dominant_colour"] in PRIMARY for r in subset)
+        minimum=sum((r["dominant_colour"] in PRIMARY) and (r["character"] not in alt or alt[r["character"]] in PRIMARY) for r in subset)
+        maximum=sum((r["dominant_colour"] in PRIMARY) or (r["character"] in alt and alt[r["character"]] in PRIMARY) for r in subset)
+        n=len(subset)
+        bounds.append(dict(role=role,n_characters=n,baseline_primary=base,low_primary=minimum,high_primary=maximum,baseline_pct=round(100*base/n,1),low_pct=round(100*minimum/n,1),high_pct=round(100*maximum/n,1)))
+    write_csv(out/"chart_coding_sensitivity.csv",["role","n_characters","baseline_primary","low_primary","high_primary","baseline_pct","low_pct","high_pct"],bounds)
+    assert bounds[0]["low_primary"]>bounds[1]["high_primary"], "Pilot difference is not robust to documented alternatives"
     print(f"Pilot records: {len(rows)}; exceptions: {len(exceptions)}")
     print("Provisional only: costume-image validation is required before publication")
 
