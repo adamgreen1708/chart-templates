@@ -13,7 +13,7 @@
 - **Rendering:** pending config/renderer and phone-image QA
 - **Publishing:** not authorised; no site files or site assets touched
 
-- **Evidence audit:** `data/source_evidence_audit.csv` (all 24 have publisher reference, 10 with relevant explicit colour text; **none pass exact comic-art review**)
+- **Evidence audit:** `data/source_evidence_audit.csv` (all 24 have publisher reference, 11 with relevant explicit colour text; **none pass exact comic-art review**)
 - **Sensitivity input/output:** `data/colour_coding_alternatives.csv` and `data/chart_coding_sensitivity.csv`
 - **Six-hue diverging chart 1:** `data/chart_01_hue_skew.csv` (replaces the more cramped 12-label bar concept, while preserving the original frequency view)
 - **Current review state:** Source references strengthened, sensitivity tested; **no final visual verification, chart config, render or publication**
