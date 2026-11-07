@@ -6,7 +6,7 @@ CHART_CONFIG = {
     "series_col": None,
     "value_col": None,
     "filters": [],
-    "source_text": "Source: Marvel/DC; curated pilot",
+    "source_text": "Source: Marvel/DC; coded pilot",
     "footer_left": "Adam Green | coffeetableviz",
     "render_profile": "social_square",
     "profile_overrides": {},
@@ -167,6 +167,6 @@ CHART_CONFIG = {
     "chart_type": "bar",
     "x_col": "hero_minus_villain_pct",
     "y_col": "display_label",
-    "title": "In this line-up, red leans heroic.",
-    "subtitle": "Which dominant costume colours favour each side in 24 familiar comic characters?"
+    "title": "Red heroes, green villains?",
+    "subtitle": "In 24 classic costumes, red tilts heroic and green villainous."
 }

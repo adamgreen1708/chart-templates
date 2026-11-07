@@ -6,10 +6,10 @@ CHART_CONFIG = {
     "series_col": None,
     "value_col": None,
     "filters": [],
-    "source_text": "Source: Marvel/DC; curated pilot",
+    "source_text": "Source: Marvel/DC; coded pilot",
     "footer_left": "Adam Green | coffeetableviz",
     "render_profile": "social_square",
-    "profile_overrides": {},
+    "profile_overrides": {"plot_left": 0.32, "plot_right": 0.88},
     "story_angle": "ranked_comparison",
     "focus_series": None,
     "secondary_series": None,
@@ -31,8 +31,8 @@ CHART_CONFIG = {
         "tick_interval": None,
         "format": None
     },
-    "y_axis_min": None,
-    "y_axis_max": None,
+    "y_axis_min": 7.5,
+    "y_axis_max": 0.5,
     "y_tick_interval": None,
     "y_tick_format": None,
     "x_tick_labels": [
@@ -45,7 +45,7 @@ CHART_CONFIG = {
             "label": "VILLAIN"
         }
     ],
-    "y_tick_labels": [],
+    "y_tick_labels": [{"value":1,"label":"Batman · grey"},{"value":2,"label":"Green Lantern · green"},{"value":3,"label":"Aquaman · orange"},{"value":4,"label":"Black Panther · black"},{"value":5,"label":"Sinestro · yellow"},{"value":6,"label":"Thanos · blue"},{"value":7,"label":"Magneto · red"}],
     "sort": {
         "by": "display_order",
         "ascending": True
@@ -185,9 +185,9 @@ CHART_CONFIG = {
     "dpi": 200,
     "output_file": "output/superhero_03_costume_rebels.png",
     "data_file": "archive/projects/2026-11-superhero-colour-code/data/chart_03_exception_marks.csv",
-    "chart_type": "dot",
+    "chart_type": "scatter",
     "x_col": "x_position",
-    "y_col": "short_label",
-    "title": "Seven costumes break the colour code.",
-    "subtitle": "Four heroes avoid primaries. Three villains wear them."
+    "y_col": "display_order",
+    "title": "Meet the colour rebels",
+    "subtitle": "Four heroes avoid primaries; three villains wear them."
 }

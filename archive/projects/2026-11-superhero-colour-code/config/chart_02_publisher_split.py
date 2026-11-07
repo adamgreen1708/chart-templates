@@ -6,10 +6,10 @@ CHART_CONFIG = {
     "series_col": None,
     "value_col": None,
     "filters": [],
-    "source_text": "Source: Marvel/DC; curated pilot",
+    "source_text": "Source: Marvel/DC; coded pilot",
     "footer_left": "Adam Green | coffeetableviz",
     "render_profile": "social_square",
-    "profile_overrides": {},
+    "profile_overrides": {"plot_left": 0.28},
     "story_angle": "ranked_comparison",
     "focus_series": None,
     "secondary_series": None,
@@ -136,6 +136,6 @@ CHART_CONFIG = {
     "chart_type": "bar",
     "x_col": "share_percent",
     "y_col": "chart_label",
-    "title": "Marvel heroes lean into primaries.",
-    "subtitle": "Red, yellow or blue leads 5 of 6 Marvel heroes, but only 3 of 6 DC heroes."
+    "title": "Marvel favours the primaries",
+    "subtitle": "5 of 6 Marvel heroes wear primary colours; DC has 3 of 6."
 }
