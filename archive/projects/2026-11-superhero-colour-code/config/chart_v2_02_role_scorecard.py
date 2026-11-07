@@ -17,7 +17,7 @@ CHART_CONFIG = {
     "source_text": "Source: Marvel/DC · curated 24",
     "data_file": "archive/projects/2026-11-superhero-colour-code/data/chart_v2_02_role_scorecard.csv",
     "layout_variant": "scorecard",
-    "title": "Three villains stole the primaries",
-    "subtitle": "Among 24 selected costumes, 8 of 12 heroes and 3 of 12 villains wear primaries.",
+    "title": "Who let villains wear primaries?",
+    "subtitle": "Three of 12 villains wear a primary main hue. So do eight of 12 heroes.",
     "output_file": "output/superhero_v2_02_role_scorecard.png",
 }
