@@ -59,6 +59,34 @@ def main():
         if (r["role"]=="Hero" and not is_primary) or (r["role"]=="Villain" and is_primary):
             exceptions.append(dict(character=r["character"],publisher=r["publisher"],role=r["role"],dominant_colour=r["dominant_colour"],chart_label=f'{r["character"]} ({r["publisher"]})',primary_dominant=int(is_primary),exception_type="Hero without primary dominant" if r["role"]=="Hero" else "Villain with primary dominant"))
     write_csv(out/"chart_03_exceptions.csv",["character","publisher","role","dominant_colour","chart_label","primary_dominant","exception_type"],exceptions)
+    # Seven named primary-rule exceptions, with costume-hue swatches and two columns.
+    # All marks come from the verified seed CSV; this view is still provisional.
+    short_names={
+        "Batman (Bruce Wayne)":"Batman",
+        "Green Lantern (Hal Jordan)":"Green Lantern",
+        "Aquaman (Arthur Curry)":"Aquaman",
+        "Black Panther (T'Challa)":"Black Panther",
+        "Sinestro (Thaal Sinestro)":"Sinestro",
+        "Thanos":"Thanos",
+        "Magneto (Max Eisenhardt)":"Magneto",
+    }
+    hues={"grey":"#626A72","green":"#2D9067","orange":"#D4863F",
+          "yellow":"#D4A017","black":"#272A31","blue":"#1F8FA8","red":"#C44E52"}
+    ordered_names=list(short_names)
+    exceptions_by_name={r["character"]:r for r in exceptions}
+    assert len(exceptions_by_name)==7, "Unexpected count of exception marks"
+    exception_marks=[]
+    for index,name in enumerate(ordered_names,1):
+        if name not in exceptions_by_name:
+            raise ValueError(f"Missing exception: {name}")
+        r=exceptions_by_name[name]
+        hue=r["dominant_colour"]
+        exception_marks.append(dict(character=name,short_label=f"{short_names[name]} · {hue}",
+            role=r["role"],publisher=r["publisher"],dominant_colour=hue,
+            x_position=-1 if r["role"]=="Hero" else 1,display_order=index,colour_hex=hues[hue]))
+    write_csv(out/"chart_03_exception_marks.csv",
+        ["character","short_label","role","publisher","dominant_colour",
+         "x_position","display_order","colour_hex"],exception_marks)
     # Six-row diverging hue comparison: positive = more frequent among heroes.
     palette={"red":"#C44E52","blue":"#1F8FA8","yellow":"#D4A017","green":"#2D9067","purple":"#8654A8","orange":"#D4863F"}
     frequency={(r["role"],r["colour"]):r for r in freq}
