@@ -8,7 +8,7 @@
 - **Main dataset:** `data/character_palette_seed.csv` (24 observational records, six per cohort; requires artwork QA)
 - **Derived views:** `data/chart_01_colour_frequency.csv`, `data/chart_02_primary_by_publisher.csv`, `data/chart_03_exceptions.csv`
 - **Build:** `scripts/build_chart_views.py`
-- **Editorial:** `content/story_discovery.md`
+- **Editorial:** `content/story_discovery.md` and `content/pilot_findings.md`
 - **Method/risks/sources:** `METHODOLOGY.md`
 - **Rendering:** pending config/renderer and phone-image QA
 - **Publishing:** not authorised; no site files or site assets touched
