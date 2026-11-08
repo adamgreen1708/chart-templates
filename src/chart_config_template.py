@@ -4,8 +4,9 @@ CHART_CONFIG = {
     # ---------------------------
     "data_file": "data/your_file.csv",
     "data_format": "wide",
-    "chart_type": "dot",  # line | bar | dot | scatter | route_zigzag | route_longitude | mode_clusters | position_shift | nightingale_rates | hawkins_stripes | minard_campaign
+    "chart_type": "dot",  # line | bar | dot | scatter | route_zigzag | route_longitude | mode_clusters | position_shift | nightingale_rates | hawkins_stripes | minard_campaign | palette_story
     "orientation": None,  # None | horizontal for bar charts
+    "layout_variant": None,  # only for editorial palette_story: gallery | scorecard | twins
 
     "x_col": "x_column",
     "y_col": "y_column",

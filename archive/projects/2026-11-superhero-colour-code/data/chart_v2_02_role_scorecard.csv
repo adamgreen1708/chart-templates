@@ -1,0 +1,25 @@
+character,display,publisher,role,group,dominant_colour,dominant_hex,primary_flag,tile_index,role_total
+Superman,Superman,DC,Hero,DC heroes,blue,#1F8FA8,1,1,12
+The Flash (Barry Allen),The Flash,DC,Hero,DC heroes,red,#C44E52,1,2,12
+Wonder Woman (Diana),Wonder Woman,DC,Hero,DC heroes,red,#C44E52,1,3,12
+Aquaman (Arthur Curry),Aquaman,DC,Hero,DC heroes,orange,#E38A3E,0,4,12
+Batman (Bruce Wayne),Batman,DC,Hero,DC heroes,grey,#727880,0,5,12
+Green Lantern (Hal Jordan),Green Lantern,DC,Hero,DC heroes,green,#2F9568,0,6,12
+Captain America (Steve Rogers),Captain America,Marvel,Hero,Marvel heroes,blue,#1F8FA8,1,1,12
+Daredevil (Matt Murdock),Daredevil,Marvel,Hero,Marvel heroes,red,#C44E52,1,2,12
+Iron Man (Tony Stark),Iron Man,Marvel,Hero,Marvel heroes,red,#C44E52,1,3,12
+Spider-Man (Peter Parker),Spider-Man,Marvel,Hero,Marvel heroes,red,#C44E52,1,4,12
+Wolverine (Logan),Wolverine,Marvel,Hero,Marvel heroes,yellow,#E2B221,1,5,12
+Black Panther (T'Challa),Black Panther,Marvel,Hero,Marvel heroes,black,#252931,0,6,12
+Sinestro (Thaal Sinestro),Sinestro,DC,Villain,DC villains,yellow,#E2B221,1,1,12
+Black Manta,Black Manta,DC,Villain,DC villains,black,#252931,0,2,12
+Lex Luthor,Lex Luthor,DC,Villain,DC villains,green,#2F9568,0,3,12
+Poison Ivy (Pamela Isley),Poison Ivy,DC,Villain,DC villains,green,#2F9568,0,4,12
+The Joker,The Joker,DC,Villain,DC villains,purple,#8756A5,0,5,12
+Riddler (Edward Nygma),The Riddler,DC,Villain,DC villains,green,#2F9568,0,6,12
+Magneto (Max Eisenhardt),Magneto,Marvel,Villain,Marvel villains,red,#C44E52,1,1,12
+Thanos,Thanos,Marvel,Villain,Marvel villains,blue,#1F8FA8,1,2,12
+Doctor Doom (Victor von Doom),Doctor Doom,Marvel,Villain,Marvel villains,green,#2F9568,0,3,12
+Green Goblin (Norman Osborn),Green Goblin,Marvel,Villain,Marvel villains,green,#2F9568,0,4,12
+Loki (Laufeyson),Loki,Marvel,Villain,Marvel villains,green,#2F9568,0,5,12
+Venom (Eddie Brock),Venom,Marvel,Villain,Marvel villains,black,#252931,0,6,12

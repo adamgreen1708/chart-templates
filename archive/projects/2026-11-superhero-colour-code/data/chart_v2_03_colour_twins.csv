@@ -1,0 +1,6 @@
+pair_rank,shared_colour,shared_hex,hero_character,hero_display,hero_publisher,hero_secondary,hero_secondary_hex,villain_character,villain_display,villain_publisher,villain_secondary,villain_secondary_hex
+1,red,#C44E52,The Flash (Barry Allen),The Flash,DC,yellow,#E2B221,Magneto (Max Eisenhardt),Magneto,Marvel,purple,#8756A5
+2,blue,#1F8FA8,Superman,Superman,DC,red,#C44E52,Thanos,Thanos,Marvel,gold,#C59B32
+3,yellow,#E2B221,Wolverine (Logan),Wolverine,Marvel,blue,#1F8FA8,Sinestro (Thaal Sinestro),Sinestro,DC,black,#252931
+4,green,#2F9568,Green Lantern (Hal Jordan),Green Lantern,DC,black,#252931,Green Goblin (Norman Osborn),Green Goblin,Marvel,purple,#8756A5
+5,black,#252931,Black Panther (T'Challa),Black Panther,Marvel,grey,#727880,Venom (Eddie Brock),Venom,Marvel,white,#FFFFFF

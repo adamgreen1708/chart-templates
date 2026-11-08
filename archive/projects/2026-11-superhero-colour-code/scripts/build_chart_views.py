@@ -35,9 +35,121 @@ def write_csv(path,fields,rows):
         writer.writeheader()
         writer.writerows(rows)
 
+
+# Story v2: richer, fully data-driven colour fingerprints and moral-colour pairings.
+# These are editorially selected examples, not a population sample.
+COSTUME_SWATCHES={
+    "red":"#C44E52","blue":"#1F8FA8","yellow":"#E2B221","green":"#2F9568",
+    "purple":"#8756A5","orange":"#E38A3E","black":"#252931","grey":"#727880",
+    "white":"#FFFFFF","gold":"#C59B32","silver":"#BCC1C7"
+}
+SHORT_NAMES={
+    "Superman":"Superman","Batman (Bruce Wayne)":"Batman",
+    "Wonder Woman (Diana)":"Wonder Woman","The Flash (Barry Allen)":"The Flash",
+    "Green Lantern (Hal Jordan)":"Green Lantern","Aquaman (Arthur Curry)":"Aquaman",
+    "The Joker":"The Joker","Riddler (Edward Nygma)":"The Riddler",
+    "Sinestro (Thaal Sinestro)":"Sinestro","Poison Ivy (Pamela Isley)":"Poison Ivy",
+    "Lex Luthor":"Lex Luthor","Black Manta":"Black Manta",
+    "Spider-Man (Peter Parker)":"Spider-Man","Iron Man (Tony Stark)":"Iron Man",
+    "Captain America (Steve Rogers)":"Captain America","Wolverine (Logan)":"Wolverine",
+    "Black Panther (T'Challa)":"Black Panther","Daredevil (Matt Murdock)":"Daredevil",
+    "Green Goblin (Norman Osborn)":"Green Goblin","Doctor Doom (Victor von Doom)":"Doctor Doom",
+    "Loki (Laufeyson)":"Loki","Thanos":"Thanos","Venom (Eddie Brock)":"Venom",
+    "Magneto (Max Eisenhardt)":"Magneto"
+}
+GALLERY_HEROES=(
+    "Superman","The Flash (Barry Allen)","Green Lantern (Hal Jordan)",
+    "Spider-Man (Peter Parker)","Wolverine (Logan)","Iron Man (Tony Stark)"
+)
+GALLERY_VILLAINS=(
+    "The Joker","Riddler (Edward Nygma)","Lex Luthor",
+    "Green Goblin (Norman Osborn)","Doctor Doom (Victor von Doom)",
+    "Magneto (Max Eisenhardt)"
+)
+COLOUR_TWINS=(
+    ("The Flash (Barry Allen)","Magneto (Max Eisenhardt)"),
+    ("Superman","Thanos"),
+    ("Wolverine (Logan)","Sinestro (Thaal Sinestro)"),
+    ("Green Lantern (Hal Jordan)","Green Goblin (Norman Osborn)"),
+    ("Black Panther (T'Challa)","Venom (Eddie Brock)")
+)
+
+def build_palette_story_v2(rows,out):
+    byname={r["character"]:r for r in rows}
+    assert len(SHORT_NAMES)==len(byname) and set(SHORT_NAMES)==set(byname)
+    def get(name):
+        if name not in byname: raise ValueError(f"Missing selected costume: {name}")
+        return byname[name]
+    def hex_for(colour):
+        if not colour: return ""
+        if colour not in COSTUME_SWATCHES: raise ValueError(f"Unsupported swatch: {colour}")
+        return COSTUME_SWATCHES[colour]
+    def accent(r):
+        return str(r["accent_colours"]).split(",")[0].strip()
+    gallery=[]
+    for role, names in (("Hero",GALLERY_HEROES),("Villain",GALLERY_VILLAINS)):
+        assert len(names)==6
+        for ix,name in enumerate(names,1):
+            r=get(name)
+            assert r["role"]==role
+            main=r["dominant_colour"];second=r["second_major_colour"];third=accent(r)
+            gallery.append(dict(character=name,display=SHORT_NAMES[name],
+                publisher=r["publisher"],role=role,sort_order=ix,
+                dominant_colour=main,secondary_colour=second,accent_colour=third,
+                dominant_hex=hex_for(main),secondary_hex=hex_for(second),
+                accent_hex=hex_for(third)))
+    write_csv(out/"chart_v2_01_costume_gallery.csv",[
+        "character","display","publisher","role","sort_order",
+        "dominant_colour","secondary_colour","accent_colour",
+        "dominant_hex","secondary_hex","accent_hex"],gallery)
+
+    selected=[]
+    for role in ROLES:
+        for publisher in PUBLISHERS:
+            grp=[r for r in rows if r["role"]==role and r["publisher"]==publisher]
+            grp=sorted(grp,key=lambda r:(r["dominant_colour"] not in PRIMARY,
+                                       SHORT_NAMES[r["character"]].lower()))
+            assert len(grp)==6
+            for index,r in enumerate(grp,1):
+                selected.append(dict(character=r["character"],
+                    display=SHORT_NAMES[r["character"]],
+                    publisher=publisher,role=role,
+                    group=f"{publisher} {'heroes' if role=='Hero' else 'villains'}",
+                    dominant_colour=r["dominant_colour"],
+                    dominant_hex=hex_for(r["dominant_colour"]),
+                    primary_flag=int(r["dominant_colour"] in PRIMARY),
+                    tile_index=index,role_total=12))
+    write_csv(out/"chart_v2_02_role_scorecard.csv",[
+        "character","display","publisher","role","group",
+        "dominant_colour","dominant_hex","primary_flag","tile_index","role_total"
+    ],selected)
+
+    pairs=[]
+    for ix,(hero,villain) in enumerate(COLOUR_TWINS,1):
+        h=get(hero);v=get(villain)
+        if h["role"]!="Hero" or v["role"]!="Villain" or h["dominant_colour"]!=v["dominant_colour"]:
+            raise ValueError(f"Not a documented colour twin: {hero} / {villain}")
+        colour=h["dominant_colour"]
+        pairs.append(dict(pair_rank=ix,shared_colour=colour,
+            shared_hex=hex_for(colour),
+            hero_character=hero,hero_display=SHORT_NAMES[hero],
+            hero_publisher=h["publisher"],hero_secondary=h["second_major_colour"],
+            hero_secondary_hex=hex_for(h["second_major_colour"]),
+            villain_character=villain,villain_display=SHORT_NAMES[villain],
+            villain_publisher=v["publisher"],villain_secondary=v["second_major_colour"],
+            villain_secondary_hex=hex_for(v["second_major_colour"])))
+    write_csv(out/"chart_v2_03_colour_twins.csv",[
+        "pair_rank","shared_colour","shared_hex",
+        "hero_character","hero_display","hero_publisher",
+        "hero_secondary","hero_secondary_hex",
+        "villain_character","villain_display","villain_publisher",
+        "villain_secondary","villain_secondary_hex"],pairs)
+    print("Story v2 views: 12 gallery records, 24 scorecard tiles, 5 matched colour twins")
+
 def main():
     rows=read_rows()
     out=ROOT/"data"
+    build_palette_story_v2(rows,out)
     freq=[]
     for role in ROLES:
         subset=[r for r in rows if r["role"]==role]
