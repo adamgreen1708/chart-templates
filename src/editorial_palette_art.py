@@ -156,7 +156,7 @@ def render_comic_showdowns(fig,rows,top,config):
                  lw=.6 if color.upper()=="#FFFFFF" else 0,z=5)
         if r["villain_secondary_hex"]:
             color=hue(r["villain_secondary_hex"])
-            rect(fig,.871,y-.023,.022,.021,color,
+            rect(fig,.652,y-.023,.022,.021,color,
                  border=INK if color.upper()=="#FFFFFF" else None,
                  lw=.6 if color.upper()=="#FFFFFF" else 0,z=5)
         # Main costume hue repeats across both identities. The angular
