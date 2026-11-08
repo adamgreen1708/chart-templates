@@ -1,4 +1,4 @@
-"""Guard the unpublished Superhero Colours publication package against mismatched data/assets."""
+"""Guard the publication-ready Superhero Colours package against mismatched data/assets."""
 from pathlib import Path
 import csv
 import hashlib
@@ -20,11 +20,11 @@ def records(path):
     with path.open(encoding="utf-8",newline="") as fh:
         return list(csv.DictReader(fh))
 
-def test_staged_article_is_not_published():
+def test_publication_ready_article_is_explicitly_qualitative():
     content=POST.read_text(encoding="utf-8")
     assert content.startswith("---\n")
     meta=content.split("---",2)[1]
-    assert re.search(r"(?m)^published:\s*false$",meta)
+    assert re.search(r"(?m)^published:\s*true$",meta)
     assert re.search(r"(?m)^category:\s*Culture$",meta)
     assert "layout: post" in meta
     assert "hero_image: /assets/charts/superhero-colour-code/superhero_v3_01_comic_lineup.png" in meta
@@ -32,7 +32,10 @@ def test_staged_article_is_not_published():
     assert content.count("<figure class=\"story-chart full-bleed\">")==2
     assert "../output/" not in content
     assert "0 / 24" not in content # this is a research gate, not a claim about what readers see
-    assert "provisional" in content.lower()
+    assert "curated, qualitative exploration" in content
+    assert "not measured fabric areas" in content
+    assert "Sinestro" in content
+    assert "not every individual colour choice has been verified" in content.lower()
     assert "Tim Leong" in content
 
 def test_published_png_assets_are_binary_identical_to_approved_archive():
@@ -74,4 +77,5 @@ def test_source_risk_gate_is_explicit_not_falsely_approved():
     assert all(r["validated_for_publication"]=="no" for r in rs)
     assert all(r["chosen_comic_art_pinned"]=="no" for r in rs)
     content=(PROJECT/"content/publication_readiness.md").read_text(encoding="utf-8")
-    assert "DO NOT MERGE THE PUBLICATION PR YET" in content
+    assert "qualitative publication route" in content.lower()
+    assert "not independently verified" in content.lower()
