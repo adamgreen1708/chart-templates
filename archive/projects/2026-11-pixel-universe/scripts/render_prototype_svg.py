@@ -38,6 +38,7 @@ def svg_from_code(code, colours, label):
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" '
         'viewBox="0 0 400 400" role="img" aria-label="' + escape(label) + '">',
+        '<!-- GENERATED REVIEW PREVIEW — every rect comes from the exact 256-cell code. NOT published site art. -->',
         '<rect width="400" height="400" fill="#F3F4F6"/>',
         '<rect x="40" y="40" width="320" height="320" fill="#ffffff"/>',
         '<g shape-rendering="crispEdges">',
