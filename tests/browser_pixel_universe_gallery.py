@@ -40,6 +40,14 @@ def main():
                 assert re.fullmatch(
                     r"/resources/8x8-pixel-art-builder/#size=16&art=[0-9a-f]{256}", href
                 ), "Broken edit link: " + repr(href)
+            # Below-the-fold portraits deliberately use loading="lazy". Scroll
+            # each one into view before testing whether its SVG loaded.
+            images = page.locator(".pu-page img")
+            assert images.count() == 14
+            for img in images.all():
+                img.scroll_into_view_if_needed(timeout=30000)
+                img.evaluate("(img) => img.decode()")
+            page.evaluate("window.scrollTo(0, 0)")
             dimensions = page.evaluate(r"""() => {
               const root = document.documentElement;
               const grid = document.querySelector('.pu-grid');
