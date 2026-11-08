@@ -1,0 +1,24 @@
+name: Superhero colour publication staging QA (draft only)
+
+on:
+  push:
+    branches:
+      - "publish/2026-11-superhero-colour-story"
+    paths:
+      - ".github/workflows/qa-superhero-publication-staging.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install standalone staging-test runner
+        run: pip install pytest
+      - name: Ensure site assets, wheel table and editorial release gate match source
+        run: python -m pytest tests/test_superhero_publication_staging.py -q
