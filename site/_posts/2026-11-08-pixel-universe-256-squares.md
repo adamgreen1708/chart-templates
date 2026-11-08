@@ -10,7 +10,7 @@ read_time: "3 minute read"
 card_image: /assets/pixel-universe/feature-pixel-identity.svg
 hero_image: /assets/pixel-universe/feature-pixel-identity.svg
 social_image: /assets/pixel-universe/feature-pixel-identity.svg
-hero_alt: "An anonymous blocky mask made from black and charcoal pixels, with a handful of red pixels and loose tiles drifting to one side on a light-grey background."
+hero_alt: "An anonymous black and slate pixel mask built from equal-sized squares, with a few red accents and individual pixels scattered around all sides."
 tags: [superheroes, comics, pixel-art, colour, culture, design]
 published: false
 ---
@@ -84,6 +84,8 @@ Now there are twelve tiny portraits and a playground where you can pull them apa
 **Sometimes a few colours and 256 squares make a pretty good starting point.**
 
 [Have a play in Pixel Universe]({{ '/resources/pixel-universe/' | relative_url }}).
+
+The cover design is editable too: [open its exact 16×16 pixel grid in the Studio]({{ '/resources/8x8-pixel-art-builder/' | relative_url }}#size=16&art=0000040000060000001000000000001000000000000000000400000110000100000000111100000000000111116000061000111111110000004010011001040000001001100100000000611111110001060001111110010000000011110000000000144444410000400144444446100600144444444441000100040000600040).
 
 *simple charts clear stories.*
 
