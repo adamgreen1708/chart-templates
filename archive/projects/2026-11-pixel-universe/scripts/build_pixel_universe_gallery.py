@@ -107,7 +107,7 @@ def yaml_text(records):
     for row in records:
         chunk = ["- character: " + json.dumps(row["character"], ensure_ascii=False)]
         chunk.extend("  " + name + ": " + json.dumps(row[name], ensure_ascii=False) for name in fields[1:])
-        chunk.append("  accents: " + json.dumps(row["accents"], ensure_ascii=False))
+        chunk.append("  accents: " + json.dumps(row["accents"], ensure_ascii=False, separators=(",", ":")))
         chunks.append("\n".join(chunk))
     return "\n".join(chunks) + "\n"
 
