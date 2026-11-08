@@ -86,6 +86,19 @@ def main():
                 assert page.locator(".pixel-cell").count() == 256
                 assert page.locator("#pixel-count").inner_text().endswith("/ 256 painted")
                 page.screenshot(path=str(OUT / "pixel-studio-open-and-remix-390px.png"), full_page=True)
+                # The feature is also a genuine 16x16 Studio design, not an
+                # unrelated illustration. Verify the exact canonical code
+                # opens in the same pixel editor and paints 95 equal cells.
+                feature_code = (
+                    Path("archive/projects/2026-11-pixel-universe/data/"
+                         "feature_pixelstudio_16x16.txt").read_text(encoding="utf-8").strip()
+                )
+                assert re.fullmatch(r"[0-9a-f]{256}", feature_code)
+                page.goto(BASE + "/resources/8x8-pixel-art-builder/#size=16&art=" + feature_code,
+                          wait_until="networkidle", timeout=45000)
+                assert page.locator(".pixel-cell").count() == 256
+                assert page.locator("#pixel-count").inner_text().strip().startswith("95 / 256")
+                page.screenshot(path=str(OUT / "pixel-studio-feature-cover-390px.png"), full_page=True)
             print(f"PASS browser/mobile gallery {width}px ({expected_columns} columns)")
             page.close()
         browser.close()
