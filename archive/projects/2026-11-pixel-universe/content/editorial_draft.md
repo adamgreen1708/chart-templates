@@ -56,7 +56,7 @@ Nobody is checking whether your Batman is the right shade of grey.
 
 The original superhero study contains 24 deliberately selected character costumes. This creative follow-up uses **twelve of those characters**, six heroes and six villains.
 
-The main, supporting and accent colours are **qualitative editorial classifications**, not measurements of costume area. The extra face colours, outlines and individual pixel placements are artistic decisions. None of this is a formal test of whether people can recognise characters.
+The main, supporting and accent colours are **qualitative editorial classifications**, not measurements of costume area. The extra face colours, outlines and individual pixel placements are artistic decisions. This is not a formal test of whether people can recognise characters.
 
 These are original, unofficial fan-inspired pixel portraits, not reproduced comic art or artwork affiliated with Marvel or DC.
 
