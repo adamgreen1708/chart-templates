@@ -29,3 +29,7 @@
 - [ ] Reinspect exact chart PNGs at full resolution and 390px/320px for any changed data.
 - [ ] Validate source links and mobile reference table on the Jekyll site preview.
 - [ ] Set `published: true` only after these gates, and request final approval for publication.
+
+## Additional issue-art leads (8 November 2026)
+
+See [`content/high_impact_art_review.md`](high_impact_art_review.md) for targeted cover/reference checks of Sinestro, Magneto, Thanos and Green Goblin. **Important:** DC's 2007 Sinestro Corps Special cover is a credible **black-and-yellow** costume reference, but its crop does not settle which hue dominates. Resolving it as black rather than yellow would remove the Wolverine–Sinestro yellow pairing and alter the chart-2 villain count, so the current approved story cannot be released without addressing this case.
