@@ -29,7 +29,7 @@ def test_unpublished_approval_gate_and_post_metadata():
         assert re.search(
             rf"(?m)^{key}: /assets/pixel-universe/feature-pixel-identity.svg$", front
         )
-    assert "An anonymous blocky mask" in front
+    assert "An anonymous black and slate pixel mask built from equal-sized squares" in front
     assert "256-cell design code" in post
 
 
@@ -37,7 +37,7 @@ def test_feature_is_house_style_stencil_and_text_free():
     xml = ART.read_text(encoding="utf-8")
     assert 'width="1600" height="1600"' in xml
     assert 'fill="#F3F4F6"' in xml
-    assert 'fill="#C44E52"' in xml
+    assert 'fill="#c34635"' in xml
     assert "<text" not in xml and "<image" not in xml
     assert "<script" not in xml and "<foreignObject" not in xml
     assert "<use" not in xml and "http://" not in xml.replace(
