@@ -37,7 +37,7 @@ But look closer. Green Lantern is green. Magneto is red. The neat divide is alre
 
 <figure class="story-chart full-bleed">
   <img src="{{ '/assets/charts/superhero-colour-code/superhero_v3_02_colour_wheels.png' | relative_url }}" alt="Two wheels with 12 equal character slices each: eight of twelve selected heroes and three of twelve selected villains are coded as having red, yellow or blue dominant costumes, with DC and Marvel subsets labelled." width="1600" height="1600" loading="lazy">
-  <figcaption>Every equal slice is one selected character. The central numbers count traditional primary-dominant costumes, not areas of fabric.</figcaption>
+  <figcaption><strong>Good colours. Bad intentions.</strong> Every equal slice is one selected character. The central numbers count traditional primary-dominant costumes, not areas of fabric.</figcaption>
 </figure>
 
 Across the **24 costume versions selected for this study**, eight of 12 heroes have a red, yellow or blue *main* colour.
@@ -73,7 +73,7 @@ Here's the cast behind the slices. The entries are in the same order as the whee
 
 <figure class="story-chart full-bleed">
   <img src="{{ '/assets/charts/superhero-colour-code/superhero_v3_03_showdowns.png' | relative_url }}" alt="Five paired hero-villain character comparisons with the same coded main colour: Flash and Magneto red, Superman and Thanos blue, Wolverine and Sinestro yellow, Green Lantern and Green Goblin green, and Black Panther and Venom black. Both supporting colours appear as symmetric swatches." width="1600" height="1600" loading="lazy">
-  <figcaption>Matching main hues, different characters. Supporting swatches add context; these are qualitative costume labels, not measured proportions.</figcaption>
+  <figcaption><strong>Same paint. Different morals.</strong> Matching main hues, different characters. Supporting swatches add context; these are qualitative costume labels, not measured proportions.</figcaption>
 </figure>
 
 Now the fun bit.
