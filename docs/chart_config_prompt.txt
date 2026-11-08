@@ -437,3 +437,8 @@ Bar and scatter highlights may supply `color` (or `colour`), alongside row-match
 
 Horizontal bars may use `table_layout` to place data-driven columns beside bars, with explicit consecutive ranks, display titles, years and exact counts. Every row is read from the CSV; never hard-code measured values in drawing code. The layout validates ranks, descending values and text-column collisions. Bars share a zero-based linear scale; plot and canvas remain square and light grey. Columns specify `column`, `label`, figure-fraction `x`, optional `ha`, numeric `format`, and `semantic_color`. `rank_column`, `header_y`, `bar_header`, `legend_y`, `legend` and `notes` control layout. This extension is opt-in and leaves existing charts unchanged.
 
+## Registered palette editorial extension (draft, November 2026)
+
+For data stories where categorical colour is the primary measured/observed feature, `chart_type="palette_story"` with `layout_variant="gallery"|"scorecard"|"twins"` is an approved **prototype option**, registered in `src/editorial_schematics.py` and implemented deterministically by `src/editorial_palette.py`. This is a narrow exception to the generic line/bar/dot/scatter shortlist, only when the editorial flow justifies it.
+
+Use the documented real CSV columns for each variant and the same locked `render_profile="social_square"` and footer. A colour swatch represents an observed/coded category, never an area percentage. Do not infer exact hex ratios or copy visual values into a renderer. Require pixel QA at full size, 390px and 320px, including text contrast within swatches. Site publishing is a separate explicit approval step.

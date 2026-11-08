@@ -293,3 +293,15 @@ Bar and scatter highlights may supply `color` (or `colour`), alongside row-match
 
 Horizontal bars may use `table_layout` to place data-driven columns beside bars, with explicit consecutive ranks, display titles, years and exact counts. Every row is read from the CSV; never hard-code measured values in drawing code. The layout validates ranks, descending values and text-column collisions. Bars share a zero-based linear scale; plot and canvas remain square and light grey. Columns specify `column`, `label`, figure-fraction `x`, optional `ha`, numeric `format`, and `semantic_color`. `rank_column`, `header_y`, `bar_header`, `legend_y`, `legend` and `notes` control layout. This extension is opt-in and leaves existing charts unchanged.
 
+## Data-driven colour-palette editorial charts (review proposal, November 2026)
+
+The general-purpose `palette_story` chart_type is an **opt-in editorial schematic** implemented by `src/editorial_palette.py` and dispatched by `src/editorial_schematics.py`. It uses the existing locked `render_profile="social_square"`, shared header/footer, 1600px PNG output and 320px/390px final-image QA.
+
+Three supported `layout_variant` values:
+- `gallery`: exactly twelve rows, six heroes and six villains, showing **ordered** main/second/accent colour swatches. Their swatch widths **do not** represent costume colour proportions.
+- `scorecard`: exactly 24 data rows balanced as 12 heroes, 12 villains, 6 from each publisher/role cohort; main hue is shown with a data-driven colour tile. Traditional RYB primary flags are validated from the underlying dataset, not textually asserted in a drawing routine.
+- `twins`: five hero-villain pairs with a verified identical **coded main hue** in each pair, displaying both identities and their supporting colours.
+
+This is an example of an established hue having genuine semantic meaning, **not** an instruction to make ordinary statistical marks multicoloured. Costumes come from a documented editorial coding and must not be described as measured fabric areas. All values must be read from project CSVs, with no data values or named findings invented in drawing code. Comic image/era provenance and publisher-generalisation caveats remain explicit.
+
+Projects may supply a custom specialist `palette_story` config on a review branch. Do not migrate previously approved site images or deploy prototypes without approval.

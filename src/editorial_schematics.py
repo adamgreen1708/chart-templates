@@ -17,7 +17,7 @@ SUBTEXT = "#555555"
 WHITE = "#FFFFFF"
 
 
-EDITORIAL_TYPES = {"route_zigzag", "route_longitude", "mode_clusters", "position_shift", "nightingale_rates", "hawkins_stripes", "minard_campaign"}
+EDITORIAL_TYPES = {"route_zigzag", "route_longitude", "mode_clusters", "position_shift", "nightingale_rates", "hawkins_stripes", "minard_campaign", "palette_story"}
 
 
 def _wrap(text, width, max_lines=2):
@@ -544,6 +544,9 @@ def render_position_shift(repo_root, config, rows):
 
 def render_editorial_schematic(repo_root, config, rows, columns=None):
     chart_type = config.get("chart_type")
+    if chart_type == "palette_story":
+        from editorial_palette import render_palette_story
+        return render_palette_story(repo_root, config, rows, _add_header, _add_footer, _save)
     if chart_type == "route_zigzag":
         return render_route_zigzag(repo_root, config, rows)
     if chart_type == "route_longitude":

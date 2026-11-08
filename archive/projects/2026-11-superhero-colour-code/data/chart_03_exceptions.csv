@@ -1,0 +1,8 @@
+character,publisher,role,dominant_colour,chart_label,primary_dominant,exception_type
+Batman (Bruce Wayne),DC,Hero,grey,Batman (Bruce Wayne) (DC),0,Hero without primary dominant
+Green Lantern (Hal Jordan),DC,Hero,green,Green Lantern (Hal Jordan) (DC),0,Hero without primary dominant
+Aquaman (Arthur Curry),DC,Hero,orange,Aquaman (Arthur Curry) (DC),0,Hero without primary dominant
+Sinestro (Thaal Sinestro),DC,Villain,yellow,Sinestro (Thaal Sinestro) (DC),1,Villain with primary dominant
+Black Panther (T'Challa),Marvel,Hero,black,Black Panther (T'Challa) (Marvel),0,Hero without primary dominant
+Thanos,Marvel,Villain,blue,Thanos (Marvel),1,Villain with primary dominant
+Magneto (Max Eisenhardt),Marvel,Villain,red,Magneto (Max Eisenhardt) (Marvel),1,Villain with primary dominant

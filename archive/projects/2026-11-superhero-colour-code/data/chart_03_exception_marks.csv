@@ -1,0 +1,8 @@
+character,short_label,role,publisher,dominant_colour,x_position,display_order,colour_hex
+Batman (Bruce Wayne),Batman · grey,Hero,DC,grey,-1,1,#626A72
+Green Lantern (Hal Jordan),Green Lantern · green,Hero,DC,green,-1,2,#2D9067
+Aquaman (Arthur Curry),Aquaman · orange,Hero,DC,orange,-1,3,#D4863F
+Black Panther (T'Challa),Black Panther · black,Hero,Marvel,black,-1,4,#272A31
+Sinestro (Thaal Sinestro),Sinestro · yellow,Villain,DC,yellow,1,5,#D4A017
+Thanos,Thanos · blue,Villain,Marvel,blue,1,6,#1F8FA8
+Magneto (Max Eisenhardt),Magneto · red,Villain,Marvel,red,1,7,#C44E52
