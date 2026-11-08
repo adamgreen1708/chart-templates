@@ -84,8 +84,15 @@ jobs:
             esac
 
             if [[ ! -d "$project_dir/config" ]]; then
-              echo "Config directory not found: $project_dir/config"
-              exit 1
+              if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+                echo "Config directory not found: $project_dir/config"
+                exit 1
+              fi
+              # The archive also contains editorial, pixel-art and data-only
+              # projects. Their changes trigger this workflow, but they do not
+              # have chart configurations and must not fail chart-render CI.
+              echo "Skipping non-chart project without config: $project_dir"
+              continue
             fi
 
             shopt -s nullglob
