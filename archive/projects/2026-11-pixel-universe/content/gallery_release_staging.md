@@ -30,3 +30,20 @@ The generator reads the **published 24-row superhero seed and source review**, *
 - Validate the actual GitHub Pages Jekyll build, mobile layout and user-facing edit links before merge.
 - The feature/editorial sequel is a distinct follow-on PR after gallery approval; do not silently publish an article.
 - The original qualitative dataset provides **colour names**, not fabric-colour coverage, image mask ratios, audience-recognition accuracy or actual measurements of comic costumes.
+
+## Completed GitHub + rendered-page QA (8 November 2026)
+
+**GitHub Actions on PR #200**
+- [Pixel Universe gallery QA run #42501679162](https://github.com/adamgreen1708/chart-templates/actions/runs/42501679162): **passed**. Exact generated Jekyll data and icon assets check, the legacy pixel-palette suite, prototype/source parity, full 12-icon suite and gallery suite all completed successfully.
+- [Coffeetableviz Jekyll build #42501679189](https://github.com/adamgreen1708/chart-templates/actions/runs/42501679189): **passed** (Jekyll build / uploaded Pages artifact). Deployment **skipped** correctly because this is a PR.
+- The two site mosaic files have identical GitHub blob hashes and bytes to the approved archive mosaics from PR #199; deterministic recreation also checked.
+
+**Rendered browser inspection**
+- Retrieved the **actual Jekyll Pages build artifact** from run #42501679189 and extracted `resources/pixel-universe/index.html` and its asset files for inspection, rather than using an invented page mock.
+- Checked rendered HTML contains **12 complete cards**, six heroes/six villains, with 12 populated real `#size=16&art=...` links; no unprocessed Liquid placeholders.
+- Chromium viewport checks: **320px, 390px, 768px and 1280px**, with **no horizontal overflow** and **no broken SVG images**. Responsive card layouts respectively **1/1/2/3 columns**; mosaic layouts respectively **1/1/2/2 columns**.
+- Inspected 320/390px screenshots of title/mosaics, Superman card and Joker card, plus desktop preview: no obvious truncation or overlapping labels. The full-size mosaics link to their SVG files so small-device readers can enlarge them.
+- Loaded the precise gallery Superman art code into the existing Pixel Art Studio page in a browser: **16×16 grid (256 cells)**, **142 painted pixels**, exact URL hash preserved.
+- **Limit of visual test:** browser sandbox blocked local page navigation, so the inspection used the **real, compiled Jekyll HTML** with its site CSS and referenced SVG assets inlined for offline rendering; this is not a verification of the live public URL or live network/navigation after merge.
+
+**Status:** Gallery site package and source-mapped editable links pass technical and rendered-layout QA; still **not merged or deployed**. Await review of #198, #199 and this #200 before any publication.
