@@ -24,3 +24,11 @@
 - Equal chips and equal wheel sectors encode categorical observations, **not fabric-area percentages**.
 - Groups were purposively curated for editorial comparison; no claims about all Marvel/DC characters are justified.
 - Do not overwrite V2 imagery or merge PRs #192/#193 without approval. This branch is for review; no live `site/` files were changed.
+
+## Final editorial changes (8 November 2026)
+- **Chart 3 symmetry:** Moved the villain `+ colour` label anchor from figure-x `0.867` to **`0.895`**, matching the right edge of the villain names; the villain secondary-colour square stays at `x=0.652`, opposite the hero square at `x=0.326`. No row values or other chart geometry were changed.
+- [GitHub archived-project rerender](https://github.com/adamgreen1708/chart-templates/actions/runs/42475773318) **passed**, producing the revised `output/superhero_v3_03_showdowns.png`.
+- **Chart 2 blog reference:** `content/blog_draft_v3.md` includes a **12-row / 24-character** compact table, immediately below the wheel. It is generated from the exact `data/chart_v2_02_role_scorecard.csv` powering the wheels, with the DC and Marvel display order preserved for each role. The table is a reference list, not cross-publisher pairings. Bold colour words mark strict traditional RYB primaries.
+- Regeneration: `scripts/build_blog_draft_v3.py` reads `content/blog_draft_v3.template.md` and the source scorecard; `tests/test_palette_blog_table_v3.py` verifies that the checked-in draft exactly matches its regenerated output and includes all 24 characters.
+- [GitHub pytest and updated phone-size QA](https://github.com/adamgreen1708/chart-templates/actions/runs/42475851357) **passed**, including source data alignment, safe frame and 320px/390px PNG exports. Both final chart 3 mobile PNGs were visually inspected; text is right-aligned without crowding, collisions or clipping.
+- The one-off workflow used for this check was removed from the branch after passing; routine project rendering remains unchanged.
