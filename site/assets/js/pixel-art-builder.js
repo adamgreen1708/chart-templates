@@ -367,19 +367,73 @@
     });
   });
 
+  // Save the exact painted squares in the Coffeetableviz editorial print format.
+  // Only the exported PNG changes: editing, previews and share codes stay untouched.
+  function exportArtworkName(code) {
+    if (code === presetCode("heart")) return "Heart";
+    if (code === presetCode("smile")) return "Smile";
+    // Name a gallery design only when the artwork still matches it exactly.
+    const cards = document.querySelectorAll("#tiny-pixel-zoo .pixel-zoo-card");
+    for (let i = 0; i < cards.length; i += 1) {
+      const sample = cards[i].querySelector("canvas[data-pixel-code]");
+      if (!sample || sample.dataset.pixelCode !== code) continue;
+      const heading = cards[i].querySelector(".pixel-zoo-card-info h3");
+      if (heading) return heading.textContent.trim().split(/\s+/).slice(1).join(" ");
+    }
+    return "Original";
+  }
+
   function makePng() {
-    const canvas = document.createElement("canvas");
-    canvas.width = 1024;
-    canvas.height = 1024;
-    const context = canvas.getContext("2d");
+    const output = document.createElement("canvas");
+    output.width = 1280;
+    output.height = 1280;
+    const context = output.getContext("2d", { alpha: false });
     if (!context) throw new Error("Canvas unavailable");
     context.imageSmoothingEnabled = false;
+    const paper = "#f7f0dd", ink = "#111111", muted = "#665f54";
+    context.fillStyle = paper;
+    context.fillRect(0, 0, output.width, output.height);
+
+    // Explicit letter spacing is compatible with mobile Safari Canvas.
+    function printLabel(text, left, baseline, maxWidth, sizePx, spacing, weight) {
+      text = text.toUpperCase();
+      let fontSize = sizePx;
+      context.textBaseline = "alphabetic";
+      context.fillStyle = muted;
+      while (true) {
+        context.font = weight + " " + fontSize + 'px "IBM Plex Sans",Arial,sans-serif';
+        const length = context.measureText(text).width + (text.length - 1) * spacing;
+        if (length <= maxWidth || fontSize <= 14) break;
+        fontSize -= 1;
+      }
+      for (const letter of text) {
+        context.fillText(letter, left, baseline);
+        left += context.measureText(letter).width + spacing;
+      }
+    }
+
+    printLabel("COFFEETABLEVIZ / PIXEL ART STUDIES", 100, 64, 1080, 21, 5, 600);
+    context.fillStyle = ink;
+    context.fillRect(100, 89, 1080, 4);
+
+    const pixels = current().pixels;
+    const code = encodePixels(pixels);
     const side = 1024 / size;
-    current().pixels.forEach(function (ink, index) {
-      context.fillStyle = colours[ink].hex;
-      context.fillRect((index % size) * side, Math.floor(index / size) * side, side, side);
+    const x0 = 128, y0 = 144;
+    // Do not soften or reinterpret pixel colours (including white backgrounds).
+    pixels.forEach(function (colourIndex, index) {
+      context.fillStyle = colours[colourIndex].hex;
+      context.fillRect(x0 + (index % size) * side,
+        y0 + Math.floor(index / size) * side, side, side);
     });
-    const dataUrl = canvas.toDataURL("image/png");
+
+    const count = new Set(pixels).size; // Distinct visible colours, including white if used.
+    const footer = "PIXEL ART / " + exportArtworkName(code) + " · " +
+      size + " × " + size + (size === 8 ? " CLASSIC" : " DETAIL") +
+      " · " + count + (count === 1 ? " COLOUR" : " COLOURS");
+    printLabel(footer, 100, 1219, 1080, 20, 2.4, 500);
+
+    const dataUrl = output.toDataURL("image/png");
     if (!dataUrl.startsWith("data:image/png;base64,")) throw new Error("PNG encoding failed");
     return dataUrl;
   }
@@ -387,7 +441,7 @@
     let dataUrl;
     try { dataUrl = makePng(); }
     catch (_) { say("Sorry, this browser couldn't create the PNG. Your drawing is still here."); return; }
-    const fileName = "coffeetableviz-" + size + "x" + size + "-pixel-art.png";
+    const fileName = "coffeetableviz-pixel-art-study-" + size + "x" + size + ".png";
     exportPreview.src = dataUrl;
     exportLink.href = dataUrl;
     exportLink.download = fileName;
@@ -401,7 +455,7 @@
         const bytes = Uint8Array.from(binary, function (c) { return c.charCodeAt(0); });
         const png = new File([bytes], fileName, { type: "image/png" });
         if (navigator.canShare({ files: [png] })) {
-          const sharing = navigator.share({ files: [png], title: size + "×" + size + " pixel art" });
+          const sharing = navigator.share({ files: [png], title: "Coffeetableviz Pixel Art Studies" });
           say("Choose Save Image or Save to Files in the Share sheet. The preview is a backup.");
           Promise.resolve(sharing).then(function () {
             say("Share sheet closed. Your PNG is still available below.");
