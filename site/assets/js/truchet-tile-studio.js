@@ -113,7 +113,66 @@ $('reroll').addEventListener('click',()=>{state.seed++;reset();message('Fresh ar
 $('invert').addEventListener('click',()=>{state.invert=!state.invert;paint();message('Colours inverted.')});
 $('clear-edits').addEventListener('click',()=>{reset();message('Manual edits cleared; rule and chaos setting retained.')});
 $('undo').addEventListener('click',()=>{if(state.undo.length){const s=state.undo.pop();state.linkedEdits=s.linkedEdits;state.singleEdits=s.singleEdits;rebuild();message('Last tile edit undone.')}else message('No tile edits to undo yet.')});
-$('save').addEventListener('click',()=>{const url=canvas.toDataURL('image/png');$('export-preview').src=url;$('export-link').href=url;$('export-link').download=`coffeetableviz-truchet-${state.n}x${state.n}.png`;$('export-panel').hidden=false;if(!/iPhone|iPad|iPod/i.test(navigator.userAgent))$('export-link').click();message('Your 1,024 × 1,024 PNG is ready. Save it using the link or preview below.')});
+// Export a square Coffeetableviz art print from the actual editable tile state.
+// The editor stays unchanged; only the saved PNG receives the editorial frame.
+function editorialPNG(){
+ const output=document.createElement('canvas');output.width=1280;output.height=1280;
+ const print=output.getContext('2d',{alpha:false});
+ const paper='#f7f0dd',ink='#111111',muted='#665f54';
+ print.fillStyle=paper;print.fillRect(0,0,1280,1280);
+ // Letter-spacing is drawn explicitly for consistent Canvas support on mobile Safari.
+ function spaced(text,x,baseline,maxWidth,size,spacing,weight){
+  text=text.toUpperCase();let fontSize=size,width=Infinity;
+  do{
+   print.font=weight+' '+fontSize+'px "IBM Plex Sans",Arial,sans-serif';
+   width=print.measureText(text).width+(text.length-1)*spacing;
+   if(width<=maxWidth||fontSize<=14)break;
+   fontSize--;
+  }while(true);
+  print.fillStyle=muted;print.textBaseline='alphabetic';
+  for(const letter of text){print.fillText(letter,x,baseline);x+=print.measureText(letter).width+spacing;}
+ }
+ spaced('COFFEETABLEVIZ / TRUCHET TILE STUDIES',100,64,1080,21,5,600);
+ print.fillStyle=ink;print.fillRect(100,89,1080,4);
+ // The pattern is reconstructed from the same tile array as the interactive canvas,
+ // so exports reflect current rotations, palette, invert, grid and chaos settings.
+ const width=1024,originX=128,originY=144,s=width/state.n;
+ let [dark,light]=palettes[state.palette];if(state.invert)[dark,light]=[light,dark];
+ // The original monochrome palette uses the same warm paper in the poster.
+ if(state.palette===0){if(state.invert)dark=paper;else light=paper;}
+ print.save();print.translate(originX,originY);
+ print.fillStyle=light;print.fillRect(0,0,width,width);
+ print.fillStyle=dark;
+ for(let y=0;y<state.n;y++)for(let x=0;x<state.n;x++){
+  const a=state.tiles[id(x,y)],px=x*s,py=y*s;
+  print.beginPath();
+  switch(a){
+   case 0:print.moveTo(px,py);print.lineTo(px+s,py);print.lineTo(px,py+s);break;
+   case 1:print.moveTo(px+s,py);print.lineTo(px+s,py+s);print.lineTo(px,py);break;
+   case 2:print.moveTo(px+s,py+s);print.lineTo(px,py+s);print.lineTo(px+s,py);break;
+   default:print.moveTo(px,py+s);print.lineTo(px,py);print.lineTo(px+s,py+s);break;
+  }
+  print.closePath();print.fill();
+ }
+ if(state.grid){
+  print.strokeStyle=state.palette===0?'#858585':'#66757b';print.lineWidth=1;
+  print.beginPath();
+  for(let j=1;j<state.n;j++){const t=j*s;print.moveTo(t,0);print.lineTo(t,width);print.moveTo(0,t);print.lineTo(width,t);}
+  print.stroke();
+ }
+ print.restore();
+ const caption='TRUCHET / '+modes[state.mode]+' · '+(state.n*state.n)+' tiles · '+state.chaos+'% chaos';
+ spaced(caption,100,1219,1080,20,2.4,500);
+ return output.toDataURL('image/png');
+}
+$('save').addEventListener('click',()=>{
+ const url=editorialPNG();
+ $('export-preview').src=url;$('export-link').href=url;
+ $('export-link').download='coffeetableviz-truchet-'+state.mode+'-'+state.n+'x'+state.n+'-'+state.chaos+'pct.png';
+ $('export-panel').hidden=false;
+ if(!/iPhone|iPad|iPod/i.test(navigator.userAgent))$('export-link').click();
+ message('Your 1,280 × 1,280 Coffeetableviz art print is ready. Save it using the link or preview below.');
+});
 $('share').addEventListener('click',async()=>{const u=location.href.split('#')[0]+encode();try{await navigator.clipboard.writeText(u);message('Design link copied. Links work once this studio is hosted on coffeetableviz.com.')}catch{const t=document.createElement('textarea');t.value=u;document.body.append(t);t.select();document.execCommand('copy');t.remove();message('Design link prepared for copying.')}});
 const restored=restore();updateUI();rebuild();if(restored)message('Shared design restored.');
 })();
