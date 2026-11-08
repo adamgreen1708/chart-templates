@@ -1,7 +1,7 @@
 """Pixel Universe sequel: approve the exact feature art before publication.
 
-This QA intentionally expects published:false while the review PR is open.
-To publish, switch the status and the final test after explicit approval.
+This QA verifies published:true only after visual approval and that the exact
+Pixel Art Studio 16x16 code reproduces the live feature illustration.
 """
 from pathlib import Path
 import importlib.util
@@ -17,11 +17,11 @@ FEATURE_CODE = ROOT / "archive/projects/2026-11-pixel-universe/data/feature_pixe
 FEATURE_SCRIPT = ROOT / "archive/projects/2026-11-pixel-universe/scripts/render_feature_pixelstudio.py"
 
 
-def test_unpublished_approval_gate_and_post_metadata():
+def test_approved_publication_flag_and_post_metadata():
     post = POST.read_text(encoding="utf-8")
     assert post.startswith("---\n")
     front = post.split("---", 2)[1]
-    assert re.search(r"(?m)^published: false$", front)
+    assert re.search(r"(?m)^published: true$", front)
     assert re.search(r"(?m)^category: Culture$", front)
     assert re.search(r"(?m)^layout: post$", front)
     assert re.search(r"(?m)^slug: pixel-universe-256-squares$", front)
