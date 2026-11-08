@@ -1,0 +1,12 @@
+source_colour,pixel_index,pixel_colour_name,pixel_hex,mapping_status,mapping_note
+black,1,Black,#111111,categorical_match,"Display colour, not a measured source HEX"
+blue,2,Blue,#096ba6,categorical_match,"Display colour, not a measured source HEX"
+gold,,,,palette_gap,Do not silently substitute yellow or sand for gold
+green,3,Green,#06ad23,categorical_match,"Display colour, not a measured source HEX"
+grey,4,Slate,#7b898f,approximate_display_mapping,Slate approximates grey; distinct from source HEX
+orange,7,Orange,#fb8e31,categorical_match,"Display colour, not a measured source HEX"
+purple,,,,palette_gap,Purple missing from current Pixel Art Studio; do not replace with pink
+red,6,Red,#c34635,categorical_match,"Display colour, not a measured source HEX"
+silver,,,,palette_gap,Silver missing; metallic display requires explicit decision
+white,0,White,#ffffff,categorical_match,White also serves as blank/eraser in Pixel Art Studio
+yellow,5,Yellow,#e8c94f,categorical_match,"Display colour, not a measured source HEX"

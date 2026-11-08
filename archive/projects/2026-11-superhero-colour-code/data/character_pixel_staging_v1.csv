@@ -1,0 +1,25 @@
+character,publisher,role,costume_version,dominant_colour_provisional,second_major_colour_provisional,accent_colours_provisional,pixel_main_index,pixel_second_index,pixel_accent_indices,palette_gaps,pixel_ready_without_palette_change,input_provenance,pixel_area_distribution
+Superman,DC,Hero,Classic comic-book costume,blue,red,yellow,2,6,5,,yes,provisional_categorical_costume_colours_not_artwork_measurements,NOT_MEASURED
+Batman (Bruce Wayne),DC,Hero,Classic grey-and-black comic suit,grey,black,yellow,4,1,5,,yes,provisional_categorical_costume_colours_not_artwork_measurements,NOT_MEASURED
+Wonder Woman (Diana),DC,Hero,Classic red-and-blue suit,red,blue,gold,6,2,,gold,no,provisional_categorical_costume_colours_not_artwork_measurements,NOT_MEASURED
+The Flash (Barry Allen),DC,Hero,Classic comic-book costume,red,yellow,,6,5,,,yes,provisional_categorical_costume_colours_not_artwork_measurements,NOT_MEASURED
+Green Lantern (Hal Jordan),DC,Hero,Classic Hal Jordan Green Lantern,green,black,white,3,1,0,,yes,provisional_categorical_costume_colours_not_artwork_measurements,NOT_MEASURED
+Aquaman (Arthur Curry),DC,Hero,Classic orange-and-green comic costume,orange,green,yellow,7,3,5,,yes,provisional_categorical_costume_colours_not_artwork_measurements,NOT_MEASURED
+The Joker,DC,Villain,Classic purple jacket and green accessories,purple,green,orange,,3,7,purple,no,provisional_categorical_costume_colours_not_artwork_measurements,NOT_MEASURED
+Riddler (Edward Nygma),DC,Villain,Classic comic-book costume,green,purple,,3,,,purple,no,provisional_categorical_costume_colours_not_artwork_measurements,NOT_MEASURED
+Sinestro (Thaal Sinestro),DC,Villain,Yellow Lantern / Sinestro Corps suit,yellow,black,,5,1,,,yes,provisional_categorical_costume_colours_not_artwork_measurements,NOT_MEASURED
+Poison Ivy (Pamela Isley),DC,Villain,Classic green foliage costume,green,,,3,,,,yes,provisional_categorical_costume_colours_not_artwork_measurements,NOT_MEASURED
+Lex Luthor,DC,Villain,Green-and-purple battle armour,green,purple,,3,,,purple,no,provisional_categorical_costume_colours_not_artwork_measurements,NOT_MEASURED
+Black Manta,DC,Villain,Classic black armoured suit,black,grey,red,1,4,6,,yes,provisional_categorical_costume_colours_not_artwork_measurements,NOT_MEASURED
+Spider-Man (Peter Parker),Marvel,Hero,Classic red-and-blue fabric suit,red,blue,black,6,2,1,,yes,provisional_categorical_costume_colours_not_artwork_measurements,NOT_MEASURED
+Iron Man (Tony Stark),Marvel,Hero,Classic red-and-gold armour,red,gold,,6,,,gold,no,provisional_categorical_costume_colours_not_artwork_measurements,NOT_MEASURED
+Captain America (Steve Rogers),Marvel,Hero,Classic star-and-stripes suit,blue,red,white,2,6,0,,yes,provisional_categorical_costume_colours_not_artwork_measurements,NOT_MEASURED
+Wolverine (Logan),Marvel,Hero,Classic yellow-and-blue suit,yellow,blue,black,5,2,1,,yes,provisional_categorical_costume_colours_not_artwork_measurements,NOT_MEASURED
+Black Panther (T'Challa),Marvel,Hero,Classic black suit,black,grey,,1,4,,,yes,provisional_categorical_costume_colours_not_artwork_measurements,NOT_MEASURED
+Daredevil (Matt Murdock),Marvel,Hero,Classic red suit,red,black,,6,1,,,yes,provisional_categorical_costume_colours_not_artwork_measurements,NOT_MEASURED
+Green Goblin (Norman Osborn),Marvel,Villain,Classic Goblin outfit,green,purple,,3,,,purple,no,provisional_categorical_costume_colours_not_artwork_measurements,NOT_MEASURED
+Doctor Doom (Victor von Doom),Marvel,Villain,Classic green cloak and metal armour,green,silver,,3,,,silver,no,provisional_categorical_costume_colours_not_artwork_measurements,NOT_MEASURED
+Loki (Laufeyson),Marvel,Villain,Classic antagonist-era Asgardian costume,green,gold,black,3,,1,gold,no,provisional_categorical_costume_colours_not_artwork_measurements,NOT_MEASURED
+Thanos,Marvel,Villain,Classic blue-and-gold comics armour,blue,gold,,2,,,gold,no,provisional_categorical_costume_colours_not_artwork_measurements,NOT_MEASURED
+Venom (Eddie Brock),Marvel,Villain,Classic symbiote black suit,black,white,,1,0,,,yes,provisional_categorical_costume_colours_not_artwork_measurements,NOT_MEASURED
+Magneto (Max Eisenhardt),Marvel,Villain,Classic red-and-purple antagonist costume,red,purple,,6,,,purple,no,provisional_categorical_costume_colours_not_artwork_measurements,NOT_MEASURED
