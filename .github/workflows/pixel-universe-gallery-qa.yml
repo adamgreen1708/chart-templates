@@ -75,4 +75,4 @@ jobs:
       - name: Validate exact generated Jekyll data and icon assets
         run: python archive/projects/2026-11-pixel-universe/scripts/build_pixel_universe_gallery.py --check
       - name: Verify original icons, 12-character source parity, links and mosaics
-        run: python -m pytest tests/test_pixel_universe_palette_compat.py tests/test_pixel_universe_prototypes.py tests/test_pixel_universe_full_set.py tests/test_pixel_universe_gallery.py -q
+        run: python -m pytest tests/test_pixel_universe_palette_compat.py tests/test_pixel_universe_prototypes.py tests/test_pixel_universe_full_set.py tests/test_pixel_universe_gallery.py tests/test_pixel_universe_editorial.py -q
