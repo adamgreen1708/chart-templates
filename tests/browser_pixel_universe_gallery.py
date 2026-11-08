@@ -31,7 +31,7 @@ def main():
                 assert re.fullmatch(
                     r"/resources/8x8-pixel-art-builder/#size=16&art=[0-9a-f]{256}", href
                 ), "Broken edit link: " + repr(href)
-            dimensions = page.evaluate("""() => {
+            dimensions = page.evaluate(r"""() => {
               const root = document.documentElement;
               const grid = document.querySelector('.pu-grid');
               const page = document.querySelector('.pu-page');
@@ -45,7 +45,13 @@ def main():
                 maxCardRight: Math.max(...cards.map(e => e.getBoundingClientRect().right)),
                 pageLeft: page.getBoundingClientRect().left,
                 pageRight: page.getBoundingClientRect().right,
-                imagesLoaded: images.every(img => img.complete && img.naturalWidth > 0)
+                imagesLoaded: images.every(img => img.complete && img.naturalWidth > 0),
+                images: images.map(img => ({
+                  src: img.currentSrc,
+                  complete: img.complete,
+                  naturalWidth: img.naturalWidth,
+                  naturalHeight: img.naturalHeight
+                }))
               };
             }""")
             assert dimensions["documentWidth"] <= width + 1, "Horizontal overflow at " + str(width) + ": " + str(dimensions)
@@ -53,8 +59,8 @@ def main():
             assert dimensions["minCardLeft"] >= -1
             assert dimensions["maxCardRight"] <= width + 1
             assert dimensions["pageLeft"] >= -1 and dimensions["pageRight"] <= width + 1
-            assert dimensions["imagesLoaded"], "Gallery artwork failed to load: " + str(width)
             page.screenshot(path=str(OUT / f"pixel-universe-{width}px.png"), full_page=True)
+            assert dimensions["imagesLoaded"], "Gallery artwork failed to load: " + str(dimensions)
             if width == 390:
                 # Genuine click-through checks the deployed page's exact permalink,
                 # hash format, and that the existing Studio loads the 256-cell canvas.
