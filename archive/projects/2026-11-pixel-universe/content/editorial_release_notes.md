@@ -1,6 +1,6 @@
 # Pixel Universe — editorial sequel publication checklist
 
-**Status:** editorial draft only. PR stacked after the *gallery* draft PR #200. No site post is enabled or published here.
+**Status:** editorial draft only — not published. PR stacked after the *gallery* draft PR #200. No site post is enabled or published here.
 
 ## Intended publication
 
