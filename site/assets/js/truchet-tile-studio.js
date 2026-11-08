@@ -6,6 +6,9 @@ const canvas=$('art');
 const ctx=canvas.getContext('2d',{alpha:false});
 const modes={chequer:'Chequerboard',radial:'Radial rings',stripes:'Diagonal drift',pinwheel:'Pinwheel',random:'Beautiful mess',waves:'Waves'};
 const palettes=[['#111111','#f7f7f5'],['#3d4950','#e9ecee'],['#1f8fa8','#f7f7f5'],['#bb504b','#f7f7f5']];
+// Poster papers follow the selected palette. The default matches Coffeetableviz's grey.
+// These only affect the exported outer frame, never the original tile palette.
+const posterPapers=['#eff0f1','#e9ecee','#eaf3f5','#f6eeeb'];
 const state={n:16,mode:'radial',seed:93,palette:0,invert:false,grid:false,chaos:20,linked:true,tiles:[],linkedEdits:new Map(),singleEdits:new Map(),undo:[]};
 const mod=(a,n)=>(a%n+n)%n;
 const hash=(x,y,s)=>{let h=((x+51)*374761393+(y+37)*668265263+s*1442695041)|0;h=Math.imul(h^(h>>>13),1274126177);return (h^(h>>>16))>>>0};
@@ -118,7 +121,7 @@ $('undo').addEventListener('click',()=>{if(state.undo.length){const s=state.undo
 function editorialPNG(){
  const output=document.createElement('canvas');output.width=1280;output.height=1280;
  const print=output.getContext('2d',{alpha:false});
- const paper='#f7f0dd',ink='#111111',muted='#665f54';
+ const paper=posterPapers[state.palette]||posterPapers[0],ink='#111111',muted='#56616b';
  print.fillStyle=paper;print.fillRect(0,0,1280,1280);
  // Letter-spacing is drawn explicitly for consistent Canvas support on mobile Safari.
  function spaced(text,x,baseline,maxWidth,size,spacing,weight){
@@ -138,8 +141,6 @@ function editorialPNG(){
  // so exports reflect current rotations, palette, invert, grid and chaos settings.
  const width=1024,originX=128,originY=144,s=width/state.n;
  let [dark,light]=palettes[state.palette];if(state.invert)[dark,light]=[light,dark];
- // The original monochrome palette uses the same warm paper in the poster.
- if(state.palette===0){if(state.invert)dark=paper;else light=paper;}
  print.save();print.translate(originX,originY);
  print.fillStyle=light;print.fillRect(0,0,width,width);
  print.fillStyle=dark;
