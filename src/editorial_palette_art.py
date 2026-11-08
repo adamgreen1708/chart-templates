@@ -148,7 +148,7 @@ def render_comic_showdowns(fig,rows,top,config):
         txt(fig,.105,y+.017,r["hero_display"],13.4,True)
         txt(fig,.895,y+.017,r["villain_display"],13.4,True,INK,"right")
         txt(fig,.106,y-.014,"+ "+r["hero_secondary"],10.3,False,MUTED)
-        txt(fig,.867,y-.014,"+ "+r["villain_secondary"],10.3,False,MUTED,"right")
+        txt(fig,.895,y-.014,"+ "+r["villain_secondary"],10.3,False,MUTED,"right")
         if r["hero_secondary_hex"]:
             color=hue(r["hero_secondary_hex"])
             rect(fig,.326,y-.023,.022,.021,color,

@@ -1,5 +1,6 @@
 # Alternative 3-chart editorial redesign. Costume coding is PROVISIONAL.
 # Secondary-colour squares mirror at x=.326 (hero) and x=.652 (villain).
+# Villain secondary text is right-anchored at x=.895, matching villain names.
 # All information is generated from the real 24-character project dataset.
 CHART_CONFIG = {
     "chart_type": "palette_story",
