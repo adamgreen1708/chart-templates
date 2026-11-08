@@ -40,7 +40,7 @@ def main():
               return {
                 viewport: window.innerWidth,
                 documentWidth: root.scrollWidth,
-                gridColumns: getComputedStyle(grid).gridTemplateColumns.trim().split(/\\s+/).length,
+                gridColumns: getComputedStyle(grid).gridTemplateColumns.trim().split(/\s+/).length,
                 minCardLeft: Math.min(...cards.map(e => e.getBoundingClientRect().left)),
                 maxCardRight: Math.max(...cards.map(e => e.getBoundingClientRect().right)),
                 pageLeft: page.getBoundingClientRect().left,
