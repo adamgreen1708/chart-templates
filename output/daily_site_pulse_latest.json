@@ -1,42 +1,64 @@
 {
-  "report_date": "2026-11-06",
+  "report_date": "2026-11-07",
   "visits": 9,
-  "prior_7d_avg": "11.00",
-  "pct_vs_prior_7d": "-18.2",
+  "prior_7d_avg": "9.14",
+  "pct_vs_prior_7d": "-1.6",
   "top_page_path": "/resources/bauhaus-art-studio",
   "top_page_title": "Bauhaus Art Studio \u00b7 coffeetableviz",
-  "top_page_visits": 8,
-  "top_referrer": "www.linkedin.com",
-  "top_referrer_visits": 6,
-  "observation": "Bauhaus Art Studio led the day, reaching 8 of 9 recorded visitors.",
-  "generated_at_utc": "2026-11-07T14:54:16+00:00",
+  "top_page_visits": 4,
+  "top_referrer": "Direct / unknown",
+  "top_referrer_visits": 4,
+  "observation": "Traffic stayed fairly close to its recent rhythm.",
+  "generated_at_utc": "2026-11-08T15:11:07+00:00",
   "top_pages": [
     {
       "path_id": 117603735,
       "path": "/resources/bauhaus-art-studio",
       "title": "Bauhaus Art Studio \u00b7 coffeetableviz",
       "display": "Bauhaus Art Studio",
-      "count": 8
+      "count": 4
     },
     {
-      "path_id": 111960714,
-      "path": "/stories/max-verstappen-grid-comebacks",
-      "title": "The grid is a guide, not a verdict \u00b7 coffeetableviz",
-      "display": "The grid is a guide, not a verdict",
+      "path_id": 119982365,
+      "path": "/2026/09/20/tom-hanks-found-another-gear-in-1992",
+      "title": "Tom Hanks found another gear in 1992 \u00b7 coffeetableviz",
+      "display": "Tom Hanks found another gear in 1992",
+      "count": 1
+    },
+    {
+      "path_id": 117597360,
+      "path": "/resources/truchet-tile-studio",
+      "title": "Truchet Tile Studio \u00b7 coffeetableviz",
+      "display": "Truchet Tile Studio",
+      "count": 1
+    },
+    {
+      "path_id": 109453481,
+      "path": "/resources",
+      "title": "Resources \u00b7 coffeetableviz",
+      "display": "Resources",
+      "count": 1
+    },
+    {
+      "path_id": 109451764,
+      "path": "/",
+      "title": "coffeetableviz",
+      "display": "Home",
+      "count": 1
+    },
+    {
+      "path_id": 109446267,
+      "path": "/archive",
+      "title": "Archive \u00b7 coffeetableviz",
+      "display": "Archive",
       "count": 1
     }
   ],
   "top_referrers": [
     {
-      "id": "www.linkedin.com",
-      "name": "www.linkedin.com",
-      "count": 6,
-      "ref_scheme": "h"
-    },
-    {
-      "id": "com.linkedin.android",
-      "name": "com.linkedin.android",
-      "count": 2,
+      "id": null,
+      "name": "Direct / unknown",
+      "count": 4,
       "ref_scheme": "o"
     }
   ]
