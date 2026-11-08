@@ -1,6 +1,6 @@
 # Pixel Universe — implementation brief v1.0
 
-**Status:** agreed creative direction; **Phase A (palette compatibility) in a draft PR**. No publication or merge authorised.
+**Status (8 November 2026):** Phase A merged as PR #197. Phase B artwork and gallery staged as draft PRs #198, #199 and #200 with GitHub build/source tests and rendered mobile browser QA. The article and social copy are drafted for future review; **no gallery or new article has been published**.
 **Repository:** `adamgreen1708/chart-templates`
 **Inspiration:** the published [Who wears the hero colours?](https://coffeetableviz.com/stories/who-wears-the-hero-colours/) story and [Tim Leong's *Super Graphic*](https://www.wired.com/gallery/excerpt-visual-guide-to-the-comic-book-universe/).
 
