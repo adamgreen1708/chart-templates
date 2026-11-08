@@ -4,14 +4,15 @@
   const palette = [
     "#ffffff", "#111111", "#096ba6", "#06ad23", "#7b898f",
     "#e8c94f", "#c34635", "#fb8e31", "#ee3edc",
-    "#8b5a3c", "#e8cf9a", "#87c9eb", "#296647"
+    "#8b5a3c", "#e8cf9a", "#87c9eb", "#296647",
+    "#6f42c1", "#d4a017", "#b8bdc3"
   ];
   document.querySelectorAll("canvas.pixel-zoo-preview[data-pixel-code]").forEach(function (canvas) {
     const code = canvas.dataset.pixelCode;
     // The length of the art code is the source of truth. This also protects
     // previews from a malformed Liquid size attribute or stale page markup.
     const size = code.length === 64 ? 8 : code.length === 256 ? 16 : 0;
-    if (!size || !/^[0-9a-c]+$/.test(code)) {
+    if (!size || !/^[0-9a-f]+$/.test(code)) {
       canvas.setAttribute("aria-label", "Pixel art preview unavailable");
       return;
     }
@@ -24,7 +25,7 @@
     if (!context) return;
     context.imageSmoothingEnabled = false;
     for (let index = 0; index < code.length; index += 1) {
-      context.fillStyle = palette[parseInt(code[index], 13)];
+      context.fillStyle = palette[parseInt(code[index], 16)];
       context.fillRect(index % size, Math.floor(index / size), 1, 1);
     }
   });
