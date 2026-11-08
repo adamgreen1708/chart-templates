@@ -1,0 +1,114 @@
+---
+layout: default
+title: Pixel Universe — heroes, villains and 256 tiny squares
+description: Twelve original 16×16 pixel portraits inspired by the published superhero colour story. Choose a character, open the Pixel Art Studio and make it your own.
+permalink: /resources/pixel-universe/
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/pixel-universe.css' | relative_url }}">
+
+<article class="pu-page shell-wide">
+  <header class="pu-header">
+    <p class="eyebrow">Interactive gallery · Culture meets design</p>
+    <h1>Pixel Universe<span>.</span></h1>
+    <p class="pu-intro">Twelve characters. Two sides. Just 256 little squares apiece. Could a handful of colours be enough to recognise an old favourite?</p>
+    <p class="pu-intro-second">These original pixel portraits take their colour cues from the <a href="{{ '/stories/who-wears-the-hero-colours/' | relative_url }}">Who wears the hero colours?</a> data story. Choose a design, open it in the Pixel Art Studio and remix away.</p>
+    <nav class="pu-jump" aria-label="Explore Pixel Universe">
+      <a href="#heroes">Meet the heroes</a>
+      <a href="#villains">Meet the villains</a>
+      <a href="{{ '/resources/8x8-pixel-art-builder/' | relative_url }}">Start from scratch</a>
+    </nav>
+  </header>
+
+  <section class="pu-mosaics" aria-label="Hero and villain pixel mosaics">
+    <figure class="pu-mosaic">
+      <a href="{{ '/assets/pixel-universe/hero_mosaic.svg' | relative_url }}" aria-label="View the six hero portraits in full size">
+        <img src="{{ '/assets/pixel-universe/hero_mosaic.svg' | relative_url }}" width="1200" height="1200" alt="Pixel Universe heroes: six original 16 by 16 portraits arranged in two rows, including Superman, Batman, Wonder Woman, the Flash, Spider-Man and Wolverine.">
+      </a>
+      <figcaption>Heroes, in sixteen little squares each way.</figcaption>
+    </figure>
+    <figure class="pu-mosaic">
+      <a href="{{ '/assets/pixel-universe/villain_mosaic.svg' | relative_url }}" aria-label="View the six villain portraits in full size">
+        <img src="{{ '/assets/pixel-universe/villain_mosaic.svg' | relative_url }}" width="1200" height="1200" alt="Pixel Universe villains: six original 16 by 16 portraits arranged in two rows, including Joker, Riddler, Lex Luthor, Green Goblin, Magneto and Venom.">
+      </a>
+      <figcaption>Villains. A little more green and purple.</figcaption>
+    </figure>
+  </section>
+
+  {% assign heroes = site.data.pixel_universe | where: "role", "Hero" %}
+  {% assign villains = site.data.pixel_universe | where: "role", "Villain" %}
+  <section class="pu-section" id="heroes" aria-labelledby="pu-heroes-heading">
+    <div class="pu-section-head">
+      <div>
+        <p class="eyebrow">01 / On the side of good</p>
+        <h2 id="pu-heroes-heading">The heroes<span>.</span></h2>
+      </div>
+      <span class="pu-section-count">{{ heroes.size }} original designs</span>
+    </div>
+    <div class="pu-grid">
+      {% for character in heroes %}
+      <article class="pu-card">
+        <div class="pu-art">
+          <img src="{{ character.preview | relative_url }}" width="400" height="400" alt="Original 16 by 16 pixel portrait inspired by {{ character.name | escape }}'s costume colours." loading="lazy">
+        </div>
+        <div class="pu-card-info">
+          <p class="pu-meta">{{ character.publisher }} · 16×16</p>
+          <h3>{{ character.name | escape }}</h3>
+          <p class="pu-palette-label">Colour fingerprint</p>
+          <div class="pu-palette" aria-label="Main colour {{ character.main_colour }}, supporting colour {{ character.supporting_colour }}{% for accent in character.accents %}, accent {{ accent.name }}{% endfor %}">
+            <span class="pu-chip" style="--pu-ink: {{ character.main_hex }}" title="Main: {{ character.main_colour }}" aria-hidden="true"></span>
+            <span class="pu-chip" style="--pu-ink: {{ character.supporting_hex }}" title="Supporting: {{ character.supporting_colour }}" aria-hidden="true"></span>
+            {% for accent in character.accents %}
+            <span class="pu-chip" style="--pu-ink: {{ accent.hex }}" title="Accent: {{ accent.name }}" aria-hidden="true"></span>
+            {% endfor %}
+            <span class="pu-colour-names">{{ character.main_colour }} · {{ character.supporting_colour }}{% for accent in character.accents %} · {{ accent.name }}{% endfor %}</span>
+          </div>
+          <p class="pu-design-note">{{ character.design_note | escape }}</p>
+          <a class="pu-open" href="{{ '/resources/8x8-pixel-art-builder/' | relative_url }}#size=16&amp;art={{ character.code }}" aria-label="Open and remix {{ character.name | escape }} in the Pixel Art Studio">Open &amp; remix <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="pu-section" id="villains" aria-labelledby="pu-villains-heading">
+    <div class="pu-section-head">
+      <div>
+        <p class="eyebrow">02 / The other side</p>
+        <h2 id="pu-villains-heading">The villains<span>.</span></h2>
+      </div>
+      <span class="pu-section-count">{{ villains.size }} original designs</span>
+    </div>
+    <div class="pu-grid">
+      {% for character in villains %}
+      <article class="pu-card">
+        <div class="pu-art">
+          <img src="{{ character.preview | relative_url }}" width="400" height="400" alt="Original 16 by 16 pixel portrait inspired by {{ character.name | escape }}'s costume colours." loading="lazy">
+        </div>
+        <div class="pu-card-info">
+          <p class="pu-meta">{{ character.publisher }} · 16×16</p>
+          <h3>{{ character.name | escape }}</h3>
+          <p class="pu-palette-label">Colour fingerprint</p>
+          <div class="pu-palette" aria-label="Main colour {{ character.main_colour }}, supporting colour {{ character.supporting_colour }}{% for accent in character.accents %}, accent {{ accent.name }}{% endfor %}">
+            <span class="pu-chip" style="--pu-ink: {{ character.main_hex }}" title="Main: {{ character.main_colour }}" aria-hidden="true"></span>
+            <span class="pu-chip" style="--pu-ink: {{ character.supporting_hex }}" title="Supporting: {{ character.supporting_colour }}" aria-hidden="true"></span>
+            {% for accent in character.accents %}
+            <span class="pu-chip" style="--pu-ink: {{ accent.hex }}" title="Accent: {{ accent.name }}" aria-hidden="true"></span>
+            {% endfor %}
+            <span class="pu-colour-names">{{ character.main_colour }} · {{ character.supporting_colour }}{% for accent in character.accents %} · {{ accent.name }}{% endfor %}</span>
+          </div>
+          <p class="pu-design-note">{{ character.design_note | escape }}</p>
+          <a class="pu-open" href="{{ '/resources/8x8-pixel-art-builder/' | relative_url }}#size=16&amp;art={{ character.code }}" aria-label="Open and remix {{ character.name | escape }} in the Pixel Art Studio">Open &amp; remix <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <aside class="pu-method" aria-labelledby="pu-method-heading">
+    <p class="eyebrow">Behind the pixels</p>
+    <h2 id="pu-method-heading">Inspired by the data, not measured from comic art.</h2>
+    <p>Each character's main, supporting and accent colours come from a <strong>hand-picked, qualitative study of 24 comic costumes</strong>. They're descriptive judgements, not fabric-area percentages. The 16×16 shapes, faces and outlines are playful artistic additions. Some costume versions and colour choices remain uncertain.</p>
+    <p>This is an unofficial creative experiment, with no affiliation to Marvel or DC. <a href="{{ '/stories/who-wears-the-hero-colours/' | relative_url }}">Read the original colour story</a> or <a href="{{ '/resources/8x8-pixel-art-builder/' | relative_url }}">start a fresh pixel drawing</a>.</p>
+  </aside>
+</article>
