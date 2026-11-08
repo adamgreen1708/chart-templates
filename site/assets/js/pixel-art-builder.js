@@ -390,7 +390,7 @@
     const context = output.getContext("2d", { alpha: false });
     if (!context) throw new Error("Canvas unavailable");
     context.imageSmoothingEnabled = false;
-    const paper = "#f7f0dd", ink = "#111111", muted = "#665f54";
+    const paper = "#eff0f1", ink = "#111111", muted = "#665f54";
     context.fillStyle = paper;
     context.fillRect(0, 0, output.width, output.height);
 
