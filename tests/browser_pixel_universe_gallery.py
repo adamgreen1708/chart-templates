@@ -18,6 +18,15 @@ def main():
         for width, expected_columns in ((320, 1), (390, 1), (768, 2), (1280, 3)):
             page = browser.new_page(viewport={"width": width, "height": 850}, device_scale_factor=1)
             page.goto(BASE + "/resources/pixel-universe/", wait_until="networkidle", timeout=45000)
+            # The gallery intentionally lazy-loads off-screen portraits. Ask the
+            # browser to load every preview before treating an image as broken.
+            page.locator(".pu-page img").evaluate_all(
+                "imgs => imgs.forEach(img => { img.loading = 'eager'; })"
+            )
+            page.wait_for_function(
+                "() => [...document.querySelectorAll('.pu-page img')].every(img => img.complete && img.naturalWidth > 0)",
+                timeout=20000,
+            )
             assert page.title(), "Jekyll page missing a title"
             assert page.locator(".pu-card").count() == 12
             assert page.locator("#heroes .pu-card").count() == 6
