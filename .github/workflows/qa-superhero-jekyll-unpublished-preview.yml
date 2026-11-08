@@ -1,4 +1,5 @@
 name: QA unpublished superhero article with temporary Jekyll preview
+# Recheck accessible chart titles in the full Jekyll article HTML.
 
 on:
   push:
