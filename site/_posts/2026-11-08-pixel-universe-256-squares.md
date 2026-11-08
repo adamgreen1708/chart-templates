@@ -12,7 +12,7 @@ hero_image: /assets/pixel-universe/feature-pixel-identity.svg
 social_image: /assets/pixel-universe/feature-pixel-identity.svg
 hero_alt: "An anonymous black and slate pixel mask built from equal-sized squares, with a few red accents and individual pixels scattered around all sides."
 tags: [superheroes, comics, pixel-art, colour, culture, design]
-published: false
+published: true
 ---
 
 There’s a lot you can do with 256 squares.
