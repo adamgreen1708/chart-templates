@@ -27,3 +27,10 @@
 - The live-site Jekyll flag is set to `published: true` **only in PR #196**. No main branch merge or GitHub Pages deployment is authorised by this preparation.
 - The source image art-validation flags and confidence remain candidly incomplete; they are separate from accepting an exploratory article. Sinestro's leading yellow versus black stays low-confidence.
 - Existing charts and the table are untouched. Re-run the publication-package tests and GitHub Pages build before asking for merge approval.
+
+## Route 2 final technical QA — 8 November 2026
+
+- [Publication-ready qualitative article QA](https://github.com/adamgreen1708/chart-templates/actions/runs/42484846910) — **passed**. Tests verified the `published: true` Jekyll flag in PR branch, `Culture` category, all three approved PNGs as binary-identical to the archive assets, the 24-source/12-table-row sequence, and honest caveats. A real Jekyll site build rendered the final article with its three chart images and character table.
+- [Regular coffeetableviz Pages PR build](https://github.com/adamgreen1708/chart-templates/actions/runs/42484802857) — **passed**. PR build only; no deployment.
+- The 24-character dataset remains manually coded and not independently verified as an exact-area measurement. Fourteen rows retain high-risk audit flags, and Sinestro stays editorially yellow-dominant at low confidence. Route 2 explicitly accepts these documented limitations for a qualitative story.
+- **No approval to merge has been given in this preparation step.** Publish only after Adam explicitly approves the reviewed PR.
