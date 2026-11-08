@@ -76,5 +76,7 @@ jobs:
         run: python -m pip install --disable-pip-version-check pytest
       - name: Validate exact generated Jekyll data and icon assets
         run: python archive/projects/2026-11-pixel-universe/scripts/build_pixel_universe_gallery.py --check
+      - name: Validate exact 16x16 Pixel Studio feature-art raster geometry
+        run: python archive/projects/2026-11-pixel-universe/scripts/render_feature_pixelstudio.py --check
       - name: Verify original icons, 12-character source parity, links and mosaics
         run: python -m pytest tests/test_pixel_universe_palette_compat.py tests/test_pixel_universe_prototypes.py tests/test_pixel_universe_full_set.py tests/test_pixel_universe_gallery.py tests/test_pixel_universe_editorial.py tests/test_pixel_universe_publication.py -q
