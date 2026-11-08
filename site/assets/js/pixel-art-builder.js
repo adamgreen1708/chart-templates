@@ -20,7 +20,10 @@
     { name: "Brown", hex: "#8b5a3c" },
     { name: "Sand", hex: "#e8cf9a" },
     { name: "Sky Blue", hex: "#87c9eb" },
-    { name: "Forest Green", hex: "#296647" }
+    { name: "Forest Green", hex: "#296647" },
+    { name: "Purple", hex: "#6f42c1" },
+    { name: "Gold", hex: "#d4a017" },
+    { name: "Silver", hex: "#b8bdc3" }
   ];
   const storageKeys = { 8: "coffeetableviz.pixel-art.v1", 16: "coffeetableviz.pixel-art.16.v1" };
   const boards = {
@@ -56,12 +59,12 @@
     return typeof code === "string" &&
       (dimension === 8 || dimension === 16) &&
       code.length === dimension * dimension &&
-      /^[0-9a-c]+$/.test(code);
+      /^[0-9a-f]+$/.test(code);
   }
   function parseHash(fragment) {
-    const legacy = /^#art=([0-9a-c]{64})$/.exec(fragment);
+    const legacy = /^#art=([0-9a-f]{64})$/.exec(fragment);
     if (legacy) return { size: 8, code: legacy[1] };
-    const detailed = /^#size=16&art=([0-9a-c]{256})$/.exec(fragment);
+    const detailed = /^#size=16&art=([0-9a-f]{256})$/.exec(fragment);
     if (detailed) return { size: 16, code: detailed[1] };
     return null;
   }
@@ -74,20 +77,21 @@
       try {
         const saved = localStorage.getItem(storageKeys[dimension]);
         if (validCode(saved, dimension)) {
-          boards[dimension].pixels = saved.split("").map(function (value) { return parseInt(value, 13); });
+          boards[dimension].pixels = saved.split("").map(function (value) { return parseInt(value, 16); });
         }
       } catch (_) { /* Storage may be disabled. */ }
     });
     const linked = parseHash(window.location.hash);
     if (linked) {
       size = linked.size;
-      boards[size].pixels = linked.code.split("").map(function (value) { return parseInt(value, 13); });
+      boards[size].pixels = linked.code.split("").map(function (value) { return parseInt(value, 16); });
     }
   }
-  // Encode one palette index per character; 0–8 stay byte-for-byte compatible
-  // with all original links, while 9/a/b/c represent the four new colours.
+  // One hexadecimal digit per pixel; existing 0–c indices stay byte-for-byte
+  // compatible with legacy 8×8/16×16 links and locally saved boards.
+  // New purple/gold/silver entries use d/e/f respectively.
   function encodePixels(values) {
-    return values.map(function (value) { return value.toString(13); }).join("");
+    return values.map(function (value) { return value.toString(16); }).join("");
   }
   function save() {
     try { localStorage.setItem(storageKeys[size], encodePixels(current().pixels)); }
@@ -220,7 +224,7 @@
     if (size !== info.size) changeSize(info.size, false);
     const st = current();
     const before = st.pixels.slice();
-    st.pixels = info.code.split("").map(function (value) { return parseInt(value, 13); });
+    st.pixels = info.code.split("").map(function (value) { return parseInt(value, 16); });
     stroke = null;
     if (record(before)) say("Design loaded. Remix it — Undo restores your previous drawing.");
     else { save(); render(); say("This design is on the canvas and ready to remix."); }
