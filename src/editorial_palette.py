@@ -165,11 +165,15 @@ def render_palette_story(repo_root,config,rows,add_header,add_footer,save):
     if config.get("render_profile")!="social_square":
         raise ValueError("palette_story requires the approved social_square profile")
     variant=config.get("layout_variant")
+    from editorial_palette_art import (render_comic_lineup, render_comic_wheels, render_comic_showdowns)
     render={"gallery":render_gallery,
             "scorecard":render_scorecard,
-            "twins":render_twins}.get(variant)
+            "twins":render_twins,
+            "comic_lineup":render_comic_lineup,
+            "comic_wheels":render_comic_wheels,
+            "comic_showdowns":render_comic_showdowns}.get(variant)
     if render is None:
-        raise ValueError("palette_story layout_variant must be gallery/scorecard/twins")
+        raise ValueError("palette_story layout_variant must be gallery/scorecard/twins or comic_lineup/comic_wheels/comic_showdowns")
     fig=plt.figure(figsize=(8,8),facecolor=BG)
     top=add_header(fig,config["title"],config["subtitle"],config=config)
     render(fig,rows,top,config)

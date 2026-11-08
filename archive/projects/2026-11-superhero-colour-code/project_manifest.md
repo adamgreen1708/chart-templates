@@ -29,3 +29,10 @@
 - Blog draft: `content/blog_draft_v2.md`; editorial rationale: `content/editorial_v2.md`; verified GitHub render/QA log: `content/qa_v2.md`.
 - Python data-contract checks: `tests/test_palette_story.py`; project QA utility: `scripts/qa_palette_v2.py`.
 - **No old chart removed. No blog/site publication. Specific artwork verification and editorial approval still required.**
+
+## Comic art-direction v3 — latest review candidate (8 November 2026)
+- **Preferred set for creative review:** `output/superhero_v3_01_comic_lineup.png`, `output/superhero_v3_02_colour_wheels.png`, `output/superhero_v3_03_showdowns.png`. The previous versions remain for comparison.
+- **Chart 3 final tweak:** villain-side `+ colour` text right-aligned to villain names, preserving the centrally mirrored secondary-colour squares.
+- **Blog:** `content/blog_draft_v3.md` is generated from `content/blog_draft_v3.template.md` using `scripts/build_blog_draft_v3.py`. The reference table below chart 2 is sourced from all 24 records in `data/chart_v2_02_role_scorecard.csv`, 12 compact rows (DC and Marvel side by side), ordered to match the wheels.
+- **QA:** `content/qa_v3.md` and `tests/test_palette_blog_table_v3.py`; GitHub final render and mobile tests passed.
+- **Publication gate unchanged:** all coded costume colours remain provisional until individual comic-art evidence is validated; no Jekyll publication or main-branch merge authorised.
