@@ -27,6 +27,39 @@ permissions:
   contents: read
 
 jobs:
+  mobile-gallery-browser:
+    name: Real-browser gallery QA (320px / 390px)
+    needs: verify-pixel-universe
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout the PR branch
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build actual GitHub Pages Jekyll output
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./site
+          destination: ./_site
+      - name: Install Playwright Chromium
+        run: |
+          python -m pip install --disable-pip-version-check playwright
+          python -m playwright install --with-deps chromium
+      - name: Inspect 320, 390, 768 and 1280px gallery and open Studio preset
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 --directory _site > /tmp/pixel-universe-gallery-server.log 2>&1 &
+          python tests/browser_pixel_universe_gallery.py
+      - name: Save visual QA screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pixel-universe-visual-qa
+          path: output/pixel-universe-mobile-qa/*.png
+          if-no-files-found: ignore
+
   verify-pixel-universe:
     runs-on: ubuntu-latest
     timeout-minutes: 10
