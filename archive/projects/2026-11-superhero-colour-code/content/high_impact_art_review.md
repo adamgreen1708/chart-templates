@@ -9,7 +9,8 @@
 - Direct publisher-hosted preview: `https://imgix-media.wbdndc.net/ingest/book/preview/5b49f6ab-0e38-430e-b81f-71e99fcf334d/c67101df-23c7-4ec9-9fbf-a5107b73b515/0.jpg`.
 - **What can be seen:** Sinestro's costume is clearly a combination of substantial yellow/gold panels with black arms and other dark panels. The cover crops the lower body, so it does **not** resolve whether yellow or black occupies more of this selected full-body outfit. Yellow energy is not sufficient evidence.
 - **Consequence:** If independent full-body issue art and a consistent coding rule favour **black as main hue**, the pilot villain-primary count changes **3/12 → 2/12**, the yellow Wolverine–Sinestro main-hue match disappears, and *both chart 2 and chart 3 require regenerated data and renewed approval*. This is not a cosmetic correction.
-- Current status: **unresolved, release blocker**. Do not treat a yellow *power-ring colour* as measured yellow *costume dominance*.
+- **Editorial judgement (8 November 2026):** Adam prefers **yellow as the leading costume hue**, while describing the visible yellow/black balance as **roughly 50/50**. This is a qualitative, borderline adjudication—not a measured 50% area split and not a complete full-body selected-issue artwork check. **Retain coded dominant = yellow, supporting = black, low confidence.** The Wolverine–Sinestro yellow pairing and 3/12 villain-primary count remain **provisional**, not independently proven.
+- Current status: **editorial hue preference recorded; exact selected-issue full-body verification still open**. Do not treat a yellow *power-ring colour* as measured yellow *costume dominance*.
 
 ## 2. Magneto: red vs purple balance
 
