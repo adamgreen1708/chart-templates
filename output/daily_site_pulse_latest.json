@@ -1,49 +1,35 @@
 {
-  "report_date": "2026-11-08",
-  "visits": 11,
-  "prior_7d_avg": "8.57",
-  "pct_vs_prior_7d": "28.3",
-  "top_page_path": "/stories/who-wears-the-hero-colours",
-  "top_page_title": "Who wears the hero colours? \u00b7 coffeetableviz",
-  "top_page_visits": 3,
+  "report_date": "2026-11-09",
+  "visits": 8,
+  "prior_7d_avg": "9.14",
+  "pct_vs_prior_7d": "-12.5",
+  "top_page_path": "/resources/bauhaus-art-studio",
+  "top_page_title": "Bauhaus Art Studio \u00b7 coffeetableviz",
+  "top_page_visits": 2,
   "top_referrer": "Direct / unknown",
-  "top_referrer_visits": 1,
+  "top_referrer_visits": 2,
   "observation": "Traffic stayed fairly close to its recent rhythm.",
-  "generated_at_utc": "2026-11-09T18:47:04+00:00",
+  "generated_at_utc": "2026-11-10T01:29:03+00:00",
   "top_pages": [
-    {
-      "path_id": 120214778,
-      "path": "/stories/who-wears-the-hero-colours",
-      "title": "Who wears the hero colours? \u00b7 coffeetableviz",
-      "display": "Who wears the hero colours?",
-      "count": 3
-    },
-    {
-      "path_id": 120306115,
-      "path": "/stories/pixel-universe-256-squares",
-      "title": "Pixel Universe: can you recognise a superhero in 256 squares? \u00b7 coffeetableviz",
-      "display": "Pixel Universe: can you recognise a superhero in 256 squares?",
-      "count": 1
-    },
-    {
-      "path_id": 120302704,
-      "path": "/resources/pixel-universe",
-      "title": "Pixel Universe \u2014 heroes, villains and 256 tiny squares \u00b7 coffeetableviz",
-      "display": "Pixel Universe \u2014 heroes, villains and 256 tiny squares",
-      "count": 1
-    },
     {
       "path_id": 117603735,
       "path": "/resources/bauhaus-art-studio",
       "title": "Bauhaus Art Studio \u00b7 coffeetableviz",
       "display": "Bauhaus Art Studio",
-      "count": 1
+      "count": 2
     },
     {
-      "path_id": 117597360,
-      "path": "/resources/truchet-tile-studio",
-      "title": "Truchet Tile Studio \u00b7 coffeetableviz",
-      "display": "Truchet Tile Studio",
+      "path_id": 109453481,
+      "path": "/resources",
+      "title": "Resources \u00b7 coffeetableviz",
+      "display": "Resources",
+      "count": 2
+    },
+    {
+      "path_id": 120606745,
+      "path": "/2026/09/21/taron-egerton-is-strongest-when-the-character-is-real",
+      "title": "Taron Egerton is strongest when the character is real \u00b7 coffeetableviz",
+      "display": "Taron Egerton is strongest when the character is real",
       "count": 1
     },
     {
@@ -54,13 +40,6 @@
       "count": 1
     },
     {
-      "path_id": 109453481,
-      "path": "/resources",
-      "title": "Resources \u00b7 coffeetableviz",
-      "display": "Resources",
-      "count": 1
-    },
-    {
       "path_id": 109451764,
       "path": "/",
       "title": "coffeetableviz",
@@ -68,10 +47,10 @@
       "count": 1
     },
     {
-      "path_id": 109446444,
-      "path": "/data-lens",
-      "title": "Data Lens \u00b7 coffeetableviz",
-      "display": "Data Lens",
+      "path_id": 109446267,
+      "path": "/archive",
+      "title": "Archive \u00b7 coffeetableviz",
+      "display": "Archive",
       "count": 1
     }
   ],
@@ -79,20 +58,8 @@
     {
       "id": null,
       "name": "Direct / unknown",
-      "count": 1,
+      "count": 2,
       "ref_scheme": "o"
-    },
-    {
-      "id": "bing.com",
-      "name": "bing.com",
-      "count": 1,
-      "ref_scheme": "h"
-    },
-    {
-      "id": "chatgpt.com",
-      "name": "chatgpt.com",
-      "count": 1,
-      "ref_scheme": "c"
     }
   ]
 }
