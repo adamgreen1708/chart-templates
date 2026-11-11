@@ -1,15 +1,15 @@
 {
-  "report_date": "2026-11-09",
-  "visits": 8,
-  "prior_7d_avg": "9.14",
-  "pct_vs_prior_7d": "-12.5",
+  "report_date": "2026-11-10",
+  "visits": 7,
+  "prior_7d_avg": "8.57",
+  "pct_vs_prior_7d": "-18.3",
   "top_page_path": "/resources/bauhaus-art-studio",
   "top_page_title": "Bauhaus Art Studio \u00b7 coffeetableviz",
   "top_page_visits": 2,
   "top_referrer": "Direct / unknown",
-  "top_referrer_visits": 2,
+  "top_referrer_visits": 1,
   "observation": "Traffic stayed fairly close to its recent rhythm.",
-  "generated_at_utc": "2026-11-10T16:24:57+00:00",
+  "generated_at_utc": "2026-11-11T16:09:44+00:00",
   "top_pages": [
     {
       "path_id": 117603735,
@@ -19,10 +19,10 @@
       "count": 2
     },
     {
-      "path_id": 109453481,
-      "path": "/resources",
-      "title": "Resources \u00b7 coffeetableviz",
-      "display": "Resources",
+      "path_id": 114429315,
+      "path": "/resources/8x8-pixel-art-builder",
+      "title": "8\u00d78 Pixel Art Builder \u00b7 coffeetableviz",
+      "display": "8\u00d78 Pixel Art Builder",
       "count": 2
     },
     {
@@ -33,24 +33,17 @@
       "count": 1
     },
     {
-      "path_id": 114429315,
-      "path": "/resources/8x8-pixel-art-builder",
-      "title": "8\u00d78 Pixel Art Builder \u00b7 coffeetableviz",
-      "display": "8\u00d78 Pixel Art Builder",
+      "path_id": 117597360,
+      "path": "/resources/truchet-tile-studio",
+      "title": "Truchet Tile Studio \u00b7 coffeetableviz",
+      "display": "Truchet Tile Studio",
       "count": 1
     },
     {
-      "path_id": 109451764,
-      "path": "/",
-      "title": "coffeetableviz",
-      "display": "Home",
-      "count": 1
-    },
-    {
-      "path_id": 109446267,
-      "path": "/archive",
-      "title": "Archive \u00b7 coffeetableviz",
-      "display": "Archive",
+      "path_id": 109453481,
+      "path": "/resources",
+      "title": "Resources \u00b7 coffeetableviz",
+      "display": "Resources",
       "count": 1
     }
   ],
@@ -58,8 +51,14 @@
     {
       "id": null,
       "name": "Direct / unknown",
-      "count": 2,
+      "count": 1,
       "ref_scheme": "o"
+    },
+    {
+      "id": "www.linkedin.com",
+      "name": "www.linkedin.com",
+      "count": 1,
+      "ref_scheme": "h"
     }
   ]
 }
