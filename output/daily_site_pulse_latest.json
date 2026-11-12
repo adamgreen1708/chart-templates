@@ -1,21 +1,49 @@
 {
-  "report_date": "2026-11-10",
-  "visits": 7,
-  "prior_7d_avg": "8.57",
-  "pct_vs_prior_7d": "-18.3",
-  "top_page_path": "/resources/bauhaus-art-studio",
-  "top_page_title": "Bauhaus Art Studio \u00b7 coffeetableviz",
-  "top_page_visits": 2,
+  "report_date": "2026-11-11",
+  "visits": 23,
+  "prior_7d_avg": "9.00",
+  "pct_vs_prior_7d": "155.6",
+  "top_page_path": "/resources/pixel-universe",
+  "top_page_title": "Pixel Universe \u2014 heroes, villains and 256 tiny squares \u00b7 coffeetableviz",
+  "top_page_visits": 3,
   "top_referrer": "Direct / unknown",
   "top_referrer_visits": 1,
-  "observation": "Traffic stayed fairly close to its recent rhythm.",
-  "generated_at_utc": "2026-11-11T16:09:44+00:00",
+  "observation": "A noticeably busier day than the seven-day baseline.",
+  "generated_at_utc": "2026-11-12T00:36:32+00:00",
   "top_pages": [
     {
-      "path_id": 117603735,
-      "path": "/resources/bauhaus-art-studio",
-      "title": "Bauhaus Art Studio \u00b7 coffeetableviz",
-      "display": "Bauhaus Art Studio",
+      "path_id": 120302704,
+      "path": "/resources/pixel-universe",
+      "title": "Pixel Universe \u2014 heroes, villains and 256 tiny squares \u00b7 coffeetableviz",
+      "display": "Pixel Universe \u2014 heroes, villains and 256 tiny squares",
+      "count": 3
+    },
+    {
+      "path_id": 109453481,
+      "path": "/resources",
+      "title": "Resources \u00b7 coffeetableviz",
+      "display": "Resources",
+      "count": 3
+    },
+    {
+      "path_id": 120306115,
+      "path": "/stories/pixel-universe-256-squares",
+      "title": "Pixel Universe: can you recognise a superhero in 256 squares? \u00b7 coffeetableviz",
+      "display": "Pixel Universe: can you recognise a superhero in 256 squares?",
+      "count": 2
+    },
+    {
+      "path_id": 120214778,
+      "path": "/stories/who-wears-the-hero-colours",
+      "title": "Who wears the hero colours? \u00b7 coffeetableviz",
+      "display": "Who wears the hero colours?",
+      "count": 2
+    },
+    {
+      "path_id": 117320008,
+      "path": "/series/blockbuster-quote/2026-10-29-jaws",
+      "title": "Jaws \u00b7 coffeetableviz",
+      "display": "Jaws",
       "count": 2
     },
     {
@@ -26,6 +54,13 @@
       "count": 2
     },
     {
+      "path_id": 109451764,
+      "path": "/",
+      "title": "coffeetableviz",
+      "display": "Home",
+      "count": 2
+    },
+    {
       "path_id": 120606745,
       "path": "/2026/09/21/taron-egerton-is-strongest-when-the-character-is-real",
       "title": "Taron Egerton is strongest when the character is real \u00b7 coffeetableviz",
@@ -33,17 +68,45 @@
       "count": 1
     },
     {
-      "path_id": 117597360,
-      "path": "/resources/truchet-tile-studio",
-      "title": "Truchet Tile Studio \u00b7 coffeetableviz",
-      "display": "Truchet Tile Studio",
+      "path_id": 113344023,
+      "path": "/icons-of-data/ed-hawkins-warming-stripes",
+      "title": "How the world changed colour \u00b7 coffeetableviz",
+      "display": "How the world changed colour",
       "count": 1
     },
     {
-      "path_id": 109453481,
-      "path": "/resources",
-      "title": "Resources \u00b7 coffeetableviz",
-      "display": "Resources",
+      "path_id": 110776881,
+      "path": "/icons-of-data/beck-tube-map",
+      "title": "The map that put connections first \u00b7 coffeetableviz",
+      "display": "The map that put connections first",
+      "count": 1
+    },
+    {
+      "path_id": 110548893,
+      "path": "/resources/icons-of-data",
+      "title": "Icons of Data \u00b7 coffeetableviz",
+      "display": "Icons of Data",
+      "count": 1
+    },
+    {
+      "path_id": 109453963,
+      "path": "/resources/choosing-the-right-chart",
+      "title": "Choosing the right chart \u00b7 coffeetableviz",
+      "display": "Choosing the right chart",
+      "count": 1
+    },
+    {
+      "path_id": 109446444,
+      "path": "/data-lens",
+      "title": "Data Lens \u00b7 coffeetableviz",
+      "display": "Data Lens",
+      "count": 1
+    },
+    {
+      "path_id": 109446302,
+      "path": "/series/blockbuster-quote",
+      "title": "Today\u2019s Blockbuster Quote \u00b7 coffeetableviz",
+      "display": "Today\u2019s Blockbuster Quote",
       "count": 1
     }
   ],
@@ -53,12 +116,6 @@
       "name": "Direct / unknown",
       "count": 1,
       "ref_scheme": "o"
-    },
-    {
-      "id": "www.linkedin.com",
-      "name": "www.linkedin.com",
-      "count": 1,
-      "ref_scheme": "h"
     }
   ]
 }
