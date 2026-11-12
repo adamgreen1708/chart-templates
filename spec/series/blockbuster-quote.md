@@ -214,22 +214,35 @@ Do not recreate a film poster, publicity still or copyrighted composition.
 Do not imitate a celebrity portrait.
 The illustration must introduce no new text or factual claim.
 
-LOCKED HOUSE STYLE
-- 1:1 square social/editorial card
-- soft grey lightly textured paper matching the site background (`#f1f1f1`)
-- unusually generous outer padding and negative space
-- near-black typography matching the site ink (`#111111`)
-- restrained coffeetableviz red accents (`#c94545`)
-- muted grey secondary text and divider rules
-- large elegant high-contrast serif for the quote
-- small uppercase contemporary sans-serif for date, heading and metadata
-- thin understated divider rules
-- balanced asymmetrical composition
-- exactly one symbolic monochrome cross-hatched sketch
-- supporting copy visually quiet
-- allow enough vertical space for the expanded 2–4 sentence WHY TODAY section; reduce illustration footprint or rebalance negative space if needed, but never shrink contextual copy to illegibility
+LOCKED HOUSE STYLE — THE DEADPOOL CARD IS THE CANONICAL VISUAL REFERENCE
 
-Avoid pinned notes, pushpins, scrapbook styling, decorative borders, large colour blocks, cards/panels, clutter, multiple illustrations, unnecessary icons, faux movie-poster recreation or celebrity likeness imitation.
+The approved baseline is the actual PNG already in this repository:
+`site/assets/blockbuster-quote/2026-10-23-deadpool.png`.
+Open and VISUALLY INSPECT this image on every run before designing a new card. It is the authoritative template for the positioning, scale, typography, colour hierarchy, rules and whitespace. Treat its film, quote, date and decorative illustration ONLY as layout examples, NEVER as factual content to reuse. No other previous daily card and no creative interpretation of the general style may override this reference.
+
+Reproduce the **same editorial composition** for each new edition. Change only the verified six-field copy, its necessary text wrapping, and the one film-specific symbolic illustration. Do not redesign the template according to the length or subject of a quote. If the fixed composition cannot accommodate verified copy legibly, adjust type within the narrow limits below; if it still cannot fit, reject the render rather than invent an alternative composition.
+
+REFERENCE-BASED 1600 × 1600 LAYOUT CONTRACT
+The coordinates below are approximate pixel anchors measured against the canonical Deadpool image; their purpose is to preserve the same visual layout, not to force identical glyph pixels across font engines. Keep horizontal alignment, relative scale, positions and section structure very close to the reference (normally within ~20–30 px). The reference itself takes precedence when a coordinate description is ambiguous.
+
+1. Canvas: exactly 1600 × 1600, square; very lightly textured paper grey `#f1f1f1`, ink `#111111`, accent red `#c94545`, muted grey for secondary text. No white card, tinted panels, framed boxes, borders or scrapbook treatments. Approximately 110 px left/right safe margins; common left edge x≈112 and common right edge x≈1488.
+2. TOP MASTHEAD (one horizontal row, y≈95–120): `TODAY’S BLOCKBUSTER QUOTE` on the **top left in bold uppercase RED sans-serif** (~26–28 px), and the full RUN_DATE on the **top right in grey uppercase sans-serif** (~26 px), aligned to the masthead baseline. The date must NEVER be placed above the heading or on the left. Directly beneath this row, a **single uninterrupted RED horizontal rule** from x≈112 to x≈1488 at y≈141, ~4–5 px thick. Never substitute a short red dash or grey masthead divider.
+3. FILM TITLE (around x≈112, y≈185): film name in **bold BLACK sans-serif** (~44 px); film year **inline immediately after the name in RED regular sans-serif** (~26 px), aligned around the title baseline. Do NOT set the film title in serif, enlarge it like a display quote, colour the year grey or put the year in parentheses.
+4. HERO QUOTE (starts roughly x≈112, y≈330): a very large, **HEAVY/BOLD, high-contrast BLACK serif**, ~95–110 px for short quotes; proper curly opening and closing quotation marks; deliberately wrapped into a small number of balanced lines. The quote is the strongest element, but occupies the **LEFT** portion of the central visual field. It must not be light-weight, spindly or thin serif. Constrain it to the left two-thirds or less; preserve ample space around it. Adjust font size/line breaks before changing the layout for longer quotations.
+5. SINGLE SYMBOLIC ILLUSTRATION: on the **RIGHT of the quote**, centred broadly in x≈1080–1480 and y≈400–760; modest in size and visually subordinate to the quote, with plenty of unoccupied space around it. Use one small, monochrome, hand-inked/cross-hatched symbolic motif specific to the film (the crossed katanas are a *scale and placement* reference, not a motif to copy). A few very thin red sketch accents are acceptable. Do not draw a huge hero illustration, colour picture, celebrity face, second motif or text in the illustration. It must stay above the WHY TODAY divider and not overlap the quote.
+6. EDITORIAL BREATHING ROOM: retain the notably open middle band of the reference. The first full-width grey dividing rule occurs around y≈965, from x≈112 to x≈1488. Do not insert extra short red underlines or intermediate horizontal rules around the quote.
+7. WHY TODAY: the label appears just below this divider near x≈112, y≈1015, in **bold RED uppercase sans-serif** (~25 px). Body copy starts at x≈112, y≈1060–1070, in **BLACK contemporary sans-serif** (~32–34 px) at comfortable ~49–52 px line spacing, across the wide text area, ideally 3–4 lines for the required 35–65 words. It should read as the principal lower editorial paragraph, not small or faint grey text. Never relocate the section upward simply because the illustration is large. Keep the whole paragraph safely clear of the footer.
+8. FOOTER: a **single near-BLACK thin rule** across x≈112–1488 at y≈1405. Place the dry KICKER beneath, x≈112 and y≈1440, in **muted GREY italic SERIF** (~27 px). Do NOT use upright sans-serif, place the kicker above the footer rule, or omit the footer spacing.
+9. Visual hierarchy must remain: red left masthead + grey right date → strong top red rule → black bold film title + inline red year → huge black **bold** serif quote beside a modest cross-hatched illustration → generous whitespace → full-width light-grey WHY TODAY rule + red label + black body → near-black footer rule + small grey *italic-serif* kicker. Preserve this layout across all editions.
+
+DISALLOWED RENDER DRIFT
+Explicitly reject the following even when their text is factually correct: date at top left; masthead on a second row; black letter-spaced masthead; short decorative red dashes instead of the top red rule; grey film year in parentheses; serif film name; light/regular serif quote; large illustration that consumes the right half from title to divider; illustration overlapping a rule; faint small WHY TODAY body; grey footer divider and upright sans-serif kicker; newly invented divider positions, cards, banners or layouts.
+
+IMPLEMENTATION AND FIDELITY QA
+- Programmatically position all verified copy; use actual font files with bold-serif and sans weights, not font-weight approximations produced by an image model. Draw the paper grain, lines and symbolic cross-hatched illustration deterministically.
+- Before presenting the edition, inspect the finished 1600 × 1600 PNG **side-by-side at the same scale** with `site/assets/blockbuster-quote/2026-10-23-deadpool.png`. Check the masthead row/order, red-rule length, film+year treatment, quote weight, illustration size, WHY TODAY baseline/body readability, footer rule and italic kicker individually.
+- A factual check or bounding-box check does not establish style fidelity. If the completed image visually departs from the canonical reference, FIX and RERENDER the same frozen copy deck, then re-inspect the actual pixels. Set `qa.render_checked: true` only when all visual checks, exact-copy checks and clipping checks have actually passed.
+- If the canonical reference image cannot be read or a suitable deterministic bold-serif/sans rendering method is unavailable, fail the render gate explicitly rather than substituting a different design.
 
 STEP 9 — POST-RENDER QA ON THE ACTUAL FINAL IMAGE
 Inspect the rendered image itself before presenting it.
@@ -241,7 +254,8 @@ Inspect the rendered image itself before presenting it.
 6. Confirm the expanded WHY TODAY remains comfortably readable and is not clipped, overcrowded or visually subordinate to the point of illegibility.
 7. Reject the render for any typo, wrong date, changed quote, new factual claim, missing text, duplicated text, ghosting, clipping, overlap, malformed lettering, mixed candidate content, accidental extra date, or layout failure.
 8. Confirm the illustration contains no text and no new factual claim.
-9. If layout fails, fix the deterministic layout and rerender internally. Never alter factual copy merely to make the layout fit.
+9. Open the canonical Deadpool reference PNG and compare it directly with the full-size final render, checking ALL nine layout-contract items above. Fail and rerender if the template's hierarchy, fonts, positions, lines or whitespace have drifted.
+10. If layout fails, fix the deterministic layout and rerender internally. Never alter factual copy merely to make the layout fit.
 
 STEP 10 — CREATE ONE DRAFT GITHUB PULL REQUEST
 Use the configured GitHub connection. Do not ask Adam to copy files manually.
