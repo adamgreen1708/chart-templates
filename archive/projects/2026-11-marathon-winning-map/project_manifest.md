@@ -25,7 +25,7 @@ The archive regenerates all chart CSVs with `scripts/build_chart_views.py` and r
 - Boston 2018: https://www.baa.org/races/boston-marathon/history/
 - NYC 2012 cancelled: https://prod.nyrr.org/tcsnycmarathon/marathon-history
 
-The original source is **not a blanket independently verified official result archive**. The explicitly mentioned winners and streak were verified independently; additional source flags may require a wider audit before publication among a global specialist audience. This is six historical races, not all current World Marathon Majors (Sydney omitted).
+The original source is **not a blanket independently verified official result archive**. The explicitly mentioned winners and streak were verified independently; all other source results still require a wider independent official-results audit before claiming blanket verification. This is six historical races, not all eight current World Marathon Majors (Sydney and Cape Town omitted).
 
 ## Release gate
 
@@ -34,3 +34,5 @@ All three PNGs must pass source-backed 1600px/390px/320px QA, including one-line
 ## Stringent reproducible DQ gate (13 November 2026)
 
 The chart build executes a source checksum, original-9-column round-trip and the canonical Node dataset `--check`, checks full 2000–19 race-year completeness and cancellation, and requires an exact record-keyed eight-entry official-evidence ledger. It recomputes all red dots and fractions from rows and writes `data/qa_report.json`. See `review/source_event_qa.md` and `review/flagged_source_evidence.csv`. A successful render **does not** certify all source winners independently; keep the source-derived limitation visible. The current AbbottWMM has eight events (Sydney and Cape Town are not in this historical six-race collection). The source checksum is frozen: changes require a new editorial review and deliberate pin update.
+
+**Rendering contract gate:** the same GitHub builder now parses the three actual `CHART_CONFIG` files and fails if they depart from the approved `social_square` profile, 8×8 / 200 DPI canvas, four semantic endpoint labels, zero-to-100% final axis, matching matrix geometry and highlight meanings, footer or Shorts in Sports credit. The second PNG is now named `02_find_the_four.png` to match its corrected four-exception title.

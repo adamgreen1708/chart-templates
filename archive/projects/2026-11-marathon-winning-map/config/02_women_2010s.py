@@ -74,5 +74,5 @@ CHART_CONFIG = {
     "plot_right": 0.87,
     "vertical_gridlines": False,
     "dpi": 200,
-    "output_file": "output/02_find_the_three.png"
+    "output_file": "output/02_find_the_four.png"
 }

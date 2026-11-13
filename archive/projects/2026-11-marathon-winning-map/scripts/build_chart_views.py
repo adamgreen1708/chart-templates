@@ -6,6 +6,7 @@ structural build is NOT a certificate of an exhaustive official-results audit.
 """
 from __future__ import annotations
 
+import ast
 import csv
 import hashlib
 import json
@@ -222,6 +223,76 @@ def main() -> None:
               ["PeriodIndex", "Period", "Sex", "OutsideShare",
                "OtherWins", "TotalWins"], slope)
 
+    # Gate 7: check the actual committed chart configs against the current
+    # repository social-square contract before GitHub renders anything.
+    configs = {}
+    for filename in ("01_women_2000s.py", "02_women_2010s.py", "03_share_by_sex.py"):
+        path = PROJECT / "config" / filename
+        module = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+        assignments = [stmt for stmt in module.body if isinstance(stmt, ast.Assign)
+                       and any(isinstance(t, ast.Name) and t.id == "CHART_CONFIG"
+                               for t in stmt.targets)]
+        require(len(assignments) == 1, f"Missing CHART_CONFIG: {filename}")
+        config = ast.literal_eval(assignments[0].value)
+        require(config["render_profile"] == "social_square",
+                f"{filename} does not use the production house profile")
+        require(config["fig_width"] == 8.0 and config["fig_height"] == 8.0
+                and config["dpi"] == 200, f"{filename} must be square 1600px PNG")
+        require(config["source_text"].startswith("Source: Shorts in Sports"),
+                f"{filename} omits the actual credited source")
+        require(config["footer_left"] == "Adam Green | coffeetableviz",
+                f"{filename} has inconsistent brand credit")
+        require(bool(config["title"]) and bool(config["subtitle"]),
+                f"{filename} missing editorial hierarchy")
+        require(config["vertical_gridlines"] is False,
+                f"{filename} has unexpected vertical gridlines")
+        require(config["output_file"].startswith("output/") and
+                config["output_file"].endswith(".png"),
+                f"{filename} output must be a descriptive PNG")
+        require(config["sort"] is None or isinstance(config["sort"], dict),
+                f"{filename} sort must be a dict or None")
+        require(config["data_file"].startswith(
+                "archive/projects/2026-11-marathon-winning-map/data/"),
+                f"{filename} data must be source-generated within this project")
+        configs[filename] = config
+    first_cfg, second_cfg = configs["01_women_2000s.py"], configs["02_women_2010s.py"]
+    for c in (first_cfg, second_cfg):
+        require(c["chart_type"] == "scatter", "The two puzzles must be dot matrices")
+        require(c["y_axis_min"] == 0 and c["y_axis_max"] == 7,
+                "Unclipped identical race axis required")
+        require(c["highlight_points"] == [{"Group": "Outside"}],
+                "Red must always represent outside Kenya/Ethiopia")
+        require(c["point_style"]["size"] == c["highlight_style"]["size"],
+                "Colour, not mark area, must encode winner group")
+    require(first_cfg["y_tick_labels"] == second_cfg["y_tick_labels"],
+            "The two decade matrices must have identical race order")
+    require(first_cfg["point_style"] == second_cfg["point_style"] and
+            first_cfg["highlight_style"] == second_cfg["highlight_style"],
+            "The two decade matrices must have identical marker style")
+    require(first_cfg["profile_overrides"] == second_cfg["profile_overrides"],
+            "The two decade matrices must use the same labelled plot margins")
+    require(first_cfg["output_file"].endswith("01_berlin_six_and_the_world.png")
+            and second_cfg["output_file"].endswith("02_find_the_four.png"),
+            "Descriptive source output names drifted from the corrected story")
+    last_cfg = configs["03_share_by_sex.py"]
+    require(last_cfg["chart_type"] == "line" and
+            last_cfg["series_col"] == "Sex" and last_cfg["focus_series"] == "Women",
+            "The comparison must have two separately sourced sex series")
+    require(last_cfg["y_axis_min"] == 0 and last_cfg["y_axis_max"] == 1
+            and last_cfg["y_tick_format"] == "percent",
+            "Comparison percentages must use a zero-to-100-percent axis")
+    require(last_cfg["focus_style"]["color"] == "#C44E52",
+            "Women must be highlighted red consistently")
+    require(len(last_cfg["annotate_points"]) == 4,
+            "Expected only the four labelled source-derived endpoints")
+    annotation_texts = {a["text"] for a in last_cfg["annotate_points"]}
+    expected_texts = {
+        f"{sex} {round(count / n * 100)}%"
+        for (sex, _), (count, n) in observed.items()
+    }
+    require(annotation_texts == expected_texts,
+            "Chart annotations no longer match rounded derived percentages")
+
     # A pass confirms integrity, calculations and named high-risk cases.
     # It does not claim the other source winners were independently audited.
     unreviewed = sum(r["Result_Status"] == "Not independently checked"
@@ -230,6 +301,7 @@ def main() -> None:
     require(unreviewed == 216, "Unreviewed source-claim count changed")
     report = {
         "structural_data_qa": "PASS",
+        "social_square_config_qa": "PASS",
         "full_official_results_audit": "NOT COMPLETE",
         "source_snapshot": "999b9b57c2cf61a1222bb4f08a4bdd885898e09a",
         "source_github_blob_sha": {v[0]: v[1] for v in MASTERS.values()},
@@ -249,6 +321,7 @@ def main() -> None:
     (OUT / "qa_report.json").write_text(
         json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print("MARATHON DATA QA PASS: 308 original rows preserved; pinned source checksums match.")
+    print("THREE SOCIAL-SQUARE CONFIGS PASS SEMANTIC COLOUR, AXIS AND FOOTER CONTRACT.")
     print("CANONICAL DATA BUILD --check PASS; 112 completed race-year pairs.")
     print("EIGHT SOURCE FLAGS MATCH OFFICIAL-EVIDENCE LEDGER; NO SILENT EXCLUSIONS.")
     print("Story arithmetic: women 31/53 -> 4/59; men 12/53 -> 6/59.")
