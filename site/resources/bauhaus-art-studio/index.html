@@ -105,7 +105,7 @@ permalink: /resources/bauhaus-art-studio/
 </div></section>
 <section class="section creative-box" id="bh-brushes-section"><span class="kicker">04 / Edit the artwork</span><h2>Pick a shape. Tap a tile.</h2><p class="muted">Tap again with the same shape to rotate it. For the original red-and-cream Cutout on yellow, choose the <strong>Hidden Miles</strong> palette or preset.</p>
 <div class="brushes" id="bh-brushes"><button type="button" data-shape="0" class="active">● Circle</button><button type="button" data-shape="1">◕ Quarter</button><button type="button" data-shape="2">◓ Half</button><button type="button" data-shape="3">▲ Triangle</button><button type="button" data-shape="4">▥ Stripes</button><button type="button" data-shape="5">◯ Arc</button><button type="button" data-shape="6">■ Block</button><button type="button" data-shape="7">◩ Cutout</button><button type="button" data-shape="-1">⌫ Erase</button></div></section>
-<section class="section data-box" id="bh-data" hidden><span class="kicker">04 / Form follows data</span><h2>Upload your numbers.</h2><p class="muted">Choose a local CSV, or load public data directly from your GitHub repository. Maximum 2 MB and 10,000 input rows; the artwork shows up to 64 rows.</p>
+<section class="section data-box" id="bh-data" hidden><span class="kicker">04 / Form follows data</span><h2>Upload your numbers.</h2><p class="muted">Choose a local CSV, or paste a CSV link from any public GitHub repository. Maximum 2 MB and 10,000 input rows; the artwork shows up to 64 rows. Times such as 2:09:45 are measured as elapsed seconds and displayed as hours:minutes:seconds.</p>
 <label class="upload" for="bh-file"><strong>Choose a CSV file</strong><input type="file" id="bh-file" accept=".csv,text/csv,text/plain"></label>
 <p class="muted" id="bh-file-info">Local files stay on your device and are not uploaded to Coffeetableviz.</p>
 <div class="github-import" aria-label="Connect to public GitHub data">
@@ -117,10 +117,10 @@ permalink: /resources/bauhaus-art-studio/
     <option value="archive/projects/2026-09-david-bowie-track-distributions/data/bowie_track_distribution_rows.csv">David Bowie · Track distributions</option>
   </select>
   <button type="button" class="primarybutton" id="bh-github-load">Load this dataset</button>
-  <label class="field" for="bh-github-url">Or paste a GitHub CSV link (main or commit permalink)</label>
+  <label class="field" for="bh-github-url">Or paste a public GitHub CSV link (main or commit permalink)</label>
   <input type="url" id="bh-github-url" placeholder="https://github.com/adamgreen1708/chart-templates/blob/main/…csv" autocomplete="off">
   <button type="button" class="primarybutton" id="bh-github-link">Load GitHub link</button>
-  <p class="muted" id="bh-github-info" role="status">Paste a public CSV link from main or a specific Git commit. GitHub receives the request; no login or token is needed. Pinned commit links always load that exact snapshot.</p>
+  <p class="muted" id="bh-github-info" role="status">Paste a public CSV from any GitHub repository on main or a full Git commit permalink. GitHub receives the request; no login or token is needed. Pinned commit links always load that exact snapshot.</p>
 </div>
 <label class="field" for="bh-label">Label column</label><select id="bh-label" disabled><option>Choose a CSV first</option></select>
 <label class="field" for="bh-value">Numeric value column</label><select id="bh-value" disabled><option>Choose a CSV first</option></select>
@@ -268,7 +268,7 @@ permalink: /resources/bauhaus-art-studio/
 <p id="bh-status" class="status" role="status" aria-live="polite">Ready. Pick a shape or change the pattern.</p>
 <div id="bh-export" class="export" hidden><strong>Your square artwork is ready.</strong><p>On an iPhone, touch and hold the image to save it. On desktop, use the PNG link.</p><img id="bh-preview" alt="Your finished Bauhaus artwork as a PNG" width="960" height="960"><a href="#" id="bh-download" download="coffeetableviz-bauhaus.png">↓ Download PNG</a></div>
 </section></div>
-<section class="story"><strong>Form follows data.</strong> Pixel Art gives you squares to paint. Truchet gives you a rule to repeat. Bauhaus Art Studio adds circles, triangles, colour and — if you want — your own numbers. In Data Art mode, the solid shapes are measured rather than arbitrary: their filled areas represent the values when the zero-based proportional scale is selected. Load a local CSV or a public dataset from the Coffeetableviz GitHub repository on main. Larger CSVs can be explored with their first 64 rows; this limit is shown rather than hidden. Change the composition, shape family, colour rule and sorting, then make the headline, explanation and source line your own. The zero-based proportional area option preserves actual magnitude, while the optional contrast scale is explicitly labelled as min–max. Turn optional shape labels on to show the label, value, both, or displayed index; cramped labels are suppressed rather than colliding with their neighbours. Poster Composer adds proportional-area Data Mosaic, zero-based Typographic Broadside, measured Stripe Study and Circle Study, with separate composition rules instead of simply rearranging the same shapes. The Hidden Miles preset recreates a fixed 3 × 4 stepped diagonal with a cream cutout in the top-right of every tile. Choose its palette for red geometry on yellow; the individually editable Cutout shape works in all palettes. The rest is an exercise in creative freedom. Inspired by <a href="{{ '/2024/12/31/running-in-shapes-a-bauhaus-inspired-journey-through-data/' | relative_url }}">Running in Shapes</a> and the original <a href="https://public.tableau.com/app/profile/adam.green4310/viz/HiddenMiles/Bauhausrunningtotal">Hidden Miles Tableau artwork</a>.</section>
+<section class="story"><strong>Form follows data.</strong> Pixel Art gives you squares to paint. Truchet gives you a rule to repeat. Bauhaus Art Studio adds circles, triangles, colour and — if you want — your own numbers. In Data Art mode, the solid shapes are measured rather than arbitrary: their filled areas represent the values when the zero-based proportional scale is selected. Load a local CSV or a public CSV from any GitHub repository on main or a pinned commit. Duration values such as 2:09:45 are converted to elapsed seconds for geometry while the original clock times remain visible. Larger CSVs can be explored with their first 64 rows; this limit is shown rather than hidden. Change the composition, shape family, colour rule and sorting, then make the headline, explanation and source line your own. The zero-based proportional area option preserves actual magnitude, while the optional contrast scale is explicitly labelled as min–max. Turn optional shape labels on to show the label, value, both, or displayed index; cramped labels are suppressed rather than colliding with their neighbours. Poster Composer adds proportional-area Data Mosaic, zero-based Typographic Broadside, measured Stripe Study and Circle Study, with separate composition rules instead of simply rearranging the same shapes. The Hidden Miles preset recreates a fixed 3 × 4 stepped diagonal with a cream cutout in the top-right of every tile. Choose its palette for red geometry on yellow; the individually editable Cutout shape works in all palettes. The rest is an exercise in creative freedom. Inspired by <a href="{{ '/2024/12/31/running-in-shapes-a-bauhaus-inspired-journey-through-data/' | relative_url }}">Running in Shapes</a> and the original <a href="https://public.tableau.com/app/profile/adam.green4310/viz/HiddenMiles/Bauhausrunningtotal">Hidden Miles Tableau artwork</a>.</section>
 </div></article>
 <script>
 (function(){
@@ -279,7 +279,7 @@ if(!ctx){$('status').textContent='Sorry, this browser cannot draw on a canvas.';
 var palettes=[{bg:'#f7f0db',c:['#c7412e','#e9b725','#26599c','#191919'],muted:'#867e71'},{bg:'#f3dd00',c:['#cb3e2a','#faeec4','#a92f20','#fff4d0'],muted:'#a33524'},{bg:'#eff0f1',c:['#1f8fa8','#c44e52','#252d35','#e5ac32'],muted:'#5b6770'},{bg:'#202126',c:['#eabb43','#d95144','#f7eedb','#78b8c0'],muted:'#b6b3b0'}];
 var names={rhythm:'Geometric rhythm',radial:'Around the centre',hidden:'Hidden Miles · homage',random:'Beautiful chaos',free:'Blank canvas',data:'Form follows data'};
 var demo=[42,58,74,63,85,91,68,82,60,95,70,65].map(function(value,i){return{label:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][i],value:value};});
-var state={mode:'rhythm',n:8,chaos:12,pal:0,seed:15,brush:0,edits:{},history:[],rows:demo.slice(),isDemo:true,metric:'Miles (illustrative)',sourceLabel:'ILLUSTRATIVE SAMPLE',totalSelected:12};
+var state={mode:'rhythm',n:8,chaos:12,pal:0,seed:15,brush:0,edits:{},history:[],rows:demo.slice(),isDemo:true,metric:'Miles (illustrative)',sourceLabel:'ILLUSTRATIVE SAMPLE',totalSelected:12,durationFormat:null};
 var imported=null,MAX_BYTES=2*1024*1024,githubLoadId=0,filterCategories=[],dataHitRegions=[],editorOverrides={headline:null,deck:null,credit:null},activeArtworkSource=null;
 var visual={layout:'grid',marks:'mixed',colour:'bands',colourField:-1,sort:'source',scale:'zero',preset:'patchwork',showLabels:false,labelContent:'label',hideSmall:true,galleryFinish:'paper',circleEncoding:'area',circleScope:'records',stripeStyle:'sun',broadsideStyle:'architectural'};
 var markNames={mixed:'mixed shapes',circle:'circles',square:'squares',triangle:'triangles',half:'semicircles',quarter:'quarter circles'};
@@ -331,7 +331,7 @@ function sourceRowNote(n){
  return msg;
 }
 function editorCopy(){
- var n=state.rows.length,metric=formatField(state.metric),shown=n+' row'+(n===1?'':'s'),cols=visual.colour==='category'&&visual.colourField<0?'above/below median':colourNames[visual.colour],shape=visual.marks==='mixed'?'mixed Bauhaus shapes':markNames[visual.marks];
+ var n=state.rows.length,metric=formatField(state.metric)+(state.durationFormat?' (elapsed time)':''),shown=n+' row'+(n===1?'':'s'),cols=visual.colour==='category'&&visual.colourField<0?'above/below median':colourNames[visual.colour],shape=visual.marks==='mixed'?'mixed Bauhaus shapes':markNames[visual.marks];
  // The user-approved Bowie example calls this source field "Track duration".
  // Only Sun's editorial wording is affected: other posters and all numeric
  // geometry continue to use the original selected CSV field unchanged.
@@ -422,7 +422,7 @@ function layoutMarks(rows){
 }
 
 function labelLines(row,index){
- var value=String(row.value);
+ var value=state.durationFormat?v3Value(row.value):String(row.value);
  if(visual.labelContent==='value')return[value];
  if(visual.labelContent==='index')return[String(index+1)];
  if(visual.labelContent==='both')return[String(row.label),value];
@@ -491,7 +491,10 @@ function v3Format(v){
  return Number(v).toLocaleString('en-GB',{maximumFractionDigits:2});
 }
 function v3Value(v){
- var secs=Math.round(v);return /duration.*seconds/i.test(state.metric)?Math.floor(secs/60)+':'+String(secs%60).padStart(2,'0'):v3Format(v);
+ var secs=Math.round(v);
+ if(state.durationFormat==='hms')return Math.floor(secs/3600)+':'+String(Math.floor(secs/60)%60).padStart(2,'0')+':'+String(secs%60).padStart(2,'0');
+ if(state.durationFormat==='ms'||/duration.*seconds/i.test(state.metric))return Math.floor(secs/60)+':'+String(secs%60).padStart(2,'0');
+ return v3Format(v);
 }
 function v3Ink(hex){
  var h=String(hex).replace('#',''),r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);
@@ -1239,8 +1242,40 @@ function render(){
 function refresh(){root.querySelectorAll('[data-mode]').forEach(function(b){var a=b.dataset.mode===state.mode;b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a));});root.querySelectorAll('[data-pal]').forEach(function(b){var a=+b.dataset.pal===state.pal;b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a));});root.querySelectorAll('[data-shape]').forEach(function(b){var a=+b.dataset.shape===state.brush;b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a));});$('scale').hidden=state.mode==='data';$('reference-note').hidden=state.mode!=='hidden';$('size').disabled=state.mode==='hidden';$('chaos').disabled=state.mode==='hidden';$('brushes-section').hidden=state.mode==='data';$('data').hidden=state.mode!=='data';$('reroll').disabled=state.mode==='hidden'||(state.mode==='data'&&['mosaic','broadside'].includes(visual.layout));$('undo').disabled=state.mode==='data';$('reset').disabled=state.mode==='data';$('share').disabled=state.mode==='data';$('size-out').textContent=state.mode==='hidden'?'3 × 4':state.n+' × '+state.n;$('chaos-out').textContent=state.chaos+'%';$('size').value=state.n;$('chaos').value=state.chaos;render();}
 function parseCSV(source){var raw=source.replace(/^\uFEFF/,'').replace(/\r\n?/g,'\n');var delimiter=',',first=raw.split('\n')[0],counts=[',',';','\t'].map(function(d){var q=false,n=0;for(var i=0;i<first.length;i++){if(first[i]==='"'){if(q&&first[i+1]==='"')i++;else q=!q;}else if(!q&&first[i]===d)n++;}return n;});delimiter=[',',';','\t'][counts.indexOf(Math.max.apply(null,counts))];var rows=[],row=[],field='',quoted=false;for(var k=0;k<raw.length;k++){var ch=raw[k];if(ch==='"'){if(quoted&&raw[k+1]==='"'){field+='"';k++;}else if(field.trim()===''||quoted){quoted=!quoted;}else{throw Error('Unexpected quote on row '+(rows.length+1)+'.');}}else if(ch===delimiter&&!quoted){row.push(field.trim());field='';}else if(ch==='\n'&&!quoted){row.push(field.trim());if(row.some(function(v){return v!=='';}))rows.push(row);row=[];field='';}else field+=ch;}if(quoted)throw Error('CSV contains an unclosed quoted field.');row.push(field.trim());if(row.some(function(v){return v!=='';}))rows.push(row);
 if(rows.length<2)throw Error('CSV needs column headers and at least one data row.');if(rows.length>10001)throw Error('This edition supports up to 10,000 input rows.');var headers=rows[0];if(headers.length<2||headers.some(function(h){return!h;}))throw Error('CSV needs two or more named columns.');if(new Set(headers).size!==headers.length)throw Error('CSV header names must be unique.');if(rows.slice(1).some(function(r){return r.length!==headers.length;}))throw Error('Some CSV rows have a different number of columns.');return{headers:headers,records:rows.slice(1)};}
-function numeric(v){var s=String(v).trim().replace(/,/g,'');if(!s)return NaN;return Number(s);}
-function fillSelectors(data){['label','value'].forEach(function(id){var sel=$(id);sel.innerHTML='';data.headers.forEach(function(h,i){var o=document.createElement('option');o.value=String(i);o.textContent=h;sel.appendChild(o);});sel.disabled=false;});var numericIndices=data.headers.map(function(h,i){return i;}).filter(function(i){return data.records.every(function(r){return Number.isFinite(numeric(r[i]))&&numeric(r[i])>=0;});});$('label').value=String(data.headers.findIndex(function(_,i){return numericIndices.indexOf(i)===-1;})>=0?data.headers.findIndex(function(_,i){return numericIndices.indexOf(i)===-1;}):0);$('value').value=String(numericIndices.find(function(i){return i!==Number($('label').value);})===undefined?(numericIndices[0]===undefined?1:numericIndices[0]):numericIndices.find(function(i){return i!==Number($('label').value);}));$('apply').disabled=false;}
+// Only unambiguous clock-style durations are converted to elapsed seconds.
+function durationKind(v){
+ var s=String(v===null||v===undefined?'':v).trim();
+ if(/^\d+:[0-5]\d:[0-5]\d$/.test(s))return 'hms';
+ if(/^\d+:[0-5]\d$/.test(s))return 'ms';
+ return null;
+}
+function numeric(v){
+ var s=String(v===null||v===undefined?'':v).trim();
+ if(!s)return NaN;
+ var kind=durationKind(s);
+ if(kind){var p=s.split(':').map(Number);return kind==='hms'?p[0]*3600+p[1]*60+p[2]:p[0]*60+p[1];}
+ return Number(s.replace(/,/g,''));
+}
+function fillSelectors(data){
+ ['label','value'].forEach(function(id){
+  var sel=$(id);sel.innerHTML='';
+  data.headers.forEach(function(h,i){var o=document.createElement('option');o.value=String(i);o.textContent=h;sel.appendChild(o);});
+  sel.disabled=false;
+ });
+ var numericIndices=data.headers.map(function(h,i){return i;}).filter(function(i){
+  return data.records.every(function(r){return Number.isFinite(numeric(r[i]))&&numeric(r[i])>=0;});
+ });
+ // Prefer a clock-duration column even if some records have missing times.
+ var clockIndices=data.headers.map(function(h,i){return i;}).filter(function(i){
+  var filled=data.records.map(function(r){return r[i];}).filter(function(v){return String(v).trim()!=='';});
+  return filled.length>0&&filled.every(function(v){return durationKind(v)!==null;});
+ });
+ var labelIndex=data.headers.findIndex(function(_,i){return numericIndices.indexOf(i)===-1&&clockIndices.indexOf(i)===-1;});
+ $('label').value=String(labelIndex>=0?labelIndex:0);
+ var valueIndex=clockIndices.concat(numericIndices).find(function(i){return i!==Number($('label').value);});
+ $('value').value=String(valueIndex===undefined?1:valueIndex);
+ $('apply').disabled=false;
+}
 
 function applyImported(){
  if(!imported){status('Choose a local CSV or load a GitHub dataset first.');return false;}
@@ -1264,7 +1299,7 @@ function applyImported(){
  records.forEach(function(r,i){
   var value=numeric(r[vi]);
   if(!Number.isFinite(value)||value<0){omitted++;return;}
-  valid.push({label:r[li]||'Row '+(i+1),value:value,sourceIndex:sourcePositions.get(r)});
+  valid.push({label:r[li]||'Row '+(i+1),value:value,rawValue:r[vi],sourceIndex:sourcePositions.get(r)});
  });
  if(!valid.length){
   status('No valid non-negative numeric values in '+imported.headers[vi]+
@@ -1278,6 +1313,8 @@ function applyImported(){
  // Missing or invalid values are excluded, not misrepresented as zero.
  state.rows=vals;state.mode='data';state.isDemo=false;activeArtworkSource=imported;
  state.metric=imported.headers[vi];state.totalSelected=records.length;
+ state.durationFormat=valid.some(function(r){return durationKind(r.rawValue)==='hms';})?'hms':
+  valid.some(function(r){return durationKind(r.rawValue)==='ms';})?'ms':null;
  state.invalidValueCount=omitted;state.sourceLabel=imported.sourceLabel;state.sourceName=imported.name||'CSV';
  state.filterName=filterField>=0&&categoryIndex>=0?imported.headers[filterField]+' = '+filterCategories[categoryIndex]:'';
  state.activeMapping={label:li,value:vi,filter:filterField,category:categoryIndex};
@@ -1328,7 +1365,8 @@ function repoCsvUrl(input){
  var parts;
  try{parts=u.pathname.split('/').filter(Boolean).map(function(x){return decodeURIComponent(x);});}
  catch(e){throw Error('The GitHub file link contains invalid URL encoding.');}
- if(parts[0]!=='adamgreen1708'||parts[1]!=='chart-templates')throw Error('Choose a CSV from adamgreen1708/chart-templates.');
+ var owner=parts[0],repo=parts[1];
+ if(!/^[A-Za-z0-9-]{1,39}$/.test(owner||'')||!/^[A-Za-z0-9_.-]+$/.test(repo||'')||repo==='.'||repo==='..')throw Error('Choose a valid public GitHub repository CSV.');
  var offset,ref;
  if(u.hostname==='github.com'){
   if(!['blob','raw'].includes(parts[2]))throw Error('Use a GitHub CSV file link, not a folder or repository home page.');
@@ -1338,8 +1376,8 @@ function repoCsvUrl(input){
  if(ref!=='main'&&!isCommit)throw Error('Use a CSV link from main or a full 40-character commit permalink.');
  if(isCommit)ref=ref.toLowerCase();
  var path=parts.slice(offset);
- if(!path.length||!path[path.length-1].toLowerCase().endsWith('.csv')||path.some(function(v){return !v||v==='.'||v==='..'||!/^[\w.\- ]+$/.test(v);}))throw Error('Choose a valid CSV file within this repository.');
- return {url:'https://raw.githubusercontent.com/adamgreen1708/chart-templates/'+ref+'/'+path.map(encodeURIComponent).join('/'),ref:ref,isCommit:isCommit};
+ if(!path.length||!path[path.length-1].toLowerCase().endsWith('.csv')||path.some(function(v){return !v||v==='.'||v==='..'||!/^[\w.\- ]+$/.test(v);}))throw Error('Choose a valid public GitHub CSV file.');
+ return {url:'https://raw.githubusercontent.com/'+owner+'/'+repo+'/'+ref+'/'+path.map(encodeURIComponent).join('/'),ref:ref,isCommit:isCommit,owner:owner,repo:repo};
 }
 async function readGithub(url){
  var ctrl=new AbortController(),timer=setTimeout(function(){ctrl.abort();},15000);
@@ -1367,10 +1405,10 @@ async function loadGithub(input,prefs){
  try{
   var source=await readGithub(link.url);if(id!==githubLoadId)return;
   var shortRef=link.ref.slice(0,8),filename=decodeURIComponent(link.url.split('/').pop());
-  receiveCsv(source,'GitHub: '+filename+(link.isCommit?' @ '+shortRef:''),prefs,link.isCommit?'PUBLIC GITHUB SNAPSHOT':'PUBLIC GITHUB DATA');
+  receiveCsv(source,'GitHub: '+link.owner+'/'+link.repo+' · '+filename+(link.isCommit?' @ '+shortRef:''),prefs,link.isCommit?'PUBLIC GITHUB SNAPSHOT':'PUBLIC GITHUB DATA');
   $('github-info').textContent=link.isCommit?
-   'Loaded pinned commit '+link.ref+'. This exact CSV snapshot stays fixed even if main changes.':
-   'Loaded from main. Reload this dataset to pick up future GitHub changes.';
+   'Loaded '+link.owner+'/'+link.repo+' at pinned commit '+link.ref+'. This CSV snapshot stays fixed even if main changes.':
+   'Loaded '+link.owner+'/'+link.repo+' from main. Reload this dataset to pick up future changes.';
   return true;
  }catch(e){
   if(id!==githubLoadId)return;
@@ -1523,7 +1561,7 @@ $('data-presets').addEventListener('click',function(e){
 $('auto-text').addEventListener('click',function(){editorOverrides={headline:null,deck:null,credit:null};syncEditor();if(state.mode==='data')render();status('Headline, explanation and source regenerated from your current data.');});
 syncVisualControls();
 $('apply').addEventListener('click',applyImported);
-$('demo').addEventListener('click',function(){state.rows=demo.map(function(r,i){return{label:r.label,value:r.value,sourceIndex:i};});state.isDemo=true;activeArtworkSource=null;state.invalidValueCount=0;state.activeMapping=null;editorOverrides={headline:null,deck:null,credit:null};visual.colourField=-1;syncVisualControls();state.metric='Miles (illustrative)';state.totalSelected=12;state.sourceLabel='ILLUSTRATIVE SAMPLE';state.sourceName='Illustrative example';state.filterName='';syncEditor();state.mode='data';refresh();status('Illustrative 12-month running example. Not actual running data.');});
+$('demo').addEventListener('click',function(){state.rows=demo.map(function(r,i){return{label:r.label,value:r.value,sourceIndex:i};});state.isDemo=true;activeArtworkSource=null;state.durationFormat=null;state.invalidValueCount=0;state.activeMapping=null;editorOverrides={headline:null,deck:null,credit:null};visual.colourField=-1;syncVisualControls();state.metric='Miles (illustrative)';state.totalSelected=12;state.sourceLabel='ILLUSTRATIVE SAMPLE';state.sourceName='Illustrative example';state.filterName='';syncEditor();state.mode='data';refresh();status('Illustrative 12-month running example. Not actual running data.');});
 $('modes').addEventListener('click',function(e){var b=e.target.closest('[data-mode]');if(!b)return;state.mode=b.dataset.mode;state.edits={};state.history=[];if(state.mode==='hidden')state.pal=1;if(state.mode==='data')syncEditor();refresh();status(names[state.mode]+' selected.');});
 $('palettes').addEventListener('click',function(e){var b=e.target.closest('[data-pal]');if(!b)return;state.pal=+b.dataset.pal;
  // Directly choosing a Studio palette takes precedence over a gallery finish,
@@ -1558,7 +1596,7 @@ if(state.mode==='data'){var closest=null,dist=Infinity;
   if(h.bounds){if(px>=h.bounds.left&&px<=h.bounds.right&&py>=h.bounds.top&&py<=h.bounds.bottom){closest=h;dist=0;}return;}
   var d=Math.hypot(px-h.x,py-h.y);if(d<h.s*.53&&d<dist){closest=h;dist=d;}
  });
- if(closest)status(closest.order+'. '+closest.row.label+': '+closest.row.value+(state.isDemo?' (illustrative)':''));return;}
+ if(closest)status(closest.order+'. '+closest.row.label+': '+(closest.row.rawValue===undefined?closest.row.value:closest.row.rawValue)+(state.isDemo?' (illustrative)':''));return;}
 var layout=patternLayout(),ss=layout.z,x=Math.floor((px-layout.left)/ss),y=Math.floor((py-layout.top)/ss);if(x<0||y<0||x>=layout.cols||y>=layout.rows)return;state.history.push(JSON.stringify(state.edits));if(state.history.length>40)state.history.shift();var i=y*layout.cols+x,old=cell(x,y);state.edits[i]={t:state.brush,r:old.t===state.brush?(old.r+1)%4:0,k:old.k};render();status('Tile '+(i+1)+' updated.');});
 $('reroll').addEventListener('click',function(){state.seed++;if(state.mode==='data'){render();status('Decorative shapes and rotations remixed. Data values and mappings unchanged.');}else{state.edits={};state.history=[];refresh();status('Fresh arrangement.');}});
 $('reset').addEventListener('click',function(){state.edits={};state.history=[];refresh();status('Manual edits reset.');});
