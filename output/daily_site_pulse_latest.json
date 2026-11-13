@@ -1,77 +1,21 @@
 {
-  "report_date": "2026-11-11",
-  "visits": 23,
-  "prior_7d_avg": "9.00",
-  "pct_vs_prior_7d": "155.6",
-  "top_page_path": "/resources/pixel-universe",
-  "top_page_title": "Pixel Universe \u2014 heroes, villains and 256 tiny squares \u00b7 coffeetableviz",
-  "top_page_visits": 3,
+  "report_date": "2026-11-12",
+  "visits": 3,
+  "prior_7d_avg": "10.71",
+  "pct_vs_prior_7d": "-72.0",
+  "top_page_path": "/resources/bauhaus-art-studio",
+  "top_page_title": "Bauhaus Art Studio \u00b7 coffeetableviz",
+  "top_page_visits": 1,
   "top_referrer": "Direct / unknown",
   "top_referrer_visits": 1,
-  "observation": "A noticeably busier day than the seven-day baseline.",
-  "generated_at_utc": "2026-11-12T16:48:37+00:00",
+  "observation": "A noticeably quieter day than the seven-day baseline.",
+  "generated_at_utc": "2026-11-13T16:18:41+00:00",
   "top_pages": [
     {
-      "path_id": 120302704,
-      "path": "/resources/pixel-universe",
-      "title": "Pixel Universe \u2014 heroes, villains and 256 tiny squares \u00b7 coffeetableviz",
-      "display": "Pixel Universe \u2014 heroes, villains and 256 tiny squares",
-      "count": 3
-    },
-    {
-      "path_id": 109453481,
-      "path": "/resources",
-      "title": "Resources \u00b7 coffeetableviz",
-      "display": "Resources",
-      "count": 3
-    },
-    {
-      "path_id": 120306115,
-      "path": "/stories/pixel-universe-256-squares",
-      "title": "Pixel Universe: can you recognise a superhero in 256 squares? \u00b7 coffeetableviz",
-      "display": "Pixel Universe: can you recognise a superhero in 256 squares?",
-      "count": 2
-    },
-    {
-      "path_id": 120214778,
-      "path": "/stories/who-wears-the-hero-colours",
-      "title": "Who wears the hero colours? \u00b7 coffeetableviz",
-      "display": "Who wears the hero colours?",
-      "count": 2
-    },
-    {
-      "path_id": 117320008,
-      "path": "/series/blockbuster-quote/2026-10-29-jaws",
-      "title": "Jaws \u00b7 coffeetableviz",
-      "display": "Jaws",
-      "count": 2
-    },
-    {
-      "path_id": 114429315,
-      "path": "/resources/8x8-pixel-art-builder",
-      "title": "8\u00d78 Pixel Art Builder \u00b7 coffeetableviz",
-      "display": "8\u00d78 Pixel Art Builder",
-      "count": 2
-    },
-    {
-      "path_id": 109451764,
-      "path": "/",
-      "title": "coffeetableviz",
-      "display": "Home",
-      "count": 2
-    },
-    {
-      "path_id": 120606745,
-      "path": "/2026/09/21/taron-egerton-is-strongest-when-the-character-is-real",
-      "title": "Taron Egerton is strongest when the character is real \u00b7 coffeetableviz",
-      "display": "Taron Egerton is strongest when the character is real",
-      "count": 1
-    },
-    {
-      "path_id": 113344023,
-      "path": "/icons-of-data/ed-hawkins-warming-stripes",
-      "title": "How the world changed colour \u00b7 coffeetableviz",
-      "display": "How the world changed colour",
+      "path_id": 117603735,
+      "path": "/resources/bauhaus-art-studio",
+      "title": "Bauhaus Art Studio \u00b7 coffeetableviz",
+      "display": "Bauhaus Art Studio",
       "count": 1
     },
     {
@@ -79,27 +23,6 @@
       "path": "/icons-of-data/beck-tube-map",
       "title": "The map that put connections first \u00b7 coffeetableviz",
       "display": "The map that put connections first",
-      "count": 1
-    },
-    {
-      "path_id": 110548893,
-      "path": "/resources/icons-of-data",
-      "title": "Icons of Data \u00b7 coffeetableviz",
-      "display": "Icons of Data",
-      "count": 1
-    },
-    {
-      "path_id": 109453963,
-      "path": "/resources/choosing-the-right-chart",
-      "title": "Choosing the right chart \u00b7 coffeetableviz",
-      "display": "Choosing the right chart",
-      "count": 1
-    },
-    {
-      "path_id": 109446444,
-      "path": "/data-lens",
-      "title": "Data Lens \u00b7 coffeetableviz",
-      "display": "Data Lens",
       "count": 1
     },
     {
