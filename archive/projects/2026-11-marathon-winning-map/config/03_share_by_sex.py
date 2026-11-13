@@ -52,11 +52,6 @@ CHART_CONFIG = {
         {"x": 1, "y": 0.235294, "text": "Men 24%", "xytext": (0, -20), "ha": "center", "fontsize": 12, "color": "#555555", "arrowprops": None},
         {"x": 2, "y": 0.056604, "text": "Women 6%", "xytext": (12, 34), "ha": "left", "fontsize": 12, "color": "#C44E52", "arrowprops": {"arrowstyle": "-", "color": "#C44E52", "lw": 0.8}},
         {"x": 2, "y": 0.094340, "text": "Men 9%", "xytext": (12, 67), "ha": "left", "fontsize": 12, "color": "#555555", "arrowprops": {"arrowstyle": "-", "color": "#7A7A7A", "lw": 0.8}}
-    ]
-        {"x": 1, "y": 0.568627, "text": "Women 57%", "xytext": (0, 13), "ha": "center", "fontsize": 12, "color": "#C44E52"},
-        {"x": 1, "y": 0.235294, "text": "Men 24%", "xytext": (0, -17), "ha": "center", "fontsize": 12, "color": "#555555"},
-        {"x": 2, "y": 0.056604, "text": "Women 6%", "xytext": (14, -19), "ha": "left", "fontsize": 12, "color": "#C44E52"},
-        {"x": 2, "y": 0.094340, "text": "Men 9%", "xytext": (14, 17), "ha": "left", "fontsize": 12, "color": "#555555"}
     ],
     "end_labels": [],
     "label_style": {"enabled": False, "label_col": None},
