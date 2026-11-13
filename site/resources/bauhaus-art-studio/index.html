@@ -287,7 +287,7 @@ var names={rhythm:'Geometric rhythm',radial:'Around the centre',hidden:'Hidden M
 var demo=[42,58,74,63,85,91,68,82,60,95,70,65].map(function(value,i){return{label:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][i],value:value};});
 var state={mode:'rhythm',n:8,chaos:12,pal:0,seed:15,brush:0,edits:{},history:[],rows:demo.slice(),isDemo:true,metric:'Miles (illustrative)',sourceLabel:'ILLUSTRATIVE SAMPLE',totalSelected:12,durationFormat:null};
 var imported=null,MAX_BYTES=2*1024*1024,githubLoadId=0,filterCategories=[],dataHitRegions=[],editorOverrides={headline:null,deck:null,credit:null},activeArtworkSource=null;
-var githubBrowserStarted=false,githubRepos=[],githubCsvPaths=[],githubTreeLoadId=0;
+var githubBrowserStarted=false,githubRepos=[],githubCsvPaths=[],githubTreeLoadId=0,githubRepoLoadId=0;
 var visual={layout:'grid',marks:'mixed',colour:'bands',colourField:-1,sort:'source',scale:'zero',preset:'patchwork',showLabels:false,labelContent:'label',hideSmall:true,galleryFinish:'paper',circleEncoding:'area',circleScope:'records',stripeStyle:'sun',broadsideStyle:'architectural'};
 var markNames={mixed:'mixed shapes',circle:'circles',square:'squares',triangle:'triangles',half:'semicircles',quarter:'quarter circles'};
 var layoutNames={grid:'grid',orbit:'orbit',ribbon:'ribbon',mosaic:'data mosaic',broadside:'typographic broadside',stripes:'stripe study',circles:'circle study'};
@@ -1386,6 +1386,97 @@ function repoCsvUrl(input){
  if(!path.length||!path[path.length-1].toLowerCase().endsWith('.csv')||path.some(function(v){return !v||v==='.'||v==='..'||/[\/\\\x00-\x1f\x7f]/.test(v);}))throw Error('Choose a valid public GitHub CSV file.');
  return {url:'https://raw.githubusercontent.com/'+owner+'/'+repo+'/'+ref+'/'+path.map(encodeURIComponent).join('/'),ref:ref,isCommit:isCommit,owner:owner,repo:repo};
 }
+// Browser-side discovery requires no GitHub token: only public repos/CSVs are visible.
+function githubDatasetPaths(tree){
+ if(!tree||!Array.isArray(tree.tree))throw Error('GitHub returned an invalid file list.');
+ if(tree.truncated)throw Error('This repository is too large for the GitHub file list. Paste the CSV link directly.');
+ return tree.tree.filter(function(e){return e.type==='blob'&&typeof e.path==='string'&&/\.csv$/i.test(e.path);})
+  .map(function(e){return e.path;})
+  .sort(function(a,b){return a.localeCompare(b,'en',{numeric:true});});
+}
+function renderGithubDatasetOptions(){
+ var select=$('github-preset'),input=$('github-filter'),q=input.value.toLocaleLowerCase().trim(),previous=select.value;
+ var matching=githubCsvPaths.filter(function(path){return path.toLocaleLowerCase().includes(q);});
+ // Limit the native iPhone select menu; searching still includes every path.
+ var shown=matching.slice(0,120);
+ select.innerHTML='';
+ makeOption(select,'',!githubCsvPaths.length?'No CSV files found':!matching.length?'No matching CSV files':'Choose a public CSV…');
+ shown.forEach(function(path){makeOption(select,path,path);});
+ select.value=shown.includes(previous)?previous:'';
+ select.disabled=!shown.length;
+ $('github-load').disabled=!select.value;
+ if(!githubCsvPaths.length){
+  $('github-browser-info').textContent='No CSV files in this repository’s default branch. You can still paste a GitHub CSV link below.';
+  return;
+ }
+ $('github-browser-info').textContent=githubCsvPaths.length+' CSV file'+(githubCsvPaths.length===1?'':'s')+' found · '+shown.length+' shown'+(matching.length>shown.length?' of '+matching.length+' matches; type a filename to find the rest':'')+'. Public files from the selected repository’s default branch.';
+}
+async function githubPublicApi(path){
+ var ctrl=new AbortController(),timer=setTimeout(function(){ctrl.abort();},15000);
+ try{
+  var res=await fetch('https://api.github.com'+path,{method:'GET',mode:'cors',cache:'no-store',signal:ctrl.signal,headers:{Accept:'application/vnd.github+json'}});
+  if(res.status===403||res.status===429)throw Error('GitHub API rate limit reached. Paste a CSV link below, or try Refresh later.');
+  if(!res.ok)throw Error('GitHub could not list public files (HTTP '+res.status+').');
+  return await res.json();
+ }finally{clearTimeout(timer);}
+}
+async function loadGithubRepositoryFiles(){
+ var id=++githubTreeLoadId,repo=githubRepos.find(function(r){return r.full_name===$('github-repo').value;});
+ githubCsvPaths=[];$('github-preset').innerHTML='';makeOption($('github-preset'),'','Loading CSV files…');
+ $('github-preset').disabled=true;$('github-filter').disabled=true;$('github-filter').value='';$('github-load').disabled=true;
+ if(!repo){$('github-browser-info').textContent='Choose a public repository first.';return;}
+ $('github-browser-info').textContent='Looking for CSV files in '+repo.full_name+' ('+repo.default_branch+')…';
+ try{
+  var tree=await githubPublicApi('/repos/'+encodeURIComponent(repo.owner.login)+'/'+encodeURIComponent(repo.name)+'/git/trees/'+encodeURIComponent(repo.default_branch)+'?recursive=1');
+  if(id!==githubTreeLoadId)return;
+  githubCsvPaths=githubDatasetPaths(tree);
+  $('github-filter').disabled=!githubCsvPaths.length;
+  renderGithubDatasetOptions();
+ }catch(e){
+  if(id!==githubTreeLoadId)return;
+  $('github-preset').innerHTML='';makeOption($('github-preset'),'','CSV list unavailable');
+  $('github-browser-info').textContent=e.name==='AbortError'?'GitHub listing timed out. Use Refresh or paste a direct CSV link.':e.message;
+ }
+}
+async function loadGithubRepositories(force){
+ if(githubBrowserStarted&&!force)return;
+ githubBrowserStarted=true;
+ var id=++githubRepoLoadId;
+ ++githubTreeLoadId;
+ var select=$('github-repo'),previous=select.value;
+ select.disabled=true;select.innerHTML='';makeOption(select,'','Loading your public repositories…');
+ $('github-preset').innerHTML='';makeOption($('github-preset'),'','Choose a repository first…');
+ $('github-preset').disabled=true;$('github-filter').disabled=true;$('github-load').disabled=true;
+ $('github-browser-info').textContent='Finding public GitHub repositories owned by adamgreen1708…';
+ try{
+  var repos=[];
+  for(var page=1;page<=10;page++){
+   var batch=await githubPublicApi('/users/adamgreen1708/repos?type=owner&per_page=100&page='+page);
+   if(id!==githubRepoLoadId)return;
+   if(!Array.isArray(batch))throw Error('GitHub returned an invalid repository list.');
+   repos=repos.concat(batch.filter(function(r){return !r.private&&r.owner&&r.owner.login.toLowerCase()==='adamgreen1708'&&r.full_name&&r.name&&r.default_branch;}));
+   if(batch.length<100)break;
+   if(page===10)throw Error('Public repository listing exceeds 1,000 entries; paste a CSV link below.');
+  }
+  githubRepos=repos.sort(function(a,b){return a.name.localeCompare(b.name,'en');});
+  select.innerHTML='';
+  if(!githubRepos.length){makeOption(select,'','No public repositories found');$('github-browser-info').textContent='No public repositories found. Paste a CSV link below.';return;}
+  githubRepos.forEach(function(r){makeOption(select,r.full_name,r.full_name);});
+  var preferred=githubRepos.find(function(r){return r.full_name===previous;})||
+   githubRepos.find(function(r){return r.full_name==='adamgreen1708/chart-templates';})||githubRepos[0];
+  select.value=preferred.full_name;select.disabled=false;
+  await loadGithubRepositoryFiles();
+ }catch(e){
+  if(id!==githubRepoLoadId)return;
+  githubBrowserStarted=false;
+  select.innerHTML='';makeOption(select,'','Repository list unavailable');
+  $('github-browser-info').textContent=e.name==='AbortError'?'GitHub listing timed out. Use Refresh or paste a direct CSV link.':e.message;
+ }
+}
+$('github-repo').addEventListener('change',loadGithubRepositoryFiles);
+$('github-filter').addEventListener('input',renderGithubDatasetOptions);
+$('github-preset').addEventListener('change',function(){$('github-load').disabled=!this.value;});
+$('github-refresh').addEventListener('click',function(){loadGithubRepositories(true);});
 async function readGithub(url){
  var ctrl=new AbortController(),timer=setTimeout(function(){ctrl.abort();},15000);
  try{
@@ -1407,6 +1498,7 @@ async function loadGithub(input,prefs){
  var id=++githubLoadId,link;
  try{link=repoCsvUrl(input);}
  catch(e){status(e.message);$('github-info').textContent=e.message;return;}
+ if(!githubBrowserStarted&&state.mode==='data')loadGithubRepositories(false);
  $('github-load').disabled=true;$('github-link').disabled=true;
  $('github-info').textContent=link.isCommit?'Loading pinned GitHub CSV snapshot…':'Loading public CSV from '+link.ref+'…';
  try{
