@@ -1,14 +1,14 @@
-Berlin's women’s marathon was won by Japanese runners SIX years in a row. 🇯🇵
+Six Japanese women's marathon wins in a row at Berlin. 🇯🇵
 
-Fast-forward to the 2010s. There are 59 dots on my next chart — one for each completed women's race across six big-city marathons.
+Fast-forward a decade. In a six-race sample, I found 59 women's winners — and only **four** from outside Kenya or Ethiopia.
 
-**Only four are red.** Can you find them?
+So I turned the data into a challenge: **can you find the four red dots?**
 
-The red dots are winners from outside Kenya and Ethiopia. One of those four is a winner whose result was reassigned after a disqualification — a perfect reminder that data provenance can change the story.
+The final chart contains the bigger twist: it was the *women's* winning-nationality mix that changed most.
 
-And the bigger surprise? Which side of the sport's winning map changed most.
+Three charts, one rather surprising story. Thanks to #ShortsInSports for sharing the source data. I've included the data limitations and QA notes in the article.
 
-Three charts. One visual twist. Based on #ShortsInSports marathon data.
+https://coffeetableviz.com/stories/can-you-find-the-four-outsiders/
 
 Simple charts. Clear stories.
 
