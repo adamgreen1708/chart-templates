@@ -20,7 +20,7 @@ const urls=[
  ['https://github.com/shortsinsports/Data/blob/main/'+csv,'https://raw.githubusercontent.com/shortsinsports/Data/main/'+csv],
  ['https://github.com/shortsinsports/Data/blob/'+pinned+'/'+csv,'https://raw.githubusercontent.com/shortsinsports/Data/'+pinned+'/'+csv],
  ['https://raw.githubusercontent.com/shortsinsports/Data/main/'+csv,'https://raw.githubusercontent.com/shortsinsports/Data/main/'+csv],
- ['https://github.com/adamgreen1708/chart-templates/blob/main/data/site_analytics_daily.csv','https://raw.githubusercontent.com/adamgreen1708/chart-templates/main/data/site_analytics_daily.csv]
+ ['https://github.com/adamgreen1708/chart-templates/blob/main/data/site_analytics_daily.csv','https://raw.githubusercontent.com/adamgreen1708/chart-templates/main/data/site_analytics_daily.csv']
 ];
 urls.forEach(([input,expected])=>assert.equal(repoCsvUrl(input).url,expected));
 [
