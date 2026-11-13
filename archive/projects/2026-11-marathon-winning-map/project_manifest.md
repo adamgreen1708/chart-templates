@@ -30,3 +30,7 @@ The original source is **not a blanket independently verified official result ar
 ## Release gate
 
 All three PNGs must pass source-backed 1600px/390px/320px QA, including one-line headlines, source-footer, complete 0–100% axis and no cut-off dot rows. Review the blog and images in the draft PR. No `site/_posts`, site asset map or live publication without approval.
+
+## Stringent reproducible DQ gate (13 November 2026)
+
+The chart build executes a source checksum, original-9-column round-trip and the canonical Node dataset `--check`, checks full 2000–19 race-year completeness and cancellation, and requires an exact record-keyed eight-entry official-evidence ledger. It recomputes all red dots and fractions from rows and writes `data/qa_report.json`. See `review/source_event_qa.md` and `review/flagged_source_evidence.csv`. A successful render **does not** certify all source winners independently; keep the source-derived limitation visible. The current AbbottWMM has eight events (Sydney and Cape Town are not in this historical six-race collection). The source checksum is frozen: changes require a new editorial review and deliberate pin update.
