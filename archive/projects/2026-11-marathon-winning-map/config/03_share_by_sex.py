@@ -8,7 +8,7 @@ CHART_CONFIG = {
     "series_col": "Sex",
     "value_col": None,
     "filters": [],
-    "title": "The bigger shift was in the women's race",
+    "title": "Women made the bigger leap",
     "subtitle": "Share of wins by Kenya or Ethiopia, in matched races.",
     "source_text": "Source: Shorts in Sports | CTv subset",
     "footer_left": "Adam Green | coffeetableviz",
