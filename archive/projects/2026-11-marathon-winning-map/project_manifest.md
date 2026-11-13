@@ -22,3 +22,5 @@ Source scope: six historical races only, not Sydney or every modern WMM; matched
 **Deliberate composition:** Charts 1 and 2 use identical six-race y positions, ten-year x spans and dot sizes. This is an intentional before/after visual reveal, not two disconnected scatterplots. Mobile QA must detect header/subtitle collision, bottom-row cropping and 2010s red-dot labels. Chart 3 has a full 0–100% y scale and angled endpoints must not overlap the x-axis. Derived CSVs rebuilt by `scripts/build_chart_views.py`.
 
 Charts use repository `src/render_538.py`, `social_square`, approved Coffeetableviz palette, deterministic data and 1600px/390px/320px QA. Do not merge or publish this draft PR without approval. No site files or publishing map added.
+
+**Final geometry QA:** Dot matrices set explicit y limits 0–7 for six race rows, creating actual marker clearance above the x-axis and below the title instead of allowing Matplotlib autoscaling to crop the top/bottom markers. Both charts share this range.
