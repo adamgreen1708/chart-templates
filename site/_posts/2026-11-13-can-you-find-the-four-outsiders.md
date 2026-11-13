@@ -6,7 +6,7 @@ date: 2026-11-13 22:30:00 +0000
 author: Adam Green
 category: Sport
 description: "Six straight Japanese wins in Berlin. Then just four winners from outside Kenya and Ethiopia across six major marathons in the 2010s. Where did the red dots go?"
-read_time: "3 minute read"
+read_time: "4 minute read"
 card_image: /assets/charts/marathon-winning-map/01_berlin_six_and_the_world.png
 hero_image: /assets/charts/marathon-winning-map/01_berlin_six_and_the_world.png
 social_image: /assets/charts/marathon-winning-map/01_berlin_six_and_the_world.png
@@ -85,9 +85,27 @@ The men's map was narrow to begin with. The women's changed dramatically.
 
 It's the sort of difference you might never notice if you only compared today's winners, or only looked at the fastest times.
 
+## So why did the red dots disappear?
+
+The charts show **what** changed. They don't tell us **why**. But looking beyond the dataset reveals a more interesting story than one country simply getting faster.
+
+**First, the route into elite racing widened for women.** Historian [Michelle Sikes](https://www.psu.edu/news/research/story/qa-kenyas-trailblazing-women-runners-chart-course-success-new-book) describes how Kenyan women historically faced more barriers to international competition than men. As distance running became a paid profession in the late 1980s and 1990s, more women were able to pursue it as a career. The men's success had a substantial head start.
+
+**Then came strength in numbers.** In its [2010 season review](https://worldathletics.org/news/news/2010-end-of-year-reviews-road-runningrace), World Athletics counted **18 Ethiopian women** running a marathon in under 2 hours 26 minutes, up from **eight in 2009**. In [2011](https://worldathletics.org/news/news/2011-end-of-year-reviews-road-runningrace), Kenya and Ethiopia supplied **16 of the world's top 20 women marathon runners**. Those are global performance figures, not results from our six selected races, but they suggest a much deeper pool of women capable of challenging for wins.
+
+**Meanwhile, Japan's golden generation was changing.** By 2010, [World Athletics was asking](https://worldathletics.org/news/news/2010-end-of-year-reviews-road-runningrace) who would follow the likes of Naoko Takahashi and Mizuki Noguchi at the top of international marathons. That doesn't mean Japanese women stopped running. It means the remarkable generation behind those early Berlin dots wasn't so easily replaced.
+
+Altitude, training, running economy and economic opportunity may all matter. A [review of Kenyan and Ethiopian running research](https://pubmed.ncbi.nlm.nih.gov/22634972/) found no single genetic or physiological explanation for their success. The bigger picture is more complicated—and more human.
+
+We can't assign a percentage of this change to any one cause. To do that we'd need the starting fields, finishing times and access to elite competition over the years, not just the winners.
+
+But here's the intriguing possibility: **the map of winners may have narrowed partly because the pathway into world-class racing was opening up for more women.**
+
 ## TLDR
 
-**Six Japanese women's winners in a row in Berlin. A decade later, just four winners from outside Kenya and Ethiopia across the six city races. And the most dramatic change was in the women's winning-nationality mix, not the men's.**
+**Six straight Japanese women's wins in Berlin. A decade later, just four winners from outside Kenya and Ethiopia across our six marathons. The women's winning-nationality mix changed far more sharply than the men's.**
+
+The wider research suggests a combination of **greater professional opportunity, a deeper East African women's talent pool and a changing Japanese elite generation**. Our charts show the shift; they cannot prove exactly what caused it.
 
 ---
 
