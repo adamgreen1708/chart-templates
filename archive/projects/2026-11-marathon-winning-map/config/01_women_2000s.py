@@ -8,7 +8,7 @@ CHART_CONFIG = {
     "series_col": None,
     "value_col": None,
     "filters": [],
-    "title": "Berlin had six Japanese wins in a row",
+    "title": "Berlin: six straight for Japan",
     "subtitle": "Women, 2000–09. Red marks winners from outside Kenya or Ethiopia.",
     "source_text": "Source: Shorts in Sports | filtered subset",
     "footer_left": "Adam Green | coffeetableviz",
