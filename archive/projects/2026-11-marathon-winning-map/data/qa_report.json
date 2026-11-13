@@ -1,0 +1,40 @@
+{
+  "exceptions_verified_by_editorial_evidence": 4,
+  "full_official_results_audit": "NOT COMPLETE",
+  "limitation": "All charts describe this pinned source; most individual rows are not independently verified against official race results.",
+  "matched_completed_race_years": 112,
+  "men_outside_kenya_ethiopia": {
+    "2000-09": {
+      "n": 53,
+      "wins": 12
+    },
+    "2010-19": {
+      "n": 59,
+      "wins": 6
+    }
+  },
+  "period_race_years": {
+    "2000-09": 53,
+    "2010-19": 59
+  },
+  "source_completed_rows_not_independently_checked": 216,
+  "source_github_blob_sha": {
+    "marathon_major_winners_men_2000_2026.csv": "4707c23f1e3557b2d89897d02225658da50765e9",
+    "marathon_major_winners_women_2000_2026.csv": "11c4bd6039fc4280bf7adee719fee5faaf74addb"
+  },
+  "source_rows": 308,
+  "source_snapshot": "999b9b57c2cf61a1222bb4f08a4bdd885898e09a",
+  "status_flagged_events_with_evidence": 8,
+  "structural_data_qa": "PASS",
+  "upstream_source_blob_sha": "de9682df90e34943a97d3b963fb3df07bc743c2e",
+  "women_outside_kenya_ethiopia": {
+    "2000-09": {
+      "n": 53,
+      "wins": 31
+    },
+    "2010-19": {
+      "n": 59,
+      "wins": 4
+    }
+  }
+}
