@@ -1,0 +1,155 @@
+Race,Year,Sex,Winner,Nationality,Time,Notes,Birth_Country,Birth_Country_Source,Race_Year,Time_Seconds,Speed_kmh,Speed_mph,Pace_Mile,Pace_Km,Decade,Winner_Wins_In_File,Winner_Wins_At_Race,Nationality_Region,Event_Status,Result_Status,Race_Record_To_Date,Seconds_Faster_Than_Previous_Race_Record,Global_Time_Rank
+Tokyo,2007,Men,Daniel Njenga,Kenya,2:09:45,First Tokyo Marathon,,,Tokyo (2007),7785,19.51,12.12,4:57,3:05,2000s,1,1,East Africa,Completed,Not independently checked,Yes,,129
+Tokyo,2008,Men,Viktor Röthlin,Switzerland,2:07:23,,,,Tokyo (2008),7643,19.87,12.35,4:52,3:01,2000s,1,1,Western Europe,Completed,Not independently checked,Yes,142,93
+Tokyo,2009,Men,Salim Kipsang,Kenya,2:10:27,,,,Tokyo (2009),7827,19.41,12.06,4:59,3:05,2000s,1,1,East Africa,Completed,Not independently checked,No,0,136
+Tokyo,2010,Men,Masakazu Fujiwara,Japan,2:12:19,,,,Tokyo (2010),7939,19.13,11.89,5:03,3:08,2010s,1,1,East Asia,Completed,Not independently checked,No,0,145
+Tokyo,2011,Men,Hailu Mekonnen,Ethiopia,2:07:35,,,,Tokyo (2011),7655,19.84,12.33,4:52,3:01,2010s,1,1,East Africa,Completed,Not independently checked,No,0,94
+Tokyo,2012,Men,Michael Kipyego,Kenya,2:07:37,,,,Tokyo (2012),7657,19.84,12.33,4:52,3:01,2010s,1,1,East Africa,Completed,Not independently checked,No,0,97
+Tokyo,2013,Men,Dennis Kimetto,Kenya,2:06:50,,,,Tokyo (2013),7610,19.96,12.40,4:50,3:00,2010s,3,1,East Africa,Completed,Not independently checked,Yes,33,86
+Tokyo,2014,Men,Dickson Chumba,Kenya,2:05:42,,,,Tokyo (2014),7542,20.14,12.51,4:48,2:59,2010s,3,2,East Africa,Completed,Not independently checked,Yes,68,61
+Tokyo,2015,Men,Endeshaw Negesse,Ethiopia,2:06:00,,,,Tokyo (2015),7560,20.09,12.49,4:48,2:59,2010s,1,1,East Africa,Completed,Not independently checked,No,0,72
+Tokyo,2016,Men,Feyisa Lilesa,Ethiopia,2:06:56,,,,Tokyo (2016),7616,19.95,12.39,4:50,3:00,2010s,1,1,East Africa,Completed,Not independently checked,No,0,88
+Tokyo,2017,Men,Wilson Kipsang,Kenya,2:03:58,,,,Tokyo (2017),7438,20.42,12.69,4:44,2:56,2010s,5,1,East Africa,Completed,Not independently checked,Yes,104,29
+Tokyo,2018,Men,Dickson Chumba,Kenya,2:05:30,,,,Tokyo (2018),7530,20.17,12.53,4:47,2:58,2010s,3,2,East Africa,Completed,Not independently checked,No,0,57
+Tokyo,2019,Men,Birhanu Legese,Ethiopia,2:04:48,,,,Tokyo (2019),7488,20.29,12.61,4:46,2:57,2010s,2,2,East Africa,Completed,Not independently checked,No,0,47
+Tokyo,2020,Men,Birhanu Legese,Ethiopia,2:04:15,Elite-only race due to COVID-19,,,Tokyo (2020),7455,20.38,12.66,4:44,2:57,2020s,2,2,East Africa,Completed,Not independently checked,No,0,35
+Tokyo,2021,Men,Eliud Kipchoge,Kenya,2:02:40,Held March 2022 (postponed),Kenya,"Multiple bios: born Kapsisiywa, Nandi County, Kenya",Tokyo (2021),7360,20.64,12.82,4:41,2:54,2020s,11,1,East Africa,Completed,Not independently checked,Yes,78,14
+Tokyo,2023,Men,Deso Gelmisa,Ethiopia,2:05:22,,,,Tokyo (2023),7522,20.19,12.55,4:47,2:58,2020s,1,1,East Africa,Completed,Not independently checked,No,0,56
+Tokyo,2024,Men,Benson Kipruto,Kenya,2:02:16,,,,Tokyo (2024),7336,20.71,12.87,4:40,2:54,2020s,4,1,East Africa,Completed,Not independently checked,Yes,24,9
+Tokyo,2025,Men,Tadese Takele,Ethiopia,2:03:23,,,,Tokyo (2025),7403,20.52,12.75,4:42,2:55,2020s,2,2,East Africa,Completed,Not independently checked,No,0,23
+Tokyo,2026,Men,Tadese Takele,Ethiopia,2:03:37,Source: World Athletics results,,,Tokyo (2026),7417,20.48,12.73,4:43,2:56,2020s,2,2,East Africa,Completed,Source claims checked,No,0,26
+Boston,2000,Men,Elijah Lagat,Kenya,2:09:47,,,,Boston (2000),7787,19.51,12.12,4:57,3:05,2000s,1,1,East Africa,Completed,Not independently checked,Yes,,130
+Boston,2001,Men,Lee Bong-ju,South Korea,2:09:43,,,,Boston (2001),7783,19.52,12.13,4:57,3:04,2000s,1,1,East Asia,Completed,Not independently checked,Yes,4,128
+Boston,2002,Men,Rodgers Rop,Kenya,2:09:02,,,,Boston (2002),7742,19.62,12.19,4:55,3:03,2000s,2,1,East Africa,Completed,Not independently checked,Yes,41,119
+Boston,2003,Men,Robert Kipkoech Cheruiyot,Kenya,2:10:11,,,,Boston (2003),7811,19.45,12.08,4:58,3:05,2000s,4,4,East Africa,Completed,Not independently checked,No,0,134
+Boston,2004,Men,Timothy Cherigat,Kenya,2:10:37,,,,Boston (2004),7837,19.38,12.04,4:59,3:06,2000s,1,1,East Africa,Completed,Not independently checked,No,0,139
+Boston,2005,Men,Hailu Negussie,Ethiopia,2:11:44,,,,Boston (2005),7904,19.22,11.94,5:01,3:07,2000s,1,1,East Africa,Completed,Not independently checked,No,0,144
+Boston,2006,Men,Robert Kipkoech Cheruiyot,Kenya,2:07:14,,,,Boston (2006),7634,19.90,12.36,4:51,3:01,2000s,4,4,East Africa,Completed,Not independently checked,Yes,108,92
+Boston,2007,Men,Robert Kipkoech Cheruiyot,Kenya,2:14:13,,,,Boston (2007),8053,18.86,11.72,5:07,3:11,2000s,4,4,East Africa,Completed,Not independently checked,No,0,148
+Boston,2008,Men,Robert Kipkoech Cheruiyot,Kenya,2:07:45,,,,Boston (2008),7665,19.82,12.31,4:52,3:02,2000s,4,4,East Africa,Completed,Not independently checked,No,0,103
+Boston,2009,Men,Deriba Merga,Ethiopia,2:08:42,,,,Boston (2009),7722,19.67,12.22,4:55,3:03,2000s,1,1,East Africa,Completed,Not independently checked,No,0,115
+Boston,2010,Men,Robert Kiprono Cheruiyot,Kenya,2:05:52,,,,Boston (2010),7552,20.11,12.50,4:48,2:59,2010s,1,1,East Africa,Completed,Not independently checked,Yes,82,66
+Boston,2011,Men,Geoffrey Mutai,Kenya,2:03:02,Fastest marathon time at the time,,,Boston (2011),7382,20.58,12.79,4:42,2:55,2010s,4,1,East Africa,Completed,Not independently checked,Yes,170,19
+Boston,2012,Men,Wesley Korir,Kenya,2:12:40,,,,Boston (2012),7960,19.08,11.86,5:04,3:09,2010s,1,1,East Africa,Completed,Not independently checked,No,0,146
+Boston,2013,Men,Lelisa Desisa,Ethiopia,2:10:22,,,,Boston (2013),7822,19.42,12.07,4:58,3:05,2010s,3,2,East Africa,Completed,Not independently checked,No,0,135
+Boston,2014,Men,Meb Keflezighi,United States,2:08:37,,Eritrea,"Olympedia; Wikipedia; born Asmara, Eritrea",Boston (2014),7717,19.68,12.23,4:54,3:03,2010s,2,1,North America,Completed,Not independently checked,No,0,113
+Boston,2015,Men,Lelisa Desisa,Ethiopia,2:09:17,,,,Boston (2015),7757,19.58,12.17,4:56,3:04,2010s,3,2,East Africa,Completed,Not independently checked,No,0,122
+Boston,2016,Men,Lemi Berhanu Hayle,Ethiopia,2:12:45,,,,Boston (2016),7965,19.07,11.85,5:04,3:09,2010s,1,1,East Africa,Completed,Not independently checked,No,0,147
+Boston,2017,Men,Geoffrey Kirui,Kenya,2:09:37,,,,Boston (2017),7777,19.53,12.14,4:57,3:04,2010s,1,1,East Africa,Completed,Not independently checked,No,0,127
+Boston,2018,Men,Yuki Kawauchi,Japan,2:15:58,,,,Boston (2018),8158,18.62,11.57,5:11,3:13,2010s,1,1,East Asia,Completed,Not independently checked,No,0,149
+Boston,2019,Men,Lawrence Cherono,Kenya,2:07:57,,,,Boston (2019),7677,19.79,12.29,4:53,3:02,2010s,2,1,East Africa,Completed,Not independently checked,No,0,106
+Boston,2020,Men,NO RACE,,,Cancelled due to COVID-19,,,Boston (2020),,,,,,2020s,,,,Cancelled,Cancelled,,,
+Boston,2021,Men,Benson Kipruto,Kenya,2:09:51,Held October,,,Boston (2021),7791,19.50,12.11,4:57,3:05,2020s,4,1,East Africa,Completed,Not independently checked,No,0,131
+Boston,2022,Men,Evans Chebet,Kenya,2:06:51,,,,Boston (2022),7611,19.96,12.40,4:50,3:00,2020s,3,2,East Africa,Completed,Not independently checked,No,0,87
+Boston,2023,Men,Evans Chebet,Kenya,2:05:54,,,,Boston (2023),7554,20.11,12.50,4:48,2:59,2020s,3,2,East Africa,Completed,Not independently checked,No,0,67
+Boston,2024,Men,Sisay Lemma,Ethiopia,2:06:17,,,,Boston (2024),7577,20.05,12.46,4:49,3:00,2020s,2,1,East Africa,Completed,Not independently checked,No,0,78
+Boston,2025,Men,John Korir,Kenya,2:04:45,,,,Boston (2025),7485,20.29,12.61,4:45,2:57,2020s,3,2,East Africa,Completed,Not independently checked,No,0,46
+Boston,2026,Men,John Korir,Kenya,2:01:52,Course record; user-supplied time,,,Boston (2026),7312,20.77,12.91,4:39,2:53,2020s,3,2,East Africa,Completed,Source flagged for review,Yes,70,8
+London,2000,Men,António Pinto,Portugal,2:06:36,,,,London (2000),7596,20.00,12.43,4:50,3:00,2000s,1,1,Southern Europe,Completed,Not independently checked,Yes,,82
+London,2001,Men,Abdelkader El Mouaziz,Morocco,2:07:09,,,,London (2001),7629,19.91,12.37,4:51,3:01,2000s,2,1,North Africa,Completed,Not independently checked,No,0,91
+London,2002,Men,Khalid Khannouchi,United States,2:05:38,World record,Morocco,"Wikipedia; born Meknes, Morocco; US citizen from 2000",London (2002),7538,20.15,12.52,4:48,2:59,2000s,3,1,North America,Completed,Not independently checked,Yes,58,59
+London,2003,Men,Gezahegne Abera,Ethiopia,2:07:56,,,,London (2003),7676,19.79,12.30,4:53,3:02,2000s,1,1,East Africa,Completed,Not independently checked,No,0,105
+London,2004,Men,Evans Rutto,Kenya,2:06:18,,,,London (2004),7578,20.05,12.46,4:49,3:00,2000s,3,1,East Africa,Completed,Not independently checked,No,0,79
+London,2005,Men,Martin Lel,Kenya,2:07:35,,,,London (2005),7655,19.84,12.33,4:52,3:01,2000s,5,3,East Africa,Completed,Not independently checked,No,0,94
+London,2006,Men,Felix Limo,Kenya,2:06:39,,,,London (2006),7599,19.99,12.42,4:50,3:00,2000s,3,1,East Africa,Completed,Not independently checked,No,0,83
+London,2007,Men,Martin Lel,Kenya,2:07:41,,,,London (2007),7661,19.83,12.32,4:52,3:02,2000s,5,3,East Africa,Completed,Not independently checked,No,0,99
+London,2008,Men,Martin Lel,Kenya,2:05:15,Course record; user-supplied name,,,London (2008),7515,20.21,12.56,4:47,2:58,2000s,5,3,East Africa,Completed,Source flagged for review,Yes,23,54
+London,2009,Men,Samuel Wanjiru,Kenya,2:05:10,,,,London (2009),7510,20.23,12.57,4:46,2:58,2000s,3,1,East Africa,Completed,Not independently checked,Yes,5,52
+London,2010,Men,Tsegaye Kebede,Ethiopia,2:05:19,,,,London (2010),7519,20.20,12.55,4:47,2:58,2010s,3,2,East Africa,Completed,Not independently checked,No,0,55
+London,2011,Men,Emmanuel Mutai,Kenya,2:04:40,Course record,,,London (2011),7480,20.31,12.62,4:45,2:57,2010s,1,1,East Africa,Completed,Not independently checked,Yes,30,43
+London,2012,Men,Wilson Kipsang,Kenya,2:04:44,,,,London (2012),7484,20.30,12.61,4:45,2:57,2010s,5,2,East Africa,Completed,Not independently checked,No,0,45
+London,2013,Men,Tsegaye Kebede,Ethiopia,2:06:04,,,,London (2013),7564,20.08,12.48,4:48,2:59,2010s,3,2,East Africa,Completed,Not independently checked,No,0,74
+London,2014,Men,Wilson Kipsang,Kenya,2:04:29,Course record,,,London (2014),7469,20.34,12.64,4:45,2:57,2010s,5,2,East Africa,Completed,Not independently checked,Yes,11,40
+London,2015,Men,Eliud Kipchoge,Kenya,2:04:42,,Kenya,"Multiple bios: born Kapsisiywa, Nandi County, Kenya",London (2015),7482,20.30,12.62,4:45,2:57,2010s,11,4,East Africa,Completed,Not independently checked,No,0,44
+London,2016,Men,Eliud Kipchoge,Kenya,2:03:05,Course record; name inferred from time (verify),Kenya,"Multiple bios: born Kapsisiywa, Nandi County, Kenya",London (2016),7385,20.57,12.78,4:42,2:55,2010s,11,4,East Africa,Completed,Source flagged for review,Yes,84,21
+London,2017,Men,Daniel Wanjiru,Kenya,2:05:48,,,,London (2017),7548,20.12,12.50,4:48,2:59,2010s,1,1,East Africa,Completed,Not independently checked,No,0,64
+London,2018,Men,Eliud Kipchoge,Kenya,2:04:17,,Kenya,"Multiple bios: born Kapsisiywa, Nandi County, Kenya",London (2018),7457,20.37,12.66,4:44,2:57,2010s,11,4,East Africa,Completed,Not independently checked,No,0,37
+London,2019,Men,Eliud Kipchoge,Kenya,2:02:37,Course record,Kenya,"Multiple bios: born Kapsisiywa, Nandi County, Kenya",London (2019),7357,20.65,12.83,4:41,2:54,2010s,11,4,East Africa,Completed,Not independently checked,Yes,28,13
+London,2020,Men,Shura Kitata Tola,Ethiopia,2:05:58,,,,London (2020),7558,20.10,12.49,4:48,2:59,2020s,1,1,East Africa,Completed,Not independently checked,No,0,70
+London,2021,Men,Sisay Lemma,Ethiopia,2:04:01,,,,London (2021),7441,20.41,12.68,4:44,2:56,2020s,2,1,East Africa,Completed,Not independently checked,No,0,32
+London,2022,Men,Amos Kipruto,Kenya,2:04:39,,,,London (2022),7479,20.31,12.62,4:45,2:57,2020s,2,1,East Africa,Completed,Not independently checked,No,0,42
+London,2023,Men,Kelvin Kiptum,Kenya,2:01:25,Course record,,,London (2023),7285,20.85,12.96,4:38,2:53,2020s,2,1,East Africa,Completed,Not independently checked,Yes,72,5
+London,2024,Men,Alexander Mutiso,Kenya,2:04:01,,,,London (2024),7441,20.41,12.68,4:44,2:56,2020s,1,1,East Africa,Completed,Not independently checked,No,0,32
+London,2025,Men,Sabastian Sawe,Kenya,2:02:27,,,,London (2025),7347,20.68,12.85,4:40,2:54,2020s,3,2,East Africa,Completed,Not independently checked,No,0,12
+London,2026,Men,Sabastian Sawe,Kenya,1:59:30,Verified: men's world record in 2026 race reports,,,London (2026),7170,21.19,13.16,4:33,2:50,2020s,3,2,East Africa,Completed,Source claims checked,Yes,115,1
+Berlin,2000,Men,Simon Biwott,Kenya,2:07:42,,,,Berlin (2000),7662,19.83,12.32,4:52,3:02,2000s,1,1,East Africa,Completed,Not independently checked,Yes,,101
+Berlin,2001,Men,Joseph Ngolepus,Kenya,2:08:47,,,,Berlin (2001),7727,19.66,12.22,4:55,3:03,2000s,1,1,East Africa,Completed,Not independently checked,No,0,117
+Berlin,2002,Men,Raymond Kipkoech,Kenya,2:06:47,,,,Berlin (2002),7607,19.97,12.41,4:50,3:00,2000s,1,1,East Africa,Completed,Not independently checked,Yes,55,85
+Berlin,2003,Men,Paul Tergat,Kenya,2:04:55,World record,,,Berlin (2003),7495,20.27,12.59,4:46,2:58,2000s,2,1,East Africa,Completed,Not independently checked,Yes,112,48
+Berlin,2004,Men,Felix Limo,Kenya,2:06:44,,,,Berlin (2004),7604,19.98,12.41,4:50,3:00,2000s,3,1,East Africa,Completed,Not independently checked,No,0,84
+Berlin,2005,Men,Philip Manyim,Kenya,2:07:41,,,,Berlin (2005),7661,19.83,12.32,4:52,3:02,2000s,1,1,East Africa,Completed,Not independently checked,No,0,99
+Berlin,2006,Men,Haile Gebrselassie,Ethiopia,2:05:56,,,,Berlin (2006),7556,20.10,12.49,4:48,2:59,2000s,4,4,East Africa,Completed,Not independently checked,No,0,68
+Berlin,2007,Men,Haile Gebrselassie,Ethiopia,2:04:26,World record,,,Berlin (2007),7466,20.35,12.64,4:45,2:57,2000s,4,4,East Africa,Completed,Not independently checked,Yes,29,39
+Berlin,2008,Men,Haile Gebrselassie,Ethiopia,2:03:59,World record,,,Berlin (2008),7439,20.42,12.69,4:44,2:56,2000s,4,4,East Africa,Completed,Not independently checked,Yes,27,30
+Berlin,2009,Men,Haile Gebrselassie,Ethiopia,2:06:08,,,,Berlin (2009),7568,20.07,12.47,4:49,2:59,2000s,4,4,East Africa,Completed,Not independently checked,No,0,75
+Berlin,2010,Men,Patrick Makau Musyoki,Kenya,2:05:08,,,,Berlin (2010),7508,20.23,12.57,4:46,2:58,2010s,2,2,East Africa,Completed,Not independently checked,No,0,51
+Berlin,2011,Men,Patrick Makau Musyoki,Kenya,2:03:38,World record,,,Berlin (2011),7418,20.48,12.72,4:43,2:56,2010s,2,2,East Africa,Completed,Not independently checked,Yes,21,27
+Berlin,2012,Men,Geoffrey Mutai,Kenya,2:04:15,,,,Berlin (2012),7455,20.38,12.66,4:44,2:57,2010s,4,1,East Africa,Completed,Not independently checked,No,0,35
+Berlin,2013,Men,Wilson Kipsang,Kenya,2:03:23,World record,,,Berlin (2013),7403,20.52,12.75,4:42,2:55,2010s,5,1,East Africa,Completed,Not independently checked,Yes,15,23
+Berlin,2014,Men,Dennis Kimetto,Kenya,2:02:57,World record,,,Berlin (2014),7377,20.59,12.79,4:41,2:55,2010s,3,1,East Africa,Completed,Not independently checked,Yes,26,18
+Berlin,2015,Men,Eliud Kipchoge,Kenya,2:04:00,,Kenya,"Multiple bios: born Kapsisiywa, Nandi County, Kenya",Berlin (2015),7440,20.42,12.69,4:44,2:56,2010s,11,5,East Africa,Completed,Not independently checked,No,0,31
+Berlin,2016,Men,Kenenisa Bekele,Ethiopia,2:03:03,,,,Berlin (2016),7383,20.57,12.78,4:42,2:55,2010s,2,2,East Africa,Completed,Not independently checked,No,0,20
+Berlin,2017,Men,Eliud Kipchoge,Kenya,2:03:32,,Kenya,"Multiple bios: born Kapsisiywa, Nandi County, Kenya",Berlin (2017),7412,20.49,12.73,4:43,2:56,2010s,11,5,East Africa,Completed,Not independently checked,No,0,25
+Berlin,2018,Men,Eliud Kipchoge,Kenya,2:01:39,World record,Kenya,"Multiple bios: born Kapsisiywa, Nandi County, Kenya",Berlin (2018),7299,20.81,12.93,4:38,2:53,2010s,11,5,East Africa,Completed,Not independently checked,Yes,78,6
+Berlin,2019,Men,Kenenisa Bekele,Ethiopia,2:01:41,,,,Berlin (2019),7301,20.81,12.93,4:38,2:53,2010s,2,2,East Africa,Completed,Not independently checked,No,0,7
+Berlin,2020,Men,NO RACE,,,Cancelled due to COVID-19,,,Berlin (2020),,,,,,2020s,,,,Cancelled,Cancelled,,,
+Berlin,2021,Men,Guye Adola,Ethiopia,2:05:45,,,,Berlin (2021),7545,20.13,12.51,4:48,2:59,2020s,2,2,East Africa,Completed,Not independently checked,No,0,62
+Berlin,2022,Men,Eliud Kipchoge,Kenya,2:01:09,World record,Kenya,"Multiple bios: born Kapsisiywa, Nandi County, Kenya",Berlin (2022),7269,20.90,12.98,4:37,2:52,2020s,11,5,East Africa,Completed,Not independently checked,Yes,30,3
+Berlin,2023,Men,Eliud Kipchoge,Kenya,2:02:42,,Kenya,"Multiple bios: born Kapsisiywa, Nandi County, Kenya",Berlin (2023),7362,20.63,12.82,4:41,2:54,2020s,11,5,East Africa,Completed,Not independently checked,No,0,15
+Berlin,2024,Men,Milkesa Mengesha,Ethiopia,2:03:17,,,,Berlin (2024),7397,20.54,12.76,4:42,2:55,2020s,1,1,East Africa,Completed,Not independently checked,No,0,22
+Berlin,2025,Men,Sabastian Sawe,Kenya,2:02:16,,,,Berlin (2025),7336,20.71,12.87,4:40,2:54,2020s,3,1,East Africa,Completed,Not independently checked,No,0,9
+Chicago,2000,Men,Khalid Khannouchi,United States,2:07:01,,Morocco,"Wikipedia; born Meknes, Morocco; US citizen from 2000",Chicago (2000),7621,19.93,12.39,4:51,3:01,2000s,3,2,North America,Completed,Not independently checked,Yes,,89
+Chicago,2001,Men,Ben Kimondiu,Kenya,2:08:52,,,,Chicago (2001),7732,19.65,12.21,4:55,3:03,2000s,1,1,East Africa,Completed,Not independently checked,No,0,118
+Chicago,2002,Men,Khalid Khannouchi,United States,2:05:56,,Morocco,"Wikipedia; born Meknes, Morocco; US citizen from 2000",Chicago (2002),7556,20.10,12.49,4:48,2:59,2000s,3,2,North America,Completed,Not independently checked,Yes,65,68
+Chicago,2003,Men,Evans Rutto,Kenya,2:05:50,,,,Chicago (2003),7550,20.12,12.50,4:48,2:59,2000s,3,2,East Africa,Completed,Not independently checked,Yes,6,65
+Chicago,2004,Men,Evans Rutto,Kenya,2:06:16,,,,Chicago (2004),7576,20.05,12.46,4:49,3:00,2000s,3,2,East Africa,Completed,Not independently checked,No,0,77
+Chicago,2005,Men,Felix Limo,Kenya,2:07:02,,,,Chicago (2005),7622,19.93,12.38,4:51,3:01,2000s,3,1,East Africa,Completed,Not independently checked,No,0,90
+Chicago,2006,Men,Robert Cheruiyot,Kenya,2:07:35,,,,Chicago (2006),7655,19.84,12.33,4:52,3:01,2000s,1,1,East Africa,Completed,Not independently checked,No,0,94
+Chicago,2007,Men,Patrick Ivuti,Kenya,2:11:11,,,,Chicago (2007),7871,19.30,11.99,5:00,3:07,2000s,1,1,East Africa,Completed,Not independently checked,No,0,142
+Chicago,2008,Men,Evans Cheruiyot,Kenya,2:06:25,,,,Chicago (2008),7585,20.03,12.44,4:49,3:00,2000s,1,1,East Africa,Completed,Not independently checked,No,0,81
+Chicago,2009,Men,Samuel Wanjiru,Kenya,2:05:41,,,,Chicago (2009),7541,20.14,12.52,4:48,2:59,2000s,3,2,East Africa,Completed,Not independently checked,Yes,9,60
+Chicago,2010,Men,Samuel Wanjiru,Kenya,2:06:23,,,,Chicago (2010),7583,20.03,12.45,4:49,3:00,2010s,3,2,East Africa,Completed,Not independently checked,No,0,80
+Chicago,2011,Men,Moses Mosop,Kenya,2:05:37,,,,Chicago (2011),7537,20.15,12.52,4:47,2:59,2010s,1,1,East Africa,Completed,Not independently checked,Yes,4,58
+Chicago,2012,Men,Tsegaye Kebede,Ethiopia,2:04:38,,,,Chicago (2012),7478,20.31,12.62,4:45,2:57,2010s,3,1,East Africa,Completed,Not independently checked,Yes,59,41
+Chicago,2013,Men,Dennis Kimetto,Kenya,2:03:45,,,,Chicago (2013),7425,20.46,12.71,4:43,2:56,2010s,3,1,East Africa,Completed,Not independently checked,Yes,53,28
+Chicago,2014,Men,Eliud Kipchoge,Kenya,2:04:11,,Kenya,"Multiple bios: born Kapsisiywa, Nandi County, Kenya",Chicago (2014),7451,20.39,12.67,4:44,2:57,2010s,11,1,East Africa,Completed,Not independently checked,No,0,34
+Chicago,2015,Men,Dickson Chumba,Kenya,2:09:25,,,,Chicago (2015),7765,19.56,12.16,4:56,3:04,2010s,3,1,East Africa,Completed,Not independently checked,No,0,124
+Chicago,2016,Men,Abel Kirui,Kenya,2:11:23,,,,Chicago (2016),7883,19.27,11.97,5:01,3:07,2010s,1,1,East Africa,Completed,Not independently checked,No,0,143
+Chicago,2017,Men,Galen Rupp,United States,2:09:20,,,,Chicago (2017),7760,19.57,12.16,4:56,3:04,2010s,1,1,North America,Completed,Not independently checked,No,0,123
+Chicago,2018,Men,Mo Farah,United Kingdom,2:05:11,,Somalia,"Britannica; usually given as Mogadishu, Somalia, but he later said he was born in Somaliland (disputed)",Chicago (2018),7511,20.22,12.57,4:46,2:58,2010s,1,1,Northern Europe,Completed,Not independently checked,No,0,53
+Chicago,2019,Men,Lawrence Cherono,Kenya,2:05:45,,,,Chicago (2019),7545,20.13,12.51,4:48,2:59,2010s,2,1,East Africa,Completed,Not independently checked,No,0,62
+Chicago,2020,Men,NO RACE,,,Cancelled due to COVID-19,,,Chicago (2020),,,,,,2020s,,,,Cancelled,Cancelled,,,
+Chicago,2021,Men,Seifu Tura,Ethiopia,2:06:12,,,,Chicago (2021),7572,20.06,12.47,4:49,2:59,2020s,1,1,East Africa,Completed,Not independently checked,No,0,76
+Chicago,2022,Men,Benson Kipruto,Kenya,2:04:24,,,,Chicago (2022),7464,20.35,12.65,4:45,2:57,2020s,4,1,East Africa,Completed,Not independently checked,No,0,38
+Chicago,2023,Men,Kelvin Kiptum,Kenya,2:00:35,World record,,,Chicago (2023),7235,21.00,13.05,4:36,2:51,2020s,2,1,East Africa,Completed,Not independently checked,Yes,190,2
+Chicago,2024,Men,John Korir,Kenya,2:02:43,,,,Chicago (2024),7363,20.63,12.82,4:41,2:54,2020s,3,1,East Africa,Completed,Not independently checked,No,0,16
+Chicago,2025,Men,Jacob Kiplimo,Uganda,2:02:23,Kept per user,,,Chicago (2025),7343,20.69,12.85,4:40,2:54,2020s,1,1,East Africa,Completed,Source flagged for review,No,0,11
+New York City,2000,Men,Abdelkader El Mouaziz,Morocco,2:10:09,,,,New York City (2000),7809,19.45,12.09,4:58,3:05,2000s,2,1,North Africa,Completed,Not independently checked,Yes,,133
+New York City,2001,Men,Tesfaye Jifar,Ethiopia,2:07:43,,,,New York City (2001),7663,19.82,12.32,4:52,3:02,2000s,1,1,East Africa,Completed,Not independently checked,Yes,146,102
+New York City,2002,Men,Rodgers Rop,Kenya,2:08:07,,,,New York City (2002),7687,19.76,12.28,4:53,3:02,2000s,2,1,East Africa,Completed,Not independently checked,No,0,107
+New York City,2003,Men,Martin Lel,Kenya,2:10:30,,,,New York City (2003),7830,19.40,12.05,4:59,3:06,2000s,5,2,East Africa,Completed,Not independently checked,No,0,137
+New York City,2004,Men,Hendrick Ramaala,South Africa,2:09:28,,,,New York City (2004),7768,19.55,12.15,4:56,3:04,2000s,1,1,Southern Africa,Completed,Not independently checked,No,0,125
+New York City,2005,Men,Paul Tergat,Kenya,2:09:30,,,,New York City (2005),7770,19.55,12.15,4:56,3:04,2000s,2,1,East Africa,Completed,Not independently checked,No,0,126
+New York City,2006,Men,Marilson Gomes dos Santos,Brazil,2:09:58,,,,New York City (2006),7798,19.48,12.10,4:57,3:05,2000s,2,2,South America,Completed,Not independently checked,No,0,132
+New York City,2007,Men,Martin Lel,Kenya,2:09:04,,,,New York City (2007),7744,19.62,12.19,4:55,3:04,2000s,5,2,East Africa,Completed,Not independently checked,No,0,120
+New York City,2008,Men,Marilson Gomes dos Santos,Brazil,2:08:43,,,,New York City (2008),7723,19.67,12.22,4:55,3:03,2000s,2,2,South America,Completed,Not independently checked,No,0,116
+New York City,2009,Men,Meb Keflezighi,United States,2:09:15,,Eritrea,"Olympedia; Wikipedia; born Asmara, Eritrea",New York City (2009),7755,19.59,12.17,4:56,3:04,2000s,2,1,North America,Completed,Not independently checked,No,0,121
+New York City,2010,Men,Gebregziabher Gebremariam,Ethiopia,2:08:14,,,,New York City (2010),7694,19.74,12.27,4:53,3:02,2010s,1,1,East Africa,Completed,Not independently checked,No,0,110
+New York City,2011,Men,Geoffrey Mutai,Kenya,2:05:06,Course record,,,New York City (2011),7506,20.24,12.57,4:46,2:58,2010s,4,2,East Africa,Completed,Not independently checked,Yes,157,50
+New York City,2012,Men,NO RACE,,,Cancelled due to Hurricane Sandy,,,New York City (2012),,,,,,2010s,,,,Cancelled,Cancelled,,,
+New York City,2013,Men,Geoffrey Mutai,Kenya,2:08:24,,,,New York City (2013),7704,19.72,12.25,4:54,3:03,2010s,4,2,East Africa,Completed,Not independently checked,No,0,112
+New York City,2014,Men,Wilson Kipsang,Kenya,2:10:59,,,,New York City (2014),7859,19.33,12.01,5:00,3:06,2010s,5,1,East Africa,Completed,Not independently checked,No,0,141
+New York City,2015,Men,Stanley Biwott,Kenya,2:10:34,,,,New York City (2015),7834,19.39,12.05,4:59,3:06,2010s,1,1,East Africa,Completed,Not independently checked,No,0,138
+New York City,2016,Men,Ghirmay Ghebreslassie,Eritrea,2:07:51,,Eritrea,"Wikipedia; born Kisadeka, Eritrea",New York City (2016),7671,19.80,12.30,4:53,3:02,2010s,1,1,East Africa,Completed,Not independently checked,No,0,104
+New York City,2017,Men,Geoffrey Kamworor,Kenya,2:10:53,,,,New York City (2017),7853,19.34,12.02,5:00,3:06,2010s,2,2,East Africa,Completed,Not independently checked,No,0,140
+New York City,2018,Men,Lelisa Desisa,Ethiopia,2:05:59,,,,New York City (2018),7559,20.10,12.49,4:48,2:59,2010s,3,1,East Africa,Completed,Not independently checked,No,0,71
+New York City,2019,Men,Geoffrey Kamworor,Kenya,2:08:13,,,,New York City (2019),7693,19.75,12.27,4:53,3:02,2010s,2,2,East Africa,Completed,Not independently checked,No,0,109
+New York City,2020,Men,Kevin Quinn,United Kingdom,2:23:48,Virtual event due to COVID-19,,"Birthplace not found; World Athletics gives GB, born 24 Jul 1979",New York City (2020),8628,,,,,2020s,,,Northern Europe,Virtual,Virtual event,,,
+New York City,2021,Men,Albert Korir,Kenya,2:08:22,,,,New York City (2021),7702,19.72,12.25,4:54,3:03,2020s,1,1,East Africa,Completed,Not independently checked,No,0,111
+New York City,2022,Men,Evans Chebet,Kenya,2:08:41,,,,New York City (2022),7721,19.67,12.22,4:54,3:03,2020s,3,1,East Africa,Completed,Not independently checked,No,0,114
+New York City,2023,Men,Tamirat Tola,Ethiopia,2:04:58,Course record,,,New York City (2023),7498,20.26,12.59,4:46,2:58,2020s,1,1,East Africa,Completed,Not independently checked,Yes,8,49
+New York City,2024,Men,Abdi Nageeye,Netherlands,2:07:39,,Somalia,"Wikipedia; World Athletics; born Mogadishu, Somalia (one source gives Dharwanaaje); naturalised Dutch",New York City (2024),7659,19.83,12.32,4:52,3:02,2020s,1,1,Western Europe,Completed,Not independently checked,No,0,98
+New York City,2025,Men,Benson Kipruto,Kenya,2:08:09,,,,New York City (2025),7689,19.76,12.28,4:53,3:02,2020s,4,1,East Africa,Completed,Not independently checked,No,0,108
+Berlin,2026,Men,Guye Adola,Ethiopia,2:02:50,Verified against 2026 race reports (earlier entry was the 2025 result),,,Berlin (2026),7370,20.61,12.81,4:41,2:55,2020s,2,2,East Africa,Completed,Source claims checked,No,0,17
+Chicago,2026,Men,Amos Kipruto,Kenya,2:01:09,Verified against 2026 race reports,,,Chicago (2026),7269,20.90,12.98,4:37,2:52,2020s,2,1,East Africa,Completed,Source claims checked,No,0,3
+New York City,2026,Men,Andreas Almgren,Sweden,2:06:01,User-supplied,,,New York City (2026),7561,20.09,12.48,4:48,2:59,2020s,1,1,Northern Europe,Completed,Source flagged for review,No,0,73

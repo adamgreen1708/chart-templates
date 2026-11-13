@@ -1,0 +1,155 @@
+Race,Year,Sex,Winner,Nationality,Time,Notes,Birth_Country,Birth_Country_Source,Race_Year,Time_Seconds,Speed_kmh,Speed_mph,Pace_Mile,Pace_Km,Decade,Winner_Wins_In_File,Winner_Wins_At_Race,Nationality_Region,Event_Status,Result_Status,Race_Record_To_Date,Seconds_Faster_Than_Previous_Race_Record,Global_Time_Rank
+Tokyo,2007,Women,Hitomi Niiya,Japan,2:31:01,,,,Tokyo (2007),9061,16.76,10.42,5:46,3:35,2000s,1,1,East Asia,Completed,Not independently checked,Yes,,143
+Tokyo,2008,Women,Claudia Dreher,Germany,2:35:35,,,,Tokyo (2008),9335,16.27,10.11,5:56,3:41,2000s,1,1,Western Europe,Completed,Not independently checked,No,0,148
+Tokyo,2009,Women,Mizuho Nasukawa,Japan,2:25:38,,,,Tokyo (2009),8738,17.38,10.80,5:33,3:27,2000s,1,1,East Asia,Completed,Not independently checked,Yes,323,126
+Tokyo,2010,Women,Alevtina Biktimirova,Russia,2:34:39,,,,Tokyo (2010),9279,16.37,10.17,5:54,3:40,2010s,1,1,Eastern Europe,Completed,Not independently checked,No,0,147
+Tokyo,2011,Women,Noriko Higuchi,Japan,2:28:49,Original winner Tatyana Aryasova disqualified,,,Tokyo (2011),8929,17.01,10.57,5:41,3:32,2010s,1,1,East Asia,Completed,Disqualification mentioned,No,0,139
+Tokyo,2012,Women,Atsede Habtamu,Ethiopia,2:25:28,,,,Tokyo (2012),8728,17.40,10.81,5:33,3:27,2010s,2,1,East Africa,Completed,Not independently checked,Yes,10,123
+Tokyo,2013,Women,Aberu Kebede,Ethiopia,2:25:34,,,,Tokyo (2013),8734,17.39,10.81,5:33,3:27,2010s,4,1,East Africa,Completed,Not independently checked,No,0,124
+Tokyo,2014,Women,Tirfi Tsegaye,Ethiopia,2:22:23,,,,Tokyo (2014),8543,17.78,11.05,5:26,3:22,2010s,2,1,East Africa,Completed,Not independently checked,Yes,185,77
+Tokyo,2015,Women,Birhane Dibaba,Ethiopia,2:23:15,,,,Tokyo (2015),8595,17.67,10.98,5:28,3:24,2010s,2,2,East Africa,Completed,Not independently checked,No,0,91
+Tokyo,2016,Women,Helah Kiprop,Kenya,2:21:27,,,,Tokyo (2016),8487,17.90,11.12,5:24,3:21,2010s,1,1,East Africa,Completed,Not independently checked,Yes,56,67
+Tokyo,2017,Women,Sarah Chepchirchir,Kenya,2:19:47,,,,Tokyo (2017),8387,18.11,11.25,5:20,3:19,2010s,1,1,East Africa,Completed,Not independently checked,Yes,100,46
+Tokyo,2018,Women,Birhane Dibaba,Ethiopia,2:19:51,,,,Tokyo (2018),8391,18.10,11.25,5:20,3:19,2010s,2,2,East Africa,Completed,Not independently checked,No,0,47
+Tokyo,2019,Women,Ruti Aga,Ethiopia,2:20:40,,,,Tokyo (2019),8440,18.00,11.18,5:22,3:20,2010s,1,1,East Africa,Completed,Not independently checked,No,0,59
+Tokyo,2020,Women,Lonah Chemtai,Israel,2:17:45,Elite-only race due to COVID-19,,,Tokyo (2020),8265,18.38,11.42,5:15,3:16,2020s,1,1,Western Asia,Completed,Not independently checked,Yes,122,26
+Tokyo,2021,Women,Brigid Kosgei,Kenya,2:16:02,Held March 2022 (postponed),,,Tokyo (2021),8162,18.61,11.56,5:11,3:13,2020s,6,2,East Africa,Completed,Not independently checked,Yes,103,15
+Tokyo,2023,Women,Rosemary Wanjiru,Kenya,2:16:28,,,,Tokyo (2023),8188,18.55,11.53,5:12,3:14,2020s,2,1,East Africa,Completed,Not independently checked,No,0,17
+Tokyo,2024,Women,Sutume Kebede,Ethiopia,2:15:55,,,,Tokyo (2024),8155,18.63,11.57,5:11,3:13,2020s,2,2,East Africa,Completed,Not independently checked,Yes,7,14
+Tokyo,2025,Women,Sutume Kebede,Ethiopia,2:16:31,,,,Tokyo (2025),8191,18.54,11.52,5:12,3:14,2020s,2,2,East Africa,Completed,Not independently checked,No,0,18
+Tokyo,2026,Women,Brigid Kosgei,Kenya,2:14:29,User-supplied,,,Tokyo (2026),8069,18.83,11.70,5:08,3:11,2020s,6,2,East Africa,Completed,Source flagged for review,Yes,86,8
+Boston,2000,Women,Catherine Ndereba,Kenya,2:26:11,,,,Boston (2000),8771,17.32,10.76,5:35,3:28,2000s,6,4,East Africa,Completed,Not independently checked,Yes,,129
+Boston,2001,Women,Catherine Ndereba,Kenya,2:23:53,,,,Boston (2001),8633,17.60,10.93,5:29,3:25,2000s,6,4,East Africa,Completed,Not independently checked,Yes,138,101
+Boston,2002,Women,Margaret Okayo,Kenya,2:20:43,,,,Boston (2002),8443,17.99,11.18,5:22,3:20,2000s,4,1,East Africa,Completed,Not independently checked,Yes,190,61
+Boston,2003,Women,Svetlana Zakharova,Russia,2:25:19,,,,Boston (2003),8719,17.42,10.83,5:33,3:27,2000s,2,1,Eastern Europe,Completed,Not independently checked,No,0,121
+Boston,2004,Women,Catherine Ndereba,Kenya,2:24:27,,,,Boston (2004),8667,17.53,10.89,5:31,3:25,2000s,6,4,East Africa,Completed,Not independently checked,No,0,109
+Boston,2005,Women,Catherine Ndereba,Kenya,2:25:12,,,,Boston (2005),8712,17.44,10.83,5:32,3:26,2000s,6,4,East Africa,Completed,Not independently checked,No,0,120
+Boston,2006,Women,Rita Jeptoo,Kenya,2:23:38,,,,Boston (2006),8618,17.63,10.95,5:29,3:24,2000s,3,2,East Africa,Completed,Not independently checked,No,0,98
+Boston,2007,Women,Lidiya Grigoryeva,Russia,2:29:18,,,,Boston (2007),8958,16.96,10.54,5:42,3:32,2000s,2,1,Eastern Europe,Completed,Not independently checked,No,0,141
+Boston,2008,Women,Dire Tune,Ethiopia,2:25:25,,,,Boston (2008),8725,17.41,10.82,5:33,3:27,2000s,1,1,East Africa,Completed,Not independently checked,No,0,122
+Boston,2009,Women,Salina Kosgei,Kenya,2:32:16,,,,Boston (2009),9136,16.63,10.33,5:48,3:37,2000s,1,1,East Africa,Completed,Not independently checked,No,0,145
+Boston,2010,Women,Teyba Erkesso,Ethiopia,2:26:11,,,,Boston (2010),8771,17.32,10.76,5:35,3:28,2010s,1,1,East Africa,Completed,Not independently checked,No,0,129
+Boston,2011,Women,Caroline Kilel,Kenya,2:22:36,,,,Boston (2011),8556,17.75,11.03,5:26,3:23,2010s,1,1,East Africa,Completed,Not independently checked,No,0,81
+Boston,2012,Women,Sharon Cherop,Kenya,2:31:50,,,,Boston (2012),9110,16.67,10.36,5:47,3:36,2010s,1,1,East Africa,Completed,Not independently checked,No,0,144
+Boston,2013,Women,Rita Jeptoo,Kenya,2:26:25,,,,Boston (2013),8785,17.29,10.74,5:35,3:28,2010s,3,2,East Africa,Completed,Not independently checked,No,0,132
+Boston,2014,Women,Buzunesh Deba,Ethiopia,2:19:59,Original winner Rita Jeptoo disqualified,,,Boston (2014),8399,18.09,11.24,5:20,3:19,2010s,1,1,East Africa,Completed,Disqualification mentioned,Yes,44,50
+Boston,2015,Women,Caroline Rotich,Kenya,2:24:55,,,,Boston (2015),8695,17.47,10.86,5:32,3:26,2010s,1,1,East Africa,Completed,Not independently checked,No,0,115
+Boston,2016,Women,Atsede Bayisa,Ethiopia,2:29:19,,,,Boston (2016),8959,16.96,10.54,5:42,3:32,2010s,1,1,East Africa,Completed,Not independently checked,No,0,142
+Boston,2017,Women,Edna Kiplagat,Kenya,2:21:52,,,,Boston (2017),8512,17.85,11.09,5:25,3:22,2010s,4,2,East Africa,Completed,Not independently checked,No,0,73
+Boston,2018,Women,Desiree Linden,United States,2:39:54,,,,Boston (2018),9594,15.83,9.84,6:06,3:47,2010s,1,1,North America,Completed,Not independently checked,No,0,149
+Boston,2019,Women,Worknesh Degefa,Ethiopia,2:23:31,,,,Boston (2019),8611,17.64,10.96,5:28,3:24,2010s,1,1,East Africa,Completed,Not independently checked,No,0,96
+Boston,2020,Women,NO RACE,,,Cancelled due to COVID-19,,,Boston (2020),,,,,,2020s,,,,Cancelled,Cancelled,,,
+Boston,2021,Women,Edna Kiplagat,Kenya,2:25:09,Held October,,,Boston (2021),8709,17.44,10.84,5:32,3:26,2020s,4,2,East Africa,Completed,Not independently checked,No,0,119
+Boston,2022,Women,Peres Jepchirchir,Kenya,2:21:01,,,,Boston (2022),8461,17.95,11.16,5:23,3:21,2020s,3,1,East Africa,Completed,Not independently checked,No,0,63
+Boston,2023,Women,Hellen Obiri,Kenya,2:21:38,,,,Boston (2023),8498,17.88,11.11,5:24,3:21,2020s,4,2,East Africa,Completed,Not independently checked,No,0,71
+Boston,2024,Women,Hellen Obiri,Kenya,2:22:37,,,,Boston (2024),8557,17.75,11.03,5:26,3:23,2020s,4,2,East Africa,Completed,Not independently checked,No,0,82
+Boston,2025,Women,Sharon Lokedi,Kenya,2:17:22,Course record,,,Boston (2025),8242,18.43,11.45,5:14,3:15,2020s,3,2,East Africa,Completed,Not independently checked,Yes,157,22
+Boston,2026,Women,Sharon Lokedi,Kenya,2:18:51,,,,Boston (2026),8331,18.23,11.33,5:18,3:17,2020s,3,2,East Africa,Completed,Not independently checked,No,0,35
+London,2000,Women,Tegla Loroupe,Kenya,2:24:33,,,,London (2000),8673,17.51,10.88,5:31,3:26,2000s,1,1,East Africa,Completed,Not independently checked,Yes,,110
+London,2001,Women,Derartu Tulu,Ethiopia,2:23:57,,,,London (2001),8637,17.59,10.93,5:29,3:25,2000s,2,1,East Africa,Completed,Not independently checked,Yes,36,103
+London,2002,Women,Paula Radcliffe,United Kingdom,2:18:56,,,,London (2002),8336,18.22,11.32,5:18,3:18,2000s,7,3,Northern Europe,Completed,Not independently checked,Yes,301,36
+London,2003,Women,Paula Radcliffe,United Kingdom,2:15:25,World record (mixed race),,,London (2003),8125,18.70,11.62,5:10,3:13,2000s,7,3,Northern Europe,Completed,Not independently checked,Yes,211,10
+London,2004,Women,Margaret Okayo,Kenya,2:22:35,,,,London (2004),8555,17.76,11.03,5:26,3:23,2000s,4,1,East Africa,Completed,Not independently checked,No,0,80
+London,2005,Women,Paula Radcliffe,United Kingdom,2:17:42,,,,London (2005),8262,18.39,11.42,5:15,3:16,2000s,7,3,Northern Europe,Completed,Not independently checked,No,0,24
+London,2006,Women,Deena Kastor,United States,2:19:35,,,,London (2006),8375,18.14,11.27,5:19,3:18,2000s,2,1,North America,Completed,Not independently checked,No,0,42
+London,2007,Women,Zhou Chunxiu,China,2:20:38,,,,London (2007),8438,18.00,11.19,5:22,3:20,2000s,1,1,East Asia,Completed,Not independently checked,No,0,58
+London,2008,Women,Irina Mikitenko,Germany,2:24:14,,,,London (2008),8654,17.55,10.91,5:30,3:25,2000s,4,2,Western Europe,Completed,Not independently checked,No,0,105
+London,2009,Women,Irina Mikitenko,Germany,2:22:11,User-supplied,,,London (2009),8531,17.81,11.06,5:25,3:22,2000s,4,2,Western Europe,Completed,Source flagged for review,No,0,76
+London,2010,Women,Aselefech Mergia,Ethiopia,2:22:38,Originally third; winners later disqualified,,,London (2010),8558,17.75,11.03,5:26,3:23,2010s,1,1,East Africa,Completed,Disqualification mentioned,No,0,83
+London,2011,Women,Mary Keitany,Kenya,2:19:19,,,,London (2011),8359,18.17,11.29,5:19,3:18,2010s,7,3,East Africa,Completed,Not independently checked,No,0,39
+London,2012,Women,Mary Keitany,Kenya,2:18:37,User-supplied,,,London (2012),8317,18.26,11.35,5:17,3:17,2010s,7,3,East Africa,Completed,Source flagged for review,No,0,33
+London,2013,Women,Priscah Jeptoo,Kenya,2:20:15,,,,London (2013),8415,18.05,11.22,5:21,3:19,2010s,2,1,East Africa,Completed,Not independently checked,No,0,53
+London,2014,Women,Edna Kiplagat,Kenya,2:20:21,,,,London (2014),8421,18.04,11.21,5:21,3:20,2010s,4,1,East Africa,Completed,Not independently checked,No,0,55
+London,2015,Women,Tigist Tufa,Ethiopia,2:23:21,,,,London (2015),8601,17.66,10.97,5:28,3:24,2010s,1,1,East Africa,Completed,Not independently checked,No,0,94
+London,2016,Women,Jemima Sumgong,Kenya,2:22:58,,,,London (2016),8578,17.71,11.00,5:27,3:23,2010s,1,1,East Africa,Completed,Not independently checked,No,0,87
+London,2017,Women,Mary Keitany,Kenya,2:17:01,Women-only world record,,,London (2017),8221,18.48,11.48,5:14,3:15,2010s,7,3,East Africa,Completed,Not independently checked,No,0,20
+London,2018,Women,Vivian Cheruiyot,Kenya,2:18:31,,,,London (2018),8311,18.28,11.36,5:17,3:17,2010s,1,1,East Africa,Completed,Not independently checked,No,0,29
+London,2019,Women,Brigid Kosgei,Kenya,2:18:20,,,,London (2019),8300,18.30,11.37,5:17,3:17,2010s,6,2,East Africa,Completed,Not independently checked,No,0,28
+London,2020,Women,Brigid Kosgei,Kenya,2:18:58,User-supplied,,,London (2020),8338,18.22,11.32,5:18,3:18,2020s,6,2,East Africa,Completed,Source flagged for review,No,0,37
+London,2021,Women,Joyciline Jepkosgei,Kenya,2:17:43,,,,London (2021),8263,18.38,11.42,5:15,3:16,2020s,2,1,East Africa,Completed,Not independently checked,No,0,25
+London,2022,Women,Yalemzerf Yehualaw,Ethiopia,2:17:26,,,,London (2022),8246,18.42,11.45,5:15,3:15,2020s,1,1,East Africa,Completed,Not independently checked,No,0,23
+London,2023,Women,Sifan Hassan,Netherlands,2:18:33,,Ethiopia,"Wikipedia; born Adama, Ethiopia; naturalised Dutch 2013",London (2023),8313,18.27,11.35,5:17,3:17,2020s,2,1,Western Europe,Completed,Not independently checked,No,0,31
+London,2024,Women,Peres Jepchirchir,Kenya,2:16:16,,,,London (2024),8176,18.58,11.54,5:12,3:14,2020s,3,1,East Africa,Completed,Not independently checked,No,0,16
+London,2025,Women,Tigst Assefa,Ethiopia,2:15:50,Women-only world record,,,London (2025),8150,18.64,11.58,5:11,3:13,2020s,5,2,East Africa,Completed,Not independently checked,No,0,13
+London,2026,Women,Tigst Assefa,Ethiopia,2:15:41,Verified against 2026 race reports,,,London (2026),8141,18.66,11.59,5:11,3:13,2020s,5,2,East Africa,Completed,Source claims checked,No,0,12
+Berlin,2000,Women,Kazumi Matsuo,Japan,2:26:15,,,,Berlin (2000),8775,17.31,10.76,5:35,3:28,2000s,1,1,East Asia,Completed,Not independently checked,Yes,,131
+Berlin,2001,Women,Naoko Takahashi,Japan,2:19:46,World record,,,Berlin (2001),8386,18.11,11.26,5:20,3:19,2000s,2,2,East Asia,Completed,Not independently checked,Yes,389,45
+Berlin,2002,Women,Naoko Takahashi,Japan,2:21:49,,,,Berlin (2002),8509,17.85,11.09,5:25,3:22,2000s,2,2,East Asia,Completed,Not independently checked,No,0,72
+Berlin,2003,Women,Yasuko Hashimoto,Japan,2:26:32,,,,Berlin (2003),8792,17.28,10.74,5:35,3:28,2000s,1,1,East Asia,Completed,Not independently checked,No,0,134
+Berlin,2004,Women,Yoko Shibui,Japan,2:19:41,,,,Berlin (2004),8381,18.12,11.26,5:20,3:19,2000s,1,1,East Asia,Completed,Not independently checked,Yes,5,43
+Berlin,2005,Women,Mizuki Noguchi,Japan,2:19:12,,,,Berlin (2005),8352,18.19,11.30,5:19,3:18,2000s,1,1,East Asia,Completed,Not independently checked,Yes,29,38
+Berlin,2006,Women,Gete Wami,Ethiopia,2:21:34,,,,Berlin (2006),8494,17.88,11.11,5:24,3:21,2000s,2,2,East Africa,Completed,Not independently checked,No,0,70
+Berlin,2007,Women,Gete Wami,Ethiopia,2:23:17,,,,Berlin (2007),8597,17.67,10.98,5:28,3:24,2000s,2,2,East Africa,Completed,Not independently checked,No,0,93
+Berlin,2008,Women,Irina Mikitenko,Germany,2:19:19,,,,Berlin (2008),8359,18.17,11.29,5:19,3:18,2000s,4,1,Western Europe,Completed,Not independently checked,No,0,39
+Berlin,2009,Women,Atsede Habtamu,Ethiopia,2:24:47,,,,Berlin (2009),8687,17.49,10.87,5:31,3:26,2000s,2,1,East Africa,Completed,Not independently checked,No,0,114
+Berlin,2010,Women,Aberu Kebede,Ethiopia,2:23:58,,,,Berlin (2010),8638,17.59,10.93,5:29,3:25,2010s,4,3,East Africa,Completed,Not independently checked,No,0,104
+Berlin,2011,Women,Florence Kiplagat,Kenya,2:19:44,,,,Berlin (2011),8384,18.12,11.26,5:20,3:19,2010s,4,2,East Africa,Completed,Not independently checked,No,0,44
+Berlin,2012,Women,Aberu Kebede,Ethiopia,2:20:30,,,,Berlin (2012),8430,18.02,11.20,5:22,3:20,2010s,4,3,East Africa,Completed,Not independently checked,No,0,57
+Berlin,2013,Women,Florence Kiplagat,Kenya,2:21:13,,,,Berlin (2013),8473,17.93,11.14,5:23,3:21,2010s,4,2,East Africa,Completed,Not independently checked,No,0,65
+Berlin,2014,Women,Tirfi Tsegaye,Ethiopia,2:20:18,,,,Berlin (2014),8418,18.04,11.21,5:21,3:20,2010s,2,1,East Africa,Completed,Not independently checked,No,0,54
+Berlin,2015,Women,Gladys Cherono,Kenya,2:19:25,,,,Berlin (2015),8365,18.16,11.28,5:19,3:18,2010s,3,3,East Africa,Completed,Not independently checked,No,0,41
+Berlin,2016,Women,Aberu Kebede,Ethiopia,2:20:45,,,,Berlin (2016),8445,17.99,11.18,5:22,3:20,2010s,4,3,East Africa,Completed,Not independently checked,No,0,62
+Berlin,2017,Women,Gladys Cherono,Kenya,2:20:23,,,,Berlin (2017),8423,18.03,11.21,5:21,3:20,2010s,3,3,East Africa,Completed,Not independently checked,No,0,56
+Berlin,2018,Women,Gladys Cherono,Kenya,2:18:11,,,,Berlin (2018),8291,18.32,11.38,5:16,3:16,2010s,3,3,East Africa,Completed,Not independently checked,Yes,61,27
+Berlin,2019,Women,Ashete Bekere,Ethiopia,2:20:14,,,,Berlin (2019),8414,18.05,11.22,5:21,3:19,2010s,1,1,East Africa,Completed,Not independently checked,No,0,52
+Berlin,2020,Women,NO RACE,,,Cancelled due to COVID-19,,,Berlin (2020),,,,,,2020s,,,,Cancelled,Cancelled,,,
+Berlin,2021,Women,Gotytom Gebreslase,Ethiopia,2:20:09,,,,Berlin (2021),8409,18.06,11.22,5:21,3:19,2020s,1,1,East Africa,Completed,Not independently checked,No,0,51
+Berlin,2022,Women,Tigst Assefa,Ethiopia,2:15:37,,,,Berlin (2022),8137,18.67,11.60,5:10,3:13,2020s,5,3,East Africa,Completed,Not independently checked,Yes,154,11
+Berlin,2023,Women,Tigst Assefa,Ethiopia,2:11:53,World record,,,Berlin (2023),7913,19.20,11.93,5:02,3:08,2020s,5,3,East Africa,Completed,Not independently checked,Yes,224,3
+Berlin,2024,Women,Tigist Ketema,Ethiopia,2:16:42,,,,Berlin (2024),8202,18.52,11.51,5:13,3:14,2020s,1,1,East Africa,Completed,Not independently checked,No,0,19
+Berlin,2025,Women,Rosemary Wanjiru,Kenya,2:21:05,,,,Berlin (2025),8465,17.94,11.15,5:23,3:21,2020s,2,1,East Africa,Completed,Not independently checked,No,0,64
+Chicago,2000,Women,Catherine Ndereba,Kenya,2:21:33,,,,Chicago (2000),8493,17.89,11.11,5:24,3:21,2000s,6,2,East Africa,Completed,Not independently checked,Yes,,69
+Chicago,2001,Women,Catherine Ndereba,Kenya,2:18:47,World record,,,Chicago (2001),8327,18.24,11.34,5:18,3:17,2000s,6,2,East Africa,Completed,Not independently checked,Yes,166,34
+Chicago,2002,Women,Paula Radcliffe,United Kingdom,2:17:18,World record,,,Chicago (2002),8238,18.44,11.46,5:14,3:15,2000s,7,1,Northern Europe,Completed,Not independently checked,Yes,89,21
+Chicago,2003,Women,Svetlana Zakharova,Russia,2:23:07,,,,Chicago (2003),8587,17.69,10.99,5:28,3:24,2000s,2,1,Eastern Europe,Completed,Not independently checked,No,0,88
+Chicago,2004,Women,Constantina Dita,Romania,2:23:45,,,,Chicago (2004),8625,17.61,10.94,5:29,3:24,2000s,1,1,Eastern Europe,Completed,Not independently checked,No,0,100
+Chicago,2005,Women,Deena Kastor,United States,2:21:25,,,,Chicago (2005),8485,17.90,11.12,5:24,3:21,2000s,2,1,North America,Completed,Not independently checked,No,0,66
+Chicago,2006,Women,Berhane Adere,Ethiopia,2:20:42,,,,Chicago (2006),8442,17.99,11.18,5:22,3:20,2000s,2,2,East Africa,Completed,Not independently checked,No,0,60
+Chicago,2007,Women,Berhane Adere,Ethiopia,2:33:49,,,,Chicago (2007),9229,16.46,10.23,5:52,3:39,2000s,2,2,East Africa,Completed,Not independently checked,No,0,146
+Chicago,2008,Women,Lidiya Grigoryeva,Russia,2:27:17,,,,Chicago (2008),8837,17.19,10.68,5:37,3:29,2000s,2,1,Eastern Europe,Completed,Not independently checked,No,0,136
+Chicago,2009,Women,Irina Mikitenko,Germany,2:26:31,,,,Chicago (2009),8791,17.28,10.74,5:35,3:28,2000s,4,1,Western Europe,Completed,Not independently checked,No,0,133
+Chicago,2010,Women,Atsede Baysa,Ethiopia,2:23:40,,,,Chicago (2010),8620,17.62,10.95,5:29,3:24,2010s,2,2,East Africa,Completed,Not independently checked,No,0,99
+Chicago,2011,Women,Ejegayehu Dibaba,Ethiopia,2:22:09,,,,Chicago (2011),8529,17.81,11.07,5:25,3:22,2010s,1,1,East Africa,Completed,Not independently checked,No,0,75
+Chicago,2012,Women,Atsede Baysa,Ethiopia,2:22:03,,,,Chicago (2012),8523,17.82,11.07,5:25,3:22,2010s,2,2,East Africa,Completed,Not independently checked,No,0,74
+Chicago,2013,Women,Rita Jeptoo,Kenya,2:19:57,Later disqualified for doping (2014 result),,,Chicago (2013),8397,18.09,11.24,5:20,3:19,2010s,3,1,East Africa,Completed,Disqualification mentioned,No,0,49
+Chicago,2014,Women,Mare Dibaba,Ethiopia,2:25:37,,,,Chicago (2014),8737,17.39,10.80,5:33,3:27,2010s,1,1,East Africa,Completed,Not independently checked,No,0,125
+Chicago,2015,Women,Florence Kiplagat,Kenya,2:23:33,,,,Chicago (2015),8613,17.64,10.96,5:29,3:24,2010s,4,2,East Africa,Completed,Not independently checked,No,0,97
+Chicago,2016,Women,Florence Kiplagat,Kenya,2:21:32,,,,Chicago (2016),8492,17.89,11.11,5:24,3:21,2010s,4,2,East Africa,Completed,Not independently checked,No,0,68
+Chicago,2017,Women,Tirunesh Dibaba,Ethiopia,2:18:31,,,,Chicago (2017),8311,18.28,11.36,5:17,3:17,2010s,1,1,East Africa,Completed,Not independently checked,No,0,29
+Chicago,2018,Women,Brigid Kosgei,Kenya,2:18:35,,,,Chicago (2018),8315,18.27,11.35,5:17,3:17,2010s,6,2,East Africa,Completed,Not independently checked,No,0,32
+Chicago,2019,Women,Brigid Kosgei,Kenya,2:14:04,World record,,,Chicago (2019),8044,18.88,11.73,5:07,3:11,2010s,6,2,East Africa,Completed,Not independently checked,Yes,194,6
+Chicago,2020,Women,NO RACE,,,Cancelled due to COVID-19,,,Chicago (2020),,,,,,2020s,,,,Cancelled,Cancelled,,,
+Chicago,2021,Women,Ruth Chepngetich,Kenya,2:22:31,,,,Chicago (2021),8551,17.76,11.04,5:26,3:23,2020s,3,3,East Africa,Completed,Not independently checked,No,0,78
+Chicago,2022,Women,Ruth Chepngetich,Kenya,2:14:18,,,,Chicago (2022),8058,18.85,11.71,5:07,3:11,2020s,3,3,East Africa,Completed,Not independently checked,No,0,7
+Chicago,2023,Women,Sifan Hassan,Netherlands,2:13:44,,Ethiopia,"Wikipedia; born Adama, Ethiopia; naturalised Dutch 2013",Chicago (2023),8024,18.93,11.76,5:06,3:10,2020s,2,1,Western Europe,Completed,Not independently checked,Yes,20,5
+Chicago,2024,Women,Ruth Chepngetich,Kenya,2:09:56,World record,,,Chicago (2024),7796,19.48,12.11,4:57,3:05,2020s,3,3,East Africa,Completed,Not independently checked,Yes,228,1
+Chicago,2025,Women,Hawi Feysa,Ethiopia,2:14:56,Kept per user,,,Chicago (2025),8096,18.76,11.66,5:09,3:12,2020s,2,2,East Africa,Completed,Source flagged for review,No,0,9
+New York City,2000,Women,Lyudmila Petrova,Russia,2:25:45,,,,New York City (2000),8745,17.37,10.79,5:34,3:27,2000s,1,1,Eastern Europe,Completed,Not independently checked,Yes,,127
+New York City,2001,Women,Margaret Okayo,Kenya,2:24:21,,,,New York City (2001),8661,17.54,10.90,5:30,3:25,2000s,4,2,East Africa,Completed,Not independently checked,Yes,84,106
+New York City,2002,Women,Joyce Chepchumba,Kenya,2:25:56,,,,New York City (2002),8756,17.35,10.78,5:34,3:28,2000s,1,1,East Africa,Completed,Not independently checked,No,0,128
+New York City,2003,Women,Margaret Okayo,Kenya,2:22:31,,,,New York City (2003),8551,17.76,11.04,5:26,3:23,2000s,4,2,East Africa,Completed,Not independently checked,Yes,110,78
+New York City,2004,Women,Paula Radcliffe,United Kingdom,2:23:10,,,,New York City (2004),8590,17.68,10.99,5:28,3:24,2000s,7,3,Northern Europe,Completed,Not independently checked,No,0,90
+New York City,2005,Women,Jelena Prokopcuka,Latvia,2:24:41,,,,New York City (2005),8681,17.50,10.87,5:31,3:26,2000s,2,2,Northern Europe,Completed,Not independently checked,No,0,113
+New York City,2006,Women,Jelena Prokopcuka,Latvia,2:25:05,,,,New York City (2006),8705,17.45,10.84,5:32,3:26,2000s,2,2,Northern Europe,Completed,Not independently checked,No,0,116
+New York City,2007,Women,Paula Radcliffe,United Kingdom,2:23:09,,,,New York City (2007),8589,17.69,10.99,5:28,3:24,2000s,7,3,Northern Europe,Completed,Not independently checked,No,0,89
+New York City,2008,Women,Paula Radcliffe,United Kingdom,2:23:56,,,,New York City (2008),8636,17.59,10.93,5:29,3:25,2000s,7,3,Northern Europe,Completed,Not independently checked,No,0,102
+New York City,2009,Women,Derartu Tulu,Ethiopia,2:28:52,,,,New York City (2009),8932,17.01,10.57,5:41,3:32,2000s,2,1,East Africa,Completed,Not independently checked,No,0,140
+New York City,2010,Women,Edna Kiplagat,Kenya,2:28:20,,,,New York City (2010),8900,17.07,10.61,5:39,3:31,2010s,4,1,East Africa,Completed,Not independently checked,No,0,138
+New York City,2011,Women,Firehiwot Dado,Ethiopia,2:23:15,,,,New York City (2011),8595,17.67,10.98,5:28,3:24,2010s,1,1,East Africa,Completed,Not independently checked,No,0,91
+New York City,2012,Women,NO RACE,,,Cancelled due to Hurricane Sandy,,,New York City (2012),,,,,,2010s,,,,Cancelled,Cancelled,,,
+New York City,2013,Women,Priscah Jeptoo,Kenya,2:25:07,,,,New York City (2013),8707,17.45,10.84,5:32,3:26,2010s,2,1,East Africa,Completed,Not independently checked,No,0,117
+New York City,2014,Women,Mary Keitany,Kenya,2:25:07,,,,New York City (2014),8707,17.45,10.84,5:32,3:26,2010s,7,4,East Africa,Completed,Not independently checked,No,0,117
+New York City,2015,Women,Mary Keitany,Kenya,2:24:25,,,,New York City (2015),8665,17.53,10.89,5:30,3:25,2010s,7,4,East Africa,Completed,Not independently checked,No,0,107
+New York City,2016,Women,Mary Keitany,Kenya,2:24:26,,,,New York City (2016),8666,17.53,10.89,5:31,3:25,2010s,7,4,East Africa,Completed,Not independently checked,No,0,108
+New York City,2017,Women,Shalane Flanagan,United States,2:26:53,,,,New York City (2017),8813,17.24,10.71,5:36,3:29,2010s,1,1,North America,Completed,Not independently checked,No,0,135
+New York City,2018,Women,Mary Keitany,Kenya,2:22:48,,,,New York City (2018),8568,17.73,11.02,5:27,3:23,2010s,7,4,East Africa,Completed,Not independently checked,No,0,86
+New York City,2019,Women,Joyciline Jepkosgei,Kenya,2:22:38,,,,New York City (2019),8558,17.75,11.03,5:26,3:23,2010s,2,1,East Africa,Completed,Not independently checked,No,0,83
+New York City,2020,Women,Stephanie Bruce,United States,2:35:28,Virtual event due to COVID-19,,,New York City (2020),9328,,,,,2020s,,,North America,Virtual,Virtual event,,,
+New York City,2021,Women,Peres Jepchirchir,Kenya,2:22:39,,,,New York City (2021),8559,17.75,11.03,5:26,3:23,2020s,3,1,East Africa,Completed,Not independently checked,No,0,85
+New York City,2022,Women,Sharon Lokedi,Kenya,2:23:23,,,,New York City (2022),8603,17.66,10.97,5:28,3:24,2020s,3,1,East Africa,Completed,Not independently checked,No,0,95
+New York City,2023,Women,Hellen Obiri,Kenya,2:27:23,,,,New York City (2023),8843,17.18,10.67,5:37,3:30,2020s,4,2,East Africa,Completed,Not independently checked,No,0,137
+New York City,2024,Women,Sheila Chepkirui,Kenya,2:24:35,,,,New York City (2024),8675,17.51,10.88,5:31,3:26,2020s,2,2,East Africa,Completed,Not independently checked,No,0,111
+New York City,2025,Women,Hellen Obiri,Kenya,2:19:51,Course record,,,New York City (2025),8391,18.10,11.25,5:20,3:19,2020s,4,2,East Africa,Completed,Not independently checked,Yes,160,47
+Berlin,2026,Women,Tigst Assefa,Ethiopia,2:11:04,Verified against 2026 race reports; course record (earlier entry was the 2025 result),,,Berlin (2026),7864,19.32,12.00,5:00,3:06,2020s,5,3,East Africa,Completed,Source claims checked,Yes,49,2
+Chicago,2026,Women,Hawi Feysa,Ethiopia,2:13:33,Verified against 2026 race reports,,,Chicago (2026),8013,18.96,11.78,5:06,3:10,2020s,2,2,East Africa,Completed,Source claims checked,No,0,4
+New York City,2026,Women,Sheila Chepkirui,Kenya,2:24:36,User-supplied,,,New York City (2026),8676,17.51,10.88,5:31,3:26,2020s,2,2,East Africa,Completed,Source flagged for review,No,0,112
