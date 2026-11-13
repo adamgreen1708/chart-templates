@@ -49,7 +49,7 @@ CHART_CONFIG = {
     "highlight_points": [{"Nationality": "Kenya", "color": "#C44E52"}, {"Nationality": "Ethiopia", "color": "#C44E52"}],
     "annotate_points": [],
     "end_labels": [],
-    "label_style": {"enabled": True, "label_col": "Wins", "label_format": "{}", "position": "right", "fontsize": 12},
+    "label_style": {"enabled": True, "label_col": "Wins", "label_format": "{:.0f}", "position": "right", "fontsize": 12},
     "title_fontsize": 26,
     "subtitle_fontsize": 16,
     "tick_label_fontsize": 12,

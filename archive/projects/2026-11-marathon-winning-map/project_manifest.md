@@ -23,7 +23,7 @@ All charts run through `src/render_538.py` with `render_profile="social_square"`
 - Country means `Nationality` as supplied, not athlete birthplace, ethnicity, participation, all runners or medal placings.
 - Tokyo's entry starts in 2007, and periods differ in race coverage. The 2020–25 slice is shorter and affected by disruptions.
 - The pink/red highlight consistently marks Kenya/Ethiopia among women's winners; teal is men's two-country share in chart 3. Grey is context.
-- Charts 1 and 2 use identical 0–33 x scales for valid visual comparison.
+- Charts 1 and 2 use identical 0–33 x scales for valid visual comparison. Chart 3 uses a genuine 0–100% y-axis, not a cropped percentage scale. Numerical win labels display as whole counts.
 - Full QA: inspect exact 1600px renderer PNG and 390px / 320px reductions, margins, labels, source credit, and title wraps before approval.
 
 ## Production
