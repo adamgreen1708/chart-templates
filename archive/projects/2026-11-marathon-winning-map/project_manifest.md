@@ -1,6 +1,6 @@
 # Marathon Majors: a world of winners, then four exceptions
 
-**Draft editorial revision 3 — not for live publication.** Source: `data/marathon-majors` at commit `999b9b57c2cf61a1222bb4f08a4bdd885898e09a`; upstream Shorts in Sports pinned in that README.
+**Project status: PUBLISHED / ARCHIVED (13 November 2026).** Source: `data/marathon-majors` at commit `999b9b57c2cf61a1222bb4f08a4bdd885898e09a`; upstream Shorts in Sports pinned in that README.
 
 ## Corrected editorial contract
 
@@ -27,9 +27,26 @@ The archive regenerates all chart CSVs with `scripts/build_chart_views.py` and r
 
 The original source is **not a blanket independently verified official result archive**. The explicitly mentioned winners and streak were verified independently; all other source results still require a wider independent official-results audit before claiming blanket verification. This is six historical races, not all eight current World Marathon Majors (Sydney and Cape Town omitted).
 
-## Release gate
+## Publication and final closeout — 13 November 2026
 
-All three PNGs must pass source-backed 1600px/390px/320px QA, including one-line headlines, source-footer, complete 0–100% axis and no cut-off dot rows. Review the blog and images in the draft PR. No `site/_posts`, site asset map or live publication without approval.
+**Article:** https://coffeetableviz.com/stories/can-you-find-the-four-outsiders/  
+**Category:** Sport; **credit:** Shorts in Sports and Coffeetableviz  
+**Archived data and render PR:** [#214](https://github.com/adamgreen1708/chart-templates/pull/214) — merged and chart archive retained  
+**Website publication PR:** [#215](https://github.com/adamgreen1708/chart-templates/pull/215) — merged, commit `3f7c744dfbdfd94d16de792e25125593c5cab243`  
+**Jekyll/Pages deployment:** [successful main-branch workflow #43522970207](https://github.com/adamgreen1708/chart-templates/actions/runs/43522970207)
+
+The original full-resolution chart PNGs were copied as **unchanged Git blobs** into `site/assets/charts/marathon-winning-map/`. Exact image hashes:
+- Chart 1 and hero/card: `01_berlin_six_and_the_world.png` — `a6860c7eea9ebd9f00bcf6b817673316d18bc622`
+- Chart 2: `02_find_the_four.png` — `fe7547eb968cc3abf38b71ed63bc54fee7051ee0`
+- Chart 3: `03_women_changed_most.png` — `cccfc16daf8d7780a38c7284f8fe5154435224e8`
+
+**Feature asset decision:** chart 1 is the story-specific square hero/card image: Berlin's six consecutive Japanese winners appear as red exceptions in the 2000s race grid. No generic running illustration, modified chart or new image-model rendering was inserted. Hero alt text reflects those actual dots.
+
+**Rendered-page QA:** The deployed GitHub Pages artifact was inspected directly. It contains `stories/can-you-find-the-four-outsiders/index.html` and all three referenced images; the built HTML includes the article title, its statistical figures and the 216-unverified-entry caveat. The three assets are byte-for-byte identical to approved archived PNGs. The built document declares the canonical URL above. GitHub Pages reported **successful deployment** for the exact merge commit. A direct external HTTP fetch of `coffeetableviz.com` was unavailable from the validation environment; consequently, individual public-browser reachability is **not separately asserted**.
+
+**Publishing guardrails satisfied:** site post + three site assets only; archive source files, renderer and older live posts were not changed. The chart archive remains reproducible. The published method note explicitly warns that 216 source entries are marked `Not independently checked`; this work does **not** claim every official result was independently re-audited.
+
+**Editorial closeout:** Three real-data charts, article, source evidence ledger, deterministic strict-DQ generator and a LinkedIn draft are retained together. The source snapshot is frozen. Any later source correction must be documented and reviewed in a new PR, with chart renders and blog claims regenerated together.
 
 ## Stringent reproducible DQ gate (13 November 2026)
 
