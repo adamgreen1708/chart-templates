@@ -109,7 +109,7 @@ permalink: /resources/bauhaus-art-studio/
 </div></section>
 <section class="section creative-box" id="bh-brushes-section"><span class="kicker">04 / Edit the artwork</span><h2>Pick a shape. Tap a tile.</h2><p class="muted">Tap again with the same shape to rotate it. For the original red-and-cream Cutout on yellow, choose the <strong>Hidden Miles</strong> palette or preset.</p>
 <div class="brushes" id="bh-brushes"><button type="button" data-shape="0" class="active">● Circle</button><button type="button" data-shape="1">◕ Quarter</button><button type="button" data-shape="2">◓ Half</button><button type="button" data-shape="3">▲ Triangle</button><button type="button" data-shape="4">▥ Stripes</button><button type="button" data-shape="5">◯ Arc</button><button type="button" data-shape="6">■ Block</button><button type="button" data-shape="7">◩ Cutout</button><button type="button" data-shape="-1">⌫ Erase</button></div></section>
-<section class="section data-box" id="bh-data" hidden><span class="kicker">04 / Form follows data</span><h2>Upload your numbers.</h2><p class="muted">Choose a local CSV, or paste a CSV link from any public GitHub repository. Maximum 2 MB and 10,000 input rows; the artwork shows up to 64 rows. Times such as 2:09:45 are measured as elapsed seconds and displayed as hours:minutes:seconds.</p>
+<section class="section data-box" id="bh-data" hidden><span class="kicker">04 / Form follows data</span><h2>Upload your numbers.</h2><p class="muted">Choose a local CSV, browse a public GitHub repository or paste a direct CSV link. Maximum 2 MB and 10,000 input rows; the artwork shows up to 64 rows. Times such as 2:09:45 are measured as elapsed seconds and displayed as hours:minutes:seconds.</p>
 <label class="upload" for="bh-file"><strong>Choose a CSV file</strong><input type="file" id="bh-file" accept=".csv,text/csv,text/plain"></label>
 <p class="muted" id="bh-file-info">Local files stay on your device and are not uploaded to Coffeetableviz.</p>
 <div class="github-import" aria-label="Connect to public GitHub data">
@@ -125,10 +125,10 @@ permalink: /resources/bauhaus-art-studio/
   <p class="muted" id="bh-github-browser-info" role="status">Browse public GitHub repositories from adamgreen1708, or change the account to browse another public owner (such as shortsinsports). Private repositories are not accessible in the browser.</p>
   <button type="button" class="primarybutton" id="bh-github-load" disabled>Load this dataset</button>
   <button type="button" id="bh-github-refresh">↻ Browse / refresh repositories</button>
-  <label class="field" for="bh-github-url">Or paste a public GitHub CSV link (main or commit permalink)</label>
+  <label class="field" for="bh-github-url">Or paste a public GitHub CSV link (branch or commit permalink)</label>
   <input type="url" id="bh-github-url" placeholder="https://github.com/adamgreen1708/chart-templates/blob/main/…csv" autocomplete="off">
   <button type="button" class="primarybutton" id="bh-github-link">Load GitHub link</button>
-  <p class="muted" id="bh-github-info" role="status">Paste a public CSV from any GitHub repository on main or a full Git commit permalink. GitHub receives the request; no login or token is needed. Pinned commit links always load that exact snapshot.</p>
+  <p class="muted" id="bh-github-info" role="status">Paste a public CSV from any GitHub branch or a full Git commit permalink. GitHub receives the request; no login or token is needed. Pinned commit links always load that exact snapshot.</p>
 </div>
 <label class="field" for="bh-label">Label column</label><select id="bh-label" disabled><option>Choose a CSV first</option></select>
 <label class="field" for="bh-value">Numeric value column</label><select id="bh-value" disabled><option>Choose a CSV first</option></select>
