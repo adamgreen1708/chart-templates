@@ -18,9 +18,9 @@ In the 2000s, winners across six big-city marathons came from ten nationalities 
 
 Kenya led, of course. But Japanese women won eight times. British women took seven, with Paula Radcliffe featuring prominently. Russia won five.
 
-Add it up and **29 of 51 women's victories came from outside Kenya and Ethiopia**. That's a majority.
+Add it up and **29 of 51 women's victories came from outside Kenya and Ethiopia**. That's a majority. And in Berlin, the first six red dots in the row all belong to Japanese champions.
 
-*[Chart 1 — The rest of the world still won]*
+*[Chart 1 — Berlin's six Japanese wins in a much redder 2000s map]*
 
 ## Now try to find the three
 
@@ -30,7 +30,7 @@ In the next chart, every dot represents a women's winner in a completed race-yea
 
 **There are three red dots. Can you find them?**
 
-*[Chart 2 — Can you find the three exceptions?]*
+*[Chart 2 — Same six races, next decade. Can you find the three red dots?]*
 
 The three interruptions were **Alevtina Biktimirova** in Tokyo in 2010 (Russia), **Shalane Flanagan** in New York in 2017 (United States), and **Desiree Linden** in Boston in 2018 (United States). All three are confirmed in the organisers' records.
 

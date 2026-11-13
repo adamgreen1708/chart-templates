@@ -30,6 +30,14 @@ def main():
     counts=Counter(w["Nationality"] for k,m,w in early)
     assert len(counts)==10
     write("01_women_nationalities.csv",["Nationality","Wins"],sorted(counts.items(),key=lambda a:(-a[1],a[0])))
+    # Matched-layout prequel: one dot per completed, source-filtered race-year.
+    berlin=[a for a in early if a[0][0]=="Berlin" and 2000<=a[0][1]<=2005]
+    assert len(berlin)==6 and all(a[2]["Nationality"]=="Japan" for a in berlin)
+    earlydots=[]
+    for (race,year),m,w in sorted(early,key=lambda a:(a[0][1],-POS[a[0][0]])):
+        group="Kenya/Ethiopia" if w["Nationality"] in EAST else "Outside"
+        earlydots.append((year,race,POS[race],w["Winner"],w["Nationality"],group))
+    write("01_winner_race_year.csv",["Year","Race","RaceRow","Winner","Nationality","Group"],earlydots)
     dots=[];names=[]
     for (race,year),m,w in sorted(later,key=lambda a:(a[0][1],-POS[a[0][0]])):
         group="Kenya/Ethiopia" if w["Nationality"] in EAST else "Outside"

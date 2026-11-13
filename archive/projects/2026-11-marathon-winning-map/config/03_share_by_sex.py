@@ -8,8 +8,8 @@ CHART_CONFIG = {
     "series_col": "Sex",
     "value_col": None,
     "filters": [],
-    "title": "The real twist? Women changed most",
-    "subtitle": "Outside Kenya/Ethiopia winners nearly vanished over a decade.",
+    "title": "The big shift wasn't the men's",
+    "subtitle": "Share of victories outside Kenya and Ethiopia, 2000s vs 2010s.",
     "source_text": "Source: Shorts in Sports | filtered subset",
     "footer_left": "Adam Green | coffeetableviz",
     "render_profile": "social_square",
@@ -20,7 +20,7 @@ CHART_CONFIG = {
     "label_strategy": "all",
     "x_is_datetime": False,
     "x_tick_rotation": 0,
-    "x_label": "Source years",
+    "x_label": "Decade of race results",
     "y_label": "Share won by other nations",
     "x_margin": 0.08,
     "x_axis": {"min": 0.8, "max": 2.65, "tick_interval": 1, "format": None},
@@ -48,6 +48,11 @@ CHART_CONFIG = {
     "trend_line": {"enabled": False},
     "highlight_points": [],
     "annotate_points": [
+        {"x": 1, "y": 0.568627, "text": "Women 57%", "xytext": (0, 16), "ha": "center", "fontsize": 12, "color": "#C44E52", "arrowprops": None},
+        {"x": 1, "y": 0.235294, "text": "Men 24%", "xytext": (0, -20), "ha": "center", "fontsize": 12, "color": "#555555", "arrowprops": None},
+        {"x": 2, "y": 0.056604, "text": "Women 6%", "xytext": (12, 34), "ha": "left", "fontsize": 12, "color": "#C44E52", "arrowprops": {"arrowstyle": "-", "color": "#C44E52", "lw": 0.8}},
+        {"x": 2, "y": 0.094340, "text": "Men 9%", "xytext": (12, 67), "ha": "left", "fontsize": 12, "color": "#555555", "arrowprops": {"arrowstyle": "-", "color": "#7A7A7A", "lw": 0.8}}
+    ]
         {"x": 1, "y": 0.568627, "text": "Women 57%", "xytext": (0, 13), "ha": "center", "fontsize": 12, "color": "#C44E52"},
         {"x": 1, "y": 0.235294, "text": "Men 24%", "xytext": (0, -17), "ha": "center", "fontsize": 12, "color": "#555555"},
         {"x": 2, "y": 0.056604, "text": "Women 6%", "xytext": (14, -19), "ha": "left", "fontsize": 12, "color": "#C44E52"},
