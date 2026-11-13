@@ -1,13 +1,13 @@
-The biggest story in marathon data might not be the finish times. 🏃
+Six consecutive Japanese women winning Berlin. 🇯🇵
 
-I was digging into six major marathons using the #ShortsInSports data and found something I didn't expect.
+Then a decade when just THREE women from outside Kenya or Ethiopia won across six major marathons in my filtered sample.
 
-In the 2000s, women from ten nationalities won in our comparable race sample. A decade later, Kenya and Ethiopia took **50 of 53 wins**.
+I've made a 53-dot puzzle out of it.
 
-The real twist? Men's races were already dominated by those two countries.
+Can you spot the three red dots? And can you guess which side of the sport changed more?
 
-Three charts. One big shift.
+Three charts, one twist. Thanks to #ShortsInSports for the source data.
 
-Draft for review — full story to follow at coffeetableviz.com
+Simple charts. Clear stories.
 
-#ShortsInSports #DataViz #SportsAnalytics #Coffeetableviz
+#DataViz #SportsAnalytics #Coffeetableviz

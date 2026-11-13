@@ -8,9 +8,9 @@ CHART_CONFIG = {
     "series_col": None,
     "value_col": None,
     "filters": [],
-    "title": "In the 2000s, ten nations won",
-    "subtitle": "Women's major winners, 2000–09. Kenya led, but the map was much wider.",
-    "source_text": "Source: Shorts in Sports | CTv subset",
+    "title": "The rest of the world still won",
+    "subtitle": "Outside Kenya and Ethiopia: 29 of 51 women's wins in the 2000s.",
+    "source_text": "Source: Shorts in Sports | filtered subset",
     "footer_left": "Adam Green | coffeetableviz",
     "render_profile": "social_square",
     "profile_overrides": {"plot_left": 0.33},
@@ -20,7 +20,7 @@ CHART_CONFIG = {
     "label_strategy": "all",
     "x_is_datetime": False,
     "x_tick_rotation": 0,
-    "x_label": "Wins in 51 matched race-years",
+    "x_label": "Victories, 2000–09",
     "y_label": "",
     "x_margin": 0.08,
     "x_axis": {"min": 0, "max": 33, "tick_interval": 10, "format": None},
@@ -46,7 +46,7 @@ CHART_CONFIG = {
     "secondary_style": {"color": "#1F8FA8", "linewidth": 2.7, "alpha": 1.0},
     "reference_lines": [],
     "trend_line": {"enabled": False},
-    "highlight_points": [{"Nationality": "Kenya", "color": "#C44E52"}, {"Nationality": "Ethiopia", "color": "#C44E52"}],
+    "highlight_points": [{"Nationality": "Japan"}, {"Nationality": "United Kingdom"}, {"Nationality": "Russia"}, {"Nationality": "Germany"}, {"Nationality": "United States"}, {"Nationality": "Latvia"}, {"Nationality": "China"}, {"Nationality": "Romania"}],
     "annotate_points": [],
     "end_labels": [],
     "label_style": {"enabled": True, "label_col": "Wins", "label_format": "{:.0f}", "position": "right", "fontsize": 12},
@@ -74,5 +74,5 @@ CHART_CONFIG = {
     "plot_right": 0.87,
     "vertical_gridlines": False,
     "dpi": 200,
-    "output_file": "output/01_women_2000s_nationalities.png"
+    "output_file": "output/01_the_world_still_won.png"
 }

@@ -1,62 +1,59 @@
 ---
-title: "The marathon's winning map got a lot smaller"
+title: "Can you find the three outsiders?"
 category: Sport
 status: draft
-source: "Shorts in Sports / Coffeetableviz matched-race subset"
 ---
 
-# The marathon's winning map got a lot smaller
+# Can you find the three outsiders?
 
-Ask someone where the world's big marathons are won, and two countries come quickly to mind.
+Berlin, 2005. Mizuki Noguchi crosses the line to win the marathon.
 
-Kenya. Ethiopia.
+That makes **six consecutive Japanese women winning Berlin**, stretching back to 2000. Six years. Six Japanese victories.
 
-But rewind to the 2000s and the women's winners tell a different story.
+It's a different marathon world from the one we picture today.
 
-## Ten countries. Plenty of competition.
+## The world still won
 
-Across six big-city marathons in our matched, source-filtered sample, women from **ten nationalities** won in 2000–09.
+In the 2000s, winners across six big-city marathons came from ten nationalities in the comparable dataset.
 
-Kenya led with 14 wins. Ethiopia and Japan had eight each. Britain had seven, Russia five. More countries followed.
+Kenya led, of course. But Japanese women won eight times. British women took seven, with Paula Radcliffe featuring prominently. Russia won five.
 
-Two East African countries accounted for **22 of 51 wins (43.1%)**. A big share — but there was plenty of room for everyone else.
+Add it up and **29 of 51 women's victories came from outside Kenya and Ethiopia**. That's a majority.
 
-[CHART 1: 01_women_2000s_nationalities.png]
+*[Chart 1 — The rest of the world still won]*
 
-## Then the map shrank.
+## Now try to find the three
 
-Move to 2010–19 and the balance changes almost beyond recognition.
+Jump into 2010–19.
 
-Kenyan women won **29** of the 53 qualifying races. Ethiopian women took **21**.
+In the next chart, every dot represents a women's winner in a completed race-year. Grey means Kenya or Ethiopia. Red means somewhere else.
 
-That leaves just three victories for anybody else. The United States had two; Russia one.
+**There are three red dots. Can you find them?**
 
-**50 of 53 wins. 94.3%.** Two countries had turned a varied winners' list into something much closer to a duopoly.
+*[Chart 2 — Can you find the three exceptions?]*
 
-[CHART 2: 02_women_2010s_nationalities.png]
+The three interruptions were **Alevtina Biktimirova** in Tokyo in 2010 (Russia), **Shalane Flanagan** in New York in 2017 (United States), and **Desiree Linden** in Boston in 2018 (United States). All three are confirmed in the organisers' records.
 
-## The twist is in the men's results.
+Just **three out of 53** winners in this comparable 2010s sample came from elsewhere.
 
-You might expect the men's race to tell the same story.
+That is quite a change. But the biggest surprise is still ahead.
 
-Except it had started much earlier.
+## The bigger change was the women's race
 
-In the 2000s, Kenyan and Ethiopian men already accounted for **39 of 51 wins (76.5%)**. That increased to **48 of 53 (90.6%)** in the 2010s.
+The men's list was concentrated already: in the 2000s, just 12 of 51 winners were outside Kenya and Ethiopia. In the 2010s, that became five of 53.
 
-For women, the comparable shift was from **43.1% to 94.3%** — an extraordinary **51.2 percentage-point change**, compared with **14.1 points** for men.
+For women, it was **29 of 51, then three of 53**.
 
-And the pattern did not simply disappear. Across the shorter 2020–25 period, the two countries claimed **26 of 29 women's wins (89.7%)** and **28 of 29 men's wins (96.6%)** in this filtered sample.
+Look at the percentage-point changes in chart three.
 
-[CHART 3: 03_two_country_share_by_sex.png]
+*[Chart 3 — The real twist: women changed most]*
 
-## Why this story is bigger than a running statistic
+The share of women's victories from outside those two countries fell from **56.9% to 5.7%** — down **51.2 percentage points**. The equivalent men's share fell only **14.1 points**.
 
-The marathons stayed in the same famous cities. The countries on the women's winners' list changed sharply.
-
-That's what the charts make visible. Not that running became less international. Not that other nations stopped producing fast runners. Just that at the very top of these six races, the nationalities collecting the victories became dramatically more concentrated.
+Same six marathons, two very different starting points.
 
 ## TLDR
 
-**In the supplied results, Kenya and Ethiopia went from winning 43% of the women's races in the 2000s to 94% in the 2010s. The men's winners were already dominated by the same two countries.**
+Berlin had six Japanese women's winners in a row from 2000 to 2005. Across six marathons in the comparable 2010s data, **only three winners** were from outside Kenya and Ethiopia. The women's winners' map changed much more sharply than the men's.
 
-*Method: 133 matched race-years in Tokyo, Boston, London, Berlin, Chicago and New York City, 2000–25. Only completed in-person results with no explicit source review or disqualification flag are included; 2026 is excluded. The data is sourced from [Shorts in Sports](https://github.com/shortsinsports/Data/blob/4ea0ca9e403d706a734d41088ad63e571ab0ca21/SIS-marathon_major_winners_2000_2026.csv), transformed by Coffeetableviz. It is not an independently verified official-results archive. All figures describe this supplied subset, not every marathon or athlete.*
+*Data notes: The source is [Shorts in Sports](https://github.com/shortsinsports/Data/blob/4ea0ca9e403d706a734d41088ad63e571ab0ca21/SIS-marathon_major_winners_2000_2026.csv). Figures are a filtered set of 133 matched men's/women's race-years, with full-decade comparisons of 51 events (2000–09) and 53 (2010–19). Excludes source-flagged or disqualification-mentioned rows; virtual/cancelled races; 2026. Tokyo only enters the 2000s sample from 2007. 'Not independently checked' is not official verification. The Berlin streak and three named exception winners were independently checked against race organisers' reports. Red represents winners from outside Kenya and Ethiopia. This is not every modern Major, athlete or result.*
