@@ -13,7 +13,7 @@ function section(start,end){
  assert.ok(a>=0&&b>a,'Cannot locate '+start);
  return script[1].slice(a,b);
 }
-const repoCsvUrl=new Function(section('function repoCsvUrl(input)','async function readGithub(url)')+'return repoCsvUrl;')();
+const repoCsvUrl=new Function(section('function repoCsvUrl(input)','// Browser-side discovery')+'return repoCsvUrl;')();
 const pinned='4ea0ca9e403d706a734d41088ad63e571ab0ca21';
 const csv='SIS-marathon_major_winners_2000_2026.csv';
 const urls=[
@@ -27,10 +27,13 @@ urls.forEach(([input,expected])=>assert.equal(repoCsvUrl(input).url,expected));
  'http://github.com/shortsinsports/Data/blob/main/'+csv,
  'https://bad.example.com/shortsinsports/Data/main/'+csv,
  'https://github.com/shortsinsports/Data',
- 'https://github.com/shortsinsports/Data/blob/feature/'+csv,
+ 'https://github.com/shortsinsports/Data/blob/main/dir%2Fhidden.csv',
  'https://github.com/shortsinsports/Data/blob/main/file.png',
  'https://github.com/bad%2Fname/Data/blob/main/file.csv'
 ].forEach(input=>assert.throws(()=>repoCsvUrl(input)));
+assert.equal(repoCsvUrl('https://github.com/shortsinsports/Data/blob/master/'+csv).ref,'master');
+assert.equal(repoCsvUrl('https://github.com/shortsinsports/Data/blob/main/élite%20data.csv').url,
+ 'https://raw.githubusercontent.com/shortsinsports/Data/main/%C3%A9lite%20data.csv');
 const parseCSV=new Function(section('function parseCSV(source)','// Only unambiguous clock-style durations')+'return parseCSV;')();
 const {numeric,durationKind}=new Function(section('function durationKind(v)','function fillSelectors(data)')+'return {numeric,durationKind};')();
 assert.equal(numeric('2:09:45'),7785);

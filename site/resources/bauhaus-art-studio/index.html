@@ -33,7 +33,11 @@ permalink: /resources/bauhaus-art-studio/
 .bauhaus-page select,.bauhaus-page textarea{width:100%;background:white;border:1px solid #bdc5c9;padding:9px;border-radius:3px;min-height:40px;font-size:13px}
 .bauhaus-page textarea{min-height:65px;resize:vertical}
 .bauhaus-page input[type=url]{width:100%;min-height:40px;border:1px solid #bdc5c9;border-radius:3px;padding:9px;font-size:12px;background:white}
-.bauhaus-page .github-import{background:#f6f7f8;border:1px solid #d9dddf;padding:13px;margin:15px 0}
+.bauhaus-page .github-import{background:#f6f7f8;border:1px solid #d9dddf;padding:13px;margin:15px 0;min-width:0;overflow-wrap:anywhere}
+.bauhaus-page #bh-file-info{overflow-wrap:anywhere}
+.bauhaus-page .github-import input[type=search],.bauhaus-page .github-import input[type=text]{width:100%;min-width:0;min-height:40px;border:1px solid #bdc5c9;border-radius:3px;padding:9px;font-size:13px;background:white}
+.bauhaus-page .github-import select{max-width:100%;min-width:0}
+.bauhaus-page .github-import button:disabled{opacity:.5;cursor:not-allowed}
 .bauhaus-page .github-import .primarybutton{margin-top:8px}
 .bauhaus-page .data-styling{border-top:2px solid #242526;margin:22px 0 0;padding-top:17px}
 .bauhaus-page .data-styling h2{font-size:21px}
@@ -105,22 +109,26 @@ permalink: /resources/bauhaus-art-studio/
 </div></section>
 <section class="section creative-box" id="bh-brushes-section"><span class="kicker">04 / Edit the artwork</span><h2>Pick a shape. Tap a tile.</h2><p class="muted">Tap again with the same shape to rotate it. For the original red-and-cream Cutout on yellow, choose the <strong>Hidden Miles</strong> palette or preset.</p>
 <div class="brushes" id="bh-brushes"><button type="button" data-shape="0" class="active">● Circle</button><button type="button" data-shape="1">◕ Quarter</button><button type="button" data-shape="2">◓ Half</button><button type="button" data-shape="3">▲ Triangle</button><button type="button" data-shape="4">▥ Stripes</button><button type="button" data-shape="5">◯ Arc</button><button type="button" data-shape="6">■ Block</button><button type="button" data-shape="7">◩ Cutout</button><button type="button" data-shape="-1">⌫ Erase</button></div></section>
-<section class="section data-box" id="bh-data" hidden><span class="kicker">04 / Form follows data</span><h2>Upload your numbers.</h2><p class="muted">Choose a local CSV, or paste a CSV link from any public GitHub repository. Maximum 2 MB and 10,000 input rows; the artwork shows up to 64 rows. Times such as 2:09:45 are measured as elapsed seconds and displayed as hours:minutes:seconds.</p>
+<section class="section data-box" id="bh-data" hidden><span class="kicker">04 / Form follows data</span><h2>Upload your numbers.</h2><p class="muted">Choose a local CSV, browse a public GitHub repository or paste a direct CSV link. Maximum 2 MB and 10,000 input rows; the artwork shows up to 64 rows. Times such as 2:09:45 are measured as elapsed seconds and displayed as hours:minutes:seconds.</p>
 <label class="upload" for="bh-file"><strong>Choose a CSV file</strong><input type="file" id="bh-file" accept=".csv,text/csv,text/plain"></label>
 <p class="muted" id="bh-file-info">Local files stay on your device and are not uploaded to Coffeetableviz.</p>
 <div class="github-import" aria-label="Connect to public GitHub data">
   <span class="kicker">Or / Connect to GitHub</span>
+  <label class="field" for="bh-github-owner">GitHub account (public repositories)</label>
+  <input id="bh-github-owner" type="text" value="adamgreen1708" autocomplete="off" autocapitalize="off" spellcheck="false" aria-describedby="bh-github-browser-info">
+  <label class="field" for="bh-github-repo">Choose a public repository</label>
+  <select id="bh-github-repo" disabled><option value="">Open Data Art to browse repositories…</option></select>
+  <label class="field" for="bh-github-filter">Find a CSV by filename or path</label>
+  <input type="search" id="bh-github-filter" placeholder="Search CSV files…" autocomplete="off" disabled>
   <label class="field" for="bh-github-preset">Choose a repository dataset</label>
-  <select id="bh-github-preset">
-    <option value="">Choose a public CSV…</option>
-    <option value="data/site_analytics_daily.csv">Coffeetableviz · Daily visits</option>
-    <option value="archive/projects/2026-09-david-bowie-track-distributions/data/bowie_track_distribution_rows.csv">David Bowie · Track distributions</option>
-  </select>
-  <button type="button" class="primarybutton" id="bh-github-load">Load this dataset</button>
-  <label class="field" for="bh-github-url">Or paste a public GitHub CSV link (main or commit permalink)</label>
+  <select id="bh-github-preset" disabled><option value="">Choose a repository first…</option></select>
+  <p class="muted" id="bh-github-browser-info" role="status">Browse public GitHub repositories from adamgreen1708, or change the account to browse another public owner (such as shortsinsports). Private repositories are not accessible in the browser.</p>
+  <button type="button" class="primarybutton" id="bh-github-load" disabled>Load this dataset</button>
+  <button type="button" id="bh-github-refresh">↻ Browse / refresh repositories</button>
+  <label class="field" for="bh-github-url">Or paste a public GitHub CSV link (branch or commit permalink)</label>
   <input type="url" id="bh-github-url" placeholder="https://github.com/adamgreen1708/chart-templates/blob/main/…csv" autocomplete="off">
   <button type="button" class="primarybutton" id="bh-github-link">Load GitHub link</button>
-  <p class="muted" id="bh-github-info" role="status">Paste a public CSV from any GitHub repository on main or a full Git commit permalink. GitHub receives the request; no login or token is needed. Pinned commit links always load that exact snapshot.</p>
+  <p class="muted" id="bh-github-info" role="status">Paste a public CSV from any GitHub branch or a full Git commit permalink. GitHub receives the request; no login or token is needed. Pinned commit links always load that exact snapshot.</p>
 </div>
 <label class="field" for="bh-label">Label column</label><select id="bh-label" disabled><option>Choose a CSV first</option></select>
 <label class="field" for="bh-value">Numeric value column</label><select id="bh-value" disabled><option>Choose a CSV first</option></select>
@@ -281,6 +289,7 @@ var names={rhythm:'Geometric rhythm',radial:'Around the centre',hidden:'Hidden M
 var demo=[42,58,74,63,85,91,68,82,60,95,70,65].map(function(value,i){return{label:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][i],value:value};});
 var state={mode:'rhythm',n:8,chaos:12,pal:0,seed:15,brush:0,edits:{},history:[],rows:demo.slice(),isDemo:true,metric:'Miles (illustrative)',sourceLabel:'ILLUSTRATIVE SAMPLE',totalSelected:12,durationFormat:null};
 var imported=null,MAX_BYTES=2*1024*1024,githubLoadId=0,filterCategories=[],dataHitRegions=[],editorOverrides={headline:null,deck:null,credit:null},activeArtworkSource=null;
+var githubBrowserStarted=false,githubRepos=[],githubCsvPaths=[],githubTreeLoadId=0,githubRepoLoadId=0;
 var visual={layout:'grid',marks:'mixed',colour:'bands',colourField:-1,sort:'source',scale:'zero',preset:'patchwork',showLabels:false,labelContent:'label',hideSmall:true,galleryFinish:'paper',circleEncoding:'area',circleScope:'records',stripeStyle:'sun',broadsideStyle:'architectural'};
 var markNames={mixed:'mixed shapes',circle:'circles',square:'squares',triangle:'triangles',half:'semicircles',quarter:'quarter circles'};
 var layoutNames={grid:'grid',orbit:'orbit',ribbon:'ribbon',mosaic:'data mosaic',broadside:'typographic broadside',stripes:'stripe study',circles:'circle study'};
@@ -1373,12 +1382,105 @@ function repoCsvUrl(input){
   ref=parts[3];offset=4;
  }else{ref=parts[2];offset=3;}
  var isCommit=/^[0-9a-f]{40}$/i.test(ref||'');
- if(ref!=='main'&&!isCommit)throw Error('Use a CSV link from main or a full 40-character commit permalink.');
+ if(!isCommit&&(!/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(ref||'')||ref==='.'||ref==='..'))throw Error('Use a CSV link from a branch or full 40-character commit permalink.');
  if(isCommit)ref=ref.toLowerCase();
  var path=parts.slice(offset);
- if(!path.length||!path[path.length-1].toLowerCase().endsWith('.csv')||path.some(function(v){return !v||v==='.'||v==='..'||!/^[\w.\- ]+$/.test(v);}))throw Error('Choose a valid public GitHub CSV file.');
+ if(!path.length||!path[path.length-1].toLowerCase().endsWith('.csv')||path.some(function(v){return !v||v==='.'||v==='..'||/[\/\\\x00-\x1f\x7f]/.test(v);}))throw Error('Choose a valid public GitHub CSV file.');
  return {url:'https://raw.githubusercontent.com/'+owner+'/'+repo+'/'+ref+'/'+path.map(encodeURIComponent).join('/'),ref:ref,isCommit:isCommit,owner:owner,repo:repo};
 }
+// Browser-side discovery requires no GitHub token: only public repos/CSVs are visible.
+function githubDatasetPaths(tree){
+ if(!tree||!Array.isArray(tree.tree))throw Error('GitHub returned an invalid file list.');
+ if(tree.truncated)throw Error('This repository is too large for the GitHub file list. Paste the CSV link directly.');
+ return tree.tree.filter(function(e){return e.type==='blob'&&typeof e.path==='string'&&/\.csv$/i.test(e.path);})
+  .map(function(e){return e.path;})
+  .sort(function(a,b){return a.localeCompare(b,'en',{numeric:true});});
+}
+function renderGithubDatasetOptions(){
+ var select=$('github-preset'),input=$('github-filter'),q=input.value.toLocaleLowerCase().trim(),previous=select.value;
+ var matching=githubCsvPaths.filter(function(path){return path.toLocaleLowerCase().includes(q);});
+ // Limit the native iPhone select menu; searching still includes every path.
+ var shown=matching.slice(0,120);
+ select.innerHTML='';
+ makeOption(select,'',!githubCsvPaths.length?'No CSV files found':!matching.length?'No matching CSV files':'Choose a public CSV…');
+ shown.forEach(function(path){makeOption(select,path,path);});
+ select.value=shown.includes(previous)?previous:'';
+ select.disabled=!shown.length;
+ $('github-load').disabled=!select.value;
+ if(!githubCsvPaths.length){
+  $('github-browser-info').textContent='No CSV files in this repository’s default branch. You can still paste a GitHub CSV link below.';
+  return;
+ }
+ $('github-browser-info').textContent=githubCsvPaths.length+' CSV file'+(githubCsvPaths.length===1?'':'s')+' found · '+shown.length+' shown'+(matching.length>shown.length?' of '+matching.length+' matches; type a filename to find the rest':'')+'. Public files from the selected repository’s default branch.';
+}
+async function githubPublicApi(path){
+ var ctrl=new AbortController(),timer=setTimeout(function(){ctrl.abort();},15000);
+ try{
+  var res=await fetch('https://api.github.com'+path,{method:'GET',mode:'cors',cache:'no-store',signal:ctrl.signal,headers:{Accept:'application/vnd.github+json'}});
+  if(res.status===403||res.status===429)throw Error('GitHub API rate limit reached. Paste a CSV link below, or try Refresh later.');
+  if(!res.ok)throw Error('GitHub could not list public files (HTTP '+res.status+').');
+  return await res.json();
+ }finally{clearTimeout(timer);}
+}
+async function loadGithubRepositoryFiles(){
+ var id=++githubTreeLoadId,repo=githubRepos.find(function(r){return r.full_name===$('github-repo').value;});
+ githubCsvPaths=[];$('github-preset').innerHTML='';makeOption($('github-preset'),'','Loading CSV files…');
+ $('github-preset').disabled=true;$('github-filter').disabled=true;$('github-filter').value='';$('github-load').disabled=true;
+ if(!repo){$('github-browser-info').textContent='Choose a public repository first.';return;}
+ $('github-browser-info').textContent='Looking for CSV files in '+repo.full_name+' ('+repo.default_branch+')…';
+ try{
+  var tree=await githubPublicApi('/repos/'+encodeURIComponent(repo.owner.login)+'/'+encodeURIComponent(repo.name)+'/git/trees/'+encodeURIComponent(repo.default_branch)+'?recursive=1');
+  if(id!==githubTreeLoadId)return;
+  githubCsvPaths=githubDatasetPaths(tree);
+  $('github-filter').disabled=!githubCsvPaths.length;
+  renderGithubDatasetOptions();
+ }catch(e){
+  if(id!==githubTreeLoadId)return;
+  $('github-preset').innerHTML='';makeOption($('github-preset'),'','CSV list unavailable');
+  $('github-browser-info').textContent=e.name==='AbortError'?'GitHub listing timed out. Use Refresh or paste a direct CSV link.':e.message;
+ }
+}
+async function loadGithubRepositories(force){
+ if(githubBrowserStarted&&!force)return;
+ githubBrowserStarted=true;
+ var id=++githubRepoLoadId;
+ ++githubTreeLoadId;
+ var owner=$('github-owner').value.trim(),select=$('github-repo'),previous=select.value;
+ if(!/^[A-Za-z0-9-]{1,39}$/.test(owner)){githubBrowserStarted=false;$('github-browser-info').textContent='Enter a valid public GitHub account name.';return;}
+ select.disabled=true;select.innerHTML='';makeOption(select,'','Loading your public repositories…');
+ $('github-preset').innerHTML='';makeOption($('github-preset'),'','Choose a repository first…');
+ $('github-preset').disabled=true;$('github-filter').disabled=true;$('github-load').disabled=true;
+ $('github-browser-info').textContent='Finding public GitHub repositories owned by '+owner+'…';
+ try{
+  var repos=[];
+  for(var page=1;page<=10;page++){
+   var batch=await githubPublicApi('/users/'+encodeURIComponent(owner)+'/repos?type=owner&per_page=100&page='+page);
+   if(id!==githubRepoLoadId)return;
+   if(!Array.isArray(batch))throw Error('GitHub returned an invalid repository list.');
+   repos=repos.concat(batch.filter(function(r){return !r.private&&r.owner&&r.owner.login.toLowerCase()===owner.toLowerCase()&&r.full_name&&r.name&&r.default_branch;}));
+   if(batch.length<100)break;
+   if(page===10)throw Error('Public repository listing exceeds 1,000 entries; paste a CSV link below.');
+  }
+  githubRepos=repos.sort(function(a,b){return a.name.localeCompare(b.name,'en');});
+  select.innerHTML='';
+  if(!githubRepos.length){makeOption(select,'','No public repositories found');$('github-browser-info').textContent='No public repositories found. Paste a CSV link below.';return;}
+  githubRepos.forEach(function(r){makeOption(select,r.full_name,r.full_name);});
+  var preferred=githubRepos.find(function(r){return r.full_name===previous;})||
+   githubRepos.find(function(r){return r.full_name===owner+'/chart-templates';})||githubRepos[0];
+  select.value=preferred.full_name;select.disabled=false;
+  await loadGithubRepositoryFiles();
+ }catch(e){
+  if(id!==githubRepoLoadId)return;
+  githubBrowserStarted=false;
+  select.innerHTML='';makeOption(select,'','Repository list unavailable');
+  $('github-browser-info').textContent=e.name==='AbortError'?'GitHub listing timed out. Use Refresh or paste a direct CSV link.':e.message;
+ }
+}
+$('github-repo').addEventListener('change',loadGithubRepositoryFiles);
+$('github-owner').addEventListener('change',function(){return loadGithubRepositories(true);});
+$('github-filter').addEventListener('input',renderGithubDatasetOptions);
+$('github-preset').addEventListener('change',function(){$('github-load').disabled=!this.value;});
+$('github-refresh').addEventListener('click',function(){return loadGithubRepositories(true);});
 async function readGithub(url){
  var ctrl=new AbortController(),timer=setTimeout(function(){ctrl.abort();},15000);
  try{
@@ -1400,22 +1502,23 @@ async function loadGithub(input,prefs){
  var id=++githubLoadId,link;
  try{link=repoCsvUrl(input);}
  catch(e){status(e.message);$('github-info').textContent=e.message;return;}
+ if(!githubBrowserStarted&&state.mode==='data')loadGithubRepositories(false);
  $('github-load').disabled=true;$('github-link').disabled=true;
- $('github-info').textContent=link.isCommit?'Loading pinned GitHub CSV snapshot…':'Loading latest public CSV from main…';
+ $('github-info').textContent=link.isCommit?'Loading pinned GitHub CSV snapshot…':'Loading public CSV from '+link.ref+'…';
  try{
   var source=await readGithub(link.url);if(id!==githubLoadId)return;
   var shortRef=link.ref.slice(0,8),filename=decodeURIComponent(link.url.split('/').pop());
   receiveCsv(source,'GitHub: '+link.owner+'/'+link.repo+' · '+filename+(link.isCommit?' @ '+shortRef:''),prefs,link.isCommit?'PUBLIC GITHUB SNAPSHOT':'PUBLIC GITHUB DATA');
   $('github-info').textContent=link.isCommit?
    'Loaded '+link.owner+'/'+link.repo+' at pinned commit '+link.ref+'. This CSV snapshot stays fixed even if main changes.':
-   'Loaded '+link.owner+'/'+link.repo+' from main. Reload this dataset to pick up future changes.';
+   'Loaded '+link.owner+'/'+link.repo+' from '+link.ref+'. Reload this dataset to pick up future changes.';
   return true;
  }catch(e){
   if(id!==githubLoadId)return;
   var msg=e.name==='AbortError'?'GitHub request timed out. Please try again.':'Could not load GitHub CSV: '+e.message;
   status(msg);$('github-info').textContent=msg;
   return false;
- }finally{if(id===githubLoadId){$('github-load').disabled=false;$('github-link').disabled=false;}}
+ }finally{if(id===githubLoadId){$('github-load').disabled=!$('github-preset').value;$('github-link').disabled=false;}}
 }
 $('file').addEventListener('change',async function(){
  var file=this.files&&this.files[0];if(!file)return;
@@ -1425,10 +1528,13 @@ $('file').addEventListener('change',async function(){
  catch(e){imported=null;$('apply').disabled=true;$('label').disabled=true;$('value').disabled=true;status('CSV could not be used: '+e.message);}
 });
 $('github-load').addEventListener('click',function(){
- var path=$('github-preset').value;
- if(!path){status('Choose a curated repository dataset first.');return;}
- var prefs=path==='data/site_analytics_daily.csv'?{label:'report_date',value:'visits'}:{label:'track_title',value:'duration_seconds',filter:'album_title',filterDefaultFirst:true};
- loadGithub('https://github.com/adamgreen1708/chart-templates/blob/main/'+path,prefs);
+ var path=$('github-preset').value,repo=githubRepos.find(function(r){return r.full_name===$('github-repo').value;});
+ if(!repo||!path||githubCsvPaths.indexOf(path)<0){status('Choose a public repository and one of its CSV files first.');return;}
+ var prefs=null;
+ // Preserve the previous example mappings without restricting the dataset list.
+ if(repo.full_name==='adamgreen1708/chart-templates'&&path==='data/site_analytics_daily.csv')prefs={label:'report_date',value:'visits'};
+ if(repo.full_name==='adamgreen1708/chart-templates'&&path==='archive/projects/2026-09-david-bowie-track-distributions/data/bowie_track_distribution_rows.csv')prefs={label:'track_title',value:'duration_seconds',filter:'album_title',filterDefaultFirst:true};
+ loadGithub('https://github.com/'+repo.full_name+'/blob/'+encodeURIComponent(repo.default_branch)+'/'+path.split('/').map(encodeURIComponent).join('/'),prefs);
 });
 $('github-link').addEventListener('click',function(){loadGithub($('github-url').value,null);});
 function refreshSelectedArtwork(){
@@ -1562,7 +1668,7 @@ $('auto-text').addEventListener('click',function(){editorOverrides={headline:nul
 syncVisualControls();
 $('apply').addEventListener('click',applyImported);
 $('demo').addEventListener('click',function(){state.rows=demo.map(function(r,i){return{label:r.label,value:r.value,sourceIndex:i};});state.isDemo=true;activeArtworkSource=null;state.durationFormat=null;state.invalidValueCount=0;state.activeMapping=null;editorOverrides={headline:null,deck:null,credit:null};visual.colourField=-1;syncVisualControls();state.metric='Miles (illustrative)';state.totalSelected=12;state.sourceLabel='ILLUSTRATIVE SAMPLE';state.sourceName='Illustrative example';state.filterName='';syncEditor();state.mode='data';refresh();status('Illustrative 12-month running example. Not actual running data.');});
-$('modes').addEventListener('click',function(e){var b=e.target.closest('[data-mode]');if(!b)return;state.mode=b.dataset.mode;state.edits={};state.history=[];if(state.mode==='hidden')state.pal=1;if(state.mode==='data')syncEditor();refresh();status(names[state.mode]+' selected.');});
+$('modes').addEventListener('click',function(e){var b=e.target.closest('[data-mode]');if(!b)return;state.mode=b.dataset.mode;state.edits={};state.history=[];if(state.mode==='hidden')state.pal=1;if(state.mode==='data'){syncEditor();loadGithubRepositories(false);}refresh();status(names[state.mode]+' selected.');});
 $('palettes').addEventListener('click',function(e){var b=e.target.closest('[data-pal]');if(!b)return;state.pal=+b.dataset.pal;
  // Directly choosing a Studio palette takes precedence over a gallery finish,
  // so the user's palette choice always produces a visible change.
