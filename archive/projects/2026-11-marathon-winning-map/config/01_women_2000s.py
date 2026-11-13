@@ -13,7 +13,7 @@ CHART_CONFIG = {
     "source_text": "Source: Shorts in Sports | CTv subset",
     "footer_left": "Adam Green | coffeetableviz",
     "render_profile": "social_square",
-    "profile_overrides": {},
+    "profile_overrides": {"plot_left": 0.33},
     "story_angle": "ranked_comparison",
     "focus_series": None,
     "secondary_series": None,

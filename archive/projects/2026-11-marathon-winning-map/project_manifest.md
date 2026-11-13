@@ -29,3 +29,5 @@ All charts run through `src/render_538.py` with `render_profile="social_square"`
 ## Production
 
 Project archive only. No `site/_posts`, `publish_asset_map.csv`, or live page assets until approval. The draft PR and branch do **not** publish the blog.
+
+**Label-safe design adjustment:** both nationality charts apply the same documented social-square profile override `plot_left = 0.33` to keep long country names (including United Kingdom and United States) within the 8.5% safe frame on 320px mobile previews. The 0–33 comparison scale remains identical.
