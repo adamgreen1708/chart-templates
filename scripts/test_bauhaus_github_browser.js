@@ -13,7 +13,7 @@ function section(a,b){
  assert.ok(i>=0&&j>i,'Production function not found: '+a);
  return inline[1].slice(i,j);
 }
-const selectors=['github-repo','github-preset','github-filter','github-load','github-refresh','github-browser-info'];
+const selectors=['github-owner','github-repo','github-preset','github-filter','github-load','github-refresh','github-browser-info'];
 const elements={};
 for(const id of selectors){
  const el={
@@ -24,13 +24,14 @@ for(const id of selectors){
  };
  elements[id]=el;
 }
+elements['github-owner'].value='adamgreen1708';
 const $=id=>{assert.ok(elements[id],'Missing element '+id);return elements[id];};
 const makeOption=(sel,value,label)=>{
  sel.options.push({value:String(value),textContent:String(label)});
  if(sel.options.length===1)sel.value=String(value);
 };
-const repo=(name)=>({
- name,full_name:'adamgreen1708/'+name,private:false,default_branch:'main',owner:{login:'adamgreen1708'}
+const repo=(name,owner='adamgreen1708')=>({
+ name,full_name:owner+'/'+name,private:false,default_branch:'main',owner:{login:owner}
 });
 const csvPaths=[
  {type:'blob',path:'data/site_analytics_daily.csv'},
@@ -44,9 +45,11 @@ let failing=false,truncated=false,requests=[];
 const fetch=async url=>{
  requests.push(url);
  if(failing) return {ok:false,status:403};
+ if(url.includes('/users/shortsinsports/'))return {ok:true,status:200,json:async()=>[repo('Data','shortsinsports')]};
  if(url.includes('/users/'))return {ok:true,status:200,json:async()=>[repo('chart-templates'),repo('chatgpt-github-test')]};
  if(url.includes('/repos/adamgreen1708/chart-templates/git/trees/main'))return {ok:true,status:200,json:async()=>({tree:csvPaths,truncated})};
  if(url.includes('/repos/adamgreen1708/chatgpt-github-test/git/trees/main'))return {ok:true,status:200,json:async()=>({tree:[{type:'blob',path:'fixtures/sample.csv'}],truncated:false})};
+ if(url.includes('/repos/shortsinsports/Data/git/trees/main'))return {ok:true,status:200,json:async()=>({tree:[{type:'blob',path:'SIS-marathon_major_winners_2000_2026.csv'}],truncated:false})};
  throw Error('Unexpected request '+url);
 };
 const code=section('function githubDatasetPaths(tree)','async function readGithub(url)');
@@ -76,6 +79,12 @@ async function run(){
  assert.equal(elements['github-load'].disabled,true,'Switching repo clears previous selected file');
  await elements['github-refresh'].trigger('click');
  assert.equal(elements['github-repo'].value,'adamgreen1708/chatgpt-github-test','Refresh should retain selection');
+ elements['github-owner'].value='shortsinsports';
+ await elements['github-owner'].trigger('change');
+ assert.equal(elements['github-repo'].value,'shortsinsports/Data','Alternate public account should be browsable');
+ assert.equal(elements['github-preset'].options[1].value,'SIS-marathon_major_winners_2000_2026.csv');
+ elements['github-owner'].value='adamgreen1708';
+ await elements['github-owner'].trigger('change');
  truncated=true;
  elements['github-repo'].value='adamgreen1708/chart-templates';
  await elements['github-repo'].trigger('change');
