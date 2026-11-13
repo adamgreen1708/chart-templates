@@ -1,26 +1,32 @@
-# Marathon Majors: where did the outsiders go?
+# Marathon Majors: a world of winners, then four exceptions
 
-**Draft editorial revision 2. No live publication.**
+**Draft editorial revision 3 — not for live publication.** Source: `data/marathon-majors` at commit `999b9b57c2cf61a1222bb4f08a4bdd885898e09a`; upstream Shorts in Sports pinned in that README.
 
-Pinned input: `data/marathon-majors/`, commit `999b9b57c2cf61a1222bb4f08a4bdd885898e09a` (Shorts in Sports source, not fully independently checked).
+## Corrected editorial contract
 
-## Narrative visual contract
+A second round of official-results verification found that Noriko Higuchi (Japan) was the **official reassigned** Tokyo 2011 women's champion following disqualification of the original winner. The initial source-status exclusion incorrectly removed her. Do not claim just three exceptions across all completed 2010s races.
 
-1. **Visual prequel:** use a decade-wide race × year dot matrix of 51 women's winners in 2000–09; 29 red dots were outside Kenya/Ethiopia. The Berlin row has six red dots from 2000–05, and the builder checks all six are Japanese winners. There are ten nationalities in that decade.
-2. **Matched-layout comparison:** plot 53 source-backed 2010s winning results in race/year positions; red exception dots are Biktimirova (Tokyo 2010), Flanagan (NYC 2017) and Linden (Boston 2018). Seven blank year/race cells indicate excluded source rows, **not cancelled races**. Red outside; grey Kenya/Ethiopia.
-3. **Reveal who changed most:** 0–100% slope of share of wins from outside Kenya/Ethiopia. Women 29/51 (56.9%) → 3/53 (5.7%), −51.2 pp. Men 12/51 (23.5%) → 5/53 (9.4%), −14.1 pp. Same definition, matched race-years; percentage-point difference.
+**Defensible like-for-like inclusion rule:** Join men/women by race and source year, keep completed in-person races with nonblank country, and use the source's current winner designation including official reassigned champions. Study full decades 2000–09 and 2010–19; exclude 2020 onward, cancelled/virtual races. **112 matched race-years: 53 and 59.** New York 2012 cancelled after Hurricane Sandy; Tokyo starts in 2007.
 
-The opening detail — Berlin's women winners 2000–05 all from Japan — is supported by the official Berlin winners guide: https://www.bmw-berlin-marathon.com/fileadmin/media/events/berlinmarathon/fotos/Presse/Mediaguide/Statistiken/BM25AlleSiegerInnenBERLIN-MARATHON.pdf
+## Three-chart story
 
-Spot-verified 2010s exception names:
-- Tokyo official 2010: https://www.marathon.tokyo/en/about/past/2010/
-- NYRR 2017: https://testcache.nyrr.org/media-center/press-release/20171107_nycm_2017racehighlights
-- Boston Athletic Association 2018: https://www.baa.org/races/boston-marathon/history/
+1. **Visual prequel** — 53 women's winners by race/year in 2000–09, with 31 red marks for countries outside Kenya/Ethiopia. Berlin first six women's winners 2000–05 were all Japanese (confirmed official history).
+2. **Visual puzzle** — same dot-matrix layout for 2010–19: 59 completed races, **four red winners**. Russia (Tokyo2010, Biktimirova); Japan (Tokyo2011, Higuchi, reassigned); USA (NYC2017 Flanagan, Boston2018 Linden). One NYC2012 blank is cancelled, not missing data.
+3. **Reveal** — 0–100% slope chart of wins from outside Kenya/Ethiopia. Women **31/53 = 58.5%** in 2000s, **4/59 = 6.8%** in 2010s: **−51.7 pp**. Men **12/53 = 22.6%** to **6/59 = 10.2%**: **−12.5 pp**. All measures generated from the original source, not typed into chart datasets.
 
-Source scope: six historical races only, not Sydney or every modern WMM; matched men's/women's completed in-person source years 2000–25; exclude source result flags, disqualification mentions, virtual/cancelled, 2026 and blank nationality. Exactly 133 paired events, 51 in the 2000s and 53 in the 2010s. Tokyo appears from 2007. These checks are **not** blanket verification of all source rows.
+The archive regenerates all chart CSVs with `scripts/build_chart_views.py` and renders with production GitHub `src/render_538.py`, `render_profile=social_square`, no white card, consistent house colour. **Red always highlights women's wins from outside Kenya/Ethiopia; grey means contextual wins from Kenya/Ethiopia, with men's trend muted grey.** Both matrices have explicit y limits 0–7 to prevent clipping at the plot edge.
 
-**Deliberate composition:** Charts 1 and 2 use identical six-race y positions, ten-year x spans and dot sizes. This is an intentional before/after visual reveal, not two disconnected scatterplots. Mobile QA must detect header/subtitle collision, bottom-row cropping and 2010s red-dot labels. Chart 3 has a full 0–100% y scale and angled endpoints must not overlap the x-axis. Derived CSVs rebuilt by `scripts/build_chart_views.py`.
+## Sources checked for the highlighted claims
 
-Charts use repository `src/render_538.py`, `social_square`, approved Coffeetableviz palette, deterministic data and 1600px/390px/320px QA. Do not merge or publish this draft PR without approval. No site files or publishing map added.
+- Berlin official winners 2000–05: https://www.bmw-berlin-marathon.com/fileadmin/media/events/berlinmarathon/fotos/Presse/Mediaguide/Statistiken/BM25AlleSiegerInnenBERLIN-MARATHON.pdf
+- Tokyo 2010: https://www.marathon.tokyo/en/about/past/2010/
+- Tokyo 2011 official reassignment: https://www.marathon.tokyo/2012/past_data/files/120124_2011place_women.pdf
+- New York 2017 winner: https://testcache.nyrr.org/media-center/press-release/20171107_nycm_2017racehighlights
+- Boston 2018: https://www.baa.org/races/boston-marathon/history/
+- NYC 2012 cancelled: https://prod.nyrr.org/tcsnycmarathon/marathon-history
 
-**Final geometry QA:** Dot matrices set explicit y limits 0–7 for six race rows, creating actual marker clearance above the x-axis and below the title instead of allowing Matplotlib autoscaling to crop the top/bottom markers. Both charts share this range.
+The original source is **not a blanket independently verified official result archive**. The explicitly mentioned winners and streak were verified independently; additional source flags may require a wider audit before publication among a global specialist audience. This is six historical races, not all current World Marathon Majors (Sydney omitted).
+
+## Release gate
+
+All three PNGs must pass source-backed 1600px/390px/320px QA, including one-line headlines, source-footer, complete 0–100% axis and no cut-off dot rows. Review the blog and images in the draft PR. No `site/_posts`, site asset map or live publication without approval.

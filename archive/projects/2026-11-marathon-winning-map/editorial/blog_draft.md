@@ -1,10 +1,10 @@
 ---
-title: "Can you find the three outsiders?"
+title: "Can you find the four outsiders?"
 category: Sport
 status: draft
 ---
 
-# Can you find the three outsiders?
+# Can you find the four outsiders?
 
 Berlin, 2005. Mizuki Noguchi crosses the line to win the marathon.
 
@@ -14,46 +14,50 @@ It's a different marathon world from the one we picture today.
 
 ## The world still won
 
-In the 2000s, winners across six big-city marathons came from ten nationalities in the comparable dataset.
+In the 2000s, winners across six big-city marathons came from ten nationalities in this dataset.
 
-Kenya led, of course. But Japanese women won eight times. British women took seven, with Paula Radcliffe featuring prominently. Russia won five.
+Kenya led. But Japanese women won eight times. British women won seven. Russia and Germany had their moments too.
 
-Add it up and **29 of 51 women's victories came from outside Kenya and Ethiopia**. That's a majority. And in Berlin, the first six red dots in the row all belong to Japanese champions.
+Look at the first chart. Red marks a winner from anywhere **outside Kenya or Ethiopia**.
 
-*[Chart 1 — Berlin's six Japanese wins in a much redder 2000s map]*
+The red dots aren't exactly hard to find. Across 53 completed race-years, **31 women's wins** went to other countries. Check Berlin's first six dots — every one of those champions was Japanese.
 
-## Now try to find the three
+*[Chart 1 — Berlin: six straight for Japan]*
 
-Jump into 2010–19.
+## Now find the four
 
-In the next chart, every dot represents a women's winner in a completed race-year. Grey means Kenya or Ethiopia. Red means somewhere else.
+Move ahead a decade. Same six race rows. Same ten-year layout. Same red for a winner from elsewhere.
 
-**There are three red dots. Can you find them?**
+**How many red dots can you find now?**
 
-*[Chart 2 — Same six races, next decade. Can you find the three red dots?]*
+*[Chart 2 — Find the four red dots]*
 
-The three interruptions were **Alevtina Biktimirova** in Tokyo in 2010 (Russia), **Shalane Flanagan** in New York in 2017 (United States), and **Desiree Linden** in Boston in 2018 (United States). All three are confirmed in the organisers' records.
+Just four, among 59 completed women's races: Alevtina Biktimirova in Tokyo in 2010 (Russia); Noriko Higuchi in Tokyo in 2011 (Japan); Shalane Flanagan in New York in 2017 (United States); and Desiree Linden in Boston in 2018 (United States).
 
-Just **three out of 53** winners in this comparable 2010s sample came from elsewhere.
+Higuchi's result has an extra twist. She wasn't originally listed as the 2011 winner. After the original champion was disqualified, Tokyo's organisers awarded Higuchi first place. **One result flag can change the story when you take it too literally.**
 
-That is quite a change. But the biggest surprise is still ahead.
+And the solitary missing New York dot in 2012? That race was cancelled after Hurricane Sandy.
 
-## The bigger change was the women's race
+So the red almost disappears. But there's a bigger twist.
 
-The men's list was concentrated already: in the 2000s, just 12 of 51 winners were outside Kenya and Ethiopia. In the 2010s, that became five of 53.
+## It wasn't the men who changed most
 
-For women, it was **29 of 51, then three of 53**.
+In the 2000s, **12 of 53 men's winners** came from outside Kenya and Ethiopia.
 
-Look at the percentage-point changes in chart three.
+For women, it was **31 of 53**.
 
-*[Chart 3 — The real twist: women changed most]*
+In the 2010s, those figures were six of 59 for men, and **four of 59** for women.
 
-The share of women's victories from outside those two countries fell from **56.9% to 5.7%** — down **51.2 percentage points**. The equivalent men's share fell only **14.1 points**.
+The percentage-point changes are striking.
 
-Same six marathons, two very different starting points.
+*[Chart 3 — The big shift wasn't the men's]*
+
+The share of women's victories from elsewhere fell from **58.5% to 6.8%** — a **51.7 percentage-point fall**. For men the comparable decline was from **22.6% to 10.2%**, or **12.5 points**.
+
+Same six city marathons. One changing map. Two very different starting lines.
 
 ## TLDR
 
-Berlin had six Japanese women's winners in a row from 2000 to 2005. Across six marathons in the comparable 2010s data, **only three winners** were from outside Kenya and Ethiopia. The women's winners' map changed much more sharply than the men's.
+**Berlin had six straight Japanese women's winners in 2000–05. In the 2010s, just four winners from outside Kenya and Ethiopia appeared across the six races in the supplied dataset. The women's winning-nationality mix changed far more dramatically than the men's.**
 
-*Data notes: The source is [Shorts in Sports](https://github.com/shortsinsports/Data/blob/4ea0ca9e403d706a734d41088ad63e571ab0ca21/SIS-marathon_major_winners_2000_2026.csv). Figures are a filtered set of 133 matched men's/women's race-years, with full-decade comparisons of 51 events (2000–09) and 53 (2010–19). Excludes source-flagged or disqualification-mentioned rows; virtual/cancelled races; 2026. Tokyo only enters the 2000s sample from 2007. 'Not independently checked' is not official verification. The Berlin streak and three named exception winners were independently checked against race organisers' reports. Red represents winners from outside Kenya and Ethiopia. This is not every modern Major, athlete or result.*
+*Method: 112 matched, completed, in-person race-years in the supplied [Shorts in Sports dataset](https://github.com/shortsinsports/Data/blob/4ea0ca9e403d706a734d41088ad63e571ab0ca21/SIS-marathon_major_winners_2000_2026.csv): 53 in 2000–09 and 59 in 2010–19. Both sexes are counted against the same race-years. Cancelled and virtual races are excluded; New York 2012 is cancelled, and Tokyo begins in 2007. Source notes concerning disputed/disqualified original winners remain visible, and the official Tokyo 2011 reassigned champion is included. The Berlin streak and four named exceptions have been independently spot-checked against organisers' results. Other source entries are not blanket independently verified; this is a six-race historical subset, not every current World Marathon Major or every marathon winner.*
