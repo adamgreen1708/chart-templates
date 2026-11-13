@@ -35,7 +35,7 @@ permalink: /resources/bauhaus-art-studio/
 .bauhaus-page input[type=url]{width:100%;min-height:40px;border:1px solid #bdc5c9;border-radius:3px;padding:9px;font-size:12px;background:white}
 .bauhaus-page .github-import{background:#f6f7f8;border:1px solid #d9dddf;padding:13px;margin:15px 0;min-width:0;overflow-wrap:anywhere}
 .bauhaus-page #bh-file-info{overflow-wrap:anywhere}
-.bauhaus-page .github-import input[type=search]{width:100%;min-width:0;min-height:40px;border:1px solid #bdc5c9;border-radius:3px;padding:9px;font-size:13px;background:white}
+.bauhaus-page .github-import input[type=search],.bauhaus-page .github-import input[type=text]{width:100%;min-width:0;min-height:40px;border:1px solid #bdc5c9;border-radius:3px;padding:9px;font-size:13px;background:white}
 .bauhaus-page .github-import select{max-width:100%;min-width:0}
 .bauhaus-page .github-import button:disabled{opacity:.5;cursor:not-allowed}
 .bauhaus-page .github-import .primarybutton{margin-top:8px}
@@ -114,15 +114,17 @@ permalink: /resources/bauhaus-art-studio/
 <p class="muted" id="bh-file-info">Local files stay on your device and are not uploaded to Coffeetableviz.</p>
 <div class="github-import" aria-label="Connect to public GitHub data">
   <span class="kicker">Or / Connect to GitHub</span>
-  <label class="field" for="bh-github-repo">Choose one of your public repositories</label>
+  <label class="field" for="bh-github-owner">GitHub account (public repositories)</label>
+  <input id="bh-github-owner" type="text" value="adamgreen1708" autocomplete="off" autocapitalize="off" spellcheck="false" aria-describedby="bh-github-browser-info">
+  <label class="field" for="bh-github-repo">Choose a public repository</label>
   <select id="bh-github-repo" disabled><option value="">Open Data Art to browse repositories…</option></select>
   <label class="field" for="bh-github-filter">Find a CSV by filename or path</label>
   <input type="search" id="bh-github-filter" placeholder="Search CSV files…" autocomplete="off" disabled>
   <label class="field" for="bh-github-preset">Choose a repository dataset</label>
   <select id="bh-github-preset" disabled><option value="">Choose a repository first…</option></select>
-  <p class="muted" id="bh-github-browser-info" role="status">Public CSV files will be listed from the selected repository’s default branch. Private repositories are not accessible in the browser.</p>
+  <p class="muted" id="bh-github-browser-info" role="status">Browse public GitHub repositories from adamgreen1708, or change the account to browse another public owner (such as shortsinsports). Private repositories are not accessible in the browser.</p>
   <button type="button" class="primarybutton" id="bh-github-load" disabled>Load this dataset</button>
-  <button type="button" id="bh-github-refresh">↻ Refresh dataset list</button>
+  <button type="button" id="bh-github-refresh">↻ Browse / refresh repositories</button>
   <label class="field" for="bh-github-url">Or paste a public GitHub CSV link (main or commit permalink)</label>
   <input type="url" id="bh-github-url" placeholder="https://github.com/adamgreen1708/chart-templates/blob/main/…csv" autocomplete="off">
   <button type="button" class="primarybutton" id="bh-github-link">Load GitHub link</button>
@@ -1443,18 +1445,19 @@ async function loadGithubRepositories(force){
  githubBrowserStarted=true;
  var id=++githubRepoLoadId;
  ++githubTreeLoadId;
- var select=$('github-repo'),previous=select.value;
+ var owner=$('github-owner').value.trim(),select=$('github-repo'),previous=select.value;
+ if(!/^[A-Za-z0-9-]{1,39}$/.test(owner)){githubBrowserStarted=false;$('github-browser-info').textContent='Enter a valid public GitHub account name.';return;}
  select.disabled=true;select.innerHTML='';makeOption(select,'','Loading your public repositories…');
  $('github-preset').innerHTML='';makeOption($('github-preset'),'','Choose a repository first…');
  $('github-preset').disabled=true;$('github-filter').disabled=true;$('github-load').disabled=true;
- $('github-browser-info').textContent='Finding public GitHub repositories owned by adamgreen1708…';
+ $('github-browser-info').textContent='Finding public GitHub repositories owned by '+owner+'…';
  try{
   var repos=[];
   for(var page=1;page<=10;page++){
-   var batch=await githubPublicApi('/users/adamgreen1708/repos?type=owner&per_page=100&page='+page);
+   var batch=await githubPublicApi('/users/'+encodeURIComponent(owner)+'/repos?type=owner&per_page=100&page='+page);
    if(id!==githubRepoLoadId)return;
    if(!Array.isArray(batch))throw Error('GitHub returned an invalid repository list.');
-   repos=repos.concat(batch.filter(function(r){return !r.private&&r.owner&&r.owner.login.toLowerCase()==='adamgreen1708'&&r.full_name&&r.name&&r.default_branch;}));
+   repos=repos.concat(batch.filter(function(r){return !r.private&&r.owner&&r.owner.login.toLowerCase()===owner.toLowerCase()&&r.full_name&&r.name&&r.default_branch;}));
    if(batch.length<100)break;
    if(page===10)throw Error('Public repository listing exceeds 1,000 entries; paste a CSV link below.');
   }
@@ -1463,7 +1466,7 @@ async function loadGithubRepositories(force){
   if(!githubRepos.length){makeOption(select,'','No public repositories found');$('github-browser-info').textContent='No public repositories found. Paste a CSV link below.';return;}
   githubRepos.forEach(function(r){makeOption(select,r.full_name,r.full_name);});
   var preferred=githubRepos.find(function(r){return r.full_name===previous;})||
-   githubRepos.find(function(r){return r.full_name==='adamgreen1708/chart-templates';})||githubRepos[0];
+   githubRepos.find(function(r){return r.full_name===owner+'/chart-templates';})||githubRepos[0];
   select.value=preferred.full_name;select.disabled=false;
   await loadGithubRepositoryFiles();
  }catch(e){
@@ -1474,6 +1477,7 @@ async function loadGithubRepositories(force){
  }
 }
 $('github-repo').addEventListener('change',loadGithubRepositoryFiles);
+$('github-owner').addEventListener('change',function(){return loadGithubRepositories(true);});
 $('github-filter').addEventListener('input',renderGithubDatasetOptions);
 $('github-preset').addEventListener('change',function(){$('github-load').disabled=!this.value;});
 $('github-refresh').addEventListener('click',function(){return loadGithubRepositories(true);});
