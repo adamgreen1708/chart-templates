@@ -17,6 +17,7 @@
     "2000-09": 53,
     "2010-19": 59
   },
+  "social_square_config_qa": "PASS",
   "source_completed_rows_not_independently_checked": 216,
   "source_github_blob_sha": {
     "marathon_major_winners_men_2000_2026.csv": "4707c23f1e3557b2d89897d02225658da50765e9",
