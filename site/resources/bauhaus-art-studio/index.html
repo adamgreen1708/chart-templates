@@ -1476,7 +1476,7 @@ async function loadGithubRepositories(force){
 $('github-repo').addEventListener('change',loadGithubRepositoryFiles);
 $('github-filter').addEventListener('input',renderGithubDatasetOptions);
 $('github-preset').addEventListener('change',function(){$('github-load').disabled=!this.value;});
-$('github-refresh').addEventListener('click',function(){loadGithubRepositories(true);});
+$('github-refresh').addEventListener('click',function(){return loadGithubRepositories(true);});
 async function readGithub(url){
  var ctrl=new AbortController(),timer=setTimeout(function(){ctrl.abort();},15000);
  try{
