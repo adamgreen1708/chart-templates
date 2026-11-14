@@ -7,10 +7,10 @@ author: Adam Green
 category: Sport
 description: "Six straight Japanese wins in Berlin. Then just four winners from outside Kenya and Ethiopia across six major marathons in the 2010s. Where did the red dots go?"
 read_time: "3 minute read"
-card_image: /assets/charts/marathon-winning-map/01_berlin_six_and_the_world.png
-hero_image: /assets/charts/marathon-winning-map/01_berlin_six_and_the_world.png
-social_image: /assets/charts/marathon-winning-map/01_berlin_six_and_the_world.png
-hero_alt: "Six major city marathons by race and year in the 2000s. Each dot represents a women's winner. Red marks nationalities outside Kenya and Ethiopia; six consecutive red Berlin dots, from 2000 to 2005, represent Japanese winners."
+card_image: /assets/features/marathon-nationalities-bauhaus-2026.png
+hero_image: /assets/features/marathon-nationalities-bauhaus-2026.png
+social_image: /assets/features/marathon-nationalities-bauhaus-2026.png
+hero_alt: "Dark Bauhaus stripe artwork ranking women’s marathon wins by nationality across Tokyo, Boston, London, Berlin, Chicago and New York, 2000–26. Kenya leads with 68 wins, Ethiopia has 43 and Japan has nine."
 tags: [marathon, running, sport, data-visualisation, shorts-in-sports]
 published: true
 ---
