@@ -52,7 +52,7 @@ CHART_CONFIG = {
         {"x": 1, "y": 0.226415, "text": "Men 22.6%", "xytext": (0, -20), "ha": "center", "fontsize": 12, "color": "#555555", "arrowprops": None},
         {"x": 2, "y": 0.067797, "text": "Women 6.8%", "xytext": (12, 34), "ha": "left", "fontsize": 12, "color": "#C44E52", "arrowprops": {"arrowstyle": "-", "color": "#C44E52", "lw": 0.8}},
         {"x": 2, "y": 0.101695, "text": "Men 10.2%", "xytext": (12, 67), "ha": "left", "fontsize": 12, "color": "#555555", "arrowprops": {"arrowstyle": "-", "color": "#7A7A7A", "lw": 0.8}},
-        {"x": 1.10, "y": 0.91, "text": "Women: down 51.7 points\\nMen: down 12.5 points", "xytext": (0, 0), "ha": "left", "fontsize": 12, "color": "#555555", "arrowprops": None}
+        {"x": 1.10, "y": 0.91, "text": "Women: down 51.7 points\nMen: down 12.5 points", "xytext": (0, 0), "ha": "left", "fontsize": 12, "color": "#555555", "arrowprops": None}
     ],
     "end_labels": [],
     "label_style": {"enabled": False, "label_col": None},

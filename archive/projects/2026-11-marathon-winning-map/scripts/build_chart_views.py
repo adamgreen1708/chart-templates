@@ -329,7 +329,7 @@ def main() -> None:
                         - observed[("Women", "2010–19")][0] / 59)
     men_drop = 100 * (observed[("Men", "2000–09")][0] / 53
                       - observed[("Men", "2010–19")][0] / 59)
-    callout = f"Women: down {women_drop:.1f} points\\nMen: down {men_drop:.1f} points"
+    callout = f"Women: down {women_drop:.1f} points\nMen: down {men_drop:.1f} points"
     expected_texts.add(callout)
     require(annotation_texts == expected_texts,
             "Annotations no longer match source-derived percentages and declines")
