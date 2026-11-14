@@ -305,3 +305,7 @@ Three supported `layout_variant` values:
 This is an example of an established hue having genuine semantic meaning, **not** an instruction to make ordinary statistical marks multicoloured. Costumes come from a documented editorial coding and must not be described as measured fabric areas. All values must be read from project CSVs, with no data values or named findings invented in drawing code. Comic image/era provenance and publisher-generalisation caveats remain explicit.
 
 Projects may supply a custom specialist `palette_story` config on a review branch. Do not migrate previously approved site images or deploy prototypes without approval.
+
+## Optional centred ISO2 dot labels — proposed (review-only, November 2026)
+
+An opt-in `label_style` for scatter matrices may specify `{"enabled": True, "label_col": "CountryISO2", "position": "center", "fontsize": 12, "fontweight": "bold", "color": "#20303A", "highlight_color": "#FFFFFF"}`. The two-letter ISO 3166-1 alpha-2 code must be a **source-derived CSV column**, not hand-entered annotation text. `GB` is the ISO2 code for United Kingdom (not `UK`). Default `left` and `right` label placement remains unchanged. Contrast colour is assigned by the existing semantic highlight rule. This feature is trialled on a draft branch; do not merge or publish until Adam reviews actual 1600px, 390px and 320px PNG pixels.
