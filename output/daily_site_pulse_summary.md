@@ -1,9 +1,9 @@
-# Coffeetableviz Daily Pulse — 12 November 2026
+# Coffeetableviz Daily Pulse — 13 November 2026
 
-- **Visits:** 3
-- **7-day context:** 72% below prior 7-day daily average (10.7)
-- **Top pages:** Bauhaus Art Studio (1), The map that put connections first (1), Today’s Blockbuster Quote (1)
-- **Top referrer:** Direct / unknown — 1 visits
-- **Observation:** A noticeably quieter day than the seven-day baseline.
+- **Visits:** 7
+- **7-day context:** 30% below prior 7-day daily average (10.0)
+- **Top pages:** Can you find the four outsiders? (2), Home (2), Bauhaus Art Studio (1)
+- **Top referrer:** bing.com — 1 visits
+- **Observation:** Traffic stayed fairly close to its recent rhythm.
 
 Latest image: `output/daily_site_pulse.png`
