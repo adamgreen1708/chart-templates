@@ -33,6 +33,14 @@ UPSTREAM = ("source/SIS-marathon_major_winners_2000_2026.csv",
 POSITIONS = {"Tokyo": 6, "Boston": 5, "London": 4,
              "Berlin": 3, "Chicago": 2, "New York City": 1}
 EAST = {"Kenya", "Ethiopia"}
+# ISO 3166-1 alpha-2. GB, not UK, is the standard code for United Kingdom.
+COUNTRY_ISO2 = {
+    "Kenya": "KE", "Ethiopia": "ET", "Japan": "JP", "Russia": "RU",
+    "United Kingdom": "GB", "Romania": "RO", "United States": "US",
+    "Latvia": "LV", "China": "CN", "Germany": "DE",
+}
+require_codes = set(COUNTRY_ISO2.values())
+assert len(require_codes) == len(COUNTRY_ISO2) and all(len(x)==2 and x.isalpha() for x in require_codes)
 EXPECTED_EXCEPTIONS = {
     ("Tokyo", 2010, "Alevtina Biktimirova", "Russia"),
     ("Tokyo", 2011, "Noriko Higuchi", "Japan"),
@@ -186,6 +194,9 @@ def main() -> None:
             "Berlin 2000-05 streak no longer all Japanese")
     first_nations = Counter(women[k]["Nationality"] for k in early)
     require(len(first_nations) == 10, "Women's 2000s nationality count changed")
+    every_country = {women[k]["Nationality"] for k in completed}
+    require(every_country == set(COUNTRY_ISO2),
+            f"Country ISO2 lookup no longer matches observed nationalities: {every_country ^ set(COUNTRY_ISO2)}")
     exceptions = {(women[k]["Race"], int(women[k]["Year"]),
                    women[k]["Winner"], women[k]["Nationality"])
                   for k in later if women[k]["Nationality"] not in EAST}
@@ -216,9 +227,24 @@ def main() -> None:
             row = women[key]
             group = "Kenya/Ethiopia" if row["Nationality"] in EAST else "Outside"
             dots.append((key[1], key[0], POSITIONS[key[0]],
-                         row["Winner"], row["Nationality"], group))
+                         row["Winner"], row["Nationality"], COUNTRY_ISO2[row["Nationality"]], group))
         write_csv(filename, ["Year", "Race", "RaceRow", "Winner",
-                             "Nationality", "Group"], dots)
+                             "Nationality", "CountryISO2", "Group"], dots)
+    # Bauhaus-ready counts: real win counts rather than dummy values.
+    # Filter by Decade; label with Nationality or CountryISO2; value = Wins.
+    bauhaus = []
+    for label, keys in (("2000–09", early), ("2010–19", later)):
+        counts = Counter(women[k]["Nationality"] for k in keys)
+        for country, wins in sorted(counts.items(), key=lambda pair: (-pair[1], pair[0])):
+            bauhaus.append((label, country, COUNTRY_ISO2[country], wins,
+                            f"{100 * wins / len(keys):.1f}",
+                            "Kenya/Ethiopia" if country in EAST else "Outside"))
+    require(sum(int(row[3]) for row in bauhaus if row[0] == "2000–09") == 53
+            and sum(int(row[3]) for row in bauhaus if row[0] == "2010–19") == 59,
+            "Bauhaus counts differ from verified winner-level tables")
+    require(len(bauhaus) == 15, "Unexpected Bauhaus nationality-decade count")
+    write_csv("bauhaus_women_wins_by_nationality_decade.csv",
+              ["Decade", "Nationality", "CountryISO2", "Wins", "SharePct", "Group"], bauhaus)
     write_csv("03_outside_winners_share.csv",
               ["PeriodIndex", "Period", "Sex", "OutsideShare",
                "OtherWins", "TotalWins"], slope)
@@ -258,6 +284,15 @@ def main() -> None:
     first_cfg, second_cfg = configs["01_women_2000s.py"], configs["02_women_2010s.py"]
     for c in (first_cfg, second_cfg):
         require(c["chart_type"] == "scatter", "The two puzzles must be dot matrices")
+        labels = c["label_style"]
+        require(labels.get("enabled") is True
+                and labels.get("label_col") == "CountryISO2"
+                and labels.get("position") == "center"
+                and labels.get("highlight_color") == "#FFFFFF"
+                and labels.get("color") == "#20303A"
+                and float(labels.get("fontsize")) >= 11.5,
+                "Every dot must carry a contrast-safe ISO2 code derived from CSV")
+        require(c["point_style"]["size"] >= 850, "Dots too small for a two-letter code")
         require(c["y_axis_min"] == 0 and c["y_axis_max"] == 7,
                 "Unclipped identical race axis required")
         require(c["highlight_points"] == [{"Group": "Outside"}],
@@ -283,15 +318,21 @@ def main() -> None:
             "Comparison percentages must use a zero-to-100-percent axis")
     require(last_cfg["focus_style"]["color"] == "#C44E52",
             "Women must be highlighted red consistently")
-    require(len(last_cfg["annotate_points"]) == 4,
-            "Expected only the four labelled source-derived endpoints")
+    require(len(last_cfg["annotate_points"]) == 5,
+            "Expected four endpoints and one source-derived comparison callout")
     annotation_texts = {a["text"] for a in last_cfg["annotate_points"]}
     expected_texts = {
-        f"{sex} {round(count / n * 100)}%"
+        f"{sex} {count / n * 100:.1f}%"
         for (sex, _), (count, n) in observed.items()
     }
+    women_drop = 100 * (observed[("Women", "2000–09")][0] / 53
+                        - observed[("Women", "2010–19")][0] / 59)
+    men_drop = 100 * (observed[("Men", "2000–09")][0] / 53
+                      - observed[("Men", "2010–19")][0] / 59)
+    callout = f"Women: down {women_drop:.1f} points\nMen: down {men_drop:.1f} points"
+    expected_texts.add(callout)
     require(annotation_texts == expected_texts,
-            "Chart annotations no longer match rounded derived percentages")
+            "Annotations no longer match source-derived percentages and declines")
 
     # A pass confirms integrity, calculations and named high-risk cases.
     # It does not claim the other source winners were independently audited.
