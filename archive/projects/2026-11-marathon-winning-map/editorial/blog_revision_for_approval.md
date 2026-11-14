@@ -15,7 +15,7 @@ Look across six big-city marathons in the 2000s. Every dot is a women's race win
 
 *[Chart 1 — Berlin: six straight for Japan]*
 
-There's plenty of red. **31 of 53 victories** went to other countries, including eight for Japan and seven for Great Britain. Berlin's first six dots are all **JP**. Quite a run, literally.
+There's plenty of red. **31 of 53 victories** went to other countries, including eight for Japan and seven for the United Kingdom. Berlin's first six dots are all **JP**. Quite a run, literally.
 
 But take the same races and move the calendar forward ten years.
 
