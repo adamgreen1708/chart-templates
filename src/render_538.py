@@ -792,8 +792,19 @@ def _plot_labels(ax, rows):
         except Exception:
             text = str(val)
 
-        offset = (-6, 0) if position == "left" else (6, 0)
-        ha = "right" if position == "left" else "left"
+        # Opt-in centred labels for categorical scatter matrices. Existing
+        # left/right styles remain unchanged for all legacy configurations.
+        if position == "center":
+            offset, ha = (0, 0), "center"
+            color = (
+                label_style.get("highlight_color", label_style.get("color", "#4A4A4A"))
+                if _row_matches_any_highlight(r)
+                else label_style.get("color", "#4A4A4A")
+            )
+        else:
+            offset = (-6, 0) if position == "left" else (6, 0)
+            ha = "right" if position == "left" else "left"
+            color = label_style.get("color", "#4A4A4A")
 
         ax.annotate(
             text,
@@ -803,7 +814,8 @@ def _plot_labels(ax, rows):
             ha=ha,
             va="center",
             fontsize=fontsize,
-            color=label_style.get("color", "#4A4A4A"),
+            color=color,
+            fontweight=label_style.get("fontweight", "normal"),
             clip_on=False,
             zorder=7,
         )

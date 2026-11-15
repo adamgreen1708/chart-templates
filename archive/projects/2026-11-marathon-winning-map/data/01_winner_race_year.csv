@@ -1,54 +1,54 @@
-Year,Race,RaceRow,Winner,Nationality,Group
-2000,Boston,5,Catherine Ndereba,Kenya,Kenya/Ethiopia
-2000,London,4,Tegla Loroupe,Kenya,Kenya/Ethiopia
-2000,Berlin,3,Kazumi Matsuo,Japan,Outside
-2000,Chicago,2,Catherine Ndereba,Kenya,Kenya/Ethiopia
-2000,New York City,1,Lyudmila Petrova,Russia,Outside
-2001,Boston,5,Catherine Ndereba,Kenya,Kenya/Ethiopia
-2001,London,4,Derartu Tulu,Ethiopia,Kenya/Ethiopia
-2001,Berlin,3,Naoko Takahashi,Japan,Outside
-2001,Chicago,2,Catherine Ndereba,Kenya,Kenya/Ethiopia
-2001,New York City,1,Margaret Okayo,Kenya,Kenya/Ethiopia
-2002,Boston,5,Margaret Okayo,Kenya,Kenya/Ethiopia
-2002,London,4,Paula Radcliffe,United Kingdom,Outside
-2002,Berlin,3,Naoko Takahashi,Japan,Outside
-2002,Chicago,2,Paula Radcliffe,United Kingdom,Outside
-2002,New York City,1,Joyce Chepchumba,Kenya,Kenya/Ethiopia
-2003,Boston,5,Svetlana Zakharova,Russia,Outside
-2003,London,4,Paula Radcliffe,United Kingdom,Outside
-2003,Berlin,3,Yasuko Hashimoto,Japan,Outside
-2003,Chicago,2,Svetlana Zakharova,Russia,Outside
-2003,New York City,1,Margaret Okayo,Kenya,Kenya/Ethiopia
-2004,Boston,5,Catherine Ndereba,Kenya,Kenya/Ethiopia
-2004,London,4,Margaret Okayo,Kenya,Kenya/Ethiopia
-2004,Berlin,3,Yoko Shibui,Japan,Outside
-2004,Chicago,2,Constantina Dita,Romania,Outside
-2004,New York City,1,Paula Radcliffe,United Kingdom,Outside
-2005,Boston,5,Catherine Ndereba,Kenya,Kenya/Ethiopia
-2005,London,4,Paula Radcliffe,United Kingdom,Outside
-2005,Berlin,3,Mizuki Noguchi,Japan,Outside
-2005,Chicago,2,Deena Kastor,United States,Outside
-2005,New York City,1,Jelena Prokopcuka,Latvia,Outside
-2006,Boston,5,Rita Jeptoo,Kenya,Kenya/Ethiopia
-2006,London,4,Deena Kastor,United States,Outside
-2006,Berlin,3,Gete Wami,Ethiopia,Kenya/Ethiopia
-2006,Chicago,2,Berhane Adere,Ethiopia,Kenya/Ethiopia
-2006,New York City,1,Jelena Prokopcuka,Latvia,Outside
-2007,Tokyo,6,Hitomi Niiya,Japan,Outside
-2007,Boston,5,Lidiya Grigoryeva,Russia,Outside
-2007,London,4,Zhou Chunxiu,China,Outside
-2007,Berlin,3,Gete Wami,Ethiopia,Kenya/Ethiopia
-2007,Chicago,2,Berhane Adere,Ethiopia,Kenya/Ethiopia
-2007,New York City,1,Paula Radcliffe,United Kingdom,Outside
-2008,Tokyo,6,Claudia Dreher,Germany,Outside
-2008,Boston,5,Dire Tune,Ethiopia,Kenya/Ethiopia
-2008,London,4,Irina Mikitenko,Germany,Outside
-2008,Berlin,3,Irina Mikitenko,Germany,Outside
-2008,Chicago,2,Lidiya Grigoryeva,Russia,Outside
-2008,New York City,1,Paula Radcliffe,United Kingdom,Outside
-2009,Tokyo,6,Mizuho Nasukawa,Japan,Outside
-2009,Boston,5,Salina Kosgei,Kenya,Kenya/Ethiopia
-2009,London,4,Irina Mikitenko,Germany,Outside
-2009,Berlin,3,Atsede Habtamu,Ethiopia,Kenya/Ethiopia
-2009,Chicago,2,Irina Mikitenko,Germany,Outside
-2009,New York City,1,Derartu Tulu,Ethiopia,Kenya/Ethiopia
+Year,Race,RaceRow,Winner,Nationality,CountryISO2,Group
+2000,Boston,5,Catherine Ndereba,Kenya,KE,Kenya/Ethiopia
+2000,London,4,Tegla Loroupe,Kenya,KE,Kenya/Ethiopia
+2000,Berlin,3,Kazumi Matsuo,Japan,JP,Outside
+2000,Chicago,2,Catherine Ndereba,Kenya,KE,Kenya/Ethiopia
+2000,New York City,1,Lyudmila Petrova,Russia,RU,Outside
+2001,Boston,5,Catherine Ndereba,Kenya,KE,Kenya/Ethiopia
+2001,London,4,Derartu Tulu,Ethiopia,ET,Kenya/Ethiopia
+2001,Berlin,3,Naoko Takahashi,Japan,JP,Outside
+2001,Chicago,2,Catherine Ndereba,Kenya,KE,Kenya/Ethiopia
+2001,New York City,1,Margaret Okayo,Kenya,KE,Kenya/Ethiopia
+2002,Boston,5,Margaret Okayo,Kenya,KE,Kenya/Ethiopia
+2002,London,4,Paula Radcliffe,United Kingdom,GB,Outside
+2002,Berlin,3,Naoko Takahashi,Japan,JP,Outside
+2002,Chicago,2,Paula Radcliffe,United Kingdom,GB,Outside
+2002,New York City,1,Joyce Chepchumba,Kenya,KE,Kenya/Ethiopia
+2003,Boston,5,Svetlana Zakharova,Russia,RU,Outside
+2003,London,4,Paula Radcliffe,United Kingdom,GB,Outside
+2003,Berlin,3,Yasuko Hashimoto,Japan,JP,Outside
+2003,Chicago,2,Svetlana Zakharova,Russia,RU,Outside
+2003,New York City,1,Margaret Okayo,Kenya,KE,Kenya/Ethiopia
+2004,Boston,5,Catherine Ndereba,Kenya,KE,Kenya/Ethiopia
+2004,London,4,Margaret Okayo,Kenya,KE,Kenya/Ethiopia
+2004,Berlin,3,Yoko Shibui,Japan,JP,Outside
+2004,Chicago,2,Constantina Dita,Romania,RO,Outside
+2004,New York City,1,Paula Radcliffe,United Kingdom,GB,Outside
+2005,Boston,5,Catherine Ndereba,Kenya,KE,Kenya/Ethiopia
+2005,London,4,Paula Radcliffe,United Kingdom,GB,Outside
+2005,Berlin,3,Mizuki Noguchi,Japan,JP,Outside
+2005,Chicago,2,Deena Kastor,United States,US,Outside
+2005,New York City,1,Jelena Prokopcuka,Latvia,LV,Outside
+2006,Boston,5,Rita Jeptoo,Kenya,KE,Kenya/Ethiopia
+2006,London,4,Deena Kastor,United States,US,Outside
+2006,Berlin,3,Gete Wami,Ethiopia,ET,Kenya/Ethiopia
+2006,Chicago,2,Berhane Adere,Ethiopia,ET,Kenya/Ethiopia
+2006,New York City,1,Jelena Prokopcuka,Latvia,LV,Outside
+2007,Tokyo,6,Hitomi Niiya,Japan,JP,Outside
+2007,Boston,5,Lidiya Grigoryeva,Russia,RU,Outside
+2007,London,4,Zhou Chunxiu,China,CN,Outside
+2007,Berlin,3,Gete Wami,Ethiopia,ET,Kenya/Ethiopia
+2007,Chicago,2,Berhane Adere,Ethiopia,ET,Kenya/Ethiopia
+2007,New York City,1,Paula Radcliffe,United Kingdom,GB,Outside
+2008,Tokyo,6,Claudia Dreher,Germany,DE,Outside
+2008,Boston,5,Dire Tune,Ethiopia,ET,Kenya/Ethiopia
+2008,London,4,Irina Mikitenko,Germany,DE,Outside
+2008,Berlin,3,Irina Mikitenko,Germany,DE,Outside
+2008,Chicago,2,Lidiya Grigoryeva,Russia,RU,Outside
+2008,New York City,1,Paula Radcliffe,United Kingdom,GB,Outside
+2009,Tokyo,6,Mizuho Nasukawa,Japan,JP,Outside
+2009,Boston,5,Salina Kosgei,Kenya,KE,Kenya/Ethiopia
+2009,London,4,Irina Mikitenko,Germany,DE,Outside
+2009,Berlin,3,Atsede Habtamu,Ethiopia,ET,Kenya/Ethiopia
+2009,Chicago,2,Irina Mikitenko,Germany,DE,Outside
+2009,New York City,1,Derartu Tulu,Ethiopia,ET,Kenya/Ethiopia
