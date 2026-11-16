@@ -53,3 +53,6 @@ The longer second-chart headline wrapped into the subtitle on the actual rendere
 - Official 2026 record report: https://worldathletics.org/news/report/sawe-two-hour-assefa-world-record-london-marathon
 - Race-day dates are external documented values; source CSV does not contain actual full dates. Any future changes in source events require an explicit race date addition and review, rather than extrapolating by year.
 - Original CSV, common renderer and site files remain unchanged. QA of new actual output is required at 1600px, 390px, 320px before claiming publication readiness.
+
+## Visual QA follow-up
+Corrected Chart 2 Tokyo 2022's city-and-age callout: a short, thin grey leader places TOK · 37 above the point to avoid overlap with 2019 London. Chart 2 Chicago's label was offset away from the neighbouring 2015 Berlin label. Refined chart 1 to say *more than twice* (11 versus five) and chart 3 to state its since-2002 scope. Rerender all three and inspect final pixels at phone size.

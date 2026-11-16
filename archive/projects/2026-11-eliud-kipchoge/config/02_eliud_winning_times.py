@@ -48,7 +48,7 @@ CHART_CONFIG = {
     "trend_line": {"enabled": False},
     "highlight_points": [{"Race_Year": "Berlin (2018)"}, {"Race_Year": "Berlin (2022)"}],
     "annotate_points": [ 
-        {"Race_Year": "Chicago (2014)", "label": "CHI · 29", "xytext": (10, 0), "ha": "left", "arrowprops": None},
+        {"Race_Year": "Chicago (2014)", "label": "CHI · 29", "xytext": (10, -12), "ha": "left", "arrowprops": None},
         {"Race_Year": "London (2015)", "label": "LON · 30", "xytext": (10, 0), "ha": "left", "arrowprops": None},
         {"Race_Year": "Berlin (2015)", "label": "BER · 30", "xytext": (10, 0), "ha": "left", "arrowprops": None},
         {"Race_Year": "London (2016)", "label": "LON · 31", "xytext": (10, 0), "ha": "left", "arrowprops": None},
@@ -56,7 +56,7 @@ CHART_CONFIG = {
         {"Race_Year": "London (2018)", "label": "LON · 33", "xytext": (10, 0), "ha": "left", "arrowprops": None},
         {"Race_Year": "Berlin (2018)", "label": "BER · 33\n2:01:39", "xytext": (12, 0), "ha": "left", "arrowprops": None},
         {"Race_Year": "London (2019)", "label": "LON · 34", "xytext": (10, 0), "ha": "left", "arrowprops": None},
-        {"Race_Year": "Tokyo (2021)", "label": "TOK · 37", "xytext": (-12, 0), "ha": "right", "arrowprops": None},
+        {"Race_Year": "Tokyo (2021)", "label": "TOK · 37", "xytext": (-14, 24), "ha": "right", "arrowprops": {"arrowstyle": "-", "color": "#999999", "lw": 0.7}},
         {"Race_Year": "Berlin (2022)", "label": "BER · 37\n2:01:09", "xytext": (12, 0), "ha": "left", "arrowprops": None},
         {"Race_Year": "Berlin (2023)", "label": "BER · 38", "xytext": (12, 0), "ha": "left", "arrowprops": None}
     ],

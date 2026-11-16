@@ -9,7 +9,7 @@ CHART_CONFIG = {
     "value_col": None,
     "filters": [],
     "title": "Eleven wins. Next best: five.",
-    "subtitle": "Six of these seven runners are Kenyan; Kipchoge's 11 wins double the next best.",
+    "subtitle": "Six of these seven runners are Kenyan; Kipchoge's 11 wins are more than twice the next best.",
     "source_text": "Source: Coffeetableviz majors CSV",
     "footer_left": "Adam Green | coffeetableviz",
     "render_profile": "social_square",

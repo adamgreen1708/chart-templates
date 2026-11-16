@@ -9,7 +9,7 @@ CHART_CONFIG = {
     "value_col": None,
     "filters": [],
     "title": "The 78-second leap still leads",
-    "subtitle": "Eight of ten record leaps came in Berlin. Kipchoge's 78 seconds still tops Sawe's 65.",
+    "subtitle": "Since 2002, eight of ten record leaps came in Berlin. Kipchoge's 78s tops Sawe's 65s.",
     "source_text": "Source: World Athletics; majors CSV",
     "footer_left": "Adam Green | coffeetableviz",
     "render_profile": "social_square",
