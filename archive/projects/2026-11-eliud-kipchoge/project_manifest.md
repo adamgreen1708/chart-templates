@@ -25,7 +25,7 @@ Date: 2026-11-16. Category intended for site publication: Sport.
 
 ## Editorial sequence
 1. **Eleven wins. Next best: five.** — scale of dominance.
-2. **The wins kept getting faster.** — 11 winning performances and two records.
+2. **Two world records. Four years apart.** — winning times fluctuate; two Berlin performances stand out.
 3. **The 78-second leap still leads.** — record improvement remains largest since 2002.
 
 ## Workflow / QA
@@ -37,3 +37,6 @@ Date: 2026-11-16. Category intended for site publication: Sport.
 
 ## Render review correction (16 November 2026)
 The first successful GitHub render revealed clipped and unsafe left-side labels on the two ranked dot charts. Both dot configs now use an explicitly documented social-square `profile_overrides` of `plot_left=0.29` and `plot_right=0.88` so that names remain inside the 7% border. The scatter chart keeps the canonical shared profile unchanged. Reinspect the final full-size and mobile exports; a green workflow is not by itself visual QA.
+
+## Editorial QA adjustment
+Chart 2 title revised to avoid falsely implying monotonically improving times. Across wins, times fluctuate because courses and conditions differ; 2018 and 2022 are the two verified world records.
