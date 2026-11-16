@@ -42,3 +42,14 @@ The first successful GitHub render revealed clipped and unsafe left-side labels 
 Chart 2 title revised to avoid falsely implying monotonically improving times. Across wins, times fluctuate because courses and conditions differ; 2018 and 2022 are the two verified world records.
 
 The longer second-chart headline wrapped into the subtitle on the actual rendered PNG, so it was shortened rather than shrinking production typography. Final output must be reinspected at full resolution and 320px.
+
+## Revision: city, country and age (16 November 2026)
+- Chart 1 prints ISO 3166-1 alpha-3 nationality after each winner's name (KEN and ETH in the selected top seven), cross-checked to the source nationality field. The subtitle states the six-of-seven Kenya pattern.
+- Chart 2 uses actual race dates and a verified 5 November 1984 birthdate to calculate full age at each victory. It shows abbreviated city + age beside each point (CHI/Chicago, LON/London, BER/Berlin, TOK/Tokyo). The postponed Tokyo 2021 edition is dated 6 March 2022. Times have an inverted y-axis (faster higher). The two records retain exact times.
+- Chart 3 uses city-inclusive labels for all ten record improvements; eight happened in Berlin.
+- Personal profile: https://worldathletics.org/athletes/kenya/eliud-kipchoge-14208194
+- Major careers and event dates: https://marathonhandbook.com/athletes/eliud-kipchoge/
+- World Athletics 2023 marathon details: https://worldathletics.org/awards/news/athlete-year-2023-kelvin-kiptum-kenya-marathon
+- Official 2026 record report: https://worldathletics.org/news/report/sawe-two-hour-assefa-world-record-london-marathon
+- Race-day dates are external documented values; source CSV does not contain actual full dates. Any future changes in source events require an explicit race date addition and review, rather than extrapolating by year.
+- Original CSV, common renderer and site files remain unchanged. QA of new actual output is required at 1600px, 390px, 320px before claiming publication readiness.
