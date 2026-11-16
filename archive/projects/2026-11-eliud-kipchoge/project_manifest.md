@@ -34,3 +34,6 @@ Date: 2026-11-16. Category intended for site publication: Sport.
 - Render all three through the archive project's push-triggered workflow.
 - Before acceptance inspect final exported 1600px and 390/320px previews, outer 7% clear frame, labels/title/footer and plot colour.
 - Do not add `publish_asset_map.csv` or site/_posts before explicit approval.
+
+## Render review correction (16 November 2026)
+The first successful GitHub render revealed clipped and unsafe left-side labels on the two ranked dot charts. Both dot configs now use an explicitly documented social-square `profile_overrides` of `plot_left=0.29` and `plot_right=0.88` so that names remain inside the 7% border. The scatter chart keeps the canonical shared profile unchanged. Reinspect the final full-size and mobile exports; a green workflow is not by itself visual QA.
