@@ -1,49 +1,89 @@
 # The record fell. The legacy didn't.
 
-**Draft — not for publication.** Category: Sport.
+**Review copy.**
 
-In April 2026, the first official sub-two-hour marathon arrived.
+On **26 April 2026**, a marathon finally slipped under two hours in an official race.
 
-The man who crossed the line was Sabastian Sawe.
+**1:59:30.** London. A world record.
+
+The runner was **Sabastian Sawe**.
 
 Not Eliud Kipchoge.
 
-That distinction is rather interesting. For more than a decade, Kipchoge made elite marathon running look less like a contest and more like a regular appointment.
+It's a curious way to begin a story about a man whose name has been tied to the two-hour barrier for so long. But Kipchoge's career is bigger than a single number on a clock.
+
+Start with the winning.
 
 ## Eleven is a ridiculous number
 
-In this dataset of winners across six established Marathon Majors, Kipchoge appears eleven times. The next most successful runners appear five times each.
+Across the **six established city marathons** in this dataset, Kipchoge appears in the winners' column **11 times**. No other runner has more than five.
 
-Six of the seven names at the top of the ranking represent Kenya. Kipchoge's eleven wins are more than twice anyone else's count in this dataset. And no, that is not a small margin.
+![Ranking of men's marathon winners in the six-race dataset, Kipchoge leading with eleven wins and ISO3 nationality codes.](/assets/charts/eliud-kipchoge/01_eliud_majors_dominance.png){: .ctv-centred-chart }
 
-[CHART 1: 01_eliud_majors_dominance.png]
+There's a second pattern tucked into those labels. **Six of the seven leading names are Kenyan.** The other, Haile Gebrselassie, is Ethiopian.
 
-## The faster you go
+Yet this isn't a country leaderboard. It's one runner sitting a long way ahead of everyone else.
 
-Kipchoge's first major victory in the file was Chicago 2014: 2:04:11.
+And this count doesn't even include Kipchoge's **two Olympic marathon gold medals**. Those belong to another competition entirely.
 
-Four years later he was in Berlin, running 2:01:39. In 2022, aged 37, he returned and took another half-minute off his own record. That followed the 2018 world record, set at 33.
+Eleven wins is impressive enough. But how long did he keep doing it?
 
-The chart puts faster times higher and adds the city and Kipchoge's age at each win. He started this run at 29 in Chicago and was still winning in Berlin at 38. These are his **winning performances**, not every marathon he ran; different courses, weather and tactics make a smooth speed trend misleading. The Tokyo race labelled 2021 was actually run in March 2022.
+## Time moves in one direction. Winning times don't.
 
-[CHART 2: 02_eliud_winning_times.png]
+His first victory in this dataset was **Chicago 2014**, aged 29, in **2:04:11**.
+
+His last was **Berlin 2023**, aged 38, in **2:02:42**.
+
+In between came a collection of fast, faster and frankly ridiculous performances.
+
+![Kipchoge's eleven winning major-marathon times, with the fastest plotted higher, city and age labels, and two Berlin world records in red.](/assets/charts/eliud-kipchoge/02_eliud_winning_times.png){: .ctv-centred-chart }
+
+The two red dots are special. **Berlin 2018: 2:01:39**, at 33. **Berlin 2022: 2:01:09**, at 37.
+
+The rest don't form a neat downward slope. Nor should they. London isn't Berlin, and weather, pacing and course conditions matter. These are his **winning times**, not every marathon he ran.
+
+The Tokyo race labelled 2021 took place in **March 2022** after a postponement; the chart uses the year he actually ran.
+
+Still, here's the remarkable thing: his best official marathon came **eight years after** his first major win in this dataset.
+
+And the size of one of those record improvements is where this story gets really interesting.
 
 ## Seventy-eight seconds
 
-World records get broken. That's rather the point of them.
+When Kipchoge arrived in Berlin in 2018, Dennis Kimetto's world record stood at **2:02:57**.
 
-Kipchoge's 2018 Berlin run cut 78 seconds off Dennis Kimetto's old record. When Sawe smashed the two-hour barrier in April 2026, he took 65 seconds off Kelvin Kiptum's mark.
+Kipchoge finished in **2:01:39**.
 
-Eight of the ten record improvements after the 2002 benchmark happened in Berlin. Chicago and London supplied the other two. So Kipchoge no longer holds the fastest official marathon time, but his 2018 improvement remains the largest single step in this 2002–2026 record progression.
+That's **78 seconds** gone in one race.
 
-[CHART 3: 03_eliud_record_leap.png]
+![Ten official world record improvements since a 2002 baseline, with Kipchoge's Berlin 2018 improvement of 78 seconds ahead of Sawe's London 2026 improvement of 65.](/assets/charts/eliud-kipchoge/03_eliud_record_leap.png){: .ctv-centred-chart }
 
-There is one delicious complication. Kipchoge had already run below two hours during the specially arranged INEOS challenge in 2019. That performance was not eligible for world-record status, which is why the April 2026 result is history rather than just a faster number.
+Eight of the **ten record improvements after the 2002 benchmark** in this chart happened in Berlin. Chicago and London supplied the other two.
+
+Kipchoge himself chipped another **30 seconds** off the record in 2022. Kelvin Kiptum then took it to **2:00:35** in Chicago in 2023.
+
+And in April 2026, Sawe's **1:59:30** lowered that mark by **65 seconds**.
+
+A historic breakthrough. But still not as big a single leap as Kipchoge's 78-second improvement in 2018.
+
+There's a final wrinkle. Kipchoge *had* run below two hours before: **1:59:40** in Vienna in 2019. It was a specially organised challenge with rotating pacemakers, so it did not qualify as an official world record.
+
+Sawe made the barrier fall in a record-eligible race. Kipchoge had already shown what was possible under different conditions. They're different achievements, and neither needs to diminish the other.
 
 ## TLDR
 
-The record moved on. The scale of Kipchoge's winning career — and the size of his 2018 leap — didn't.
+The men's marathon world record belongs to someone else now. But in this six-race dataset, **Kipchoge's 11 wins still tower over the rest**. And in the official record progression since 2002, **his 78-second leap remains the biggest**.
 
-Simple charts. Clear stories.
+The clock moved on. The achievements didn't.
 
-**Sources:** Original six-major winners CSV; World Athletics record reports; London Marathon Events. Records, identity aliases and Tokyo date should receive final editorial QA before publication.
+*simple charts clear stories.*
+
+---
+
+### A note on the numbers
+
+These charts use the [Coffeetableviz men's marathon winners CSV](https://github.com/adamgreen1708/chart-templates/blob/2e784456670858668696c016fc5ea44ef9d4228d/data/marathon-majors/marathon_major_winners_men_2000_2026.csv), covering **149 completed men's races** in Tokyo, Boston, London, Berlin, Chicago and New York City, with entries dated 2000–2026. Tokyo joins the dataset in 2007; **Berlin 2026 is absent**. Sydney, which later joined the World Marathon Majors, isn't part of the six-race comparison. This is **not a complete all-time Major wins table**.
+
+A known winner-name alias was reconciled. A number of other source rows are labelled *not independently checked*, so wider counts describe the supplied file rather than a full official-results audit. Chart 2 includes **winning performances only**, with ages calculated from actual race dates and Kipchoge's date of birth. Chart 3 uses London 2002 as its baseline and ranks the **ten subsequent world-record improvements** through April 2026.
+
+The two Berlin records and Sawe's 2026 time were checked against official [World Athletics reports in 2018](https://worldathletics.org/awards/news/berlin-marathon-2018-eliud-kipchoge-world-rec), [2022](https://worldathletics.org/competitions/world-athletics-label-road-races/news/eliud-kipchoge-world-record-berlin-marathon-2022) and [2026](https://worldathletics.org/news/press-releases/ratified-world-records-sawe-ehammer-charlton-mcrae-yan-duplantis-assefa). [Kipchoge's athlete profile](https://worldathletics.org/athletes/kenya/eliud-kipchoge-14208194) confirms his birthdate and Olympic titles. The BBC explains why the [2019 Vienna run was not record-eligible](https://www.bbc.co.uk/sport/athletics/50025543).

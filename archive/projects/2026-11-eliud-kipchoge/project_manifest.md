@@ -56,3 +56,11 @@ The longer second-chart headline wrapped into the subtitle on the actual rendere
 
 ## Visual QA follow-up
 Corrected Chart 2 Tokyo 2022's city-and-age callout: a short, thin grey leader places TOK · 37 above the point to avoid overlap with 2019 London. Chart 2 Chicago's label was offset away from the neighbouring 2015 Berlin label. Refined chart 1 to say *more than twice* (11 versus five) and chart 3 to state its since-2002 scope. Rerender all three and inspect final pixels at phone size.
+
+## Site publishing package (16 November 2026)
+- Full Jekyll article staged for review: `site/_posts/2026-11-16-eliud-kipchoge-the-record-fell-the-legacy-didnt.md`, category Sport, not yet merged.
+- Site feature SVG: `site/assets/features/eliud-kipchoge-record-legacy.svg`, vector trace of the story-specific feature illustration, exact background #F3F4F6, black/grey and accent red. Prompt saved in `content/feature_image_prompt.md`.
+- Three exact approved chart PNG blobs copied unchanged from project archive to `site/assets/charts/eliud-kipchoge/`.
+- User approval required before merging draft PR #220. No live page exists yet.
+- External verification: World Athletics ratified Sawe's 1:59:30 on 23 July 2026; 2018 and 2022 Kipchoge records, race-date/age context, 2019 INEOS distinction linked inside article.
+- Note: front matter `published: true` is for Jekyll PR preview only. GitHub Pages only deploys site changes after a reviewed merge to main.
