@@ -64,3 +64,9 @@ Corrected Chart 2 Tokyo 2022's city-and-age callout: a short, thin grey leader p
 - User approval required before merging draft PR #220. No live page exists yet.
 - External verification: World Athletics ratified Sawe's 1:59:30 on 23 July 2026; 2018 and 2022 Kipchoge records, race-date/age context, 2019 INEOS distinction linked inside article.
 - Note: front matter `published: true` is for Jekyll PR preview only. GitHub Pages only deploys site changes after a reviewed merge to main.
+
+## Editorial revision — short Coffeetableviz copy and attribution (16 November 2026)
+- Copy tightened to a conversational three-chart article, shorter lead-in and passages between charts, same analytical findings and cautious scope note.
+- Explicitly credits the `#ShortsInSports` source dataset and thanks Rob and Chris (as specified by the author). Original source URL: https://github.com/shortsinsports/Data/blob/4ea0ca9e403d706a734d41088ad63e571ab0ca21/SIS-marathon_major_winners_2000_2026.csv
+- The Coffeetableviz CSV remains the analysed working copy, linked separately from the upstream Shorts in Sports dataset.
+- Category remains Sport; tags add `shorts-in-sports`; read-time changed to 3 minutes. No chart PNGs, feature art or scripts changed. PR #220 remains the editorial approval gate.
