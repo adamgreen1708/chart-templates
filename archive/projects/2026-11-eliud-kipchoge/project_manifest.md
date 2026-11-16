@@ -25,7 +25,7 @@ Date: 2026-11-16. Category intended for site publication: Sport.
 
 ## Editorial sequence
 1. **Eleven wins. Next best: five.** — scale of dominance.
-2. **Two world records. Four years apart.** — winning times fluctuate; two Berlin performances stand out.
+2. **Four years. Two world records.** — winning times fluctuate; two Berlin performances stand out.
 3. **The 78-second leap still leads.** — record improvement remains largest since 2002.
 
 ## Workflow / QA
@@ -40,3 +40,5 @@ The first successful GitHub render revealed clipped and unsafe left-side labels 
 
 ## Editorial QA adjustment
 Chart 2 title revised to avoid falsely implying monotonically improving times. Across wins, times fluctuate because courses and conditions differ; 2018 and 2022 are the two verified world records.
+
+The longer second-chart headline wrapped into the subtitle on the actual rendered PNG, so it was shortened rather than shrinking production typography. Final output must be reinspected at full resolution and 320px.
