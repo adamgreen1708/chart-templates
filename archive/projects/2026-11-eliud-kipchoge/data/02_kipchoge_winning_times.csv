@@ -1,12 +1,12 @@
-Year,Race_Year,Race,Time,Seconds_Over_2h
-2014,Chicago (2014),Chicago,2:04:11,251
-2015,Berlin (2015),Berlin,2:04:00,240
-2015,London (2015),London,2:04:42,282
-2016,London (2016),London,2:03:05,185
-2017,Berlin (2017),Berlin,2:03:32,212
-2018,Berlin (2018),Berlin,2:01:39,99
-2018,London (2018),London,2:04:17,257
-2019,London (2019),London,2:02:37,157
-2022,Berlin (2022),Berlin,2:01:09,69
-2022,Tokyo (2021),Tokyo,2:02:40,160
-2023,Berlin (2023),Berlin,2:02:42,162
+Year,Race_Date,Race_Year,Race,City_Code,Age,City_Age_Label,Time,Seconds_Over_2h
+2014,2014-10-12,Chicago (2014),Chicago,CHI,29,CHI · 29,2:04:11,251
+2015,2015-09-27,Berlin (2015),Berlin,BER,30,BER · 30,2:04:00,240
+2015,2015-04-26,London (2015),London,LON,30,LON · 30,2:04:42,282
+2016,2016-04-24,London (2016),London,LON,31,LON · 31,2:03:05,185
+2017,2017-09-24,Berlin (2017),Berlin,BER,32,BER · 32,2:03:32,212
+2018,2018-09-16,Berlin (2018),Berlin,BER,33,BER · 33,2:01:39,99
+2018,2018-04-22,London (2018),London,LON,33,LON · 33,2:04:17,257
+2019,2019-04-28,London (2019),London,LON,34,LON · 34,2:02:37,157
+2022,2022-09-25,Berlin (2022),Berlin,BER,37,BER · 37,2:01:09,69
+2022,2022-03-06,Tokyo (2021),Tokyo,TOK,37,TOK · 37,2:02:40,160
+2023,2023-09-24,Berlin (2023),Berlin,BER,38,BER · 38,2:02:42,162

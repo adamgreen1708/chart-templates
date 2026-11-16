@@ -1,8 +1,8 @@
-Runner,Winner,Wins
-Eliud Kipchoge,Eliud Kipchoge,11
-Martin Lel,Martin Lel,5
-R. K. Cheruiyot,Robert Kipkoech Cheruiyot,5
-Wilson Kipsang,Wilson Kipsang,5
-Benson Kipruto,Benson Kipruto,4
-Geoffrey Mutai,Geoffrey Mutai,4
-H. Gebrselassie,Haile Gebrselassie,4
+Runner,Winner,Country,ISO3,Wins
+Eliud Kipchoge · KEN,Eliud Kipchoge,Kenya,KEN,11
+Martin Lel · KEN,Martin Lel,Kenya,KEN,5
+R. K. Cheruiyot · KEN,Robert Kipkoech Cheruiyot,Kenya,KEN,5
+Wilson Kipsang · KEN,Wilson Kipsang,Kenya,KEN,5
+Benson Kipruto · KEN,Benson Kipruto,Kenya,KEN,4
+Geoffrey Mutai · KEN,Geoffrey Mutai,Kenya,KEN,4
+H. Gebrselassie · ETH,Haile Gebrselassie,Ethiopia,ETH,4
