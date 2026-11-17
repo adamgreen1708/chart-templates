@@ -1,56 +1,49 @@
 {
-  "report_date": "2026-11-15",
-  "visits": 12,
-  "prior_7d_avg": "9.29",
-  "pct_vs_prior_7d": "29.2",
-  "top_page_path": "/stories/can-you-find-the-four-outsiders",
-  "top_page_title": "Can you find the four outsiders? \u00b7 coffeetableviz",
-  "top_page_visits": 6,
+  "report_date": "2026-11-16",
+  "visits": 10,
+  "prior_7d_avg": "9.43",
+  "pct_vs_prior_7d": "6.1",
+  "top_page_path": "/",
+  "top_page_title": "coffeetableviz",
+  "top_page_visits": 4,
   "top_referrer": "Direct / unknown",
   "top_referrer_visits": 4,
-  "observation": "Can you find the four outsiders? led the day, reaching 6 of 12 recorded visitors.",
-  "generated_at_utc": "2026-11-16T18:30:55+00:00",
+  "observation": "Traffic stayed fairly close to its recent rhythm.",
+  "generated_at_utc": "2026-11-17T01:51:26+00:00",
   "top_pages": [
-    {
-      "path_id": 122050668,
-      "path": "/stories/can-you-find-the-four-outsiders",
-      "title": "Can you find the four outsiders? \u00b7 coffeetableviz",
-      "display": "Can you find the four outsiders?",
-      "count": 6
-    },
     {
       "path_id": 109451764,
       "path": "/",
       "title": "coffeetableviz",
       "display": "Home",
-      "count": 2
+      "count": 4
     },
     {
-      "path_id": 117603735,
-      "path": "/resources/bauhaus-art-studio",
-      "title": "Bauhaus Art Studio \u00b7 coffeetableviz",
-      "display": "Bauhaus Art Studio",
+      "path_id": 122050668,
+      "path": "/stories/can-you-find-the-four-outsiders",
+      "title": "Can you find the four outsiders? \u00b7 coffeetableviz",
+      "display": "Can you find the four outsiders?",
+      "count": 3
+    },
+    {
+      "path_id": 122984048,
+      "path": "/stories/eliud-kipchoge-the-record-fell-the-legacy-didnt",
+      "title": "The record fell. The legacy didn't. \u00b7 coffeetableviz",
+      "display": "The record fell. The legacy didn't.",
       "count": 1
     },
     {
-      "path_id": 111967004,
-      "path": "/icons-of-data/john-snow-cholera-map",
-      "title": "The map that put a pump on trial \u00b7 coffeetableviz",
-      "display": "The map that put a pump on trial",
+      "path_id": 111960714,
+      "path": "/stories/max-verstappen-grid-comebacks",
+      "title": "The grid is a guide, not a verdict \u00b7 coffeetableviz",
+      "display": "The grid is a guide, not a verdict",
       "count": 1
     },
     {
-      "path_id": 110989424,
-      "path": "/icons-of-data/nightingale-mortality",
-      "title": "The chart that made disease impossible to ignore \u00b7 coffeetableviz",
-      "display": "The chart that made disease impossible to ignore",
-      "count": 1
-    },
-    {
-      "path_id": 110546630,
-      "path": "/icons-of-data/minard",
-      "title": "A line that disappears \u00b7 coffeetableviz",
-      "display": "A line that disappears",
+      "path_id": 109446434,
+      "path": "/about",
+      "title": "About \u00b7 coffeetableviz",
+      "display": "About",
       "count": 1
     }
   ],
@@ -64,7 +57,7 @@
     {
       "id": "www.linkedin.com",
       "name": "www.linkedin.com",
-      "count": 4,
+      "count": 3,
       "ref_scheme": "h"
     },
     {
@@ -72,6 +65,12 @@
       "name": "com.linkedin.android",
       "count": 1,
       "ref_scheme": "o"
+    },
+    {
+      "id": "chatgpt.com",
+      "name": "chatgpt.com",
+      "count": 1,
+      "ref_scheme": "c"
     }
   ]
 }
