@@ -1,0 +1,47 @@
+name: Pattinson IMDb research (review only)
+
+on:
+  pull_request:
+    paths:
+      - "archive/projects/2026-11-robert-pattinson-bond/**"
+      - ".github/workflows/pattinson-imdb-research.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pattinson-imdb-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  collect-and-validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - name: Checkout research branch
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install collector dependency
+        run: python -m pip install requests
+      - name: Stream and join official IMDb datasets
+        run: |
+          python archive/projects/2026-11-robert-pattinson-bond/collect_imdb_pattinson.py \
+            --out archive/projects/2026-11-robert-pattinson-bond/generated \
+            --as-of 2026-11-18
+      - name: Validate and create chart-ready research extracts
+        run: |
+          python archive/projects/2026-11-robert-pattinson-bond/qa_imdb.py \
+            --data archive/projects/2026-11-robert-pattinson-bond/generated
+      - name: Upload review-only research extracts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pattinson-imdb-research-${{ github.run_id }}
+          path: |
+            archive/projects/2026-11-robert-pattinson-bond/generated/
+          if-no-files-found: warn
+          retention-days: 14
