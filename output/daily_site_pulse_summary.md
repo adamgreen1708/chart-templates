@@ -1,9 +1,9 @@
-# Coffeetableviz Daily Pulse — 16 November 2026
+# Coffeetableviz Daily Pulse — 17 November 2026
 
-- **Visits:** 10
-- **7-day context:** 6% above prior 7-day daily average (9.4)
-- **Top pages:** Home (4), Can you find the four outsiders? (3), The record fell. The legacy didn't. (1)
-- **Top referrer:** Direct / unknown — 4 visits
-- **Observation:** Traffic stayed fairly close to its recent rhythm.
+- **Visits:** 18
+- **7-day context:** 85% above prior 7-day daily average (9.7)
+- **Top pages:** The record fell. The legacy didn't. (5), The map that put a pump on trial (2), 100% can tell you less than 95%. (1)
+- **Top referrer:** Direct / unknown — 3 visits
+- **Observation:** A noticeably busier day than the seven-day baseline.
 
 Latest image: `output/daily_site_pulse.png`
