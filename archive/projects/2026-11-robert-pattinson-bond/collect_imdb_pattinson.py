@@ -125,16 +125,49 @@ def main():
     retries = Retry(total=3, backoff_factor=2, status_forcelist=[429, 500, 502, 503, 504])
     session.mount("https://", HTTPAdapter(max_retries=retries))
 
-    # Pass 1: Pattinson's acting credits and principal actors in all 27 Bond features.
+    # One streaming pass over the largest IMDb file. Its rows are grouped by
+    # tconst; keep only a single title's principal actors in memory at a time.
+    # This avoids downloading/parsing the enormous title.principals archive twice.
     pattinson_credits = {}
     bond_cast = defaultdict(list)
-    with imdb_rows(session, "title.principals") as source:
-        for row in source:
-            tid, nid = row["tconst"], row["nconst"]
-            if tid in BOND_FILMS and row["category"] in ("actor", "actress"):
+    all_pattinson_cast_edges = []
+
+    def flush_principal_title(tid, acting_people):
+        if tid is None:
+            return
+        if tid in BOND_FILMS:
+            for nid, _character in acting_people:
                 bond_cast[nid].append(tid)
-            if nid == ACTOR_NCONST and row["category"] in ("actor", "actress"):
-                pattinson_credits[tid] = clean(row.get("characters"))
+        pattinson_rows = [character for nid, character in acting_people
+                          if nid == ACTOR_NCONST]
+        if pattinson_rows:
+            pattinson_credits[tid] = pattinson_rows[0]
+            for nid, character in acting_people:
+                if nid != ACTOR_NCONST:
+                    all_pattinson_cast_edges.append({
+                        "tconst": tid, "person_nconst": nid,
+                        "character": character
+                    })
+
+    with imdb_rows(session, "title.principals") as source:
+        current_tid = None
+        acting_people = []
+        for row in source:
+            tid = row["tconst"]
+            if tid != current_tid:
+                if current_tid is not None and tid < current_tid:
+                    raise RuntimeError(
+                        "IMDb title.principals no longer sorted by tconst: "
+                        "cannot safely group principal casts in one pass"
+                    )
+                flush_principal_title(current_tid, acting_people)
+                current_tid = tid
+                acting_people = []
+            if row["category"] in ("actor", "actress"):
+                acting_people.append(
+                    (row["nconst"], clean(row.get("characters")))
+                )
+        flush_principal_title(current_tid, acting_people)
     if not pattinson_credits:
         raise RuntimeError("No Pattinson principal acting credits; check IMDb nconst and source")
 
@@ -183,19 +216,14 @@ def main():
                 films[row["tconst"]]["rating"] = clean(row["averageRating"])
                 films[row["tconst"]]["num_votes"] = clean(row["numVotes"])
 
-    # Pass 2: selected principal cast for his movies only.
-    raw_edges = []
+    # Keep the acting co-stars only from Pattinson's eligible movie titles.
+    # Other title types are discarded before fetching colleague names.
+    raw_edges = [
+        edge for edge in all_pattinson_cast_edges
+        if edge["tconst"] in films
+    ]
     needed_people = {ACTOR_NCONST} | set(bond_cast)
-    with imdb_rows(session, "title.principals") as source:
-        for row in source:
-            if row["tconst"] in films and row["category"] in ("actor", "actress"):
-                nid = row["nconst"]
-                if nid != ACTOR_NCONST:
-                    raw_edges.append({
-                        "tconst": row["tconst"], "person_nconst": nid,
-                        "character": clean(row.get("characters"))
-                    })
-                    needed_people.add(nid)
+    needed_people.update(edge["person_nconst"] for edge in raw_edges)
 
     raw_directors = []
     with imdb_rows(session, "title.crew") as source:
