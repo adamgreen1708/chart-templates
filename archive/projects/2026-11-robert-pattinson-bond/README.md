@@ -11,13 +11,15 @@ Primary source: https://www.aboutamazon.com/news/entertainment/james-bond-robert
 IMDb's official, daily refreshed **non-commercial** dataset (https://developer.imdb.com/non-commercial-datasets/), using the verified IMDb identity Robert Pattinson `nm1500155`.
 
 The workflow streams, filters and joins:
-- `title.principals.tsv.gz`: his principal acting credits, featured co-stars, and the principal casts of five Daniel Craig Bond movies
+- `title.principals.tsv.gz`: Pattinson's principal acting credits, featured co-stars, and the principal casts of **all 25 official Eon Bond films** plus two separately flagged non-Eon theatrical films
 - `title.basics.tsv.gz`: movie types, titles, release years, genres and runtime
 - `title.ratings.tsv.gz`: IMDb weighted average user rating and count of votes
 - `title.crew.tsv.gz`: directors
 - `name.basics.tsv.gz`: names and verification of Pattinson's IMDb identity
 
-**Collection scope:** movie titles on which Pattinson has a principal acting credit, not every film in which archived footage of Pattinson might appear. IMDb `title.principals` is not the exhaustive full cast. IMDb producer credits are not present in `title.crew`.
+**Bond coverage:** all six official Eon Bond actors (Connery, Lazenby, Moore, Dalton, Brosnan, Craig), from *Dr. No* (1962) to *No Time to Die* (2021). **25 Eon films** are the main comparison, with *Casino Royale* (1967) and *Never Say Never Again* (1983) as **two non-Eon supplemental cinema films**. The 1954 *Casino Royale* television adaptation is explicitly excluded. Reference: [007.com official film catalogue](https://www.007.com/the-films/) and [Rotten Tomatoes' 27-film breakdown](https://editorial.rottentomatoes.com/guide/james-bond-movies-in-order/).
+
+**Collection scope:** movie titles on which Pattinson has a principal acting credit, not every film in which archived footage of Pattinson might appear. IMDb `title.principals` is **not the exhaustive full cast**, so a film with zero matches does **not** prove there were no collaborators. IMDb producer credits are not present in `title.crew`. Every Bond IMDb film ID is checked against its IMDb title/year and the pipeline fails if the catalogue is incomplete.
 
 **Release cutoff:** 18 November 2026. Most entries dated 2026 must be manually audited for release status; the studio statement explicitly documents that *The Odyssey* and *The Drama* have opened already. Upcoming *Dune: Part Three* must not be counted as a released film. The still-unreleased Bond film has no rating in this study.
 
@@ -31,16 +33,17 @@ The GitHub Actions workflow `.github/workflows/pattinson-imdb-research.yml` runs
 Expected files in the Action artifact:
 - `filmography.csv` — Pattinson's principal acting movie rows, release status, directors, rating and votes
 - `cast_edges.csv`, `director_edges.csv`, `collaborators.csv` — named film links
-- `bond_overlap.csv` — person × Pattinson film × Craig Bond film, no inference of causality
+- `bond_films.csv` — complete validated 27-film Bond register with Eon/non-Eon classification and Bond actor
+- `bond_overlap.csv` — person × Pattinson film × Bond film, including Bond actor and Eon/non-Eon series; no inference of causality
 - `metadata.json` and `qa_report.json` — scope, count, exclusions and QA
-- `chart_01_film_rating_timeline.csv`, `chart_02_rating_vs_votes.csv`, `chart_03_craig_bond_connections.csv` — **chart inputs for editorial consideration, not approved publication charts**
+- `chart_01_film_rating_timeline.csv`, `chart_02_rating_vs_votes.csv`, `chart_03_official_bond_connections.csv` and `chart_03_all_bond_connections.csv` — **chart inputs for editorial consideration, not approved publication charts**
 
 ## Three-chart editorial hypothesis (subject to live data)
 **One possible argument:** The road from franchise teenage fame to James Bond wasn't a straight line, and the Bond world had already crossed Pattinson's path.
 
 1. **A career in three acts.** Plot every eligible released principal-acting film, by year and IMDb film rating. Compare genuinely observed periods, not a cherry-picked handful. Inspect missing ratings, votes, film type and exceptional 2026 releases before asserting trends.
 2. **Fame and acclaim don't always agree.** Scatter each film's IMDb rating against vote count, with a log vote scale if justified. A film rating measures a *film*, not his performance; votes are not ticket sales or a statistically representative opinion poll.
-3. **Bond was already in the room.** A compact, *data-derived* map of shared Craig-era Bond actors, plus separately sourced editorial notes about producers/directors. These connections establish shared credits, **not that they caused the casting**.
+3. **Bond was already in the room.** A compact, *data-derived* map of shared actors across **the entire official 25-film Bond history and six lead-actor eras**, not just Daniel Craig. Two independently produced Bond films remain a labelled supplement, not part of the official-era totals. The film register ensures that zero-match eras are considered, not invisibly omitted. Add independently sourced notes for producer/director connections; shared credits **do not establish why Pattinson was cast**.
 
 The strongest discovered pattern may change after the full extraction; do not generate final chart configs or blog claims from the ten-film starter sample.
 
@@ -64,4 +67,10 @@ See `verified_bond_connections.csv` for links and source URLs.
 - Bond announcement: **independently confirmed**.
 - Official full dataset: **not yet successfully extracted**. The local ChatGPT container cannot resolve the IMDb download host; execution is delegated to GitHub Actions once a review PR opens.
 - Ten film ratings from earlier research: **a seed, not full-population evidence**. Recheck against the current official IMDb dataset.
-- Three cast and two crew overlaps: **specific independently documented leads**, to be reconciled with IMDb's principal credits; no casting-influence claim.
+- Three cast and two crew overlaps: **specific independently documented leads**, to be reconciled with IMDb's expanded principal credits across all films; additional connections are **not yet evidenced** and no casting-influence claim may be made.
+
+## Expansion note — all Bond films
+- Scope was expanded from five Craig-era Bond films to all **25 Eon films** plus **two separately identified non-Eon cinema films** on the research branch.
+- IMDb IDs, names and release years are validated against `title.basics`; no partial catalogue may pass QA.
+- Both `bond_films.csv` and the Eon/non-Eon flags must be retained even when only a handful of films produce overlapping selected cast credits.
+- Editorial and quantitative claims will be assessed once the new Actions extraction runs and its output is inspected.
