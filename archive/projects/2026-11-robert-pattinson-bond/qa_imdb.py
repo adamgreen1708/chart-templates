@@ -32,11 +32,27 @@ def main():
     args = parser.parse_args()
     root = args.data
     films = load_csv(root / "filmography.csv")
+    bond_films = load_csv(root / "bond_films.csv")
     overlap = load_csv(root / "bond_overlap.csv")
     cast = load_csv(root / "cast_edges.csv")
     directors = load_csv(root / "director_edges.csv")
     if not films:
         raise ValueError("Empty filmography: no IMDb dataset ready")
+    # The Bond catalogue must be exhaustive even when zero shared credits are found.
+    bond_ids = [r["bond_tconst"] for r in bond_films]
+    if len(bond_ids) != 27 or len(set(bond_ids)) != 27:
+        raise ValueError(f"Expected 27 unique Bond feature IDs, found {len(bond_ids)}")
+    bond_series = Counter(r["bond_series"] for r in bond_films)
+    if bond_series != {"eon": 25, "non_eon": 2}:
+        raise ValueError(f"Bond film type mismatch: {dict(bond_series)}")
+    if {r["bond_actor"] for r in bond_films if r["bond_series"] == "eon"} != {
+        "Sean Connery", "George Lazenby", "Roger Moore",
+        "Timothy Dalton", "Pierce Brosnan", "Daniel Craig"
+    }:
+        raise ValueError("Official Bond era actor coverage incomplete")
+    if any(int(row["principal_cast_count"]) < 1 for row in bond_films):
+        raise ValueError("One or more Bond films lacks any IMDb principal acting credits")
+    bond_by_id = {r["bond_tconst"]: r for r in bond_films}
     if not REQUIRED.issubset(films[0]):
         raise ValueError(f"Missing columns: {sorted(REQUIRED - set(films[0]))}")
 
@@ -79,20 +95,32 @@ def main():
         unknown = sorted({r[key] for r in collection} - allowed_ids)
         if unknown:
             raise ValueError(f"Orphan tconst in {key}: {unknown[:5]}")
+    for row in overlap:
+        bond = bond_by_id.get(row["bond_tconst"])
+        if bond is None:
+            raise ValueError(f"Bond crossover references unregistered film: {row['bond_tconst']}")
+        if row["bond_series"] != bond["bond_series"] or row["bond_actor"] != bond["bond_actor"]:
+            raise ValueError(f"Bond series/lead mismatch in crossover: {row}")
+    if len({(r["person_nconst"], r["pattinson_tconst"], r["bond_tconst"])
+            for r in overlap}) != len(overlap):
+        raise ValueError("Duplicate cast-to-cast film-pair links")
 
-    # The full overlap table includes multiple film-pair links per person; no
-    # false 'number of unique collaborators' from counting those rows.
-    chart_overlap = sorted(overlap, key=lambda r: (r["pattinson_year"], r["person"], r["bond_year"]))
+    # All 27 Bond films are represented in the register, even if a given film has
+    # no intersection with Pattinson's principal-film cast. The connection table
+    # contains edges only; do not infer that an absent edge proves no crossover.
+    # Keep official and supplementary links separate for honest editorial display.
+    chart_overlap = sorted(overlap, key=lambda r: (r["bond_series"] != "eon",
+                        r["bond_year"], r["person"], r["pattinson_year"]))
     fields = ["tconst", "title", "year", "rating", "num_votes", "log10_votes",
               "genres", "directors", "year_cohort", "lower_vote_count", "imdb_url"]
     write_csv(root / "chart_01_film_rating_timeline.csv", chart_rows, fields)
     write_csv(root / "chart_02_rating_vs_votes.csv", chart_rows, fields)
-    if overlap:
-        write_csv(root / "chart_03_craig_bond_connections.csv", chart_overlap, list(overlap[0]))
-    else:
-        (root / "chart_03_craig_bond_connections.csv").write_text(
-            "person_nconst,person,pattinson_tconst,pattinson_title,pattinson_year,bond_tconst,bond_title,bond_year\n",
-            encoding="utf-8")
+    overlap_fields = ["person_nconst", "person", "pattinson_tconst", "pattinson_title",
+                      "pattinson_year", "bond_tconst", "bond_title", "bond_year",
+                      "bond_series", "bond_actor"]
+    write_csv(root / "chart_03_all_bond_connections.csv", chart_overlap, overlap_fields)
+    write_csv(root / "chart_03_official_bond_connections.csv",
+              [r for r in chart_overlap if r["bond_series"] == "eon"], overlap_fields)
 
     cohort = {}
     for name in ("through_2012", "2013_to_2019", "2020_to_2026"):
@@ -106,14 +134,21 @@ def main():
                         "films_at_least_1000_votes": sum(r["num_votes"] >= 1000 for r in rows)}
     report = {
         "title": "Robert Pattinson IMDb research QA",
-        "scope": "Principal acting credits, movie type, confirmed released as at 2026-11-18",
+        "scope": "Pattinson principal acting films and 25 official Eon + 2 supplementary Bond theatrical films, as at 2026-11-18",
         "all_movie_rows": len(films),
         "chart_eligible_released_rated_movies": len(chart_rows),
         "excluded_release_status": dict(excluded_status),
         "released_but_missing_rating_or_votes": missing_rating,
         "films_below_1000_votes": sum(r["lower_vote_count"] for r in chart_rows),
-        "unique_craig_bond_people": len({r["person_nconst"] for r in overlap}),
-        "craig_bond_film_pair_edges": len(overlap),
+        "official_eon_bond_films_checked": bond_series["eon"],
+        "supplementary_non_eon_bond_films_checked": bond_series["non_eon"],
+        "official_bond_actors_checked": sorted({r["bond_actor"] for r in bond_films if r["bond_series"] == "eon"}),
+        "all_bond_unique_connected_people": len({r["person_nconst"] for r in overlap}),
+        "official_bond_unique_connected_people": len({r["person_nconst"] for r in overlap if r["bond_series"] == "eon"}),
+        "all_bond_film_pair_edges": len(overlap),
+        "official_bond_film_pair_edges": sum(r["bond_series"] == "eon" for r in overlap),
+        "non_eon_bond_film_pair_edges": sum(r["bond_series"] == "non_eon" for r in overlap),
+        "bond_films_with_any_overlap": len({r["bond_tconst"] for r in overlap}),
         "cohorts": cohort,
         "warnings": [
             "No claim about actor's acting quality from film-level IMDb ratings",
@@ -122,7 +157,10 @@ def main():
             "Years define editorial cohorts, not genre/production category",
             "No causal claim about Bond casting from collaborator overlaps",
             "All 2026 non-audited titles omitted pending release verification",
-            "Third chart represents Craig-era only, supplemented by editorial producer research",
+            "Bond connections cover all six Eon-era leads and all 25 official films, with two non-Eon films flagged separately",
+            "The 1954 television adaptation of Casino Royale is excluded from theatrical scope",
+            "IMDb principal casts do not cover every supporting, uncredited or background performer",
+            "A Bond film with no selected-principals crossover is not evidence that no real-world link exists",
         ]
     }
     (root / "qa_report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
