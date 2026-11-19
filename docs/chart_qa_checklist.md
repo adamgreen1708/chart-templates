@@ -2,6 +2,22 @@
 
 Use this before saying a chart config or render is ready.
 
+## Hard editorial rejection gate — before any technical QA
+
+- Does this chart reveal a non-obvious fact, contradiction or human connection, or just summarise rows?
+- Did we inspect **competing** source-supported story routes and reject the weak ones? Would this chart still deserve to exist if there were no obligation to supply three?
+- Does its title state a claim the chosen snapshot, grain and method support? Have we independently calculated and checked every displayed number?
+- Are comparable groups calculated with the same statistic? Say **mean** for arithmetic average, not median; state denominator, subset, source dates and exclusions.
+- Can every highlighted label answer **why this one?** Show the consistent quantitative rule (max/min/group leader) or make the case for a clearly marked editorial exception.
+- Is the reader seeing *actual relationships* rather than a count inflated by repeated edges or joins?
+- Would a different chart form make the distinction more obvious? Is Chart 3 a genuine reveal rather than repetition?
+- Does every colour mean one thing, and does neutral metadata avoid borrowing another category's semantic colour? Are size, axes, tick scale and any truncation explained in plain English?
+- Would we still find this interesting and defensible if a sceptical reader asked for the actual source rows? If not, **do not render**; return to discovery.
+- **GitHub-only image source:** even exploratory charts are repo-rendered from documented real data; never generate statistical diagrams in ChatGPT or adjust chart pixels for a PDF.
+- A green CI check does not equal a good story. Visually inspect source, full-size, 390px and 320px pixels; verify internal explanatory captions and footer spacing, not just outer margins.
+
+See `docs/editorial_judgement_standard.md` and `docs/lessons/2026-11-19-pattinson-editorial-retrospective.md`.
+
 ## Data checks
 
 - Dataset path exists.
