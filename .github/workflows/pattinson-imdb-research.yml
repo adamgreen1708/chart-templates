@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 concurrency:
   group: pattinson-imdb-${{ github.ref }}
@@ -27,7 +28,27 @@ jobs:
           python-version: "3.12"
       - name: Install collector dependency
         run: python -m pip install requests
+      - name: Reuse recently completed IMDb extraction without downloading global data again
+        id: reuse
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          target=archive/projects/2026-11-robert-pattinson-bond/generated
+          mkdir -p "$target"
+          if gh run download 44476521201 --name pattinson-imdb-research-44476521201 --dir "$target" &&
+             test -s "$target/filmography.csv" &&
+             test -s "$target/bond_films.csv" &&
+             test -s "$target/bond_overlap.csv" &&
+             test -s "$target/metadata.json"; then
+             echo "ready=yes" >> "$GITHUB_OUTPUT"
+             echo "Reusing frozen official IMDb extraction from run 44476521201"
+          else
+             echo "ready=no" >> "$GITHUB_OUTPUT"
+             echo "Previous artifact missing: full streaming collection required"
+          fi
       - name: Stream and join official IMDb datasets
+        if: steps.reuse.outputs.ready != 'yes'
         run: |
           python archive/projects/2026-11-robert-pattinson-bond/collect_imdb_pattinson.py \
             --out archive/projects/2026-11-robert-pattinson-bond/generated \
