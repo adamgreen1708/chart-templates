@@ -1,105 +1,21 @@
 {
-  "report_date": "2026-11-17",
-  "visits": 18,
-  "prior_7d_avg": "9.71",
-  "pct_vs_prior_7d": "85.3",
-  "top_page_path": "/stories/eliud-kipchoge-the-record-fell-the-legacy-didnt",
-  "top_page_title": "The record fell. The legacy didn't. \u00b7 coffeetableviz",
-  "top_page_visits": 5,
+  "report_date": "2026-11-18",
+  "visits": 1,
+  "prior_7d_avg": "11.29",
+  "pct_vs_prior_7d": "-91.1",
+  "top_page_path": "/icons-of-data/braille",
+  "top_page_title": "Six dots. Rather a lot to say. \u00b7 coffeetableviz",
+  "top_page_visits": 1,
   "top_referrer": "Direct / unknown",
-  "top_referrer_visits": 3,
-  "observation": "A noticeably busier day than the seven-day baseline.",
-  "generated_at_utc": "2026-11-18T17:14:22+00:00",
+  "top_referrer_visits": 1,
+  "observation": "Six dots. Rather a lot to say. reached every recorded visitor.",
+  "generated_at_utc": "2026-11-19T00:18:44+00:00",
   "top_pages": [
     {
-      "path_id": 122984048,
-      "path": "/stories/eliud-kipchoge-the-record-fell-the-legacy-didnt",
-      "title": "The record fell. The legacy didn't. \u00b7 coffeetableviz",
-      "display": "The record fell. The legacy didn't.",
-      "count": 5
-    },
-    {
-      "path_id": 111967004,
-      "path": "/icons-of-data/john-snow-cholera-map",
-      "title": "The map that put a pump on trial \u00b7 coffeetableviz",
-      "display": "The map that put a pump on trial",
-      "count": 2
-    },
-    {
-      "path_id": 123040013,
-      "path": "/data-lens/daily/2026-10-29-100-can-tell-you-less-than-95",
-      "title": "100% can tell you less than 95%. \u00b7 coffeetableviz",
-      "display": "100% can tell you less than 95%.",
-      "count": 1
-    },
-    {
-      "path_id": 123036071,
-      "path": "/2024/11/13/creating-for-fun",
-      "title": "Creating for fun \u00b7 coffeetableviz",
-      "display": "Creating for fun",
-      "count": 1
-    },
-    {
-      "path_id": 120306115,
-      "path": "/stories/pixel-universe-256-squares",
-      "title": "Pixel Universe: can you recognise a superhero in 256 squares? \u00b7 coffeetableviz",
-      "display": "Pixel Universe: can you recognise a superhero in 256 squares?",
-      "count": 1
-    },
-    {
-      "path_id": 120214778,
-      "path": "/stories/who-wears-the-hero-colours",
-      "title": "Who wears the hero colours? \u00b7 coffeetableviz",
-      "display": "Who wears the hero colours?",
-      "count": 1
-    },
-    {
-      "path_id": 114436775,
-      "path": "/stories/i-spent-hours-on-64-squares-ai-rebuilt-them-in-minutes",
-      "title": "I spent hours building 64 squares. AI rebuilt them in minutes. \u00b7 coffeetableviz",
-      "display": "I spent hours building 64 squares. AI rebuilt them in minutes.",
-      "count": 1
-    },
-    {
-      "path_id": 114429315,
-      "path": "/resources/8x8-pixel-art-builder",
-      "title": "8\u00d78 Pixel Art Builder \u00b7 coffeetableviz",
-      "display": "8\u00d78 Pixel Art Builder",
-      "count": 1
-    },
-    {
-      "path_id": 109453481,
-      "path": "/resources",
-      "title": "Resources \u00b7 coffeetableviz",
-      "display": "Resources",
-      "count": 1
-    },
-    {
-      "path_id": 109451764,
-      "path": "/",
-      "title": "coffeetableviz",
-      "display": "Home",
-      "count": 1
-    },
-    {
-      "path_id": 109446444,
-      "path": "/data-lens",
-      "title": "Data Lens \u00b7 coffeetableviz",
-      "display": "Data Lens",
-      "count": 1
-    },
-    {
-      "path_id": 109446434,
-      "path": "/about",
-      "title": "About \u00b7 coffeetableviz",
-      "display": "About",
-      "count": 1
-    },
-    {
-      "path_id": 109446267,
-      "path": "/archive",
-      "title": "Archive \u00b7 coffeetableviz",
-      "display": "Archive",
+      "path_id": 111967189,
+      "path": "/icons-of-data/braille",
+      "title": "Six dots. Rather a lot to say. \u00b7 coffeetableviz",
+      "display": "Six dots. Rather a lot to say.",
       "count": 1
     }
   ],
@@ -107,14 +23,8 @@
     {
       "id": null,
       "name": "Direct / unknown",
-      "count": 3,
+      "count": 1,
       "ref_scheme": "o"
-    },
-    {
-      "id": "www.linkedin.com",
-      "name": "www.linkedin.com",
-      "count": 2,
-      "ref_scheme": "h"
     }
   ]
 }
