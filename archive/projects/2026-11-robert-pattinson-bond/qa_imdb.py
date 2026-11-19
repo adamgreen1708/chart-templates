@@ -154,6 +154,19 @@ def main():
         )
         cohort[name] = {"film_count": n, "median_movie_imdb_rating": median,
                         "films_at_least_1000_votes": sum(r["num_votes"] >= 1000 for r in rows)}
+    cohort_rows = [
+        {"period": "2005–12", "median_rating": cohort["through_2012"]["median_movie_imdb_rating"],
+         "film_count": cohort["through_2012"]["film_count"]},
+        {"period": "2013–19", "median_rating": cohort["2013_to_2019"]["median_movie_imdb_rating"],
+         "film_count": cohort["2013_to_2019"]["film_count"]},
+        {"period": "2020–26", "median_rating": cohort["2020_to_2026"]["median_movie_imdb_rating"],
+         "film_count": cohort["2020_to_2026"]["film_count"]},
+    ]
+    if not all(row["median_rating"] is not None and row["film_count"] >= 5
+               for row in cohort_rows):
+        raise ValueError("Not enough eligible films to compute three comparative medians")
+    write_csv(root / "chart_01_cohort_medians.csv", cohort_rows,
+              ["period", "median_rating", "film_count"])
     report = {
         "title": "Robert Pattinson IMDb research QA",
         "scope": "Pattinson principal acting films and 25 official Eon + 2 supplementary Bond theatrical films, as at 2026-11-18",
