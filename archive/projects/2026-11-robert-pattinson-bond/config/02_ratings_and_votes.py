@@ -8,7 +8,7 @@ CHART_CONFIG = {
     "value_col": None,
     "filters": [],
     "title": "Many votes, mixed ratings",
-    "subtitle": "Each dot is a film. Even heavily rated titles can divide audiences.",
+    "subtitle": "Each dot is a film. A large vote count does not guarantee a higher average rating.",
     "source_text": "IMDb title.ratings | 18 Nov 2026",
     "footer_left": "Adam Green | coffeetableviz",
     "render_profile": "social_square",
