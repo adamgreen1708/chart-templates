@@ -1,0 +1,80 @@
+name: Pattinson LinkedIn carousel (review only)
+
+on:
+  push:
+    branches:
+      - social/2026-11-pattinson-linkedin-carousel
+    paths:
+      - .github/workflows/pattinson-linkedin-review.yml
+
+permissions:
+  contents: write
+
+jobs:
+  render-carousel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: social/2026-11-pattinson-linkedin-carousel
+          persist-credentials: true
+      - name: Install layout and PDF verification dependencies
+        run: |
+          python -m pip install --quiet reportlab pymupdf pillow
+      - name: Assemble from four previously approved GitHub image assets
+        run: |
+          python archive/projects/2026-11-robert-pattinson-bond/social/build_linkedin_carousel.py \
+            --repo-root . \
+            --output archive/projects/2026-11-robert-pattinson-bond/social/Robert_Pattinson_LinkedIn_Carousel.pdf
+      - name: Verify five square PDF pages and generate mobile QA contact sheet
+        run: |
+          python - <<'PY'
+          import fitz
+          from pathlib import Path
+          from PIL import Image, ImageDraw
+          base = Path('archive/projects/2026-11-robert-pattinson-bond/social')
+          path = base / 'Robert_Pattinson_LinkedIn_Carousel.pdf'
+          doc = fitz.open(path)
+          assert len(doc)==5, f'Wrong page count: {len(doc)}'
+          for n,page in enumerate(doc,1):
+              assert abs(page.rect.width-1080)<0.01 and abs(page.rect.height-1080)<0.01, (n,page.rect)
+              for block in page.get_text('blocks'):
+                  x0,y0,x1,y1,*_ = block
+                  assert x0>=-1 and y0>=-1 and x1<=1081 and y1<=1081, (n,block)
+          cover=doc[0].get_text()
+          assert "THE NAME'S PATTINSON." in cover and 'ROBERT PATTINSON.' in cover
+          last=doc[-1].get_text()
+          assert 'PIERCE BROSNAN' in last and 'coffeetableviz.com' in last
+          links=doc[-1].get_links()
+          assert any('coffeetableviz.com/stories/robert-pattinson-was-already-in-bonds-orbit/' in x.get('uri','') for x in links)
+          thumbs=[]
+          for n,page in enumerate(doc,1):
+              pix=page.get_pixmap(matrix=fitz.Matrix(390/1080,390/1080),alpha=False)
+              im=Image.frombytes('RGB',[pix.width,pix.height],pix.samples)
+              im.save(base/f'carousel_page_{n}_390.png')
+              thumbs.append(im)
+          sheet=Image.new('RGB',(390*3,420*2),'#F3F4F6')
+          for i,im in enumerate(thumbs):
+              x=i%3*390;y=i//3*420
+              sheet.paste(im,(x,y))
+              ImageDraw.Draw(sheet).text((x+10,y+395),f'PAGE {i+1}',fill='#16191C')
+          sheet.save(base/'carousel_review_contact_sheet.png')
+          print('QA OK: five square pages, anchored text, clickable article URL, 390px review previews')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: robert-pattinson-linkedin-carousel-review
+          path: |
+            archive/projects/2026-11-robert-pattinson-bond/social/Robert_Pattinson_LinkedIn_Carousel.pdf
+            archive/projects/2026-11-robert-pattinson-bond/social/carousel_review_contact_sheet.png
+            archive/projects/2026-11-robert-pattinson-bond/social/carousel_page_*_390.png
+      - name: Keep the reproducible PDF and script in the review PR; remove temporary workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add archive/projects/2026-11-robert-pattinson-bond/social/*.pdf
+          git add archive/projects/2026-11-robert-pattinson-bond/social/carousel_review_contact_sheet.png
+          git rm .github/workflows/pattinson-linkedin-review.yml
+          git commit -m 'Stage approved-asset LinkedIn carousel PDF and mobile QA review image'
+          git push origin HEAD:social/2026-11-pattinson-linkedin-carousel
