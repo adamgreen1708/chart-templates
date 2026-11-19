@@ -1,0 +1,65 @@
+name: One-off Pattinson approved PNG staging (self-removing)
+
+on:
+  push:
+    branches:
+      - publish/2026-11-robert-pattinson-bond-review
+    paths:
+      - ".github/workflows/pattinson-chart-assets-stage.yml"
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  stage-exact-pngs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: publish/2026-11-robert-pattinson-bond-review
+          persist-credentials: true
+      - name: Download the three original approved rendering artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/approved-one /tmp/approved-two /tmp/approved-three
+          gh run download 44612842796 -n pattinson-imdb-research-44612842796 -D /tmp/approved-one
+          gh run download 44615518367 -n pattinson-imdb-research-44615518367 -D /tmp/approved-two
+          gh run download 44601181690 -n pattinson-imdb-research-44601181690 -D /tmp/approved-three
+      - name: Verify immutable approved PNG bytes and stage exact copies
+        run: |
+          set -euo pipefail
+          mkdir -p site/assets/charts/robert-pattinson-bond
+          chart1=/tmp/approved-one/v2_01_twilight_paradox.png
+          chart2=/tmp/approved-two/v2_02_reinvention.png
+          chart3=/tmp/approved-three/v2_03_bond_connections.png
+          test -s "$chart1" && test -s "$chart2" && test -s "$chart3"
+          printf '5a08a62773ba68b45120bfd1d6cc895e00bd295087a09896ccf35375eb677ed5  %s\n' "$chart1" | sha256sum -c -
+          printf 'afcaaec8e57a06ca28873a08f7d12625e671139f6e14b6cdf20bc79641cd1c19  %s\n' "$chart2" | sha256sum -c -
+          printf '722b42c58661b6aa3fbb7c95b9ee2874bcfab949fded2aae451e84029e65d9cd  %s\n' "$chart3" | sha256sum -c -
+          cp "$chart1" site/assets/charts/robert-pattinson-bond/01_twilight_average.png
+          cp "$chart2" site/assets/charts/robert-pattinson-bond/02_reinvention.png
+          cp "$chart3" site/assets/charts/robert-pattinson-bond/03_bond_connections.png
+          python - <<'PY'
+          from pathlib import Path
+          post=Path('site/_posts/2026-11-19-robert-pattinson-was-already-in-bonds-orbit.md').read_text()
+          assert 'published: false' in post
+          for file in ['01_twilight_average.png','02_reinvention.png','03_bond_connections.png']:
+              p=Path('site/assets/charts/robert-pattinson-bond')/file
+              assert p.exists() and p.stat().st_size>100_000, p
+              assert f'/assets/charts/robert-pattinson-bond/{file}' in post
+          assert Path('site/assets/features/robert-pattinson-bond.svg').exists()
+          print('All three approved exact PNGs and four post assets verified')
+          PY
+      - name: Commit approved PNGs and remove this temporary staging workflow
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/assets/charts/robert-pattinson-bond/*.png
+          git rm .github/workflows/pattinson-chart-assets-stage.yml
+          git commit -m "Stage exact user-approved Pattinson chart PNGs for site PR"
+          git push origin HEAD:publish/2026-11-robert-pattinson-bond-review
