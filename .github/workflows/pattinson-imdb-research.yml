@@ -36,6 +36,38 @@ jobs:
         run: |
           python archive/projects/2026-11-robert-pattinson-bond/qa_imdb.py \
             --data archive/projects/2026-11-robert-pattinson-bond/generated
+      - name: Install Coffeetableviz renderer dependencies
+        run: python -m pip install -r requirements-render.txt
+      - name: Render the three square draft charts using repo renderer
+        run: |
+          set -euo pipefail
+          for cfg in archive/projects/2026-11-robert-pattinson-bond/config/*.py; do
+            cp "$cfg" src/chart_config.py
+            python src/render_538.py
+          done
+      - name: Export mobile previews and verify image dimensions
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          base = Path("archive/projects/2026-11-robert-pattinson-bond/generated")
+          expected = [
+              "01_pattinson_career_rating_acts.png",
+              "02_pattinson_film_ratings_vs_votes.png",
+              "03_pattinson_bond_cast_eras.png",
+          ]
+          for name in expected:
+              path = base / name
+              if not path.is_file():
+                  raise SystemExit(f"Missing chart: {path}")
+              with Image.open(path) as im:
+                  if im.size != (1600, 1600):
+                      raise SystemExit(f"Not 1600-square: {path}: {im.size}")
+                  for width in (390, 320):
+                      resized = im.resize((width, width), Image.Resampling.LANCZOS)
+                      resized.save(base / f"{path.stem}_mobile_{width}.png")
+          print("All three square PNG exports and six mobile previews created")
+          PY
       - name: Upload review-only research extracts
         if: always()
         uses: actions/upload-artifact@v4
