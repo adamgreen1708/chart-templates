@@ -117,57 +117,90 @@ def _franchise(fig,top,rows,config):
 
 def _career(fig,top,rows,config):
     _required(rows,["tconst","title","year","plot_year","rating",
-                    "num_votes","bubble_area","group","pareto_frontier"])
+                    "num_votes","bubble_area","group","pareto_frontier",
+                    "annotation_role"])
     if len(rows)!=33:
         raise ValueError("career_bubbles expects 33 real film titles")
     actual_frontier={r["title"] for r in rows if int(r["pareto_frontier"])}
     if actual_frontier!={"The Batman","The Odyssey"}:
-        raise ValueError(f"Unexpected frontier: {actual_frontier}")
+        raise ValueError(f"Unexpected IMDb rating/vote snapshot: {actual_frontier}")
+    # All display annotations are determined in build_story_v2.py by three
+    # transparent, untied source-data rankings rather than editorial taste.
+    marked={r["annotation_role"]:r for r in rows if r["annotation_role"]}
+    if len(marked)!=3 or set(marked)!={"most_votes","highest_rating","most_twilight_votes"}:
+        raise ValueError(f"Expected exactly three distinct chart labels: {set(marked)}")
+    if (int(marked["most_votes"]["num_votes"])!=max(int(r["num_votes"]) for r in rows)
+        or float(marked["highest_rating"]["rating"])!=max(float(r["rating"]) for r in rows)
+        or marked["most_twilight_votes"]["group"]!="twilight"
+        or int(marked["most_twilight_votes"]["num_votes"])!=max(
+            int(r["num_votes"]) for r in rows if r["group"]=="twilight")):
+        raise ValueError("Chart 2 labelled films do not match their printed claims")
     ax=fig.add_axes([.17,.255,.715,max(.29,top-.28)],facecolor=BG)
     ax.set_xlim(2004.4,2027.4)
     ax.set_ylim(4.2,9.0)
-    ax.spines[:].set_visible(False)
+    for spine in ax.spines.values():
+        spine.set_visible(False)
     ax.set_axisbelow(True)
     ax.set_xticks([2005,2010,2015,2020,2026])
     ax.set_yticks([5,6,7,8])
     ax.tick_params(axis="both",length=0,labelsize=12,pad=8,colors=SUBTEXT)
     ax.grid(axis="y",color="#D8DBDE",linewidth=.9,zorder=0)
     ax.set_ylabel("IMDb film rating / 10",fontsize=12,color=SUBTEXT,labelpad=10)
-    # Bubble areas are sized from *title-vote* counts, not unique viewers.
-    sorted_rows=sorted(rows,key=lambda r:(r["group"]!="other",float(r["rating"])))
-    for r in sorted_rows:
-        is_twi=r["group"]=="twilight"
-        is_frontier=int(r["pareto_frontier"])==1
-        col=ACCENT if is_twi else PRIMARY if is_frontier else "#8998A2"
+    # Circle area scales with title-votes, so area (not radius) maps votes.
+    # Only highlighted extrema are blue; all Twilight films remain red.
+    for r in sorted(rows,key=lambda r:(r["group"]=="twilight",bool(r["annotation_role"]))):
+        is_twilight=r["group"]=="twilight"
+        is_leader=r["annotation_role"] in ("most_votes","highest_rating")
+        col=ACCENT if is_twilight else PRIMARY if is_leader else "#8998A2"
         ax.scatter([float(r["plot_year"])],[float(r["rating"])],
                    s=float(r["bubble_area"]),color=col,
-                   alpha=.88 if is_twi or is_frontier else .54,
-                   edgecolor=BG,linewidth=1.1,zorder=7 if is_frontier else 3)
-        if is_frontier:
-            ax.scatter([float(r["plot_year"])],[float(r["rating"])],
-                       s=float(r["bubble_area"])*1.35,
-                       facecolors="none",edgecolors=PRIMARY,linewidths=1.2,zorder=8)
-    bytitle={r["title"]:r for r in rows}
-    marks={
-        "Good Time":(-8,-25,"right"),
-        "The Lighthouse":(12,-28,"left"),
-        "The Batman":(-10,23,"right"),
-        "The Odyssey":(-9,21,"right"),
+                   alpha=.9 if is_twilight or is_leader else .54,
+                   edgecolor=BG,linewidth=1.1,zorder=6 if r["annotation_role"] else 3)
+    specs={
+        "most_votes": {
+            "headline":"MOST IMDb VOTES",
+            "detail":lambda r:f'{r["title"]} · {int(r["num_votes"]):,}',
+            "offset":(-13,16), "align":"right", "colour":PRIMARY,
+        },
+        "highest_rating": {
+            "headline":"HIGHEST IMDb RATING",
+            "detail":lambda r:f'{r["title"]} · {float(r["rating"]):.1f}/10',
+            "offset":(-8,21), "align":"right", "colour":PRIMARY,
+        },
+        "most_twilight_votes": {
+            "headline":"MOST TWILIGHT VOTES",
+            "detail":lambda r:f'{r["title"]} · {int(r["num_votes"]):,}',
+            "offset":(11,18), "align":"left", "colour":ACCENT,
+        },
     }
-    for name,(dx,dy,align) in marks.items():
-        if name not in bytitle:raise ValueError(f"Missing milestone film: {name}")
-        r=bytitle[name]
-        ax.annotate(f"{name} {float(r['rating']):.1f}",
+    for role in ("most_twilight_votes","most_votes","highest_rating"):
+        r=marked[role]
+        spec=specs[role]
+        ax.annotate(spec["headline"]+"\n"+spec["detail"](r),
                     xy=(float(r["plot_year"]),float(r["rating"])),
-                    xytext=(dx,dy),textcoords="offset points",ha=align,
-                    fontsize=11.8,color=TEXT,fontweight="medium",zorder=10)
-    # One concise data-derived frontier callout, independent of draw order.
-    fig.text(.09,.206,"Only The Batman and The Odyssey sit on the",
-             fontsize=12.3,ha="left",va="top",color=TEXT,fontweight="bold")
-    fig.text(.09,.182,"rating + title-votes frontier in this 33-film snapshot.",
-             fontsize=11.3,ha="left",va="top",color=SUBTEXT)
-    fig.text(.09,.148,"Red: Twilight  ·  Blue ring: frontier  ·  Circle area: IMDb title-votes",
-             fontsize=10.3,ha="left",va="top",color=SUBTEXT)
+                    xytext=spec["offset"],textcoords="offset points",
+                    ha=spec["align"],va="bottom",fontsize=10.8,
+                    linespacing=1.18,color=spec["colour"],
+                    fontweight="medium",
+                    bbox={"boxstyle":"square,pad=0.12","facecolor":BG,
+                          "edgecolor":"none","alpha":.94},
+                    zorder=9,clip_on=False)
+    # The original technical frontier caption was poorly understood.
+    # This concise plain-language takeaway fits both phone export sizes.
+    fig.text(.09,.208,"There's no single 'top' film.",
+             fontsize=12.5,ha="left",va="top",color=TEXT,fontweight="bold")
+    fig.text(.09,.182,"The Batman leads on votes; The Odyssey on score.",
+             fontsize=11.5,ha="left",va="top",color=SUBTEXT)
+    # Legend text is itself colour-matched, not just the graphic markers.
+    fig.text(.09,.148,"Red: Twilight",color=ACCENT,fontsize=10.4,
+             fontweight="bold",ha="left",va="top")
+    fig.text(.337,.148,"Blue: top vote / rating",color=PRIMARY,fontsize=10.4,
+             fontweight="bold",ha="left",va="top")
+    fig.text(.695,.148,"Grey: other films",color="#677079",fontsize=10.4,
+             fontweight="bold",ha="left",va="top")
+    fig.text(.09,.120,"Circle size = number of IMDb votes for each film",
+             color=SUBTEXT,fontsize=10.6,ha="left",va="top")
+
 
 def _paths(fig,top,rows,config):
     _required(rows,["pattinson_short","pattinson_year","person","bond_role",
