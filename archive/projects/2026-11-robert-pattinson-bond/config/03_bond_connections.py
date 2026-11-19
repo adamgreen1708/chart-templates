@@ -1,0 +1,31 @@
+CHART_CONFIG = {
+    "data_file": "archive/projects/2026-11-robert-pattinson-bond/generated/chart_03_bond_eras.csv",
+    "data_format": "wide",
+    "chart_type": "dot",
+    "x_col": "connected_people",
+    "y_col": "bond_actor",
+    "series_col": None,
+    "value_col": None,
+    "filters": [],
+    "title": "An old Bond played his father",
+    "subtitle": "Distinct co-stars shared with each official Bond era, using IMDb and audited cast credits.",
+    "source_text": "IMDb + verified full casts | 18 Nov 2026",
+    "footer_left": "Adam Green | coffeetableviz",
+    "render_profile": "social_square",
+    "story_angle": "bond_connections_eras",
+    "sort": {"by": "connected_people", "ascending": False},
+    "sort_descending": False,
+    "x_label": "Distinct shared cast members",
+    "y_label": "",
+    "x_axis": {"min": 0, "max": 8, "tick_interval": 2},
+    "dot_style": {"color": "#D9D9D9", "size": 92, "alpha": 0.8},
+    "highlight_points": [
+        {"bond_actor": "Pierce Brosnan", "color": "#C44E52", "size": 135},
+        {"bond_actor": "Daniel Craig", "color": "#1F8FA8", "size": 135}
+    ],
+    "vertical_gridlines": False,
+    "fig_width": 8.0,
+    "fig_height": 8.0,
+    "dpi": 200,
+    "output_file": "archive/projects/2026-11-robert-pattinson-bond/generated/03_pattinson_bond_cast_eras.png"
+}
