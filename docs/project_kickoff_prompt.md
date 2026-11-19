@@ -33,6 +33,11 @@ Before doing the work, briefly state the recommended route and any optimisation 
 
 Rules:
 
+- **Act as a senior data-visualisation editor**, not a junior analyst delivering the first three convenient graphics. Follow `docs/editorial_judgement_standard.md`: challenge the data, test at least three distinct story angles, discard weak/obvious charts, seek a surprising but defensible relationship or human hook, and make each chart reveal something different.
+- **Hard rule: factual charts must be rendered only in GitHub from real, traceable data with reproducible calculations and the approved renderer, including all draft/revision images.** Never generate factual data visualisations in ChatGPT, or redraw their data for PDFs/carousels; keep final approved PNG bytes unchanged.
+- Document the analytical grain, denominator, date and metric. Verify mean/median semantics, subgroup comparisons, selected annotations, colour keys and axes; identify limitations before making headline claims.
+- A successful render/CI pass is not editorial sign-off. Inspect actual 1600px/390px/320px pixels, and independently judge whether the chart is interesting enough to earn its place. If not, return to source research, not styling.
+- Use `scripts/qa_story_discovery.py` for auditable evidence/selection preflight where a project manifest exists; passing it does not prove creativity.
 - Use real data only.
 - Do not invent columns, values, filenames, or sources.
 - Prefer direct GitHub branches/PRs when that reduces mobile copy/paste.
