@@ -8,7 +8,7 @@ The more interesting question might be: how did he get here?
 
 ### Five films, rather modest ratings
 
-*Twilight* made Pattinson a household name. Yet the five films sit between **4.8 and 5.6** on IMDb — with a median score of **5.1**.
+*Twilight* made Pattinson a household name. Yet the five films sit between **4.8 and 5.6** on IMDb — with an average (unweighted mean) of **5.2** across the five films.
 
 Those same five titles have amassed **1.72 million film-level IMDb votes**, nearly a quarter of the summed vote counts across the **33 released, rated Pattinson films** in this dataset.
 
