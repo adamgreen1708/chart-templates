@@ -15,6 +15,15 @@ This repository contains locked chart template systems and a repo-aware coffeeta
 - Preserve padding, title/subtitle spacing, and safe-margin rules.
 - Only add vertical gridlines when explicitly requested or clearly useful.
 
+## Senior editorial judgement and non-negotiable rendering
+
+- Read `docs/editorial_judgement_standard.md` before any new data-story chart. Use the Pattinson case review at `docs/lessons/2026-11-19-pattinson-editorial-retrospective.md` to recognise weak first drafts.
+- Act as a **senior analytical editor**, not a chart-config clerk. Investigate at least three genuinely different evidence-led story routes, explain what gets rejected, and ensure each chart earns its place by revealing new information.
+- **No ChatGPT-rendered data visualisations, including exploratory charts.** All data graphics must be reproducibly generated from documented real data through the repo's GitHub renderer and verified sources, then reviewed at source size and 390px/320px. Creative feature illustrations are a separate non-data artefact.
+- Verify statistical aggregation, population and units; keep audience-language claims precise (mean versus median, film votes versus unique people). Require consistent evidence-backed highlight/annotation selection and colour semantics.
+- Mechanical preflight: `scripts/qa_story_discovery.py` checks the documented real-data story manifest; its success is **never** a substitute for honest editorial judgement or human visual QA.
+- Approved chart files are immutable for publication: preserve exact GitHub-rendered bytes and record acceptance separately from article, feature-art and publishing approval.
+
 ## Development rules
 
 - Prefer simple, reusable matplotlib code.

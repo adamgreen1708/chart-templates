@@ -1,0 +1,28 @@
+name: QA senior story discovery preflight
+
+on:
+  pull_request:
+    paths:
+      - "scripts/qa_story_discovery.py"
+      - "tests/test_qa_story_discovery.py"
+      - "docs/editorial_judgement_standard.md"
+      - "docs/story_discovery_and_3_chart_flow.md"
+      - "docs/chart_config_prompt.txt"
+      - ".github/workflows/qa-story-discovery.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  editorial-preflight-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run mechanical editorial gate regression suite
+        run: python -m unittest tests.test_qa_story_discovery -v
+      - name: Confirm script can be invoked for project manifests
+        run: python scripts/qa_story_discovery.py --help

@@ -40,6 +40,22 @@ Only generate `CHART_CONFIG` once the chart being built has a clear editorial ro
 
 ---
 
+## SENIOR ANALYST PRECONDITION — BEFORE CONFIGURATION
+
+Follow `docs/editorial_judgement_standard.md` and the hard-stop gate in `docs/story_discovery_and_3_chart_flow.md` before producing new story charts.
+
+A valid config is not an editorial success. Ask what is **new, surprising, useful and defensible**; challenge generic medians, arbitrary time cohorts, descriptive scatterplots and counts that hide genuine relationships. Explore three competing source-supported story routes; reject superficial ones. Use fewer charts if the data cannot earn three.
+
+For every plotted claim, record the source snapshot, unit of observation, population, denominator and calculation. Compare like with like; prefer a mean only when it is really the arithmetic mean of the declared units. Never confuse film scores with actor scores, title-votes with unique voters, or title-to-title edges with distinct collaborators. Derive values in versioned repo scripts, not as text typed into rendering code.
+
+For every annotation, define a repeatable rank, group, threshold or documented editorial exception with a why-this-label explanation. If two films are highlighted for data rankings and two others merely for fame, do not imply a single quantitative rule. Ensure the same colour means the same thing; neutral headlines and percentages should not borrow a group's colour. Use explicit scale/ticks and plain-language size keys.
+
+Choose form *after* the analytical question: registered deterministic network/relationship layouts may be more truthful than a bland bar chart. For every chosen visual form, name an alternative and explain why it reveals less. Clarity beats visual tricks. No unverified claims or unsupported sources.
+
+**Only GitHub may render factual data visualisations, including exploratory drafts and revisions.** ChatGPT may specify or review charts but not produce their pixels. Standard types use `src/render_538.py` and the house `social_square` profile; specialist variants must be registered, input-driven, deterministic and independently audited. Render full-size and 390px/320px previews, inspect all labels/legends/axes/footers, and retain the exact approved PNG bytes. Never use image generation to fix chart errors or redraw charts for carousels. Image generation is reserved for clearly non-data editorial illustration.
+
+Run the optional but recommended `scripts/qa_story_discovery.py` on a real-data story manifest to catch source calculation, annotation-ranking and meaning inconsistencies **before** configs. Passing that script does not certify a good chart.
+
 ## INPUT
 
 The user will provide or identify:

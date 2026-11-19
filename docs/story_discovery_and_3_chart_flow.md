@@ -14,6 +14,22 @@ A chart can be technically correct but still miss the story.
 
 This step is designed to reduce wasted iteration by making the assistant find the strongest editorial route before creating configs or renderer outputs.
 
+## Mandatory senior-editorial quality gate (learned 19 November 2026)
+
+The existing “find the story” requirement is not enough if its result is three tidy but uninteresting pictures. Before writing any `CHART_CONFIG`, apply `docs/editorial_judgement_standard.md`.
+
+- Research at least **three different interpretations** and retain their evidence, likely visual form, failure risk and reason for selection/rejection. Three variations on a generic ranking do not count as three options.
+- Do not assume that equal-length time bins, period medians, a generic scatter or a category count are an insight. Ask what the reader learns that cannot be seen in one sentence; seek real contradictions, comparisons, trajectories, networks, outliers, relationships and human stakes.
+- For each selected chart record **question → source/grain → claim → meaningful comparator → form → visible encoding → deterministic label rule → caveat → rejected alternative**. If a plan has no surprising payoff, research more or build fewer charts.
+- Annotate examples by **auditable rule** (overall maximum, subgroup leader, threshold, event, documented editorial exception); do not label familiar names just because they fit the prose. Distinguish verified person connections from multiple title-to-title edges.
+- A title must never overstate the measure or source coverage. State “mean” for a mean and “median” for a median; compare groups with the *same* statistic. A large sum of IMDb title-votes does not represent that many unique viewers.
+- Visual encodings must be self-explanatory in plain language: “bigger circle = more votes”; a role-specific blue must not also colour an unrelated percentage. Show numeric axes and disclose truncated scales. Minimise jargon unless worth explaining.
+- The **third chart must reveal**, not restate. Networks with named people/roles are often more revealing than a count of connections.
+- **Absolute contract:** no ChatGPT image/plot tool may render an actual data chart, even a draft. Production and exploratory data charts originate in GitHub from real CSVs via registered renderer types; inspect actual full-size, 390px and 320px outputs.
+- Use `python scripts/qa_story_discovery.py <real-project-story-review.json>` where a project manifest is prepared. Automated checks cannot approve editorial interest or final readability.
+
+**Hard stop:** if you cannot state why all three charts are worth the reader's attention, don't render three.
+
 ## Required sequence
 
 ### 1. Inspect the dataset

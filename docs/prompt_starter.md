@@ -2,6 +2,10 @@
 
 Use this prompt when starting a new data story or repo task.
 
+**Current master charting prompt:** `docs/coffeetableviz_master_prompt.txt`. It supersedes older WordPress/Gutenberg chat prompt copies; publishing now uses Jekyll, reviewed GitHub PRs and Pages. Apply `docs/editorial_judgement_standard.md` before chart configuration.
+
+Use this prompt when starting a new data story or repo task.
+
 ```text
 Use the `adamgreen1708/chart-templates` GitHub repo as the working system.
 
