@@ -8,7 +8,7 @@ CHART_CONFIG = {
     "value_col": None,
     "filters": [],
     "title": "An old Bond played his father",
-    "subtitle": "Distinct co-stars shared with each official Bond era, using IMDb and audited cast credits.",
+    "subtitle": "Verified cast links by official Bond era. Pierce Brosnan played Pattinson\'s father.",
     "source_text": "IMDb + verified full casts | 18 Nov 2026",
     "footer_left": "Adam Green | coffeetableviz",
     "render_profile": "social_square",
@@ -17,11 +17,13 @@ CHART_CONFIG = {
     "sort_descending": False,
     "x_label": "Distinct shared cast members",
     "y_label": "",
-    "x_axis": {"min": 0, "max": 8, "tick_interval": 2},
+    "x_axis": {"min": -0.35, "max": 8, "tick_interval": 2},
     "dot_style": {"color": "#D9D9D9", "size": 92, "alpha": 0.8},
+    "highlight_style": {"color": "#C44E52", "size": 135, "alpha": 1.0},
+    "profile_overrides": {"plot_left": 0.30, "plot_right": 0.88},
     "highlight_points": [
-        {"bond_actor": "Pierce Brosnan", "color": "#C44E52", "size": 135},
-        {"bond_actor": "Daniel Craig", "color": "#1F8FA8", "size": 135}
+        {"bond_actor": "Pierce Brosnan"},
+        {"bond_actor": "Daniel Craig"}
     ],
     "vertical_gridlines": False,
     "fig_width": 8.0,
