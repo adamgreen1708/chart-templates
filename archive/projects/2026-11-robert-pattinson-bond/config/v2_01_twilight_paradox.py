@@ -6,7 +6,7 @@ CHART_CONFIG = {
     "x_col": None,
     "y_col": None,
     "sort": None,
-    "title": "Five Twilight hits. None above 5.6.",
+    "title": "The five Twilight films averaged 5.2 on IMDb",
     "subtitle": "Five films supplied almost a quarter of the title-votes in this 33-film sample.",
     "source_text": "IMDb titles · snapshot 18 Nov 2026",
     "footer_left": "Adam Green | coffeetableviz",
