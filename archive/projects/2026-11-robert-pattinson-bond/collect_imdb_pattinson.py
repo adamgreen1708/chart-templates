@@ -70,16 +70,16 @@ def normalise_title(title):
     return re.sub(r"[^a-z0-9]", "", title.casefold())
 # These two 2026 theatrical releases are independently confirmed by Amazon MGM
 # (16 Nov 2026): https://www.aboutamazon.com/news/entertainment/james-bond-robert-pattinson-cast-amazon-mgm-film
-AUDITED_2026 = {"tt33764258": "The Odyssey", "tt33071426": "The Drama"}
+AUDITED_2026 = {"tt33764258": "The Odyssey", "tt33071426": "The Drama", "tt34206385": "Primetime"}
 COLUMNS = {
     "filmography.csv": ["tconst", "title", "year", "genres", "runtime_minutes",
                         "character", "rating", "num_votes", "release_status",
-                        "directors", "imdb_url"],
-    "cast_edges.csv": ["tconst", "title", "year", "person_nconst", "person", "character"],
+                        "directors", "credit_source", "imdb_url"],
+    "cast_edges.csv": ["tconst", "title", "year", "person_nconst", "person", "character", "cast_source"],
     "director_edges.csv": ["tconst", "title", "year", "person_nconst", "person"],
     "bond_overlap.csv": ["person_nconst", "person", "pattinson_tconst", "pattinson_title",
                          "pattinson_year", "bond_tconst", "bond_title", "bond_year",
-                         "bond_series", "bond_actor"],
+                         "bond_series", "bond_actor", "cast_source"],
     "bond_films.csv": ["bond_tconst", "bond_title", "bond_year", "bond_series",
                        "bond_actor", "principal_cast_count", "imdb_url"],
     "collaborators.csv": ["person_nconst", "person", "shared_movie_count"],
@@ -119,6 +119,16 @@ def main():
     args = parser.parse_args()
     cutoff_year = int(args.as_of[:4])
     args.out.mkdir(parents=True, exist_ok=True)
+    base_dir = Path(__file__).resolve().parent
+    with (base_dir / "audited_additional_credits.csv").open(newline="", encoding="utf-8") as f:
+        audited_rows = list(csv.DictReader(f))
+    if len({r["tconst"] for r in audited_rows}) != len(audited_rows):
+        raise RuntimeError("Duplicate audited supplementary film tconst")
+    audited_credits = {r["tconst"]: r for r in audited_rows}
+    with (base_dir / "audited_bond_cast_links.csv").open(newline="", encoding="utf-8") as f:
+        audited_links = list(csv.DictReader(f))
+    if len({(r["person_nconst"], r["pattinson_tconst"]) for r in audited_links}) != len(audited_links):
+        raise RuntimeError("Duplicate manually audited Bond cast crossovers")
 
     session = requests.Session()
     session.headers.update({"User-Agent": "coffeetableviz-pattinson-non-commercial-research/1.0"})
@@ -140,13 +150,14 @@ def main():
                 bond_cast[nid].append(tid)
         pattinson_rows = [character for nid, character in acting_people
                           if nid == ACTOR_NCONST]
-        if pattinson_rows:
-            pattinson_credits[tid] = pattinson_rows[0]
+        if pattinson_rows or tid in audited_credits:
+            pattinson_credits[tid] = (pattinson_rows[0] if pattinson_rows
+                                      else audited_credits[tid]["character"])
             for nid, character in acting_people:
                 if nid != ACTOR_NCONST:
                     all_pattinson_cast_edges.append({
                         "tconst": tid, "person_nconst": nid,
-                        "character": character
+                        "character": character, "cast_source": "imdb_principals"
                     })
 
     with imdb_rows(session, "title.principals") as source:
@@ -176,6 +187,11 @@ def main():
     with imdb_rows(session, "title.basics") as source:
         for row in source:
             tid = row["tconst"]
+            if tid in audited_credits:
+                aud = audited_credits[tid]
+                if (row["titleType"] != "movie"
+                    or number(row["startYear"]) != int(aud["year"])):
+                    raise RuntimeError(f"Audited film ID/year mismatch for {tid}: {aud}")
             if tid in BOND_FILMS:
                 expected_title, expected_year, _series, _actor = BOND_FILMS[tid]
                 if (row["titleType"] != "movie" or number(row["startYear"]) != expected_year
@@ -202,8 +218,12 @@ def main():
                 "genres": clean(row["genres"]), "runtime_minutes": clean(row["runtimeMinutes"]),
                 "character": pattinson_credits[tid], "rating": "", "num_votes": "",
                 "release_status": release_status, "directors": "",
+                "credit_source": ("imdb_principals" if tid not in audited_credits
+                                  else "audited_credited_role"),
                 "imdb_url": f"https://www.imdb.com/title/{tid}/"
             }
+    if not set(audited_credits).issubset(set(films)):
+        raise RuntimeError("Supplementary Pattinson roles not found in IMDb title.basics")
     if observed_bond != set(BOND_FILMS):
         missing = sorted(set(BOND_FILMS) - observed_bond)
         raise RuntimeError(f"IMDb Bond movie register incomplete: {missing}")
@@ -222,6 +242,20 @@ def main():
         edge for edge in all_pattinson_cast_edges
         if edge["tconst"] in films
     ]
+    raw_edges_by_key = {(edge["tconst"], edge["person_nconst"]) for edge in raw_edges}
+    for audited in audited_links:
+        tid, nid = audited["pattinson_tconst"], audited["person_nconst"]
+        if tid not in films:
+            raise RuntimeError(f"Audited crossover title not in filmography: {tid}")
+        if normalise_title(audited["pattinson_title"]) != normalise_title(films[tid]["title"]):
+            raise RuntimeError(f"Audited crossover title mismatch: {tid}")
+        if (tid, nid) not in raw_edges_by_key:
+            raw_edges.append({
+                "tconst": tid, "person_nconst": nid,
+                "character": audited["character"],
+                "cast_source": "audited_full_cast"
+            })
+            raw_edges_by_key.add((tid, nid))
     needed_people = {ACTOR_NCONST} | set(bond_cast)
     needed_people.update(edge["person_nconst"] for edge in raw_edges)
 
@@ -241,6 +275,9 @@ def main():
                 people[row["nconst"]] = row["primaryName"]
     if people.get(ACTOR_NCONST) != "Robert Pattinson":
         raise RuntimeError(f"Identity verification failed: {people.get(ACTOR_NCONST)!r}")
+    for audited in audited_links:
+        if people.get(audited["person_nconst"]) != audited["person"]:
+            raise RuntimeError(f"Bond crossover actor identity mismatch: {audited}")
 
     directors = defaultdict(list)
     director_rows = []
@@ -265,7 +302,8 @@ def main():
         person = people.get(nid, nid)
         cast_rows.append({
             "tconst": tid, "title": film["title"], "year": film["year"],
-            "person_nconst": nid, "person": person, "character": edge["character"]
+            "person_nconst": nid, "person": person, "character": edge["character"],
+            "cast_source": edge["cast_source"]
         })
         cofilms[nid].add(tid)
         for bid in bond_cast.get(nid, []):
@@ -275,7 +313,8 @@ def main():
                 "pattinson_tconst": tid, "pattinson_title": film["title"],
                 "pattinson_year": film["year"],
                 "bond_tconst": bid, "bond_title": bond_title, "bond_year": bond_year,
-                "bond_series": bond_series, "bond_actor": bond_actor
+                "bond_series": bond_series, "bond_actor": bond_actor,
+                "cast_source": edge["cast_source"]
             })
     cast_rows.sort(key=lambda f: (f["year"] or 9999, f["title"], f["person"]))
     overlap_rows = list({(r["person_nconst"], r["pattinson_tconst"], r["bond_tconst"]): r
@@ -310,6 +349,10 @@ def main():
         "counts": {
             "principal_acting_credits_all_title_types": len(pattinson_credits),
             "movie_rows": len(film_rows),
+            "audited_supplementary_credit_titles": sum(
+                film["credit_source"] == "audited_credited_role" for film in film_rows),
+            "audited_full_cast_bond_links": sum(
+                r["cast_source"] == "audited_full_cast" for r in overlap_rows),
             "movies_with_imdb_rating": sum(bool(r["rating"]) for r in film_rows),
             "movie_cast_edges": len(cast_rows),
             "official_eon_bond_films": sum(r["bond_series"] == "eon" for r in bond_rows),
@@ -320,7 +363,9 @@ def main():
             "non_eon_bond_overlap_rows": sum(r["bond_series"] == "non_eon" for r in overlap_rows)
         },
         "important_limits": [
-            "Only top principal credits, not an exhaustive cast or all filmography",
+            "Pattinson principal credits are supplemented by individually sourced film roles",
+            "Full co-star filmographies are NOT exhaustively represented; selected sourced co-stars supplement IMDb top principals",
+            "English-language dub roles can have a different cast from original-language productions",
             "Coverage: all 25 Eon Bond films and two separately flagged non-Eon theatrical films",
             "The 1954 Casino Royale teleplay is outside theatrical movie scope",
             "Missing principal cast in a title does not prove there were no real-world crossovers",
@@ -331,7 +376,7 @@ def main():
             "Producers not in title.crew; separately researched producer links required"
         ]
     }, indent=2), encoding="utf-8")
-    print(f"IMDb collection complete: {len(film_rows)} Pattinson films, 25 official + 2 independent Bond films, {len(overlap_rows)} potential Bond links")
+    print(f"IMDb collection complete: {len(film_rows)} Pattinson films, 25 official + 2 independent Bond films, {len(overlap_rows)} sourced Bond links")
 
 if __name__ == "__main__":
     main()
