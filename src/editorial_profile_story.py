@@ -43,7 +43,7 @@ def _line(fig,xs,ys,color=CONTEXT,lw=1,alpha=1):
 
 def _franchise(fig,top,rows,config):
     _required(rows,["film","year","rating","num_votes","franchise_votes",
-                    "total_votes","twilight_median","other_median",
+                    "total_votes","twilight_mean","other_mean",
                     "other_count","twilight_count"])
     rows=sorted(rows,key=lambda r:int(r["year"]))
     if len(rows)!=5:
@@ -64,7 +64,7 @@ def _franchise(fig,top,rows,config):
              fontweight="bold",ha="left",va="top")
     fig.text(.09,top-.076,"sum of votes across 5 IMDb titles",
              color=SUBTEXT,fontsize=11.4,ha="left",va="top")
-    fig.text(.70,top-.020,f"{share:.1f}%",color=PRIMARY,fontsize=28,
+    fig.text(.70,top-.020,f"{share:.1f}%",color=TEXT,fontsize=28,
              fontweight="bold",ha="left",va="top")
     fig.text(.70,top-.074,"of 33-film title-votes",
              color=SUBTEXT,fontsize=10.4,ha="left",va="top")
@@ -72,6 +72,14 @@ def _franchise(fig,top,rows,config):
              fontweight="bold",va="bottom")
     fig.text(.865,top-.138,"IMDb / 10",color=SUBTEXT,fontsize=10.2,ha="right",va="bottom")
     first=min(top-.175,.505)
+    # Visible source-aligned 4–9 rating axis above the five film rows.
+    axis_y=first+.027
+    _line(fig,[X(4),X(9)],[axis_y,axis_y],color="#A8ADB2",lw=1.0)
+    for tick in range(4,10):
+        xt=X(tick)
+        _line(fig,[xt,xt],[axis_y-.004,axis_y+.004],color=SECONDARY,lw=1.0)
+        fig.text(xt,axis_y+.014,str(tick),color=SUBTEXT,fontsize=10.7,
+                 ha="center",va="bottom")
     step=.050
     for i,r in enumerate(rows):
         y=first-i*step
@@ -87,17 +95,24 @@ def _franchise(fig,top,rows,config):
     other_y=first-5*step-.035
     fig.text(.09,other_y+.015,f"Other films ({rows[0]['other_count']})",
              ha="left",va="center",fontsize=11.2,color=TEXT)
-    # Two meaningful medians along the same truncated (4..9) rating axis.
-    mt=float(rows[0]["twilight_median"])
-    mo=float(rows[0]["other_median"])
+    # Two unweighted film means on the same clearly labelled 4–9 scale.
+    mt=float(rows[0]["twilight_mean"])
+    mo=float(rows[0]["other_mean"])
     _line(fig,[.42,.88],[other_y,other_y],color="#E0E2E5",lw=2)
-    for x,col,val in ((X(mt),ACCENT,mt),(X(mo),PRIMARY,mo)):
-        fig.add_artist(Line2D([x],[other_y],marker="D",linestyle="None",
-                              markersize=8,markerfacecolor=col,
+    for x,col in ((X(mt),ACCENT),(X(mo),PRIMARY)):
+        fig.add_artist(Line2D([x],[other_y],marker="^",linestyle="None",
+                              markersize=9,markerfacecolor=col,
                               markeredgecolor=BG,transform=fig.transFigure,zorder=5))
-    fig.text(.09,other_y-.037,f"Median: {mt:.1f} Twilight  /  {mo:.2f} other films",
-             color=TEXT,fontsize=12.1,va="top",ha="left",fontweight="bold")
-    fig.text(.09,other_y-.066,"Dot comparison uses a 4–9 IMDb rating scale.",
+    mean_y=other_y-.037
+    fig.text(.09,mean_y,"Mean:",color=TEXT,fontsize=12.1,
+             va="top",ha="left",fontweight="bold")
+    fig.text(.18,mean_y,f"{mt:.1f} Twilight",color=ACCENT,fontsize=12.1,
+             va="top",ha="left",fontweight="bold")
+    fig.text(.345,mean_y,"/",color=SUBTEXT,fontsize=12.1,
+             va="top",ha="left")
+    fig.text(.375,mean_y,f"{mo:.1f} other films",color=PRIMARY,fontsize=12.1,
+             va="top",ha="left",fontweight="bold")
+    fig.text(.09,other_y-.066,"Mean of film scores; each title counts once.",
              color=SUBTEXT,fontsize=9.7,ha="left",va="top")
 
 def _career(fig,top,rows,config):
