@@ -124,7 +124,7 @@ def main():
     write_csv(root / "chart_02_rating_vs_votes.csv", chart_rows, fields)
     overlap_fields = ["person_nconst", "person", "pattinson_tconst", "pattinson_title",
                       "pattinson_year", "bond_tconst", "bond_title", "bond_year",
-                      "bond_series", "bond_actor"]
+                      "bond_series", "bond_actor", "cast_source"]
     write_csv(root / "chart_03_all_bond_connections.csv", chart_overlap, overlap_fields)
     write_csv(root / "chart_03_official_bond_connections.csv",
               [r for r in chart_overlap if r["bond_series"] == "eon"], overlap_fields)
