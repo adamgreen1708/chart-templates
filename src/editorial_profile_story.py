@@ -66,7 +66,7 @@ def _franchise(fig,top,rows,config):
              color=SUBTEXT,fontsize=11.4,ha="left",va="top")
     fig.text(.70,top-.020,f"{share:.1f}%",color=PRIMARY,fontsize=28,
              fontweight="bold",ha="left",va="top")
-    fig.text(.70,top-.074,"of this film sample's votes",
+    fig.text(.70,top-.074,"of 33-film title-votes",
              color=SUBTEXT,fontsize=10.4,ha="left",va="top")
     fig.text(.09,top-.138,"THE FIVE TWILIGHT FILMS",color=SUBTEXT,fontsize=11.5,
              fontweight="bold",va="bottom")
@@ -134,10 +134,10 @@ def _career(fig,top,rows,config):
                        facecolors="none",edgecolors=PRIMARY,linewidths=1.2,zorder=8)
     bytitle={r["title"]:r for r in rows}
     marks={
-        "Good Time":(-8,-17,"right"),
-        "The Lighthouse":(7,17,"left"),
-        "The Batman":(-8,16,"right"),
-        "The Odyssey":(-7,-19,"right"),
+        "Good Time":(-8,-25,"right"),
+        "The Lighthouse":(12,-28,"left"),
+        "The Batman":(-10,23,"right"),
+        "The Odyssey":(-9,21,"right"),
     }
     for name,(dx,dy,align) in marks.items():
         if name not in bytitle:raise ValueError(f"Missing milestone film: {name}")
@@ -167,7 +167,7 @@ def _paths(fig,top,rows,config):
              fontweight="bold",color=SUBTEXT,ha="left",va="bottom")
     fig.text(.475,header_y,"SHARED ACTOR",fontsize=10,fontweight="bold",
              color=SUBTEXT,ha="left",va="bottom")
-    fig.text(.74,header_y,"IN BOND",fontsize=10,fontweight="bold",
+    fig.text(.71,header_y,"IN BOND",fontsize=10,fontweight="bold",
              color=SUBTEXT,ha="left",va="bottom")
     _line(fig,[.09,.91],[header_y-.012,header_y-.012],color="#A8ACB0",lw=1.2)
     first=header_y-.071
@@ -194,16 +194,16 @@ def _paths(fig,top,rows,config):
         fig.text(.475,y+.013,r["person"],fontsize=12.2,color=col if r["connection_kind"]=="bond" else TEXT,
                  fontweight="bold" if r["connection_kind"]=="bond" else "medium",
                  ha="left",va="top")
-        _line(fig,[.698,.726],[y+.004,y+.004],color=col,lw=1.6)
-        fig.add_artist(Line2D([.726],[y+.004],marker=">",markersize=4.2,color=col,
+        _line(fig,[.669,.696],[y+.004,y+.004],color=col,lw=1.6)
+        fig.add_artist(Line2D([.696],[y+.004],marker=">",markersize=4.2,color=col,
                               transform=fig.transFigure,zorder=4))
-        fig.text(.74,y+.017,r["bond_role"].upper(),fontsize=10.8,color=col,
+        fig.text(.71,y+.017,r["bond_role"].upper(),fontsize=10.8,color=col,
                  fontweight="bold",ha="left",va="top")
         bond_label=str(r["bond_film"])
         if len(bond_label)>18:
             bond_label=bond_label[:17].rstrip()+"…"
-        fig.text(.74,y-.013,bond_label+" · "+str(r["bond_year"]),
-                 fontsize=9.5,color=SUBTEXT,ha="left",va="top")
+        fig.text(.71,y-.013,bond_label+" · "+str(r["bond_year"]),
+                 fontsize=9.0,color=SUBTEXT,ha="left",va="top")
         if i<5:_line(fig,[.09,.91],[y-step*.49,y-step*.49],color="#DADDDF",lw=.65)
     fig.text(.09,.155,"THE TWIST: Brosnan played his father in Remember Me (2010).",
              color=ACCENT,fontsize=11.5,fontweight="bold",ha="left",va="center")
