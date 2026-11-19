@@ -1,60 +1,53 @@
 # Robert Pattinson was already in Bond's orbit
 
-*Editorial draft for Coffeetableviz — not a published post · 19 November 2026*
+*Editorial review draft — 19 November 2026. Not published.*
 
-When Robert Pattinson was announced as the next James Bond on 16 November, the obvious question was whether the former *Twilight* heart-throb was the right choice.
+Robert Pattinson is the new James Bond.
 
-The more interesting question might be: how did he get here?
+That was [confirmed on 16 November](https://www.aboutamazon.com/news/entertainment/james-bond-robert-pattinson-cast-amazon-mgm-film). Naturally, the first place I went looking was *Twilight*. But the numbers — and a few familiar names in the credits — took this somewhere rather different.
 
-### Five films, rather modest ratings
+## The vampire years
 
-*Twilight* made Pattinson a household name. Yet the five films sit between **4.8 and 5.6** on IMDb — with an average (unweighted mean) of **5.2** across the five films.
+The five *Twilight* films attracted **1.72 million IMDb title-votes** between them. That's **24.8%** of the votes across the 33 released, rated Pattinson films in this snapshot.
 
-Those same five titles have amassed **1.72 million film-level IMDb votes**, nearly a quarter of the summed vote counts across the **33 released, rated Pattinson films** in this dataset.
+Yet they averaged just **5.2/10** on IMDb. His other 28 films averaged **6.6/10**.
 
-That's not 1.72 million different people — you can rate more than one film. Nor are these ratings a verdict on Pattinson's acting. But it is a curious contrast: huge attention, fairly modest film scores.
+A peculiar combination: a franchise attracting a huge share of the attention without especially high film scores.
 
-*[Chart 1: The five Twilight films averaged 5.2 on IMDb]*
+*[Chart 1 — The five Twilight films averaged 5.2 on IMDb]*
 
-### What happened next was anything but straightforward
+## Not quite a straight line
 
-He moved into a run of very different films: *The Rover*, *Good Time*, *High Life*, *The Lighthouse*.
+Beyond the vampires came some very different choices: *The Rover*, *Good Time*, *High Life* and *The Lighthouse*. It wasn't a tidy upward march in ratings — which is precisely what makes the career interesting.
 
-Some scored well. Some didn't. Their IMDb voting audiences varied enormously.
+Across all 33 films, *The Batman* has the **most IMDb votes** (958,793). *The Odyssey* has the **highest rating** (8.4/10). And the original *Twilight* remains the **most-voted** film in its five-film series.
 
-By the time *The Batman* arrived, his films could combine reach and rating: **7.8/10 across 958,793 votes** in this frozen IMDb extract. *The Odyssey* sits at **8.4/10 with 575,218 votes**.
+The bigger the circle in the second chart, the more IMDb votes the film received. That's engagement with a title, not box-office takings.
 
-Among these **33 films**, *The Batman* received the **most IMDb votes**, while *The Odyssey* had the **highest IMDb rating**. Within the *Twilight* franchise, the original 2008 film drew the most IMDb votes. These rankings reflect film scores and user voting activity, not box-office success or Pattinson's individual acting.
+*[Chart 2 — The reinvention was not a straight line]*
 
-*[Chart 2: The reinvention was not a straight line]*
+## Bond was already in the room
 
-### He had already met Bond. And his villains.
+Then I looked at the casts.
 
-Here is the bit I hadn't expected.
+Pattinson shared *Harry Potter and the Goblet of Fire* with **Ralph Fiennes**, later Bond's **M**. *The Batman* paired him with **Jeffrey Wright**, Bond's **Felix Leiter**.
 
-Before the announcement, Pattinson had already shared films with **six performers from the Bond world**.
+Three future Bond villains also appear among his earlier co-stars: **Christoph Waltz** (*Water for Elephants*), **Mathieu Amalric** (*Cosmopolis*) and **Rami Malek** (*Breaking Dawn – Part 2*).
 
-**Ralph Fiennes** appeared with him in *Harry Potter and the Goblet of Fire*. Fiennes later played **M**. **Christoph Waltz** shared *Water for Elephants* with him, then became **Blofeld**. **Mathieu Amalric**, Pattinson's *Cosmopolis* co-star, played **Dominic Greene**. **Rami Malek** was in *Breaking Dawn – Part 2* and went on to play **Safin**. **Jeffrey Wright** worked with him on *The Batman* and played **Felix Leiter**.
+And one more.
 
-Then there's **Pierce Brosnan**. In *Remember Me* (2010), the former James Bond actually played Pattinson's father.
+In *Remember Me* (2010), **Pierce Brosnan played Pattinson's father**. Sixteen years later, the former 007 [welcomed him to the Bond family](https://au.variety.com/2026/film/global/robert-pattinson-pierce-brosnan-james-bond-42741/), recalling their time on that film.
 
-On 18 November 2026, Brosnan publicly welcomed Pattinson to the role and recalled working with him.
+*[Chart 3 — He'd met Bond. And his villains.]*
 
-It's a lovely full-circle moment. We can't claim these connections *caused* the casting, but they're a far more interesting way to trace the career than a list of ratings alone.
+None of these connections explains **why** Pattinson was cast. But they make a rather nice twist in a career that's already been full of unexpected turns.
 
-*[Chart 3: He had already met Bond. And his villains.]*
+## TL;DR
 
-### TL;DR
+The five *Twilight* films attracted enormous IMDb attention despite averaging **5.2/10**. The later career was more varied than a simple ratings rise. And before becoming 007, Pattinson had already worked with **Bond himself, M, Felix Leiter and three villains**.
 
-Five *Twilight* films brought Pattinson extraordinary attention without extraordinary IMDb scores. His later credits tell a far less predictable story. And long before he became 007, he'd worked with Bond himself, M, Felix Leiter and three villains.
-
-**Simple charts. Clear stories.**
+*Simple charts. Clear stories.*
 
 ---
 
-**Evidence notes (keep out of public body or adapt into article source note):**
-
-- IMDb: frozen 18 November 2026 official `title.basics`, `title.ratings`, `title.principals`, `name.basics`, `title.crew` extract plus four individually audited film-role credits and three independently audited co-star links. Non-commercial dataset terms must be reviewed before publication: https://developer.imdb.com/non-commercial-datasets/
-- News: https://www.aboutamazon.com/news/entertainment/james-bond-robert-pattinson-cast-amazon-mgm-film
-- Brosnan statement reporting: https://au.variety.com/2026/film/global/robert-pattinson-pierce-brosnan-james-bond-42741/
-- Recalculate numeric sentences against `generated/story_v2_qa.json` before publishing. Avoid claiming all co-stars are exhaustively represented in IMDb `title.principals`.
+**Sources and interpretation** (for article footer): IMDb's non-commercial title, principal-cast and ratings datasets, frozen **18 November 2026**, with individually checked supplementary film and cast credits. **33 released, rated film records**; IMDb ratings describe the *films*, not Pattinson's personal performance. The 1.72 million figure **sums votes on five separate titles**, so must not be read as unique viewers. The six cast connections are verified examples, not an exhaustive co-star search. [IMDb dataset documentation](https://developer.imdb.com/non-commercial-datasets/) · [Amazon MGM casting announcement](https://www.aboutamazon.com/news/entertainment/james-bond-robert-pattinson-cast-amazon-mgm-film) · [Brosnan's message reported by Variety](https://au.variety.com/2026/film/global/robert-pattinson-pierce-brosnan-james-bond-42741/).
