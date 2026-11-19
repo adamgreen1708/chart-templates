@@ -12,7 +12,7 @@ hero_image: /assets/features/robert-pattinson-bond.png
 social_image: /assets/features/robert-pattinson-bond.png
 hero_alt: "Minimal black-and-charcoal tuxedo silhouette inside a circular film-reel orbit. A looping filmstrip shows moon phases, a lighthouse and a skyline, with one red arc joining two orbit points."
 tags: [robert-pattinson, james-bond, twilight, imdb, film, culture, data-visualisation]
-published: false
+published: true
 ---
 
 Robert Pattinson is the new James Bond.
