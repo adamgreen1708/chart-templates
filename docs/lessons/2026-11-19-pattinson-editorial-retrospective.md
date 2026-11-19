@@ -62,6 +62,49 @@ Before showing v1, one senior analyst should have asked:
 
 The correct response would have been to **redo discovery, not ask the user to improve mediocre layouts**.
 
+## Post-publication review of the actual approved artefacts (19 November 2026)
+
+**Review basis:** Published `site/_posts/2026-11-19-robert-pattinson-was-already-in-bonds-orbit.md` on `main`, plus the **actual approved 1600px PNGs**, whose SHA-256 values match publication files. This is a *post-mortem*, not a mandate to modify what Adam has already approved.
+
+**Chart 1 — The five Twilight films averaged 5.2 on IMDb.**
+
+What works: five individually labelled film-level marks on an explicit 4–9 scale; like-for-like unweighted **mean 5.2 versus 6.6**; group colour correspondence and neutral `24.8%` contextual statistic. This is a defensible contextual comparison rather than a generic franchise opinion.
+
+What could still be stronger next time: the film-by-film scores all sit near 5, but the other 28 films are represented by **one mean triangle only**, masking their spread. A reader cannot see how much the distributions overlap. The `24.8%` is *share of summed title-votes in an editorially selected 33-film cohort*; it is **not market share, share of viewers, or popularity measured over equal release windows**. If studying the underlying question further, test an all-33-title distribution or dot-strip with direct group overlap, and examine vote-age/film-role effects before using that statistic as a public hook.
+
+**Chart 2 — The reinvention was not a straight line.**
+
+What works: all 33 rated credits are plotted by year; circle-size legend is now in plain language; three explicit, reproducibly ranked annotations and leader lines identify The Batman (most title-votes), The Odyssey (highest rating) and Twilight (most Twilight title-votes). Confusing frontier rings and unexplained film annotations were removed.
+
+Remaining editorial limitation: the title promises a **career reinvention**, but the plot actually shows scattered *film ratings and voting activity across time*. It has no direct measure of career strategy, role prominence, genre changes, status, industry perception or creative intent. The title is interpretative and defensible only as an opinion, not as a measured result. Those three “highest” labels follow a rule, but **maxima are not automatically insights**. For the next story, test a chronology split by **verified production role, genre, franchise status or critic reception** (if sourced), or a clearly described group/range comparison across eras *with genuinely justified boundaries*. Do not fabricate role-importance categories to rescue a narrative; test whether relevant data exist first. At mobile size, also check how close the size key is to footer credits.
+
+**Chart 3 — He'd met Bond. And his villains.**
+
+What works: six **named** Pattinson film → shared performer → Bond character/film connections, with source dates; de-duplicated people rather than repeated Bond-film edges. The red Brosnan row plus the `Remember Me` father-role disclosure yields a memorable human payoff. It is the strongest of these three as a story visual, not necessarily the most complex.
+
+Remaining caveat: the six are *verified examples*, not the exhaustive co-star universe. The simple horizontal arrows denote a **shared-person relationship**, not chronology, a route of influence or causation; some Bond roles occurred before the Pattinson shared film, others afterwards. A future analogue should document arrow meaning clearly and check complete-cast coverage before claiming all actors or all relationships.
+
+**Article — Robert Pattinson was already in Bond's orbit.**
+
+What works: compact, conversational sequence; useful UK-English rhythm; chart 3 delivers an authentic full-circle ending; source note appropriately distinguishes films from performances and title-votes from unique viewers. This is much better than the first three charts would have supported.
+
+Where editorial judgement can improve further without rewriting this approved post: the **strongest cinematic hook (Brosnan played his father)** arrives only in the third section. For future pieces, test opening with a glimpse of the best reveal, then earn it with the charts; do not give the entire punchline away. Reduce explanatory repetition between caption and article prose. Keep technical caveats close to the potential misunderstanding, rather than asking the bottom source note to rescue an overconfident claim.
+
+### The behavioural correction
+
+On a finished story, perform a second, sceptical **post-build editorial read** before requesting approval:
+
+- Is the actual advertised finding present in the chosen axes and measured fields, or only inferred in the prose?
+- Can the reader see a meaningful distribution or comparator, instead of a single group summary?
+- Would the highlights still be worthwhile if they were not famous, and are rule-defined maxima the right annotations?
+- Do network lines have an honest meaning (shared actor versus influence or chronology)?
+- Have we considered the effects of sample selection, release windows, credit prominence and source-coverage gaps?
+- Is the story's best human surprise sufficiently prominent early enough to earn attention?
+- Would one stronger chart replace two adequate but repetitive charts?
+- Would I *personally reject* a merely functional draft instead of sending it to Adam to rescue?
+
+**Decision on today's published artefacts:** Leave all three approved PNGs and the published article **unchanged**. The goal is improving the *next* project, not retrospectively invalidating an approved and defensible piece. Record the shortcomings candidly; no silent chart revisions.
+
 ## Follow-up responsibility
 
 This standard is a guide and a machine-checkable preflight, not an assertion of human-like expertise. Each new project needs a real editorial decision, source checks, and pixel inspection. The assistant should ask fewer unnecessary questions, do more independent checking, and offer better evidence-led judgements earlier.
