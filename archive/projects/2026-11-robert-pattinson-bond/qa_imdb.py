@@ -79,6 +79,7 @@ def main():
             raise ValueError(f"Out-of-range IMDb values in {f['tconst']}")
         chart_rows.append({
             "tconst": f["tconst"], "title": f["title"], "year": year,
+            "credit_source": f.get("credit_source", "imdb_principals"),
             "rating": rating, "num_votes": votes,
             "log10_votes": round(math.log10(votes), 6),
             "genres": f.get("genres", ""), "directors": f.get("directors", ""),
@@ -105,13 +106,19 @@ def main():
             for r in overlap}) != len(overlap):
         raise ValueError("Duplicate cast-to-cast film-pair links")
 
+    # The historical story only uses released Pattinson titles. Upcoming Dune:
+    # Part Three may appear in the raw filmography/network but cannot be treated
+    # as an established past film collaboration as at the frozen study date.
+    eligible_tids = {r["tconst"] for r in chart_rows}
+    future_edges = [r for r in overlap if r["pattinson_tconst"] not in eligible_tids]
+    reviewed_edges = [r for r in overlap if r["pattinson_tconst"] in eligible_tids]
     # All 27 Bond films are represented in the register, even if a given film has
     # no intersection with Pattinson's principal-film cast. The connection table
     # contains edges only; do not infer that an absent edge proves no crossover.
     # Keep official and supplementary links separate for honest editorial display.
-    chart_overlap = sorted(overlap, key=lambda r: (r["bond_series"] != "eon",
+    chart_overlap = sorted(reviewed_edges, key=lambda r: (r["bond_series"] != "eon",
                         r["bond_year"], r["person"], r["pattinson_year"]))
-    fields = ["tconst", "title", "year", "rating", "num_votes", "log10_votes",
+    fields = ["tconst", "title", "year", "credit_source", "rating", "num_votes", "log10_votes",
               "genres", "directors", "year_cohort", "lower_vote_count", "imdb_url"]
     write_csv(root / "chart_01_film_rating_timeline.csv", chart_rows, fields)
     write_csv(root / "chart_02_rating_vs_votes.csv", chart_rows, fields)
@@ -121,7 +128,22 @@ def main():
     write_csv(root / "chart_03_all_bond_connections.csv", chart_overlap, overlap_fields)
     write_csv(root / "chart_03_official_bond_connections.csv",
               [r for r in chart_overlap if r["bond_series"] == "eon"], overlap_fields)
+    write_csv(root / "review_upcoming_bond_connections.csv", future_edges, overlap_fields)
 
+    # Main cast-connection summaries use unique people and Eon film era,
+    # rather than counting repeated pairs as independent collaborators.
+    era_rows = []
+    for actor in ["Sean Connery", "George Lazenby", "Roger Moore",
+                  "Timothy Dalton", "Pierce Brosnan", "Daniel Craig"]:
+        rows = [r for r in chart_overlap if r["bond_actor"] == actor and r["bond_series"] == "eon"]
+        era_rows.append({
+            "bond_actor": actor,
+            "connected_people": len({r["person_nconst"] for r in rows}),
+            "bond_films_with_connections": len({r["bond_tconst"] for r in rows}),
+            "film_pair_edges": len(rows)
+        })
+    write_csv(root / "chart_03_bond_eras.csv", era_rows,
+              ["bond_actor", "connected_people", "bond_films_with_connections", "film_pair_edges"])
     cohort = {}
     for name in ("through_2012", "2013_to_2019", "2020_to_2026"):
         rows = [r for r in chart_rows if r["year_cohort"] == name]
@@ -144,6 +166,12 @@ def main():
         "supplementary_non_eon_bond_films_checked": bond_series["non_eon"],
         "official_bond_actors_checked": sorted({r["bond_actor"] for r in bond_films if r["bond_series"] == "eon"}),
         "all_bond_unique_connected_people": len({r["person_nconst"] for r in overlap}),
+        "eligible_film_bond_unique_people": len({r["person_nconst"] for r in chart_overlap}),
+        "upcoming_or_unverified_film_bond_edges_excluded": len(future_edges),
+        "supplementary_verified_film_roles": sum(r["credit_source"] == "audited_credited_role" for r in chart_rows),
+        "manually_audited_cast_edges_in_main_chart": sum(
+            r.get("cast_source") == "audited_full_cast" for r in chart_overlap),
+        "bond_era_people_summary": era_rows,
         "official_bond_unique_connected_people": len({r["person_nconst"] for r in overlap if r["bond_series"] == "eon"}),
         "all_bond_film_pair_edges": len(overlap),
         "official_bond_film_pair_edges": sum(r["bond_series"] == "eon" for r in overlap),
@@ -152,7 +180,10 @@ def main():
         "cohorts": cohort,
         "warnings": [
             "No claim about actor's acting quality from film-level IMDb ratings",
-            "IMDb principal credits are a limited cast sample",
+            "IMDb principal credits are a limited cast sample; independently sourced credits are added",
+            "Audited credits must retain source links in the research source files",
+            "English-language voice dub credits are unlike original-language cast roles",
+            "Unreleased films and unverified release statuses are excluded from the historical connection chart",
             "Different films have different opportunities to accumulate votes",
             "Years define editorial cohorts, not genre/production category",
             "No causal claim about Bond casting from collaborator overlaps",
