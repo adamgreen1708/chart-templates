@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-label="Original editorial illustration of a strip of five film frames leading via six connecting lines to two anonymous formal-jacket silhouettes; one muted-red connection marks the handover from the former Bond to the new actor.">
+<rect width="1200" height="1200" fill="#F3F4F6"/>
+<!-- A repeated film-strip motif for the five-film phenomenon; intentionally symbolic, not film stills. -->
+<g transform="translate(93 125)">
+  <path d="M26 0 C115 39 157 92 170 188 C190 317 81 413 72 527 C61 667 140 766 191 891" fill="none" stroke="#16181A" stroke-width="128" stroke-linecap="round"/>
+  <path d="M26 0 C115 39 157 92 170 188 C190 317 81 413 72 527 C61 667 140 766 191 891" fill="none" stroke="#F3F4F6" stroke-width="86" stroke-linecap="round"/>
+  <!-- Film frame windows: each one independent with consistent spacings. -->
+  <g stroke="#17191B" stroke-width="9" fill="none">
+    <rect x="14" y="48" width="154" height="134" rx="5" transform="rotate(12 91 115)"/>
+    <rect x="40" y="237" width="138" height="134" rx="5" transform="rotate(-9 109 304)"/>
+    <rect x="-6" y="425" width="148" height="134" rx="5" transform="rotate(8 68 492)"/>
+    <rect x="16" y="611" width="154" height="134" rx="5" transform="rotate(-7 93 678)"/>
+    <rect x="75" y="802" width="145" height="118" rx="5" transform="rotate(-16 148 861)"/>
+  </g>
+  <!-- Impressions: five crescent-like circles, intentionally generic and identical. -->
+  <g fill="#25282B">
+   <circle cx="94" cy="112" r="26"/>
+   <circle cx="106" cy="304" r="26"/>
+   <circle cx="69" cy="492" r="26"/>
+   <circle cx="97" cy="678" r="26"/>
+   <circle cx="151" cy="859" r="25"/>
+  </g>
+  <!-- Tiny sprocket holes emphasize film media without trademark references. -->
+  <g fill="#F3F4F6">
+   <rect x="-42" y="75" width="20" height="29" rx="3" transform="rotate(13 -32 89)"/>
+   <rect x="194" y="175" width="20" height="29" rx="3" transform="rotate(9 204 190)"/>
+   <rect x="-15" y="312" width="20" height="29" rx="3"/>
+   <rect x="167" y="481" width="20" height="29" rx="3"/>
+   <rect x="-28" y="610" width="20" height="29" rx="3"/>
+   <rect x="203" y="752" width="20" height="29" rx="3"/>
+   <rect x="70" y="930" width="20" height="29" rx="3" transform="rotate(-15 80 945)"/>
+  </g>
+</g>
+<!-- Six observed person-level shared-cast connections, one highlighted for the actual former Bond. -->
+<g fill="none" stroke="#9DA2A6" stroke-width="5" stroke-linecap="round" opacity="0.7">
+  <path d="M345 286 C500 222 523 333 678 353"/>
+  <path d="M346 432 C522 380 562 473 690 507"/>
+  <path d="M316 587 C490 550 527 606 683 623"/>
+  <path d="M329 725 C490 693 545 785 682 760"/>
+  <path d="M353 874 C550 838 602 944 788 884"/>
+</g>
+<path d="M345 538 C514 484 637 540 796 618 C878 657 909 677 960 661" fill="none" stroke="#C44E52" stroke-width="15" stroke-linecap="round"/>
+<!-- Former Bond: an anonymous formal jacket in charcoal, face featureless. -->
+<g transform="translate(585 260)">
+  <ellipse cx="150" cy="133" rx="93" ry="114" fill="#393D41"/>
+  <path d="M72 242 Q-1 252 -24 315 L-25 665 Q55 714 159 705 L337 675 L331 361 Q309 281 227 242 L190 272 L146 300 L109 270Z" fill="#303437"/>
+  <path d="M106 251 L149 344 L174 327 L146 562 L75 275Z" fill="#F3F4F6"/>
+  <path d="M209 251 L159 344 L144 327 L182 562 L240 276Z" fill="#E4E6E9"/>
+  <path d="M122 252 L153 330 L116 357 L58 294Z M204 252 L171 330 L203 357 L263 293Z" fill="#23272A"/>
+  <path d="M152 333 L126 348 L153 377 L181 350Z" fill="#15181A"/>
+  <path d="M152 333 L182 350 L153 377 L127 348Z" fill="#15181A"/>
+</g>
+<!-- New Bond: a second anonymous formal-jacket silhouette; neither figure is a portrait. -->
+<g transform="translate(789 310)">
+  <ellipse cx="156" cy="117" rx="92" ry="113" fill="#17191B"/>
+  <path d="M81 227 Q-9 251 -37 319 L-33 671 Q62 718 176 713 L323 689 L338 343 Q321 249 230 222 L198 246 L159 291 L111 250Z" fill="#101315"/>
+  <path d="M114 239 L155 329 L174 311 L157 566 L80 259Z" fill="#F3F4F6"/>
+  <path d="M211 239 L161 329 L145 310 L198 559 L240 263Z" fill="#E6E8EA"/>
+  <path d="M120 249 L160 336 L124 349 L71 275Z M206 242 L169 337 L204 358 L262 272Z" fill="#24272A"/>
+  <path d="M160 331 L137 344 L160 368 L182 344Z M161 331 L183 344 L160 368 L138 344Z" fill="#0A0B0D"/>
+</g>
+<!-- Clearly symbolic shoulder-to-shoulder handoff; no features or weapons. -->
+<path d="M754 662 C804 632 853 635 895 665" fill="none" stroke="#3B4043" stroke-width="34" stroke-linecap="round"/>
+<circle cx="902" cy="668" r="23" fill="#3B4043"/>
+</svg>
