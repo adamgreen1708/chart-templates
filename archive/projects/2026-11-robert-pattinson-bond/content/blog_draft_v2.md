@@ -32,7 +32,7 @@ Then I looked at the casts.
 
 Pattinson shared *Harry Potter and the Goblet of Fire* with **Ralph Fiennes**, later Bond's **M**. *The Batman* paired him with **Jeffrey Wright**, Bond's **Felix Leiter**.
 
-Three future Bond villains also appear among his earlier co-stars: **Christoph Waltz** (*Water for Elephants*), **Mathieu Amalric** (*Cosmopolis*) and **Rami Malek** (*Breaking Dawn – Part 2*).
+Three actors who played Bond villains also appear among his co-stars: **Christoph Waltz** (*Water for Elephants*), **Mathieu Amalric** (*Cosmopolis*) and **Rami Malek** (*Breaking Dawn – Part 2*).
 
 And one more.
 
@@ -44,7 +44,7 @@ None of these connections explains **why** Pattinson was cast. But they make a r
 
 ## TL;DR
 
-The five *Twilight* films attracted enormous IMDb attention despite averaging **5.2/10**. The later career was more varied than a simple ratings rise. And before becoming 007, Pattinson had already worked with **Bond himself, M, Felix Leiter and three villains**.
+The five *Twilight* films attracted enormous IMDb attention despite averaging **5.2/10**. The later career was more varied than a simple ratings rise. And before being named 007, Pattinson had already worked with **Bond himself, M, Felix Leiter and three villains**.
 
 *Simple charts. Clear stories.*
 
