@@ -200,7 +200,7 @@ def validate(doc: dict) -> dict:
         tag = f"chart {idx}"
         for key in ("id", "role", "title", "question", "claim", "new_information",
                     "why_this_form", "alternative_form", "why_not_alternative", "scale_disclosure"):
-            meaningful(c.get(key, ""), f"{tag}.{key}", 6 if key in ("id","role") else 12)
+            meaningful(c.get(key, ""), f"{tag}.{key}", 2 if key == "id" else 4 if key == "role" else 12)
         require(c["role"] in ROLES, f"{tag}: role must be setup/tension/reveal")
         require(c["new_information"] not in takeaways, f"{tag}: repeated takeaway")
         takeaways.add(c["new_information"])
