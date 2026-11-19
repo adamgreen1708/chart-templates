@@ -49,15 +49,15 @@ def main():
     if len(twilight) != 5 or len(other) != 28 or len({r["year"] for r in twilight}) != 5:
         raise ValueError("Twilight group does not cover exactly five titles across five years")
 
-    def median(data):
-        scores = sorted(float(r["rating"]) for r in data)
-        n = len(scores)
-        return (scores[n//2] if n%2 else (scores[n//2-1]+scores[n//2])/2)
+    def mean(data):
+        # Each film contributes one title-level IMDb weighted score.
+        # Do not weight these scores by IMDb voting volume.
+        return sum(float(r["rating"]) for r in data) / len(data)
 
     votes_twilight = sum(int(r["num_votes"]) for r in twilight)
     votes_total = sum(int(r["num_votes"]) for r in films)
-    twilight_med, other_med = median(twilight), median(other)
-    if not (votes_twilight < votes_total and 0 < twilight_med < other_med <= 10):
+    twilight_mean, other_mean = mean(twilight), mean(other)
+    if not (votes_twilight < votes_total and 0 < twilight_mean < other_mean <= 10):
         raise ValueError("Unexpected Twilight comparison")
 
     short = {
@@ -75,7 +75,7 @@ def main():
             "tconst":r["tconst"], "film":short[r["title"]], "year":r["year"],
             "rating":r["rating"], "num_votes":r["num_votes"],
             "franchise_votes":votes_twilight, "total_votes":votes_total,
-            "twilight_median":round(twilight_med,2), "other_median":round(other_med,2),
+            "twilight_mean":round(twilight_mean,5), "other_mean":round(other_mean,5),
             "other_count":len(other), "twilight_count":len(twilight)
         })
     write("chart_v2_01_twilight.csv", franchise, list(franchise[0]))
@@ -167,9 +167,9 @@ def main():
         "twilight_film_votes_sum":votes_twilight,
         "total_film_votes_sum":votes_total,
         "twilight_votes_pct":round(100*votes_twilight/votes_total,2),
-        "twilight_median_rating":twilight_med,
+        "twilight_mean_rating":round(twilight_mean,5),
         "other_films_n":len(other),
-        "other_median_rating":other_med,
+        "other_mean_rating":round(other_mean,5),
         "pareto_frontier_titles":leaders,
         "verified_bond_people":len(distinct_people),
         "verified_bond_pathways":len(roles_out),
