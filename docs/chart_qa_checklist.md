@@ -18,6 +18,17 @@ Use this before saying a chart config or render is ready.
 
 See `docs/editorial_judgement_standard.md` and `docs/lessons/2026-11-19-pattinson-editorial-retrospective.md`.
 
+## Post-render editorial peer review — actual published Pattinson case
+
+- **Match headline to observable variable.** A chart of film-level ratings over release year does **not directly measure** a creative reinvention, career strategy or reputation. Distinguish an interpretative story title from a data-tested claim.
+- **Show distributions when they matter.** A mean across 28 other films can conceal the overlap/range that would make a contrast meaningful. Consider a group strip/distribution before settling on one comparator triangle.
+- **Interrogate sample-defined prominence.** A 24.8% share of *summed title-votes within an editorially selected 33-film sample* is not share of viewers, ticket sales or platform audience. Put limitations where readers might otherwise overgeneralise.
+- **Maxima can be dull.** The highest-rated title and most-voted title may be objectively chosen yet still fail an intrigue test; the chart must justify their storytelling role, not merely selection integrity.
+- **Clarify directional links.** Film → shared actor → Bond-role arrows are relation indicators, not a chronological or causal path. Verify role chronology and avoid implying co-stars caused casting.
+- **Edit the hook as carefully as the figures.** If the strongest human connection appears in Chart 3, consider a teaser near the opening while preserving the full payoff.
+- **Run an independent second pass after GitHub rendering** rather than relying on source-data/script validation alone. Only then invite Adam's review.
+- Preserve already approved article/chart files unchanged; make process improvements on their own review PR.
+
 ## Data checks
 
 - Dataset path exists.
