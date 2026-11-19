@@ -7,10 +7,10 @@ author: Adam Green
 category: Culture
 description: "Five Twilight ratings, an uneven career and six unexpected Bond cast connections. One former 007 even played Pattinson's father."
 read_time: "3 minute read"
-card_image: /assets/features/robert-pattinson-bond.svg
-hero_image: /assets/features/robert-pattinson-bond.svg
-social_image: /assets/features/robert-pattinson-bond.svg
-hero_alt: "Black-and-charcoal editorial silhouettes of two anonymous suited figures alongside five film frames, joined by six cast-connection lines and one muted-red link."
+card_image: /assets/features/robert-pattinson-bond.png
+hero_image: /assets/features/robert-pattinson-bond.png
+social_image: /assets/features/robert-pattinson-bond.png
+hero_alt: "Minimal black-and-charcoal tuxedo silhouette inside a circular film-reel orbit. A looping filmstrip shows moon phases, a lighthouse and a skyline, with one red arc joining two orbit points."
 tags: [robert-pattinson, james-bond, twilight, imdb, film, culture, data-visualisation]
 published: false
 ---
