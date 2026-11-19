@@ -1,0 +1,16 @@
+CHART_CONFIG = {
+    "data_file": "archive/projects/2026-11-robert-pattinson-bond/generated/chart_v2_02_career.csv",
+    "data_format": "wide",
+    "chart_type": "profile_story",
+    "layout_variant": "career_bubbles",
+    "x_col": None,
+    "y_col": None,
+    "sort": None,
+    "title": "The reinvention was not a straight line",
+    "subtitle": "Every rated film by release year. Later standouts combined high IMDb ratings with many votes.",
+    "source_text": "IMDb titles · snapshot 18 Nov 2026",
+    "footer_left": "Adam Green | coffeetableviz",
+    "render_profile": "social_square",
+    "dpi": 200,
+    "output_file": "archive/projects/2026-11-robert-pattinson-bond/generated/v2_02_reinvention.png",
+}

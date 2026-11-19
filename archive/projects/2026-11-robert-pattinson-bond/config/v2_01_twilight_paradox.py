@@ -1,0 +1,16 @@
+CHART_CONFIG = {
+    "data_file": "archive/projects/2026-11-robert-pattinson-bond/generated/chart_v2_01_twilight.csv",
+    "data_format": "wide",
+    "chart_type": "profile_story",
+    "layout_variant": "franchise_strip",
+    "x_col": None,
+    "y_col": None,
+    "sort": None,
+    "title": "The five Twilight films averaged 5.2 on IMDb",
+    "subtitle": "Five films supplied almost a quarter of the title-votes in this 33-film sample.",
+    "source_text": "IMDb titles · snapshot 18 Nov 2026",
+    "footer_left": "Adam Green | coffeetableviz",
+    "render_profile": "social_square",
+    "dpi": 200,
+    "output_file": "archive/projects/2026-11-robert-pattinson-bond/generated/v2_01_twilight_paradox.png",
+}
