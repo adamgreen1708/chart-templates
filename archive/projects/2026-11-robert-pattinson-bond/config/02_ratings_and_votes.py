@@ -1,0 +1,42 @@
+CHART_CONFIG = {
+    "data_file": "archive/projects/2026-11-robert-pattinson-bond/generated/chart_02_rating_vs_votes.csv",
+    "data_format": "wide",
+    "chart_type": "scatter",
+    "x_col": "log10_votes",
+    "y_col": "rating",
+    "series_col": None,
+    "value_col": None,
+    "filters": [],
+    "title": "Votes and ratings tell different stories",
+    "subtitle": "Each dot is a film. Higher vote counts do not guarantee a higher IMDb rating.",
+    "source_text": "IMDb title.ratings | 18 Nov 2026",
+    "footer_left": "Adam Green | coffeetableviz",
+    "render_profile": "social_square",
+    "story_angle": "vote_count_vs_rating",
+    "sort": None,
+    "sort_descending": False,
+    "x_label": "IMDb user votes (log scale)",
+    "y_label": "Film rating / 10",
+    "x_axis": {"min": 3.0, "max": 6.5, "tick_interval": 1},
+    "x_tick_labels": [{"value": 3, "label": "1k"}, {"value": 4, "label": "10k"},
+                      {"value": 5, "label": "100k"}, {"value": 6, "label": "1m"}],
+    "y_axis_min": 0,
+    "y_axis_max": 10,
+    "y_tick_interval": 2,
+    "point_style": {"color": "#D9D9D9", "size": 54, "alpha": 0.85},
+    "highlight_points": [
+        {"title": "Twilight", "color": "#C44E52", "size": 115},
+        {"title": "The Batman", "color": "#1F8FA8", "size": 115}
+    ],
+    "annotate_points": [
+        {"title": "Twilight", "text": "Twilight", "xytext": (-8, -17),
+         "ha": "right", "fontsize": 12, "arrowprops": None},
+        {"title": "The Batman", "text": "The Batman", "xytext": (-10, 16),
+         "ha": "right", "fontsize": 12, "arrowprops": None}
+    ],
+    "vertical_gridlines": False,
+    "fig_width": 8.0,
+    "fig_height": 8.0,
+    "dpi": 200,
+    "output_file": "archive/projects/2026-11-robert-pattinson-bond/generated/02_pattinson_film_ratings_vs_votes.png"
+}
