@@ -6,7 +6,7 @@ CHART_CONFIG = {
     "x_col": None,
     "y_col": None,
     "sort": None,
-    "title": "He had already met Bond. And his villains.",
+    "title": "He'd met Bond. And his villains.",
     "subtitle": "Six shared actors link Pattinson's films to 007 himself, M, Felix Leiter and three villains.",
     "source_text": "IMDb + audited cast links · 18 Nov 2026",
     "footer_left": "Adam Green | coffeetableviz",
