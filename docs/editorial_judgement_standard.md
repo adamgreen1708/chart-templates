@@ -2,6 +2,14 @@
 
 **Status:** proposed reusable standard, drafted 19 November 2026 after the Pattinson-to-Bond project. This complements the locked renderer/style; it does not change them.
 
+## Two editorial gates, not one
+
+**Gate A — before any chart code:** verify three genuinely different hypotheses, examine meaningful distributions/comparators and declare why each proposed visualisation is the best form. Reject generic maxima, arbitrary era averages and counts of the wrong entities. If the claim is about professional **reinvention**, check whether the data measure role type, genre, career choice or merely film scores. A strong-sounding narrative is not a substitute for a measured variable.
+
+**Gate B — after the *actual GitHub render*, before showing it to Adam:** personally read the chart alongside the source rows and article draft. Check that the title does not promise more than the plotted fields actually show, that the comparison population is visible (not only a mean hiding spread), that sample-selected shares are labelled as such, that annotation rankings are also worth learning, and that any arrows imply only the relationship supported by the source. Inspect the actual 320px version, internal legend/footer spacing, and whether the strongest human payoff is introduced at an effective point in the story.
+
+**If either gate fails, choose better evidence or a better chart yourself.** Don't pass a technically valid but empty draft to the user as an editorial decision. Failure in Gate B means revisiting the design or hypothesis, not just changing line spacing.
+
 ## The governing test
 
 **A chart must earn its space.** Being correct, attractive and successfully rendered does not make it worth publishing. Before code, ask:
