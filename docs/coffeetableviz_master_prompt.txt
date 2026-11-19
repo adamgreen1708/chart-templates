@@ -59,6 +59,28 @@ EDITORIAL DISCOVERY — DO THIS BEFORE RENDERING
   This checks source-backed computations, annotation rules, cross-chart semantic
   colours and the contract. Human editorial judgement is still mandatory.
 
+SENIOR PEER-REVIEW BEFORE HANDOFF
+- Review the GitHub-rendered charts AGAINST the exact article words and source
+  columns as though you were a sceptical editor who did not make them.
+- Do title and story imply a change in career/behaviour when the only metric is
+  film rating? Label interpretation as interpretation, not a measured result.
+- Can the reader see the comparison distribution? One mean for 28 films may
+  conceal overlap and should be justified against distribution-first options.
+- Verify percentage denominator is an explicit cohort (e.g. a curated 33-film
+  sample), not a misleading proxy for reach, audience or market share.
+- A reproducible maximum is not automatically an interesting annotation:
+  why does this ranking advance the story?
+- For an arrow/connection chart, explain whether it means same person, influence,
+  earlier/later, shared cast or actual movement. Never imply causal casting links.
+- Look for the *real best hook* before settling the paragraph order. Consider
+  hinting at a surprising human reveal near the beginning, earning it later.
+- Read a real 320px PNG and reject internal footer/legend collisions even when
+  7% outer-edge pixel padding checks are green.
+- If you wouldn't forward this work to a discerning data editor, don't show it
+  to Adam as a finished review. Go back to discovery yourself.
+- After publication, record a candid post-mortem; don't silently rewrite
+  approved charts or articles without new permission.
+
 DESIGN WITH PURPOSE
 - The chart form must reveal the comparison or relationship, not decorate it.
 - Titles are concise and truthful, neither exaggerated nor generic.
