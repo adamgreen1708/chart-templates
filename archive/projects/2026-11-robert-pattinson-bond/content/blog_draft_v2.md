@@ -14,7 +14,7 @@ Those same five titles have amassed **1.72 million film-level IMDb votes**, near
 
 That's not 1.72 million different people — you can rate more than one film. Nor are these ratings a verdict on Pattinson's acting. But it is a curious contrast: huge attention, fairly modest film scores.
 
-*[Chart 1: Five Twilight hits. None above 5.6.]*
+*[Chart 1: The five Twilight films averaged 5.2 on IMDb]*
 
 ### What happened next was anything but straightforward
 
@@ -24,7 +24,7 @@ Some scored well. Some didn't. Their IMDb voting audiences varied enormously.
 
 By the time *The Batman* arrived, his films could combine reach and rating: **7.8/10 across 958,793 votes** in this frozen IMDb extract. *The Odyssey* sits at **8.4/10 with 575,218 votes**.
 
-In fact, those are the **only two films not beaten by another title on both IMDb rating and vote count** among these 33 records. That's a precise snapshot of these two measures, not proof of box-office success or acting superiority.
+Among these **33 films**, *The Batman* received the **most IMDb votes**, while *The Odyssey* had the **highest IMDb rating**. Within the *Twilight* franchise, the original 2008 film drew the most IMDb votes. These rankings reflect film scores and user voting activity, not box-office success or Pattinson's individual acting.
 
 *[Chart 2: The reinvention was not a straight line]*
 
