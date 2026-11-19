@@ -109,6 +109,25 @@ def main():
     leaders=[r["title"] for r in time_rows if r["pareto_frontier"]]
     if set(leaders)!={"The Batman","The Odyssey"}:
         raise ValueError(f"Unexpected IMDb rating-vote frontier: {leaders}")
+    # Visual labels are awarded by explicit, reproducible data criteria,
+    # not editorially chosen film titles. The groups must be unambiguous.
+    by_votes = sorted(time_rows, key=lambda r: -r["num_votes"])
+    by_rating = sorted(time_rows, key=lambda r: -r["rating"])
+    twilight_votes = sorted((r for r in time_rows if r["group"] == "twilight"),
+                            key=lambda r: -r["num_votes"])
+    if (by_votes[0]["num_votes"] == by_votes[1]["num_votes"] or
+        by_rating[0]["rating"] == by_rating[1]["rating"] or
+        twilight_votes[0]["num_votes"] == twilight_votes[1]["num_votes"]):
+        raise ValueError("Ranking ties: review chart annotation selection")
+    visual_labels = {
+        by_votes[0]["tconst"]: "most_votes",
+        by_rating[0]["tconst"]: "highest_rating",
+        twilight_votes[0]["tconst"]: "most_twilight_votes",
+    }
+    if len(visual_labels) != 3:
+        raise ValueError("Three distinct chart annotation roles expected")
+    for r in time_rows:
+        r["annotation_role"] = visual_labels.get(r["tconst"], "")
     write("chart_v2_02_career.csv",time_rows,list(time_rows[0]))
 
     # Chart 3: film-to-person-to-role links. Join on IMDb IDs and reject roles
@@ -171,6 +190,11 @@ def main():
         "other_films_n":len(other),
         "other_mean_rating":round(other_mean,5),
         "pareto_frontier_titles":leaders,
+        "chart_02_labelled_extremes": {
+            "most_votes": by_votes[0]["title"],
+            "highest_rating": by_rating[0]["title"],
+            "most_twilight_votes": twilight_votes[0]["title"],
+        },
         "verified_bond_people":len(distinct_people),
         "verified_bond_pathways":len(roles_out),
         "bond_actor_roles":dict(Counter(r["connection_kind"] for r in roles_out)),
