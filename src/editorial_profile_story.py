@@ -184,6 +184,8 @@ def _career(fig,top,rows,config):
                     fontweight="medium",
                     bbox={"boxstyle":"square,pad=0.12","facecolor":BG,
                           "edgecolor":"none","alpha":.94},
+                    arrowprops={"arrowstyle":"-","color":spec["colour"],
+                                "lw":.85,"alpha":.65,"shrinkA":5,"shrinkB":6},
                     zorder=9,clip_on=False)
     # The original technical frontier caption was poorly understood.
     # This concise plain-language takeaway fits both phone export sizes.
@@ -192,14 +194,14 @@ def _career(fig,top,rows,config):
     fig.text(.09,.182,"The Batman leads on votes; The Odyssey on score.",
              fontsize=11.5,ha="left",va="top",color=SUBTEXT)
     # Legend text is itself colour-matched, not just the graphic markers.
-    fig.text(.09,.148,"Red: Twilight",color=ACCENT,fontsize=10.4,
+    fig.text(.09,.151,"Red: Twilight",color=ACCENT,fontsize=10.4,
              fontweight="bold",ha="left",va="top")
-    fig.text(.337,.148,"Blue: top vote / rating",color=PRIMARY,fontsize=10.4,
+    fig.text(.337,.151,"Blue: vote / rating leaders",color=PRIMARY,fontsize=10.4,
              fontweight="bold",ha="left",va="top")
-    fig.text(.695,.148,"Grey: other films",color="#677079",fontsize=10.4,
+    fig.text(.725,.151,"Grey: other films",color="#677079",fontsize=10.4,
              fontweight="bold",ha="left",va="top")
-    fig.text(.09,.120,"Circle size = number of IMDb votes for each film",
-             color=SUBTEXT,fontsize=10.6,ha="left",va="top")
+    fig.text(.09,.132,"Bigger circle = more IMDb votes for that film",
+             color=SUBTEXT,fontsize=10.3,ha="left",va="top")
 
 
 def _paths(fig,top,rows,config):
