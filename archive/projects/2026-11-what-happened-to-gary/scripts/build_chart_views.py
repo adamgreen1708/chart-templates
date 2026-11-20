@@ -59,9 +59,18 @@ def main():
     hist_map = {int(r["year"]): int(r["rank"]) for r in historical}
     assert hist_map == {1944: 95, 1954: 34, 1964: 16, 1974: 30, 1984: 26}
     assert len(historical) == 5
-    write_csv("chart_01_historical_rank.csv", ["year", "rank", "rank_score"],
-              [{"year": r["year"], "rank": r["rank"],
-                "rank_score": 101 - int(r["rank"])} for r in historical])
+    # The pre-1996 ONS historical source contains ranks, not birth counts.
+    # Rank standing (101 - rank) makes higher-ranked names visually longer
+    # without falsely portraying this transformation as a birth count.
+    historical_rows = [
+        {"year": int(r["year"]), "year_label": str(r["year"]) + " snapshot",
+         "rank": int(r["rank"]), "rank_standing": 101 - int(r["rank"])}
+        for r in historical
+    ]
+    assert {r["year"]: r["rank_standing"] for r in historical_rows} == {
+        1944: 6, 1954: 67, 1964: 85, 1974: 71, 1984: 75}
+    write_csv("chart_01_historical_rank.csv",
+              ["year", "year_label", "rank", "rank_standing"], historical_rows)
     write_csv("chart_02_gary_births.csv", ["year", "births", "rank"], gary)
     # Direct comparison: same geography, sex, year, statistic and source.
     paired = [selected[(year, name)] for year in range(1996, 2025)
