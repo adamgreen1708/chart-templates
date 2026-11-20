@@ -5,7 +5,7 @@ CHART_CONFIG = {
     "series_col": None, "value_col": None,
     "story_angle": "single_series_trend", "render_profile": "social_square",
     "title": "Gary's long goodbye",
-    "subtitle": "In 1996, 235 newborn boys were named Gary. What happened over the next 28 years?",
+    "subtitle": "From 235 newborn Garys in 1996 to just 8 in 2024 — a fall of 96.6%. England and Wales.",
     "source_text": "Source: ONS via TidyTuesday, 1996–2024",
     "footer_left": "Adam Green | coffeetableviz",
     "x_label": "Birth year",
