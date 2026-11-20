@@ -15,11 +15,17 @@ CHART_CONFIG = {
     "focus_style": {"color": "#1F8FA8", "linewidth": 4, "alpha": 1.0},
     "secondary_style": {"color": "#C44E52", "linewidth": 3.5, "alpha": 1.0},
     "sort": {"by": "year", "ascending": True}, "sort_descending": False,
-    "highlight_points": [], "annotate_points": [],
-    "end_labels": [
-        {"x": 2024, "y": 3368, "label": "Arthur 3,368", "color": "#1F8FA8", "fontsize": 12},
-        {"x": 2024, "y": 8, "label": "Gary 8", "color": "#C44E52", "fontsize": 12},
-    ],
+    "highlight_points": [],
+    "annotate_points": [
+        {"x": 2024, "y": 3368, "label": "Arthur 3,368",
+         "xytext": (-22, 19), "ha": "right", "fontsize": 12,
+         "color": "#1F8FA8", "arrowprops": None,
+         "bbox": {"facecolor": "#F3F4F6", "edgecolor": "none", "pad": 1.5}},
+        {"x": 2024, "y": 8, "label": "Gary 8",
+         "xytext": (-22, 21), "ha": "right", "fontsize": 12,
+         "color": "#C44E52", "arrowprops": None,
+         "bbox": {"facecolor": "#F3F4F6", "edgecolor": "none", "pad": 1.5}},
+    ], "end_labels": [],
     "reference_lines": [], "x_margin": 0.02, "vertical_gridlines": False,
     "output_file": "output/03_gary_vs_arthur.png",
 }
