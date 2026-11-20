@@ -37,3 +37,6 @@
 3. Inspect rendered original 1600px and exact 390px and 320px phone versions, margins, labels, footers and axis semantics.
 4. Revisit/chart-edit or discard weak graphics before user review.
 5. No Jekyll post, site asset copying, live publication or merge without user approval.
+
+## QA-only output
+The project opts into reproducible 390px and 320px downscaled inspection PNGs using `qa_mobile.enabled`. These are not independently authored data charts and will not be copied to the live website.
