@@ -159,21 +159,21 @@ jobs:
             # project PNGs, never alternative or manually recreated data charts.
             if [[ -f "$project_dir/qa_mobile.enabled" ]]; then
               python - "$project_dir" <<'PY'
-import sys
-from pathlib import Path
-from PIL import Image
-project = Path(sys.argv[1])
-for source in sorted((project / "output").glob("*.png")):
-    if source.name.startswith("qa_"):
-        continue
-    with Image.open(source) as im:
-        rgb = im.convert("RGB")
-        assert rgb.size == (1600, 1600), f"Unexpected social-square size: {source} = {rgb.size}"
-        for size in (390, 320):
-            target = source.with_name(f"qa_{size}_{source.name}")
-            rgb.resize((size, size), Image.Resampling.LANCZOS).save(target)
-            print(f"Review-only image: {target} ({size} x {size})")
-PY
+          import sys
+          from pathlib import Path
+          from PIL import Image
+          project = Path(sys.argv[1])
+          for source in sorted((project / "output").glob("*.png")):
+              if source.name.startswith("qa_"):
+                  continue
+              with Image.open(source) as im:
+                  rgb = im.convert("RGB")
+                  assert rgb.size == (1600, 1600), f"Unexpected social-square size: {source} = {rgb.size}"
+                  for size in (390, 320):
+                      target = source.with_name(f"qa_{size}_{source.name}")
+                      rgb.resize((size, size), Image.Resampling.LANCZOS).save(target)
+                      print(f"Review-only image: {target} ({size} x {size})")
+          PY
             fi
 
             # A project may declare approved site asset paths for its rendered PNGs.
