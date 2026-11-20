@@ -47,3 +47,9 @@ The project opts into reproducible 390px and 320px downscaled inspection PNGs us
 - Chart 3's values and layout are unchanged.
 - Blog revised for original gentle humour and transparent attribution to Fay Schopen's 2015 Guardian feature; celebrity associations remain hypotheses, not causal claims.
 - Render and inspect all three real GitHub-produced images, plus the reproducible 390px and 320px PNGs, prior to approval.
+
+## Approved site publication — 20 November 2026
+- User approved the final historical slopegraph, all three chart renders, and the editorial copy.
+- Publication mapping: `publish_asset_map.csv` copies **exact render outputs** into `site/assets/charts/gary/` on the review branch; no manual image reconstruction.
+- Jekyll story: `site/_posts/2026-11-20-what-happened-to-gary.md` (Society), with Chart 2 used as factual hero/card image; no separate editorial illustration is introduced.
+- Keep all main-site paths validated and merge only after the PR Pages build succeeds; then verify GitHub Pages deployment and public story URL.
