@@ -1,21 +1,154 @@
 {
-  "report_date": "2026-11-18",
-  "visits": 1,
-  "prior_7d_avg": "11.29",
-  "pct_vs_prior_7d": "-91.1",
-  "top_page_path": "/icons-of-data/braille",
-  "top_page_title": "Six dots. Rather a lot to say. \u00b7 coffeetableviz",
-  "top_page_visits": 1,
+  "report_date": "2026-11-19",
+  "visits": 31,
+  "prior_7d_avg": "8.14",
+  "pct_vs_prior_7d": "280.7",
+  "top_page_path": "/stories/robert-pattinson-was-already-in-bonds-orbit",
+  "top_page_title": "Robert Pattinson was already in Bond's orbit \u00b7 coffeetableviz",
+  "top_page_visits": 10,
   "top_referrer": "Direct / unknown",
-  "top_referrer_visits": 1,
-  "observation": "Six dots. Rather a lot to say. reached every recorded visitor.",
-  "generated_at_utc": "2026-11-19T17:22:41+00:00",
+  "top_referrer_visits": 4,
+  "observation": "A noticeably busier day than the seven-day baseline.",
+  "generated_at_utc": "2026-11-20T00:35:05+00:00",
   "top_pages": [
+    {
+      "path_id": 124274858,
+      "path": "/stories/robert-pattinson-was-already-in-bonds-orbit",
+      "title": "Robert Pattinson was already in Bond's orbit \u00b7 coffeetableviz",
+      "display": "Robert Pattinson was already in Bond's orbit",
+      "count": 10
+    },
+    {
+      "path_id": 122984048,
+      "path": "/stories/eliud-kipchoge-the-record-fell-the-legacy-didnt",
+      "title": "The record fell. The legacy didn't. \u00b7 coffeetableviz",
+      "display": "The record fell. The legacy didn't.",
+      "count": 2
+    },
+    {
+      "path_id": 109451764,
+      "path": "/",
+      "title": "coffeetableviz",
+      "display": "Home",
+      "count": 2
+    },
+    {
+      "path_id": 124279582,
+      "path": "/series/blockbuster-quote/2026-10-16-the-shawshank-redemption",
+      "title": "The Shawshank Redemption \u00b7 coffeetableviz",
+      "display": "The Shawshank Redemption",
+      "count": 1
+    },
+    {
+      "path_id": 124279497,
+      "path": "/series/blockbuster-quote/2026-10-22-jurassic-park",
+      "title": "Jurassic Park \u00b7 coffeetableviz",
+      "display": "Jurassic Park",
+      "count": 1
+    },
+    {
+      "path_id": 124279475,
+      "path": "/series/blockbuster-quote/2026-10-21-star-wars",
+      "title": "Star Wars \u00b7 coffeetableviz",
+      "display": "Star Wars",
+      "count": 1
+    },
+    {
+      "path_id": 117603735,
+      "path": "/resources/bauhaus-art-studio",
+      "title": "Bauhaus Art Studio \u00b7 coffeetableviz",
+      "display": "Bauhaus Art Studio",
+      "count": 1
+    },
+    {
+      "path_id": 114407601,
+      "path": "/series/blockbuster-quote/2026-10-23-deadpool",
+      "title": "Deadpool \u00b7 coffeetableviz",
+      "display": "Deadpool",
+      "count": 1
+    },
+    {
+      "path_id": 113333596,
+      "path": "/series/blockbuster-quote/2026-10-20-dracula",
+      "title": "Dracula \u00b7 coffeetableviz",
+      "display": "Dracula",
+      "count": 1
+    },
+    {
+      "path_id": 113065677,
+      "path": "/series/blockbuster-quote/2026-10-19-harry-potter-and-the-prisoner-of-azkaban",
+      "title": "Harry Potter And The Prisoner Of Azkaban \u00b7 coffeetableviz",
+      "display": "Harry Potter And The Prisoner Of Azkaban",
+      "count": 1
+    },
+    {
+      "path_id": 112091022,
+      "path": "/series/blockbuster-quote/2026-10-14-the-spy-who-loved-me",
+      "title": "The Spy Who Loved Me \u00b7 coffeetableviz",
+      "display": "The Spy Who Loved Me",
+      "count": 1
+    },
     {
       "path_id": 111967189,
       "path": "/icons-of-data/braille",
       "title": "Six dots. Rather a lot to say. \u00b7 coffeetableviz",
       "display": "Six dots. Rather a lot to say.",
+      "count": 1
+    },
+    {
+      "path_id": 111967004,
+      "path": "/icons-of-data/john-snow-cholera-map",
+      "title": "The map that put a pump on trial \u00b7 coffeetableviz",
+      "display": "The map that put a pump on trial",
+      "count": 1
+    },
+    {
+      "path_id": 110989424,
+      "path": "/icons-of-data/nightingale-mortality",
+      "title": "The chart that made disease impossible to ignore \u00b7 coffeetableviz",
+      "display": "The chart that made disease impossible to ignore",
+      "count": 1
+    },
+    {
+      "path_id": 110548893,
+      "path": "/resources/icons-of-data",
+      "title": "Icons of Data \u00b7 coffeetableviz",
+      "display": "Icons of Data",
+      "count": 1
+    },
+    {
+      "path_id": 109455079,
+      "path": "/stories/one-invisible-line-23000-miles-of-detours",
+      "title": "One invisible line. 23,000 miles of detours. \u00b7 coffeetableviz",
+      "display": "One invisible line. 23,000 miles of detours.",
+      "count": 1
+    },
+    {
+      "path_id": 109453481,
+      "path": "/resources",
+      "title": "Resources \u00b7 coffeetableviz",
+      "display": "Resources",
+      "count": 1
+    },
+    {
+      "path_id": 109446434,
+      "path": "/about",
+      "title": "About \u00b7 coffeetableviz",
+      "display": "About",
+      "count": 1
+    },
+    {
+      "path_id": 109446302,
+      "path": "/series/blockbuster-quote",
+      "title": "Today\u2019s Blockbuster Quote \u00b7 coffeetableviz",
+      "display": "Today\u2019s Blockbuster Quote",
+      "count": 1
+    },
+    {
+      "path_id": 109446267,
+      "path": "/archive",
+      "title": "Archive \u00b7 coffeetableviz",
+      "display": "Archive",
       "count": 1
     }
   ],
@@ -23,8 +156,26 @@
     {
       "id": null,
       "name": "Direct / unknown",
-      "count": 1,
+      "count": 4,
       "ref_scheme": "o"
+    },
+    {
+      "id": "bing.com",
+      "name": "bing.com",
+      "count": 4,
+      "ref_scheme": "h"
+    },
+    {
+      "id": "t.co",
+      "name": "t.co",
+      "count": 1,
+      "ref_scheme": "h"
+    },
+    {
+      "id": "www.linkedin.com",
+      "name": "www.linkedin.com",
+      "count": 1,
+      "ref_scheme": "h"
     }
   ]
 }

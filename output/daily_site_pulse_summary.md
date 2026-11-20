@@ -1,9 +1,9 @@
-# Coffeetableviz Daily Pulse — 18 November 2026
+# Coffeetableviz Daily Pulse — 19 November 2026
 
-- **Visits:** 1
-- **7-day context:** 91% below prior 7-day daily average (11.3)
-- **Top pages:** Six dots. Rather a lot to say. (1)
-- **Top referrer:** Direct / unknown — 1 visits
-- **Observation:** Six dots. Rather a lot to say. reached every recorded visitor.
+- **Visits:** 31
+- **7-day context:** 281% above prior 7-day daily average (8.1)
+- **Top pages:** Robert Pattinson was already in Bond's orbit (10), The record fell. The legacy didn't. (2), Home (2)
+- **Top referrer:** Direct / unknown — 4 visits
+- **Observation:** A noticeably busier day than the seven-day baseline.
 
 Latest image: `output/daily_site_pulse.png`
