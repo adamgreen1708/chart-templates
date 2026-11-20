@@ -7,10 +7,10 @@ author: Adam Green
 category: Society
 description: "Gary was No. 16 in 1964. In 2024, just eight boys in England and Wales were given the name. Meanwhile, Arthur was having a lovely time."
 read_time: "3 minute read"
-card_image: /assets/charts/gary/02_gary_births_1996_2024.png
-hero_image: /assets/charts/gary/02_gary_births_1996_2024.png
-social_image: /assets/charts/gary/02_gary_births_1996_2024.png
-hero_alt: "Line chart of boys registered with the name Gary in England and Wales, falling from 235 in 1996 to eight in 2024, with red markers at both endpoints."
+card_image: /assets/features/what-happened-to-gary.png
+hero_image: /assets/features/what-happened-to-gary.png
+social_image: /assets/features/what-happened-to-gary.png
+hero_alt: "1960s-style black-and-white linocut of a comically older-looking baby Gary in a vintage pram, tipping a tweed cap beside blank hanging name tags and a red ribbon, with a GARY tag attached to the pram."
 tags: [gary, baby-names, society, england-and-wales, ons, demographics, data-visualisation]
 published: true
 ---
