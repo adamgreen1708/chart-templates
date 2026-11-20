@@ -42,7 +42,7 @@
 The project opts into reproducible 390px and 320px downscaled inspection PNGs using `qa_mobile.enabled`. These are not independently authored data charts and will not be copied to the live website.
 
 ## 20 November editorial revision
-- Historical Chart 1 now uses horizontal bars of `rank_standing = 101 - historical_rank`, with exact rank labels. The standing is an ordinal visual encoding, **not a count**. ONS confirms no historical pre-1996 counts.
+- Historical Chart 1 was trialled as a rank-standing bar but superseded by a rank-versus-year slopegraph (No. 1 at the top). The final chart displays only five observed decade rankings, highlights 1964, and labels each verified rank. Lines are connecting guides, **not annual observations**. ONS has no pre-1996 historical birth counts.
 - Chart 2 adds x/y clearance for both red endpoints. A small negative y padding is geometric only; all measured registrations remain positive.
 - Chart 3's values and layout are unchanged.
 - Blog revised for original gentle humour and transparent attribution to Fay Schopen's 2015 Guardian feature; celebrity associations remain hypotheses, not causal claims.
