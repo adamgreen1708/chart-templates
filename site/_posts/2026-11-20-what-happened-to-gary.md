@@ -17,9 +17,7 @@ published: true
 
 *Once one of Britain's perfectly ordinary boys' names. Now an increasingly rare sight on a birth certificate.*
 
-At some point, Gary stopped sounding like a baby and started sounding like someone who knows where the spare extension lead is kept.
-
-But Gary wasn't always a name you associated with a colleague, an uncle, or somebody who's been working in accounts since the fax machine was cutting-edge.
+At some point, Gary stopped sounding like a baby's name and started sounding like the name of your local mechanic.
 
 In **1964, Gary was the 16th most popular boys' name in England and Wales**.
 
