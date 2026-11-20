@@ -101,7 +101,7 @@ def main():
 Peer endpoints are in data/peer_name_endpoints.csv for Nigel, Wayne, Barry, Kevin and George.
 Choose third-chart comparison only after review of those data, not because Arthur makes a neat story.
 """
-    (ROOT / "story_evidence.md").write_text(evidence, encoding="utf-8")
+    (DATA / "story_evidence.md").write_text(evidence, encoding="utf-8")
     print(evidence)
     print("QA PASSED: source blob, unique rows, coverage, rank/count semantics")
 
