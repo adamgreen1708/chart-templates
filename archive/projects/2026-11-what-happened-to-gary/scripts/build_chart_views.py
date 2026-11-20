@@ -22,7 +22,7 @@ NAMES = ("Gary", "Nigel", "Wayne", "Barry", "Arthur", "George", "Kevin")
 def write_csv(filename, columns, rows):
     DATA.mkdir(parents=True, exist_ok=True)
     with (DATA / filename).open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=columns)
+        writer = csv.DictWriter(f, fieldnames=columns, extrasaction="ignore")
         writer.writeheader()
         writer.writerows(rows)
 
