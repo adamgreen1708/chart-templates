@@ -17,7 +17,7 @@ Hollywood offers one possible clue. **Gary Cooper was actually born Frank James 
 
 Did British parents follow suit? Possibly. But the historical figures give us **rankings only, every ten years**, not actual birth counts. They cannot tell us precisely when the trend took off or who deserves the credit.
 
-**Chart 1: Gary really had a moment** — historical top-100 standings; the bars display a reversed ranking position, and their labels give Gary's exact rank. They do *not* represent numbers of babies born.
+**Chart 1: Gary really had a moment** — a rank slopegraph with No. 1 at the top, five labelled ten-year snapshots and the 1964 peak in red. The line connects observations; it does *not* represent measured annual rankings or birth counts.
 
 ## A long goodbye. With quite a few famous Garys along the way.
 
@@ -75,6 +75,6 @@ Gary reached **No. 16 in 1964** in England and Wales. Its annual baby registrati
   https://www.theguardian.com/commentisfree/2015/mar/11/gary-not-worried-say-goodbye-garys
 - Gary Cooper born Frank James Cooper; cultural influence is a hypothesis, NOT established UK causation. Guardian feature supports his name and alleged influence.
 - All jokes and narrative lines in this post are newly written; do not copy the Guardian's dialogue or examples.
-- Rank-standing bars use `101 - rank` only as a graphic encoding. Ordinal differences are not relative birth counts; labels state the real ranks.
+- Chart 1 uses **actual historical ranks**, not transformed rank-standing bars. It connects five ten-year snapshots as an editorial guide; intervening annual rankings are unknown. The labels match the validated historic source rows.
 - 2025 data is available from ONS but is not in the version-pinned chart source. Avoid saying that 2024 is the latest ONS year.
 - No chart files should be redrawn or modified outside of the GitHub renderer; approval still required.
