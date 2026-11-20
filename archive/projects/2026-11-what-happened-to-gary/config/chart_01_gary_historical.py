@@ -35,14 +35,30 @@ CHART_CONFIG = {
     "focus_style": {"color": "#1F8FA8", "linewidth": 3.0, "alpha": 1.0},
     "highlight_style": {"color": "#C44E52", "size": 185, "alpha": 1.0},
     "highlight_points": [{"year": 1964}],
-    # Exact rank labels are generated FROM the CSV's rank column.
+    # Labels are anchored to the exact source rows; the five values are
+    # asserted in scripts/build_chart_views.py and never interpolated.
+    # Individual offsets prevent a label crossing either line segment.
     "label_strategy": "all",
-    "label_style": {
-        "enabled": True, "label_col": "rank", "position": "right",
-        "label_format": "No. {:.0f}", "fontsize": 12, "color": "#222222",
-    },
+    "label_style": {"enabled": False, "label_col": "rank"},
     "sort": {"by": "year", "ascending": True}, "sort_descending": False,
-    "annotate_points": [], "end_labels": [], "reference_lines": [],
+    "annotate_points": [
+        {"year": 1944, "text": "No. 95", "xytext": (-10, 8),
+         "ha": "right", "va": "center", "fontsize": 12,
+         "arrowprops": None, "color": "#222222"},
+        {"year": 1954, "text": "No. 34", "xytext": (-9, 10),
+         "ha": "right", "va": "bottom", "fontsize": 12,
+         "arrowprops": None, "color": "#222222"},
+        {"year": 1964, "text": "No. 16", "xytext": (11, 11),
+         "ha": "left", "va": "bottom", "fontsize": 12,
+         "arrowprops": None, "color": "#C44E52"},
+        {"year": 1974, "text": "No. 30", "xytext": (11, 13),
+         "ha": "left", "va": "bottom", "fontsize": 12,
+         "arrowprops": None, "color": "#222222"},
+        {"year": 1984, "text": "No. 26", "xytext": (10, -10),
+         "ha": "left", "va": "top", "fontsize": 12,
+         "arrowprops": None, "color": "#222222"},
+    ],
+    "end_labels": [], "reference_lines": [],
     "x_margin": 0.02, "vertical_gridlines": False,
     "output_file": "output/01_gary_historical_ranks.png",
 }
