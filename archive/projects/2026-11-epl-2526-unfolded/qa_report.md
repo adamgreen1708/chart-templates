@@ -29,3 +29,14 @@
 - [x] Original 10-column August–May single-row layout retained on phones.
 - [x] JavaScript syntax and source-statistics validation passed after revision.
 - [ ] Actual browser/physical-device contrast and tooltip placement QA remains prior to publication.
+
+## Cumulative points mini-chart in glass tooltip (exploratory)
+- [x] Reused the 20 verified cumulative-points sequences in the site JSON (38 games each); no extra source or simulated results.
+- [x] Miniature chart plots 0–38 on x-axis for **each club's own nth match**, and 0–90 cumulative points on y-axis (not shared matchweek or calendar date).
+- [x] Grey context paths for 19 other clubs, selected club's primary-colour path lightened only if needed for legibility.
+- [x] Focus marker at selected match number with correct points; a club-badge hover shows the selected club at its pinned game, or after match 38.
+- [x] Visible text specifies 20 clubs, club-specific game number and points.
+- [x] Tooltip remains dark background at 40% opacity and 2px blur, with light and contrasting text.
+- [x] New source JavaScript parses; all 20 data curves separately checked to match each club's documented final points.
+- [ ] Check on a physical phone that the taller tooltip does not obscure too many monthly result circles, and adjust direction/placement as necessary.
+- [ ] Real browser QA of SVG rendering / VoiceOver labels before merge.
