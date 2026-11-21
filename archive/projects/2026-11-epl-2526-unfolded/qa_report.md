@@ -8,7 +8,7 @@
 - [x] Club home / away metrics recomputed from the selected team's real results, no hard-coded sample values.
 - [x] Individual month dots encode W (red), D (light grey), L (dark grey), matching screenshot semantics.
 - [x] Final-points badges positioned using their final points on shared 0–90 horizontal scale.
-- [x] User-approved 40%-opacity / 2px backdrop-blur tooltip settings preserved on #303133 dark canvas.
+- [x] User-approved 45%-opacity / 2px backdrop-blur tooltip settings preserved on #303133 dark canvas.
 - [x] JavaScript source parse check performed after PR update.
 - [x] Mocked-DOM runtime smoke test: renders Arsenal's 10 month columns and all 38 real result dots, 2 summary rows, 20 final-points club badges; selected dot fades other 37 and pins tooltip, reselect clears, club selector switches to Tottenham (rank 17).
 - [ ] Jekyll PR-build rerun on revised head SHA.
@@ -25,7 +25,7 @@
 - [x] Dot text chooses dark or white contrast automatically. Dark-fill dots use a subtle light outline.
 - [x] Heading automatically lightens primary colour to minimum WCAG 4.5:1 contrast against #303133; checked 20/20 teams (minimum 4.5:1).
 - [x] HOME dots are bottom-aligned, month-and-venue fixture order reversed in DOM so earliest is nearest the month at the bottom; AWAY dots are top-aligned, earliest nearest the label at the top. Verified source sequence across all clubs and months.
-- [x] Tooltip maintains #303133 at 40% opacity / 2px blur, with explicit white text for match title, score, points and other detail to override general site text colours.
+- [x] Tooltip maintains #303133 at 45% opacity / 2px blur, with explicit white text for match title, score, points and other detail to override general site text colours.
 - [x] Original 10-column August–May single-row layout retained on phones.
 - [x] JavaScript syntax and source-statistics validation passed after revision.
 - [ ] Actual browser/physical-device contrast and tooltip placement QA remains prior to publication.
@@ -36,7 +36,7 @@
 - [x] Grey context paths for 19 other clubs, selected club's primary-colour path lightened only if needed for legibility.
 - [x] Focus marker at selected match number with correct points; a club-badge hover shows the selected club at its pinned game, or after match 38.
 - [x] Visible text specifies 20 clubs, club-specific game number and points.
-- [x] Tooltip remains dark background at 40% opacity and 2px blur, with light and contrasting text.
+- [x] Tooltip remains dark background at 45% opacity and 2px blur, with light and contrasting text.
 - [x] New source JavaScript parses; all 20 data curves separately checked to match each club's documented final points.
 - [ ] Check on a physical phone that the taller tooltip does not obscure too many monthly result circles, and adjust direction/placement as necessary.
 - [ ] Real browser QA of SVG rendering / VoiceOver labels before merge.
