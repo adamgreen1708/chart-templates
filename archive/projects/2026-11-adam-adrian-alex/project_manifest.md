@@ -15,3 +15,6 @@ The preferred 3-chart sequence is historical setup, annual rivalry, alphabetical
 
 Colours across charts: Adam/A: #1F8FA8; Alex/J: #C44E52; Adrian: #777777. The colour keys and different subjects must be stated clearly on each chart.
 Production: GitHub render-archived-project workflow only, 1600px plus real 390px and 320px PNG review, no ChartGPT visual mock data, no publication without explicit approval.
+
+## Current review render
+GitHub Actions exact 1600px outputs plus QA mobile exports are required. A first render succeeded but its push collided with ongoing branch edits; repeat on current stable head and inspect the saved images before approval.
