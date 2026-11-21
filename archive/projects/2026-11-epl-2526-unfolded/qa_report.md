@@ -11,7 +11,7 @@
 - [x] User-approved 40%-opacity / 2px backdrop-blur tooltip settings preserved on #303133 dark canvas.
 - [x] JavaScript source parse check performed after PR update.\n- [x] Mocked-DOM runtime smoke test: renders Arsenal's 10 month columns and all 38 real result dots, 2 summary rows, 20 final-points club badges; selected dot fades other 37 and pins tooltip, reselect clears, club selector switches to Tottenham (rank 17).
 - [ ] Jekyll PR-build rerun on revised head SHA.
-- [ ] Real browser desktop and mobile QA: position tooltip near edges, 320px and 390px, W/D/L stack space, SVG badge collision.
+- [x] CSS layout arithmetic verified at 320px (10 columns, at least 25.9px each for 22px dots) and 390px (32px per column for 23px dots) with the site's documented narrow-screen shell margins.\n- [ ] Actual browser screenshot and touch QA at 320px and 390px: inspect tooltip positioning, 10-column W/D/L single row, touch targets and points badge collisions.
 - [ ] Accessibility QA including VoiceOver; at mobile select an overlapping final-points badge.
 - [ ] Actual team-crests asset provenance/licensing if adding them instead of present text badges.
 - [ ] Editorial approval; do not merge/publish.
