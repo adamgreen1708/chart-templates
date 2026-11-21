@@ -17,7 +17,7 @@ The linked original Tableau Public dashboard (EPL202021SeasonUnfolded/202021EPLS
 ## Source and reproducibility
 
 - Upstream: Football-Data.co.uk 2025–26 E0: https://www.football-data.co.uk/mmz4281/2526/E0.csv
-- Retrieved via mirror: https://github.com/qhtexas/football-dataset/blob/92c659f51c53f7a0212892ed2796db8e324da74d/datasets/premier-league/season-2526.csv
+- Retrieved via mirror: https://github.com/qhtexas/football-dataset/blob/9ec38fd9149216e3110d8b6edb1c0e8457d3016b/datasets/premier-league/season-2526.csv
 - Mirror blob SHA: `92c659f51c53f7a0212892ed2796db8e324da74d`
 - Retrieved: 2026-11-21
 - Frozen six-column selection: `data/matches_2526.csv` (Date, HomeTeam, AwayTeam, FTHG, FTAG, FTR)
