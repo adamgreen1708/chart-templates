@@ -55,7 +55,7 @@
 .eplu-totals td.stat-loss{color:#9CA3A9}
 .eplu-totals td.stat-pts{color:#FFF;font-weight:700}
 .eplu-summary-note{font:400 11px/1.65 'IBM Plex Sans',sans-serif;color:var(--ev-muted);margin:18px 0}
-.eplu-tooltip{position:absolute;z-index:50;pointer-events:none;width:232px;max-width:calc(100% - 24px);background:rgba(48,49,51,.40);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);border:1px solid rgba(235,238,240,.46);border-radius:11px;box-shadow:0 8px 24px rgba(0,0,0,.20),inset 0 1px rgba(255,255,255,.14);padding:13px 14px;color:#FDFDFD;font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.45;text-shadow:0 1px 3px rgba(0,0,0,.42)}
+.eplu-tooltip{position:absolute;z-index:50;pointer-events:none;width:232px;max-width:calc(100% - 24px);background:rgba(48,49,51,.45);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);border:1px solid rgba(235,238,240,.46);border-radius:11px;box-shadow:0 8px 24px rgba(0,0,0,.20),inset 0 1px rgba(255,255,255,.14);padding:13px 14px;color:#FDFDFD;font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.45;text-shadow:0 1px 3px rgba(0,0,0,.42)}
 .eplu-tooltip[hidden]{display:none}
 .eplu-tip-overline{font:600 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#F1B4B5;display:flex;justify-content:space-between;gap:10px}
 .eplu-tip-overline span:last-child{color:#D6DADF;font-weight:400}
