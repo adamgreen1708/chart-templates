@@ -65,13 +65,14 @@ def main():
         before=10000*start/denom[1996]
         after=10000*end/denom[2024]
         change=100*(after/before-1)
-        norm.append({"name":name,"plot_y":pos,"change_pct":round(change,3),
+        display=(f"+{change:.0f}%" if change>=0 else f"−{abs(change):.0f}%")
+        norm.append({"name":name,"plot_y":pos,"change_pct":round(change,3), "change_label":display,
             "per_10000_1996":round(before,3),"per_10000_2024":round(after,3),
             "births_1996":start,"births_2024":end,
             "male_births_1996":denom[1996],"male_births_2024":denom[2024]})
     assert norm[0]["change_pct"]>0 and all(x["change_pct"]<0 for x in norm[1:]), "Normalised reversal unconfirmed"
     write("chart_02_normalised.csv",
-          ["name","plot_y","change_pct","per_10000_1996","per_10000_2024",
+          ["name","plot_y","change_pct","change_label","per_10000_1996","per_10000_2024",
            "births_1996","births_2024","male_births_1996","male_births_2024"],norm)
 
     historical=list(csv.DictReader((DATA/"historical_ranks.csv").open(encoding="utf-8")))
