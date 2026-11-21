@@ -15,3 +15,13 @@ Letter-share denominator: all published boy-name registrations, excluding suppre
 ## Published first-letter shares
 - 1996: A 9.00%, J 19.55%
 - 2024: A 13.46%, J 7.32%
+
+## Normalised per 10,000 male live births (two-year endpoints)
+- 1996 denominator 333,490: GRO/ONS Table 1.1 male live births (occurrence year).
+- 2024 denominator 304,889: ONS baby-names 2024 announcement, boys included in the baby-names release.
+- The birth-series and name-series publication bases differ slightly; interpretation is approximate,
+  but the direction/magnitude of the changes is robust. No annual rate for intervening years is implied.
+- Source CSV includes both denominators and full source URLs.
+- Adrian: 4.65 -> 6.56 per 10,000 boys, relative change +41.1%.
+- Adam: 136.08 -> 46.25 per 10,000 boys, relative change -66.0%.
+- Alex: 52.84 -> 9.68 per 10,000 boys, relative change -81.7%.
