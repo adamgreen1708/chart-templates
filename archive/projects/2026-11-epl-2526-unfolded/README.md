@@ -1,59 +1,53 @@
-# EPL 2025–26 · Season Unfolded (interactive experiment)
+# EPL 2025–26 · Season Unfolded (monthly results board)
 
-**Status:** draft GitHub review implementation. Not published. Does not modify the existing Patrick Stewart post, existing static renderer, or the original Tableau workbook.
+**Status: revised draft PR #230. Not merged or published.** The reference is the user-supplied screenshot of the original 2020–21 Tableau visual.
 
-## Editorial route
+## Fidelity to original concept
 
-Three possible season lenses were tested against the verified match-level dataset:
+The screenshot shows:
+- A restrained **dark charcoal canvas** and spaced editorial header.
+- One **selected club**, with its **final league position** in a circular badge.
+- Results **grouped into calendar months**. Each match is a coloured W/D/L circle, separated into **HOME (above)** and **AWAY (below)**.
+- Separate compact HOME and AWAY season aggregates: **MP, W, D, L, GF, GA, GD, PTS**.
+- A **horizontal final-points scale** at the bottom, positioning all 20 clubs by their final point totals, with club-crest icons.
 
-1. **Cumulative points by each club's 1st–38th match** — selected. Lets readers explore whether clubs built up points early, late or steadily, while keeping equal match counts comparable.
-2. **Official league positions by numbered matchweek** — deferred. This CSV does not include official matchweek identifiers; assigning them by sorted match dates would risk incorrect positions where fixtures were rearranged.
-3. **Final-table ranking only** — rejected for the primary interaction because it hides the trajectory and does not advance the original unfolding-season idea.
-
-Central editorial promise: *The final table tells you who finished where; the point trajectories show how each club got there.*
-
-The linked original Tableau Public dashboard (EPL202021SeasonUnfolded/202021EPLSeason) was not inspectable through the available external page readers. This reconstruction therefore matches the broad season-unfolding premise but is **not** yet verified against the exact original layout, mark types or interactions.
+This revised implementation mirrors that **visual grammar and storytelling sequence**, rather than showing the previous generic cumulative-points lines. It defaults to Arsenal and uses genuine 2025–26 results. On mobile, the 10 months wrap into two 5-column groups to preserve the individual W/D/L dots without sideways scrolling. The final-points rail uses clickable three-letter club badges rather than unsourced copyrighted crest artwork; this remains a deliberate visual limitation against the original.
 
 ## Source and reproducibility
 
-- Upstream: Football-Data.co.uk 2025–26 E0: https://www.football-data.co.uk/mmz4281/2526/E0.csv
-- Retrieved via mirror: https://github.com/qhtexas/football-dataset/blob/9ec38fd9149216e3110d8b6edb1c0e8457d3016b/datasets/premier-league/season-2526.csv
-- Mirror blob SHA: `92c659f51c53f7a0212892ed2796db8e324da74d`
-- Retrieved: 2026-11-21
-- Frozen six-column selection: `data/matches_2526.csv` (Date, HomeTeam, AwayTeam, FTHG, FTAG, FTR)
-- Transform: `scripts/build_data.py`
-- Published-browser dataset, once merged: `site/assets/data/epl-2526-unfolded.json`
-- Output page (pending review and approval): `/resources/epl-2025-26-unfolded/`
+- Upstream full-time results: https://www.football-data.co.uk/mmz4281/2526/E0.csv
+- Frozen GitHub source commit: https://github.com/qhtexas/football-dataset/blob/9ec38fd9149216e3110d8b6edb1c0e8457d3016b/datasets/premier-league/season-2526.csv
+- Git blob SHA of source: `92c659f51c53f7a0212892ed2796db8e324da74d`
+- Retrieved: 21 November 2026
+- Stored under `data/matches_2526.csv` (one row per real game; 380 games).
+- Regenerate with `python archive/projects/2026-11-epl-2526-unfolded/scripts/build_data.py`.
+- JSON at `site/assets/data/epl-2526-unfolded.json`.
+- Jekyll URL after eventual approved merge: `/resources/epl-2025-26-unfolded/`.
 
-Rebuild with:
+The pinned data are grouped by **calendar month of the actual fixture date**. Every W/D/L marker is one real match, with home/away, full-time scores, opponent and date available on selection. Month-by-venue dot stacks order matches chronologically. A month can have more/fewer fixtures, reflecting actual rescheduling.
 
-```sh
-python archive/projects/2026-11-epl-2526-unfolded/scripts/build_data.py
-```
+Full season ranking is sorted by points, goal difference and goals scored. Home/away totals are recomputed from the 19 fixtures for each venue, not hard-coded. No invented historical league positions.
 
-The transform checks 380 unique fixtures, 20 clubs, 38 matches per club, non-negative scores and result consistency, and independently verifies Arsenal 85pts / Manchester City 78pts against the official Premier League table. The browser validates the dimensions again before drawing.
+## Interaction contract
 
-## Important definitions
+- Choose a team from top select or from the full 20-club bottom points strip.
+- Hover match circle for a temporary tooltip, click/tap to pin. Tap the **same** dot or empty background to clear.
+- Selected match remains full opacity with a ring; **other match dots fade to 43%**.
+- Bottom club selection highlights its badge and leaves other club badges subdued.
+- Glass tooltip background matches chart's charcoal `#303133` at **40% opacity**, with **2px backdrop blur**, subtle border and shadow. All text remains opaque.
+- Mobile responsive 5x2 month display and compact home/away summary. No horizontal scrolling in chart.
+- Every W/D/L dot has a screen-reader description with real home/away team names, score, date and result. No fake icons, club crests, or placeholder statistics.
 
-- One record = one Premier League match, no duplicated fixtures.
-- The horizontal axis means a **club's nth completed match**, not a simultaneous calendar matchweek or a reconstructed historical table position. Rearranged fixtures are therefore not incorrectly assigned to rounds.
-- The vertical axis means cumulative league points (W=3, D=1, L=0) from full-time results only.
-- Each hover/tap tooltip shows the fixture and the points *after* that club's nth match; final position is always the confirmed final finishing position, not an in-season league rank.
-- Ties in the *final* ranking sorted by points, goal difference, then goals scored. There are no unresolved ties on all three metrics in the 2025–26 final table.
+## QA
 
-## Interaction / visual contract
+- [x] 380 unique full-time matches, 20 clubs, 38 games each, 19 home / 19 away.
+- [x] Final league points cross-check: Arsenal 85, Manchester City 78.
+- [x] All monthly dots are produced directly from verified JSON and ordered by actual fixture date.
+- [x] CSS/JS keep the approved tooltip parameters, not the earlier 50% / 15px experiment.
+- [x] No changes to locked static 538/FT production renderer.
+- [ ] Actual 320px/390px and desktop screenshot inspection.
+- [ ] Interactive touch, hover, keyboard and accessibility review.
+- [ ] New Jekyll build run for revised PR head.
+- [ ] Visual sign-off and merge/publish approval.
 
-- Focus line: `#1F8FA8`; optional comparison line `#C44E52`; remaining lines grey, **43% opacity** when a club is selected.
-- Tooltip: `rgba(243,244,246,0.40)` with `backdrop-filter: blur(2px)`, keeping type fully opaque.
-- Hover to preview on pointer devices; tap/click to select and pin; reselect same line or click empty plot to deselect.
-- Select team/compare from dropdowns; step through game 1–38; tap a row in the final standings to focus a team.
-- Responsive SVG: no horizontal scrolling on standard phone widths. Check 390px and 320px in actual browser before merge.
-- Layout and site assets follow existing Jekyll / GitHub Pages conventions; no changes to locked 538/FT static renderers.
-
-## QA status / next steps
-
-- Verified 380 fixtures and per-club 38-match histories.
-- Generated JSON checked against official final totals and ranks.
-- JavaScript parse succeeds.
-- Remaining before editorial sign-off: real browser interaction test, iPhone touch and VoiceOver, screenshot/pixel QA at 390px and 320px, Jekyll preview build, contrast across live plot marks, exact conceptual comparison against original Tableau screenshot.
-- **Do not merge or claim live deployment until approved.**
+**Technical note:** an additional date-parsing/provenance review is useful before final release. Design compares month-by-month results, not synchronized gameweek tables.
