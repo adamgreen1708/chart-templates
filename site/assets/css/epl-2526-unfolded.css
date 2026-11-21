@@ -92,3 +92,13 @@
 #epl-unfolded #eplu-tooltip .eplu-tip-date,
 #epl-unfolded #eplu-tooltip .eplu-tip-overline span:last-child{color:#E9EDF0!important}
 #epl-unfolded #eplu-tooltip .eplu-tip-overline span:first-child{color:#FFD4D6!important}
+
+/* Tooltip inset: twenty real season trajectories, with selected club in its kit-colour accent. */
+.eplu-tooltip{width:316px;max-width:calc(100% - 24px)}
+.eplu-tip-trajectory{margin-top:11px;padding-top:10px;border-top:1px solid rgba(250,250,250,.32)}
+.eplu-tip-trajectory-title{display:flex;justify-content:space-between;align-items:center;gap:8px;color:#F2F4F5!important;font:600 10px/1.3 'IBM Plex Mono',monospace;letter-spacing:.05em}
+.eplu-tip-trajectory-title span:last-child{font-weight:400;color:#D8E0E4!important}
+.eplu-tip-mini{display:block;width:100%;height:auto;max-height:148px;overflow:visible;margin-top:5px}
+.eplu-tip-trajectory-summary{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:3px 9px;margin-top:3px;font:600 10px/1.5 'IBM Plex Sans',sans-serif;color:#F1F4F5!important}
+.eplu-tip-trajectory-summary span:last-child{font:400 9px/1.5 'IBM Plex Sans',sans-serif;color:#DDE3E6!important}
+@media(max-width:650px){.eplu-tooltip{width:280px;max-width:calc(100% - 14px);padding:10px 11px}.eplu-tip-mini{max-height:143px}}
