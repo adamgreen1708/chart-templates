@@ -183,7 +183,7 @@
     focusLabel.style.color=focusColour;
     summary.appendChild(focusLabel);
     summary.appendChild(create('span','','Each club\'s own game number'));
-    area.append(mini,summary);
+    area.appendChild(summary);
     tooltip.appendChild(area);
   }
   function matchInfo(game, target, pinned) {
