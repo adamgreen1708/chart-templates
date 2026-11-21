@@ -11,7 +11,7 @@ The screenshot shows:
 - Separate compact HOME and AWAY season aggregates: **MP, W, D, L, GF, GA, GD, PTS**.
 - A **horizontal final-points scale** at the bottom, positioning all 20 clubs by their final point totals, with club-crest icons.
 
-This revised implementation mirrors that **visual grammar and storytelling sequence**, rather than showing the previous generic cumulative-points lines. It defaults to Arsenal and uses genuine 2025–26 results. On mobile, the 10 months wrap into two 5-column groups to preserve the individual W/D/L dots without sideways scrolling. The final-points rail uses clickable three-letter club badges rather than unsourced copyrighted crest artwork; this remains a deliberate visual limitation against the original.
+This revised implementation mirrors that **visual grammar and storytelling sequence**, rather than showing the previous generic cumulative-points lines. It defaults to Arsenal and uses genuine 2025–26 results. On mobile, all 10 month columns remain in a **single August–May row**. The result dots shrink to 22–23px on narrow screens to fit without horizontal scrolling, while the selected match's large tooltip retains the precise score and date. The final-points rail uses clickable three-letter club badges rather than unsourced copyrighted crest artwork; this remains a deliberate visual limitation against the original.
 
 ## Source and reproducibility
 
