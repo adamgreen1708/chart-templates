@@ -133,6 +133,59 @@
     tooltip.style.left=x+'px';
     tooltip.style.top=y+'px';
   }
+  // Miniature twenty-club cumulative-points plot, using the SAME real verified season data.
+  // Match N is each club's Nth completed match, not a shared calendar date or fixture round.
+  function addCumulativeTooltipChart(focusClub, matchNumber) {
+    if (!season || !focusClub || !Array.isArray(season.teams)) return;
+    const index = Math.min(38, Math.max(1, Number(matchNumber) || 38));
+    const area = create('div','eplu-tip-trajectory');
+    const head = create('div','eplu-tip-trajectory-title');
+    head.appendChild(create('span','', 'CUMULATIVE POINTS'));
+    head.appendChild(create('span','', '20 CLUBS'));
+    area.appendChild(head);
+    const focusValue = focusClub.games[index-1].points;
+    const description = 'All 20 clubs, cumulative points by each club\'s match number 0 to 38. '+focusClub.name+' highlighted, at match '+index+' with '+focusValue+' points.';
+    const mini = svgNode('svg',{
+      viewBox:'0 0 270 142',class:'eplu-tip-mini','aria-label':description,role:'img',
+      preserveAspectRatio:'xMidYMid meet'
+    },area);
+    const left=27,right=259,top=9,bottom=113;
+    const x=n=>left+n/38*(right-left);
+    const y=n=>bottom-n/90*(bottom-top);
+    [0,45,90].forEach(value=>{
+      const ypos=y(value);
+      svgNode('line',{x1:left,x2:right,y1:ypos,y2:ypos,stroke:'#E4EAEE','stroke-width':.7,opacity:.3},mini);
+      svgNode('text',{x:left-6,y:ypos+3,'text-anchor':'end',fill:'#E3E8EA','font-size':9,'font-family':'monospace'},mini,value);
+    });
+    [0,19,38].forEach(n=>{
+      svgNode('text',{x:x(n),y:135,'text-anchor':'middle',fill:'#E3E8EA','font-size':9,'font-family':'monospace'},mini,n);
+    });
+    const makePath=club=>{
+      let d='M'+x(0).toFixed(1)+','+y(0).toFixed(1);
+      club.games.forEach(g=>{
+        d+='L'+x(g.number).toFixed(1)+','+y(g.points).toFixed(1);
+      });
+      return d;
+    };
+    season.teams.filter(club=>club.name!==focusClub.name).forEach(club=>{
+      svgNode('path',{d:makePath(club),fill:'none',stroke:'#DFE5E9',
+        'stroke-width':.85,opacity:.36,'stroke-linejoin':'round',
+        'stroke-linecap':'round'},mini);
+    });
+    const focusColour=lightenForTitle(primaryByClub[focusClub.name]||'#FFFFFF');
+    svgNode('path',{d:makePath(focusClub),fill:'none',stroke:focusColour,
+      'stroke-width':3,opacity:1,'stroke-linejoin':'round','stroke-linecap':'round'},mini);
+    svgNode('circle',{cx:x(index),cy:y(focusValue),r:5.4,fill:'none',
+      stroke:'#FFFFFF','stroke-width':1.4},mini);
+    svgNode('circle',{cx:x(index),cy:y(focusValue),r:3.1,fill:focusColour},mini);
+    const summary = create('div','eplu-tip-trajectory-summary');
+    const focusLabel=create('span','',focusClub.name+' · '+focusValue+' pts after '+index);
+    focusLabel.style.color=focusColour;
+    summary.appendChild(focusLabel);
+    summary.appendChild(create('span','','Each club\'s own game number'));
+    area.append(mini,summary);
+    tooltip.appendChild(area);
+  }
   function matchInfo(game, target, pinned) {
     if (!game || !target) return;
     tooltip.replaceChildren();
@@ -154,6 +207,7 @@
       cell.appendChild(create('strong','',value));results.appendChild(cell);
     });
     tooltip.appendChild(results);
+    addCumulativeTooltipChart(team,game.number);
     tooltip.appendChild(create('div','eplu-tip-date',fullDate(game.date)+' · '+home+' vs '+away+' · match '+game.number));
     tooltip.hidden=false;
     positionTooltip(target);
@@ -175,6 +229,7 @@
       stats.appendChild(cell);
     });
     tooltip.appendChild(stats);
+    addCumulativeTooltipChart(team,pickedMatch || 38);
     tooltip.appendChild(create('div','eplu-tip-date','Tap this club badge to view its monthly results'));
     tooltip.hidden=false;
     positionTooltip(target);
