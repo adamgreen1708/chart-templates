@@ -4,7 +4,7 @@ CHART_CONFIG = {
   "x_col":"year","y_col":"share_pct","series_col":"initial",
   "focus_series":"A","secondary_series":"J","story_angle":"focus_vs_context",
   "title":"A got louder. J got quieter.",
-  "subtitle":"Initial-letter share of published boy-name registrations, 1996–2024.",
+  "subtitle":"Blue A; red J. Shares of published boys\' names, 1996–2024.",
   "source_text":"Source: ONS via TidyTuesday",
   "footer_left":"Adam Green | coffeetableviz",
   "x_label":"Birth year","y_label":"Share of published registrations (%)",
