@@ -27,6 +27,8 @@ In 1996, Adam accounted for about **136 per 10,000** boys; by 2024, just **46**.
 
 Adrian, meanwhile, went from **4.7** to **6.6**.
 
+And here's the deliciously misleading bit: **Adrian actually slipped from 204th to 244th in the rankings**, even as his share of newborn boys *increased*. A name can become more common and still fall down the chart when the other names are having an even better day.
+
 Yes, Adam is still far more common. Yes, Alex has had better decades. But by *relative change in share of boys' births*, Adrian is the only brother who's headed upwards — about **41%** since 1996.
 
 Adrian was playing the long game. The other two may need to consider a rebrand.
