@@ -51,6 +51,29 @@ def main():
     annual=[chosen[(y,name)] for name in NAMES for y in YEARS]
     write("chart_02_annual.csv",["year","name","births","rank"],annual)
 
+    # Auditable 2-year birth-rate normalisation: true male-birth denominators,
+    # not the sum of names surviving ONS's disclosure suppression threshold.
+    denom_rows=list(csv.DictReader((DATA/"male_birth_denominators.csv").open(encoding="utf-8")))
+    denom={int(r["year"]):int(r["male_births"]) for r in denom_rows}
+    assert len(denom_rows)==2 and denom=={1996:333490,2024:304889}, "Re-verify male-birth source before changing these years"
+    # Each label corresponds to one genuine observation, not an invented statistic.
+    order=("Adrian","Adam","Alex")
+    norm=[]
+    for pos,name in enumerate(order,1):
+        start=chosen[(1996,name)]["births"]
+        end=chosen[(2024,name)]["births"]
+        before=10000*start/denom[1996]
+        after=10000*end/denom[2024]
+        change=100*(after/before-1)
+        norm.append({"name":name,"plot_y":pos,"change_pct":round(change,3),
+            "per_10000_1996":round(before,3),"per_10000_2024":round(after,3),
+            "births_1996":start,"births_2024":end,
+            "male_births_1996":denom[1996],"male_births_2024":denom[2024]})
+    assert norm[0]["change_pct"]>0 and all(x["change_pct"]<0 for x in norm[1:]), "Normalised reversal unconfirmed"
+    write("chart_02_normalised.csv",
+          ["name","plot_y","change_pct","per_10000_1996","per_10000_2024",
+           "births_1996","births_2024","male_births_1996","male_births_2024"],norm)
+
     historical=list(csv.DictReader((DATA/"historical_ranks.csv").open(encoding="utf-8")))
     expected={(1944,"Adrian",74),(1954,"Adrian",54),(1964,"Adrian",30),
        (1964,"Adam",68),(1974,"Adrian",38),(1974,"Adam",35),
@@ -78,6 +101,15 @@ def main():
     lines.extend(["", "## Published first-letter shares"])
     for y in (1996,2024):
         lines.append(f"- {y}: A {v[(y,'A')]:.2f}%, J {v[(y,'J')]:.2f}%")
+    lines.extend(["", "## Normalised per 10,000 male live births (two-year endpoints)",
+      "- 1996 denominator 333,490: GRO/ONS Table 1.1 male live births (occurrence year).",
+      "- 2024 denominator 304,889: ONS baby-names 2024 announcement, boys included in the baby-names release.",
+      "- The birth-series and name-series publication bases differ slightly; interpretation is approximate,",
+      "  but the direction/magnitude of the changes is robust. No annual rate for intervening years is implied.",
+      "- Source CSV includes both denominators and full source URLs."])
+    for r in norm:
+        lines.append(f"- {r['name']}: {r['per_10000_1996']:.2f} -> {r['per_10000_2024']:.2f} "
+                     f"per 10,000 boys, relative change {r['change_pct']:+.1f}%.")
     (DATA/"story_evidence.md").write_text("\n".join(lines)+"\n",encoding="utf-8")
     print("\n".join(lines))
     print("PASS: source hash, rows, rank snapshots, complete annual series, initial denominators")
