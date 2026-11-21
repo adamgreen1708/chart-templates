@@ -8,7 +8,7 @@
     "lastDate": "2026-05-24",
     "x_definition": "Each club's nth completed league match; not simultaneous calendar matchweeks",
     "source": "Football-Data.co.uk E0.csv via qhtexas/football-dataset",
-    "source_mirror": "https://github.com/qhtexas/football-dataset/blob/92c659f51c53f7a0212892ed2796db8e324da74d/datasets/premier-league/season-2526.csv",
+    "source_mirror": "https://github.com/qhtexas/football-dataset/blob/9ec38fd9149216e3110d8b6edb1c0e8457d3016b/datasets/premier-league/season-2526.csv",
     "source_upstream": "https://www.football-data.co.uk/mmz4281/2526/E0.csv",
     "source_blob_sha": "92c659f51c53f7a0212892ed2796db8e324da74d",
     "retrieved": "2026-11-21",
