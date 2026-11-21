@@ -18,3 +18,18 @@ Production: GitHub render-archived-project workflow only, 1600px plus real 390px
 
 ## Current review render
 GitHub Actions exact 1600px outputs plus QA mobile exports are required. A first render succeeded but its push collided with ongoing branch edits; repeat on current stable head and inspect the saved images before approval.
+
+## Normalisation revision — 21 November 2026
+At the editorial review stage, replace the raw annual rank chart (chart 2) with an actual **per-10,000 boys** comparison for 1996 and 2024; annual raw counts/ranks remain as audited background data. Chart 2 is now an explicitly 2-year rate-change scatter on a negative/positive axis, with each brother's colour maintained.
+
+- Male-birth denominators are stored (with source URL per row) in `data/male_birth_denominators.csv`.
+- **1996: 333,490** male births from historical GRO/ONS Table 1.1, England and Wales (1996 year of occurrence).
+- **2024: 304,889** male births in the ONS baby-name release's 2024 cohort.
+- Difference in birth-statistics population basis: historical 1996 live-birth occurrence vs 2024 ONS baby-names cohort; minor publication difference makes percentage-point precision approximate. The editorial conclusion is robust to this discrepancy.
+- Rates: `exact-name births * 10000 / annual male births`. Relative change: `100 * ((rate2024 / rate1996) - 1)`, **not** a difference in percentage points.
+- The calculated source rows feed `data/chart_02_normalised.csv`; no hardcoded measured value in plotting code.
+- Chart 3 retains the different denominator of *published ONS baby-name registrations*, due to lack of a verified, fully aligned 29-year male-birth denominator series. Its axis and article must say so; do **not** call the annual A/J lines a share of all boy births.
+- This comparison does not claim trends during intervening years — only measured endpoints. Reconsider adding an annual-rate chart only once annual male-birth denominators are fully sourced and imported.
+
+Three-chart editorial arc now: historically Adrian arrived early → **Adrian is the only gainer by birth share** → the letter A overtakes J among published names.
+The ranking chart, historical sources, archive-only status and publication approval gate otherwise remain unchanged.
