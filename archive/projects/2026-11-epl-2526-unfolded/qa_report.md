@@ -9,7 +9,7 @@
 - [x] Individual month dots encode W (red), D (light grey), L (dark grey), matching screenshot semantics.
 - [x] Final-points badges positioned using their final points on shared 0–90 horizontal scale.
 - [x] User-approved 40%-opacity / 2px backdrop-blur tooltip settings preserved on #303133 dark canvas.
-- [x] JavaScript source parse check performed before PR update.
+- [x] JavaScript source parse check performed after PR update.\n- [x] Mocked-DOM runtime smoke test: renders Arsenal's 10 month columns and all 38 real result dots, 2 summary rows, 20 final-points club badges; selected dot fades other 37 and pins tooltip, reselect clears, club selector switches to Tottenham (rank 17).
 - [ ] Jekyll PR-build rerun on revised head SHA.
 - [ ] Real browser desktop and mobile QA: position tooltip near edges, 320px and 390px, W/D/L stack space, SVG badge collision.
 - [ ] Accessibility QA including VoiceOver; at mobile select an overlapping final-points badge.
