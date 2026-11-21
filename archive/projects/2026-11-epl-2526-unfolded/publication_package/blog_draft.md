@@ -11,7 +11,7 @@ In my original 2020–21 Tableau project, I wanted to see the months — and the
 
 This new version brings that idea into Coffeetableviz.
 
-Choose a club and watch its calendar change. Red circles mark wins, light grey marks draws and darker grey defeats. Home results sit above the month labels; away results below. Tap a dot to find out who played, what happened and when. The club's home and away points, goals and form sit beside the dots.
+Choose a club and watch its calendar change. Wins take their colour from the selected club’s home-kit primary colour, while light grey marks draws and darker grey defeats. Home results sit above the month labels with the earliest nearest the centre; away results sit below, again with the earliest nearest the centre. Tap a dot to find out who played, what happened and when. The club's home and away points, goals and form sit beside the dots.
 
 Then look down to the final-points rail. All twenty clubs share the same 0–90 scale, so you can jump from a champion to a relegated side and see a very different pattern.
 
