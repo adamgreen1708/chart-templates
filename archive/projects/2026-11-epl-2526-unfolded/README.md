@@ -24,7 +24,7 @@ This revised implementation mirrors that **visual grammar and storytelling seque
 - JSON at `site/assets/data/epl-2526-unfolded.json`.
 - Jekyll URL after eventual approved merge: `/resources/epl-2025-26-unfolded/`.
 
-The pinned data are grouped by **calendar month of the actual fixture date**. Every W/D/L marker is one real match, with home/away, full-time scores, opponent and date available on selection. Month-by-venue dot stacks order matches chronologically. A month can have more/fewer fixtures, reflecting actual rescheduling.
+The pinned data are grouped by **calendar month of the actual fixture date**. Every W/D/L marker is one real match, with home/away, full-time scores, opponent and date available on selection. Win dots and the club heading use a curated, season-appropriate club primary colour; contrast-adjusted text/borders remain legible for very dark or white kits. For each month, earliest home fixtures sit immediately above the centre label and later results stack upwards; earliest away fixtures sit immediately below the centre label and later results stack downwards. Month-by-venue dot stacks order matches chronologically. A month can have more/fewer fixtures, reflecting actual rescheduling.
 
 Full season ranking is sorted by points, goal difference and goals scored. Home/away totals are recomputed from the 19 fixtures for each venue, not hard-coded. No invented historical league positions.
 
