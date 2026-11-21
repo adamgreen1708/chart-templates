@@ -34,7 +34,7 @@ Full season ranking is sorted by points, goal difference and goals scored. Home/
 - Hover match circle for a temporary tooltip, click/tap to pin. Tap the **same** dot or empty background to clear.
 - Selected match remains full opacity with a ring; **other match dots fade to 43%**.
 - Bottom club selection highlights its badge and leaves other club badges subdued.
-- Glass tooltip background matches chart's charcoal `#303133` at **40% opacity**, with **2px backdrop blur**, subtle border and shadow. All text remains opaque.
+- Glass tooltip background matches chart's charcoal `#303133` at **45% opacity**, with **2px backdrop blur**, subtle border and shadow. All text remains opaque.
 - Mobile responsive **10-column single-row August–May display** and compact home/away summary. No horizontal scrolling in chart; dots become 22–23px at narrow widths.
 - Every W/D/L dot has a screen-reader description with real home/away team names, score, date and result. No fake icons, club crests, or placeholder statistics.
 
