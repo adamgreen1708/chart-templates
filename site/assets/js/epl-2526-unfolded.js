@@ -255,7 +255,7 @@
       svgNode('line',{x1:cx,x2:cx,y1:cy+radius+3,y2:baseline,stroke:selected?'#D6D8D9':'#555A5E',opacity:selected?.65:.3,'stroke-width':1,'pointer-events':'none'});
       const group=svgNode('g',{tabindex:0,role:'button','aria-label':club.name+', position '+club.rank+', '+club.points+' points; select club','aria-pressed':String(selected),'data-club':club.name,style:'cursor:pointer'});
       svgNode('circle',{cx,cy,r:touch,fill:'transparent'},group);
-      svgNode('circle',{cx,cy,r:radius,fill:selected?'#EA262D':'#4D5256',stroke:selected?'#FFFFFF':'#95999C','stroke-width':selected?1.9:1,opacity:selected?1:.72},group);
+      svgNode('circle',{cx,cy,r:radius,fill:selected?'#EA262D':'#4D5256',stroke:selected?'#FFFFFF':'#95999C','stroke-width':selected?1.9:1,opacity:selected?1:.43},group);
       svgNode('text',{x:cx,y:cy+3.5,'text-anchor':'middle',fill:'#F7F7F7','font-size':mobile?8:9.5,'font-family':'IBM Plex Mono, monospace','font-weight':600,'pointer-events':'none'},group,abbreviations[club.name]||club.name.slice(0,3).toUpperCase());
       group.addEventListener('click',e=>{e.stopPropagation();setTeam(club.name)});
       group.addEventListener('keydown',e=>{
