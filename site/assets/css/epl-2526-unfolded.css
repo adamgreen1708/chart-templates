@@ -27,6 +27,7 @@
 .eplu-pill.w{background:var(--ev-win)}
 .eplu-pill.d{background:var(--ev-draw);color:#2C3032}
 .eplu-pill.l{background:var(--ev-loss)}
+.eplu-row-key{display:flex;justify-content:space-between;gap:10px;color:#B7BBC0;font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.075em;margin:0 0 9px}
 .eplu-calendar{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:6px;align-items:start}
 .eplu-month{min-width:0;display:grid;grid-template-rows:117px 31px 117px;justify-items:center;position:relative}
 .eplu-month-home,.eplu-month-away{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:100%}
