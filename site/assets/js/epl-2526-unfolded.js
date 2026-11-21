@@ -24,6 +24,48 @@
     'Leeds':'LEE','Liverpool':'LIV','Man City':'MCI','Man United':'MUN','Newcastle':'NEW',
     "Nott'm Forest":'NFO','Sunderland':'SUN','Tottenham':'TOT','West Ham':'WHU','Wolves':'WOL'
   };
+  // Representative 2025–26 home-kit primary colours, not licensed brand hex specifications.
+  // Black/white home kits intentionally stay black/white; visibility is provided by outline/contrast styling.
+  const primaryByClub = Object.freeze({
+    'Arsenal':'#EF0107', 'Aston Villa':'#670E36', 'Bournemouth':'#DA291C',
+    'Brentford':'#E30613', 'Brighton':'#0057B8', 'Burnley':'#6C1D45',
+    'Chelsea':'#034694', 'Crystal Palace':'#1B458F', 'Everton':'#003399',
+    'Fulham':'#FFFFFF', 'Leeds':'#FFFFFF', 'Liverpool':'#C8102E',
+    'Man City':'#6CABDD', 'Man United':'#DA291C', 'Newcastle':'#111111',
+    "Nott'm Forest":'#DD0000', 'Sunderland':'#EB172B', 'Tottenham':'#FFFFFF',
+    'West Ham':'#7A263A', 'Wolves':'#FDB913'
+  });
+  function srgb(hex) {
+    return [1,3,5].map(i => parseInt(hex.slice(i,i+2),16)/255).map(c => c<=.04045 ? c/12.92 : Math.pow((c+.055)/1.055,2.4));
+  }
+  function luminance(hex) {
+    const [r,g,b]=srgb(hex);
+    return .2126*r+.7152*g+.0722*b;
+  }
+  function contrast(a,b) {
+    const l1=luminance(a), l2=luminance(b);
+    return (Math.max(l1,l2)+.05)/(Math.min(l1,l2)+.05);
+  }
+  function textOn(hex) { return contrast('#FFFFFF',hex)>=contrast('#202326',hex) ? '#FFFFFF' : '#202326'; }
+  function lightenForTitle(hex) {
+    const bg='#303133';
+    if(contrast(hex,bg)>=4.5)return hex;
+    const rgb=[1,3,5].map(i=>parseInt(hex.slice(i,i+2),16));
+    for(let amount=1;amount<=100;amount++){
+      const blend='#'+rgb.map(v=>Math.round(v+(255-v)*amount/100).toString(16).padStart(2,'0')).join('');
+      if(contrast(blend,bg)>=4.5)return blend;
+    }
+    return '#FFFFFF';
+  }
+  function applyClubColour(name) {
+    const primary=primaryByClub[name]||'#F1F2F2';
+    const readable=lightenForTitle(primary);
+    const against=textOn(primary);
+    viz.style.setProperty('--ev-win',primary);
+    viz.style.setProperty('--ev-win-text',against);
+    viz.style.setProperty('--ev-win-outline',contrast(primary,'#303133')<2.8?'#CBD1D5':'transparent');
+    viz.style.setProperty('--ev-club-heading',readable);
+  }
   const numeric = n => Number(n).toLocaleString('en-GB');
   const create = (tag, cls, value) => {
     const e = document.createElement(tag);
@@ -179,7 +221,11 @@
       const home=create('div','eplu-month-home');
       const away=create('div','eplu-month-away');
       for (const [venue,host] of [['H',home],['A',away]]) {
-        team.games.filter(g=>g.date.startsWith(month)&&g.venue===venue).forEach(game=>{
+        // Chronology radiates outward from the central month label:
+        // home earliest = bottom (reverse DOM order), away earliest = top (normal order).
+        const dated = team.games.filter(g=>g.date.startsWith(month)&&g.venue===venue);
+        if(venue==='H')dated.reverse();
+        dated.forEach(game=>{
           const btn=create('button','eplu-match',game.result);
           btn.type='button';
           btn.dataset.result=game.result;
@@ -208,6 +254,7 @@
     const match=byName(name);
     if(!match)return;
     team=match;
+    applyClubColour(team.name);
     clubName.textContent=team.name.toUpperCase();
     rank.textContent=String(team.rank);
     rank.setAttribute('aria-label','Final league position '+team.rank);
@@ -255,8 +302,9 @@
       svgNode('line',{x1:cx,x2:cx,y1:cy+radius+3,y2:baseline,stroke:selected?'#D6D8D9':'#555A5E',opacity:selected?.65:.3,'stroke-width':1,'pointer-events':'none'});
       const group=svgNode('g',{tabindex:0,role:'button','aria-label':club.name+', position '+club.rank+', '+club.points+' points; select club','aria-pressed':String(selected),'data-club':club.name,style:'cursor:pointer'});
       svgNode('circle',{cx,cy,r:touch,fill:'transparent'},group);
-      svgNode('circle',{cx,cy,r:radius,fill:selected?'#EA262D':'#4D5256',stroke:selected?'#FFFFFF':'#95999C','stroke-width':selected?1.9:1,opacity:selected?1:.43},group);
-      svgNode('text',{x:cx,y:cy+3.5,'text-anchor':'middle',fill:'#F7F7F7','font-size':mobile?8:9.5,'font-family':'IBM Plex Mono, monospace','font-weight':600,'pointer-events':'none'},group,abbreviations[club.name]||club.name.slice(0,3).toUpperCase());
+      const fill = selected ? primaryByClub[club.name] : '#4D5256';
+      svgNode('circle',{cx,cy,r:radius,fill,stroke:selected?'#D6DFE4':'#95999C','stroke-width':selected?1.9:1,opacity:selected?1:.43},group);
+      svgNode('text',{x:cx,y:cy+3.5,'text-anchor':'middle',fill:selected?textOn(fill):'#F7F7F7','font-size':mobile?8:9.5,'font-family':'IBM Plex Mono, monospace','font-weight':600,'pointer-events':'none'},group,abbreviations[club.name]||club.name.slice(0,3).toUpperCase());
       group.addEventListener('click',e=>{e.stopPropagation();setTeam(club.name)});
       group.addEventListener('keydown',e=>{
         if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();setTeam(club.name)}
