@@ -9,9 +9,23 @@
 - [x] Individual month dots encode W (red), D (light grey), L (dark grey), matching screenshot semantics.
 - [x] Final-points badges positioned using their final points on shared 0–90 horizontal scale.
 - [x] User-approved 40%-opacity / 2px backdrop-blur tooltip settings preserved on #303133 dark canvas.
-- [x] JavaScript source parse check performed after PR update.\n- [x] Mocked-DOM runtime smoke test: renders Arsenal's 10 month columns and all 38 real result dots, 2 summary rows, 20 final-points club badges; selected dot fades other 37 and pins tooltip, reselect clears, club selector switches to Tottenham (rank 17).
+- [x] JavaScript source parse check performed after PR update.
+- [x] Mocked-DOM runtime smoke test: renders Arsenal's 10 month columns and all 38 real result dots, 2 summary rows, 20 final-points club badges; selected dot fades other 37 and pins tooltip, reselect clears, club selector switches to Tottenham (rank 17).
 - [ ] Jekyll PR-build rerun on revised head SHA.
-- [x] CSS layout arithmetic verified at 320px (10 columns, at least 25.9px each for 22px dots) and 390px (32px per column for 23px dots) with the site's documented narrow-screen shell margins.\n- [ ] Actual browser screenshot and touch QA at 320px and 390px: inspect tooltip positioning, 10-column W/D/L single row, touch targets and points badge collisions.
+- [x] CSS layout arithmetic verified at 320px (10 columns, at least 25.9px each for 22px dots) and 390px (32px per column for 23px dots) with the site's documented narrow-screen shell margins.
+- [ ] Actual browser screenshot and touch QA at 320px and 390px: inspect tooltip positioning, 10-column W/D/L single row, touch targets and points badge collisions.
 - [ ] Accessibility QA including VoiceOver; at mobile select an overlapping final-points badge.
 - [ ] Actual team-crests asset provenance/licensing if adding them instead of present text badges.
 - [ ] Editorial approval; do not merge/publish.
+
+## Colour and chronology revision (club-specific primary palette)
+- [x] Verified representative home-kit colour families against the Premier League 2025–26 kits overview; curated hex choices explicitly treated as **display approximations**, not asserted licensed brand values.
+- [x] 20/20 club names resolved in the dynamic primary palette.
+- [x] Win dots and W key now inherit selected club's primary colour; selected club badge also uses primary.
+- [x] Dot text chooses dark or white contrast automatically. Dark-fill dots use a subtle light outline.
+- [x] Heading automatically lightens primary colour to minimum WCAG 4.5:1 contrast against #303133; checked 20/20 teams (minimum 4.5:1).
+- [x] HOME dots are bottom-aligned, month-and-venue fixture order reversed in DOM so earliest is nearest the month at the bottom; AWAY dots are top-aligned, earliest nearest the label at the top. Verified source sequence across all clubs and months.
+- [x] Tooltip maintains #303133 at 40% opacity / 2px blur, with explicit white text for match title, score, points and other detail to override general site text colours.
+- [x] Original 10-column August–May single-row layout retained on phones.
+- [x] JavaScript syntax and source-statistics validation passed after revision.
+- [ ] Actual browser/physical-device contrast and tooltip placement QA remains prior to publication.
