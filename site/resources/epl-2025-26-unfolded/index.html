@@ -1,0 +1,70 @@
+---
+layout: default
+title: Premier League 2025–26 — the season unfolded
+description: Follow all 20 Premier League clubs through their 38 matches. Select a team, explore its points trajectory and reveal match-by-match results.
+permalink: /resources/epl-2025-26-unfolded/
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/epl-2526-unfolded.css' | relative_url }}">
+<article class="eplu shell-wide" id="epl-unfolded" data-source="{{ '/assets/data/epl-2526-unfolded.json' | relative_url }}">
+  <header class="eplu-header">
+    <p class="eyebrow">Interactive chart · Sport</p>
+    <h1>The season unfolded<span>.</span></h1>
+    <p class="eplu-intro">Twenty clubs. Thirty-eight matches each. One title — and nineteen other journeys. Follow how the 2025–26 Premier League unfolded, one club's match at a time.</p>
+    <p class="eplu-context">Arsenal finished seven points clear of Manchester City. The final table tells you who won. The lines below show how the points were accumulated.</p>
+  </header>
+  <section class="eplu-card" aria-labelledby="eplu-chart-title">
+    <div class="eplu-card-head">
+      <div>
+        <p class="eplu-kicker">01 / FOLLOW THE POINTS</p>
+        <h2 id="eplu-chart-title">Thirty-eight matches, twenty different routes</h2>
+        <p>Each line traces the points earned by one club over its own first, second, third … thirty-eighth match.</p>
+      </div>
+    </div>
+    <div class="eplu-controls">
+      <label for="eplu-team">Highlight club
+        <select id="eplu-team"><option value="">All clubs</option></select>
+      </label>
+      <label for="eplu-compare">Compare with
+        <select id="eplu-compare"><option value="">No comparison</option></select>
+      </label>
+    </div>
+    <div class="eplu-state">
+      <span id="eplu-status" role="status" aria-live="polite">Loading verified season data…</span>
+      <button id="eplu-clear" type="button">Clear selection ×</button>
+    </div>
+    <div id="eplu-plot" class="eplu-plot">
+      <svg id="eplu-svg" role="img" aria-label="Club-by-club cumulative Premier League points plotted against that club's match number, one to thirty-eight"></svg>
+      <div id="eplu-tooltip" class="eplu-tooltip" hidden aria-live="polite"></div>
+    </div>
+    <div class="eplu-legend">
+      <span><i class="eplu-key-focus"></i> Selected club</span>
+      <span><i class="eplu-key-compare"></i> Comparison</span>
+      <span><i class="eplu-key-context"></i> Other clubs</span>
+    </div>
+    <label class="eplu-step" for="eplu-match">
+      <span>Explore match <strong id="eplu-match-label">38</strong> of 38</span>
+      <input id="eplu-match" type="range" min="1" max="38" step="1" value="38">
+    </label>
+    <p class="eplu-instruction">Tap a line to select a club, choose one from the list, or slide through its results. Tap the same line again, or an empty area of the chart, to clear it.</p>
+  </section>
+  <section class="eplu-table-section" aria-labelledby="eplu-table-title">
+    <p class="eplu-kicker">02 / THE FINISHING ORDER</p>
+    <h2 id="eplu-table-title">The final table</h2>
+    <p>Choose any team below to bring its path into focus above.</p>
+    <div class="eplu-table-wrap">
+      <table class="eplu-table">
+        <thead><tr><th scope="col">Pos</th><th scope="col">Club</th><th scope="col">Pts</th><th scope="col">GD</th></tr></thead>
+        <tbody id="eplu-table-body"><tr><td colspan="4">Loading 2025–26 results…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+  <section class="eplu-notes" aria-labelledby="eplu-method">
+    <p class="eplu-kicker">03 / BEHIND THE LINES</p>
+    <h2 id="eplu-method">What exactly are we looking at?</h2>
+    <p>The horizontal axis is <strong>each club's own match number</strong>, not the shared calendar date or an official Premier League matchweek. That keeps all 20 clubs aligned by games played when fixtures are postponed. The vertical axis is cumulative league points: three for a win, one for a draw, none for a defeat.</p>
+    <p>Results comprise 380 full-time Premier League fixtures between 15 August 2025 and 24 May 2026, sourced from <a href="https://www.football-data.co.uk/mmz4281/2526/E0.csv">Football-Data.co.uk's 2025–26 results</a> via a <a href="https://github.com/qhtexas/football-dataset/blob/92c659f51c53f7a0212892ed2796db8e324da74d/datasets/premier-league/season-2526.csv">pinned source snapshot</a>. The final table has been cross-checked against <a href="https://www.premierleague.com/en/tables/premier-league/2025-26">the Premier League's official table</a>. The archived CSV, calculation script and rendered JSON live together in the Coffeetableviz repository.</p>
+    <p>This interaction is inspired by <a href="https://public.tableau.com/app/profile/adam.green4310/viz/EPL202021SeasonUnfolded/202021EPLSeason">the original 2020–21 Season Unfolded Tableau project</a>. This is a new interpretation, rather than a confirmed pixel-for-pixel recreation of the Tableau dashboard.</p>
+  </section>
+</article>
+<script defer src="{{ '/assets/js/epl-2526-unfolded.js' | relative_url }}"></script>
