@@ -1,34 +1,55 @@
 # The A-Team: a family history of questionable naming decisions
-*Unpublished editorial draft — check computed numeric findings before approval.*
+*Unpublished editorial draft. UK English. Three brothers, one letter and some extremely unnecessary statistical sibling rivalry.*
 
 Three brothers. Adam, Adrian and Alex.
 
-Three perfectly ordinary names individually. Together, something approaching an alphabetical filing system.
+Three perfectly sensible names individually. Together, something approaching an alphabetical filing system.
 
-There are two explanations. Either our parents thought deeply about the importance of names, or the baby-name book fell open at page one and never recovered.
+Either our parents thought deeply about the importance of names, or the baby-name book fell open at page one and never recovered.
 
 ## Adrian got there first
-In 1944, Adrian was No. 74 among boys' names in England and Wales. By 1964, he was No. 30. Adam was No. 68, and Alex wasn't in the top 100.
 
-By 1984, Adam had jumped to No. 12, Alex had finally appeared at No. 79, and Adrian had slipped to No. 63.
+Adrian was already in the historical boys' top 100 in England and Wales in 1944, at No. 74. By 1964 he was No. 30, while Adam had made it to No. 68 and Alex was absent from that year's top 100.
 
-The family pecking order, at least in naming fashion, was clearly open to negotiation.
+Fast-forward to 1984 and Adam was No. 12, Alex had joined at No. 79, and Adrian had slipped to No. 63.
 
-**Chart 1 — Adrian was there first.** Historical top-100 rankings, only at ten-year intervals. Do not imply annual observations.
+An early lead is no guarantee of lifelong bragging rights.
 
-## Adam refuses to leave
-The annual figures start in 1996. The three names have taken rather different routes since then.
+**Chart 1 — Adrian was there first.** These are *observed ten-year rankings*, not annual data.
 
-**Chart 2 — Adam never quite went away.** Actual ranks for each exact name, 1996–2024. Add sourced endpoint observations only after checking the generated evidence.
+## But who aged best?
 
-## Alphabetical ambition
-Perhaps the real family talent was choosing the right initial. Is A now enjoying the sort of popularity that J once did?
+It's tempting to compare how many babies received each name in 1996 and 2024. But the number of boys born changed too. So the fairer contest is the number of babies bearing each name **per 10,000 boys born**.
 
-**Chart 3 — A got louder. J got quieter.** A and J as a share of the *published* boys' name registrations, 1996–2024; not a share of all births.
+That changes the family ranking a little.
 
-Some families pass on a trade for generations. Ours apparently committed to the first letter of the alphabet.
+In 1996, Adam accounted for about **136 per 10,000** boys; by 2024, just **46**. Alex went from nearly **53** to fewer than **10**.
+
+Adrian, meanwhile, went from **4.7** to **6.6**.
+
+Yes, Adam is still far more common. Yes, Alex has had better decades. But by *relative change in share of boys' births*, Adrian is the only brother who's headed upwards — about **41%** since 1996.
+
+Adrian was playing the long game. The other two may need to consider a rebrand.
+
+**Chart 2 — Adrian gets the last laugh.** Relative percentage change in the boys-name rate per 10,000, 1996 versus 2024. The denominators use ONS male-birth totals, not just the names that made the published list.
+
+## A particularly ambitious letter
+
+But the three of us might have picked the right letter, at least.
+
+Among *published* boys' first names in England and Wales, the share starting with A rose from **9.00% in 1996 to 13.46% in 2024**. The letter J moved in the opposite direction, from **19.55% to 7.32%**.
+
+In these published-name records, A overtook J in **2017**.
+
+So a family alphabet policy that once looked a little unimaginative now seems practically visionary.
+
+**Chart 3 — A got louder. J got quieter.** Annual percentages of the *published* male name registrations only; ONS suppresses names given to one or two babies, so this third chart is not a percentage of all male births.
 
 ## TL;DR
-Adrian got there first. Adam became the more enduring favourite. Alex arrived later. As for the bigger A-versus-J story, the data may give our parents the last laugh.
 
-<!-- Draft, not live site publication; no publication assets or PR merge authorised. -->
+Adrian was in the top 100 first. Adam remains the most popular name of the three, but has fallen sharply. Alex hasn't escaped the slide. **Adrian is the only gainer after allowing for the number of boys born.** And the letter A is booming relative to J.
+
+Our parents' naming strategy was either ahead of its time, or just a very efficient way to label three coat pegs.
+
+---
+**Source/precision note — review, not necessarily for publication:** Boys registered in England and Wales, exact spellings; 1996–2024 name series. The 1996 male-birth denominator (333,490) is the GRO/ONS live-birth occurrence table; the 2024 denominator (304,889) is the ONS 2024 baby-names announcement cohort. These publication bases differ slightly, so two-year rates are approximate, but the large relative changes are robust. The annual initial-share series uses the published-name denominator, not all boys. No pre-1996 birth counts were assumed or interpolated.
