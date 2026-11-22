@@ -154,6 +154,6 @@ def main():
         INPUT.write_text(csv_out,encoding="utf-8")
         OUTPUT.parent.mkdir(parents=True,exist_ok=True)
         OUTPUT.write_text(json_out,encoding="utf-8")
-    print(f"PASS: {len(matches)} verified completed matches, 20 clubs, last result {max(m['Date'] for m in matches)}")
+    print(f"PASS: {len(matches)} verified completed matches, 20 clubs, last result {max(datetime.strptime(m['Date'], '%d/%m/%Y').date() for m in matches)}")
 if __name__=="__main__":
     main()

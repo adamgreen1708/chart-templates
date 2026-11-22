@@ -45,6 +45,12 @@ jobs:
           exit 1
       - name: Real browser mobile/desktop screenshots and interactions
         run: python scripts/qa/epl_2627_browser_test.py
+      - name: Check HTTPS branch preview resolves for independent review
+        shell: bash
+        run: |
+          URL="https://raw.githack.com/adamgreen1708/chart-templates/feature/epl-2627-season-unfolded/preview/epl-2026-27/index.html"
+          curl --fail --location --retry 3 --retry-delay 2 --connect-timeout 10 --max-time 35 --silent --show-error "$URL" -o /tmp/epl-2627-remote.html
+          grep -q 'id="epl-unfolded"' /tmp/epl-2627-remote.html
       - name: Upload screenshots and checks
         if: always()
         uses: actions/upload-artifact@v4
