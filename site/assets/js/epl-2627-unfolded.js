@@ -144,9 +144,11 @@
     head.appendChild(create('span','', '20 CLUBS'));
     area.appendChild(head);
     const focusValue = index ? focusClub.games[index-1].points : 0;
-    const pointsCap=Math.max(90,Math.ceil(Math.max(...season.teams.map(t=>t.points),0)/10)*10);
+    // Use the current league leader's verified points, not the final-season 90-point ceiling.
+    // Retain a nonzero denominator for the opening days before any points are earned.
+    const pointsCap=Math.max(1,...season.teams.map(t=>t.points));
     const maximumPlayed=Math.max(1,...season.teams.map(c=>c.played));
-    const description = 'All 20 clubs, cumulative points through each club\'s completed matches (0 to '+maximumPlayed+'). '+focusClub.name+' highlighted, at match '+index+' with '+focusValue+' points.';
+    const description = 'All 20 clubs, cumulative points through each club\'s completed matches (0 to '+maximumPlayed+'). Points scale 0 to '+pointsCap+', the current league-leading total. '+focusClub.name+' highlighted, at match '+index+' with '+focusValue+' points.';
     const mini = svgNode('svg',{
       viewBox:'0 0 270 142',class:'eplu-tip-mini','aria-label':description,role:'img',
       preserveAspectRatio:'xMidYMid meet'
@@ -154,7 +156,8 @@
     const left=27,right=259,top=9,bottom=113;
     const x=n=>left+n/maximumPlayed*(right-left);
     const y=n=>bottom-n/pointsCap*(bottom-top);
-    [0,pointsCap/2,pointsCap].forEach(value=>{
+    // Integer-only labels, with the true maximum shown at the top of the axis.
+    [...new Set([0,Math.round(pointsCap/2),pointsCap])].forEach(value=>{
       const ypos=y(value);
       svgNode('line',{x1:left,x2:right,y1:ypos,y2:ypos,stroke:'#E4EAEE','stroke-width':.7,opacity:.3},mini);
       svgNode('text',{x:left-6,y:ypos+3,'text-anchor':'end',fill:'#E3E8EA','font-size':9,'font-family':'monospace'},mini,value);
