@@ -56,10 +56,12 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Fetch original E0 CSV, validate, reject removed/revised completed results
+      - name: Fetch authenticated football-data.org finished results and validate history
         if: steps.uk_clock.outputs.proceed == 'true'
+        env:
+          FOOTBALL_DATA_ORG_TOKEN: ${{ secrets.FOOTBALL_DATA_ORG_TOKEN }}
         run: |
-          python archive/projects/2026-11-epl-2627-unfolded/scripts/build_data.py --refresh
+          python archive/projects/2026-11-epl-2627-unfolded/scripts/build_data.py --refresh --provider football-data-org
           python archive/projects/2026-11-epl-2627-unfolded/scripts/build_data.py --check
       - name: Verify ONLY data-only paths changed
         id: diff
@@ -126,7 +128,7 @@ jobs:
           commit-message: 'Update EPL 2026-27 verified completed match data'
           title: 'Data only: refresh 2026–27 EPL completed results'
           body: |
-            Verified update from the original Football-Data.co.uk 2627/E0.csv.
+            Verified FINISHED results from authenticated football-data.org v4 Premier League 2026–27 API.
             No design, editorial, 2025–26, JS, workflow or stylesheet files modified.
             Browser QA (1440 / 390 / 320), incremental fixture validation and
             deterministic data-build checks must succeed before merge.

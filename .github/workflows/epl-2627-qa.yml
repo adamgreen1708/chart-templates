@@ -28,10 +28,17 @@ jobs:
           python-version: '3.12'
       - name: Validate deterministic 2026-27 data
         run: |
-          python -m py_compile archive/projects/2026-11-epl-2627-unfolded/scripts/build_data.py
+          python -m py_compile archive/projects/2026-11-epl-2627-unfolded/scripts/build_data.py archive/projects/2026-11-epl-2627-unfolded/scripts/football_data_org.py
+          python -m unittest discover -s scripts/qa -p 'test_epl_2627_provider.py' -v
           python archive/projects/2026-11-epl-2627-unfolded/scripts/build_data.py --check
       - name: Read-only source freshness and reachability probe
         run: python scripts/qa/epl_2627_source_health.py
+      - name: Verify authenticated football-data.org source and historical results (read only)
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          FOOTBALL_DATA_ORG_TOKEN: ${{ secrets.FOOTBALL_DATA_ORG_TOKEN }}
+        run: |
+          python archive/projects/2026-11-epl-2627-unfolded/scripts/build_data.py --probe-provider --provider football-data-org
       - name: Install Chromium Playwright
         run: |
           python -m pip install playwright==1.56.0

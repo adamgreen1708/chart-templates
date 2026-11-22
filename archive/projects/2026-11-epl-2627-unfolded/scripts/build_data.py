@@ -77,7 +77,7 @@ def csv_text(matches):
     writer.writerows(matches)
     return buf.getvalue()
 
-def season_json(matches):
+def season_json(matches, source_url=SOURCE):
     by_team={club:[] for club in CLUBS}
     for m in matches:
         when=datetime.strptime(m["Date"], "%d/%m/%Y").date().isoformat()
@@ -110,7 +110,7 @@ def season_json(matches):
     meta=dict(season="2026–27",scope="English Premier League",matchCount=len(matches),
               teamCount=20,firstDate=min(dates),lastDate=max(dates),complete=len(matches)==380,
               x_definition="Each club's nth completed league match, not a shared fixture week",
-              source=SOURCE,source_mirror_initial=MIRROR,
+              source=source_url,source_mirror_initial=MIRROR,
               source_note="Only validated completed matches. Provisional standings until 380 verified results.")
     if sum(t["played"] for t in teams)!=2*len(matches):
         raise ValueError("Team match totals do not balance")
@@ -136,17 +136,41 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument("--refresh",action="store_true",help="Download original 2627/E0.csv, validate and reject changes to past scores")
     parser.add_argument("--check",action="store_true",help="Fail if committed CSV/JSON differs from deterministic rebuild")
+    parser.add_argument("--provider", choices=("football-data-org", "football-data-co-uk"), default="football-data-org",
+                        help="Upstream used with --refresh or --probe-provider (default: authenticated v4 API)")
+    parser.add_argument("--probe-provider",action="store_true",
+                        help="Read-only authenticated provider/history check; never modifies committed files")
     args=parser.parse_args()
     old=validate(INPUT.read_text(encoding="utf-8-sig"))
-    matches=validate(fetch_source()) if args.refresh else old
+    if args.refresh or args.probe_provider:
+        if args.provider == "football-data-org":
+            import football_data_org
+            incoming = football_data_org.fetch_source()
+        else:
+            incoming = fetch_source()
+        matches = validate(incoming)
+    else:
+        matches = old
     old_scores={(r["HomeTeam"],r["AwayTeam"]):(r["FTHG"],r["FTAG"],r["FTR"],r["Date"]) for r in old}
     new_scores={(r["HomeTeam"],r["AwayTeam"]):(r["FTHG"],r["FTAG"],r["FTR"],r["Date"]) for r in matches}
     missing=set(old_scores)-set(new_scores)
     revised=[k for k,v in old_scores.items() if k in new_scores and new_scores[k]!=v]
     if missing or revised or len(matches)<len(old):
         raise ValueError(f"Historical results disappeared/changed; editorial review required. Missing={sorted(missing)} revised={sorted(revised)}")
+    if args.probe_provider:
+        if not args.refresh:
+            print(f"PROVIDER PASS (READ ONLY): {args.provider}; {len(matches)} completed; "
+                  f"last result {max(datetime.strptime(m['Date'], '%d/%m/%Y').date() for m in matches)}; "
+                  f"{len(old_scores)} baseline results unchanged. No files written.")
+            return
+    # --check reproduces the provenance of the committed snapshot, regardless of
+    # the selected future refresh provider, to avoid relabelling old source data.
+    if args.refresh:
+        source_url = (football_data_org.SOURCE_URL if args.provider=="football-data-org" else SOURCE)
+    else:
+        source_url = json.loads(OUTPUT.read_text(encoding="utf-8"))["meta"]["source"]
     csv_out=csv_text(matches)
-    json_out=season_json(matches)
+    json_out=season_json(matches, source_url=source_url)
     if args.check:
         if INPUT.read_text(encoding="utf-8-sig")!=csv_out or OUTPUT.read_text(encoding="utf-8")!=json_out:
             raise ValueError("Committed snapshot does not match deterministic source build")
