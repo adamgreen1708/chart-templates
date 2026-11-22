@@ -68,3 +68,14 @@
 - [x] Screenshots captured and visually reviewed, particularly West Ham at 390px, where the lowest home circle now clears the line. QA run: https://github.com/adamgreen1708/chart-templates/actions/runs/44965174261
 - [x] GitHub Pages build succeeded on test head.
 - [ ] **Editorial sign-off and merge** not performed. User still to approve final publication. Keep PR #230 draft and unmerged pending approval.
+
+## Publication approval and final editorial packaging — 22 November 2026
+
+- [x] User explicitly approved proceeding with public release after the West Ham home-dot alignment and mobile review.
+- [x] Final user-reviewed interactive retained without changes to approved chart behaviour.
+- [x] Article prepared at `site/_posts/2026-11-22-premier-league-season-unfolded-2025-26.md`, category **Sport**, linked to the interactive.
+- [x] Source-backed editorial examples verified: Tottenham home 15 / away 26; Fulham home 35 / away 17; Chelsea home 26 / away 26; Arsenal 85 and Manchester City 78 total.
+- [x] Non-statistical symbolic W/D/L editorial cover created; no invented fixture values.
+- [x] Interactive featured first on the Resources index; reciprocal story / resource links added.
+- [x] Pre-merge branch is 0 commits behind main, with no protected locked renderer files affected.
+- [ ] Post-merge GitHub Pages deployment status and public URL must be independently verified before declaring release live.
