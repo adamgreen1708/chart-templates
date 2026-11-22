@@ -1,7 +1,7 @@
 # How the Premier League unfolded — 2025–26
 
 **Category:** Sport  
-**Status:** editorial draft for interactive Resource; not a published blog post.
+**Status:** archived early editorial draft. The publication copy is `site/_posts/2026-11-22-premier-league-season-unfolded-2025-26.md`; this working draft is not the live article.
 
 Arsenal took the Premier League title with **85 points**. Manchester City finished seven behind. That's the ending.
 
