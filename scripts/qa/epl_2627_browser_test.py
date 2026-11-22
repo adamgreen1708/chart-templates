@@ -52,6 +52,11 @@ with sync_playwright() as playwright:
         verify(tooltip.is_visible(), f"{width}px: tap opens pinned tooltip")
         verify(tooltip.locator("svg.eplu-tip-mini path").count()==20, f"{width}px: 20 cumulative trajectories visible")
         verify(tooltip.locator("svg.eplu-tip-mini circle").count()==2, f"{width}px: selected-match marker visible")
+        # Approved design animates opacity for 150 ms. Wait for the stable 43% state.
+        page.wait_for_function("""() => {
+            const dot=document.querySelector("#eplu-calendar .eplu-match.is-muted");
+            return dot && Math.abs(parseFloat(getComputedStyle(dot).opacity)-0.43)<0.02;
+        }""", timeout=3000)
         faded=page.locator("#eplu-calendar .eplu-match.is-muted").first.evaluate("(el)=>getComputedStyle(el).opacity")
         verify(abs(float(faded)-.43)<.02, f"{width}px: unselected markers retain 43% opacity")
         verify(page.locator("#eplu-calendar .eplu-match.is-muted").count()==CLUB["Arsenal"]["played"]-1, f"{width}px: unselected results fade")
