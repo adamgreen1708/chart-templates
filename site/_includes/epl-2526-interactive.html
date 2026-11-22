@@ -1,0 +1,92 @@
+<link rel="stylesheet" href="{{ '/assets/css/epl-2526-unfolded.css' | relative_url }}">
+<style>
+/* Restrict the original approved interactive to the archived story.
+   Undo blog prose/table styling only within this full-width chart. */
+.post-body .epl-archive-embed { margin-top: 2.1rem; margin-bottom: 4rem; }
+.post-body .epl-archive-embed .eplu { width:100%; max-width:none; margin:0; }
+.post-body .epl-archive-embed .eplu-viz .eplu-totals {
+  display:table; margin:0; width:100%; border-collapse:collapse;
+  table-layout:fixed; font:400 12px 'IBM Plex Mono',monospace;
+}
+.post-body .epl-archive-embed .eplu-viz .eplu-totals :is(th,td) {
+  border-bottom:0; padding:13px 1px; text-align:center; vertical-align:middle;
+  font-family:'IBM Plex Mono',monospace;
+}
+.post-body .epl-archive-embed .eplu-viz .eplu-totals th:first-child {text-align:left; width:50px;}
+.post-body .epl-archive-embed .eplu-viz .eplu-totals thead th {padding:0 1px 8px;}
+.post-body .epl-archive-embed .eplu-viz .eplu-totals tbody th {font-size:10px; font-weight:500;}
+.post-body .epl-archive-embed .eplu-viz .eplu-totals tbody td {font-size:12px;}
+.post-body .epl-archive-embed .eplu-viz .eplu-club-identity h2 {
+  font:500 clamp(20px,3vw,31px)/1.1 'Space Grotesk',sans-serif;
+  letter-spacing:-.025em; margin:5px 0 0;
+}
+.post-body .epl-archive-embed .eplu-viz .eplu-tooltip p {margin:0;}
+.post-body .epl-archive-caption {margin:12px 0 0; color:#555; font:.85rem/1.5 'IBM Plex Sans',sans-serif;}
+@media(max-width:650px){
+  .post-body .epl-archive-embed .eplu-viz .eplu-totals th:first-child{width:45px;}
+  .post-body .epl-archive-embed .eplu-viz .eplu-totals tbody td{font-size:11px;}
+}
+@media(max-width:350px){
+  .post-body .epl-archive-embed .eplu-viz .eplu-totals th:first-child{width:42px;}
+  .post-body .epl-archive-embed .eplu-viz .eplu-totals tbody td{font-size:10px;}
+}
+</style>
+<div class="full-bleed epl-archive-embed" id="epl-2526-interactive" aria-label="Interactive Premier League 2025–26 season results">
+  <div class="eplu" id="epl-unfolded" data-source="{{ '/assets/data/epl-2526-unfolded.json' | relative_url }}">
+    <section class="eplu-viz" id="eplu-viz" aria-label="Premier League 2025–26 interactive season calendar">
+      <header class="eplu-viz-top">
+        <p class="eplu-overline">HOW THE 2025/26 ENGLISH PREMIER LEAGUE UNFOLDED</p>
+        <div class="eplu-club-heading">
+          <div class="eplu-club-identity">
+            <span id="eplu-rank" class="eplu-rank">1</span>
+            <div>
+              <p class="eplu-caption">SELECTED CLUB</p>
+              <h2 id="eplu-club-name">Arsenal</h2>
+            </div>
+          </div>
+          <label class="eplu-picker">Change club
+            <select id="eplu-team" aria-label="Choose Premier League club"><option value="">Loading clubs…</option></select>
+          </label>
+        </div>
+      </header>
+  
+      <div class="eplu-main">
+        <div class="eplu-results">
+          <div class="eplu-section-label-row">
+            <p class="eplu-section-label">THE MONTHS / HOME & AWAY RESULTS</p>
+            <button type="button" id="eplu-clear" class="eplu-clear" disabled>Clear match ×</button>
+          </div>
+          <div class="eplu-results-legend"><span class="eplu-pill w">W</span> Win <span class="eplu-pill d">D</span> Draw <span class="eplu-pill l">L</span> Loss</div>
+          <p class="eplu-row-key"><span>HOME RESULTS ↑</span><span>AWAY RESULTS ↓</span></p>
+          <div id="eplu-calendar" class="eplu-calendar" aria-label="Monthly home and away league results"></div>
+          <p id="eplu-instructions" class="eplu-instructions">Tap a result to reveal the opponent, score and date. Tap again or outside the dots to clear it.</p>
+        </div>
+  
+        <aside class="eplu-summary" aria-labelledby="eplu-summary-title">
+          <p id="eplu-summary-title" class="eplu-section-label">HOME OR AWAY?</p>
+          <div class="eplu-totals-wrap">
+            <table class="eplu-totals">
+              <thead><tr><th scope="col"> </th><th scope="col">MP</th><th scope="col">W</th><th scope="col">D</th><th scope="col">L</th><th scope="col">GF</th><th scope="col">GA</th><th scope="col">GD</th><th scope="col">PTS</th></tr></thead>
+              <tbody id="eplu-totals-body"><tr><td colspan="9">Loading…</td></tr></tbody>
+            </table>
+          </div>
+          <p class="eplu-summary-note">Nineteen home fixtures. Nineteen away. Two very different ways to build a season.</p>
+        </aside>
+      </div>
+  
+      <div id="eplu-tooltip" class="eplu-tooltip" role="status" aria-live="polite" hidden></div>
+  
+      <section class="eplu-points" aria-labelledby="eplu-points-title">
+        <div class="eplu-points-header">
+          <div><p class="eplu-overline" id="eplu-points-title">FINAL SEASON POINTS</p><p class="eplu-points-sub">Every club, positioned by its final points total. Tap a badge to change the club above.</p></div>
+          <div class="eplu-points-key">20 CLUBS · 380 MATCHES</div>
+        </div>
+        <svg id="eplu-points-svg" viewBox="0 0 1000 208" role="img" aria-label="Interactive position plot: all 20 clubs by final season points"></svg>
+        <div class="eplu-points-hint" id="eplu-status" role="status" aria-live="polite">Loading the verified 2025–26 results…</div>
+      </section>
+      <div class="eplu-viz-foot"><span>Adam Green | coffeetableviz</span><span>Source: Football-Data.co.uk · 2025–26 full-time results</span></div>
+    </section>
+  </div>
+  <p class="epl-archive-caption">The completed 2025–26 season · 380 matches · 20 clubs. Pick a club and tap a result to explore.</p>
+</div>
+<script defer src="{{ '/assets/js/epl-2526-unfolded.js' | relative_url }}?v=2"></script>

@@ -33,7 +33,9 @@ Home results stack upwards from the month. Away results stack downwards. In each
 
 Choose a club. Tap a dot. See the opponent, score and date. There's also a little cumulative-points chart tucked into the translucent tooltip, with the other nineteen clubs kept quietly in the background.
 
-**[Explore the interactive Premier League season →]({{ '/resources/epl-2025-26-unfolded/' | relative_url }})**
+Here it is, right in the story. Choose a club, tap a dot and see how those 380 matches unfolded.
+
+{% include epl-2526-interactive.html %}
 
 ## Same league. Rather different home comforts.
 
@@ -61,7 +63,7 @@ What began as a Tableau experiment has become a touch-friendly browser visualisa
 
 A few more ways to explore what happened between August and May. And, hopefully, an excuse to spend another five minutes looking at football.
 
-**[Open the 2025–26 Season Unfolded interactive]({{ '/resources/epl-2025-26-unfolded/' | relative_url }})**
+**[Back to the 2025–26 interactive](#epl-2526-interactive)** · **[Explore the current 2026–27 season]({{ '/resources/epl-2026-27-unfolded/' | relative_url }})**
 
 ## TL;DR
 
