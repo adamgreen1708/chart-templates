@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="color-scheme" content="light">
+  <title>EPL 2026–27 · Season Unfolded · Coffeetableviz preview</title>
+  <meta name="description" content="Review-only interactive preview from unmerged GitHub REVIEW BRANCH.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../site/assets/css/site.css">
+  <style>
+    .pr-preview-ribbon {background:#1e343d;color:#f5fbfc;padding:10px 20px;font:500 12px/1.5 "IBM Plex Sans",sans-serif;text-align:center}
+    .pr-preview-ribbon strong {color:#a5e2ed}
+    .pr-preview-ribbon a {color:#eefbff}
+    #content {padding-bottom:50px}
+  </style>
+</head>
+<body>
+  <div class="pr-preview-ribbon"><strong>REVIEW PREVIEW · REVIEW BRANCH</strong> — not the live Coffeetableviz site. <a href="https://github.com/adamgreen1708/chart-templates/pulls">View source changes</a></div>
+  <main id="content">
+
+<link rel="stylesheet" href="../../site/assets/css/epl-2627-unfolded.css">
+<article class="eplu shell-wide" id="epl-unfolded" data-source="../../site/assets/data/epl-2627-unfolded.json">
+  <header class="eplu-intro">
+    <p class="eyebrow">Interactive chart · Sport · 2026–27</p>
+    <h1>How the Premier League unfolded<span>.</span></h1>
+    <p>A fresh take on the original 2020–21 <a href="https://public.tableau.com/app/profile/adam.green4310/viz/EPL202021SeasonUnfolded/202021EPLSeason">Season Unfolded</a>: choose a club, explore every home and away result by month, and follow the points collected so far.</p>
+  </header>
+
+  <section class="eplu-viz" id="eplu-viz" aria-label="Premier League 2026–27 interactive season calendar">
+    <header class="eplu-viz-top">
+      <p class="eplu-overline">HOW THE 2026/27 ENGLISH PREMIER LEAGUE UNFOLDED</p>
+      <div class="eplu-club-heading">
+        <div class="eplu-club-identity">
+          <span id="eplu-rank" class="eplu-rank">–</span>
+          <div>
+            <p class="eplu-caption">SELECTED CLUB</p>
+            <h2 id="eplu-club-name">Arsenal</h2>
+          </div>
+        </div>
+        <label class="eplu-picker">Change club
+          <select id="eplu-team" aria-label="Choose Premier League club"><option value="">Loading clubs…</option></select>
+        </label>
+      </div>
+    </header>
+
+    <div class="eplu-main">
+      <div class="eplu-results">
+        <div class="eplu-section-label-row">
+          <p class="eplu-section-label">THE MONTHS / HOME & AWAY RESULTS</p>
+          <button type="button" id="eplu-clear" class="eplu-clear" disabled>Clear match ×</button>
+        </div>
+        <div class="eplu-results-legend"><span class="eplu-pill w">W</span> Win <span class="eplu-pill d">D</span> Draw <span class="eplu-pill l">L</span> Loss</div>
+        <p class="eplu-row-key"><span>HOME RESULTS ↑</span><span>AWAY RESULTS ↓</span></p>
+        <div id="eplu-calendar" class="eplu-calendar" aria-label="Monthly home and away league results"></div>
+        <p id="eplu-instructions" class="eplu-instructions">Tap a result to reveal the opponent, score and date. Tap again or outside the dots to clear it.</p>
+      </div>
+
+      <aside class="eplu-summary" aria-labelledby="eplu-summary-title">
+        <p id="eplu-summary-title" class="eplu-section-label">HOME OR AWAY?</p>
+        <div class="eplu-totals-wrap">
+          <table class="eplu-totals">
+            <thead><tr><th scope="col"> </th><th scope="col">MP</th><th scope="col">W</th><th scope="col">D</th><th scope="col">L</th><th scope="col">GF</th><th scope="col">GA</th><th scope="col">GD</th><th scope="col">PTS</th></tr></thead>
+            <tbody id="eplu-totals-body"><tr><td colspan="9">Loading…</td></tr></tbody>
+          </table>
+        </div>
+        <p class="eplu-summary-note">Up to nineteen home and nineteen away fixtures per club. Only completed matches count.</p>
+      </aside>
+    </div>
+
+    <div id="eplu-tooltip" class="eplu-tooltip" role="status" aria-live="polite" hidden></div>
+
+    <section class="eplu-points" aria-labelledby="eplu-points-title">
+      <div class="eplu-points-header">
+        <div><p class="eplu-overline" id="eplu-points-title">POINTS SO FAR</p><p class="eplu-points-sub">Every club, positioned by points earned so far. Tap a badge to change the club above.</p></div>
+        <div class="eplu-points-key" id="eplu-points-key">20 CLUBS · VERIFIED COMPLETED MATCHES</div>
+      </div>
+      <svg id="eplu-points-svg" viewBox="0 0 1000 208" role="img" aria-label="Interactive position plot: all 20 clubs by points from completed matches"></svg>
+      <div class="eplu-points-hint" id="eplu-status" role="status" aria-live="polite">Loading the verified completed 2026–27 results…</div>
+    </section>
+    <div class="eplu-viz-foot"><span>Adam Green | coffeetableviz</span><span>Source: Football-Data.co.uk · 2026–27 completed results only</span></div>
+  </section>
+
+  <section class="eplu-story shell-narrow">
+    <h2>A season still being written.</h2>
+    <p>The league table changes every weekend. The results above show only completed matches — the selected club's monthly home and away record, and its points earned so far.</p>
+    <p>Choose a club, then tap a result to discover the opponent, score and date. The tooltip adds cumulative points for all twenty clubs, with your club highlighted. Each line follows that club's own completed match number, not a shared calendar matchweek.</p>
+    <h2>A note on the data</h2>
+    <p>Source: <a href="https://www.football-data.co.uk/mmz4281/2627/E0.csv">Football-Data.co.uk 2026–27 Premier League (E0.csv)</a>. The review dataset is dated to its latest included result, not assumed current to today's date. Only completed full-time results that pass validation count. Positions are <strong>provisional</strong>; teams may have played different numbers of matches. Tied clubs are ordered on points, goal difference and goals scored; further official tie-breakers are not modelled.</p>
+    <p>Home results radiate upwards and away results downwards from each month label, earliest nearest the centre. Wins use representative club colours, draws light grey and defeats dark grey. The points rail rescales with points earned, rather than implying a final table.</p>
+  </section>
+</article>
+<noscript><p class="shell-narrow">This interactive visualisation requires JavaScript. The full 2026–27 season dataset is available from the cited Football-Data.co.uk source.</p></noscript>
+<script defer src="../../site/assets/js/epl-2627-unfolded.js?v=2"></script>
+
+  </main>
+</body>
+</html>
