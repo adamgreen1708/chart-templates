@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+<title id="title">The Premier League 2026–27 season is unfolding</title>
+<desc id="desc">An editorial illustration, not a statistical chart: a charcoal football results board with three large W, D and L circles for win, draw and loss, and an August to May time motif.</desc>
+<rect width="1200" height="1200" fill="#F3F4F6"/>
+<rect x="65" y="65" width="1070" height="1070" rx="34" fill="#303133"/>
+<path d="M132 293H1068" fill="none" stroke="#676C70" stroke-width="2"/>
+<text x="133" y="160" fill="#B6BBC0" font-family="monospace" font-size="22" letter-spacing="5">COFFEETABLEVIZ · SPORT</text>
+<text x="132" y="220" fill="#FFFFFF" font-family="Arial,Helvetica,sans-serif" font-size="58" font-weight="700" letter-spacing="-2">The season</text>
+<text x="132" y="282" fill="#FFFFFF" font-family="Arial,Helvetica,sans-serif" font-size="58" font-weight="700" letter-spacing="-2">unfolded<tspan fill="#ED252D">.</tspan></text>
+<g transform="translate(0 15)">
+  <circle cx="283" cy="572" r="124" fill="#ED252D"/>
+  <circle cx="600" cy="572" r="124" fill="#C6C9CA"/>
+  <circle cx="917" cy="572" r="124" fill="#64686E"/>
+  <g font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="118" text-anchor="middle" dominant-baseline="middle">
+    <text x="283" y="584" fill="#FFFFFF">W</text>
+    <text x="600" y="584" fill="#27292B">D</text>
+    <text x="917" y="584" fill="#FFFFFF">L</text>
+  </g>
+</g>
+<path d="M133 818H1067" stroke="#666C70" stroke-width="2"/>
+<g fill="#AEB4B8" font-family="monospace" font-size="25" letter-spacing="3">
+  <text x="133" y="874">AUG</text><text x="1067" y="874" text-anchor="end">MAY</text>
+</g>
+<path d="M240 864H953" stroke="#8F969A" stroke-width="2" stroke-dasharray="8 12"/>
+<circle cx="598" cy="864" r="8" fill="#ED252D"/>
+<text x="133" y="990" fill="#F6F6F6" font-family="Arial,Helvetica,sans-serif" font-size="39" font-weight="700">Premier League · 2026–27</text>
+<text x="133" y="1043" fill="#C7CBCE" font-family="monospace" font-size="21" letter-spacing="2">A LIVE-SEASON RESULTS EXPLORER</text>
+</svg>

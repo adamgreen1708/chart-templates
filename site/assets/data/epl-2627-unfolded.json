@@ -1,0 +1,2437 @@
+{
+  "meta": {
+    "season": "2026–27",
+    "scope": "English Premier League",
+    "matchCount": 107,
+    "teamCount": 20,
+    "firstDate": "2026-08-21",
+    "lastDate": "2026-11-21",
+    "complete": false,
+    "x_definition": "Each club's nth completed league match, not a shared fixture week",
+    "source": "https://www.football-data.org/",
+    "source_mirror_initial": "https://github.com/learningEngineer24/premier-league-predictor/blob/main/data/raw/E0_2627.csv",
+    "source_note": "Only validated completed matches. Provisional standings until 380 verified results."
+  },
+  "teams": [
+    {
+      "name": "Arsenal",
+      "played": 11,
+      "points": 28,
+      "gd": 10,
+      "gf": 17,
+      "ga": 7,
+      "w": 9,
+      "d": 1,
+      "l": 1,
+      "games": [
+        {
+          "number": 1,
+          "date": "2026-08-21",
+          "opponent": "Coventry",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 2,
+          "date": "2026-08-31",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 6
+        },
+        {
+          "number": 3,
+          "date": "2026-09-06",
+          "opponent": "Chelsea",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 9
+        },
+        {
+          "number": 4,
+          "date": "2026-09-12",
+          "opponent": "Sunderland",
+          "venue": "A",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 12
+        },
+        {
+          "number": 5,
+          "date": "2026-09-19",
+          "opponent": "Brighton",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 12
+        },
+        {
+          "number": 6,
+          "date": "2026-10-10",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 15
+        },
+        {
+          "number": 7,
+          "date": "2026-10-18",
+          "opponent": "Nott'm Forest",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 18
+        },
+        {
+          "number": 8,
+          "date": "2026-10-24",
+          "opponent": "Everton",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 21
+        },
+        {
+          "number": 9,
+          "date": "2026-11-01",
+          "opponent": "Liverpool",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 24
+        },
+        {
+          "number": 10,
+          "date": "2026-11-07",
+          "opponent": "Hull",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 27
+        },
+        {
+          "number": 11,
+          "date": "2026-11-21",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 28
+        }
+      ],
+      "rank": 1
+    },
+    {
+      "name": "Brighton",
+      "played": 10,
+      "points": 22,
+      "gd": 19,
+      "gf": 26,
+      "ga": 7,
+      "w": 7,
+      "d": 1,
+      "l": 2,
+      "games": [
+        {
+          "number": 1,
+          "date": "2026-08-23",
+          "opponent": "Aston Villa",
+          "venue": "H",
+          "gf": 4,
+          "ga": 0,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 2,
+          "date": "2026-08-30",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 3,
+          "ga": 4,
+          "result": "L",
+          "points": 3
+        },
+        {
+          "number": 3,
+          "date": "2026-09-05",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 4
+        },
+        {
+          "number": 4,
+          "date": "2026-09-13",
+          "opponent": "Coventry",
+          "venue": "A",
+          "gf": 5,
+          "ga": 0,
+          "result": "W",
+          "points": 7
+        },
+        {
+          "number": 5,
+          "date": "2026-09-19",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 10
+        },
+        {
+          "number": 6,
+          "date": "2026-10-10",
+          "opponent": "Sunderland",
+          "venue": "A",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 13
+        },
+        {
+          "number": 7,
+          "date": "2026-10-18",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 5,
+          "ga": 0,
+          "result": "W",
+          "points": 16
+        },
+        {
+          "number": 8,
+          "date": "2026-10-25",
+          "opponent": "Liverpool",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 16
+        },
+        {
+          "number": 9,
+          "date": "2026-10-31",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 19
+        },
+        {
+          "number": 10,
+          "date": "2026-11-08",
+          "opponent": "Brentford",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 22
+        }
+      ],
+      "rank": 2
+    },
+    {
+      "name": "Man City",
+      "played": 11,
+      "points": 22,
+      "gd": 8,
+      "gf": 22,
+      "ga": 14,
+      "w": 7,
+      "d": 1,
+      "l": 3,
+      "games": [
+        {
+          "number": 1,
+          "date": "2026-08-23",
+          "opponent": "Bournemouth",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 2,
+          "date": "2026-08-28",
+          "opponent": "Crystal Palace",
+          "venue": "A",
+          "gf": 4,
+          "ga": 1,
+          "result": "W",
+          "points": 6
+        },
+        {
+          "number": 3,
+          "date": "2026-09-05",
+          "opponent": "Coventry",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 9
+        },
+        {
+          "number": 4,
+          "date": "2026-09-13",
+          "opponent": "Man United",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 12
+        },
+        {
+          "number": 5,
+          "date": "2026-09-20",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 5,
+          "ga": 3,
+          "result": "W",
+          "points": 15
+        },
+        {
+          "number": 6,
+          "date": "2026-10-11",
+          "opponent": "Liverpool",
+          "venue": "A",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 18
+        },
+        {
+          "number": 7,
+          "date": "2026-10-17",
+          "opponent": "Ipswich",
+          "venue": "H",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 21
+        },
+        {
+          "number": 8,
+          "date": "2026-10-24",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 21
+        },
+        {
+          "number": 9,
+          "date": "2026-10-31",
+          "opponent": "Brighton",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 21
+        },
+        {
+          "number": 10,
+          "date": "2026-11-07",
+          "opponent": "Nott'm Forest",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 21
+        },
+        {
+          "number": 11,
+          "date": "2026-11-21",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 22
+        }
+      ],
+      "rank": 3
+    },
+    {
+      "name": "Bournemouth",
+      "played": 11,
+      "points": 18,
+      "gd": 4,
+      "gf": 18,
+      "ga": 14,
+      "w": 5,
+      "d": 3,
+      "l": 3,
+      "games": [
+        {
+          "number": 1,
+          "date": "2026-08-23",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 2,
+          "date": "2026-08-29",
+          "opponent": "Everton",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 1
+        },
+        {
+          "number": 3,
+          "date": "2026-09-05",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 2
+        },
+        {
+          "number": 4,
+          "date": "2026-09-12",
+          "opponent": "Brentford",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 3
+        },
+        {
+          "number": 5,
+          "date": "2026-09-20",
+          "opponent": "Liverpool",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 3
+        },
+        {
+          "number": 6,
+          "date": "2026-10-10",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 1,
+          "ga": 5,
+          "result": "L",
+          "points": 3
+        },
+        {
+          "number": 7,
+          "date": "2026-10-18",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 6
+        },
+        {
+          "number": 8,
+          "date": "2026-10-25",
+          "opponent": "Man United",
+          "venue": "A",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 9
+        },
+        {
+          "number": 9,
+          "date": "2026-10-31",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 12
+        },
+        {
+          "number": 10,
+          "date": "2026-11-08",
+          "opponent": "Ipswich",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 15
+        },
+        {
+          "number": 11,
+          "date": "2026-11-21",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 18
+        }
+      ],
+      "rank": 4
+    },
+    {
+      "name": "Liverpool",
+      "played": 10,
+      "points": 18,
+      "gd": 4,
+      "gf": 14,
+      "ga": 10,
+      "w": 5,
+      "d": 3,
+      "l": 2,
+      "games": [
+        {
+          "number": 1,
+          "date": "2026-08-23",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 1
+        },
+        {
+          "number": 2,
+          "date": "2026-08-29",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 2
+        },
+        {
+          "number": 3,
+          "date": "2026-09-04",
+          "opponent": "Ipswich",
+          "venue": "A",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 5
+        },
+        {
+          "number": 4,
+          "date": "2026-09-12",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 6
+        },
+        {
+          "number": 5,
+          "date": "2026-09-20",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 9
+        },
+        {
+          "number": 6,
+          "date": "2026-10-11",
+          "opponent": "Man City",
+          "venue": "H",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 9
+        },
+        {
+          "number": 7,
+          "date": "2026-10-17",
+          "opponent": "Brentford",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 12
+        },
+        {
+          "number": 8,
+          "date": "2026-10-25",
+          "opponent": "Brighton",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 15
+        },
+        {
+          "number": 9,
+          "date": "2026-11-01",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 15
+        },
+        {
+          "number": 10,
+          "date": "2026-11-08",
+          "opponent": "Crystal Palace",
+          "venue": "A",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 18
+        }
+      ],
+      "rank": 5
+    },
+    {
+      "name": "Leeds",
+      "played": 11,
+      "points": 17,
+      "gd": 5,
+      "gf": 14,
+      "ga": 9,
+      "w": 4,
+      "d": 5,
+      "l": 2,
+      "games": [
+        {
+          "number": 1,
+          "date": "2026-08-22",
+          "opponent": "Nott'm Forest",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 2,
+          "date": "2026-08-30",
+          "opponent": "Brentford",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 4
+        },
+        {
+          "number": 3,
+          "date": "2026-09-05",
+          "opponent": "Brighton",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 5
+        },
+        {
+          "number": 4,
+          "date": "2026-09-14",
+          "opponent": "Newcastle",
+          "venue": "H",
+          "gf": 4,
+          "ga": 1,
+          "result": "W",
+          "points": 8
+        },
+        {
+          "number": 5,
+          "date": "2026-09-20",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 9
+        },
+        {
+          "number": 6,
+          "date": "2026-10-10",
+          "opponent": "Arsenal",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 9
+        },
+        {
+          "number": 7,
+          "date": "2026-10-18",
+          "opponent": "Man United",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 10
+        },
+        {
+          "number": 8,
+          "date": "2026-10-25",
+          "opponent": "Sunderland",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 11
+        },
+        {
+          "number": 9,
+          "date": "2026-10-31",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 11
+        },
+        {
+          "number": 10,
+          "date": "2026-11-07",
+          "opponent": "Tottenham",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 14
+        },
+        {
+          "number": 11,
+          "date": "2026-11-21",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 4,
+          "ga": 1,
+          "result": "W",
+          "points": 17
+        }
+      ],
+      "rank": 6
+    },
+    {
+      "name": "Everton",
+      "played": 10,
+      "points": 16,
+      "gd": 2,
+      "gf": 12,
+      "ga": 10,
+      "w": 4,
+      "d": 4,
+      "l": 2,
+      "games": [
+        {
+          "number": 1,
+          "date": "2026-08-22",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 2,
+          "date": "2026-08-29",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 4
+        },
+        {
+          "number": 3,
+          "date": "2026-09-06",
+          "opponent": "Man United",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 5
+        },
+        {
+          "number": 4,
+          "date": "2026-09-12",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 6
+        },
+        {
+          "number": 5,
+          "date": "2026-09-19",
+          "opponent": "Ipswich",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 9
+        },
+        {
+          "number": 6,
+          "date": "2026-10-11",
+          "opponent": "Hull",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 10
+        },
+        {
+          "number": 7,
+          "date": "2026-10-17",
+          "opponent": "Chelsea",
+          "venue": "H",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 10
+        },
+        {
+          "number": 8,
+          "date": "2026-10-24",
+          "opponent": "Arsenal",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 10
+        },
+        {
+          "number": 9,
+          "date": "2026-11-02",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 13
+        },
+        {
+          "number": 10,
+          "date": "2026-11-06",
+          "opponent": "Coventry",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 16
+        }
+      ],
+      "rank": 7
+    },
+    {
+      "name": "Chelsea",
+      "played": 11,
+      "points": 16,
+      "gd": 0,
+      "gf": 20,
+      "ga": 20,
+      "w": 5,
+      "d": 1,
+      "l": 5,
+      "games": [
+        {
+          "number": 1,
+          "date": "2026-08-24",
+          "opponent": "Fulham",
+          "venue": "A",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 2,
+          "date": "2026-08-30",
+          "opponent": "Brighton",
+          "venue": "H",
+          "gf": 4,
+          "ga": 3,
+          "result": "W",
+          "points": 6
+        },
+        {
+          "number": 3,
+          "date": "2026-09-06",
+          "opponent": "Arsenal",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 6
+        },
+        {
+          "number": 4,
+          "date": "2026-09-12",
+          "opponent": "Hull",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 7
+        },
+        {
+          "number": 5,
+          "date": "2026-09-18",
+          "opponent": "Brentford",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 7
+        },
+        {
+          "number": 6,
+          "date": "2026-10-10",
+          "opponent": "Bournemouth",
+          "venue": "H",
+          "gf": 5,
+          "ga": 1,
+          "result": "W",
+          "points": 10
+        },
+        {
+          "number": 7,
+          "date": "2026-10-17",
+          "opponent": "Everton",
+          "venue": "A",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 13
+        },
+        {
+          "number": 8,
+          "date": "2026-10-24",
+          "opponent": "Tottenham",
+          "venue": "H",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 13
+        },
+        {
+          "number": 9,
+          "date": "2026-10-31",
+          "opponent": "Man United",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 16
+        },
+        {
+          "number": 10,
+          "date": "2026-11-08",
+          "opponent": "Sunderland",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 16
+        },
+        {
+          "number": 11,
+          "date": "2026-11-21",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 1,
+          "ga": 4,
+          "result": "L",
+          "points": 16
+        }
+      ],
+      "rank": 8
+    },
+    {
+      "name": "Tottenham",
+      "played": 11,
+      "points": 15,
+      "gd": 1,
+      "gf": 12,
+      "ga": 11,
+      "w": 4,
+      "d": 3,
+      "l": 4,
+      "games": [
+        {
+          "number": 1,
+          "date": "2026-08-22",
+          "opponent": "Brentford",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 2,
+          "date": "2026-08-29",
+          "opponent": "Newcastle",
+          "venue": "H",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 3,
+          "date": "2026-09-05",
+          "opponent": "Nott'm Forest",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 1
+        },
+        {
+          "number": 4,
+          "date": "2026-09-12",
+          "opponent": "Everton",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 2
+        },
+        {
+          "number": 5,
+          "date": "2026-09-19",
+          "opponent": "Aston Villa",
+          "venue": "H",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 2
+        },
+        {
+          "number": 6,
+          "date": "2026-10-10",
+          "opponent": "Man United",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 3
+        },
+        {
+          "number": 7,
+          "date": "2026-10-19",
+          "opponent": "Coventry",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 6
+        },
+        {
+          "number": 8,
+          "date": "2026-10-24",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 9
+        },
+        {
+          "number": 9,
+          "date": "2026-10-31",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 12
+        },
+        {
+          "number": 10,
+          "date": "2026-11-07",
+          "opponent": "Leeds",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 12
+        },
+        {
+          "number": 11,
+          "date": "2026-11-21",
+          "opponent": "Ipswich",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 15
+        }
+      ],
+      "rank": 9
+    },
+    {
+      "name": "Brentford",
+      "played": 10,
+      "points": 14,
+      "gd": 5,
+      "gf": 16,
+      "ga": 11,
+      "w": 3,
+      "d": 5,
+      "l": 2,
+      "games": [
+        {
+          "number": 1,
+          "date": "2026-08-22",
+          "opponent": "Tottenham",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 2,
+          "date": "2026-08-30",
+          "opponent": "Leeds",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 4
+        },
+        {
+          "number": 3,
+          "date": "2026-09-05",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 5
+        },
+        {
+          "number": 4,
+          "date": "2026-09-12",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 6
+        },
+        {
+          "number": 5,
+          "date": "2026-09-18",
+          "opponent": "Chelsea",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 9
+        },
+        {
+          "number": 6,
+          "date": "2026-10-10",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 10
+        },
+        {
+          "number": 7,
+          "date": "2026-10-17",
+          "opponent": "Liverpool",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 10
+        },
+        {
+          "number": 8,
+          "date": "2026-10-25",
+          "opponent": "Hull",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 11
+        },
+        {
+          "number": 9,
+          "date": "2026-10-31",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 14
+        },
+        {
+          "number": 10,
+          "date": "2026-11-08",
+          "opponent": "Brighton",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 14
+        }
+      ],
+      "rank": 10
+    },
+    {
+      "name": "Aston Villa",
+      "played": 11,
+      "points": 14,
+      "gd": -3,
+      "gf": 14,
+      "ga": 17,
+      "w": 3,
+      "d": 5,
+      "l": 3,
+      "games": [
+        {
+          "number": 1,
+          "date": "2026-08-23",
+          "opponent": "Brighton",
+          "venue": "A",
+          "gf": 0,
+          "ga": 4,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 2,
+          "date": "2026-08-31",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 3,
+          "date": "2026-09-05",
+          "opponent": "Hull",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 1
+        },
+        {
+          "number": 4,
+          "date": "2026-09-12",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 1
+        },
+        {
+          "number": 5,
+          "date": "2026-09-19",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 4
+        },
+        {
+          "number": 6,
+          "date": "2026-10-10",
+          "opponent": "Brentford",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 5
+        },
+        {
+          "number": 7,
+          "date": "2026-10-17",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 8
+        },
+        {
+          "number": 8,
+          "date": "2026-10-24",
+          "opponent": "Man City",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 11
+        },
+        {
+          "number": 9,
+          "date": "2026-10-31",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 12
+        },
+        {
+          "number": 10,
+          "date": "2026-11-08",
+          "opponent": "Man United",
+          "venue": "A",
+          "gf": 4,
+          "ga": 4,
+          "result": "D",
+          "points": 13
+        },
+        {
+          "number": 11,
+          "date": "2026-11-21",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 14
+        }
+      ],
+      "rank": 11
+    },
+    {
+      "name": "Newcastle",
+      "played": 11,
+      "points": 13,
+      "gd": -3,
+      "gf": 15,
+      "ga": 18,
+      "w": 3,
+      "d": 4,
+      "l": 4,
+      "games": [
+        {
+          "number": 1,
+          "date": "2026-08-23",
+          "opponent": "Liverpool",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 1
+        },
+        {
+          "number": 2,
+          "date": "2026-08-29",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 4
+        },
+        {
+          "number": 3,
+          "date": "2026-09-05",
+          "opponent": "Bournemouth",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 5
+        },
+        {
+          "number": 4,
+          "date": "2026-09-14",
+          "opponent": "Leeds",
+          "venue": "A",
+          "gf": 1,
+          "ga": 4,
+          "result": "L",
+          "points": 5
+        },
+        {
+          "number": 5,
+          "date": "2026-09-19",
+          "opponent": "Hull",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 8
+        },
+        {
+          "number": 6,
+          "date": "2026-10-12",
+          "opponent": "Coventry",
+          "venue": "A",
+          "gf": 1,
+          "ga": 4,
+          "result": "L",
+          "points": 8
+        },
+        {
+          "number": 7,
+          "date": "2026-10-17",
+          "opponent": "Aston Villa",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 8
+        },
+        {
+          "number": 8,
+          "date": "2026-10-25",
+          "opponent": "Crystal Palace",
+          "venue": "A",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 11
+        },
+        {
+          "number": 9,
+          "date": "2026-11-02",
+          "opponent": "Everton",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 11
+        },
+        {
+          "number": 10,
+          "date": "2026-11-07",
+          "opponent": "Fulham",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 12
+        },
+        {
+          "number": 11,
+          "date": "2026-11-21",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 13
+        }
+      ],
+      "rank": 12
+    },
+    {
+      "name": "Coventry",
+      "played": 11,
+      "points": 12,
+      "gd": -8,
+      "gf": 13,
+      "ga": 21,
+      "w": 4,
+      "d": 0,
+      "l": 7,
+      "games": [
+        {
+          "number": 1,
+          "date": "2026-08-21",
+          "opponent": "Arsenal",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 2,
+          "date": "2026-08-29",
+          "opponent": "Hull",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 3,
+          "date": "2026-09-05",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 4,
+          "date": "2026-09-13",
+          "opponent": "Brighton",
+          "venue": "H",
+          "gf": 0,
+          "ga": 5,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 5,
+          "date": "2026-09-19",
+          "opponent": "Nott'm Forest",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 6,
+          "date": "2026-10-12",
+          "opponent": "Newcastle",
+          "venue": "H",
+          "gf": 4,
+          "ga": 1,
+          "result": "W",
+          "points": 6
+        },
+        {
+          "number": 7,
+          "date": "2026-10-19",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 6
+        },
+        {
+          "number": 8,
+          "date": "2026-10-24",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 6
+        },
+        {
+          "number": 9,
+          "date": "2026-10-31",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 9
+        },
+        {
+          "number": 10,
+          "date": "2026-11-06",
+          "opponent": "Everton",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 9
+        },
+        {
+          "number": 11,
+          "date": "2026-11-21",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 12
+        }
+      ],
+      "rank": 13
+    },
+    {
+      "name": "Hull",
+      "played": 10,
+      "points": 11,
+      "gd": 0,
+      "gf": 11,
+      "ga": 11,
+      "w": 2,
+      "d": 5,
+      "l": 3,
+      "games": [
+        {
+          "number": 1,
+          "date": "2026-08-22",
+          "opponent": "Man United",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 2,
+          "date": "2026-08-29",
+          "opponent": "Coventry",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 6
+        },
+        {
+          "number": 3,
+          "date": "2026-09-05",
+          "opponent": "Aston Villa",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 7
+        },
+        {
+          "number": 4,
+          "date": "2026-09-12",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 8
+        },
+        {
+          "number": 5,
+          "date": "2026-09-19",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 8
+        },
+        {
+          "number": 6,
+          "date": "2026-10-11",
+          "opponent": "Everton",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 9
+        },
+        {
+          "number": 7,
+          "date": "2026-10-17",
+          "opponent": "Fulham",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 9
+        },
+        {
+          "number": 8,
+          "date": "2026-10-25",
+          "opponent": "Brentford",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 10
+        },
+        {
+          "number": 9,
+          "date": "2026-10-31",
+          "opponent": "Ipswich",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 11
+        },
+        {
+          "number": 10,
+          "date": "2026-11-07",
+          "opponent": "Arsenal",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 11
+        }
+      ],
+      "rank": 14
+    },
+    {
+      "name": "Fulham",
+      "played": 11,
+      "points": 11,
+      "gd": -2,
+      "gf": 11,
+      "ga": 13,
+      "w": 2,
+      "d": 5,
+      "l": 4,
+      "games": [
+        {
+          "number": 1,
+          "date": "2026-08-24",
+          "opponent": "Chelsea",
+          "venue": "H",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 2,
+          "date": "2026-08-30",
+          "opponent": "Sunderland",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 3,
+          "date": "2026-09-05",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 4,
+          "date": "2026-09-12",
+          "opponent": "Liverpool",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 1
+        },
+        {
+          "number": 5,
+          "date": "2026-09-20",
+          "opponent": "Man United",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 2
+        },
+        {
+          "number": 6,
+          "date": "2026-10-10",
+          "opponent": "Ipswich",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 2
+        },
+        {
+          "number": 7,
+          "date": "2026-10-17",
+          "opponent": "Hull",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 5
+        },
+        {
+          "number": 8,
+          "date": "2026-10-24",
+          "opponent": "Coventry",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 8
+        },
+        {
+          "number": 9,
+          "date": "2026-10-31",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 9
+        },
+        {
+          "number": 10,
+          "date": "2026-11-07",
+          "opponent": "Newcastle",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 10
+        },
+        {
+          "number": 11,
+          "date": "2026-11-21",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 11
+        }
+      ],
+      "rank": 15
+    },
+    {
+      "name": "Ipswich",
+      "played": 11,
+      "points": 11,
+      "gd": -7,
+      "gf": 15,
+      "ga": 22,
+      "w": 3,
+      "d": 2,
+      "l": 6,
+      "games": [
+        {
+          "number": 1,
+          "date": "2026-08-22",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 2,
+          "date": "2026-08-30",
+          "opponent": "Man United",
+          "venue": "A",
+          "gf": 2,
+          "ga": 5,
+          "result": "L",
+          "points": 3
+        },
+        {
+          "number": 3,
+          "date": "2026-09-04",
+          "opponent": "Liverpool",
+          "venue": "H",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 3
+        },
+        {
+          "number": 4,
+          "date": "2026-09-12",
+          "opponent": "Crystal Palace",
+          "venue": "A",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 6
+        },
+        {
+          "number": 5,
+          "date": "2026-09-19",
+          "opponent": "Everton",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 6
+        },
+        {
+          "number": 6,
+          "date": "2026-10-10",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 9
+        },
+        {
+          "number": 7,
+          "date": "2026-10-17",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 9
+        },
+        {
+          "number": 8,
+          "date": "2026-10-23",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 10
+        },
+        {
+          "number": 9,
+          "date": "2026-10-31",
+          "opponent": "Hull",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 11
+        },
+        {
+          "number": 10,
+          "date": "2026-11-08",
+          "opponent": "Bournemouth",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 11
+        },
+        {
+          "number": 11,
+          "date": "2026-11-21",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 11
+        }
+      ],
+      "rank": 16
+    },
+    {
+      "name": "Nott'm Forest",
+      "played": 11,
+      "points": 9,
+      "gd": -6,
+      "gf": 9,
+      "ga": 15,
+      "w": 2,
+      "d": 3,
+      "l": 6,
+      "games": [
+        {
+          "number": 1,
+          "date": "2026-08-22",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 2,
+          "date": "2026-08-29",
+          "opponent": "Liverpool",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 1
+        },
+        {
+          "number": 3,
+          "date": "2026-09-05",
+          "opponent": "Tottenham",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 2
+        },
+        {
+          "number": 4,
+          "date": "2026-09-12",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 5
+        },
+        {
+          "number": 5,
+          "date": "2026-09-19",
+          "opponent": "Coventry",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 5
+        },
+        {
+          "number": 6,
+          "date": "2026-10-11",
+          "opponent": "Crystal Palace",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 5
+        },
+        {
+          "number": 7,
+          "date": "2026-10-18",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 5
+        },
+        {
+          "number": 8,
+          "date": "2026-10-23",
+          "opponent": "Ipswich",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 6
+        },
+        {
+          "number": 9,
+          "date": "2026-10-31",
+          "opponent": "Brentford",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 6
+        },
+        {
+          "number": 10,
+          "date": "2026-11-07",
+          "opponent": "Man City",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 9
+        },
+        {
+          "number": 11,
+          "date": "2026-11-21",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 9
+        }
+      ],
+      "rank": 17
+    },
+    {
+      "name": "Sunderland",
+      "played": 11,
+      "points": 9,
+      "gd": -9,
+      "gf": 8,
+      "ga": 17,
+      "w": 2,
+      "d": 3,
+      "l": 6,
+      "games": [
+        {
+          "number": 1,
+          "date": "2026-08-22",
+          "opponent": "Ipswich",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 2,
+          "date": "2026-08-30",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 3,
+          "date": "2026-09-05",
+          "opponent": "Brentford",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 4
+        },
+        {
+          "number": 4,
+          "date": "2026-09-12",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 4
+        },
+        {
+          "number": 5,
+          "date": "2026-09-20",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 3,
+          "ga": 5,
+          "result": "L",
+          "points": 4
+        },
+        {
+          "number": 6,
+          "date": "2026-10-10",
+          "opponent": "Brighton",
+          "venue": "H",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 4
+        },
+        {
+          "number": 7,
+          "date": "2026-10-18",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 4
+        },
+        {
+          "number": 8,
+          "date": "2026-10-25",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 5
+        },
+        {
+          "number": 9,
+          "date": "2026-10-31",
+          "opponent": "Coventry",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 5
+        },
+        {
+          "number": 10,
+          "date": "2026-11-08",
+          "opponent": "Chelsea",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 8
+        },
+        {
+          "number": 11,
+          "date": "2026-11-21",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 9
+        }
+      ],
+      "rank": 18
+    },
+    {
+      "name": "Man United",
+      "played": 10,
+      "points": 8,
+      "gd": -5,
+      "gf": 14,
+      "ga": 19,
+      "w": 1,
+      "d": 5,
+      "l": 4,
+      "games": [
+        {
+          "number": 1,
+          "date": "2026-08-22",
+          "opponent": "Hull",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 2,
+          "date": "2026-08-30",
+          "opponent": "Ipswich",
+          "venue": "H",
+          "gf": 5,
+          "ga": 2,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 3,
+          "date": "2026-09-06",
+          "opponent": "Everton",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 4
+        },
+        {
+          "number": 4,
+          "date": "2026-09-13",
+          "opponent": "Man City",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 4
+        },
+        {
+          "number": 5,
+          "date": "2026-09-20",
+          "opponent": "Fulham",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 5
+        },
+        {
+          "number": 6,
+          "date": "2026-10-10",
+          "opponent": "Tottenham",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 6
+        },
+        {
+          "number": 7,
+          "date": "2026-10-18",
+          "opponent": "Leeds",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 7
+        },
+        {
+          "number": 8,
+          "date": "2026-10-25",
+          "opponent": "Bournemouth",
+          "venue": "H",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 7
+        },
+        {
+          "number": 9,
+          "date": "2026-10-31",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 7
+        },
+        {
+          "number": 10,
+          "date": "2026-11-08",
+          "opponent": "Aston Villa",
+          "venue": "H",
+          "gf": 4,
+          "ga": 4,
+          "result": "D",
+          "points": 8
+        }
+      ],
+      "rank": 19
+    },
+    {
+      "name": "Crystal Palace",
+      "played": 11,
+      "points": 7,
+      "gd": -15,
+      "gf": 12,
+      "ga": 27,
+      "w": 2,
+      "d": 1,
+      "l": 8,
+      "games": [
+        {
+          "number": 1,
+          "date": "2026-08-22",
+          "opponent": "Everton",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 2,
+          "date": "2026-08-28",
+          "opponent": "Man City",
+          "venue": "H",
+          "gf": 1,
+          "ga": 4,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 3,
+          "date": "2026-09-05",
+          "opponent": "Fulham",
+          "venue": "A",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 4,
+          "date": "2026-09-12",
+          "opponent": "Ipswich",
+          "venue": "H",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 3
+        },
+        {
+          "number": 5,
+          "date": "2026-09-20",
+          "opponent": "Leeds",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 4
+        },
+        {
+          "number": 6,
+          "date": "2026-10-11",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 7
+        },
+        {
+          "number": 7,
+          "date": "2026-10-18",
+          "opponent": "Brighton",
+          "venue": "A",
+          "gf": 0,
+          "ga": 5,
+          "result": "L",
+          "points": 7
+        },
+        {
+          "number": 8,
+          "date": "2026-10-25",
+          "opponent": "Newcastle",
+          "venue": "H",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 7
+        },
+        {
+          "number": 9,
+          "date": "2026-10-31",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 7
+        },
+        {
+          "number": 10,
+          "date": "2026-11-08",
+          "opponent": "Liverpool",
+          "venue": "H",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 7
+        },
+        {
+          "number": 11,
+          "date": "2026-11-21",
+          "opponent": "Coventry",
+          "venue": "A",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 7
+        }
+      ],
+      "rank": 20
+    }
+  ]
+}
