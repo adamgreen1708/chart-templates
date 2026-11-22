@@ -24,8 +24,7 @@ concurrency:
 
 jobs:
   refresh:
-    # Publication remains disabled until a successful end-to-end test and a deliberate settings change.
-    if: github.event_name != 'schedule' || vars.EPL_AUTO_PUBLISH_ENABLED == 'true'
+    # Weekly review runs even when automatic publication is OFF.
     runs-on: ubuntu-24.04
     timeout-minutes: 35
     steps:
@@ -34,16 +33,21 @@ jobs:
         shell: bash
         env:
           EVENT_NAME: ${{ github.event_name }}
+          EVENT_SCHEDULE: ${{ github.event.schedule }}
         run: |
           python - <<'PY' >> "$GITHUB_OUTPUT"
           import os
-          from datetime import datetime
+          from datetime import datetime, timedelta
           from zoneinfo import ZoneInfo
           uk=datetime.now(ZoneInfo('Europe/London'))
-          is_monday_08=uk.weekday()==0 and uk.hour==8
-          allowed=os.environ['EVENT_NAME']!='schedule' or is_monday_08
+          # GitHub cron may run late, so match the scheduled cron to UK DST.
+          expected='30 7 * * 1' if uk.utcoffset()==timedelta(hours=1) else '30 8 * * 1'
+          received=os.environ.get('EVENT_SCHEDULE','')
+          allowed=os.environ['EVENT_NAME']!='schedule' or (uk.weekday()==0 and received==expected)
           print('proceed='+('true' if allowed else 'false'))
           print('uk_now='+uk.isoformat())
+          print('schedule_received='+received)
+          print('schedule_expected='+expected)
           PY
       - name: Checkout main
         if: steps.uk_clock.outputs.proceed == 'true'
@@ -63,6 +67,24 @@ jobs:
         run: |
           python archive/projects/2026-11-epl-2627-unfolded/scripts/build_data.py --refresh --provider football-data-org
           python archive/projects/2026-11-epl-2627-unfolded/scripts/build_data.py --check
+      - name: Detect unusually stale season data (active season only)
+        if: steps.uk_clock.outputs.proceed == 'true'
+        run: |
+          python - <<'PY'
+          import json, os
+          from datetime import date, datetime
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+          meta=json.loads(Path('site/assets/data/epl-2627-unfolded.json').read_text())['meta']
+          today=datetime.now(ZoneInfo('Europe/London')).date()
+          latest=date.fromisoformat(meta['lastDate'])
+          days=(today-latest).days
+          print(f"Latest 2026–27 result: {latest}; matches: {meta['matchCount']}; age: {days} days")
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as summary:
+              summary.write(f"### EPL 2026–27 freshness\nLatest result: **{latest}**; completed matches: **{meta['matchCount']}**.\n")
+          if not meta['complete'] and date(2026,8,1)<=today<=date(2027,5,31) and days>21:
+              raise RuntimeError(f"No verified result for {days} days; investigate feed/fixture calendar")
+          PY
       - name: Verify ONLY data-only paths changed
         id: diff
         if: steps.uk_clock.outputs.proceed == 'true'
@@ -101,24 +123,21 @@ jobs:
           name: epl-2627-weekly-browser-evidence
           path: qa_screenshots/epl-2627/
           if-no-files-found: error
-      - name: Explain required PR automation permissions
+      - name: Require a token capable of triggering independent PR QA
         if: steps.diff.outputs.changed == 'true'
         env:
           EPL_PR_TOKEN: ${{ secrets.EPL_PR_TOKEN }}
-          ENABLED: ${{ vars.EPL_AUTO_PUBLISH_ENABLED }}
-          MODE: ${{ inputs.mode }}
-          EVENT_NAME: ${{ github.event_name }}
         run: |
-          if [[ "$ENABLED" == "true" && ( "$MODE" == "publish" || "$EVENT_NAME" == "schedule" ) && -z "$EPL_PR_TOKEN" ]]; then
-            echo "::error::Missing EPL_PR_TOKEN. Create a fine-grained PAT with Contents/Pull requests write, stored as repo secret. GITHUB_TOKEN PRs do not trigger downstream PR QA, and GitHub Actions may be blocked from opening PRs."
+          if [[ -z "$EPL_PR_TOKEN" ]]; then
+            echo "::error::Missing EPL_PR_TOKEN. Configure a fine-grained repo PAT with Contents and Pull requests write. GITHUB_TOKEN-created PRs do not trigger independent PR tests."
             exit 1
           fi
-      - name: Create or update data-only pull request
+      - name: Create or update data-only pull request (review-only unless enabled)
         if: steps.diff.outputs.changed == 'true'
         id: pr
         uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ secrets.EPL_PR_TOKEN || github.token }}
+          token: ${{ secrets.EPL_PR_TOKEN }}
           branch: automation/epl-2627-verified-results
           base: main
           delete-branch: true
@@ -129,6 +148,7 @@ jobs:
           title: 'Data only: refresh 2026–27 EPL completed results'
           body: |
             Verified FINISHED results from authenticated football-data.org v4 Premier League 2026–27 API.
+            This data-only PR does not publish by itself; automatic merge is separately gated.
             No design, editorial, 2025–26, JS, workflow or stylesheet files modified.
             Browser QA (1440 / 390 / 320), incremental fixture validation and
             deterministic data-build checks must succeed before merge.

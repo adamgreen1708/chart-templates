@@ -20,8 +20,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  # Write is used exclusively to update verified candidate data on the DRAFT PR branch.
-  contents: write
+  # Test the PR's committed candidate data read-only; no writes or branch pushes.
+  contents: read
 
 jobs:
   verify:
@@ -44,33 +44,12 @@ jobs:
           python archive/projects/2026-11-epl-2627-unfolded/scripts/build_data.py --check
       - name: Read-only source freshness and reachability probe
         run: python scripts/qa/epl_2627_source_health.py
-      - name: Verify authenticated football-data.org source and historical results (read only)
+      - name: Read-only live source and historical data consistency probe
         if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         env:
           FOOTBALL_DATA_ORG_TOKEN: ${{ secrets.FOOTBALL_DATA_ORG_TOKEN }}
         run: |
           python archive/projects/2026-11-epl-2627-unfolded/scripts/build_data.py --probe-provider --provider football-data-org
-      - name: Build fresh verified source candidate without committing or publishing
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
-        env:
-          FOOTBALL_DATA_ORG_TOKEN: ${{ secrets.FOOTBALL_DATA_ORG_TOKEN }}
-        run: |
-          python archive/projects/2026-11-epl-2627-unfolded/scripts/build_data.py --refresh --provider football-data-org
-          python archive/projects/2026-11-epl-2627-unfolded/scripts/build_data.py --check
-          git diff --name-only | tee /tmp/epl-2627-candidate-paths.txt
-          if grep -Ev '^(archive/projects/2026-11-epl-2627-unfolded/data/matches_2627.csv|site/assets/data/epl-2627-unfolded.json)$' /tmp/epl-2627-candidate-paths.txt; then
-            echo "::error::Unexpected file modified by source conversion"
-            exit 1
-          fi
-      - name: Upload provider candidate CSV and JSON for editor review
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
-        uses: actions/upload-artifact@v4
-        with:
-          name: epl-2627-verified-data-candidate
-          path: |
-            archive/projects/2026-11-epl-2627-unfolded/data/matches_2627.csv
-            site/assets/data/epl-2627-unfolded.json
-          if-no-files-found: error
       - name: Install Chromium Playwright
         run: |
           python -m pip install playwright==1.56.0
@@ -86,10 +65,10 @@ jobs:
           exit 1
       - name: Real browser mobile/desktop screenshots and interactions
         run: python scripts/qa/epl_2627_browser_test.py
-      - name: Check HTTPS branch preview resolves for independent review
+      - name: Check the published 2026–27 HTTPS route resolves
         shell: bash
         run: |
-          URL="https://raw.githack.com/adamgreen1708/chart-templates/feature/epl-2627-season-unfolded/preview/epl-2026-27/index.html"
+          URL="https://coffeetableviz.com/resources/epl-2026-27-unfolded/"
           curl --fail --location --retry 3 --retry-delay 2 --connect-timeout 10 --max-time 35 --silent --show-error "$URL" -o /tmp/epl-2627-remote.html
           grep -q 'id="epl-unfolded"' /tmp/epl-2627-remote.html
       - name: Build site with Jekyll for Resources and archive QA
@@ -107,21 +86,6 @@ jobs:
           done
           curl --fail --silent --show-error http://127.0.0.1:8766/stories/premier-league-season-unfolded-2025-26/ >/dev/null
           python scripts/qa/epl_resources_browser_test.py
-      - name: Save tested data ONLY to the existing draft review branch (never main)
-        if: success() && github.event_name == 'pull_request' && github.head_ref == 'feature/epl-2627-season-unfolded' && github.event.pull_request.head.repo.full_name == github.repository
-        shell: bash
-        run: |
-          set -euo pipefail
-          git add -- archive/projects/2026-11-epl-2627-unfolded/data/matches_2627.csv site/assets/data/epl-2627-unfolded.json
-          if git diff --cached --quiet; then
-            echo "Verified dataset is unchanged; no review-branch commit needed."
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Review data: import verified 2026-27 EPL FINISHED matches"
-          # A concurrent user edit makes the push non-fast-forward and therefore fails safely.
-          git push origin HEAD:refs/heads/feature/epl-2627-season-unfolded
       - name: Upload screenshots and checks
         if: always()
         uses: actions/upload-artifact@v4
