@@ -1,0 +1,162 @@
+name: Weekly EPL 2026-27 verified results refresh
+on:
+  schedule:
+    # GitHub cron is UTC: cover Monday 08:30 UK during BST and GMT.
+    - cron: '30 7 * * 1'
+    - cron: '30 8 * * 1'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'review: open data-only PR without merge; publish: merge only when gated and checks pass'
+        required: true
+        type: choice
+        default: review
+        options: [review, publish]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: epl-2627-weekly-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    # Publication remains disabled until a successful end-to-end test and a deliberate settings change.
+    if: github.event_name != 'schedule' || vars.EPL_AUTO_PUBLISH_ENABLED == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - name: Gate schedule to Monday 08:30 Europe/London (DST-safe)
+        id: uk_clock
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import os
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+          uk=datetime.now(ZoneInfo('Europe/London'))
+          is_monday_08=uk.weekday()==0 and uk.hour==8
+          allowed=os.environ['EVENT_NAME']!='schedule' or is_monday_08
+          print('proceed='+('true' if allowed else 'false'))
+          print('uk_now='+uk.isoformat())
+          PY
+      - name: Checkout main
+        if: steps.uk_clock.outputs.proceed == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Set up Python
+        if: steps.uk_clock.outputs.proceed == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch original E0 CSV, validate, reject removed/revised completed results
+        if: steps.uk_clock.outputs.proceed == 'true'
+        run: |
+          python archive/projects/2026-11-epl-2627-unfolded/scripts/build_data.py --refresh
+          python archive/projects/2026-11-epl-2627-unfolded/scripts/build_data.py --check
+      - name: Verify ONLY data-only paths changed
+        id: diff
+        if: steps.uk_clock.outputs.proceed == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --name-only | tee /tmp/epl-2627-changed.txt
+          if grep -Ev '^(archive/projects/2026-11-epl-2627-unfolded/data/matches_2627.csv|site/assets/data/epl-2627-unfolded.json)$' /tmp/epl-2627-changed.txt; then
+            echo "::error::Unexpected non-data path; requires manual review."
+            exit 1
+          fi
+          if [[ ! -s /tmp/epl-2627-changed.txt ]]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Install Chromium Playwright
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          python -m pip install playwright==1.56.0
+          python -m playwright install chromium --with-deps
+      - name: Serve and test new live data on desktop and mobile
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 > /tmp/epl-2627-http.log 2>&1 &
+          python scripts/qa/epl_2627_browser_test.py
+      - name: Store QA evidence
+        if: steps.diff.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: epl-2627-weekly-browser-evidence
+          path: qa_screenshots/epl-2627/
+          if-no-files-found: error
+      - name: Explain required PR automation permissions
+        if: steps.diff.outputs.changed == 'true'
+        env:
+          EPL_PR_TOKEN: ${{ secrets.EPL_PR_TOKEN }}
+          ENABLED: ${{ vars.EPL_AUTO_PUBLISH_ENABLED }}
+          MODE: ${{ inputs.mode }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [[ "$ENABLED" == "true" && ( "$MODE" == "publish" || "$EVENT_NAME" == "schedule" ) && -z "$EPL_PR_TOKEN" ]]; then
+            echo "::error::Missing EPL_PR_TOKEN. Create a fine-grained PAT with Contents/Pull requests write, stored as repo secret. GITHUB_TOKEN PRs do not trigger downstream PR QA, and GitHub Actions may be blocked from opening PRs."
+            exit 1
+          fi
+      - name: Create or update data-only pull request
+        if: steps.diff.outputs.changed == 'true'
+        id: pr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.EPL_PR_TOKEN || github.token }}
+          branch: automation/epl-2627-verified-results
+          base: main
+          delete-branch: true
+          add-paths: |
+            archive/projects/2026-11-epl-2627-unfolded/data/matches_2627.csv
+            site/assets/data/epl-2627-unfolded.json
+          commit-message: 'Update EPL 2026-27 verified completed match data'
+          title: 'Data only: refresh 2026–27 EPL completed results'
+          body: |
+            Verified update from the original Football-Data.co.uk 2627/E0.csv.
+            No design, editorial, 2025–26, JS, workflow or stylesheet files modified.
+            Browser QA (1440 / 390 / 320), incremental fixture validation and
+            deterministic data-build checks must succeed before merge.
+            This is a proposed data update only, never a forecast.
+      - name: Require independent PR checks, then merge through PR (no direct main commits)
+        if: steps.pr.outputs.pull-request-number != '' && vars.EPL_AUTO_PUBLISH_ENABLED == 'true' && (github.event_name == 'schedule' || inputs.mode == 'publish')
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.EPL_PR_TOKEN }}
+          PR: ${{ steps.pr.outputs.pull-request-number }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          if [[ -z "$GH_TOKEN" ]]; then echo "::error::EPL_PR_TOKEN required for PR-triggered checks"; exit 1; fi
+          ready=false
+          for i in $(seq 1 18); do
+            if gh pr checks "$PR" --repo "$REPO" --json name -q '.[] | select(.name | contains("Verified data + Chromium"))' | grep -q .; then ready=true; break; fi
+            sleep 10
+          done
+          if [[ "$ready" != "true" ]]; then echo "::error::Independent pull_request browser check did not appear"; exit 1; fi
+          gh pr checks "$PR" --repo "$REPO" --watch --fail-fast
+          gh pr merge "$PR" --repo "$REPO" --squash --delete-branch
+      - name: Alert on failure or blocked automation
+        if: failure()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.EPL_PR_TOKEN || github.token }}
+          REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          title="EPL 2026–27 weekly refresh needs review"
+          existing="$(gh issue list --repo "$REPO" --state open --search "$title in:title" --json number --jq '.[0].number' || true)"
+          msg="The verified EPL refresh failed. Review run: $RUN_URL. Existing published data must be left unchanged until checks and permissions are repaired."
+          if [[ -n "$existing" ]]; then
+            gh issue comment "$existing" --repo "$REPO" --body "$msg"
+          else
+            gh issue create --repo "$REPO" --title "$title" --body "$msg"
+          fi
