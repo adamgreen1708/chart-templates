@@ -33,3 +33,9 @@ Reference: merged PR #230, EPL 2025–26 (design, interactions, mobile QA). All 
 - The original 80-match Football-Data.co.uk-derived review snapshot remains clearly attributed to its original source until a newer provider candidate is validated and committed. `--check` preserves that attribution.
 - Refresh the candidate from the new provider with `python archive/projects/2026-11-epl-2627-unfolded/scripts/build_data.py --refresh --provider football-data-org`. This relabels source provenance only when it actually writes the new provider data.
 - Auto-publication remains OFF; the PR stays draft until visual/data review and explicit approval. Automated Monday runs are not enabled by adding this API secret alone.
+
+## Provider freshness / editor candidate (22 Nov 2026)
+
+- Authenticated Actions probe: 107 completed EPL matches through 2026-11-21, unchanged against the initial 80 result scores. The API sometimes returned a stale 100-game response from its cache, so the adapter now retries and **fails closed** below the explicitly verified floor (107 / 2026-11-21).
+- Browser QA validates the newest candidate, then updates **only the draft feature branch's CSV/JSON** using GitHub Actions; no direct main commit, no merged PR and no automated site publication. This draft-branch synchronisation ceases when the PR is merged or closed.
+- The page footer reads its source label from the actual JSON metadata; initial Football-Data.co.uk snapshot and refreshed football-data.org results receive the correct attribution.

@@ -14,7 +14,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  # Write is used exclusively to update verified candidate data on the DRAFT PR branch.
+  contents: write
 
 jobs:
   verify:
@@ -23,6 +24,10 @@ jobs:
     timeout-minutes: 16
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Do not push a detached synthetic pull-request merge commit to the feature branch.
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -81,6 +86,21 @@ jobs:
           URL="https://raw.githack.com/adamgreen1708/chart-templates/feature/epl-2627-season-unfolded/preview/epl-2026-27/index.html"
           curl --fail --location --retry 3 --retry-delay 2 --connect-timeout 10 --max-time 35 --silent --show-error "$URL" -o /tmp/epl-2627-remote.html
           grep -q 'id="epl-unfolded"' /tmp/epl-2627-remote.html
+      - name: Save tested data ONLY to the existing draft review branch (never main)
+        if: success() && github.event_name == 'pull_request' && github.head_ref == 'feature/epl-2627-season-unfolded' && github.event.pull_request.head.repo.full_name == github.repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -- archive/projects/2026-11-epl-2627-unfolded/data/matches_2627.csv site/assets/data/epl-2627-unfolded.json
+          if git diff --cached --quiet; then
+            echo "Verified dataset is unchanged; no review-branch commit needed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Review data: import verified 2026-27 EPL FINISHED matches"
+          # A concurrent user edit makes the push non-fast-forward and therefore fails safely.
+          git push origin HEAD:refs/heads/feature/epl-2627-season-unfolded
       - name: Upload screenshots and checks
         if: always()
         uses: actions/upload-artifact@v4

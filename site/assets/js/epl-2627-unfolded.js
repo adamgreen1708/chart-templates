@@ -427,6 +427,13 @@
     .then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()})
     .then(json=>{
       season=prepareSeason(json);
+      const attribution = root.querySelector('#eplu-data-source');
+      if (attribution) {
+        const provider = json.meta.source === 'https://www.football-data.org/'
+          ? 'football-data.org' : json.meta.source === 'https://www.football-data.co.uk/mmz4281/2627/E0.csv'
+            ? 'Football-Data.co.uk' : 'unverified source';
+        attribution.textContent = 'Source: ' + provider + ' · 2026–27 completed results only';
+      }
       picker.replaceChildren();
       season.teams.forEach(club=>{
         const option=create('option','',club.name);
