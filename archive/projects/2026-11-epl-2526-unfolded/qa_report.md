@@ -58,3 +58,13 @@
 - [ ] Licensed club crests are not included yet; three-letter badges deliberately remain until artwork provenance is resolved.
 
 **Review gate:** PR #230 must remain draft and unmerged until user has opened the preview in Safari, approved the mobile interaction, and approved the article. The raw.githack temporary proxy may display a one-time confirmation and is *not* intended as a permanent production host.
+
+## Final home-lane baseline polish — 22 November 2026
+
+- [x] Based on user's iPhone Safari screenshot of **West Ham August**, home-dot stack was flush with the month-name baseline. The entire home stack now has **8px bottom inset**, leaving visible clearance; away stack and month label are unchanged.
+- [x] 10 August–May columns remain in a single row at desktop, 390px and 320px.
+- [x] Real Chromium / Playwright QA **252 checks passed** on the latest CSS (up from 72). Includes geometry verification of exactly **8.0px clearance** for every nonempty home month in Arsenal and West Ham at 1440/390/320px; every home and away month retains centre-outwards chronological sequence.
+- [x] Verified 380 matches, 38 results per club, 20 club badges, home/away totals, 45% opacity / 2px blur tooltip, all 20 mini-chart trajectories, click-to-clear, club switching, no JavaScript runtime errors or horizontal page overflow.
+- [x] Screenshots captured and visually reviewed, particularly West Ham at 390px, where the lowest home circle now clears the line. QA run: https://github.com/adamgreen1708/chart-templates/actions/runs/44965174261
+- [x] GitHub Pages build succeeded on test head.
+- [ ] **Editorial sign-off and merge** not performed. User still to approve final publication. Keep PR #230 draft and unmerged pending approval.
