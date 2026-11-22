@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="color-scheme" content="light">
+  <title>EPL 2025–26 · Season Unfolded · Coffeetableviz preview</title>
+  <meta name="description" content="Review-only interactive preview from unmerged GitHub PR #230.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../site/assets/css/site.css">
+  <style>
+    .pr-preview-ribbon {background:#1e343d;color:#f5fbfc;padding:10px 20px;font:500 12px/1.5 "IBM Plex Sans",sans-serif;text-align:center}
+    .pr-preview-ribbon strong {color:#a5e2ed}
+    .pr-preview-ribbon a {color:#eefbff}
+    #content {padding-bottom:50px}
+  </style>
+</head>
+<body>
+  <div class="pr-preview-ribbon"><strong>REVIEW PREVIEW · PR #230</strong> — not the live Coffeetableviz site. <a href="https://github.com/adamgreen1708/chart-templates/pull/230">View source changes</a></div>
+  <main id="content">
+
+<link rel="stylesheet" href="../../site/assets/css/epl-2526-unfolded.css">
+<article class="eplu shell-wide" id="epl-unfolded" data-source="../../site/assets/data/epl-2526-unfolded.json">
+  <header class="eplu-intro">
+    <p class="eyebrow">Interactive chart · Sport · 2025–26</p>
+    <h1>How the Premier League unfolded<span>.</span></h1>
+    <p>A fresh take on the original 2020–21 <a href="https://public.tableau.com/app/profile/adam.green4310/viz/EPL202021SeasonUnfolded/202021EPLSeason">Season Unfolded</a>: choose a club, explore every home and away result by month, and see how the final points compare.</p>
+  </header>
+
+  <section class="eplu-viz" id="eplu-viz" aria-label="Premier League 2025–26 interactive season calendar">
+    <header class="eplu-viz-top">
+      <p class="eplu-overline">HOW THE 2025/26 ENGLISH PREMIER LEAGUE UNFOLDED</p>
+      <div class="eplu-club-heading">
+        <div class="eplu-club-identity">
+          <span id="eplu-rank" class="eplu-rank">1</span>
+          <div>
+            <p class="eplu-caption">SELECTED CLUB</p>
+            <h2 id="eplu-club-name">Arsenal</h2>
+          </div>
+        </div>
+        <label class="eplu-picker">Change club
+          <select id="eplu-team" aria-label="Choose Premier League club"><option value="">Loading clubs…</option></select>
+        </label>
+      </div>
+    </header>
+
+    <div class="eplu-main">
+      <div class="eplu-results">
+        <div class="eplu-section-label-row">
+          <p class="eplu-section-label">THE MONTHS / HOME & AWAY RESULTS</p>
+          <button type="button" id="eplu-clear" class="eplu-clear" disabled>Clear match ×</button>
+        </div>
+        <div class="eplu-results-legend"><span class="eplu-pill w">W</span> Win <span class="eplu-pill d">D</span> Draw <span class="eplu-pill l">L</span> Loss</div>
+        <p class="eplu-row-key"><span>HOME RESULTS ↑</span><span>AWAY RESULTS ↓</span></p>
+        <div id="eplu-calendar" class="eplu-calendar" aria-label="Monthly home and away league results"></div>
+        <p id="eplu-instructions" class="eplu-instructions">Tap a result to reveal the opponent, score and date. Tap again or outside the dots to clear it.</p>
+      </div>
+
+      <aside class="eplu-summary" aria-labelledby="eplu-summary-title">
+        <p id="eplu-summary-title" class="eplu-section-label">HOME OR AWAY?</p>
+        <div class="eplu-totals-wrap">
+          <table class="eplu-totals">
+            <thead><tr><th scope="col"> </th><th scope="col">MP</th><th scope="col">W</th><th scope="col">D</th><th scope="col">L</th><th scope="col">GF</th><th scope="col">GA</th><th scope="col">GD</th><th scope="col">PTS</th></tr></thead>
+            <tbody id="eplu-totals-body"><tr><td colspan="9">Loading…</td></tr></tbody>
+          </table>
+        </div>
+        <p class="eplu-summary-note">Nineteen home fixtures. Nineteen away. Two very different ways to build a season.</p>
+      </aside>
+    </div>
+
+    <div id="eplu-tooltip" class="eplu-tooltip" role="status" aria-live="polite" hidden></div>
+
+    <section class="eplu-points" aria-labelledby="eplu-points-title">
+      <div class="eplu-points-header">
+        <div><p class="eplu-overline" id="eplu-points-title">FINAL SEASON POINTS</p><p class="eplu-points-sub">Every club, positioned by its final points total. Tap a badge to change the club above.</p></div>
+        <div class="eplu-points-key">20 CLUBS · 380 MATCHES</div>
+      </div>
+      <svg id="eplu-points-svg" viewBox="0 0 1000 208" role="img" aria-label="Interactive position plot: all 20 clubs by final season points"></svg>
+      <div class="eplu-points-hint" id="eplu-status" role="status" aria-live="polite">Loading the verified 2025–26 results…</div>
+    </section>
+    <div class="eplu-viz-foot"><span>Adam Green | coffeetableviz</span><span>Source: Football-Data.co.uk · 2025–26 full-time results</span></div>
+  </section>
+
+  <section class="eplu-story shell-narrow">
+    <h2>The table gives away the ending. The months tell the story.</h2>
+    <p>Arsenal were champions with <strong>85 points</strong>, seven clear of Manchester City. But a final league table doesn't tell you whether those points were won at home or away, or whether a run of red win markers arrived in December rather than April.</p>
+    <p>This version returns to the idea behind the original Tableau visual: each team's season as a little calendar of results. Hover over a dot with a mouse, or tap it on your phone. Choose another club, and the monthly pattern changes; the shared finishing-points scale stays put.</p>
+    <h2>A note on the data</h2>
+    <p>All 380 Premier League matches played between <strong>15 August 2025 and 24 May 2026</strong> are included. Results were taken from <a href="https://www.football-data.co.uk/mmz4281/2526/E0.csv">Football-Data.co.uk</a> using a <a href="https://github.com/qhtexas/football-dataset/blob/9ec38fd9149216e3110d8b6edb1c0e8457d3016b/datasets/premier-league/season-2526.csv">pinned source snapshot</a>; final points were checked against <a href="https://www.premierleague.com/en/tables/premier-league/2025-26">the official league table</a>.</p>
+    <p>The top display groups each club's results by <strong>calendar month and venue</strong>. Each W/D/L circle is one completed match. Wins use the selected club’s representative home-kit primary colour; draws are light grey and defeats dark grey. Home results run chronologically from the month label outward (upwards), with the earliest match nearest the centre. Away results also run from the label outward (downwards). Summary points award three for a win and one for a draw. The bottom display uses the same final points for every club on a shared 0–90 scale. Short club labels stand in for the original crests while we establish a reusable and licensed asset set.</p>
+  </section>
+</article>
+<noscript><p class="shell-narrow">This interactive visualisation requires JavaScript. The full 2025–26 season dataset is available from the cited Football-Data.co.uk source.</p></noscript>
+<script defer src="../../site/assets/js/epl-2526-unfolded.js?v=2"></script>
+
+  </main>
+</body>
+</html>

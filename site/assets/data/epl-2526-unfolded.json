@@ -1,0 +1,7899 @@
+{
+  "meta": {
+    "season": "2025–26",
+    "scope": "English Premier League",
+    "matchCount": 380,
+    "teamCount": 20,
+    "firstDate": "2025-08-15",
+    "lastDate": "2026-05-24",
+    "x_definition": "Each club's nth completed league match; not simultaneous calendar matchweeks",
+    "source": "Football-Data.co.uk E0.csv via qhtexas/football-dataset",
+    "source_mirror": "https://github.com/qhtexas/football-dataset/blob/9ec38fd9149216e3110d8b6edb1c0e8457d3016b/datasets/premier-league/season-2526.csv",
+    "source_upstream": "https://www.football-data.co.uk/mmz4281/2526/E0.csv",
+    "source_blob_sha": "92c659f51c53f7a0212892ed2796db8e324da74d",
+    "retrieved": "2026-11-21",
+    "provenance_note": "Full-time results only; no fabricated matchweek assignments; all points recomputed."
+  },
+  "teams": [
+    {
+      "name": "Arsenal",
+      "played": 38,
+      "points": 85,
+      "gd": 44,
+      "gf": 71,
+      "ga": 27,
+      "w": 26,
+      "d": 7,
+      "l": 5,
+      "games": [
+        {
+          "number": 1,
+          "date": "2025-08-17",
+          "opponent": "Man United",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 2,
+          "date": "2025-08-23",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 5,
+          "ga": 0,
+          "result": "W",
+          "points": 6
+        },
+        {
+          "number": 3,
+          "date": "2025-08-31",
+          "opponent": "Liverpool",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 6
+        },
+        {
+          "number": 4,
+          "date": "2025-09-13",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 9
+        },
+        {
+          "number": 5,
+          "date": "2025-09-21",
+          "opponent": "Man City",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 10
+        },
+        {
+          "number": 6,
+          "date": "2025-09-28",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 13
+        },
+        {
+          "number": 7,
+          "date": "2025-10-04",
+          "opponent": "West Ham",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 16
+        },
+        {
+          "number": 8,
+          "date": "2025-10-18",
+          "opponent": "Fulham",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 19
+        },
+        {
+          "number": 9,
+          "date": "2025-10-26",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 22
+        },
+        {
+          "number": 10,
+          "date": "2025-11-01",
+          "opponent": "Burnley",
+          "venue": "A",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 25
+        },
+        {
+          "number": 11,
+          "date": "2025-11-08",
+          "opponent": "Sunderland",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 26
+        },
+        {
+          "number": 12,
+          "date": "2025-11-23",
+          "opponent": "Tottenham",
+          "venue": "H",
+          "gf": 4,
+          "ga": 1,
+          "result": "W",
+          "points": 29
+        },
+        {
+          "number": 13,
+          "date": "2025-11-30",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 30
+        },
+        {
+          "number": 14,
+          "date": "2025-12-03",
+          "opponent": "Brentford",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 33
+        },
+        {
+          "number": 15,
+          "date": "2025-12-06",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 33
+        },
+        {
+          "number": 16,
+          "date": "2025-12-13",
+          "opponent": "Wolves",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 36
+        },
+        {
+          "number": 17,
+          "date": "2025-12-20",
+          "opponent": "Everton",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 39
+        },
+        {
+          "number": 18,
+          "date": "2025-12-27",
+          "opponent": "Brighton",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 42
+        },
+        {
+          "number": 19,
+          "date": "2025-12-30",
+          "opponent": "Aston Villa",
+          "venue": "H",
+          "gf": 4,
+          "ga": 1,
+          "result": "W",
+          "points": 45
+        },
+        {
+          "number": 20,
+          "date": "2026-01-03",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 48
+        },
+        {
+          "number": 21,
+          "date": "2026-01-08",
+          "opponent": "Liverpool",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 49
+        },
+        {
+          "number": 22,
+          "date": "2026-01-17",
+          "opponent": "Nott'm Forest",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 50
+        },
+        {
+          "number": 23,
+          "date": "2026-01-25",
+          "opponent": "Man United",
+          "venue": "H",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 50
+        },
+        {
+          "number": 24,
+          "date": "2026-01-31",
+          "opponent": "Leeds",
+          "venue": "A",
+          "gf": 4,
+          "ga": 0,
+          "result": "W",
+          "points": 53
+        },
+        {
+          "number": 25,
+          "date": "2026-02-07",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 56
+        },
+        {
+          "number": 26,
+          "date": "2026-02-12",
+          "opponent": "Brentford",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 57
+        },
+        {
+          "number": 27,
+          "date": "2026-02-18",
+          "opponent": "Wolves",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 58
+        },
+        {
+          "number": 28,
+          "date": "2026-02-22",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 4,
+          "ga": 1,
+          "result": "W",
+          "points": 61
+        },
+        {
+          "number": 29,
+          "date": "2026-03-01",
+          "opponent": "Chelsea",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 64
+        },
+        {
+          "number": 30,
+          "date": "2026-03-04",
+          "opponent": "Brighton",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 67
+        },
+        {
+          "number": 31,
+          "date": "2026-03-14",
+          "opponent": "Everton",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 70
+        },
+        {
+          "number": 32,
+          "date": "2026-04-11",
+          "opponent": "Bournemouth",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 70
+        },
+        {
+          "number": 33,
+          "date": "2026-04-19",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 70
+        },
+        {
+          "number": 34,
+          "date": "2026-04-25",
+          "opponent": "Newcastle",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 73
+        },
+        {
+          "number": 35,
+          "date": "2026-05-02",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 76
+        },
+        {
+          "number": 36,
+          "date": "2026-05-10",
+          "opponent": "West Ham",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 79
+        },
+        {
+          "number": 37,
+          "date": "2026-05-18",
+          "opponent": "Burnley",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 82
+        },
+        {
+          "number": 38,
+          "date": "2026-05-24",
+          "opponent": "Crystal Palace",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 85
+        }
+      ],
+      "rank": 1
+    },
+    {
+      "name": "Man City",
+      "played": 38,
+      "points": 78,
+      "gd": 42,
+      "gf": 77,
+      "ga": 35,
+      "w": 23,
+      "d": 9,
+      "l": 6,
+      "games": [
+        {
+          "number": 1,
+          "date": "2025-08-16",
+          "opponent": "Wolves",
+          "venue": "A",
+          "gf": 4,
+          "ga": 0,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 2,
+          "date": "2025-08-23",
+          "opponent": "Tottenham",
+          "venue": "H",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 3
+        },
+        {
+          "number": 3,
+          "date": "2025-08-31",
+          "opponent": "Brighton",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 3
+        },
+        {
+          "number": 4,
+          "date": "2025-09-14",
+          "opponent": "Man United",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 6
+        },
+        {
+          "number": 5,
+          "date": "2025-09-21",
+          "opponent": "Arsenal",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 7
+        },
+        {
+          "number": 6,
+          "date": "2025-09-27",
+          "opponent": "Burnley",
+          "venue": "H",
+          "gf": 5,
+          "ga": 1,
+          "result": "W",
+          "points": 10
+        },
+        {
+          "number": 7,
+          "date": "2025-10-05",
+          "opponent": "Brentford",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 13
+        },
+        {
+          "number": 8,
+          "date": "2025-10-18",
+          "opponent": "Everton",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 16
+        },
+        {
+          "number": 9,
+          "date": "2025-10-26",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 16
+        },
+        {
+          "number": 10,
+          "date": "2025-11-02",
+          "opponent": "Bournemouth",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 19
+        },
+        {
+          "number": 11,
+          "date": "2025-11-09",
+          "opponent": "Liverpool",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 22
+        },
+        {
+          "number": 12,
+          "date": "2025-11-22",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 22
+        },
+        {
+          "number": 13,
+          "date": "2025-11-29",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 25
+        },
+        {
+          "number": 14,
+          "date": "2025-12-02",
+          "opponent": "Fulham",
+          "venue": "A",
+          "gf": 5,
+          "ga": 4,
+          "result": "W",
+          "points": 28
+        },
+        {
+          "number": 15,
+          "date": "2025-12-06",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 31
+        },
+        {
+          "number": 16,
+          "date": "2025-12-14",
+          "opponent": "Crystal Palace",
+          "venue": "A",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 34
+        },
+        {
+          "number": 17,
+          "date": "2025-12-20",
+          "opponent": "West Ham",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 37
+        },
+        {
+          "number": 18,
+          "date": "2025-12-27",
+          "opponent": "Nott'm Forest",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 40
+        },
+        {
+          "number": 19,
+          "date": "2026-01-01",
+          "opponent": "Sunderland",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 41
+        },
+        {
+          "number": 20,
+          "date": "2026-01-04",
+          "opponent": "Chelsea",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 42
+        },
+        {
+          "number": 21,
+          "date": "2026-01-07",
+          "opponent": "Brighton",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 43
+        },
+        {
+          "number": 22,
+          "date": "2026-01-17",
+          "opponent": "Man United",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 43
+        },
+        {
+          "number": 23,
+          "date": "2026-01-24",
+          "opponent": "Wolves",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 46
+        },
+        {
+          "number": 24,
+          "date": "2026-02-01",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 47
+        },
+        {
+          "number": 25,
+          "date": "2026-02-08",
+          "opponent": "Liverpool",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 50
+        },
+        {
+          "number": 26,
+          "date": "2026-02-11",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 53
+        },
+        {
+          "number": 27,
+          "date": "2026-02-21",
+          "opponent": "Newcastle",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 56
+        },
+        {
+          "number": 28,
+          "date": "2026-02-28",
+          "opponent": "Leeds",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 59
+        },
+        {
+          "number": 29,
+          "date": "2026-03-04",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 60
+        },
+        {
+          "number": 30,
+          "date": "2026-03-14",
+          "opponent": "West Ham",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 61
+        },
+        {
+          "number": 31,
+          "date": "2026-04-12",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 64
+        },
+        {
+          "number": 32,
+          "date": "2026-04-19",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 67
+        },
+        {
+          "number": 33,
+          "date": "2026-04-22",
+          "opponent": "Burnley",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 70
+        },
+        {
+          "number": 34,
+          "date": "2026-05-04",
+          "opponent": "Everton",
+          "venue": "A",
+          "gf": 3,
+          "ga": 3,
+          "result": "D",
+          "points": 71
+        },
+        {
+          "number": 35,
+          "date": "2026-05-09",
+          "opponent": "Brentford",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 74
+        },
+        {
+          "number": 36,
+          "date": "2026-05-13",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 77
+        },
+        {
+          "number": 37,
+          "date": "2026-05-19",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 78
+        },
+        {
+          "number": 38,
+          "date": "2026-05-24",
+          "opponent": "Aston Villa",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 78
+        }
+      ],
+      "rank": 2
+    },
+    {
+      "name": "Man United",
+      "played": 38,
+      "points": 71,
+      "gd": 19,
+      "gf": 69,
+      "ga": 50,
+      "w": 20,
+      "d": 11,
+      "l": 7,
+      "games": [
+        {
+          "number": 1,
+          "date": "2025-08-17",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 2,
+          "date": "2025-08-24",
+          "opponent": "Fulham",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 1
+        },
+        {
+          "number": 3,
+          "date": "2025-08-30",
+          "opponent": "Burnley",
+          "venue": "H",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 4
+        },
+        {
+          "number": 4,
+          "date": "2025-09-14",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 4
+        },
+        {
+          "number": 5,
+          "date": "2025-09-20",
+          "opponent": "Chelsea",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 7
+        },
+        {
+          "number": 6,
+          "date": "2025-09-27",
+          "opponent": "Brentford",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 7
+        },
+        {
+          "number": 7,
+          "date": "2025-10-04",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 10
+        },
+        {
+          "number": 8,
+          "date": "2025-10-19",
+          "opponent": "Liverpool",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 13
+        },
+        {
+          "number": 9,
+          "date": "2025-10-25",
+          "opponent": "Brighton",
+          "venue": "H",
+          "gf": 4,
+          "ga": 2,
+          "result": "W",
+          "points": 16
+        },
+        {
+          "number": 10,
+          "date": "2025-11-01",
+          "opponent": "Nott'm Forest",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 17
+        },
+        {
+          "number": 11,
+          "date": "2025-11-08",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 18
+        },
+        {
+          "number": 12,
+          "date": "2025-11-24",
+          "opponent": "Everton",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 18
+        },
+        {
+          "number": 13,
+          "date": "2025-11-30",
+          "opponent": "Crystal Palace",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 21
+        },
+        {
+          "number": 14,
+          "date": "2025-12-04",
+          "opponent": "West Ham",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 22
+        },
+        {
+          "number": 15,
+          "date": "2025-12-08",
+          "opponent": "Wolves",
+          "venue": "A",
+          "gf": 4,
+          "ga": 1,
+          "result": "W",
+          "points": 25
+        },
+        {
+          "number": 16,
+          "date": "2025-12-15",
+          "opponent": "Bournemouth",
+          "venue": "H",
+          "gf": 4,
+          "ga": 4,
+          "result": "D",
+          "points": 26
+        },
+        {
+          "number": 17,
+          "date": "2025-12-21",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 26
+        },
+        {
+          "number": 18,
+          "date": "2025-12-26",
+          "opponent": "Newcastle",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 29
+        },
+        {
+          "number": 19,
+          "date": "2025-12-30",
+          "opponent": "Wolves",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 30
+        },
+        {
+          "number": 20,
+          "date": "2026-01-04",
+          "opponent": "Leeds",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 31
+        },
+        {
+          "number": 21,
+          "date": "2026-01-07",
+          "opponent": "Burnley",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 32
+        },
+        {
+          "number": 22,
+          "date": "2026-01-17",
+          "opponent": "Man City",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 35
+        },
+        {
+          "number": 23,
+          "date": "2026-01-25",
+          "opponent": "Arsenal",
+          "venue": "A",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 38
+        },
+        {
+          "number": 24,
+          "date": "2026-02-01",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 41
+        },
+        {
+          "number": 25,
+          "date": "2026-02-07",
+          "opponent": "Tottenham",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 44
+        },
+        {
+          "number": 26,
+          "date": "2026-02-10",
+          "opponent": "West Ham",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 45
+        },
+        {
+          "number": 27,
+          "date": "2026-02-23",
+          "opponent": "Everton",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 48
+        },
+        {
+          "number": 28,
+          "date": "2026-03-01",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 51
+        },
+        {
+          "number": 29,
+          "date": "2026-03-04",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 51
+        },
+        {
+          "number": 30,
+          "date": "2026-03-15",
+          "opponent": "Aston Villa",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 54
+        },
+        {
+          "number": 31,
+          "date": "2026-03-20",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 55
+        },
+        {
+          "number": 32,
+          "date": "2026-04-13",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 55
+        },
+        {
+          "number": 33,
+          "date": "2026-04-18",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 58
+        },
+        {
+          "number": 34,
+          "date": "2026-04-27",
+          "opponent": "Brentford",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 61
+        },
+        {
+          "number": 35,
+          "date": "2026-05-03",
+          "opponent": "Liverpool",
+          "venue": "H",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 64
+        },
+        {
+          "number": 36,
+          "date": "2026-05-09",
+          "opponent": "Sunderland",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 65
+        },
+        {
+          "number": 37,
+          "date": "2026-05-17",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 68
+        },
+        {
+          "number": 38,
+          "date": "2026-05-24",
+          "opponent": "Brighton",
+          "venue": "A",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 71
+        }
+      ],
+      "rank": 3
+    },
+    {
+      "name": "Aston Villa",
+      "played": 38,
+      "points": 65,
+      "gd": 7,
+      "gf": 56,
+      "ga": 49,
+      "w": 19,
+      "d": 8,
+      "l": 11,
+      "games": [
+        {
+          "number": 1,
+          "date": "2025-08-16",
+          "opponent": "Newcastle",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 1
+        },
+        {
+          "number": 2,
+          "date": "2025-08-23",
+          "opponent": "Brentford",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 1
+        },
+        {
+          "number": 3,
+          "date": "2025-08-31",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 1
+        },
+        {
+          "number": 4,
+          "date": "2025-09-13",
+          "opponent": "Everton",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 2
+        },
+        {
+          "number": 5,
+          "date": "2025-09-21",
+          "opponent": "Sunderland",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 3
+        },
+        {
+          "number": 6,
+          "date": "2025-09-28",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 6
+        },
+        {
+          "number": 7,
+          "date": "2025-10-05",
+          "opponent": "Burnley",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 9
+        },
+        {
+          "number": 8,
+          "date": "2025-10-19",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 12
+        },
+        {
+          "number": 9,
+          "date": "2025-10-26",
+          "opponent": "Man City",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 15
+        },
+        {
+          "number": 10,
+          "date": "2025-11-01",
+          "opponent": "Liverpool",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 15
+        },
+        {
+          "number": 11,
+          "date": "2025-11-09",
+          "opponent": "Bournemouth",
+          "venue": "H",
+          "gf": 4,
+          "ga": 0,
+          "result": "W",
+          "points": 18
+        },
+        {
+          "number": 12,
+          "date": "2025-11-23",
+          "opponent": "Leeds",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 21
+        },
+        {
+          "number": 13,
+          "date": "2025-11-30",
+          "opponent": "Wolves",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 24
+        },
+        {
+          "number": 14,
+          "date": "2025-12-03",
+          "opponent": "Brighton",
+          "venue": "A",
+          "gf": 4,
+          "ga": 3,
+          "result": "W",
+          "points": 27
+        },
+        {
+          "number": 15,
+          "date": "2025-12-06",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 30
+        },
+        {
+          "number": 16,
+          "date": "2025-12-14",
+          "opponent": "West Ham",
+          "venue": "A",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 33
+        },
+        {
+          "number": 17,
+          "date": "2025-12-21",
+          "opponent": "Man United",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 36
+        },
+        {
+          "number": 18,
+          "date": "2025-12-27",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 39
+        },
+        {
+          "number": 19,
+          "date": "2025-12-30",
+          "opponent": "Arsenal",
+          "venue": "A",
+          "gf": 1,
+          "ga": 4,
+          "result": "L",
+          "points": 39
+        },
+        {
+          "number": 20,
+          "date": "2026-01-03",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 42
+        },
+        {
+          "number": 21,
+          "date": "2026-01-07",
+          "opponent": "Crystal Palace",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 43
+        },
+        {
+          "number": 22,
+          "date": "2026-01-18",
+          "opponent": "Everton",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 43
+        },
+        {
+          "number": 23,
+          "date": "2026-01-25",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 46
+        },
+        {
+          "number": 24,
+          "date": "2026-02-01",
+          "opponent": "Brentford",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 46
+        },
+        {
+          "number": 25,
+          "date": "2026-02-07",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 47
+        },
+        {
+          "number": 26,
+          "date": "2026-02-11",
+          "opponent": "Brighton",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 50
+        },
+        {
+          "number": 27,
+          "date": "2026-02-21",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 51
+        },
+        {
+          "number": 28,
+          "date": "2026-02-27",
+          "opponent": "Wolves",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 51
+        },
+        {
+          "number": 29,
+          "date": "2026-03-04",
+          "opponent": "Chelsea",
+          "venue": "H",
+          "gf": 1,
+          "ga": 4,
+          "result": "L",
+          "points": 51
+        },
+        {
+          "number": 30,
+          "date": "2026-03-15",
+          "opponent": "Man United",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 51
+        },
+        {
+          "number": 31,
+          "date": "2026-03-22",
+          "opponent": "West Ham",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 54
+        },
+        {
+          "number": 32,
+          "date": "2026-04-12",
+          "opponent": "Nott'm Forest",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 55
+        },
+        {
+          "number": 33,
+          "date": "2026-04-19",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 4,
+          "ga": 3,
+          "result": "W",
+          "points": 58
+        },
+        {
+          "number": 34,
+          "date": "2026-04-25",
+          "opponent": "Fulham",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 58
+        },
+        {
+          "number": 35,
+          "date": "2026-05-03",
+          "opponent": "Tottenham",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 58
+        },
+        {
+          "number": 36,
+          "date": "2026-05-10",
+          "opponent": "Burnley",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 59
+        },
+        {
+          "number": 37,
+          "date": "2026-05-15",
+          "opponent": "Liverpool",
+          "venue": "H",
+          "gf": 4,
+          "ga": 2,
+          "result": "W",
+          "points": 62
+        },
+        {
+          "number": 38,
+          "date": "2026-05-24",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 65
+        }
+      ],
+      "rank": 4
+    },
+    {
+      "name": "Liverpool",
+      "played": 38,
+      "points": 60,
+      "gd": 10,
+      "gf": 63,
+      "ga": 53,
+      "w": 17,
+      "d": 9,
+      "l": 12,
+      "games": [
+        {
+          "number": 1,
+          "date": "2025-08-15",
+          "opponent": "Bournemouth",
+          "venue": "H",
+          "gf": 4,
+          "ga": 2,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 2,
+          "date": "2025-08-25",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 6
+        },
+        {
+          "number": 3,
+          "date": "2025-08-31",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 9
+        },
+        {
+          "number": 4,
+          "date": "2025-09-14",
+          "opponent": "Burnley",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 12
+        },
+        {
+          "number": 5,
+          "date": "2025-09-20",
+          "opponent": "Everton",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 15
+        },
+        {
+          "number": 6,
+          "date": "2025-09-27",
+          "opponent": "Crystal Palace",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 15
+        },
+        {
+          "number": 7,
+          "date": "2025-10-04",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 15
+        },
+        {
+          "number": 8,
+          "date": "2025-10-19",
+          "opponent": "Man United",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 15
+        },
+        {
+          "number": 9,
+          "date": "2025-10-25",
+          "opponent": "Brentford",
+          "venue": "A",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 15
+        },
+        {
+          "number": 10,
+          "date": "2025-11-01",
+          "opponent": "Aston Villa",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 18
+        },
+        {
+          "number": 11,
+          "date": "2025-11-09",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 18
+        },
+        {
+          "number": 12,
+          "date": "2025-11-22",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 18
+        },
+        {
+          "number": 13,
+          "date": "2025-11-30",
+          "opponent": "West Ham",
+          "venue": "A",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 21
+        },
+        {
+          "number": 14,
+          "date": "2025-12-03",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 22
+        },
+        {
+          "number": 15,
+          "date": "2025-12-06",
+          "opponent": "Leeds",
+          "venue": "A",
+          "gf": 3,
+          "ga": 3,
+          "result": "D",
+          "points": 23
+        },
+        {
+          "number": 16,
+          "date": "2025-12-13",
+          "opponent": "Brighton",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 26
+        },
+        {
+          "number": 17,
+          "date": "2025-12-20",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 29
+        },
+        {
+          "number": 18,
+          "date": "2025-12-27",
+          "opponent": "Wolves",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 32
+        },
+        {
+          "number": 19,
+          "date": "2026-01-01",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 33
+        },
+        {
+          "number": 20,
+          "date": "2026-01-04",
+          "opponent": "Fulham",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 34
+        },
+        {
+          "number": 21,
+          "date": "2026-01-08",
+          "opponent": "Arsenal",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 35
+        },
+        {
+          "number": 22,
+          "date": "2026-01-17",
+          "opponent": "Burnley",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 36
+        },
+        {
+          "number": 23,
+          "date": "2026-01-24",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 36
+        },
+        {
+          "number": 24,
+          "date": "2026-01-31",
+          "opponent": "Newcastle",
+          "venue": "H",
+          "gf": 4,
+          "ga": 1,
+          "result": "W",
+          "points": 39
+        },
+        {
+          "number": 25,
+          "date": "2026-02-08",
+          "opponent": "Man City",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 39
+        },
+        {
+          "number": 26,
+          "date": "2026-02-11",
+          "opponent": "Sunderland",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 42
+        },
+        {
+          "number": 27,
+          "date": "2026-02-22",
+          "opponent": "Nott'm Forest",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 45
+        },
+        {
+          "number": 28,
+          "date": "2026-02-28",
+          "opponent": "West Ham",
+          "venue": "H",
+          "gf": 5,
+          "ga": 2,
+          "result": "W",
+          "points": 48
+        },
+        {
+          "number": 29,
+          "date": "2026-03-03",
+          "opponent": "Wolves",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 48
+        },
+        {
+          "number": 30,
+          "date": "2026-03-15",
+          "opponent": "Tottenham",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 49
+        },
+        {
+          "number": 31,
+          "date": "2026-03-21",
+          "opponent": "Brighton",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 49
+        },
+        {
+          "number": 32,
+          "date": "2026-04-11",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 52
+        },
+        {
+          "number": 33,
+          "date": "2026-04-19",
+          "opponent": "Everton",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 55
+        },
+        {
+          "number": 34,
+          "date": "2026-04-25",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 58
+        },
+        {
+          "number": 35,
+          "date": "2026-05-03",
+          "opponent": "Man United",
+          "venue": "A",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 58
+        },
+        {
+          "number": 36,
+          "date": "2026-05-09",
+          "opponent": "Chelsea",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 59
+        },
+        {
+          "number": 37,
+          "date": "2026-05-15",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 2,
+          "ga": 4,
+          "result": "L",
+          "points": 59
+        },
+        {
+          "number": 38,
+          "date": "2026-05-24",
+          "opponent": "Brentford",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 60
+        }
+      ],
+      "rank": 5
+    },
+    {
+      "name": "Bournemouth",
+      "played": 38,
+      "points": 57,
+      "gd": 4,
+      "gf": 58,
+      "ga": 54,
+      "w": 13,
+      "d": 18,
+      "l": 7,
+      "games": [
+        {
+          "number": 1,
+          "date": "2025-08-15",
+          "opponent": "Liverpool",
+          "venue": "A",
+          "gf": 2,
+          "ga": 4,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 2,
+          "date": "2025-08-23",
+          "opponent": "Wolves",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 3,
+          "date": "2025-08-30",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 6
+        },
+        {
+          "number": 4,
+          "date": "2025-09-13",
+          "opponent": "Brighton",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 9
+        },
+        {
+          "number": 5,
+          "date": "2025-09-21",
+          "opponent": "Newcastle",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 10
+        },
+        {
+          "number": 6,
+          "date": "2025-09-27",
+          "opponent": "Leeds",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 11
+        },
+        {
+          "number": 7,
+          "date": "2025-10-03",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 14
+        },
+        {
+          "number": 8,
+          "date": "2025-10-18",
+          "opponent": "Crystal Palace",
+          "venue": "A",
+          "gf": 3,
+          "ga": 3,
+          "result": "D",
+          "points": 15
+        },
+        {
+          "number": 9,
+          "date": "2025-10-26",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 18
+        },
+        {
+          "number": 10,
+          "date": "2025-11-02",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 18
+        },
+        {
+          "number": 11,
+          "date": "2025-11-09",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 0,
+          "ga": 4,
+          "result": "L",
+          "points": 18
+        },
+        {
+          "number": 12,
+          "date": "2025-11-22",
+          "opponent": "West Ham",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 19
+        },
+        {
+          "number": 13,
+          "date": "2025-11-29",
+          "opponent": "Sunderland",
+          "venue": "A",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 19
+        },
+        {
+          "number": 14,
+          "date": "2025-12-02",
+          "opponent": "Everton",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 19
+        },
+        {
+          "number": 15,
+          "date": "2025-12-06",
+          "opponent": "Chelsea",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 20
+        },
+        {
+          "number": 16,
+          "date": "2025-12-15",
+          "opponent": "Man United",
+          "venue": "A",
+          "gf": 4,
+          "ga": 4,
+          "result": "D",
+          "points": 21
+        },
+        {
+          "number": 17,
+          "date": "2025-12-20",
+          "opponent": "Burnley",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 22
+        },
+        {
+          "number": 18,
+          "date": "2025-12-27",
+          "opponent": "Brentford",
+          "venue": "A",
+          "gf": 1,
+          "ga": 4,
+          "result": "L",
+          "points": 22
+        },
+        {
+          "number": 19,
+          "date": "2025-12-30",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 23
+        },
+        {
+          "number": 20,
+          "date": "2026-01-03",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 23
+        },
+        {
+          "number": 21,
+          "date": "2026-01-07",
+          "opponent": "Tottenham",
+          "venue": "H",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 26
+        },
+        {
+          "number": 22,
+          "date": "2026-01-19",
+          "opponent": "Brighton",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 27
+        },
+        {
+          "number": 23,
+          "date": "2026-01-24",
+          "opponent": "Liverpool",
+          "venue": "H",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 30
+        },
+        {
+          "number": 24,
+          "date": "2026-01-31",
+          "opponent": "Wolves",
+          "venue": "A",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 33
+        },
+        {
+          "number": 25,
+          "date": "2026-02-07",
+          "opponent": "Aston Villa",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 34
+        },
+        {
+          "number": 26,
+          "date": "2026-02-10",
+          "opponent": "Everton",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 37
+        },
+        {
+          "number": 27,
+          "date": "2026-02-21",
+          "opponent": "West Ham",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 38
+        },
+        {
+          "number": 28,
+          "date": "2026-02-28",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 39
+        },
+        {
+          "number": 29,
+          "date": "2026-03-03",
+          "opponent": "Brentford",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 40
+        },
+        {
+          "number": 30,
+          "date": "2026-03-14",
+          "opponent": "Burnley",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 41
+        },
+        {
+          "number": 31,
+          "date": "2026-03-20",
+          "opponent": "Man United",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 42
+        },
+        {
+          "number": 32,
+          "date": "2026-04-11",
+          "opponent": "Arsenal",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 45
+        },
+        {
+          "number": 33,
+          "date": "2026-04-18",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 48
+        },
+        {
+          "number": 34,
+          "date": "2026-04-22",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 49
+        },
+        {
+          "number": 35,
+          "date": "2026-05-03",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 52
+        },
+        {
+          "number": 36,
+          "date": "2026-05-09",
+          "opponent": "Fulham",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 55
+        },
+        {
+          "number": 37,
+          "date": "2026-05-19",
+          "opponent": "Man City",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 56
+        },
+        {
+          "number": 38,
+          "date": "2026-05-24",
+          "opponent": "Nott'm Forest",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 57
+        }
+      ],
+      "rank": 6
+    },
+    {
+      "name": "Sunderland",
+      "played": 38,
+      "points": 54,
+      "gd": -6,
+      "gf": 42,
+      "ga": 48,
+      "w": 14,
+      "d": 12,
+      "l": 12,
+      "games": [
+        {
+          "number": 1,
+          "date": "2025-08-16",
+          "opponent": "West Ham",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 2,
+          "date": "2025-08-23",
+          "opponent": "Burnley",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 3
+        },
+        {
+          "number": 3,
+          "date": "2025-08-30",
+          "opponent": "Brentford",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 6
+        },
+        {
+          "number": 4,
+          "date": "2025-09-13",
+          "opponent": "Crystal Palace",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 7
+        },
+        {
+          "number": 5,
+          "date": "2025-09-21",
+          "opponent": "Aston Villa",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 8
+        },
+        {
+          "number": 6,
+          "date": "2025-09-27",
+          "opponent": "Nott'm Forest",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 11
+        },
+        {
+          "number": 7,
+          "date": "2025-10-04",
+          "opponent": "Man United",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 11
+        },
+        {
+          "number": 8,
+          "date": "2025-10-18",
+          "opponent": "Wolves",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 14
+        },
+        {
+          "number": 9,
+          "date": "2025-10-25",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 17
+        },
+        {
+          "number": 10,
+          "date": "2025-11-03",
+          "opponent": "Everton",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 18
+        },
+        {
+          "number": 11,
+          "date": "2025-11-08",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 19
+        },
+        {
+          "number": 12,
+          "date": "2025-11-22",
+          "opponent": "Fulham",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 19
+        },
+        {
+          "number": 13,
+          "date": "2025-11-29",
+          "opponent": "Bournemouth",
+          "venue": "H",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 22
+        },
+        {
+          "number": 14,
+          "date": "2025-12-03",
+          "opponent": "Liverpool",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 23
+        },
+        {
+          "number": 15,
+          "date": "2025-12-06",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 23
+        },
+        {
+          "number": 16,
+          "date": "2025-12-14",
+          "opponent": "Newcastle",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 26
+        },
+        {
+          "number": 17,
+          "date": "2025-12-20",
+          "opponent": "Brighton",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 27
+        },
+        {
+          "number": 18,
+          "date": "2025-12-28",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 28
+        },
+        {
+          "number": 19,
+          "date": "2026-01-01",
+          "opponent": "Man City",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 29
+        },
+        {
+          "number": 20,
+          "date": "2026-01-04",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 30
+        },
+        {
+          "number": 21,
+          "date": "2026-01-07",
+          "opponent": "Brentford",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 30
+        },
+        {
+          "number": 22,
+          "date": "2026-01-17",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 33
+        },
+        {
+          "number": 23,
+          "date": "2026-01-24",
+          "opponent": "West Ham",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 33
+        },
+        {
+          "number": 24,
+          "date": "2026-02-02",
+          "opponent": "Burnley",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 36
+        },
+        {
+          "number": 25,
+          "date": "2026-02-07",
+          "opponent": "Arsenal",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 36
+        },
+        {
+          "number": 26,
+          "date": "2026-02-11",
+          "opponent": "Liverpool",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 36
+        },
+        {
+          "number": 27,
+          "date": "2026-02-22",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 36
+        },
+        {
+          "number": 28,
+          "date": "2026-02-28",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 37
+        },
+        {
+          "number": 29,
+          "date": "2026-03-03",
+          "opponent": "Leeds",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 40
+        },
+        {
+          "number": 30,
+          "date": "2026-03-14",
+          "opponent": "Brighton",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 40
+        },
+        {
+          "number": 31,
+          "date": "2026-03-22",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 43
+        },
+        {
+          "number": 32,
+          "date": "2026-04-12",
+          "opponent": "Tottenham",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 46
+        },
+        {
+          "number": 33,
+          "date": "2026-04-19",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 3,
+          "ga": 4,
+          "result": "L",
+          "points": 46
+        },
+        {
+          "number": 34,
+          "date": "2026-04-24",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 0,
+          "ga": 5,
+          "result": "L",
+          "points": 46
+        },
+        {
+          "number": 35,
+          "date": "2026-05-02",
+          "opponent": "Wolves",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 47
+        },
+        {
+          "number": 36,
+          "date": "2026-05-09",
+          "opponent": "Man United",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 48
+        },
+        {
+          "number": 37,
+          "date": "2026-05-17",
+          "opponent": "Everton",
+          "venue": "A",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 51
+        },
+        {
+          "number": 38,
+          "date": "2026-05-24",
+          "opponent": "Chelsea",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 54
+        }
+      ],
+      "rank": 7
+    },
+    {
+      "name": "Brighton",
+      "played": 38,
+      "points": 53,
+      "gd": 6,
+      "gf": 52,
+      "ga": 46,
+      "w": 14,
+      "d": 11,
+      "l": 13,
+      "games": [
+        {
+          "number": 1,
+          "date": "2025-08-16",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 1
+        },
+        {
+          "number": 2,
+          "date": "2025-08-24",
+          "opponent": "Everton",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 1
+        },
+        {
+          "number": 3,
+          "date": "2025-08-31",
+          "opponent": "Man City",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 4
+        },
+        {
+          "number": 4,
+          "date": "2025-09-13",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 4
+        },
+        {
+          "number": 5,
+          "date": "2025-09-20",
+          "opponent": "Tottenham",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 5
+        },
+        {
+          "number": 6,
+          "date": "2025-09-27",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 8
+        },
+        {
+          "number": 7,
+          "date": "2025-10-05",
+          "opponent": "Wolves",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 9
+        },
+        {
+          "number": 8,
+          "date": "2025-10-18",
+          "opponent": "Newcastle",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 12
+        },
+        {
+          "number": 9,
+          "date": "2025-10-25",
+          "opponent": "Man United",
+          "venue": "A",
+          "gf": 2,
+          "ga": 4,
+          "result": "L",
+          "points": 12
+        },
+        {
+          "number": 10,
+          "date": "2025-11-01",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 15
+        },
+        {
+          "number": 11,
+          "date": "2025-11-09",
+          "opponent": "Crystal Palace",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 16
+        },
+        {
+          "number": 12,
+          "date": "2025-11-22",
+          "opponent": "Brentford",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 19
+        },
+        {
+          "number": 13,
+          "date": "2025-11-30",
+          "opponent": "Nott'm Forest",
+          "venue": "A",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 22
+        },
+        {
+          "number": 14,
+          "date": "2025-12-03",
+          "opponent": "Aston Villa",
+          "venue": "H",
+          "gf": 3,
+          "ga": 4,
+          "result": "L",
+          "points": 22
+        },
+        {
+          "number": 15,
+          "date": "2025-12-07",
+          "opponent": "West Ham",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 23
+        },
+        {
+          "number": 16,
+          "date": "2025-12-13",
+          "opponent": "Liverpool",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 23
+        },
+        {
+          "number": 17,
+          "date": "2025-12-20",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 24
+        },
+        {
+          "number": 18,
+          "date": "2025-12-27",
+          "opponent": "Arsenal",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 24
+        },
+        {
+          "number": 19,
+          "date": "2025-12-30",
+          "opponent": "West Ham",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 25
+        },
+        {
+          "number": 20,
+          "date": "2026-01-03",
+          "opponent": "Burnley",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 28
+        },
+        {
+          "number": 21,
+          "date": "2026-01-07",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 29
+        },
+        {
+          "number": 22,
+          "date": "2026-01-19",
+          "opponent": "Bournemouth",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 30
+        },
+        {
+          "number": 23,
+          "date": "2026-01-24",
+          "opponent": "Fulham",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 30
+        },
+        {
+          "number": 24,
+          "date": "2026-01-31",
+          "opponent": "Everton",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 31
+        },
+        {
+          "number": 25,
+          "date": "2026-02-08",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 31
+        },
+        {
+          "number": 26,
+          "date": "2026-02-11",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 31
+        },
+        {
+          "number": 27,
+          "date": "2026-02-21",
+          "opponent": "Brentford",
+          "venue": "A",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 34
+        },
+        {
+          "number": 28,
+          "date": "2026-03-01",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 37
+        },
+        {
+          "number": 29,
+          "date": "2026-03-04",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 37
+        },
+        {
+          "number": 30,
+          "date": "2026-03-14",
+          "opponent": "Sunderland",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 40
+        },
+        {
+          "number": 31,
+          "date": "2026-03-21",
+          "opponent": "Liverpool",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 43
+        },
+        {
+          "number": 32,
+          "date": "2026-04-11",
+          "opponent": "Burnley",
+          "venue": "A",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 46
+        },
+        {
+          "number": 33,
+          "date": "2026-04-18",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 47
+        },
+        {
+          "number": 34,
+          "date": "2026-04-21",
+          "opponent": "Chelsea",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 50
+        },
+        {
+          "number": 35,
+          "date": "2026-05-02",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 50
+        },
+        {
+          "number": 36,
+          "date": "2026-05-09",
+          "opponent": "Wolves",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 53
+        },
+        {
+          "number": 37,
+          "date": "2026-05-17",
+          "opponent": "Leeds",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 53
+        },
+        {
+          "number": 38,
+          "date": "2026-05-24",
+          "opponent": "Man United",
+          "venue": "H",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 53
+        }
+      ],
+      "rank": 8
+    },
+    {
+      "name": "Brentford",
+      "played": 38,
+      "points": 53,
+      "gd": 3,
+      "gf": 55,
+      "ga": 52,
+      "w": 14,
+      "d": 11,
+      "l": 13,
+      "games": [
+        {
+          "number": 1,
+          "date": "2025-08-17",
+          "opponent": "Nott'm Forest",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 2,
+          "date": "2025-08-23",
+          "opponent": "Aston Villa",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 3,
+          "date": "2025-08-30",
+          "opponent": "Sunderland",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 3
+        },
+        {
+          "number": 4,
+          "date": "2025-09-13",
+          "opponent": "Chelsea",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 4
+        },
+        {
+          "number": 5,
+          "date": "2025-09-20",
+          "opponent": "Fulham",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 4
+        },
+        {
+          "number": 6,
+          "date": "2025-09-27",
+          "opponent": "Man United",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 7
+        },
+        {
+          "number": 7,
+          "date": "2025-10-05",
+          "opponent": "Man City",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 7
+        },
+        {
+          "number": 8,
+          "date": "2025-10-20",
+          "opponent": "West Ham",
+          "venue": "A",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 10
+        },
+        {
+          "number": 9,
+          "date": "2025-10-25",
+          "opponent": "Liverpool",
+          "venue": "H",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 13
+        },
+        {
+          "number": 10,
+          "date": "2025-11-01",
+          "opponent": "Crystal Palace",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 13
+        },
+        {
+          "number": 11,
+          "date": "2025-11-09",
+          "opponent": "Newcastle",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 16
+        },
+        {
+          "number": 12,
+          "date": "2025-11-22",
+          "opponent": "Brighton",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 16
+        },
+        {
+          "number": 13,
+          "date": "2025-11-29",
+          "opponent": "Burnley",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 19
+        },
+        {
+          "number": 14,
+          "date": "2025-12-03",
+          "opponent": "Arsenal",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 19
+        },
+        {
+          "number": 15,
+          "date": "2025-12-06",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 19
+        },
+        {
+          "number": 16,
+          "date": "2025-12-14",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 20
+        },
+        {
+          "number": 17,
+          "date": "2025-12-20",
+          "opponent": "Wolves",
+          "venue": "A",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 23
+        },
+        {
+          "number": 18,
+          "date": "2025-12-27",
+          "opponent": "Bournemouth",
+          "venue": "H",
+          "gf": 4,
+          "ga": 1,
+          "result": "W",
+          "points": 26
+        },
+        {
+          "number": 19,
+          "date": "2026-01-01",
+          "opponent": "Tottenham",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 27
+        },
+        {
+          "number": 20,
+          "date": "2026-01-04",
+          "opponent": "Everton",
+          "venue": "A",
+          "gf": 4,
+          "ga": 2,
+          "result": "W",
+          "points": 30
+        },
+        {
+          "number": 21,
+          "date": "2026-01-07",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 33
+        },
+        {
+          "number": 22,
+          "date": "2026-01-17",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 33
+        },
+        {
+          "number": 23,
+          "date": "2026-01-25",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 33
+        },
+        {
+          "number": 24,
+          "date": "2026-02-01",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 36
+        },
+        {
+          "number": 25,
+          "date": "2026-02-07",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 39
+        },
+        {
+          "number": 26,
+          "date": "2026-02-12",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 40
+        },
+        {
+          "number": 27,
+          "date": "2026-02-21",
+          "opponent": "Brighton",
+          "venue": "H",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 40
+        },
+        {
+          "number": 28,
+          "date": "2026-02-28",
+          "opponent": "Burnley",
+          "venue": "A",
+          "gf": 4,
+          "ga": 3,
+          "result": "W",
+          "points": 43
+        },
+        {
+          "number": 29,
+          "date": "2026-03-03",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 44
+        },
+        {
+          "number": 30,
+          "date": "2026-03-16",
+          "opponent": "Wolves",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 45
+        },
+        {
+          "number": 31,
+          "date": "2026-03-21",
+          "opponent": "Leeds",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 46
+        },
+        {
+          "number": 32,
+          "date": "2026-04-11",
+          "opponent": "Everton",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 47
+        },
+        {
+          "number": 33,
+          "date": "2026-04-18",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 48
+        },
+        {
+          "number": 34,
+          "date": "2026-04-27",
+          "opponent": "Man United",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 48
+        },
+        {
+          "number": 35,
+          "date": "2026-05-02",
+          "opponent": "West Ham",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 51
+        },
+        {
+          "number": 36,
+          "date": "2026-05-09",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 51
+        },
+        {
+          "number": 37,
+          "date": "2026-05-17",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 52
+        },
+        {
+          "number": 38,
+          "date": "2026-05-24",
+          "opponent": "Liverpool",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 53
+        }
+      ],
+      "rank": 9
+    },
+    {
+      "name": "Chelsea",
+      "played": 38,
+      "points": 52,
+      "gd": 6,
+      "gf": 58,
+      "ga": 52,
+      "w": 14,
+      "d": 10,
+      "l": 14,
+      "games": [
+        {
+          "number": 1,
+          "date": "2025-08-17",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 1
+        },
+        {
+          "number": 2,
+          "date": "2025-08-22",
+          "opponent": "West Ham",
+          "venue": "A",
+          "gf": 5,
+          "ga": 1,
+          "result": "W",
+          "points": 4
+        },
+        {
+          "number": 3,
+          "date": "2025-08-30",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 7
+        },
+        {
+          "number": 4,
+          "date": "2025-09-13",
+          "opponent": "Brentford",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 8
+        },
+        {
+          "number": 5,
+          "date": "2025-09-20",
+          "opponent": "Man United",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 8
+        },
+        {
+          "number": 6,
+          "date": "2025-09-27",
+          "opponent": "Brighton",
+          "venue": "H",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 8
+        },
+        {
+          "number": 7,
+          "date": "2025-10-04",
+          "opponent": "Liverpool",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 11
+        },
+        {
+          "number": 8,
+          "date": "2025-10-18",
+          "opponent": "Nott'm Forest",
+          "venue": "A",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 14
+        },
+        {
+          "number": 9,
+          "date": "2025-10-25",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 14
+        },
+        {
+          "number": 10,
+          "date": "2025-11-01",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 17
+        },
+        {
+          "number": 11,
+          "date": "2025-11-08",
+          "opponent": "Wolves",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 20
+        },
+        {
+          "number": 12,
+          "date": "2025-11-22",
+          "opponent": "Burnley",
+          "venue": "A",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 23
+        },
+        {
+          "number": 13,
+          "date": "2025-11-30",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 24
+        },
+        {
+          "number": 14,
+          "date": "2025-12-03",
+          "opponent": "Leeds",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 24
+        },
+        {
+          "number": 15,
+          "date": "2025-12-06",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 25
+        },
+        {
+          "number": 16,
+          "date": "2025-12-13",
+          "opponent": "Everton",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 28
+        },
+        {
+          "number": 17,
+          "date": "2025-12-20",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 29
+        },
+        {
+          "number": 18,
+          "date": "2025-12-27",
+          "opponent": "Aston Villa",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 29
+        },
+        {
+          "number": 19,
+          "date": "2025-12-30",
+          "opponent": "Bournemouth",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 30
+        },
+        {
+          "number": 20,
+          "date": "2026-01-04",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 31
+        },
+        {
+          "number": 21,
+          "date": "2026-01-07",
+          "opponent": "Fulham",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 31
+        },
+        {
+          "number": 22,
+          "date": "2026-01-17",
+          "opponent": "Brentford",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 34
+        },
+        {
+          "number": 23,
+          "date": "2026-01-25",
+          "opponent": "Crystal Palace",
+          "venue": "A",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 37
+        },
+        {
+          "number": 24,
+          "date": "2026-01-31",
+          "opponent": "West Ham",
+          "venue": "H",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 40
+        },
+        {
+          "number": 25,
+          "date": "2026-02-07",
+          "opponent": "Wolves",
+          "venue": "A",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 43
+        },
+        {
+          "number": 26,
+          "date": "2026-02-10",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 44
+        },
+        {
+          "number": 27,
+          "date": "2026-02-21",
+          "opponent": "Burnley",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 45
+        },
+        {
+          "number": 28,
+          "date": "2026-03-01",
+          "opponent": "Arsenal",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 45
+        },
+        {
+          "number": 29,
+          "date": "2026-03-04",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 4,
+          "ga": 1,
+          "result": "W",
+          "points": 48
+        },
+        {
+          "number": 30,
+          "date": "2026-03-14",
+          "opponent": "Newcastle",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 48
+        },
+        {
+          "number": 31,
+          "date": "2026-03-21",
+          "opponent": "Everton",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 48
+        },
+        {
+          "number": 32,
+          "date": "2026-04-12",
+          "opponent": "Man City",
+          "venue": "H",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 48
+        },
+        {
+          "number": 33,
+          "date": "2026-04-18",
+          "opponent": "Man United",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 48
+        },
+        {
+          "number": 34,
+          "date": "2026-04-21",
+          "opponent": "Brighton",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 48
+        },
+        {
+          "number": 35,
+          "date": "2026-05-04",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 48
+        },
+        {
+          "number": 36,
+          "date": "2026-05-09",
+          "opponent": "Liverpool",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 49
+        },
+        {
+          "number": 37,
+          "date": "2026-05-19",
+          "opponent": "Tottenham",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 52
+        },
+        {
+          "number": 38,
+          "date": "2026-05-24",
+          "opponent": "Sunderland",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 52
+        }
+      ],
+      "rank": 10
+    },
+    {
+      "name": "Fulham",
+      "played": 38,
+      "points": 52,
+      "gd": -4,
+      "gf": 47,
+      "ga": 51,
+      "w": 15,
+      "d": 7,
+      "l": 16,
+      "games": [
+        {
+          "number": 1,
+          "date": "2025-08-16",
+          "opponent": "Brighton",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 1
+        },
+        {
+          "number": 2,
+          "date": "2025-08-24",
+          "opponent": "Man United",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 2
+        },
+        {
+          "number": 3,
+          "date": "2025-08-30",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 2
+        },
+        {
+          "number": 4,
+          "date": "2025-09-13",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 5
+        },
+        {
+          "number": 5,
+          "date": "2025-09-20",
+          "opponent": "Brentford",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 8
+        },
+        {
+          "number": 6,
+          "date": "2025-09-28",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 8
+        },
+        {
+          "number": 7,
+          "date": "2025-10-03",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 8
+        },
+        {
+          "number": 8,
+          "date": "2025-10-18",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 8
+        },
+        {
+          "number": 9,
+          "date": "2025-10-25",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 8
+        },
+        {
+          "number": 10,
+          "date": "2025-11-01",
+          "opponent": "Wolves",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 11
+        },
+        {
+          "number": 11,
+          "date": "2025-11-08",
+          "opponent": "Everton",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 11
+        },
+        {
+          "number": 12,
+          "date": "2025-11-22",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 14
+        },
+        {
+          "number": 13,
+          "date": "2025-11-29",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 17
+        },
+        {
+          "number": 14,
+          "date": "2025-12-02",
+          "opponent": "Man City",
+          "venue": "H",
+          "gf": 4,
+          "ga": 5,
+          "result": "L",
+          "points": 17
+        },
+        {
+          "number": 15,
+          "date": "2025-12-07",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 17
+        },
+        {
+          "number": 16,
+          "date": "2025-12-13",
+          "opponent": "Burnley",
+          "venue": "A",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 20
+        },
+        {
+          "number": 17,
+          "date": "2025-12-22",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 23
+        },
+        {
+          "number": 18,
+          "date": "2025-12-27",
+          "opponent": "West Ham",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 26
+        },
+        {
+          "number": 19,
+          "date": "2026-01-01",
+          "opponent": "Crystal Palace",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 27
+        },
+        {
+          "number": 20,
+          "date": "2026-01-04",
+          "opponent": "Liverpool",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 28
+        },
+        {
+          "number": 21,
+          "date": "2026-01-07",
+          "opponent": "Chelsea",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 31
+        },
+        {
+          "number": 22,
+          "date": "2026-01-17",
+          "opponent": "Leeds",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 31
+        },
+        {
+          "number": 23,
+          "date": "2026-01-24",
+          "opponent": "Brighton",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 34
+        },
+        {
+          "number": 24,
+          "date": "2026-02-01",
+          "opponent": "Man United",
+          "venue": "A",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 34
+        },
+        {
+          "number": 25,
+          "date": "2026-02-07",
+          "opponent": "Everton",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 34
+        },
+        {
+          "number": 26,
+          "date": "2026-02-11",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 34
+        },
+        {
+          "number": 27,
+          "date": "2026-02-22",
+          "opponent": "Sunderland",
+          "venue": "A",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 37
+        },
+        {
+          "number": 28,
+          "date": "2026-03-01",
+          "opponent": "Tottenham",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 40
+        },
+        {
+          "number": 29,
+          "date": "2026-03-04",
+          "opponent": "West Ham",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 40
+        },
+        {
+          "number": 30,
+          "date": "2026-03-15",
+          "opponent": "Nott'm Forest",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 41
+        },
+        {
+          "number": 31,
+          "date": "2026-03-21",
+          "opponent": "Burnley",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 44
+        },
+        {
+          "number": 32,
+          "date": "2026-04-11",
+          "opponent": "Liverpool",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 44
+        },
+        {
+          "number": 33,
+          "date": "2026-04-18",
+          "opponent": "Brentford",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 45
+        },
+        {
+          "number": 34,
+          "date": "2026-04-25",
+          "opponent": "Aston Villa",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 48
+        },
+        {
+          "number": 35,
+          "date": "2026-05-02",
+          "opponent": "Arsenal",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 48
+        },
+        {
+          "number": 36,
+          "date": "2026-05-09",
+          "opponent": "Bournemouth",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 48
+        },
+        {
+          "number": 37,
+          "date": "2026-05-17",
+          "opponent": "Wolves",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 49
+        },
+        {
+          "number": 38,
+          "date": "2026-05-24",
+          "opponent": "Newcastle",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 52
+        }
+      ],
+      "rank": 11
+    },
+    {
+      "name": "Newcastle",
+      "played": 38,
+      "points": 49,
+      "gd": -2,
+      "gf": 53,
+      "ga": 55,
+      "w": 14,
+      "d": 7,
+      "l": 17,
+      "games": [
+        {
+          "number": 1,
+          "date": "2025-08-16",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 1
+        },
+        {
+          "number": 2,
+          "date": "2025-08-25",
+          "opponent": "Liverpool",
+          "venue": "H",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 1
+        },
+        {
+          "number": 3,
+          "date": "2025-08-30",
+          "opponent": "Leeds",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 2
+        },
+        {
+          "number": 4,
+          "date": "2025-09-13",
+          "opponent": "Wolves",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 5
+        },
+        {
+          "number": 5,
+          "date": "2025-09-21",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 6
+        },
+        {
+          "number": 6,
+          "date": "2025-09-28",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 6
+        },
+        {
+          "number": 7,
+          "date": "2025-10-05",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 9
+        },
+        {
+          "number": 8,
+          "date": "2025-10-18",
+          "opponent": "Brighton",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 9
+        },
+        {
+          "number": 9,
+          "date": "2025-10-25",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 12
+        },
+        {
+          "number": 10,
+          "date": "2025-11-02",
+          "opponent": "West Ham",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 12
+        },
+        {
+          "number": 11,
+          "date": "2025-11-09",
+          "opponent": "Brentford",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 12
+        },
+        {
+          "number": 12,
+          "date": "2025-11-22",
+          "opponent": "Man City",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 15
+        },
+        {
+          "number": 13,
+          "date": "2025-11-29",
+          "opponent": "Everton",
+          "venue": "A",
+          "gf": 4,
+          "ga": 1,
+          "result": "W",
+          "points": 18
+        },
+        {
+          "number": 14,
+          "date": "2025-12-02",
+          "opponent": "Tottenham",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 19
+        },
+        {
+          "number": 15,
+          "date": "2025-12-06",
+          "opponent": "Burnley",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 22
+        },
+        {
+          "number": 16,
+          "date": "2025-12-14",
+          "opponent": "Sunderland",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 22
+        },
+        {
+          "number": 17,
+          "date": "2025-12-20",
+          "opponent": "Chelsea",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 23
+        },
+        {
+          "number": 18,
+          "date": "2025-12-26",
+          "opponent": "Man United",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 23
+        },
+        {
+          "number": 19,
+          "date": "2025-12-30",
+          "opponent": "Burnley",
+          "venue": "A",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 26
+        },
+        {
+          "number": 20,
+          "date": "2026-01-04",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 29
+        },
+        {
+          "number": 21,
+          "date": "2026-01-07",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 4,
+          "ga": 3,
+          "result": "W",
+          "points": 32
+        },
+        {
+          "number": 22,
+          "date": "2026-01-18",
+          "opponent": "Wolves",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 33
+        },
+        {
+          "number": 23,
+          "date": "2026-01-25",
+          "opponent": "Aston Villa",
+          "venue": "H",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 33
+        },
+        {
+          "number": 24,
+          "date": "2026-01-31",
+          "opponent": "Liverpool",
+          "venue": "A",
+          "gf": 1,
+          "ga": 4,
+          "result": "L",
+          "points": 33
+        },
+        {
+          "number": 25,
+          "date": "2026-02-07",
+          "opponent": "Brentford",
+          "venue": "H",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 33
+        },
+        {
+          "number": 26,
+          "date": "2026-02-10",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 36
+        },
+        {
+          "number": 27,
+          "date": "2026-02-21",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 36
+        },
+        {
+          "number": 28,
+          "date": "2026-02-28",
+          "opponent": "Everton",
+          "venue": "H",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 36
+        },
+        {
+          "number": 29,
+          "date": "2026-03-04",
+          "opponent": "Man United",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 39
+        },
+        {
+          "number": 30,
+          "date": "2026-03-14",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 42
+        },
+        {
+          "number": 31,
+          "date": "2026-03-22",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 42
+        },
+        {
+          "number": 32,
+          "date": "2026-04-12",
+          "opponent": "Crystal Palace",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 42
+        },
+        {
+          "number": 33,
+          "date": "2026-04-18",
+          "opponent": "Bournemouth",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 42
+        },
+        {
+          "number": 34,
+          "date": "2026-04-25",
+          "opponent": "Arsenal",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 42
+        },
+        {
+          "number": 35,
+          "date": "2026-05-02",
+          "opponent": "Brighton",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 45
+        },
+        {
+          "number": 36,
+          "date": "2026-05-10",
+          "opponent": "Nott'm Forest",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 46
+        },
+        {
+          "number": 37,
+          "date": "2026-05-17",
+          "opponent": "West Ham",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 49
+        },
+        {
+          "number": 38,
+          "date": "2026-05-24",
+          "opponent": "Fulham",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 49
+        }
+      ],
+      "rank": 12
+    },
+    {
+      "name": "Everton",
+      "played": 38,
+      "points": 49,
+      "gd": -3,
+      "gf": 47,
+      "ga": 50,
+      "w": 13,
+      "d": 10,
+      "l": 15,
+      "games": [
+        {
+          "number": 1,
+          "date": "2025-08-18",
+          "opponent": "Leeds",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 2,
+          "date": "2025-08-24",
+          "opponent": "Brighton",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 3,
+          "date": "2025-08-30",
+          "opponent": "Wolves",
+          "venue": "A",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 6
+        },
+        {
+          "number": 4,
+          "date": "2025-09-13",
+          "opponent": "Aston Villa",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 7
+        },
+        {
+          "number": 5,
+          "date": "2025-09-20",
+          "opponent": "Liverpool",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 7
+        },
+        {
+          "number": 6,
+          "date": "2025-09-29",
+          "opponent": "West Ham",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 8
+        },
+        {
+          "number": 7,
+          "date": "2025-10-05",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 11
+        },
+        {
+          "number": 8,
+          "date": "2025-10-18",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 11
+        },
+        {
+          "number": 9,
+          "date": "2025-10-26",
+          "opponent": "Tottenham",
+          "venue": "H",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 11
+        },
+        {
+          "number": 10,
+          "date": "2025-11-03",
+          "opponent": "Sunderland",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 12
+        },
+        {
+          "number": 11,
+          "date": "2025-11-08",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 15
+        },
+        {
+          "number": 12,
+          "date": "2025-11-24",
+          "opponent": "Man United",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 18
+        },
+        {
+          "number": 13,
+          "date": "2025-11-29",
+          "opponent": "Newcastle",
+          "venue": "H",
+          "gf": 1,
+          "ga": 4,
+          "result": "L",
+          "points": 18
+        },
+        {
+          "number": 14,
+          "date": "2025-12-02",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 21
+        },
+        {
+          "number": 15,
+          "date": "2025-12-06",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 24
+        },
+        {
+          "number": 16,
+          "date": "2025-12-13",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 24
+        },
+        {
+          "number": 17,
+          "date": "2025-12-20",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 24
+        },
+        {
+          "number": 18,
+          "date": "2025-12-27",
+          "opponent": "Burnley",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 25
+        },
+        {
+          "number": 19,
+          "date": "2025-12-30",
+          "opponent": "Nott'm Forest",
+          "venue": "A",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 28
+        },
+        {
+          "number": 20,
+          "date": "2026-01-04",
+          "opponent": "Brentford",
+          "venue": "H",
+          "gf": 2,
+          "ga": 4,
+          "result": "L",
+          "points": 28
+        },
+        {
+          "number": 21,
+          "date": "2026-01-07",
+          "opponent": "Wolves",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 29
+        },
+        {
+          "number": 22,
+          "date": "2026-01-18",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 32
+        },
+        {
+          "number": 23,
+          "date": "2026-01-26",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 33
+        },
+        {
+          "number": 24,
+          "date": "2026-01-31",
+          "opponent": "Brighton",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 34
+        },
+        {
+          "number": 25,
+          "date": "2026-02-07",
+          "opponent": "Fulham",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 37
+        },
+        {
+          "number": 26,
+          "date": "2026-02-10",
+          "opponent": "Bournemouth",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 37
+        },
+        {
+          "number": 27,
+          "date": "2026-02-23",
+          "opponent": "Man United",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 37
+        },
+        {
+          "number": 28,
+          "date": "2026-02-28",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 40
+        },
+        {
+          "number": 29,
+          "date": "2026-03-03",
+          "opponent": "Burnley",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 43
+        },
+        {
+          "number": 30,
+          "date": "2026-03-14",
+          "opponent": "Arsenal",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 43
+        },
+        {
+          "number": 31,
+          "date": "2026-03-21",
+          "opponent": "Chelsea",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 46
+        },
+        {
+          "number": 32,
+          "date": "2026-04-11",
+          "opponent": "Brentford",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 47
+        },
+        {
+          "number": 33,
+          "date": "2026-04-19",
+          "opponent": "Liverpool",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 47
+        },
+        {
+          "number": 34,
+          "date": "2026-04-25",
+          "opponent": "West Ham",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 47
+        },
+        {
+          "number": 35,
+          "date": "2026-05-04",
+          "opponent": "Man City",
+          "venue": "H",
+          "gf": 3,
+          "ga": 3,
+          "result": "D",
+          "points": 48
+        },
+        {
+          "number": 36,
+          "date": "2026-05-10",
+          "opponent": "Crystal Palace",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 49
+        },
+        {
+          "number": 37,
+          "date": "2026-05-17",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 49
+        },
+        {
+          "number": 38,
+          "date": "2026-05-24",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 49
+        }
+      ],
+      "rank": 13
+    },
+    {
+      "name": "Leeds",
+      "played": 38,
+      "points": 47,
+      "gd": -7,
+      "gf": 49,
+      "ga": 56,
+      "w": 11,
+      "d": 14,
+      "l": 13,
+      "games": [
+        {
+          "number": 1,
+          "date": "2025-08-18",
+          "opponent": "Everton",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 2,
+          "date": "2025-08-23",
+          "opponent": "Arsenal",
+          "venue": "A",
+          "gf": 0,
+          "ga": 5,
+          "result": "L",
+          "points": 3
+        },
+        {
+          "number": 3,
+          "date": "2025-08-30",
+          "opponent": "Newcastle",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 4
+        },
+        {
+          "number": 4,
+          "date": "2025-09-13",
+          "opponent": "Fulham",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 4
+        },
+        {
+          "number": 5,
+          "date": "2025-09-20",
+          "opponent": "Wolves",
+          "venue": "A",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 7
+        },
+        {
+          "number": 6,
+          "date": "2025-09-27",
+          "opponent": "Bournemouth",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 8
+        },
+        {
+          "number": 7,
+          "date": "2025-10-04",
+          "opponent": "Tottenham",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 8
+        },
+        {
+          "number": 8,
+          "date": "2025-10-18",
+          "opponent": "Burnley",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 8
+        },
+        {
+          "number": 9,
+          "date": "2025-10-24",
+          "opponent": "West Ham",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 11
+        },
+        {
+          "number": 10,
+          "date": "2025-11-01",
+          "opponent": "Brighton",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 11
+        },
+        {
+          "number": 11,
+          "date": "2025-11-09",
+          "opponent": "Nott'm Forest",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 11
+        },
+        {
+          "number": 12,
+          "date": "2025-11-23",
+          "opponent": "Aston Villa",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 11
+        },
+        {
+          "number": 13,
+          "date": "2025-11-29",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 11
+        },
+        {
+          "number": 14,
+          "date": "2025-12-03",
+          "opponent": "Chelsea",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 14
+        },
+        {
+          "number": 15,
+          "date": "2025-12-06",
+          "opponent": "Liverpool",
+          "venue": "H",
+          "gf": 3,
+          "ga": 3,
+          "result": "D",
+          "points": 15
+        },
+        {
+          "number": 16,
+          "date": "2025-12-14",
+          "opponent": "Brentford",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 16
+        },
+        {
+          "number": 17,
+          "date": "2025-12-20",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 4,
+          "ga": 1,
+          "result": "W",
+          "points": 19
+        },
+        {
+          "number": 18,
+          "date": "2025-12-28",
+          "opponent": "Sunderland",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 20
+        },
+        {
+          "number": 19,
+          "date": "2026-01-01",
+          "opponent": "Liverpool",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 21
+        },
+        {
+          "number": 20,
+          "date": "2026-01-04",
+          "opponent": "Man United",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 22
+        },
+        {
+          "number": 21,
+          "date": "2026-01-07",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 3,
+          "ga": 4,
+          "result": "L",
+          "points": 22
+        },
+        {
+          "number": 22,
+          "date": "2026-01-17",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 25
+        },
+        {
+          "number": 23,
+          "date": "2026-01-26",
+          "opponent": "Everton",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 26
+        },
+        {
+          "number": 24,
+          "date": "2026-01-31",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 0,
+          "ga": 4,
+          "result": "L",
+          "points": 26
+        },
+        {
+          "number": 25,
+          "date": "2026-02-06",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 29
+        },
+        {
+          "number": 26,
+          "date": "2026-02-10",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 30
+        },
+        {
+          "number": 27,
+          "date": "2026-02-21",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 31
+        },
+        {
+          "number": 28,
+          "date": "2026-02-28",
+          "opponent": "Man City",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 31
+        },
+        {
+          "number": 29,
+          "date": "2026-03-03",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 31
+        },
+        {
+          "number": 30,
+          "date": "2026-03-15",
+          "opponent": "Crystal Palace",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 32
+        },
+        {
+          "number": 31,
+          "date": "2026-03-21",
+          "opponent": "Brentford",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 33
+        },
+        {
+          "number": 32,
+          "date": "2026-04-13",
+          "opponent": "Man United",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 36
+        },
+        {
+          "number": 33,
+          "date": "2026-04-18",
+          "opponent": "Wolves",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 39
+        },
+        {
+          "number": 34,
+          "date": "2026-04-22",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 40
+        },
+        {
+          "number": 35,
+          "date": "2026-05-01",
+          "opponent": "Burnley",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 43
+        },
+        {
+          "number": 36,
+          "date": "2026-05-11",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 44
+        },
+        {
+          "number": 37,
+          "date": "2026-05-17",
+          "opponent": "Brighton",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 47
+        },
+        {
+          "number": 38,
+          "date": "2026-05-24",
+          "opponent": "West Ham",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 47
+        }
+      ],
+      "rank": 14
+    },
+    {
+      "name": "Crystal Palace",
+      "played": 38,
+      "points": 45,
+      "gd": -10,
+      "gf": 41,
+      "ga": 51,
+      "w": 11,
+      "d": 12,
+      "l": 15,
+      "games": [
+        {
+          "number": 1,
+          "date": "2025-08-17",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 1
+        },
+        {
+          "number": 2,
+          "date": "2025-08-24",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 2
+        },
+        {
+          "number": 3,
+          "date": "2025-08-31",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 5
+        },
+        {
+          "number": 4,
+          "date": "2025-09-13",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 6
+        },
+        {
+          "number": 5,
+          "date": "2025-09-20",
+          "opponent": "West Ham",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 9
+        },
+        {
+          "number": 6,
+          "date": "2025-09-27",
+          "opponent": "Liverpool",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 12
+        },
+        {
+          "number": 7,
+          "date": "2025-10-05",
+          "opponent": "Everton",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 12
+        },
+        {
+          "number": 8,
+          "date": "2025-10-18",
+          "opponent": "Bournemouth",
+          "venue": "H",
+          "gf": 3,
+          "ga": 3,
+          "result": "D",
+          "points": 13
+        },
+        {
+          "number": 9,
+          "date": "2025-10-26",
+          "opponent": "Arsenal",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 13
+        },
+        {
+          "number": 10,
+          "date": "2025-11-01",
+          "opponent": "Brentford",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 16
+        },
+        {
+          "number": 11,
+          "date": "2025-11-09",
+          "opponent": "Brighton",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 17
+        },
+        {
+          "number": 12,
+          "date": "2025-11-22",
+          "opponent": "Wolves",
+          "venue": "A",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 20
+        },
+        {
+          "number": 13,
+          "date": "2025-11-30",
+          "opponent": "Man United",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 20
+        },
+        {
+          "number": 14,
+          "date": "2025-12-03",
+          "opponent": "Burnley",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 23
+        },
+        {
+          "number": 15,
+          "date": "2025-12-07",
+          "opponent": "Fulham",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 26
+        },
+        {
+          "number": 16,
+          "date": "2025-12-14",
+          "opponent": "Man City",
+          "venue": "H",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 26
+        },
+        {
+          "number": 17,
+          "date": "2025-12-20",
+          "opponent": "Leeds",
+          "venue": "A",
+          "gf": 1,
+          "ga": 4,
+          "result": "L",
+          "points": 26
+        },
+        {
+          "number": 18,
+          "date": "2025-12-28",
+          "opponent": "Tottenham",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 26
+        },
+        {
+          "number": 19,
+          "date": "2026-01-01",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 27
+        },
+        {
+          "number": 20,
+          "date": "2026-01-04",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 27
+        },
+        {
+          "number": 21,
+          "date": "2026-01-07",
+          "opponent": "Aston Villa",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 28
+        },
+        {
+          "number": 22,
+          "date": "2026-01-17",
+          "opponent": "Sunderland",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 28
+        },
+        {
+          "number": 23,
+          "date": "2026-01-25",
+          "opponent": "Chelsea",
+          "venue": "H",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 28
+        },
+        {
+          "number": 24,
+          "date": "2026-02-01",
+          "opponent": "Nott'm Forest",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 29
+        },
+        {
+          "number": 25,
+          "date": "2026-02-08",
+          "opponent": "Brighton",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 32
+        },
+        {
+          "number": 26,
+          "date": "2026-02-11",
+          "opponent": "Burnley",
+          "venue": "H",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 32
+        },
+        {
+          "number": 27,
+          "date": "2026-02-22",
+          "opponent": "Wolves",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 35
+        },
+        {
+          "number": 28,
+          "date": "2026-03-01",
+          "opponent": "Man United",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 35
+        },
+        {
+          "number": 29,
+          "date": "2026-03-05",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 38
+        },
+        {
+          "number": 30,
+          "date": "2026-03-15",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 39
+        },
+        {
+          "number": 31,
+          "date": "2026-04-12",
+          "opponent": "Newcastle",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 42
+        },
+        {
+          "number": 32,
+          "date": "2026-04-20",
+          "opponent": "West Ham",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 43
+        },
+        {
+          "number": 33,
+          "date": "2026-04-25",
+          "opponent": "Liverpool",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 43
+        },
+        {
+          "number": 34,
+          "date": "2026-05-03",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 43
+        },
+        {
+          "number": 35,
+          "date": "2026-05-10",
+          "opponent": "Everton",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 44
+        },
+        {
+          "number": 36,
+          "date": "2026-05-13",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 44
+        },
+        {
+          "number": 37,
+          "date": "2026-05-17",
+          "opponent": "Brentford",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 45
+        },
+        {
+          "number": 38,
+          "date": "2026-05-24",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 45
+        }
+      ],
+      "rank": 15
+    },
+    {
+      "name": "Nott'm Forest",
+      "played": 38,
+      "points": 44,
+      "gd": -3,
+      "gf": 48,
+      "ga": 51,
+      "w": 11,
+      "d": 11,
+      "l": 16,
+      "games": [
+        {
+          "number": 1,
+          "date": "2025-08-17",
+          "opponent": "Brentford",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 2,
+          "date": "2025-08-24",
+          "opponent": "Crystal Palace",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 4
+        },
+        {
+          "number": 3,
+          "date": "2025-08-31",
+          "opponent": "West Ham",
+          "venue": "H",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 4
+        },
+        {
+          "number": 4,
+          "date": "2025-09-13",
+          "opponent": "Arsenal",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 4
+        },
+        {
+          "number": 5,
+          "date": "2025-09-20",
+          "opponent": "Burnley",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 5
+        },
+        {
+          "number": 6,
+          "date": "2025-09-27",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 5
+        },
+        {
+          "number": 7,
+          "date": "2025-10-05",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 5
+        },
+        {
+          "number": 8,
+          "date": "2025-10-18",
+          "opponent": "Chelsea",
+          "venue": "H",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 5
+        },
+        {
+          "number": 9,
+          "date": "2025-10-26",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 5
+        },
+        {
+          "number": 10,
+          "date": "2025-11-01",
+          "opponent": "Man United",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 6
+        },
+        {
+          "number": 11,
+          "date": "2025-11-09",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 9
+        },
+        {
+          "number": 12,
+          "date": "2025-11-22",
+          "opponent": "Liverpool",
+          "venue": "A",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 12
+        },
+        {
+          "number": 13,
+          "date": "2025-11-30",
+          "opponent": "Brighton",
+          "venue": "H",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 12
+        },
+        {
+          "number": 14,
+          "date": "2025-12-03",
+          "opponent": "Wolves",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 15
+        },
+        {
+          "number": 15,
+          "date": "2025-12-06",
+          "opponent": "Everton",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 15
+        },
+        {
+          "number": 16,
+          "date": "2025-12-14",
+          "opponent": "Tottenham",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 18
+        },
+        {
+          "number": 17,
+          "date": "2025-12-22",
+          "opponent": "Fulham",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 18
+        },
+        {
+          "number": 18,
+          "date": "2025-12-27",
+          "opponent": "Man City",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 18
+        },
+        {
+          "number": 19,
+          "date": "2025-12-30",
+          "opponent": "Everton",
+          "venue": "H",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 18
+        },
+        {
+          "number": 20,
+          "date": "2026-01-03",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 18
+        },
+        {
+          "number": 21,
+          "date": "2026-01-06",
+          "opponent": "West Ham",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 21
+        },
+        {
+          "number": 22,
+          "date": "2026-01-17",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 22
+        },
+        {
+          "number": 23,
+          "date": "2026-01-25",
+          "opponent": "Brentford",
+          "venue": "A",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 25
+        },
+        {
+          "number": 24,
+          "date": "2026-02-01",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 26
+        },
+        {
+          "number": 25,
+          "date": "2026-02-06",
+          "opponent": "Leeds",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 26
+        },
+        {
+          "number": 26,
+          "date": "2026-02-11",
+          "opponent": "Wolves",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 27
+        },
+        {
+          "number": 27,
+          "date": "2026-02-22",
+          "opponent": "Liverpool",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 27
+        },
+        {
+          "number": 28,
+          "date": "2026-03-01",
+          "opponent": "Brighton",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 27
+        },
+        {
+          "number": 29,
+          "date": "2026-03-04",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 28
+        },
+        {
+          "number": 30,
+          "date": "2026-03-15",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 29
+        },
+        {
+          "number": 31,
+          "date": "2026-03-22",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 32
+        },
+        {
+          "number": 32,
+          "date": "2026-04-12",
+          "opponent": "Aston Villa",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 33
+        },
+        {
+          "number": 33,
+          "date": "2026-04-19",
+          "opponent": "Burnley",
+          "venue": "H",
+          "gf": 4,
+          "ga": 1,
+          "result": "W",
+          "points": 36
+        },
+        {
+          "number": 34,
+          "date": "2026-04-24",
+          "opponent": "Sunderland",
+          "venue": "A",
+          "gf": 5,
+          "ga": 0,
+          "result": "W",
+          "points": 39
+        },
+        {
+          "number": 35,
+          "date": "2026-05-04",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 42
+        },
+        {
+          "number": 36,
+          "date": "2026-05-10",
+          "opponent": "Newcastle",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 43
+        },
+        {
+          "number": 37,
+          "date": "2026-05-17",
+          "opponent": "Man United",
+          "venue": "A",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 43
+        },
+        {
+          "number": 38,
+          "date": "2026-05-24",
+          "opponent": "Bournemouth",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 44
+        }
+      ],
+      "rank": 16
+    },
+    {
+      "name": "Tottenham",
+      "played": 38,
+      "points": 41,
+      "gd": -9,
+      "gf": 48,
+      "ga": 57,
+      "w": 10,
+      "d": 11,
+      "l": 17,
+      "games": [
+        {
+          "number": 1,
+          "date": "2025-08-16",
+          "opponent": "Burnley",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 2,
+          "date": "2025-08-23",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 6
+        },
+        {
+          "number": 3,
+          "date": "2025-08-30",
+          "opponent": "Bournemouth",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 6
+        },
+        {
+          "number": 4,
+          "date": "2025-09-13",
+          "opponent": "West Ham",
+          "venue": "A",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 9
+        },
+        {
+          "number": 5,
+          "date": "2025-09-20",
+          "opponent": "Brighton",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 10
+        },
+        {
+          "number": 6,
+          "date": "2025-09-27",
+          "opponent": "Wolves",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 11
+        },
+        {
+          "number": 7,
+          "date": "2025-10-04",
+          "opponent": "Leeds",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 14
+        },
+        {
+          "number": 8,
+          "date": "2025-10-19",
+          "opponent": "Aston Villa",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 14
+        },
+        {
+          "number": 9,
+          "date": "2025-10-26",
+          "opponent": "Everton",
+          "venue": "A",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 17
+        },
+        {
+          "number": 10,
+          "date": "2025-11-01",
+          "opponent": "Chelsea",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 17
+        },
+        {
+          "number": 11,
+          "date": "2025-11-08",
+          "opponent": "Man United",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 18
+        },
+        {
+          "number": 12,
+          "date": "2025-11-23",
+          "opponent": "Arsenal",
+          "venue": "A",
+          "gf": 1,
+          "ga": 4,
+          "result": "L",
+          "points": 18
+        },
+        {
+          "number": 13,
+          "date": "2025-11-29",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 18
+        },
+        {
+          "number": 14,
+          "date": "2025-12-02",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 19
+        },
+        {
+          "number": 15,
+          "date": "2025-12-06",
+          "opponent": "Brentford",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 22
+        },
+        {
+          "number": 16,
+          "date": "2025-12-14",
+          "opponent": "Nott'm Forest",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 22
+        },
+        {
+          "number": 17,
+          "date": "2025-12-20",
+          "opponent": "Liverpool",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 22
+        },
+        {
+          "number": 18,
+          "date": "2025-12-28",
+          "opponent": "Crystal Palace",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 25
+        },
+        {
+          "number": 19,
+          "date": "2026-01-01",
+          "opponent": "Brentford",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 26
+        },
+        {
+          "number": 20,
+          "date": "2026-01-04",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 27
+        },
+        {
+          "number": 21,
+          "date": "2026-01-07",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 27
+        },
+        {
+          "number": 22,
+          "date": "2026-01-17",
+          "opponent": "West Ham",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 27
+        },
+        {
+          "number": 23,
+          "date": "2026-01-24",
+          "opponent": "Burnley",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 28
+        },
+        {
+          "number": 24,
+          "date": "2026-02-01",
+          "opponent": "Man City",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 29
+        },
+        {
+          "number": 25,
+          "date": "2026-02-07",
+          "opponent": "Man United",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 29
+        },
+        {
+          "number": 26,
+          "date": "2026-02-10",
+          "opponent": "Newcastle",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 29
+        },
+        {
+          "number": 27,
+          "date": "2026-02-22",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 1,
+          "ga": 4,
+          "result": "L",
+          "points": 29
+        },
+        {
+          "number": 28,
+          "date": "2026-03-01",
+          "opponent": "Fulham",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 29
+        },
+        {
+          "number": 29,
+          "date": "2026-03-05",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 29
+        },
+        {
+          "number": 30,
+          "date": "2026-03-15",
+          "opponent": "Liverpool",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 30
+        },
+        {
+          "number": 31,
+          "date": "2026-03-22",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 30
+        },
+        {
+          "number": 32,
+          "date": "2026-04-12",
+          "opponent": "Sunderland",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 30
+        },
+        {
+          "number": 33,
+          "date": "2026-04-18",
+          "opponent": "Brighton",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 31
+        },
+        {
+          "number": 34,
+          "date": "2026-04-25",
+          "opponent": "Wolves",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 34
+        },
+        {
+          "number": 35,
+          "date": "2026-05-03",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 37
+        },
+        {
+          "number": 36,
+          "date": "2026-05-11",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 38
+        },
+        {
+          "number": 37,
+          "date": "2026-05-19",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 38
+        },
+        {
+          "number": 38,
+          "date": "2026-05-24",
+          "opponent": "Everton",
+          "venue": "H",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 41
+        }
+      ],
+      "rank": 17
+    },
+    {
+      "name": "West Ham",
+      "played": 38,
+      "points": 39,
+      "gd": -19,
+      "gf": 46,
+      "ga": 65,
+      "w": 10,
+      "d": 9,
+      "l": 19,
+      "games": [
+        {
+          "number": 1,
+          "date": "2025-08-16",
+          "opponent": "Sunderland",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 2,
+          "date": "2025-08-22",
+          "opponent": "Chelsea",
+          "venue": "H",
+          "gf": 1,
+          "ga": 5,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 3,
+          "date": "2025-08-31",
+          "opponent": "Nott'm Forest",
+          "venue": "A",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 4,
+          "date": "2025-09-13",
+          "opponent": "Tottenham",
+          "venue": "H",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 3
+        },
+        {
+          "number": 5,
+          "date": "2025-09-20",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 3
+        },
+        {
+          "number": 6,
+          "date": "2025-09-29",
+          "opponent": "Everton",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 4
+        },
+        {
+          "number": 7,
+          "date": "2025-10-04",
+          "opponent": "Arsenal",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 4
+        },
+        {
+          "number": 8,
+          "date": "2025-10-20",
+          "opponent": "Brentford",
+          "venue": "H",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 4
+        },
+        {
+          "number": 9,
+          "date": "2025-10-24",
+          "opponent": "Leeds",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 4
+        },
+        {
+          "number": 10,
+          "date": "2025-11-02",
+          "opponent": "Newcastle",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 7
+        },
+        {
+          "number": 11,
+          "date": "2025-11-08",
+          "opponent": "Burnley",
+          "venue": "H",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 10
+        },
+        {
+          "number": 12,
+          "date": "2025-11-22",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 11
+        },
+        {
+          "number": 13,
+          "date": "2025-11-30",
+          "opponent": "Liverpool",
+          "venue": "H",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 11
+        },
+        {
+          "number": 14,
+          "date": "2025-12-04",
+          "opponent": "Man United",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 12
+        },
+        {
+          "number": 15,
+          "date": "2025-12-07",
+          "opponent": "Brighton",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 13
+        },
+        {
+          "number": 16,
+          "date": "2025-12-14",
+          "opponent": "Aston Villa",
+          "venue": "H",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 13
+        },
+        {
+          "number": 17,
+          "date": "2025-12-20",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 13
+        },
+        {
+          "number": 18,
+          "date": "2025-12-27",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 13
+        },
+        {
+          "number": 19,
+          "date": "2025-12-30",
+          "opponent": "Brighton",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 14
+        },
+        {
+          "number": 20,
+          "date": "2026-01-03",
+          "opponent": "Wolves",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 14
+        },
+        {
+          "number": 21,
+          "date": "2026-01-06",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 14
+        },
+        {
+          "number": 22,
+          "date": "2026-01-17",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 17
+        },
+        {
+          "number": 23,
+          "date": "2026-01-24",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 3,
+          "ga": 1,
+          "result": "W",
+          "points": 20
+        },
+        {
+          "number": 24,
+          "date": "2026-01-31",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 20
+        },
+        {
+          "number": 25,
+          "date": "2026-02-07",
+          "opponent": "Burnley",
+          "venue": "A",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 23
+        },
+        {
+          "number": 26,
+          "date": "2026-02-10",
+          "opponent": "Man United",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 24
+        },
+        {
+          "number": 27,
+          "date": "2026-02-21",
+          "opponent": "Bournemouth",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 25
+        },
+        {
+          "number": 28,
+          "date": "2026-02-28",
+          "opponent": "Liverpool",
+          "venue": "A",
+          "gf": 2,
+          "ga": 5,
+          "result": "L",
+          "points": 25
+        },
+        {
+          "number": 29,
+          "date": "2026-03-04",
+          "opponent": "Fulham",
+          "venue": "A",
+          "gf": 1,
+          "ga": 0,
+          "result": "W",
+          "points": 28
+        },
+        {
+          "number": 30,
+          "date": "2026-03-14",
+          "opponent": "Man City",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 29
+        },
+        {
+          "number": 31,
+          "date": "2026-03-22",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 29
+        },
+        {
+          "number": 32,
+          "date": "2026-04-10",
+          "opponent": "Wolves",
+          "venue": "H",
+          "gf": 4,
+          "ga": 0,
+          "result": "W",
+          "points": 32
+        },
+        {
+          "number": 33,
+          "date": "2026-04-20",
+          "opponent": "Crystal Palace",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 33
+        },
+        {
+          "number": 34,
+          "date": "2026-04-25",
+          "opponent": "Everton",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 36
+        },
+        {
+          "number": 35,
+          "date": "2026-05-02",
+          "opponent": "Brentford",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 36
+        },
+        {
+          "number": 36,
+          "date": "2026-05-10",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 36
+        },
+        {
+          "number": 37,
+          "date": "2026-05-17",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 36
+        },
+        {
+          "number": 38,
+          "date": "2026-05-24",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 39
+        }
+      ],
+      "rank": 18
+    },
+    {
+      "name": "Burnley",
+      "played": 38,
+      "points": 22,
+      "gd": -37,
+      "gf": 38,
+      "ga": 75,
+      "w": 4,
+      "d": 10,
+      "l": 24,
+      "games": [
+        {
+          "number": 1,
+          "date": "2025-08-16",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 2,
+          "date": "2025-08-23",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 3
+        },
+        {
+          "number": 3,
+          "date": "2025-08-30",
+          "opponent": "Man United",
+          "venue": "A",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 3
+        },
+        {
+          "number": 4,
+          "date": "2025-09-14",
+          "opponent": "Liverpool",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 3
+        },
+        {
+          "number": 5,
+          "date": "2025-09-20",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 4
+        },
+        {
+          "number": 6,
+          "date": "2025-09-27",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 1,
+          "ga": 5,
+          "result": "L",
+          "points": 4
+        },
+        {
+          "number": 7,
+          "date": "2025-10-05",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 4
+        },
+        {
+          "number": 8,
+          "date": "2025-10-18",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 7
+        },
+        {
+          "number": 9,
+          "date": "2025-10-26",
+          "opponent": "Wolves",
+          "venue": "A",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 10
+        },
+        {
+          "number": 10,
+          "date": "2025-11-01",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 10
+        },
+        {
+          "number": 11,
+          "date": "2025-11-08",
+          "opponent": "West Ham",
+          "venue": "A",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 10
+        },
+        {
+          "number": 12,
+          "date": "2025-11-22",
+          "opponent": "Chelsea",
+          "venue": "H",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 10
+        },
+        {
+          "number": 13,
+          "date": "2025-11-29",
+          "opponent": "Brentford",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 10
+        },
+        {
+          "number": 14,
+          "date": "2025-12-03",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 10
+        },
+        {
+          "number": 15,
+          "date": "2025-12-06",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 10
+        },
+        {
+          "number": 16,
+          "date": "2025-12-13",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 10
+        },
+        {
+          "number": 17,
+          "date": "2025-12-20",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 11
+        },
+        {
+          "number": 18,
+          "date": "2025-12-27",
+          "opponent": "Everton",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 12
+        },
+        {
+          "number": 19,
+          "date": "2025-12-30",
+          "opponent": "Newcastle",
+          "venue": "H",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 12
+        },
+        {
+          "number": 20,
+          "date": "2026-01-03",
+          "opponent": "Brighton",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 12
+        },
+        {
+          "number": 21,
+          "date": "2026-01-07",
+          "opponent": "Man United",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 13
+        },
+        {
+          "number": 22,
+          "date": "2026-01-17",
+          "opponent": "Liverpool",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 14
+        },
+        {
+          "number": 23,
+          "date": "2026-01-24",
+          "opponent": "Tottenham",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 15
+        },
+        {
+          "number": 24,
+          "date": "2026-02-02",
+          "opponent": "Sunderland",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 15
+        },
+        {
+          "number": 25,
+          "date": "2026-02-07",
+          "opponent": "West Ham",
+          "venue": "H",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 15
+        },
+        {
+          "number": 26,
+          "date": "2026-02-11",
+          "opponent": "Crystal Palace",
+          "venue": "A",
+          "gf": 3,
+          "ga": 2,
+          "result": "W",
+          "points": 18
+        },
+        {
+          "number": 27,
+          "date": "2026-02-21",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 19
+        },
+        {
+          "number": 28,
+          "date": "2026-02-28",
+          "opponent": "Brentford",
+          "venue": "H",
+          "gf": 3,
+          "ga": 4,
+          "result": "L",
+          "points": 19
+        },
+        {
+          "number": 29,
+          "date": "2026-03-03",
+          "opponent": "Everton",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 19
+        },
+        {
+          "number": 30,
+          "date": "2026-03-14",
+          "opponent": "Bournemouth",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 20
+        },
+        {
+          "number": 31,
+          "date": "2026-03-21",
+          "opponent": "Fulham",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 20
+        },
+        {
+          "number": 32,
+          "date": "2026-04-11",
+          "opponent": "Brighton",
+          "venue": "H",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 20
+        },
+        {
+          "number": 33,
+          "date": "2026-04-19",
+          "opponent": "Nott'm Forest",
+          "venue": "A",
+          "gf": 1,
+          "ga": 4,
+          "result": "L",
+          "points": 20
+        },
+        {
+          "number": 34,
+          "date": "2026-04-22",
+          "opponent": "Man City",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 20
+        },
+        {
+          "number": 35,
+          "date": "2026-05-01",
+          "opponent": "Leeds",
+          "venue": "A",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 20
+        },
+        {
+          "number": 36,
+          "date": "2026-05-10",
+          "opponent": "Aston Villa",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 21
+        },
+        {
+          "number": 37,
+          "date": "2026-05-18",
+          "opponent": "Arsenal",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 21
+        },
+        {
+          "number": 38,
+          "date": "2026-05-24",
+          "opponent": "Wolves",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 22
+        }
+      ],
+      "rank": 19
+    },
+    {
+      "name": "Wolves",
+      "played": 38,
+      "points": 20,
+      "gd": -41,
+      "gf": 27,
+      "ga": 68,
+      "w": 3,
+      "d": 11,
+      "l": 24,
+      "games": [
+        {
+          "number": 1,
+          "date": "2025-08-16",
+          "opponent": "Man City",
+          "venue": "H",
+          "gf": 0,
+          "ga": 4,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 2,
+          "date": "2025-08-23",
+          "opponent": "Bournemouth",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 3,
+          "date": "2025-08-30",
+          "opponent": "Everton",
+          "venue": "H",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 4,
+          "date": "2025-09-13",
+          "opponent": "Newcastle",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 5,
+          "date": "2025-09-20",
+          "opponent": "Leeds",
+          "venue": "H",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 0
+        },
+        {
+          "number": 6,
+          "date": "2025-09-27",
+          "opponent": "Tottenham",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 1
+        },
+        {
+          "number": 7,
+          "date": "2025-10-05",
+          "opponent": "Brighton",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 2
+        },
+        {
+          "number": 8,
+          "date": "2025-10-18",
+          "opponent": "Sunderland",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 2
+        },
+        {
+          "number": 9,
+          "date": "2025-10-26",
+          "opponent": "Burnley",
+          "venue": "H",
+          "gf": 2,
+          "ga": 3,
+          "result": "L",
+          "points": 2
+        },
+        {
+          "number": 10,
+          "date": "2025-11-01",
+          "opponent": "Fulham",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 2
+        },
+        {
+          "number": 11,
+          "date": "2025-11-08",
+          "opponent": "Chelsea",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 2
+        },
+        {
+          "number": 12,
+          "date": "2025-11-22",
+          "opponent": "Crystal Palace",
+          "venue": "H",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 2
+        },
+        {
+          "number": 13,
+          "date": "2025-11-30",
+          "opponent": "Aston Villa",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 2
+        },
+        {
+          "number": 14,
+          "date": "2025-12-03",
+          "opponent": "Nott'm Forest",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 2
+        },
+        {
+          "number": 15,
+          "date": "2025-12-08",
+          "opponent": "Man United",
+          "venue": "H",
+          "gf": 1,
+          "ga": 4,
+          "result": "L",
+          "points": 2
+        },
+        {
+          "number": 16,
+          "date": "2025-12-13",
+          "opponent": "Arsenal",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 2
+        },
+        {
+          "number": 17,
+          "date": "2025-12-20",
+          "opponent": "Brentford",
+          "venue": "H",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 2
+        },
+        {
+          "number": 18,
+          "date": "2025-12-27",
+          "opponent": "Liverpool",
+          "venue": "A",
+          "gf": 1,
+          "ga": 2,
+          "result": "L",
+          "points": 2
+        },
+        {
+          "number": 19,
+          "date": "2025-12-30",
+          "opponent": "Man United",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 3
+        },
+        {
+          "number": 20,
+          "date": "2026-01-03",
+          "opponent": "West Ham",
+          "venue": "H",
+          "gf": 3,
+          "ga": 0,
+          "result": "W",
+          "points": 6
+        },
+        {
+          "number": 21,
+          "date": "2026-01-07",
+          "opponent": "Everton",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 7
+        },
+        {
+          "number": 22,
+          "date": "2026-01-18",
+          "opponent": "Newcastle",
+          "venue": "H",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 8
+        },
+        {
+          "number": 23,
+          "date": "2026-01-24",
+          "opponent": "Man City",
+          "venue": "A",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 8
+        },
+        {
+          "number": 24,
+          "date": "2026-01-31",
+          "opponent": "Bournemouth",
+          "venue": "H",
+          "gf": 0,
+          "ga": 2,
+          "result": "L",
+          "points": 8
+        },
+        {
+          "number": 25,
+          "date": "2026-02-07",
+          "opponent": "Chelsea",
+          "venue": "H",
+          "gf": 1,
+          "ga": 3,
+          "result": "L",
+          "points": 8
+        },
+        {
+          "number": 26,
+          "date": "2026-02-11",
+          "opponent": "Nott'm Forest",
+          "venue": "A",
+          "gf": 0,
+          "ga": 0,
+          "result": "D",
+          "points": 9
+        },
+        {
+          "number": 27,
+          "date": "2026-02-18",
+          "opponent": "Arsenal",
+          "venue": "H",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 10
+        },
+        {
+          "number": 28,
+          "date": "2026-02-22",
+          "opponent": "Crystal Palace",
+          "venue": "A",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 10
+        },
+        {
+          "number": 29,
+          "date": "2026-02-27",
+          "opponent": "Aston Villa",
+          "venue": "H",
+          "gf": 2,
+          "ga": 0,
+          "result": "W",
+          "points": 13
+        },
+        {
+          "number": 30,
+          "date": "2026-03-03",
+          "opponent": "Liverpool",
+          "venue": "H",
+          "gf": 2,
+          "ga": 1,
+          "result": "W",
+          "points": 16
+        },
+        {
+          "number": 31,
+          "date": "2026-03-16",
+          "opponent": "Brentford",
+          "venue": "A",
+          "gf": 2,
+          "ga": 2,
+          "result": "D",
+          "points": 17
+        },
+        {
+          "number": 32,
+          "date": "2026-04-10",
+          "opponent": "West Ham",
+          "venue": "A",
+          "gf": 0,
+          "ga": 4,
+          "result": "L",
+          "points": 17
+        },
+        {
+          "number": 33,
+          "date": "2026-04-18",
+          "opponent": "Leeds",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 17
+        },
+        {
+          "number": 34,
+          "date": "2026-04-25",
+          "opponent": "Tottenham",
+          "venue": "H",
+          "gf": 0,
+          "ga": 1,
+          "result": "L",
+          "points": 17
+        },
+        {
+          "number": 35,
+          "date": "2026-05-02",
+          "opponent": "Sunderland",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 18
+        },
+        {
+          "number": 36,
+          "date": "2026-05-09",
+          "opponent": "Brighton",
+          "venue": "A",
+          "gf": 0,
+          "ga": 3,
+          "result": "L",
+          "points": 18
+        },
+        {
+          "number": 37,
+          "date": "2026-05-17",
+          "opponent": "Fulham",
+          "venue": "H",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 19
+        },
+        {
+          "number": 38,
+          "date": "2026-05-24",
+          "opponent": "Burnley",
+          "venue": "A",
+          "gf": 1,
+          "ga": 1,
+          "result": "D",
+          "points": 20
+        }
+      ],
+      "rank": 20
+    }
+  ]
+}
