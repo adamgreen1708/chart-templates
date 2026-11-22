@@ -66,6 +66,32 @@ with sync_playwright() as playwright:
         verify(page.locator("#eplu-club-name").inner_text().strip()=="NEWCASTLE", f"{width}px: club selection changes identity")
         verify(page.locator("#eplu-calendar .eplu-match").count()==38, f"{width}px: new club has 38 real matches")
         page.screenshot(path=str(OUTPUT / f"newcastle_{width}.png"), full_page=True)
+        # Regression from real iPhone screenshot: home results must clear the month baseline.
+        for club_name in ("West Ham", "Arsenal"):
+            page.locator("#eplu-team").select_option(label=club_name)
+            monthly = page.locator("#eplu-calendar .eplu-month").evaluate_all("""els => els.map(month => {
+                const home = [...month.querySelectorAll('.eplu-month-home button')];
+                const away = [...month.querySelectorAll('.eplu-month-away button')];
+                const baseline = month.querySelector('.eplu-month-name').getBoundingClientRect();
+                return {
+                  month: month.getAttribute('aria-label'),
+                  labelTop: baseline.top,
+                  homeBottom: home.length ? home.at(-1).getBoundingClientRect().bottom : null,
+                  awayTop: away.length ? away[0].getBoundingClientRect().top : null,
+                  homeMatchNumbers: home.map(b => Number(b.dataset.match)),
+                  awayMatchNumbers: away.map(b => Number(b.dataset.match)),
+                };
+            })""")
+            for month in monthly:
+                if month["homeBottom"] is not None:
+                    gap = month["labelTop"] - month["homeBottom"]
+                    verify(7 <= gap <= 10, f"{width}px {club_name} {month['month']}: home results clear month baseline by 8px (actual {gap:.1f}px)")
+                    verify(month["homeMatchNumbers"] == sorted(month["homeMatchNumbers"], reverse=True),
+                           f"{width}px {club_name} {month['month']}: earliest home match nearest centre")
+                if month["awayTop"] is not None:
+                    verify(month["awayMatchNumbers"] == sorted(month["awayMatchNumbers"]),
+                           f"{width}px {club_name} {month['month']}: earliest away match nearest centre")
+            page.screenshot(path=str(OUTPUT / f"home_gap_{club_name.lower().replace(' ', '_')}_{width}.png"), full_page=True)
         page.locator("#eplu-team").select_option(label="Man City")
         verify(page.locator("#eplu-club-name").inner_text().strip()=="MAN CITY", f"{width}px: second club change works")
         verify(not errors, f"{width}px: still no JavaScript errors")
