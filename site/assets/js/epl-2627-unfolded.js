@@ -145,20 +145,21 @@
     area.appendChild(head);
     const focusValue = index ? focusClub.games[index-1].points : 0;
     const pointsCap=Math.max(90,Math.ceil(Math.max(...season.teams.map(t=>t.points),0)/10)*10);
-    const description = 'All 20 clubs, cumulative points by each club\'s match number 0 to 38. '+focusClub.name+' highlighted, at match '+index+' with '+focusValue+' points.';
+    const maximumPlayed=Math.max(1,...season.teams.map(c=>c.played));
+    const description = 'All 20 clubs, cumulative points through each club\'s completed matches (0 to '+maximumPlayed+'). '+focusClub.name+' highlighted, at match '+index+' with '+focusValue+' points.';
     const mini = svgNode('svg',{
       viewBox:'0 0 270 142',class:'eplu-tip-mini','aria-label':description,role:'img',
       preserveAspectRatio:'xMidYMid meet'
     },area);
     const left=27,right=259,top=9,bottom=113;
-    const x=n=>left+n/38*(right-left);
+    const x=n=>left+n/maximumPlayed*(right-left);
     const y=n=>bottom-n/pointsCap*(bottom-top);
     [0,pointsCap/2,pointsCap].forEach(value=>{
       const ypos=y(value);
       svgNode('line',{x1:left,x2:right,y1:ypos,y2:ypos,stroke:'#E4EAEE','stroke-width':.7,opacity:.3},mini);
       svgNode('text',{x:left-6,y:ypos+3,'text-anchor':'end',fill:'#E3E8EA','font-size':9,'font-family':'monospace'},mini,value);
     });
-    [0,19,38].forEach(n=>{
+    [...new Set([0,Math.floor(maximumPlayed/2),maximumPlayed])].forEach(n=>{
       svgNode('text',{x:x(n),y:135,'text-anchor':'middle',fill:'#E3E8EA','font-size':9,'font-family':'monospace'},mini,n);
     });
     const makePath=club=>{
@@ -319,6 +320,8 @@
     makeCalendar();
     makePointsPlot();
     status.textContent=team.name+' · '+team.points+' points · '+team.played+' played · '+team.rank+(team.rank===1?'st':team.rank===2?'nd':team.rank===3?'rd':'th')+' '+(season.meta.complete?'final':'provisional')+' place · results to '+fullDate(season.meta.lastDate);
+    const stamp=root.querySelector('#eplu-data-stamp');
+    if(stamp)stamp.textContent='COMPLETED RESULTS THROUGH '+fullDate(season.meta.lastDate).toUpperCase()+' · '+season.meta.matchCount+' MATCHES · '+(season.meta.complete?'FINAL':'PROVISIONAL')+' STANDINGS';
     const key=root.querySelector('#eplu-points-key');
     if(key)key.textContent='20 CLUBS · '+season.meta.matchCount+' COMPLETED MATCHES';
   }

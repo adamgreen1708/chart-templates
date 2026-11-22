@@ -31,6 +31,8 @@ with sync_playwright() as playwright:
         verify(response is not None and response.status==200, f"{width}px: review URL returns HTTP 200")
         page.locator("#eplu-calendar .eplu-match").first.wait_for(timeout=30000)
         verify(not errors, f"{width}px: no JavaScript errors: {errors}")
+        stamp=page.locator("#eplu-data-stamp").inner_text()
+        verify(DATA["meta"]["lastDate"][-2:]+" " in stamp or stamp.startswith("COMPLETED RESULTS THROUGH"), f"{width}px: snapshot date and provisional label are visible")
         verify(page.locator("#eplu-calendar .eplu-match").count()==CLUB["Arsenal"]["played"], f"{width}px: Arsenal completed results rendered")
         verify(page.locator("#eplu-calendar .eplu-month").count()==10, f"{width}px: ten months rendered")
         verify(page.locator("#eplu-totals-body tr").count()==2, f"{width}px: home and away totals rendered")
@@ -52,6 +54,7 @@ with sync_playwright() as playwright:
         verify(tooltip.is_visible(), f"{width}px: tap opens pinned tooltip")
         verify(tooltip.locator("svg.eplu-tip-mini path").count()==20, f"{width}px: 20 cumulative trajectories visible")
         verify(tooltip.locator("svg.eplu-tip-mini circle").count()==2, f"{width}px: selected-match marker visible")
+        verify(str(max(t["played"] for t in DATA["teams"])) in tooltip.locator("svg.eplu-tip-mini").get_attribute("aria-label"), f"{width}px: points trend scales to completed match counts")
         # Approved design animates opacity for 150 ms. Wait for the stable 43% state.
         page.wait_for_function("""() => {
             const dot=document.querySelector("#eplu-calendar .eplu-match.is-muted");
