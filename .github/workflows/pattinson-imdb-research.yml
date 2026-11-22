@@ -1,0 +1,115 @@
+name: Pattinson IMDb research (review only)
+
+on:
+  pull_request:
+    paths:
+      - "archive/projects/2026-11-robert-pattinson-bond/**"
+      - ".github/workflows/pattinson-imdb-research.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: pattinson-imdb-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  collect-and-validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - name: Checkout research branch
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install collector dependency
+        run: python -m pip install requests
+      - name: Reuse recently completed IMDb extraction without downloading global data again
+        id: reuse
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          target=archive/projects/2026-11-robert-pattinson-bond/generated
+          mkdir -p "$target"
+          if gh run download 44478261914 --name pattinson-imdb-research-44478261914 --dir "$target" &&
+             test -s "$target/filmography.csv" &&
+             test -s "$target/bond_films.csv" &&
+             test -s "$target/bond_overlap.csv" &&
+             test -s "$target/metadata.json"; then
+             echo "ready=yes" >> "$GITHUB_OUTPUT"
+             echo "Reusing successful official IMDb extraction from run 44478261914"
+          else
+             echo "ready=no" >> "$GITHUB_OUTPUT"
+             echo "Previous artifact missing: full streaming collection required"
+          fi
+      - name: Stream and join official IMDb datasets
+        if: steps.reuse.outputs.ready != 'yes'
+        run: |
+          python archive/projects/2026-11-robert-pattinson-bond/collect_imdb_pattinson.py \
+            --out archive/projects/2026-11-robert-pattinson-bond/generated \
+            --as-of 2026-11-18
+      - name: Validate and create chart-ready research extracts
+        run: |
+          python archive/projects/2026-11-robert-pattinson-bond/qa_imdb.py \
+            --data archive/projects/2026-11-robert-pattinson-bond/generated
+      - name: Build and validate new three-chart story data
+        run: |
+          python archive/projects/2026-11-robert-pattinson-bond/build_story_v2.py
+      - name: Install Coffeetableviz renderer dependencies
+        run: python -m pip install -r requirements-render.txt
+      - name: Render three NEW evidence-led charts with GitHub's 538 renderer
+        run: |
+          set -euo pipefail
+          for cfg in archive/projects/2026-11-robert-pattinson-bond/config/v2_*.py; do
+            cp "$cfg" src/chart_config.py
+            python src/render_538.py
+          done
+      - name: Visual QA and mobile contact sheets for revised charts
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import numpy as np
+          from PIL import Image, ImageDraw
+          base=Path("archive/projects/2026-11-robert-pattinson-bond/generated")
+          names=["v2_01_twilight_paradox.png","v2_02_reinvention.png",
+                 "v2_03_bond_connections.png"]
+          images=[]
+          for name in names:
+              path=base/name
+              if not path.is_file():raise SystemExit(f"Missing chart: {path}")
+              with Image.open(path) as im:
+                  if im.size!=(1600,1600):raise SystemExit(f"Wrong PNG dimensions: {path} {im.size}")
+                  pixels=np.asarray(im.convert("RGB"))
+                  bg=np.array([243,244,246],dtype=np.int16)
+                  mask=np.max(np.abs(pixels.astype(np.int16)-bg),axis=2)>29
+                  ys,xs=np.where(mask)
+                  if len(xs)==0:raise SystemExit(f"Blank chart: {path}")
+                  margins=[xs.min()/1600,(1599-xs.max())/1600,ys.min()/1600,(1599-ys.max())/1600]
+                  if min(margins)<.067:
+                      raise SystemExit(f"Safe-frame violation {name}: {margins}")
+                  print(f"Pixel QA {name}: margins={tuple(round(v,3) for v in margins)}")
+                  for width in (390,320):
+                      im.resize((width,width),Image.Resampling.LANCZOS).save(
+                          base/f"{path.stem}_mobile_{width}.png")
+                  images.append(im.copy())
+          for width in (390,320):
+              sheet=Image.new("RGB",(width*3,width),(243,244,246))
+              for i,im in enumerate(images):
+                  sheet.paste(im.resize((width,width),Image.Resampling.LANCZOS),(i*width,0))
+              sheet.save(base/f"v2_contact_sheet_{width}.png")
+          print("Three rendered 1600px charts and both mobile contact sheets passed automated QA")
+          PY
+      - name: Upload review-only research extracts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pattinson-imdb-research-${{ github.run_id }}
+          path: |
+            archive/projects/2026-11-robert-pattinson-bond/generated/
+          if-no-files-found: warn
+          retention-days: 14

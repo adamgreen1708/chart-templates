@@ -1,0 +1,16 @@
+CHART_CONFIG = {
+    "data_file": "archive/projects/2026-11-robert-pattinson-bond/generated/chart_v2_03_bond_paths.csv",
+    "data_format": "wide",
+    "chart_type": "profile_story",
+    "layout_variant": "cast_paths",
+    "x_col": None,
+    "y_col": None,
+    "sort": None,
+    "title": "He'd met Bond. And his villains.",
+    "subtitle": "Six shared actors link Pattinson's films to 007 himself, M, Felix Leiter and three villains.",
+    "source_text": "IMDb + audited cast links · 18 Nov 2026",
+    "footer_left": "Adam Green | coffeetableviz",
+    "render_profile": "social_square",
+    "dpi": 200,
+    "output_file": "archive/projects/2026-11-robert-pattinson-bond/generated/v2_03_bond_connections.png",
+}
