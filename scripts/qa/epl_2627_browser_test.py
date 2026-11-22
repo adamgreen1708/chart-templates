@@ -62,7 +62,7 @@ with sync_playwright() as playwright:
         # A 0/1-point opening snapshot has fewer distinct labels; avoid duplicates.
         expected_y_ticks=list(dict.fromkeys(expected_y_ticks))
         svg=tooltip.locator("svg.eplu-tip-mini")
-        y_ticks=svg.locator("text").all_inner_texts()[:len(expected_y_ticks)]
+        y_ticks=svg.locator("text").all_text_contents()[:len(expected_y_ticks)]
         verify(y_ticks==expected_y_ticks, f"{width}px: tooltip y axis shows current shared max {current_points_cap}, not 90 (actual {y_ticks})")
         verify(f"Points scale 0 to {current_points_cap}" in svg.get_attribute("aria-label"), f"{width}px: tooltip accessibility describes dynamic points axis")
         # Approved design animates opacity for 150 ms. Wait for the stable 43% state.
@@ -91,7 +91,7 @@ with sync_playwright() as playwright:
         # Changing the focused team must not rescale the twenty-club comparison.
         newcastle_match=page.locator("#eplu-calendar .eplu-match").first
         newcastle_match.click()
-        verify(tooltip.locator("svg.eplu-tip-mini text").all_inner_texts()[:len(expected_y_ticks)]==expected_y_ticks, f"{width}px: same league-wide points scale after switching to Newcastle")
+        verify(tooltip.locator("svg.eplu-tip-mini text").all_text_contents()[:len(expected_y_ticks)]==expected_y_ticks, f"{width}px: same league-wide points scale after switching to Newcastle")
         newcastle_match.click()
         page.screenshot(path=str(OUTPUT / f"newcastle_{width}.png"), full_page=True)
         # Regression from real iPhone screenshot: home results must clear the month baseline.
