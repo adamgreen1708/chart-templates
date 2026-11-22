@@ -40,3 +40,21 @@
 - [x] New source JavaScript parses; all 20 data curves separately checked to match each club's documented final points.
 - [ ] Check on a physical phone that the taller tooltip does not obscure too many monthly result circles, and adjust direction/placement as necessary.
 - [ ] Real browser QA of SVG rendering / VoiceOver labels before merge.
+
+## Browser QA and HTTPS preview — 22 November 2026
+
+- [x] Production-isolated **HTML preview** committed under `preview/epl-2025-26/index.html` on feature branch, with no Jekyll-only syntax and only branch-local relative HTML/CSS/JS/data URLs. No changes to the `main` GitHub Pages deployment.
+- [x] Public HTTPS review URL verified by GitHub Actions using GET, HTML MIME type check and expected page content:
+  https://raw.githack.com/adamgreen1708/chart-templates/feature/epl-2526-interactive-unfolded/preview/epl-2025-26/index.html
+- [x] Real Chromium / Playwright browser QA across 1440px desktop, 390px phone and 320px narrow phone; **72 checks passed**.
+- [x] All 380 games load correctly, all 20 clubs selectable, all 38 result dots appear, ten month columns stay in exactly one row, home and away aggregate table contains two real-data rows, 20 final-points badges appear.
+- [x] On click/tap: tooltip pins, all 20 cumulative lines draw, match marker draws, 37 unselected result dots fade, second click clears selection and restores context.
+- [x] CSS independently checked at all three viewports for 45% `rgba(48,49,51,.45)` and 2px backdrop blur.
+- [x] No page-wide horizontal scrolling or JavaScript runtime errors at test widths.
+- [x] Newcastle and Manchester City dropdown transitions succeed without missing data.
+- [x] Browser full-page screenshot artifacts captured and manually inspected for a 320px / 390px / desktop selected-match and Newcastle context. Source: GitHub Actions run https://github.com/adamgreen1708/chart-templates/actions/runs/44964613184
+- [ ] UX decision: miniature cumulative chart creates a taller selected tooltip on mobile, obscuring several month dots while pinned; review on user's actual iPhone before editorial approval.
+- [ ] Physical iPhone Safari and VoiceOver sign-off remain; Chromium mobile emulation is not a substitute for the physical device.
+- [ ] Licensed club crests are not included yet; three-letter badges deliberately remain until artwork provenance is resolved.
+
+**Review gate:** PR #230 must remain draft and unmerged until user has opened the preview in Safari, approved the mobile interaction, and approved the article. The raw.githack temporary proxy may display a one-time confirmation and is *not* intended as a permanent production host.
