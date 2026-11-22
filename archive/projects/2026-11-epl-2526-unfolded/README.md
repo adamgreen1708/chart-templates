@@ -1,6 +1,6 @@
 # EPL 2025–26 · Season Unfolded (monthly results board)
 
-**Status: revised draft PR #230. Not merged or published.** The reference is the user-supplied screenshot of the original 2020–21 Tableau visual.
+**Status: final publication package approved for merge in PR #230 on 22 November 2026.** The reference is the user-supplied screenshot of the original 2020–21 Tableau visual.
 
 ## Fidelity to original concept
 
