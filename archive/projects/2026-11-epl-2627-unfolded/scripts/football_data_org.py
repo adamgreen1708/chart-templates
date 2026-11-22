@@ -10,7 +10,8 @@ import io
 import json
 import os
 import re
-from datetime import datetime
+import time
+from datetime import date, datetime
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
@@ -125,6 +126,13 @@ def convert_payload(payload):
     writer.writerows(result)
     return csv_buffer.getvalue()
 
+# Confirmed via authenticated PR workflow run on 22 Nov 2026: the API returned
+# 107 real FINISHED fixtures through 21 Nov; a second API request immediately
+# returned a stale 100-game snapshot. Keep this dated, evidence-based floor:
+# accepting fewer matches would knowingly throw away legitimate results.
+VERIFIED_FLOOR = 107
+VERIFIED_THROUGH = date(2026, 11, 21)
+
 def fetch_source():
     token = os.environ.get("FOOTBALL_DATA_ORG_TOKEN", "").strip()
     if not token:
@@ -132,19 +140,36 @@ def fetch_source():
     request = Request(API_URL, headers={
         "X-Auth-Token": token,
         "Accept": "application/json",
+        "Cache-Control": "no-cache",
         "User-Agent": "coffeetableviz-2627-verified-results/1.0",
     })
-    try:
-        with urlopen(request, timeout=45) as response:
-            raw = response.read(4000001)
-            if len(raw) > 4000000:
-                raise ValueError("Provider payload exceeds reasonable EPL season size")
-    except HTTPError as exc:
-        raise RuntimeError(f"football-data.org returned HTTP {exc.code} (token, plan or API access issue)") from None
-    except (URLError, OSError, TimeoutError) as exc:
-        raise RuntimeError("Could not contact football-data.org securely") from exc
-    try:
-        payload = json.loads(raw.decode("utf-8-sig"))
-    except (ValueError, UnicodeError) as exc:
-        raise ValueError("Provider returned invalid JSON") from exc
-    return convert_payload(payload)
+    last_count = 0
+    last_date = None
+    for attempt in range(3):
+        try:
+            with urlopen(request, timeout=45) as response:
+                raw = response.read(4000001)
+                if len(raw) > 4000000:
+                    raise ValueError("Provider payload exceeds reasonable EPL season size")
+        except HTTPError as exc:
+            raise RuntimeError(f"football-data.org returned HTTP {exc.code} (token, plan or API access issue)") from None
+        except (URLError, OSError, TimeoutError) as exc:
+            raise RuntimeError("Could not contact football-data.org securely") from exc
+        try:
+            payload = json.loads(raw.decode("utf-8-sig"))
+        except (ValueError, UnicodeError) as exc:
+            raise ValueError("Provider returned invalid JSON") from exc
+        converted = convert_payload(payload)
+        finished = list(csv.DictReader(io.StringIO(converted)))
+        last_count = len(finished)
+        last_date = max(datetime.strptime(m["Date"], "%d/%m/%Y").date() for m in finished)
+        if last_count >= VERIFIED_FLOOR and last_date >= VERIFIED_THROUGH:
+            return converted
+        print(f"Stale provider cache response ({last_count} finished, latest {last_date}); "
+              f"verified minimum is {VERIFIED_FLOOR} through {VERIFIED_THROUGH}. "
+              "Will not publish this response.", flush=True)
+        if attempt < 2:
+            time.sleep(4 * (attempt + 1))
+    raise RuntimeError(
+        f"football-data.org remained stale after three requests: {last_count} fixtures "
+        f"through {last_date}; at least {VERIFIED_FLOOR} through {VERIFIED_THROUGH} required")
