@@ -55,6 +55,16 @@ with sync_playwright() as playwright:
         verify(tooltip.locator("svg.eplu-tip-mini path").count()==20, f"{width}px: 20 cumulative trajectories visible")
         verify(tooltip.locator("svg.eplu-tip-mini circle").count()==2, f"{width}px: selected-match marker visible")
         verify(str(max(t["played"] for t in DATA["teams"])) in tooltip.locator("svg.eplu-tip-mini").get_attribute("aria-label"), f"{width}px: points trend scales to completed match counts")
+        # The in-season miniature trend must use the actual highest verified points, not a fixed 90.
+        # Preserve a zero baseline and a consistent shared scale when switching clubs.
+        current_points_cap=max(1,*(t["points"] for t in DATA["teams"]))
+        expected_y_ticks=["0",str((current_points_cap+1)//2),str(current_points_cap)]
+        # A 0/1-point opening snapshot has fewer distinct labels; avoid duplicates.
+        expected_y_ticks=list(dict.fromkeys(expected_y_ticks))
+        svg=tooltip.locator("svg.eplu-tip-mini")
+        y_ticks=svg.locator("text").all_inner_texts()[:len(expected_y_ticks)]
+        verify(y_ticks==expected_y_ticks, f"{width}px: tooltip y axis shows current shared max {current_points_cap}, not 90 (actual {y_ticks})")
+        verify(f"Points scale 0 to {current_points_cap}" in svg.get_attribute("aria-label"), f"{width}px: tooltip accessibility describes dynamic points axis")
         # Approved design animates opacity for 150 ms. Wait for the stable 43% state.
         page.wait_for_function("""() => {
             const dot=document.querySelector("#eplu-calendar .eplu-match.is-muted");
@@ -78,6 +88,11 @@ with sync_playwright() as playwright:
         page.locator("#eplu-team").select_option(label="Newcastle")
         verify(page.locator("#eplu-club-name").inner_text().strip()=="NEWCASTLE", f"{width}px: club selection changes identity")
         verify(page.locator("#eplu-calendar .eplu-match").count()==CLUB["Newcastle"]["played"], f"{width}px: new club has its real completed matches")
+        # Changing the focused team must not rescale the twenty-club comparison.
+        newcastle_match=page.locator("#eplu-calendar .eplu-match").first
+        newcastle_match.click()
+        verify(tooltip.locator("svg.eplu-tip-mini text").all_inner_texts()[:len(expected_y_ticks)]==expected_y_ticks, f"{width}px: same league-wide points scale after switching to Newcastle")
+        newcastle_match.click()
         page.screenshot(path=str(OUTPUT / f"newcastle_{width}.png"), full_page=True)
         # Regression from real iPhone screenshot: home results must clear the month baseline.
         for club_name in ("Coventry", "Arsenal"):
