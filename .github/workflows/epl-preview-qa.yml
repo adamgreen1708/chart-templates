@@ -1,0 +1,57 @@
+name: EPL interactive PR browser QA
+on:
+  pull_request:
+    paths:
+      - "preview/epl-2025-26/**"
+      - "site/assets/js/epl-2526-unfolded.js"
+      - "site/assets/css/epl-2526-unfolded.css"
+      - "site/assets/data/epl-2526-unfolded.json"
+      - "site/resources/epl-2025-26-unfolded/**"
+      - "scripts/qa/epl_2526_browser_test.py"
+      - ".github/workflows/epl-preview-qa.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  interactive-browser-qa:
+    name: Chromium 1440 / 390 / 320 and HTTPS preview
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Playwright browser
+        run: |
+          python -m pip install playwright==1.56.0
+          python -m playwright install chromium --with-deps
+      - name: Start local review server
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 > /tmp/epl-preview-http.log 2>&1 &
+          for i in 1 2 3 4 5 6 7 8 9 10; do
+            if curl -fsS http://127.0.0.1:8765/preview/epl-2025-26/index.html >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/epl-preview-http.log
+          exit 1
+      - name: Validate interaction and capture screenshots
+        run: python scripts/qa/epl_2526_browser_test.py
+      - name: Check public HTTPS branch preview route
+        shell: bash
+        run: |
+          URL="https://raw.githack.com/adamgreen1708/chart-templates/feature/epl-2526-interactive-unfolded/preview/epl-2025-26/index.html"
+          echo "Checking review-only URL: $URL"
+          curl --fail --location --retry 3 --retry-delay 3 --connect-timeout 10 --max-time 35 --silent --show-error --dump-header /tmp/epl-preview-headers.txt "$URL" -o /tmp/epl-remote-preview.html
+          grep -Ei '^HTTP/|^content-type:' /tmp/epl-preview-headers.txt
+          grep -Eqi '^content-type: text/html' /tmp/epl-preview-headers.txt
+          grep -q 'id="epl-unfolded"' /tmp/epl-remote-preview.html
+      - name: Upload QA screenshots and check log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: epl-2526-interactive-mobile-qa
+          path: qa_screenshots/epl-2526/
+          if-no-files-found: warn
