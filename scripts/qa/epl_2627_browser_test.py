@@ -57,15 +57,29 @@ with sync_playwright() as playwright:
         halo_style=latest.evaluate("""el => ({
             content:getComputedStyle(el,'::before').content,
             border:getComputedStyle(el,'::before').borderStyle,
+            inset:getComputedStyle(el,'::before').inset,
             glow:getComputedStyle(el,'::before').boxShadow,
+            blur:getComputedStyle(el,'::before').filter,
             layer:getComputedStyle(el,'::before').zIndex,
-            aura:getComputedStyle(el,'::after').boxShadow,
-            auraBlur:getComputedStyle(el,'::after').filter
+            extra:getComputedStyle(el,'::after').content
         })""")
-        verify(halo_style["content"] not in ("none","normal") and halo_style["border"]=="solid"
-               and halo_style["glow"]!="none" and halo_style["aura"]!="none"
-               and halo_style["layer"]=="-1" and "blur(" in halo_style["auraBlur"],
-               f"{width}px: glass ring and soft outer sheen render behind the legible result dot")
+        verify(halo_style["content"] not in ("none","normal")
+               and halo_style["border"]=="none" and halo_style["inset"]=="0px"
+               and halo_style["glow"]!="none" and halo_style["layer"]=="-1"
+               and "blur(" in halo_style["blur"] and halo_style["extra"] in ("none","normal"),
+               f"{width}px: latest result has a compact soft glow without a solid ring or expanded rim")
+        # The halo's own box must not extend towards adjacent closely stacked dots.
+        halo_geometry=latest.evaluate("""el => {
+            const dot=el.getBoundingClientRect();
+            const before=getComputedStyle(el,'::before');
+            const peers=[...el.parentElement.querySelectorAll('.eplu-match')].filter(p=>p!==el);
+            return {inset:before.inset,gap:Math.min(Infinity,...peers.map(p=>{
+                const b=p.getBoundingClientRect();
+                return Math.max(0, Math.max(b.top-dot.bottom,dot.top-b.bottom));
+            }))};
+        }""")
+        verify(halo_geometry["inset"]=="0px" and halo_geometry["gap"]>=3,
+               f"{width}px: halo does not increase dot footprint or change adjacent match spacing")
         page.screenshot(path=str(OUTPUT / f"latest_halo_arsenal_{width}.png"), full_page=True)
         # Tap a real result to pin tooltip. This must include the cumulative plot.
         first=page.locator("#eplu-calendar .eplu-match").first
