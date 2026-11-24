@@ -58,13 +58,14 @@ with sync_playwright() as playwright:
             content:getComputedStyle(el,'::before').content,
             border:getComputedStyle(el,'::before').borderStyle,
             glow:getComputedStyle(el,'::before').boxShadow,
-            blur:getComputedStyle(el,'::before').backdropFilter,
-            aura:getComputedStyle(el,'::after').boxShadow
+            layer:getComputedStyle(el,'::before').zIndex,
+            aura:getComputedStyle(el,'::after').boxShadow,
+            auraBlur:getComputedStyle(el,'::after').filter
         })""")
         verify(halo_style["content"] not in ("none","normal") and halo_style["border"]=="solid"
                and halo_style["glow"]!="none" and halo_style["aura"]!="none"
-               and "blur(" in halo_style["blur"],
-               f"{width}px: glass ring and soft outer sheen are CSS-rendered")
+               and halo_style["layer"]=="-1" and "blur(" in halo_style["auraBlur"],
+               f"{width}px: glass ring and soft outer sheen render behind the legible result dot")
         page.screenshot(path=str(OUTPUT / f"latest_halo_arsenal_{width}.png"), full_page=True)
         # Tap a real result to pin tooltip. This must include the cumulative plot.
         first=page.locator("#eplu-calendar .eplu-match").first
