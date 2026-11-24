@@ -73,12 +73,12 @@ with sync_playwright() as playwright:
             const dot=el.getBoundingClientRect();
             const before=getComputedStyle(el,'::before');
             const peers=[...el.parentElement.querySelectorAll('.eplu-match')].filter(p=>p!==el);
-            return {inset:before.inset,gap:Math.min(Infinity,...peers.map(p=>{
+            return {inset:before.inset,gap:peers.length?Math.min(...peers.map(p=>{
                 const b=p.getBoundingClientRect();
                 return Math.max(0, Math.max(b.top-dot.bottom,dot.top-b.bottom));
-            }))};
+            })):null};
         }""")
-        verify(halo_geometry["inset"]=="0px" and halo_geometry["gap"]>=3,
+        verify(halo_geometry["inset"]=="0px" and (halo_geometry["gap"] is None or halo_geometry["gap"]>=3),
                f"{width}px: halo does not increase dot footprint or change adjacent match spacing")
         page.screenshot(path=str(OUTPUT / f"latest_halo_arsenal_{width}.png"), full_page=True)
         # Tap a real result to pin tooltip. This must include the cumulative plot.
