@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'review: open data-only PR without merge; publish: merge only when gated and checks pass'
+        description: 'review: propose data-only PR; publish: apply EPL-only safeguarded merge after checks'
         required: true
         type: choice
         default: review
@@ -25,7 +25,8 @@ concurrency:
 
 jobs:
   refresh:
-    # Daily checks and review PRs run even when automatic publication is OFF.
+    # EPL-only: daily checks and verified data-only PRs auto-publish after independent QA.
+    # Emergency stop: set repository Actions variable EPL_AUTO_PUBLISH_PAUSED=true.
     runs-on: ubuntu-24.04
     timeout-minutes: 35
     steps:
@@ -133,7 +134,7 @@ jobs:
             echo "::error::Missing EPL_PR_TOKEN. Configure a fine-grained repo PAT with Contents and Pull requests write. GITHUB_TOKEN-created PRs do not trigger independent PR tests."
             exit 1
           fi
-      - name: Create or update data-only pull request (review-only unless enabled)
+      - name: Create or update verified EPL data-only pull request
         if: steps.diff.outputs.changed == 'true'
         id: pr
         uses: peter-evans/create-pull-request@v7
@@ -149,13 +150,19 @@ jobs:
           title: 'Data only: refresh 2026–27 EPL completed results'
           body: |
             Verified FINISHED results from authenticated football-data.org v4 Premier League 2026–27 API.
-            This data-only PR does not publish by itself; automatic merge is separately gated.
+            Only this EPL daily workflow can merge this data-only PR automatically, after independent QA and strict path/branch verification.
+            Pull requests changing other files are never eligible.
             No design, editorial, 2025–26, JS, workflow or stylesheet files modified.
             Browser QA (1440 / 390 / 320), incremental fixture validation and
             deterministic data-build checks must succeed before merge.
             This is a proposed data update only, never a forecast.
-      - name: Require independent PR checks, then merge through PR (no direct main commits)
-        if: steps.pr.outputs.pull-request-number != '' && vars.EPL_AUTO_PUBLISH_ENABLED == 'true' && (github.event_name == 'schedule' || inputs.mode == 'publish')
+      - name: Auto-publish EPL verified result data ONLY after independent checks
+        # Only this workflow, and only its exact two generated data files, can auto-merge.
+        # Review-only manual runs never merge. To suspend: set EPL_AUTO_PUBLISH_PAUSED=true.
+        if: >-
+          steps.pr.outputs.pull-request-number != '' &&
+          vars.EPL_AUTO_PUBLISH_PAUSED != 'true' &&
+          (github.event_name == 'schedule' || inputs.mode == 'publish')
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.EPL_PR_TOKEN }}
@@ -163,15 +170,68 @@ jobs:
           REPO: ${{ github.repository }}
         run: |
           set -euo pipefail
-          if [[ -z "$GH_TOKEN" ]]; then echo "::error::EPL_PR_TOKEN required for PR-triggered checks"; exit 1; fi
+          if [[ -z "$GH_TOKEN" ]]; then
+            echo "::error::EPL_PR_TOKEN required for independent PR checks and guarded merge"
+            exit 1
+          fi
+
+          # PR #237 is the final manual sign-off before enabling hands-off updates.
+          # Do not merge that existing release on the user's behalf.
+          if [[ "$PR" == "237" ]]; then
+            echo "PR #237 is intentionally reserved for manual approval; future EPL data PRs will auto-publish"
+            exit 0
+          fi
+
+          # Never allow this workflow to auto-merge arbitrary PRs, code, site changes,
+          # or data updates for a different season.
+          metadata="$(gh pr view "$PR" --repo "$REPO" \
+            --json title,headRefName,baseRefName,isCrossRepository,headRefOid)"
+          if ! jq -e \
+            --arg title 'Data only: refresh 2026–27 EPL completed results' \
+            --arg head 'automation/epl-2627-verified-results' \
+            '.title == $title and .headRefName == $head and .baseRefName == "main" and .isCrossRepository == false' \
+            <<< "$metadata" >/dev/null; then
+            echo "::error::EPL PR title, branch or base changed; refusing automatic merge"
+            exit 1
+          fi
+          head_sha="$(jq -r '.headRefOid' <<< "$metadata")"
+          mapfile -t files < <(gh api "repos/$REPO/pulls/$PR/files?per_page=100" \
+            --jq '.[].filename' | LC_ALL=C sort)
+          expected_csv='archive/projects/2026-11-epl-2627-unfolded/data/matches_2627.csv'
+          expected_json='site/assets/data/epl-2627-unfolded.json'
+          if [[ "${#files[@]}" -ne 2 ||
+                "${files[0]}" != "$expected_csv" ||
+                "${files[1]}" != "$expected_json" ]]; then
+            printf 'Unexpected PR files (aborting):\n%s\n' "${files[@]}"
+            echo "::error::Automatic publishing is restricted to the exact two EPL 2026–27 data files"
+            exit 1
+          fi
+
+          # Wait for independent PR-triggered QA, not just checks in this schedule run.
           ready=false
           for i in $(seq 1 18); do
-            if gh pr checks "$PR" --repo "$REPO" --json name -q '.[] | select(.name | contains("Verified data + Chromium"))' | grep -q .; then ready=true; break; fi
+            if gh pr checks "$PR" --repo "$REPO" --json name \
+                -q '.[] | select(.name | contains("Verified data + Chromium"))' | grep -q .; then
+              ready=true
+              break
+            fi
             sleep 10
           done
-          if [[ "$ready" != "true" ]]; then echo "::error::Independent pull_request browser check did not appear"; exit 1; fi
+          if [[ "$ready" != "true" ]]; then
+            echo "::error::Independent pull_request Chromium/browser QA did not appear"
+            exit 1
+          fi
           gh pr checks "$PR" --repo "$REPO" --watch --fail-fast
-          gh pr merge "$PR" --repo "$REPO" --squash --delete-branch
+
+          # Prevent racing against a changed PR head after the checks.
+          verified_sha="$(gh pr view "$PR" --repo "$REPO" \
+            --json headRefOid --jq '.headRefOid')"
+          if [[ "$verified_sha" != "$head_sha" ]]; then
+            echo "::error::PR head changed while checks were running; aborting"
+            exit 1
+          fi
+          gh pr merge "$PR" --repo "$REPO" --squash --delete-branch \
+            --match-head-commit "$head_sha"
       - name: Alert on failure or blocked automation
         if: failure()
         continue-on-error: true
