@@ -81,7 +81,7 @@ with sync_playwright() as playwright:
                and halo_style["extra"] in ("none","normal"),
                f"{width}px: latest result has a diffuse gradient without any outlined circle or circular shadow")
         verify(halo_style["top"]=="0px" and halo_style["bottom"]=="0px"
-               and halo_style["left"]=="-9px" and halo_style["right"]=="-9px",
+               and halo_style["left"]=="-11px" and halo_style["right"]=="-11px",
                f"{width}px: glow widens sideways only, preserving vertical space between home/away dots")
         # Existing match-dot geometry must remain unchanged, including the tight home stack.
         halo_geometry=latest.evaluate("""el => {
