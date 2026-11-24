@@ -38,11 +38,11 @@
 .eplu-match[data-result="W"]{background:var(--ev-win);color:var(--ev-win-text);box-shadow:0 0 0 1px var(--ev-win-outline)}
 .eplu-match[data-result="D"]{background:var(--ev-draw);color:#25272A}
 .eplu-match[data-result="L"]{background:var(--ev-loss);color:#F4F4F4}
-/* A compact, soft halo marks the current club's latest completed result when
-   unselected. No solid rim: the glow starts at the dot edge, so it does not
-   collide with adjacent results in tightly stacked month columns. */
+/* The latest completed result receives only a faint, horizontally diffused
+   glassy light patch (not a circular border or shadow). Keeping it flat in the
+   vertical direction avoids visual contact with results stacked 4px apart. */
 .eplu-match.is-latest{z-index:1;isolation:isolate}
-.eplu-match.is-latest::before{content:"";position:absolute;inset:0;z-index:-1;border:0;border-radius:50%;pointer-events:none;background:transparent;box-shadow:0 0 4px 1px rgba(238,246,255,.18),0 0 6px rgba(238,246,255,.07);filter:blur(1.3px)}
+.eplu-match.is-latest::before{content:"";position:absolute;left:-9px;right:-9px;top:0;bottom:0;z-index:-1;pointer-events:none;border:0;border-radius:0;box-shadow:none;background:radial-gradient(ellipse 50% 45% at 50% 50%,rgba(245,249,255,.27) 0%,rgba(245,249,255,.13) 45%,rgba(245,249,255,0) 100%);filter:blur(2px)}
 .eplu-match.is-muted{opacity:.43}
 .eplu-match.is-selected{outline:2px solid #F1F3F5;outline-offset:3px;opacity:1;transform:scale(1.05)}
 .eplu-match:focus-visible{outline:2px solid #FFF;outline-offset:3px}
