@@ -38,6 +38,11 @@
 .eplu-match[data-result="W"]{background:var(--ev-win);color:var(--ev-win-text);box-shadow:0 0 0 1px var(--ev-win-outline)}
 .eplu-match[data-result="D"]{background:var(--ev-draw);color:#25272A}
 .eplu-match[data-result="L"]{background:var(--ev-loss);color:#F4F4F4}
+/* The latest completed result receives only a faint, horizontally diffused
+   glassy light patch (not a circular border or shadow). Keeping it flat in the
+   vertical direction avoids visual contact with results stacked 4px apart. */
+.eplu-match.is-latest{z-index:1;isolation:isolate}
+.eplu-match.is-latest::before{content:"";position:absolute;left:-11px;right:-11px;top:0;bottom:0;z-index:-1;pointer-events:none;border:0;border-radius:0;box-shadow:none;background:radial-gradient(ellipse 52% 48% at 50% 50%,rgba(245,249,255,.38) 0%,rgba(245,249,255,.20) 42%,rgba(245,249,255,.07) 68%,rgba(245,249,255,0) 100%);filter:blur(3px)}
 .eplu-match.is-muted{opacity:.43}
 .eplu-match.is-selected{outline:2px solid #F1F3F5;outline-offset:3px;opacity:1;transform:scale(1.05)}
 .eplu-match:focus-visible{outline:2px solid #FFF;outline-offset:3px}

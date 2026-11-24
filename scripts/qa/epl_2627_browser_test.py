@@ -47,9 +47,59 @@ with sync_playwright() as playwright:
         verify(max(levels)-min(levels)<3, f"{width}px: all months align on the same row")
         over=page.evaluate("()=>document.documentElement.scrollWidth>window.innerWidth+2")
         verify(not over, f"{width}px: no horizontal page overflow")
+        # Verify the latest completed fixture gets the only glass halo by default.
+        latest=page.locator("#eplu-calendar .eplu-match.is-latest")
+        verify(latest.count()==1, f"{width}px: exactly one latest-result glass halo by default")
+        verify(latest.get_attribute("data-match")==str(CLUB["Arsenal"]["played"]),
+               f"{width}px: halo follows Arsenal's actual last completed match")
+        verify("latest completed result" in latest.get_attribute("aria-label"),
+               f"{width}px: latest result announced accessibly")
+        halo_style=latest.evaluate("""el => {
+            const pseudo=getComputedStyle(el,'::before');
+            return {
+                content:pseudo.content,
+                border:pseudo.borderStyle,
+                radius:pseudo.borderRadius,
+                shadow:pseudo.boxShadow,
+                gradient:pseudo.backgroundImage,
+                blur:pseudo.filter,
+                layer:pseudo.zIndex,
+                top:pseudo.top,
+                bottom:pseudo.bottom,
+                left:pseudo.left,
+                right:pseudo.right,
+                extra:getComputedStyle(el,'::after').content
+            };
+        }""")
+        verify(halo_style["content"] not in ("none","normal")
+               and halo_style["border"]=="none"
+               and halo_style["radius"]=="0px"
+               and halo_style["shadow"]=="none"
+               and "radial-gradient" in halo_style["gradient"]
+               and halo_style["layer"]=="-1"
+               and "blur(" in halo_style["blur"]
+               and halo_style["extra"] in ("none","normal"),
+               f"{width}px: latest result has a diffuse gradient without any outlined circle or circular shadow")
+        verify(halo_style["top"]=="0px" and halo_style["bottom"]=="0px"
+               and halo_style["left"]=="-11px" and halo_style["right"]=="-11px",
+               f"{width}px: glow widens sideways only, preserving vertical space between home/away dots")
+        # Existing match-dot geometry must remain unchanged, including the tight home stack.
+        halo_geometry=latest.evaluate("""el => {
+            const dot=el.getBoundingClientRect();
+            const peers=[...el.parentElement.querySelectorAll('.eplu-match')].filter(p=>p!==el);
+            return {gap:peers.length?Math.min(...peers.map(p=>{
+                const b=p.getBoundingClientRect();
+                return Math.max(0,Math.max(b.top-dot.bottom,dot.top-b.bottom));
+            })):null};
+        }""")
+        verify(halo_geometry["gap"] is None or halo_geometry["gap"]>=3,
+               f"{width}px: adjacent match-result dot spacing is unchanged")
+        page.screenshot(path=str(OUTPUT / f"latest_halo_arsenal_{width}.png"), full_page=True)
         # Tap a real result to pin tooltip. This must include the cumulative plot.
         first=page.locator("#eplu-calendar .eplu-match").first
         first.click()
+        verify(page.locator("#eplu-calendar .eplu-match.is-latest").count()==0,
+               f"{width}px: selecting any match hides the latest-result halo")
         tooltip=page.locator("#eplu-tooltip")
         verify(tooltip.is_visible(), f"{width}px: tap opens pinned tooltip")
         verify(tooltip.locator("svg.eplu-tip-mini path").count()==20, f"{width}px: 20 cumulative trajectories visible")
@@ -85,6 +135,28 @@ with sync_playwright() as playwright:
         first.click()
         verify(not tooltip.is_visible(), f"{width}px: tapping selected result again closes tooltip")
         verify(page.locator("#eplu-calendar .eplu-match.is-muted").count()==0, f"{width}px: context resets on deselection")
+        verify(page.locator("#eplu-calendar .eplu-match.is-latest").count()==1,
+               f"{width}px: latest halo returns after deselecting")
+        # Choose examples from the real JSON so both home- and away-latest results are tested.
+        venues={v:next(c for c in DATA["teams"] if c["games"][-1]["venue"]==v) for v in ("H","A")}
+        for venue,club in venues.items():
+            page.locator("#eplu-team").select_option(label=club["name"])
+            marker=page.locator("#eplu-calendar .eplu-match.is-latest")
+            verify(marker.count()==1 and marker.get_attribute("data-match")==str(club["played"]),
+                   f"{width}px {club['name']}: changing club repositions halo to last completed result")
+            parent_class=marker.locator("xpath=..").get_attribute("class")
+            verify(("eplu-month-home" if venue=="H" else "eplu-month-away") in parent_class,
+                   f"{width}px {club['name']}: halo sits in correct {'home' if venue=='H' else 'away'} row")
+            stable_match=page.locator(f"#eplu-calendar .eplu-match[data-match='{club['played']}']")
+            marker.click()
+            verify(page.locator("#eplu-calendar .eplu-match.is-latest").count()==0
+                   and page.locator("#eplu-calendar .eplu-match.is-selected").count()==1,
+                   f"{width}px {club['name']}: pinned result ring takes priority over halo")
+            stable_match.click()
+            verify(page.locator("#eplu-calendar .eplu-match.is-latest").count()==1
+                   and page.locator("#eplu-calendar .eplu-match.is-selected").count()==0,
+                   f"{width}px {club['name']}: clearing selection restores last-result halo")
+            page.screenshot(path=str(OUTPUT / f"latest_halo_{venue.lower()}_{width}.png"), full_page=True)
         page.locator("#eplu-team").select_option(label="Newcastle")
         verify(page.locator("#eplu-club-name").inner_text().strip()=="NEWCASTLE", f"{width}px: club selection changes identity")
         verify(page.locator("#eplu-calendar .eplu-match").count()==CLUB["Newcastle"]["played"], f"{width}px: new club has its real completed matches")
