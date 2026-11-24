@@ -1,4 +1,4 @@
-# 2026–27 Season Unfolded · live resource and weekly data workflow
+# 2026–27 Season Unfolded · live resource and daily data workflow
 
 Reference: merged PR #230, EPL 2025–26 (design, interactions, mobile QA). The completed 2025–26 interactive is embedded in its Sport blog post, with legacy URL redirect.
 
@@ -16,7 +16,7 @@ Reference: merged PR #230, EPL 2025–26 (design, interactions, mobile QA). The 
 - Unique home–away pairing; expected twenty named clubs; score/result coherence; date range; no future match results; no removed or retrospectively changed results; <=19 at each venue; recomputed 3/1/0 points, totals and trajectories.
 - Provisional order uses points, goal difference, goals scored, and club name for remaining unresolved ties. It is **not an official live standings service**, and games played can differ.
 - Preserve dark charcoal styling, one ten-month row, 8px home-dot gap, 43% selection fade, 45%/2px tooltip, club-colour wins and the twenty-club cumulative trajectories.
-- Scheduled GitHub workflow is gated by `EPL_AUTO_PUBLISH_ENABLED` and remains OFF. The authenticated source and draft-branch sync have been demonstrated; do not enable automatic publication until **a live workflow_dispatch has shown data-only PR creation, independent PR QA and a successful authorised merge**.
+- Daily GitHub data checks run even with `EPL_AUTO_PUBLISH_ENABLED` OFF. That variable gates **automatic merging**, not fetching or opening review PRs. Do not enable automatic publication until a live end-to-end refresh has demonstrated data-only PR creation, independent PR QA and a successful authorised merge.
 - A fine-grained `EPL_PR_TOKEN` (Contents: read/write; Pull requests: read/write, access to this repo) is required unless repository settings permit Actions to create pull requests. PAT-triggered PR events run browser CI; `GITHUB_TOKEN`-authored PRs normally do not.
 - Initial publication requires user review and merge; weekly data-only PR merges may be automatic *only after proven and explicitly enabled*. Other changes never auto-merge.
 
@@ -40,10 +40,10 @@ Reference: merged PR #230, EPL 2025–26 (design, interactions, mobile QA). The 
 - Browser QA validates the newest candidate, then updates **only the draft feature branch's CSV/JSON** using GitHub Actions; no direct main commit, no merged PR and no automated site publication. This draft-branch synchronisation ceases when the PR is merged or closed.
 - The page footer reads source provenance from JSON metadata and the header displays the latest included result date, not the execution date.
 
-## Weekly refresh and publication safeguards
+## Daily refresh and publication safeguards
 
-- Schedule: Monday 08:30 Europe/London, represented by separate UTC cron entries for BST and GMT. A scheduled run is accepted when its cron matches the correct UK offset; delays in GitHub's Actions queue do not silently skip a valid Monday run.
-- Weekly source checks run **even while automated merging is disabled**. No change means no PR, no deployment.
+- Schedule: every day at 08:30 Europe/London, represented by separate UTC cron entries for BST and GMT. The DST-safe gate runs only the entry matching the current UK offset; GitHub may delay scheduled runs. Daily checks cover Monday-night and midweek matches on the following morning.
+- Daily source checks run **even while automated merging is disabled**. No change means no PR, no deployment. A verified new result updates the existing data-only review PR rather than creating another one.
 - New completed matches generate a **data-only review PR** using repository secret `EPL_PR_TOKEN`, a fine-grained token with Contents and Pull requests write limited to this repository. `FOOTBALL_DATA_ORG_TOKEN` is a different secret and only authenticates the results API.
 - The `EPL_PR_TOKEN` secret is required to create PRs that trigger truly independent GitHub Actions QA. Without it, the workflow fails, preserves the live dataset and opens/updates an issue.
 - New data must preserve past scores, dates and fixtures; finished results only, twenty fixed clubs, logical goal scores, no duplicates or future dates. Reject provider cache regressions.

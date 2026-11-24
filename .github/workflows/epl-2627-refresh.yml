@@ -1,9 +1,10 @@
-name: Weekly EPL 2026-27 verified results refresh
+name: Daily EPL 2026-27 verified results refresh
 on:
   schedule:
-    # GitHub cron is UTC: cover Monday 08:30 UK during BST and GMT.
-    - cron: '30 7 * * 1'
-    - cron: '30 8 * * 1'
+    # Check every day at 08:30 Europe/London (07:30 UTC in BST; 08:30 UTC in GMT).
+    # Both UTC schedules fire; the DST-safe gate below skips the non-matching one.
+    - cron: '30 7 * * *'
+    - cron: '30 8 * * *'
   workflow_dispatch:
     inputs:
       mode:
@@ -19,16 +20,16 @@ permissions:
   issues: write
 
 concurrency:
-  group: epl-2627-weekly-refresh
+  group: epl-2627-daily-refresh
   cancel-in-progress: false
 
 jobs:
   refresh:
-    # Weekly review runs even when automatic publication is OFF.
+    # Daily checks and review PRs run even when automatic publication is OFF.
     runs-on: ubuntu-24.04
     timeout-minutes: 35
     steps:
-      - name: Gate schedule to Monday 08:30 Europe/London (DST-safe)
+      - name: Gate schedule to daily 08:30 Europe/London (DST-safe)
         id: uk_clock
         shell: bash
         env:
@@ -41,9 +42,9 @@ jobs:
           from zoneinfo import ZoneInfo
           uk=datetime.now(ZoneInfo('Europe/London'))
           # GitHub cron may run late, so match the scheduled cron to UK DST.
-          expected='30 7 * * 1' if uk.utcoffset()==timedelta(hours=1) else '30 8 * * 1'
+          expected='30 7 * * *' if uk.utcoffset()==timedelta(hours=1) else '30 8 * * *'
           received=os.environ.get('EVENT_SCHEDULE','')
-          allowed=os.environ['EVENT_NAME']!='schedule' or (uk.weekday()==0 and received==expected)
+          allowed=os.environ['EVENT_NAME']!='schedule' or received==expected
           print('proceed='+('true' if allowed else 'false'))
           print('uk_now='+uk.isoformat())
           print('schedule_received='+received)
@@ -120,7 +121,7 @@ jobs:
         if: steps.diff.outputs.changed == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: epl-2627-weekly-browser-evidence
+          name: epl-2627-daily-browser-evidence
           path: qa_screenshots/epl-2627/
           if-no-files-found: error
       - name: Require a token capable of triggering independent PR QA
@@ -179,9 +180,9 @@ jobs:
           REPO: ${{ github.repository }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
-          title="EPL 2026–27 weekly refresh needs review"
+          title="EPL 2026–27 daily refresh needs review"
           existing="$(gh issue list --repo "$REPO" --state open --search "$title in:title" --json number --jq '.[0].number' || true)"
-          msg="The verified EPL refresh failed. Review run: $RUN_URL. Existing published data must be left unchanged until checks and permissions are repaired."
+          msg="The daily verified EPL refresh failed. Review run: $RUN_URL. Existing published data must be left unchanged until checks and permissions are repaired."
           if [[ -n "$existing" ]]; then
             gh issue comment "$existing" --repo "$REPO" --body "$msg"
           else
