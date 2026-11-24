@@ -54,32 +54,46 @@ with sync_playwright() as playwright:
                f"{width}px: halo follows Arsenal's actual last completed match")
         verify("latest completed result" in latest.get_attribute("aria-label"),
                f"{width}px: latest result announced accessibly")
-        halo_style=latest.evaluate("""el => ({
-            content:getComputedStyle(el,'::before').content,
-            border:getComputedStyle(el,'::before').borderStyle,
-            inset:getComputedStyle(el,'::before').inset,
-            glow:getComputedStyle(el,'::before').boxShadow,
-            blur:getComputedStyle(el,'::before').filter,
-            layer:getComputedStyle(el,'::before').zIndex,
-            extra:getComputedStyle(el,'::after').content
-        })""")
+        halo_style=latest.evaluate("""el => {
+            const pseudo=getComputedStyle(el,'::before');
+            return {
+                content:pseudo.content,
+                border:pseudo.borderStyle,
+                radius:pseudo.borderRadius,
+                shadow:pseudo.boxShadow,
+                gradient:pseudo.backgroundImage,
+                blur:pseudo.filter,
+                layer:pseudo.zIndex,
+                top:pseudo.top,
+                bottom:pseudo.bottom,
+                left:pseudo.left,
+                right:pseudo.right,
+                extra:getComputedStyle(el,'::after').content
+            };
+        }""")
         verify(halo_style["content"] not in ("none","normal")
-               and halo_style["border"]=="none" and halo_style["inset"]=="0px"
-               and halo_style["glow"]!="none" and halo_style["layer"]=="-1"
-               and "blur(" in halo_style["blur"] and halo_style["extra"] in ("none","normal"),
-               f"{width}px: latest result has a compact soft glow without a solid ring or expanded rim")
-        # The halo's own box must not extend towards adjacent closely stacked dots.
+               and halo_style["border"]=="none"
+               and halo_style["radius"]=="0px"
+               and halo_style["shadow"]=="none"
+               and "radial-gradient" in halo_style["gradient"]
+               and halo_style["layer"]=="-1"
+               and "blur(" in halo_style["blur"]
+               and halo_style["extra"] in ("none","normal"),
+               f"{width}px: latest result has a diffuse gradient without any outlined circle or circular shadow")
+        verify(halo_style["top"]=="0px" and halo_style["bottom"]=="0px"
+               and halo_style["left"]=="-9px" and halo_style["right"]=="-9px",
+               f"{width}px: glow widens sideways only, preserving vertical space between home/away dots")
+        # Existing match-dot geometry must remain unchanged, including the tight home stack.
         halo_geometry=latest.evaluate("""el => {
             const dot=el.getBoundingClientRect();
-            const before=getComputedStyle(el,'::before');
             const peers=[...el.parentElement.querySelectorAll('.eplu-match')].filter(p=>p!==el);
-            return {inset:before.inset,gap:peers.length?Math.min(...peers.map(p=>{
+            return {gap:peers.length?Math.min(...peers.map(p=>{
                 const b=p.getBoundingClientRect();
-                return Math.max(0, Math.max(b.top-dot.bottom,dot.top-b.bottom));
+                return Math.max(0,Math.max(b.top-dot.bottom,dot.top-b.bottom));
             })):null};
         }""")
-        verify(halo_geometry["inset"]=="0px" and (halo_geometry["gap"] is None or halo_geometry["gap"]>=3),
-               f"{width}px: halo does not increase dot footprint or change adjacent match spacing")
+        verify(halo_geometry["gap"] is None or halo_geometry["gap"]>=3,
+               f"{width}px: adjacent match-result dot spacing is unchanged")
         page.screenshot(path=str(OUTPUT / f"latest_halo_arsenal_{width}.png"), full_page=True)
         # Tap a real result to pin tooltip. This must include the cumulative plot.
         first=page.locator("#eplu-calendar .eplu-match").first
