@@ -247,6 +247,12 @@
     if(node && game) matchInfo(game,node,true);
     else tooltip.hidden=true;
   }
+  // A stationary glass halo belongs to the latest completed match only while no match is pinned.
+  function syncLatestHalo() {
+    calendar.querySelectorAll('.eplu-match').forEach(btn=>{
+      btn.classList.toggle('is-latest', !pickedMatch && Number(btn.dataset.match)===team.played);
+    });
+  }
   function clearPicked() {
     if(!pickedMatch) {tooltip.hidden=true;return;}
     pickedMatch=null;
@@ -255,6 +261,7 @@
       btn.classList.remove('is-selected','is-muted');
       btn.setAttribute('aria-pressed','false');
     });
+    syncLatestHalo();
     tooltip.hidden=true;
   }
   function selectMatch(game) {
@@ -267,6 +274,7 @@
       btn.classList.toggle('is-muted',!selected);
       btn.setAttribute('aria-pressed',String(selected));
     });
+    syncLatestHalo();
     const button=calendar.querySelector('button[data-match="'+pickedMatch+'"]');
     if(button)matchInfo(game,button,true);
   }
@@ -294,7 +302,7 @@
           const homeName=venue==='H'?team.name:game.opponent;
           const awayName=venue==='H'?game.opponent:team.name;
           const hg=venue==='H'?game.gf:game.ga,ag=venue==='H'?game.ga:game.gf;
-          btn.setAttribute('aria-label',fullDate(game.date)+', '+homeName+' '+hg+' to '+ag+' '+awayName+', '+resultWord(game.result).toLowerCase()+', match '+game.number);
+          btn.setAttribute('aria-label',fullDate(game.date)+', '+homeName+' '+hg+' to '+ag+' '+awayName+', '+resultWord(game.result).toLowerCase()+', match '+game.number+(game.number===team.played?', latest completed result':''));
           btn.addEventListener('click',e=>{e.stopPropagation();selectMatch(game)});
           btn.addEventListener('pointerenter',e=>{if(e.pointerType==='touch')return;hovered=true;matchInfo(game,btn,game.number===pickedMatch)});
           btn.addEventListener('pointerleave',()=>hideOrRestore());
@@ -308,6 +316,7 @@
       column.append(home,name,away);
       calendar.appendChild(column);
     });
+    syncLatestHalo();
   }
 
   function setTeam(name) {

@@ -47,9 +47,30 @@ with sync_playwright() as playwright:
         verify(max(levels)-min(levels)<3, f"{width}px: all months align on the same row")
         over=page.evaluate("()=>document.documentElement.scrollWidth>window.innerWidth+2")
         verify(not over, f"{width}px: no horizontal page overflow")
+        # Verify the latest completed fixture gets the only glass halo by default.
+        latest=page.locator("#eplu-calendar .eplu-match.is-latest")
+        verify(latest.count()==1, f"{width}px: exactly one latest-result glass halo by default")
+        verify(latest.get_attribute("data-match")==str(CLUB["Arsenal"]["played"]),
+               f"{width}px: halo follows Arsenal's actual last completed match")
+        verify("latest completed result" in latest.get_attribute("aria-label"),
+               f"{width}px: latest result announced accessibly")
+        halo_style=latest.evaluate("""el => ({
+            content:getComputedStyle(el,'::before').content,
+            border:getComputedStyle(el,'::before').borderStyle,
+            glow:getComputedStyle(el,'::before').boxShadow,
+            blur:getComputedStyle(el,'::before').backdropFilter,
+            aura:getComputedStyle(el,'::after').boxShadow
+        })""")
+        verify(halo_style["content"] not in ("none","normal") and halo_style["border"]=="solid"
+               and halo_style["glow"]!="none" and halo_style["aura"]!="none"
+               and "blur(" in halo_style["blur"],
+               f"{width}px: glass ring and soft outer sheen are CSS-rendered")
+        page.screenshot(path=str(OUTPUT / f"latest_halo_arsenal_{width}.png"), full_page=True)
         # Tap a real result to pin tooltip. This must include the cumulative plot.
         first=page.locator("#eplu-calendar .eplu-match").first
         first.click()
+        verify(page.locator("#eplu-calendar .eplu-match.is-latest").count()==0,
+               f"{width}px: selecting any match hides the latest-result halo")
         tooltip=page.locator("#eplu-tooltip")
         verify(tooltip.is_visible(), f"{width}px: tap opens pinned tooltip")
         verify(tooltip.locator("svg.eplu-tip-mini path").count()==20, f"{width}px: 20 cumulative trajectories visible")
@@ -85,6 +106,27 @@ with sync_playwright() as playwright:
         first.click()
         verify(not tooltip.is_visible(), f"{width}px: tapping selected result again closes tooltip")
         verify(page.locator("#eplu-calendar .eplu-match.is-muted").count()==0, f"{width}px: context resets on deselection")
+        verify(page.locator("#eplu-calendar .eplu-match.is-latest").count()==1,
+               f"{width}px: latest halo returns after deselecting")
+        # Choose examples from the real JSON so both home- and away-latest results are tested.
+        venues={v:next(c for c in DATA["teams"] if c["games"][-1]["venue"]==v) for v in ("H","A")}
+        for venue,club in venues.items():
+            page.locator("#eplu-team").select_option(label=club["name"])
+            marker=page.locator("#eplu-calendar .eplu-match.is-latest")
+            verify(marker.count()==1 and marker.get_attribute("data-match")==str(club["played"]),
+                   f"{width}px {club['name']}: changing club repositions halo to last completed result")
+            parent_class=marker.locator("xpath=..").get_attribute("class")
+            verify(("eplu-month-home" if venue=="H" else "eplu-month-away") in parent_class,
+                   f"{width}px {club['name']}: halo sits in correct {'home' if venue=='H' else 'away'} row")
+            marker.click()
+            verify(page.locator("#eplu-calendar .eplu-match.is-latest").count()==0
+                   and page.locator("#eplu-calendar .eplu-match.is-selected").count()==1,
+                   f"{width}px {club['name']}: pinned result ring takes priority over halo")
+            marker.click()
+            verify(page.locator("#eplu-calendar .eplu-match.is-latest").count()==1
+                   and page.locator("#eplu-calendar .eplu-match.is-selected").count()==0,
+                   f"{width}px {club['name']}: clearing selection restores last-result halo")
+            page.screenshot(path=str(OUTPUT / f"latest_halo_{venue.lower()}_{width}.png"), full_page=True)
         page.locator("#eplu-team").select_option(label="Newcastle")
         verify(page.locator("#eplu-club-name").inner_text().strip()=="NEWCASTLE", f"{width}px: club selection changes identity")
         verify(page.locator("#eplu-calendar .eplu-match").count()==CLUB["Newcastle"]["played"], f"{width}px: new club has its real completed matches")
