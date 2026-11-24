@@ -118,11 +118,12 @@ with sync_playwright() as playwright:
             parent_class=marker.locator("xpath=..").get_attribute("class")
             verify(("eplu-month-home" if venue=="H" else "eplu-month-away") in parent_class,
                    f"{width}px {club['name']}: halo sits in correct {'home' if venue=='H' else 'away'} row")
+            stable_match=page.locator(f"#eplu-calendar .eplu-match[data-match='{club['played']}']")
             marker.click()
             verify(page.locator("#eplu-calendar .eplu-match.is-latest").count()==0
                    and page.locator("#eplu-calendar .eplu-match.is-selected").count()==1,
                    f"{width}px {club['name']}: pinned result ring takes priority over halo")
-            marker.click()
+            stable_match.click()
             verify(page.locator("#eplu-calendar .eplu-match.is-latest").count()==1
                    and page.locator("#eplu-calendar .eplu-match.is-selected").count()==0,
                    f"{width}px {club['name']}: clearing selection restores last-result halo")
