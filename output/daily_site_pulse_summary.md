@@ -1,9 +1,9 @@
-# Coffeetableviz Daily Pulse — 22 November 2026
+# Coffeetableviz Daily Pulse — 23 November 2026
 
-- **Visits:** 16
-- **7-day context:** 6% above prior 7-day daily average (15.1)
-- **Top pages:** Premier League 2026–27 — the season unfolded (6), The Premier League unfolded — one match at a time (2), Home (2)
-- **Top referrer:** Direct / unknown — 6 visits
-- **Observation:** Traffic stayed fairly close to its recent rhythm.
+- **Visits:** 4
+- **7-day context:** 75% below prior 7-day daily average (15.7)
+- **Top pages:** Resources (2), The Dot Studio (1), About (1)
+- **Top referrer:** Direct / unknown — 3 visits
+- **Observation:** Resources led the day, reaching 2 of 4 recorded visitors.
 
 Latest image: `output/daily_site_pulse.png`

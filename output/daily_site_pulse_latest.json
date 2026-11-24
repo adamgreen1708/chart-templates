@@ -1,35 +1,21 @@
 {
-  "report_date": "2026-11-22",
-  "visits": 16,
-  "prior_7d_avg": "15.14",
-  "pct_vs_prior_7d": "5.7",
-  "top_page_path": "/resources/epl-2026-27-unfolded",
-  "top_page_title": "Premier League 2026\u201327 \u2014 the season unfolded \u00b7 coffeetableviz",
-  "top_page_visits": 6,
+  "report_date": "2026-11-23",
+  "visits": 4,
+  "prior_7d_avg": "15.71",
+  "pct_vs_prior_7d": "-74.5",
+  "top_page_path": "/resources",
+  "top_page_title": "Resources \u00b7 coffeetableviz",
+  "top_page_visits": 2,
   "top_referrer": "Direct / unknown",
-  "top_referrer_visits": 6,
-  "observation": "Traffic stayed fairly close to its recent rhythm.",
-  "generated_at_utc": "2026-11-23T20:12:29+00:00",
+  "top_referrer_visits": 3,
+  "observation": "Resources led the day, reaching 2 of 4 recorded visitors.",
+  "generated_at_utc": "2026-11-24T03:56:43+00:00",
   "top_pages": [
     {
-      "path_id": 124906841,
-      "path": "/resources/epl-2026-27-unfolded",
-      "title": "Premier League 2026\u201327 \u2014 the season unfolded \u00b7 coffeetableviz",
-      "display": "Premier League 2026\u201327 \u2014 the season unfolded",
-      "count": 6
-    },
-    {
-      "path_id": 124899257,
-      "path": "/stories/premier-league-season-unfolded-2025-26",
-      "title": "The Premier League unfolded \u2014 one match at a time \u00b7 coffeetableviz",
-      "display": "The Premier League unfolded \u2014 one match at a time",
-      "count": 2
-    },
-    {
-      "path_id": 109451764,
-      "path": "/",
-      "title": "coffeetableviz",
-      "display": "Home",
+      "path_id": 109453481,
+      "path": "/resources",
+      "title": "Resources \u00b7 coffeetableviz",
+      "display": "Resources",
       "count": 2
     },
     {
@@ -40,38 +26,10 @@
       "count": 1
     },
     {
-      "path_id": 124898647,
-      "path": "/resources/epl-2025-26-unfolded",
-      "title": "Premier League 2025\u201326 \u2014 the season unfolded \u00b7 coffeetableviz",
-      "display": "Premier League 2025\u201326 \u2014 the season unfolded",
-      "count": 1
-    },
-    {
-      "path_id": 109453481,
-      "path": "/resources",
-      "title": "Resources \u00b7 coffeetableviz",
-      "display": "Resources",
-      "count": 1
-    },
-    {
-      "path_id": 109446444,
-      "path": "/data-lens",
-      "title": "Data Lens \u00b7 coffeetableviz",
-      "display": "Data Lens",
-      "count": 1
-    },
-    {
-      "path_id": 109446302,
-      "path": "/series/blockbuster-quote",
-      "title": "Today\u2019s Blockbuster Quote \u00b7 coffeetableviz",
-      "display": "Today\u2019s Blockbuster Quote",
-      "count": 1
-    },
-    {
-      "path_id": 109446267,
-      "path": "/archive",
-      "title": "Archive \u00b7 coffeetableviz",
-      "display": "Archive",
+      "path_id": 109446434,
+      "path": "/about",
+      "title": "About \u00b7 coffeetableviz",
+      "display": "About",
       "count": 1
     }
   ],
@@ -79,14 +37,8 @@
     {
       "id": null,
       "name": "Direct / unknown",
-      "count": 6,
+      "count": 3,
       "ref_scheme": "o"
-    },
-    {
-      "id": "chatgpt.com",
-      "name": "chatgpt.com",
-      "count": 4,
-      "ref_scheme": "c"
     }
   ]
 }
