@@ -69,6 +69,16 @@ jobs:
           source: ./site
           destination: ./_site
 
+      - name: Verify built Interwoven media and pages
+        run: |
+          for f in artwork.png card.jpg detail.png gallery.jpg walkthrough.mp4; do
+            cmp "site/assets/gallery/interwoven/$f" "_site/assets/gallery/interwoven/$f"
+          done
+          test -s _site/gallery/index.html
+          test -s _site/gallery/interwoven/index.html
+          test -s _site/gallery/interwoven/explore/index.html
+          test -s _site/stories/interwoven-when-data-becomes-art/index.html
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
 
