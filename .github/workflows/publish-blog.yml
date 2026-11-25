@@ -6,6 +6,8 @@ on:
       - main
     paths:
       - "site/**"
+      - "archive/projects/2026-11-interwoven/ASSETS.sha256"
+      - "archive/projects/2026-11-interwoven/RECOVERY_ASSETS.sha256"
       - "spec/series/blockbuster-quote.md"
       - "spec/series/data-lens.md"
       - "scripts/validate_blockbuster_quotes.rb"
@@ -18,6 +20,8 @@ on:
   pull_request:
     paths:
       - "site/**"
+      - "archive/projects/2026-11-interwoven/ASSETS.sha256"
+      - "archive/projects/2026-11-interwoven/RECOVERY_ASSETS.sha256"
       - "spec/series/blockbuster-quote.md"
       - "spec/series/data-lens.md"
       - "scripts/validate_blockbuster_quotes.rb"
@@ -51,11 +55,29 @@ jobs:
       - name: Validate Data Lens editions and resources
         run: ruby scripts/validate_data_lens.rb
 
+      - name: Validate approved Interwoven release assets
+        run: |
+          if sha256sum --check --status archive/projects/2026-11-interwoven/ASSETS.sha256; then
+            echo "Exact original approved assets verified"
+          else
+            sha256sum --check archive/projects/2026-11-interwoven/RECOVERY_ASSETS.sha256
+          fi
+
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./site
           destination: ./_site
+
+      - name: Verify built Interwoven media and pages
+        run: |
+          for f in artwork.png card.jpg detail.png gallery.jpg walkthrough.mp4; do
+            cmp "site/assets/gallery/interwoven/$f" "_site/assets/gallery/interwoven/$f"
+          done
+          test -s _site/gallery/index.html
+          test -s _site/gallery/interwoven/index.html
+          test -s _site/gallery/interwoven/explore/index.html
+          test -s _site/stories/interwoven-when-data-becomes-art/index.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
