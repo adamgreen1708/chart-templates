@@ -109,6 +109,8 @@ Occasionally, the available information simply isn't sufficient to tell the stor
 
 That's a perfectly good reason to change the question.
 
+*Continue with [Finding the story](/about/behind-the-build/how-we-work/finding-the-story/).*
+
 ## Try it yourself
 
 Explore the examples below and consider which questions our different datasets can genuinely answer.

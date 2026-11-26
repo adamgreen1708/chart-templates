@@ -79,6 +79,8 @@ One of the resulting rules is particularly simple: don't make three charts just 
 
 Every chart should earn its place.
 
+*Continue with [Finding the story](/about/behind-the-build/how-we-work/finding-the-story/).*
+
 ## What we learnt
 
 The most useful thing about documenting mistakes is that they can improve more than the project that exposed them.
