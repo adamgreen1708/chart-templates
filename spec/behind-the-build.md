@@ -13,7 +13,7 @@ Approved direction: 26 November 2026. An evergreen reference library within Abou
 - Keep approved article copy and assets intact through PR review, inspect phone sizes, verify links, interactions and Pages build. No direct main changes. Confirm the live URL after deployment.
 
 ## Roadmap
-Published collection: From conversation to creation; Building a chart factory; Keeping AI honest; Pixel Art Studio; Truchet Tile Studio; The Dot Studio; Bauhaus Art Studio; Premier League Unfolded; Interwoven; Python — Making sense of the numbers; JavaScript — Bringing things to life; HTML and CSS — Giving everything a home; Drawing with code — When numbers become pictures. Future: recipe/config deep dive, finding the story, identity, GitHub to Pages, repo memory, automation, failures, Tiny Pixel Zoo and Pixel Universe, Data Lens, Blockbuster Quote, Icons of Data and Daily Pulse.
+Published collection: From conversation to creation; Building a chart factory; Keeping AI honest; Pixel Art Studio; Truchet Tile Studio; The Dot Studio; Bauhaus Art Studio; Premier League Unfolded; Interwoven; Python — Making sense of the numbers; JavaScript — Bringing things to life; HTML and CSS — Giving everything a home; Drawing with code — When numbers become pictures; Where do the numbers come from? (14 articles: 8 How we work and 6 How we made it). See the approved Phase 2 and Phase 3 roadmap below.
 
 Capture methodology, decisions and lessons at completion of substantial projects, then draft the relevant reference article for review. Keep site/about/behind-the-build and site/assets/behind-the-build separate from normal blog content.
 
@@ -50,3 +50,29 @@ Write for non-coders, not as full coding tutorials. Use plain-English step-by-st
 - HTML/CSS explainer includes Jekyll as the static site generator and GitHub Pages as the host. Use actual layout placeholders, source CSS spacing values and 420px media-query rule, and the existing frog. Four scoped browser demos: styling, template assembly, spacing and responsive layout. Label all as teaching previews, not live Jekyll execution or site screenshots. Preserve actual website-wide styling; reserve deployment detail for the GitHub-to-website article.
 
 - Drawing explainer compares SVG geometry, simulated raster pixels and the actual Python-to-PNG process. Same magnification in both previews; use the four original Truchet paths and area versus radius on illustrative values only. Embed the existing Patrick Stewart PNG unchanged. Add contextual links to related articles; no production renderer or data changes.
+
+## Extended editorial roadmap — approved 26 November 2026
+
+Finish How we work before returning to individual product stories. Review each article with Adam before publishing; retain the interactive, source-grounded reference approach.
+
+### Phase 2 — How we work
+- 08. Where do the numbers come from? (published): source discovery, API, provenance, missing values and suitability for a question.
+- 09. Finding the story: one dataset, competing hypotheses, editorial judgement and rejecting weak narratives.
+- 10. The recipe for a chart: CHART_CONFIG and rendering rules.
+- 11. Building a visual identity: palette, typography, layout and consistent visual language.
+- 12. From GitHub to website: repositories, branches, commits, pull requests, Actions and Pages.
+- 13. A memory outside ChatGPT: versioned prompts, standards, decisions and lessons.
+- 14. Putting things on autopilot: scheduling, automated data updates and controlled publication.
+- 15. When things go wrong: tests, failure detection, debugging and lessons.
+- 16. Designing for everyone: mobile readability, accessibility, contrast and interaction.
+
+### Phase 3 — How we made it
+- 07. Tiny Pixel Zoo & Pixel Universe
+- 08. Blockbuster Quote
+- 09. Today's Data Lens
+- 10. Icons of Data
+- 11. Daily Pulse
+
+Target 27 articles across the two collections. Creating for fun remains a separate personal editorial piece, not part of the numbered library.
+
+Article 08 uses verified archived football provenance and five actual film records; missing ratings are preserved by default, with deliberately incorrect zero substitution labelled. The evidence quiz distinguishes film votes from audience or cultural importance. The data passport is an illustrative documentation format, not an adopted formal source standard. No changes to source data or refresh workflows.

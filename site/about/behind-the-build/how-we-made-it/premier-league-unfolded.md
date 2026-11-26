@@ -45,6 +45,8 @@ A shared points scale allows us to move between clubs and explore their differen
 
 The starting point is a dataset containing the actual completed fixtures.
 
+*Explore how we choose and verify our sources in [Where do the numbers come from?](/about/behind-the-build/how-we-work/data-sources/).*
+
 Python transforms each match into two records, one from the perspective of each participating club.
 
 *Want to understand how? Read [Python — Making sense of the numbers](/about/behind-the-build/how-we-work/python/).*
