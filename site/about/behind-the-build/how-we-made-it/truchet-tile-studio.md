@@ -47,6 +47,8 @@ The tiles haven't changed. The instructions have.
 
 The studio uses JavaScript to calculate the rotation of each tile and a browser technology called Canvas to draw the resulting pattern.
 
+*Want to understand how? Read [JavaScript — Bringing things to life](/about/behind-the-build/how-we-work/javascript/).*
+
 To create symmetry, we generate the underlying pattern for one quarter of the artwork and reflect it across the other three.
 
 The chaos slider then progressively introduces independently selected rotations, disrupting that symmetry.

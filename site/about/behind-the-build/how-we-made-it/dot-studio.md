@@ -50,6 +50,8 @@ The interesting thing is how much information we can remove whilst still recogni
 
 JavaScript reads the image using a browser technology called Canvas.
 
+*Want to understand how? Read [JavaScript — Bringing things to life](/about/behind-the-build/how-we-work/javascript/).*
+
 We can then apply different rules to the sampled information. Limit the available colours, increase the size of dots in darker areas or recreate the appearance of a printed comic book.
 
 We've also introduced a CMYK halftone treatment inspired by traditional colour printing.
