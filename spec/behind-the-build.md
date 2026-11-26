@@ -20,3 +20,6 @@ Capture methodology, decisions and lessons at completion of substantial projects
 ## Navigation and spacing (26 November 2026)
 - Both collections and their direct article links appear on About under Behind the build. The dedicated index remains available for existing links, using the same shared include; do not require an intermediate page to reach an article. Article breadcrumbs return directly to the About section. Keep About highlighted within the collection.
 - Use the scoped compact hero and prose rules in the Behind the build stylesheet; do not inherit the generous 4rem heading margins and 8rem section padding. Preserve the original site-wide blog styles. Review phone and desktop rhythm; do not confuse generous breathing room with large empty gaps.
+
+## Stylesheet delivery and resilient index
+Load the Behind the build stylesheet in the shared HTML head only for About routes, after site.css; bump its version query on CSS changes to prevent stale Safari cache. Index entries must have explicit whitespace, separate link titles and description paragraphs so they remain readable even if styles do not load. Validate built markup and CSS and inspect live phone view before describing visual QA as complete.
