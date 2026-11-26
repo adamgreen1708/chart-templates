@@ -53,6 +53,8 @@ GitHub Actions then runs the relevant code and checks. I review the results, cha
 
 The website is built using Jekyll, which turns our content, templates and supporting files into the pages you see.
 
+*Want to understand how? Read [HTML and CSS — Giving everything a home](/about/behind-the-build/how-we-work/html-css/).*
+
 It's a series of relatively simple steps that collectively achieve something quite powerful.
 
 ## What didn't work
