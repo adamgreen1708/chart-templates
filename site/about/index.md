@@ -5,7 +5,6 @@ description: About Adam Green and coffeetableviz.
 permalink: /about/
 ---
 
-<link rel="stylesheet" href="{{ '/assets/behind-the-build/style.css' | relative_url }}">
 <section class="page-hero shell-narrow btb-hero btb-about-hero">
   <p class="eyebrow">About</p>
   <h1>A small table.<br>A good chart.<br><span>A clear story.</span></h1>
