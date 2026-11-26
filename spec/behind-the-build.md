@@ -16,3 +16,7 @@ Approved direction: 26 November 2026. An evergreen reference library within Abou
 Initial: From conversation to creation; Building a chart factory; Keeping AI honest; Pixel Art Studio. Future: recipe/config deep dive, finding the story, identity, GitHub to Pages, repo memory, automation, failures, Truchet, Dot, Bauhaus, EPL, Interwoven, Tiny Pixel Zoo and Pixel Universe, Data Lens, Blockbuster Quote, Icons of Data and Daily Pulse.
 
 Capture methodology, decisions and lessons at completion of substantial projects, then draft the relevant reference article for review. Keep site/about/behind-the-build and site/assets/behind-the-build separate from normal blog content.
+
+## Navigation and spacing (26 November 2026)
+- Both collections and their direct article links appear on About under Behind the build. The dedicated index remains available for existing links, using the same shared include; do not require an intermediate page to reach an article. Article breadcrumbs return directly to the About section. Keep About highlighted within the collection.
+- Use the scoped compact hero and prose rules in the Behind the build stylesheet; do not inherit the generous 4rem heading margins and 8rem section padding. Preserve the original site-wide blog styles. Review phone and desktop rhythm; do not confuse generous breathing room with large empty gaps.

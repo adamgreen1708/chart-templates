@@ -11,7 +11,7 @@
       <a href="{{ '/gallery/' | relative_url }}"{% if page.url contains '/gallery/' %} aria-current="page"{% endif %}>Gallery</a>
       <a href="{{ '/resources/' | relative_url }}"{% if page.url contains '/resources/' %} aria-current="page"{% endif %}>Resources</a>
       <a href="{{ '/series/blockbuster-quote/' | relative_url }}"{% if page.url contains '/series/blockbuster-quote/' %} aria-current="page"{% endif %}>Quotes</a>
-      <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}>About</a>
+      <a href="{{ '/about/' | relative_url }}"{% if page.url contains '/about/' %} aria-current="page"{% endif %}>About</a>
     </nav>
   </div>
 </header>
