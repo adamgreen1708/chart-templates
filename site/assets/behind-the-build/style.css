@@ -106,3 +106,34 @@
 .btb-bh-swatches span { flex:1; min-height:21px; border:1px solid #aaa; }
 .btb-dot-controls .btb-bh-check { display:flex; align-items:center; gap:.5rem; margin:.65rem 0 .9rem; font-weight:400; }
 .btb-bh-check input { accent-color:#156b7f; }
+
+/* Premier League teaching example: scoped, compact, native buttons. */
+.btb-epl-club[hidden] { display:none!important; }
+.btb-epl-dark { background:#303133; color:#fff; padding:clamp(.65rem,2vw,1rem); border-radius:3px; }
+.btb-epl-dark h4,.btb-epl-dark h5 { color:#fff; margin:0 0 .6rem; line-height:1.3; }
+.btb-epl-dark h4 { font-size:1.25rem; }
+.btb-epl-dark h5 { text-align:center; font-size:1.05rem; overflow-wrap:anywhere; }
+.btb-epl-dark p { color:#ddd; font-size:.79rem; margin:.4rem 0; }
+.btb-epl-dark .btb-epl-legend { display:flex; flex-wrap:wrap; align-items:center; gap:.3rem .4rem; }
+.btb-epl-dot,.btb-epl-key { border:1px solid #888; border-radius:50%; display:inline-flex; justify-content:center; align-items:center; font-weight:700; box-sizing:border-box; flex:none; line-height:1; }
+.btb-epl-dot { width:36px; height:36px; cursor:pointer; font-size:14px; }
+.btb-epl-key { width:22px; height:22px; font-size:11px; }
+.btb-epl-dark [data-result=W] { background:var(--btb-win); color:var(--btb-win-ink); }
+.btb-epl-dark [data-result=D] { background:#c9cbcd; color:#191919; }
+.btb-epl-dark [data-result=L] { background:#191919; color:#fff; }
+.btb-epl-dot[aria-pressed=true] { border:2px solid #fff; outline:1px solid #fff; outline-offset:2px; }
+.btb-epl-dot:focus-visible { outline:3px solid #8bd5e3; outline-offset:3px; }
+.btb-epl-months { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.4rem; }
+.btb-epl-home,.btb-epl-away { height:84px; display:flex; flex-direction:column; align-items:center; gap:5px; }
+.btb-epl-home { justify-content:flex-end; padding-bottom:5px; }
+.btb-epl-away { justify-content:flex-start; padding-top:5px; }
+.btb-epl-month-label { text-align:center; background:#4b4c4e; padding:.35rem .2rem; font-size:.8rem; font-weight:600; }
+.btb-epl-detail { margin:.8rem 0 .5rem; padding:.7rem; background:#414244; border:1px solid #666; }
+.btb-epl-pts { display:grid; grid-template-columns:1fr 1fr; gap:.5rem; }
+.btb-epl-pts span { display:block; font-size:.72rem; color:#ddd; }
+.btb-epl-pts strong { display:block; color:white; font-size:1.5rem; line-height:1.3; }
+.btb-epl-summary-title { margin:.9rem 0 .4rem; font-size:.95rem; }
+.btb-epl-summary { width:100%; border-collapse:collapse; table-layout:fixed; font-size:.84rem; }
+.btb-epl-summary th,.btb-epl-summary td { padding:.4rem .2rem; border-bottom:1px solid #d0d0d0; text-align:center; }
+.btb-epl-summary th:first-child { text-align:left; width:32%; }
+.btb-epl-demo .btb-meta { margin:.65rem 0; }

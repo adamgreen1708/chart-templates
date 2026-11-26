@@ -13,7 +13,7 @@ Approved direction: 26 November 2026. An evergreen reference library within Abou
 - Keep approved article copy and assets intact through PR review, inspect phone sizes, verify links, interactions and Pages build. No direct main changes. Confirm the live URL after deployment.
 
 ## Roadmap
-Published collection: From conversation to creation; Building a chart factory; Keeping AI honest; Pixel Art Studio; Truchet Tile Studio; The Dot Studio; Bauhaus Art Studio. Future: recipe/config deep dive, finding the story, identity, GitHub to Pages, repo memory, automation, failures, EPL, Interwoven, Tiny Pixel Zoo and Pixel Universe, Data Lens, Blockbuster Quote, Icons of Data and Daily Pulse.
+Published collection: From conversation to creation; Building a chart factory; Keeping AI honest; Pixel Art Studio; Truchet Tile Studio; The Dot Studio; Bauhaus Art Studio; Premier League Unfolded. Future: recipe/config deep dive, finding the story, identity, GitHub to Pages, repo memory, automation, failures, Interwoven, Tiny Pixel Zoo and Pixel Universe, Data Lens, Blockbuster Quote, Icons of Data and Daily Pulse.
 
 Capture methodology, decisions and lessons at completion of substantial projects, then draft the relevant reference article for review. Keep site/about/behind-the-build and site/assets/behind-the-build separate from normal blog content.
 
@@ -29,3 +29,13 @@ Load the Behind the build stylesheet in the shared HTML head only for About rout
 - Dot Studio explainer uses a labelled procedural landscape, the original brightness and size rules at 80% variation, and eight-tone greyscale. Reference the original Tableau artwork in place. Keep the demo distinct from the full photographic and halftone engine; preserve native accessible controls and static fallback.
 
 - Bauhaus explainer uses the actual built-in illustrative running values (not personal running records), studio palettes, area formulas and explicit zero-based versus min–max scale. Keep colour meanings explicit, decorative sequence labelled, native controls and no-JS fallback. Simplified layout and upright triangle orientation are intentional.
+
+## Demystifying the code — approved follow-on roadmap
+After Interwoven, develop these How we work articles in order, with the established editorial review and approval gate:
+- 04. Python — Making sense of the numbers: show actual inputs, a small source-grounded transformation, validation and outputs.
+- 05. JavaScript — Bringing things to life: show how the browser reads data, creates marks, responds to events and updates the display.
+- 06. HTML and CSS — Giving everything a home: explain markup, typography, layout and responsive design.
+- 07. Drawing with code — When numbers become pictures: compare SVG, Canvas and deterministic Python rendering.
+Write for non-coders, not as full coding tutorials. Use plain-English step-by-step explanations, actual code excerpts, small interactive examples and links back to product stories. Once published, add contextual links from existing articles where they use these technologies. Do not add dead links before publication.
+
+- Premier League teaching example uses the archived 2025–26 JSON, four clubs and August–October only. Check all scores, W/D/L, cumulative and venue totals against the frozen dataset. Keep the production season data, scoring code and scheduled refresh workflow unchanged; describe the configured automation rather than guaranteeing a current result.
