@@ -1,0 +1,13 @@
+<section class="btb-demo btb-py" id="btb-py-transform" aria-labelledby="btb-py-transform-title">
+<h3 id="btb-py-transform-title">From raw data to useful information.</h3>
+<div class="btb-dot-controls"><label for="btb-py-fixture">Choose a fixture</label><select id="btb-py-fixture"><option value="0">Arsenal 5–0 Leeds</option><option value="1">Man United 0–1 Arsenal</option><option value="2">Chelsea 0–0 Crystal Palace</option></select></div>
+<div class="btb-py-steps" role="group" aria-label="Transformation instructions"><button type="button" data-step="0" aria-pressed="true">Read</button><button type="button" data-step="1" aria-pressed="false">Check</button><button type="button" data-step="2" aria-pressed="false">Split</button><button type="button" data-step="3" aria-pressed="false">Calculate</button><button type="button" data-step="4" aria-pressed="false">Output</button></div>
+<p class="btb-py-kicker" id="btb-py-step">INSTRUCTION 1 OF 5</p>
+<p id="btb-py-description">Read the original fixture from the CSV file. At this stage, one row represents one match.</p>
+<div id="btb-py-content" aria-live="polite"><div class="btb-py-code"><p>ORIGINAL CSV ROW</p><pre><code>Date,HomeTeam,AwayTeam,FTHG,FTAG,FTR
+2025-08-23,Arsenal,Leeds,5,0,H</code></pre></div><p class="btb-meta">FTHG and FTAG are full-time home and away goals. FTR is the recorded full-time result.</p></div>
+<div class="btb-py-actions"><button class="btb-reset" type="button" id="btb-py-prev" disabled>Previous</button><button class="btb-reset" type="button" id="btb-py-next">Next instruction</button></div>
+<p class="btb-meta">Actual archived fixtures. This browser demonstration illustrates the Python rules; it does not execute Python.</p>
+<noscript><p>Example: Arsenal 5–0 Leeds becomes Arsenal, home, GF 5, GA 0, win, 3 points earned; and Leeds, away, GF 0, GA 5, loss, 0 points earned. Enable JavaScript to step through the instructions.</p></noscript>
+</section>
+<script defer src="{{ '/assets/behind-the-build/python-demo.js' | relative_url }}?v=1"></script>

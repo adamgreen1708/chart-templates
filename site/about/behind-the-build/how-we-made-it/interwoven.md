@@ -51,6 +51,8 @@ From a distance, the result is an abstract monochrome composition. Move closer a
 
 Python reads the original football dataset and calculates the position, size and appearance of every mark.
 
+*Want to understand how? Read [Python — Making sense of the numbers](/about/behind-the-build/how-we-work/python/).*
+
 Using a library called Pillow, we build the artwork in layers: background, club threads, match connections, winning streaks, glass spheres and labels.
 
 The finished canvas measures 6,000 by 2,000 pixels.

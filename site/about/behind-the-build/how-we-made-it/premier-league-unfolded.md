@@ -47,6 +47,8 @@ The starting point is a dataset containing the actual completed fixtures.
 
 Python transforms each match into two records, one from the perspective of each participating club.
 
+*Want to understand how? Read [Python — Making sense of the numbers](/about/behind-the-build/how-we-work/python/).*
+
 A home win becomes an away defeat. A draw gives both clubs a point.
 
 {% include behind-diagram.html name="epl-fixture-perspectives" alt="Arsenal beat Leeds five nil on 23 August 2025: Arsenal's home record is a win worth three points; Leeds' away record is a loss worth zero points." caption="One match. Two perspectives. Actual archived 2025–26 result." %}
