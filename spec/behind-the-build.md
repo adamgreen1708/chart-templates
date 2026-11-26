@@ -13,7 +13,7 @@ Approved direction: 26 November 2026. An evergreen reference library within Abou
 - Keep approved article copy and assets intact through PR review, inspect phone sizes, verify links, interactions and Pages build. No direct main changes. Confirm the live URL after deployment.
 
 ## Roadmap
-Published collection: From conversation to creation; Building a chart factory; Keeping AI honest; Pixel Art Studio; Truchet Tile Studio; The Dot Studio; Bauhaus Art Studio; Premier League Unfolded; Interwoven; Python — Making sense of the numbers; JavaScript — Bringing things to life; HTML and CSS — Giving everything a home; Drawing with code — When numbers become pictures; Where do the numbers come from?; Finding the story (15 articles: 9 How we work and 6 How we made it). See the approved Phase 2 and Phase 3 roadmap below.
+Published collection: From conversation to creation; Building a chart factory; Keeping AI honest; Pixel Art Studio; Truchet Tile Studio; The Dot Studio; Bauhaus Art Studio; Premier League Unfolded; Interwoven; Python — Making sense of the numbers; JavaScript — Bringing things to life; HTML and CSS — Giving everything a home; Drawing with code — When numbers become pictures; Where do the numbers come from?; Finding the story; The recipe for a chart (16 articles: 10 How we work and 6 How we made it). See the approved Phase 2 and Phase 3 roadmap below.
 
 Capture methodology, decisions and lessons at completion of substantial projects, then draft the relevant reference article for review. Keep site/about/behind-the-build and site/assets/behind-the-build separate from normal blog content.
 
@@ -58,7 +58,7 @@ Finish How we work before returning to individual product stories. Review each a
 ### Phase 2 — How we work
 - 08. Where do the numbers come from? (published): source discovery, API, provenance, missing values and suitability for a question.
 - 09. Finding the story (published): one dataset, competing hypotheses, editorial judgement and rejecting weak narratives.
-- 10. The recipe for a chart: CHART_CONFIG and rendering rules.
+- 10. The recipe for a chart (published): CHART_CONFIG and rendering rules.
 - 11. Building a visual identity: palette, typography, layout and consistent visual language.
 - 12. From GitHub to website: repositories, branches, commits, pull requests, Actions and Pages.
 - 13. A memory outside ChatGPT: versioned prompts, standards, decisions and lessons.
@@ -78,3 +78,5 @@ Target 27 articles across the two collections. Creating for fun remains a separa
 Article 08 uses verified archived football provenance and five actual film records; missing ratings are preserved by default, with deliberately incorrect zero substitution labelled. The evidence quiz distinguishes film votes from audience or cultural importance. The data passport is an illustrative documentation format, not an adopted formal source standard. No changes to source data or refresh workflows.
 
 Article 09 deliberately uses the approved shorter copy (~300 words), one conceptual diagram, two interactive editorial examples and the three original published Pattinson chart PNGs without changes. Avoid repeating the editorial-control diagram from Keeping AI honest. The 14 film-pair connections and six verified performers are documented retrospective findings, not independently recalculated source records; do not imply an exhaustive search or causal casting explanation.
+
+Article 10 uses the three genuine September Bowie track-length recipes, not Patrick Stewart. Reuse the original published PNGs unchanged (verify archive/published blob equality); the chart-type diagrams and layout previews are explicitly conceptual. Preserve legacy configuration values rather than presenting them as current social_square defaults. Compare actual plot widths 78% and 48%. No changes to chart data, configs, renderer or published Bowie story.
