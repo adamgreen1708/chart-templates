@@ -95,3 +95,14 @@
 .btb-dot-tableau table { width:100%; table-layout:fixed; border-collapse:collapse; font-size:.88rem; }
 .btb-dot-tableau th,.btb-dot-tableau td { text-align:left; border-bottom:1px solid #d0d0d0; padding:.4rem; overflow-wrap:anywhere; }
 .btb-dot-tableau p { margin:.7rem 0 0; font-size:.85rem; color:#555; }
+
+/* Bauhaus explainer: fixed square-cell composition; native keyboard controls. */
+.btb-bh-paper { max-width:480px; margin:.8rem auto 1rem; padding:clamp(.55rem,2.5vw,1rem); border:1px solid #b8b5aa; }
+.btb-bh-paper svg { display:block; width:100%; height:auto; margin:.6rem 0; }
+.btb-bh-paper p { font-size:.78rem; line-height:1.4; margin:0 0 .35rem; color:inherit; }
+.btb-bh-paper .btb-bh-mast { font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:.7rem; letter-spacing:.05em; }
+.btb-bh-paper p:last-child { margin-bottom:0; }
+.btb-bh-swatches { display:flex; gap:3px; margin:-.4rem 0 .8rem; }
+.btb-bh-swatches span { flex:1; min-height:21px; border:1px solid #aaa; }
+.btb-dot-controls .btb-bh-check { display:flex; align-items:center; gap:.5rem; margin:.65rem 0 .9rem; font-weight:400; }
+.btb-bh-check input { accent-color:#156b7f; }
