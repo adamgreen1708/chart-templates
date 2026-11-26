@@ -33,6 +33,8 @@ We've gradually built a set of controls into the way we create things for Coffee
 
 There are documented rules covering how we acquire data, explore potential stories, configure charts, render images and publish content.
 
+*Explore how we choose and verify our sources in [Where do the numbers come from?](/about/behind-the-build/how-we-work/data-sources/).*
+
 These instructions live in GitHub. They're available to ChatGPT whenever we start a new project.
 
 We also have automated checks that help identify technical problems.

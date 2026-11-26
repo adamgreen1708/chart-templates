@@ -27,6 +27,8 @@ Data rarely arrives in precisely the format we need.
 
 Take our Premier League dataset. Each row describes a football match, including the date, home team, away team and final score.
 
+*Explore how we choose and verify our sources in [Where do the numbers come from?](/about/behind-the-build/how-we-work/data-sources/).*
+
 That's perfectly useful if we're interested in individual matches.
 
 But our interactive visualisation is designed around individual clubs. We want to know how each club performed at home and away, how many points it earned and how those points accumulated throughout the season.
