@@ -13,7 +13,7 @@ Approved direction: 26 November 2026. An evergreen reference library within Abou
 - Keep approved article copy and assets intact through PR review, inspect phone sizes, verify links, interactions and Pages build. No direct main changes. Confirm the live URL after deployment.
 
 ## Roadmap
-Initial: From conversation to creation; Building a chart factory; Keeping AI honest; Pixel Art Studio. Future: recipe/config deep dive, finding the story, identity, GitHub to Pages, repo memory, automation, failures, Truchet, Dot, Bauhaus, EPL, Interwoven, Tiny Pixel Zoo and Pixel Universe, Data Lens, Blockbuster Quote, Icons of Data and Daily Pulse.
+Published collection: From conversation to creation; Building a chart factory; Keeping AI honest; Pixel Art Studio; Truchet Tile Studio. Future: recipe/config deep dive, finding the story, identity, GitHub to Pages, repo memory, automation, failures, Dot, Bauhaus, EPL, Interwoven, Tiny Pixel Zoo and Pixel Universe, Data Lens, Blockbuster Quote, Icons of Data and Daily Pulse.
 
 Capture methodology, decisions and lessons at completion of substantial projects, then draft the relevant reference article for review. Keep site/about/behind-the-build and site/assets/behind-the-build separate from normal blog content.
 
@@ -23,3 +23,5 @@ Capture methodology, decisions and lessons at completion of substantial projects
 
 ## Stylesheet delivery and resilient index
 Load the Behind the build stylesheet in the shared HTML head only for About routes, after site.css; bump its version query on CSS changes to prevent stale Safari cache. Index entries must have explicit whitespace, separate link titles and description paragraphs so they remain readable even if styles do not load. Validate built markup and CSS and inspect live phone view before describing visual QA as complete.
+
+- Truchet explainer uses the full studio's radial rule, reflection mappings and seeded noise on a fixed 8×8 grid. Preserve repeatability, static no-JS artwork, native keyboard-accessible slider and reset. Art is procedural, not a statistical chart.
