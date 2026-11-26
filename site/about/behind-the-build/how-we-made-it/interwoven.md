@@ -55,6 +55,8 @@ Python reads the original football dataset and calculates the position, size and
 
 Using a library called Pillow, we build the artwork in layers: background, club threads, match connections, winning streaks, glass spheres and labels.
 
+*Explore the drawing techniques in [Drawing with code — When numbers become pictures](/about/behind-the-build/how-we-work/drawing-with-code/).*
+
 The finished canvas measures 6,000 by 2,000 pixels.
 
 To create the gallery experience, we place that artwork onto a simulated gallery wall.

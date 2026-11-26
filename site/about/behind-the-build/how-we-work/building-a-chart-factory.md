@@ -55,6 +55,8 @@ Most of our charts share the same underlying visual framework: a light-grey back
 
 GitHub Actions runs the Python renderer, which produces the actual image.
 
+*Explore the drawing techniques in [Drawing with code — When numbers become pictures](/about/behind-the-build/how-we-work/drawing-with-code/).*
+
 *Want to understand how? Read [Python — Making sense of the numbers](/about/behind-the-build/how-we-work/python/).*
 
 ChatGPT doesn't draw our statistical charts. The code does, using the real data.

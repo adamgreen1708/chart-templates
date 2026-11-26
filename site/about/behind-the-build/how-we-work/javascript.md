@@ -109,6 +109,8 @@ Experiment with the miniature painting example and watch what happens to the und
 
 The drawing example below takes the same principle one step further. Change a few instructions and see how the browser draws a circle.
 
+*Explore the drawing techniques in [Drawing with code — When numbers become pictures](/about/behind-the-build/how-we-work/drawing-with-code/).*
+
 {% include behind-javascript-shape.html %}
 
 Then visit [Pixel Art Studio](/resources/8x8-pixel-art-builder/) or [Premier League Unfolded](/resources/epl-2026-27-unfolded/) and look at those interactions a little differently.
