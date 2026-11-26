@@ -1,0 +1,7 @@
+{% if include.kind == "gallery" %}
+<figure class="btb-figure"><img src="{{ '/assets/gallery/interwoven/gallery.jpg' | relative_url }}" width="1600" height="900" loading="lazy" alt="Interwoven on a simulated gallery wall."><figcaption>The existing gallery scene, with the actual artwork.</figcaption></figure>
+{% elsif include.kind == "artwork" %}
+<figure class="btb-figure"><a href="{{ '/assets/gallery/interwoven/artwork.png' | relative_url }}"><img src="{{ '/assets/gallery/interwoven/artwork.png' | relative_url }}" width="6000" height="2000" loading="lazy" alt="The complete Interwoven artwork: twenty club threads and 380 match connections."></a><figcaption>The full canvas, 6000 × 2000 pixels. Select the image to view the original size.</figcaption></figure>
+{% elsif include.kind == "video" %}
+<figure class="btb-figure"><video class="btb-iw-video" controls playsinline loop preload="metadata" width="1600" height="900" poster="{{ '/assets/gallery/interwoven/gallery.jpg' | relative_url }}" aria-label="Interwoven gallery walkthrough"><source src="{{ '/assets/gallery/interwoven/walkthrough.mp4' | relative_url }}" type="video/mp4"><a href="{{ '/assets/gallery/interwoven/walkthrough.mp4' | relative_url }}">Watch the gallery film</a></video><figcaption>The existing 23-second gallery walkthrough.</figcaption></figure>
+{% endif %}

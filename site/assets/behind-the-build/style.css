@@ -137,3 +137,11 @@
 .btb-epl-summary th,.btb-epl-summary td { padding:.4rem .2rem; border-bottom:1px solid #d0d0d0; text-align:center; }
 .btb-epl-summary th:first-child { text-align:left; width:32%; }
 .btb-epl-demo .btb-meta { margin:.65rem 0; }
+
+/* Interwoven article: original media and a compact, accessible single-fixture explainer. */
+.btb-iw-video { display:block; width:100%; height:auto; aspect-ratio:16/9; background:#101010; }
+.btb-iw-dark { background:#101010; color:#eee; padding:clamp(.65rem,2vw,1rem); border-radius:3px; margin:.5rem auto .9rem; max-width:480px; }
+.btb-iw-dark p { color:#aaa; text-align:center; font-size:.85rem; margin:0 0 .4rem; }
+.btb-iw-dark h4 { color:#fff; text-align:center; overflow-wrap:anywhere; margin:0 0 .5rem; font-size:1.2rem; }
+.btb-iw-dark svg { display:block; width:100%; height:auto; }
+.btb-iw-dark .btb-epl-pts { margin-top:.5rem; }
