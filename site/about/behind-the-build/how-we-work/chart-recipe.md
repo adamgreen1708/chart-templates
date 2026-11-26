@@ -71,6 +71,8 @@ The configuration allows us to distinguish between a design decision for an indi
 
 We can experiment without losing consistency.
 
+*Explore our design principles in [Building a visual identity](/about/behind-the-build/how-we-work/visual-identity/).*
+
 ## Try it yourself
 
 Explore the three Bowie chart recipes above.
