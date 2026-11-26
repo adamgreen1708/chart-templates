@@ -1,0 +1,24 @@
+<section class="btb-demo btb-iw-demo" id="btb-iw-demo" aria-labelledby="btb-iw-heading">
+<h3 id="btb-iw-heading">Every mark has meaning.</h3>
+<div class="btb-dot-controls"><label for="btb-iw-fixture">Choose a fixture</label><select id="btb-iw-fixture"><option value="0">Arsenal 5–0 Leeds</option><option value="1">Arsenal 1–1 Man City</option><option value="2">Man United 0–1 Arsenal</option><option value="3">Chelsea 0–0 Crystal Palace</option></select></div>
+<div class="btb-iw-dark">
+<p id="btb-iw-date">23 August 2025</p><h4 id="btb-iw-score">Arsenal 5–0 Leeds</h4>
+<svg viewBox="0 0 320 244" role="img" id="btb-iw-svg" aria-label="Arsenal 5–0 Leeds; home sphere above thread, away sphere below thread">
+<defs><radialGradient id="btb-iw-glass" cx="33%" cy="28%" r="72%"><stop offset="0%" stop-color="#fff"/><stop offset="28%" stop-color="#e8e8e8"/><stop offset="66%" stop-color="#686868"/><stop offset="90%" stop-color="#b2b2b2"/><stop offset="100%" stop-color="#424242"/></radialGradient><radialGradient id="btb-iw-glow"><stop offset="0%" stop-color="#fff" stop-opacity=".26"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+<path d="M12 88H308M12 160H308" stroke="#494949"/>
+<g fill="#ccc" font-family="Arial,sans-serif" font-size="11"><text id="btb-iw-home" x="12" y="79">Arsenal</text><text id="btb-iw-away" x="12" y="151">Leeds</text></g>
+<path id="btb-iw-link" d="M160 62V186" stroke="rgb(88,88,88)" stroke-width="3"/>
+<g id="btb-iw-beads"><circle cx="160" cy="62" r="40" fill="url(#btb-iw-glow)"/><circle cx="160" cy="62" r="32" fill="none" stroke="#e7e7e7" stroke-width="1.5"/><circle cx="160" cy="62" r="25.848791" fill="url(#btb-iw-glass)" stroke="#fff"/><circle cx="160" cy="186" r="9.600000" fill="url(#btb-iw-glass)" stroke="#888"/></g>
+<g id="btb-iw-annotations" font-family="Arial,sans-serif" fill="#eee"><path d="M194 62H207M194 186H207" stroke="#aaa"/><text x="212" y="58" font-size="11" id="btb-iw-hg">5 goals</text><text x="212" y="72" font-size="9" id="btb-iw-hr">Winner halo</text><text x="212" y="182" font-size="11" id="btb-iw-ag">0 goals</text><text x="212" y="196" font-size="9" id="btb-iw-ar">No halo</text><text x="160" y="12" text-anchor="middle" font-size="10" fill="#aaa">HOME · ABOVE THREAD</text><text x="160" y="239" text-anchor="middle" font-size="10" fill="#aaa">AWAY · BELOW THREAD</text></g>
+</svg>
+<div class="btb-epl-pts"><div><span>Total match goals</span><strong id="btb-iw-total">5</strong></div><div><span>Connection</span><strong id="btb-iw-kind">Solid</strong></div></div>
+</div>
+<div class="btb-dot-controls">
+<label class="btb-bh-check"><input type="checkbox" id="btb-iw-labels" checked> Show explanatory labels</label>
+<label class="btb-bh-check"><input type="checkbox" id="btb-iw-finish" checked> Apply glass-like finish</label>
+<button type="button" class="btb-reset" id="btb-iw-reset">Reset demonstration</button>
+<a class="read-link btb-open" href="{{ '/gallery/interwoven/explore/' | relative_url }}">Explore the complete artwork →</a>
+<p class="btb-meta">Actual archived fixtures, using the sphere-radius and connection-brightness rules. Enlarged marks, simplified thread positions and an illustrative glass gradient make the encoding easier to inspect.</p>
+<noscript><p>The first archived fixture is shown. Enable JavaScript to change the example.</p></noscript>
+</div></section>
+<script defer src="{{ '/assets/behind-the-build/interwoven-demo.js' | relative_url }}?v=1"></script>

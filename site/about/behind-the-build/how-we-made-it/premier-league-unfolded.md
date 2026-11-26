@@ -91,6 +91,8 @@ Explore the [completed 2025–26 season](/stories/premier-league-season-unfolded
 
 Choose your club, tap a result and see whether the patterns tell you something the league table doesn't.
 
+See how we used the same dataset to create [Interwoven — From football data to a virtual art gallery](/about/behind-the-build/how-we-made-it/interwoven/).
+
 For the curious: [original Tableau visualisation](https://public.tableau.com/app/profile/adam.green4310/viz/EPL202021SeasonUnfolded/202021EPLSeason), [project methodology](https://github.com/adamgreen1708/chart-templates/blob/main/archive/projects/2026-11-epl-2526-unfolded/README.md), [QA history](https://github.com/adamgreen1708/chart-templates/blob/main/archive/projects/2026-11-epl-2526-unfolded/qa_report.md) and [daily refresh workflow](https://github.com/adamgreen1708/chart-templates/blob/main/.github/workflows/epl-2627-refresh.yml).
 
 ## TL;DR

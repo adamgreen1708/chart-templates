@@ -13,7 +13,7 @@ Approved direction: 26 November 2026. An evergreen reference library within Abou
 - Keep approved article copy and assets intact through PR review, inspect phone sizes, verify links, interactions and Pages build. No direct main changes. Confirm the live URL after deployment.
 
 ## Roadmap
-Published collection: From conversation to creation; Building a chart factory; Keeping AI honest; Pixel Art Studio; Truchet Tile Studio; The Dot Studio; Bauhaus Art Studio; Premier League Unfolded. Future: recipe/config deep dive, finding the story, identity, GitHub to Pages, repo memory, automation, failures, Interwoven, Tiny Pixel Zoo and Pixel Universe, Data Lens, Blockbuster Quote, Icons of Data and Daily Pulse.
+Published collection: From conversation to creation; Building a chart factory; Keeping AI honest; Pixel Art Studio; Truchet Tile Studio; The Dot Studio; Bauhaus Art Studio; Premier League Unfolded; Interwoven. Future: recipe/config deep dive, finding the story, identity, GitHub to Pages, repo memory, automation, failures, Tiny Pixel Zoo and Pixel Universe, Data Lens, Blockbuster Quote, Icons of Data and Daily Pulse.
 
 Capture methodology, decisions and lessons at completion of substantial projects, then draft the relevant reference article for review. Keep site/about/behind-the-build and site/assets/behind-the-build separate from normal blog content.
 
@@ -31,7 +31,7 @@ Load the Behind the build stylesheet in the shared HTML head only for About rout
 - Bauhaus explainer uses the actual built-in illustrative running values (not personal running records), studio palettes, area formulas and explicit zero-based versus min–max scale. Keep colour meanings explicit, decorative sequence labelled, native controls and no-JS fallback. Simplified layout and upright triangle orientation are intentional.
 
 ## Demystifying the code — approved follow-on roadmap
-After Interwoven, develop these How we work articles in order, with the established editorial review and approval gate:
+Next, develop these How we work articles in order, with the established editorial review and approval gate:
 - 04. Python — Making sense of the numbers: show actual inputs, a small source-grounded transformation, validation and outputs.
 - 05. JavaScript — Bringing things to life: show how the browser reads data, creates marks, responds to events and updates the display.
 - 06. HTML and CSS — Giving everything a home: explain markup, typography, layout and responsive design.
@@ -39,3 +39,6 @@ After Interwoven, develop these How we work articles in order, with the establis
 Write for non-coders, not as full coding tutorials. Use plain-English step-by-step explanations, actual code excerpts, small interactive examples and links back to product stories. Once published, add contextual links from existing articles where they use these technologies. Do not add dead links before publication.
 
 - Premier League teaching example uses the archived 2025–26 JSON, four clubs and August–October only. Check all scores, W/D/L, cumulative and venue totals against the frozen dataset. Keep the production season data, scoring code and scheduled refresh workflow unchanged; describe the configured automation rather than guaranteeing a current result.
+
+- Editorial challenges should teach the reader something about the creative or analytical process; omit incidental delivery problems from public articles while retaining technical records and provenance internally.
+- Interwoven explainer uses four verified archived fixtures and the source sphere-radius, winner-halo and connection-brightness rules, with enlarged marks and simplified spacing. Reuse the existing exhibit media by reference; no changes to approved artwork, film, data, explorer or validation manifests. Distinguish conceptual diagrams and browser gradients from the full artwork.
