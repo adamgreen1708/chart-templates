@@ -41,6 +41,8 @@ Think of it like cooking. The data provides the ingredients, the configuration p
 
 Our house style provides the standards that hold everything together.
 
+*Explore our design principles in [Building a visual identity](/about/behind-the-build/how-we-work/visual-identity/).*
+
 ## Under the bonnet
 
 {% include behind-diagram.html name="factory" alt="Dataset, configuration and house rules feed a Python renderer which produces a chart image for review." caption="The recipe and the ingredients." %}
