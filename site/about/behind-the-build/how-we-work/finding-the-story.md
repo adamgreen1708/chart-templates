@@ -91,4 +91,6 @@ Start with curiosity, follow the evidence and find something worth saying.
 
 Then decide how best to show it.
 
+*Explore the actual configuration instructions in [The recipe for a chart](/about/behind-the-build/how-we-work/chart-recipe/).*
+
 <script defer src="{{ '/assets/behind-the-build/story-demo.js' | relative_url }}?v=1"></script>

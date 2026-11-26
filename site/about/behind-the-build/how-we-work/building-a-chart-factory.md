@@ -67,6 +67,8 @@ If we use the same data, instructions and rendering environment, we should be ab
 
 {% include behind-config.html %}
 
+*Explore the actual configuration instructions in [The recipe for a chart](/about/behind-the-build/how-we-work/chart-recipe/).*
+
 ## What didn't work
 
 Building the renderer has been an iterative process.
