@@ -1,0 +1,10 @@
+<section class="btb-demo btb-hc" id="btb-hc-template" aria-labelledby="btb-hc-template-title"><h3 id="btb-hc-template-title">One template. Many articles.</h3><p>Select an article to see how Jekyll inserts different content into the same layout.</p>
+<div class="btb-dot-controls"><label for="btb-hc-article">Choose an article</label><select id="btb-hc-article"><option value="0">Python — Making sense of the numbers</option><option value="1">JavaScript — Bringing things to life</option><option value="2">HTML and CSS — Giving everything a home</option></select></div>
+<div class="btb-py-code"><p>ARTICLE INFORMATION</p><pre><code id="btb-hc-meta">title: &quot;Python — Making sense of the numbers&quot;
+
+description: &quot;What actually happens when we say Python transforms the data?&quot;</code></pre></div>
+<div class="btb-py-code"><p>REUSABLE TEMPLATE · ACTUAL CODE</p><pre><code>{% raw %}&lt;h1&gt;{{ page.title }}&lt;/h1&gt;
+&lt;p class="standfirst"&gt;{{ page.description }}&lt;/p&gt;{% endraw %}</code></pre></div>
+<p class="btb-hc-arrow">↓ Jekyll assembles the page</p>
+<div class="btb-hc-preview" aria-live="polite"><p class="btb-hc-brand">coffeetableviz</p><p class="btb-hc-eyebrow">BEHIND THE BUILD / HOW WE WORK</p><h4 id="btb-hc-preview-title">Python — Making sense of the numbers</h4><p id="btb-hc-preview-description">What actually happens when we say Python transforms the data?</p><p class="btb-meta">Adam Green</p></div>
+<button type="button" class="btb-reset" id="btb-hc-template-reset">Reset example</button><p class="btb-meta">Simplified browser demonstration using actual article metadata and the shared Jekyll template. It illustrates the build process rather than running Jekyll itself.</p><noscript><p>The initial article is shown in the reusable layout.</p></noscript></section>

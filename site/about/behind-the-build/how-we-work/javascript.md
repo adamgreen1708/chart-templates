@@ -101,6 +101,8 @@ It's this combination that has allowed us to turn relatively simple ideas into s
 
 {% include behind-javascript-workflow.html %}
 
+*Want to understand how? Read [HTML and CSS — Giving everything a home](/about/behind-the-build/how-we-work/html-css/).*
+
 ## Try it yourself
 
 Experiment with the miniature painting example and watch what happens to the underlying information every time you change a square.

@@ -45,6 +45,8 @@ The studio uses three familiar web technologies.
 
 HTML provides the structure. CSS determines how everything looks. JavaScript makes it interactive.
 
+*Want to understand how? Read [HTML and CSS — Giving everything a home](/about/behind-the-build/how-we-work/html-css/).*
+
 *Want to understand how? Read [JavaScript — Bringing things to life](/about/behind-the-build/how-we-work/javascript/).*
 
 ChatGPT helped develop the code, whilst GitHub stores it and GitHub Pages makes the studio available through the website.
