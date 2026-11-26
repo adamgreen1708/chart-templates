@@ -1,0 +1,10 @@
+<section class="btb-demo btb-py" id="btb-py-validation" aria-labelledby="btb-py-validation-title">
+<h3 id="btb-py-validation-title">Can we trust this record?</h3>
+<p>Start with a genuine archived fixture, then deliberately introduce an error.</p>
+<div class="btb-dot-controls"><fieldset><legend>Choose a scenario</legend><label><input type="radio" name="btb-py-error" value="none" checked> Original verified record</label><label><input type="radio" name="btb-py-error" value="duplicate" > Duplicate the fixture</label><label><input type="radio" name="btb-py-error" value="missing" > Remove the away score</label><label><input type="radio" name="btb-py-error" value="wrong" > Change the recorded result</label></fieldset></div>
+<div id="btb-py-input"><table class="btb-py-table"><thead><tr><th scope="col">Home</th><th scope="col">Away</th><th scope="col">HG</th><th scope="col">AG</th><th scope="col">FTR</th></tr></thead><tbody><tr><td>Arsenal</td><td>Leeds</td><td>5</td><td>0</td><td>H</td></tr></tbody></table></div>
+<div class="btb-py-actions"><button class="btb-reset" type="button" id="btb-py-run">Run validation checks</button><button class="btb-reset" type="button" id="btb-py-reset">Reset example</button></div>
+<div id="btb-py-checks" aria-live="polite"></div>
+<p class="btb-meta">Educational simulation of selected validation rules. Altered records are intentional errors, not real football results.</p>
+<noscript><p>The original record has a complete score and a consistent result. Duplicate records, missing goals and contradictory result codes must be rejected.</p></noscript>
+</section>

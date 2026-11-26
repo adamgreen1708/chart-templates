@@ -145,3 +145,22 @@
 .btb-iw-dark h4 { color:#fff; text-align:center; overflow-wrap:anywhere; margin:0 0 .5rem; font-size:1.2rem; }
 .btb-iw-dark svg { display:block; width:100%; height:auto; }
 .btb-iw-dark .btb-epl-pts { margin-top:.5rem; }
+
+/* Technical literacy: readable code, compact step controls, scoped tables. */
+.btb-py-code { background:#252d35; color:#fff; padding:.7rem .85rem; margin:.65rem 0; border-radius:3px; }
+.btb-py-code p { color:#ddd; font-size:.72rem; letter-spacing:.03em; margin:0 0 .45rem; }
+.btb-py-code pre { background:none; padding:0; margin:0; color:#fff; white-space:pre-wrap; overflow-wrap:anywhere; font-size:.84rem; line-height:1.5; }
+.btb-py-code code { color:inherit; background:none; padding:0; }
+.btb-py-steps { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:.25rem; margin:.6rem 0 .8rem; }
+.btb-py-steps button { font:inherit; font-size:clamp(.63rem,2.4vw,.85rem); padding:.45rem 0; color:#333; background:transparent; border:0; border-top:4px solid #ccc; cursor:pointer; }
+.btb-py-steps button[aria-pressed=true] { border-color:#156b7f; color:#156b7f; font-weight:700; }
+.btb-py-kicker { font-size:.72rem; letter-spacing:.04em; color:#555; }
+.btb-py-actions { display:flex; flex-wrap:wrap; gap:.5rem; margin:.8rem 0; }
+.btb-py button:focus-visible { outline:2px solid #156b7f; outline-offset:3px; }
+.btb-py button:disabled { opacity:.5; cursor:default; }
+.btb-py-table { width:100%; border-collapse:collapse; table-layout:auto; font-size:.84rem; }
+.btb-py-table th,.btb-py-table td { text-align:left; padding:.4rem .25rem; border-bottom:1px solid #d0d0d0; overflow-wrap:anywhere; }
+.btb-py-check-list { border:1px solid #ccc; padding:.65rem; margin:.7rem 0; }
+.btb-py-check-list p { margin:.3rem 0; font-size:.88rem; }
+.btb-py-pass { color:#156b7f; }.btb-py-fail { color:#a43138; }
+.btb-py .btb-meta { margin:.5rem 0; }
