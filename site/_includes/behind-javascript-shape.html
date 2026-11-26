@@ -1,0 +1,12 @@
+<section class="btb-demo btb-js" id="btb-js-shape" aria-labelledby="btb-js-shape-title">
+<h3 id="btb-js-shape-title">Behind every shape are some instructions.</h3>
+<svg class="btb-js-drawing" viewBox="0 0 320 185" role="img" aria-label="A circle drawn from position, radius and colour instructions"><rect width="320" height="185" fill="#f3f4f6"/><path d="M20 20V160H300" stroke="#bbb" fill="none"/><path d="M60 20V160" stroke="#ddd" stroke-dasharray="3 3"/><path d="M120 20V160" stroke="#ddd" stroke-dasharray="3 3"/><path d="M180 20V160" stroke="#ddd" stroke-dasharray="3 3"/><path d="M240 20V160" stroke="#ddd" stroke-dasharray="3 3"/><path d="M300 20V160" stroke="#ddd" stroke-dasharray="3 3"/><path d="M20 90H300" stroke="#ccc" stroke-dasharray="3 3"/><circle id="btb-js-circle" cx="160" cy="90" r="35" fill="#1F8FA8"/><circle id="btb-js-centre" cx="160" cy="90" r="2.5" fill="#fff"/><text x="160" y="178" font-family="Arial,sans-serif" font-size="10" text-anchor="middle" fill="#777">Browser drawing area</text></svg>
+<div class="btb-py-code"><p>SIMPLIFIED DRAWING INSTRUCTIONS</p><pre><code id="btb-js-instructions">x = 160
+y = 90
+radius = 35
+colour = "#1F8FA8"</code></pre></div>
+<div class="btb-dot-controls"><label for="btb-js-radius">Radius <output id="btb-js-radius-value">35</output></label><input type="range" min="5" max="60" value="35" id="btb-js-radius"><label for="btb-js-position">Horizontal position <output id="btb-js-position-value">160</output></label><input type="range" min="80" max="230" value="160" id="btb-js-position"></div>
+<p class="btb-meta">Colour</p><div class="btb-js-palette" role="group" aria-label="Circle colour"><button type="button" data-shape-ink="#1F8FA8" style="--ink:#1F8FA8;--ink-text:#fff" aria-label="Teal" aria-pressed="true">✓</button><button type="button" data-shape-ink="#C44E52" style="--ink:#C44E52;--ink-text:#fff" aria-label="Red" aria-pressed="false"></button><button type="button" data-shape-ink="#E9B725" style="--ink:#E9B725;--ink-text:#111" aria-label="Yellow" aria-pressed="false"></button><button type="button" data-shape-ink="#191919" style="--ink:#191919;--ink-text:#fff" aria-label="Charcoal" aria-pressed="false"></button></div>
+<button type="button" class="btb-reset" id="btb-js-shape-reset">Reset instructions</button>
+<p class="btb-meta">Conceptual drawing example, not a statistical chart. The instructions are simplified for readability.</p><noscript><p>The initial circle is shown above. Enable JavaScript to change the drawing instructions.</p></noscript>
+</section>

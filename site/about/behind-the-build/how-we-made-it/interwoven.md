@@ -71,6 +71,8 @@ The gallery scene is composed first. Key camera positions are defined at differe
 
 The interactive edition uses JavaScript to reconstruct the visual language in the browser, allowing us to select individual clubs and fixtures.
 
+*Want to understand how? Read [JavaScript — Bringing things to life](/about/behind-the-build/how-we-work/javascript/).*
+
 ## What didn't work
 
 A piece of artwork designed for a large wall presents a rather different challenge on a small phone screen.

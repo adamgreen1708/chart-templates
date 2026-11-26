@@ -1,0 +1,18 @@
+<section class="btb-demo btb-js" id="btb-js-paint" aria-labelledby="btb-js-paint-title">
+<h3 id="btb-js-paint-title">Watch JavaScript at work.</h3>
+<p>Choose a colour, then paint any square.</p>
+<div class="btb-js-palette" role="group" aria-label="Paint colour"><button type="button" data-ink="0" style="--ink:#ffffff;--ink-text:#111" aria-label="White (0)" aria-pressed="false"></button><button type="button" data-ink="1" style="--ink:#111111;--ink-text:#fff" aria-label="Black (1)" aria-pressed="false"></button><button type="button" data-ink="2" style="--ink:#096ba6;--ink-text:#fff" aria-label="Blue (2)" aria-pressed="true">✓</button><button type="button" data-ink="3" style="--ink:#06ad23;--ink-text:#fff" aria-label="Green (3)" aria-pressed="false"></button><button type="button" data-ink="5" style="--ink:#e8c94f;--ink-text:#111" aria-label="Yellow (5)" aria-pressed="false"></button><button type="button" data-ink="6" style="--ink:#c34635;--ink-text:#fff" aria-label="Red (6)" aria-pressed="false"></button></div>
+<p class="btb-meta" id="btb-js-selected">Selected: Blue · Value 2</p>
+<div class="btb-js-grids">
+<div><h4>What you see</h4><div class="btb-js-pixels"><button type="button" data-pixel="0" aria-label="Square 0, White" style="background:#fff"></button><button type="button" data-pixel="1" aria-label="Square 1, White" style="background:#fff"></button><button type="button" data-pixel="2" aria-label="Square 2, White" style="background:#fff"></button><button type="button" data-pixel="3" aria-label="Square 3, White" style="background:#fff"></button><button type="button" data-pixel="4" aria-label="Square 4, White" style="background:#fff"></button><button type="button" data-pixel="5" aria-label="Square 5, White" style="background:#fff"></button><button type="button" data-pixel="6" aria-label="Square 6, White" style="background:#fff"></button><button type="button" data-pixel="7" aria-label="Square 7, White" style="background:#fff"></button><button type="button" data-pixel="8" aria-label="Square 8, White" style="background:#fff"></button></div></div>
+<div><h4>What the browser stores</h4><div class="btb-js-values" aria-label="Stored colour values"><span data-value="0">0</span><span data-value="1">0</span><span data-value="2">0</span><span data-value="3">0</span><span data-value="4">0</span><span data-value="5">0</span><span data-value="6">0</span><span data-value="7">0</span><span data-value="8">0</span></div></div>
+</div>
+<div class="btb-js-log" aria-live="polite"><h4>Behind the scenes <small id="btb-js-count">0 paint actions</small></h4>
+<p><strong>01 · Event</strong><br><span id="btb-js-event">Waiting for you to select a square.</span></p>
+<p><strong>02 · State</strong><br><span id="btb-js-state">All nine squares initially contain zero.</span><br><code id="btb-js-assignment"></code></p>
+<p><strong>03 · Render</strong><br><span id="btb-js-render">Display the current colour of each square.</span></p></div>
+<button type="button" class="btb-reset" id="btb-js-reset">Reset demonstration</button>
+<p class="btb-meta">Reduced 3×3 teaching example using the original Pixel Art Studio colour values and same-colour tap-to-erase rule. Square numbering starts at zero.</p>
+<noscript><p>All squares start white (0). Selecting blue (2) and painting square 0 would store the value 2 and display blue. Enable JavaScript to paint.</p></noscript>
+</section>
+<script defer src="{{ '/assets/behind-the-build/javascript-demo.js' | relative_url }}?v=1"></script>

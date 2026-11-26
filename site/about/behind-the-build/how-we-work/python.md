@@ -71,6 +71,8 @@ Unlike a flat table, JSON allows us to organise information into groups. In our 
 
 JavaScript can then read that information and bring the interactive visualisation to life.
 
+*Want to understand how? Read [JavaScript — Bringing things to life](/about/behind-the-build/how-we-work/javascript/).*
+
 {% include behind-python-transform.html %}
 
 ## What didn't work

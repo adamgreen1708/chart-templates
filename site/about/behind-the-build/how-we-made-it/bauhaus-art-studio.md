@@ -51,6 +51,8 @@ The studio reads the selected data directly in the browser. You can use a local 
 
 JavaScript converts the numbers into geometric measurements and Canvas draws the resulting composition.
 
+*Want to understand how? Read [JavaScript — Bringing things to life](/about/behind-the-build/how-we-work/javascript/).*
+
 One of the most important decisions concerns the size of the shapes.
 
 If one value is twice another, its circle should have twice the area, not twice the diameter.
