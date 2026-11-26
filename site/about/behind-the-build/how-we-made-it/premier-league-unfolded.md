@@ -57,6 +57,8 @@ We calculate results, goals, points and cumulative totals from those records, th
 
 JavaScript builds the interactive visualisation directly from that data.
 
+*Explore the drawing techniques in [Drawing with code — When numbers become pictures](/about/behind-the-build/how-we-work/drawing-with-code/).*
+
 *Want to understand how? Read [JavaScript — Bringing things to life](/about/behind-the-build/how-we-work/javascript/).*
 
 For the ongoing season, GitHub also has a scheduled process that checks for new completed results. Data updates must pass validation and browser tests before they can be published automatically.

@@ -57,6 +57,8 @@ One of the most important decisions concerns the size of the shapes.
 
 If one value is twice another, its circle should have twice the area, not twice the diameter.
 
+*Explore the drawing techniques in [Drawing with code — When numbers become pictures](/about/behind-the-build/how-we-work/drawing-with-code/).*
+
 The mathematics behind each shape is therefore slightly different, but the principle remains consistent.
 
 {% include behind-diagram.html name="bauhaus-area" alt="For illustrative values of 50 and 100, correct proportional-area circles double the area, whereas doubling the diameter quadruples the area." caption="Twice the value. Not twice the diameter. The studio calculates dimensions from the required filled area." %}
