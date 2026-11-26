@@ -25,6 +25,16 @@ permalink: /about/
 
   <p>The dataset, analysis, chart configuration, rendered output and finished article all live together in GitHub. That means a chart is not just an image: its source and decisions remain attached.</p>
 
-  <p>This prototype is the first step in bringing the coffeetableviz archive into that same system.</p>
+</section>
+
+<section class="prose-page shell-narrow" aria-labelledby="behind-heading">
+  <p class="eyebrow">Ideas · process · technology</p>
+  <h2 id="behind-heading">Behind the build.</h2>
+  <p>How do the things you see on Coffeetableviz actually get made? From simple charts to interactive art studios and virtual exhibitions, there's a growing collection of ideas, technology and creative experiments sitting behind this website.</p>
+  <p>Working with ChatGPT and GitHub, I've gradually built a framework that helps turn curiosity into something tangible. This reference library explores the tools, processes, experiments, mistakes and things we've learnt along the way.</p>
+  <h3>How we work.</h3><p>The framework behind Coffeetableviz: data, charts, consistency, checks and publication.</p>
+  <h3>How we made it.</h3><p>A closer look at individual projects, from pixels and geometric patterns to interactive visualisations and virtual galleries.</p>
+  <p>No technical expertise required. Just a little curiosity.</p>
+  <p><a class="read-link" href="{{ '/about/behind-the-build/' | relative_url }}">Explore Behind the build →</a></p>
 </section>
 
