@@ -59,3 +59,16 @@
   .btb-index-list .btb-index-description { margin-left: 2.05rem; margin-right: 1.4rem; }
   .prose-page.btb-about-library { padding-bottom: 2rem; }
 }
+
+/* Truchet explainer — compact and scoped; preserve the approved article index. */
+.btb-truchet-art { display:block; width:100%; max-width:360px; height:auto; margin:.7rem auto 1rem; background:#f7f7f5; border:1px solid #aaa; }
+.btb-truchet-controls { max-width:420px; margin-inline:auto; }
+.btb-truchet-range-head { display:flex; justify-content:space-between; align-items:baseline; gap:.6rem; font-weight:600; }
+.btb-truchet-range { display:block; width:100%; min-height:32px; margin:.4rem 0; accent-color:#156b7f; }
+.btb-truchet-labels { display:flex; justify-content:space-between; gap:.3rem; font-size:.78rem; color:#555; margin:0 0 .65rem; }
+.btb-truchet-controls .btb-status { min-height:2.8em; margin:.55rem 0; }
+.btb-truchet-controls .btb-check { display:flex; align-items:center; gap:.5rem; margin:.6rem 0 .9rem; }
+.btb-truchet-controls input:focus-visible { outline:2px solid #156b7f; outline-offset:2px; }
+.btb-truchet-controls button:disabled { opacity:.5; cursor:default; }
+.btb-truchet-controls .btb-open { display:block; margin-top:.85rem; }
+.btb-truchet-demo .btb-meta { margin:.8rem 0 0; }
