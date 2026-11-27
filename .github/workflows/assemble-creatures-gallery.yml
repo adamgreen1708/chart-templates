@@ -1,0 +1,26 @@
+name: Assemble exact Creatures gallery media
+on:
+  push:
+    branches: [fix/gallery-media-validation]
+    paths: [".github/workflows/assemble-creatures-gallery.yml"]
+permissions:
+  contents: write
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore approved film and validate
+        run: |
+          cat archive/projects/2026-11-creatures-of-the-grid/transfer/part-* > site/assets/gallery/creatures-of-the-grid/walkthrough.mp4
+          sha256sum -c archive/projects/2026-11-creatures-of-the-grid/ASSETS.sha256
+          python3 scripts/validate_gallery_assets.py
+      - name: Commit verified media and remove temporary transfer files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/assets/gallery/creatures-of-the-grid/walkthrough.mp4
+          git rm -r archive/projects/2026-11-creatures-of-the-grid/transfer
+          git rm .github/workflows/assemble-creatures-gallery.yml
+          git commit -m "Restore exact approved Creatures gallery film"
+          git push origin HEAD:fix/gallery-media-validation
