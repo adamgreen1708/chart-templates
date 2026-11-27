@@ -1,9 +1,9 @@
-# Coffeetableviz Daily Pulse — 25 November 2026
+# Coffeetableviz Daily Pulse — 26 November 2026
 
-- **Visits:** 11
-- **7-day context:** 25% below prior 7-day daily average (14.6)
-- **Top pages:** The Dot Studio (3), Interwoven — Form and Flow (1), The Gallery (1)
-- **Top referrer:** Direct / unknown — 5 visits
-- **Observation:** Traffic stayed fairly close to its recent rhythm.
+- **Visits:** 61
+- **7-day context:** 281% above prior 7-day daily average (16.0)
+- **Top pages:** Interwoven: When data becomes art (18), Premier League 2026–27 — the season unfolded (4), Resources (3)
+- **Top referrer:** www.linkedin.com — 16 visits
+- **Observation:** A noticeably busier day than the seven-day baseline.
 
 Latest image: `output/daily_site_pulse.png`
