@@ -67,6 +67,8 @@ Jekyll converts that content into HTML and inserts it into the appropriate page 
 
 GitHub Pages then makes the finished website available to our readers.
 
+*Follow the publication process in [From GitHub to website](/about/behind-the-build/how-we-work/github-to-website/).*
+
 Write the content once. Define the layout once. Reuse it throughout the website.
 
 {% include behind-diagram.html name="html-css-jekyll" alt="Markdown content and HTML layouts feed Jekyll, which assembles the HTML pages alongside CSS, JavaScript and other assets. GitHub Pages serves the finished files." caption="The website assembly line. Jekyll builds the pages; GitHub Pages hosts the finished website." %}

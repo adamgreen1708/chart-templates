@@ -51,6 +51,8 @@ It can inspect the available data, develop an approach and prepare the files nee
 
 GitHub Actions then runs the relevant code and checks. I review the results, challenge anything that doesn't quite work and, when I'm happy, approve publication.
 
+*Follow the publication process in [From GitHub to website](/about/behind-the-build/how-we-work/github-to-website/).*
+
 The website is built using Jekyll, which turns our content, templates and supporting files into the pages you see.
 
 *Want to understand how? Read [HTML and CSS — Giving everything a home](/about/behind-the-build/how-we-work/html-css/).*
