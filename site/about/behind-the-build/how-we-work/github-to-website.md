@@ -67,6 +67,8 @@ We need to check the finished website too.
 
 The value of this approach isn't simply automation. It's control.
 
+*Explore our scheduled workflows and safeguards in [Putting things on autopilot](/about/behind-the-build/how-we-work/autopilot/).*
+
 We can develop something without disturbing the existing website, inspect exactly what has changed and retain a record of the decisions we've made.
 
 And if something needs correcting, we have a history to work from.

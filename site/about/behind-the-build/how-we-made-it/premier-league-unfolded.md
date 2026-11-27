@@ -67,6 +67,8 @@ For the ongoing season, GitHub also has a scheduled process that checks for new 
 
 The website displays the latest included result date rather than simply assuming the information is current.
 
+*Explore our scheduled workflows and safeguards in [Putting things on autopilot](/about/behind-the-build/how-we-work/autopilot/).*
+
 {% include behind-diagram.html name="epl-refresh" alt="Daily scheduled results check, followed by validation and browser tests for changed data, then guarded data-only publication or an issue if checks fail." caption="Automated, but not unchecked. The automatic publishing permission is restricted to the two season data files, not design, code or editorial changes. No new results means no new data publication." %}
 
 ## What didn't work
