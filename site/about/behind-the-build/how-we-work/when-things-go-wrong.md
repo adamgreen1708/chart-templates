@@ -65,6 +65,8 @@ A particular chart may need a small adjustment. A recurring problem may need a c
 
 Knowing which is which is an important part of the process.
 
+*Explore the reader's experience in [Designing for everyone](/about/behind-the-build/how-we-work/designing-for-everyone/).*
+
 {% include behind-diagram.html name="mistakes-fix-scope" alt="Decide whether a correction is specific to a chart or a reusable lesson. Correct the individual configuration or improve the shared framework, and test the correction." caption="Improve the system where appropriate, without unnecessarily changing previously approved charts." %}
 
 ## Try it yourself
