@@ -13,7 +13,7 @@ Approved direction: 26 November 2026. An evergreen reference library within Abou
 - Keep approved article copy and assets intact through PR review, inspect phone sizes, verify links, interactions and Pages build. No direct main changes. Confirm the live URL after deployment.
 
 ## Roadmap
-Published collection: From conversation to creation; Building a chart factory; Keeping AI honest; Pixel Art Studio; Truchet Tile Studio; The Dot Studio; Bauhaus Art Studio; Premier League Unfolded; Interwoven; Python — Making sense of the numbers; JavaScript — Bringing things to life; HTML and CSS — Giving everything a home; Drawing with code — When numbers become pictures; Where do the numbers come from?; Finding the story; The recipe for a chart; Building a visual identity; From GitHub to website; A memory outside ChatGPT; Putting things on autopilot; When things go wrong (21 articles: 15 How we work and 6 How we made it). See the approved Phase 2 and Phase 3 roadmap below.
+Published collection: From conversation to creation; Building a chart factory; Keeping AI honest; Pixel Art Studio; Truchet Tile Studio; The Dot Studio; Bauhaus Art Studio; Premier League Unfolded; Interwoven; Python — Making sense of the numbers; JavaScript — Bringing things to life; HTML and CSS — Giving everything a home; Drawing with code — When numbers become pictures; Where do the numbers come from?; Finding the story; The recipe for a chart; Building a visual identity; From GitHub to website; A memory outside ChatGPT; Putting things on autopilot; When things go wrong; Designing for everyone (22 articles: 16 How we work and 6 How we made it). See the approved Phase 2 and Phase 3 roadmap below.
 
 Capture methodology, decisions and lessons at completion of substantial projects, then draft the relevant reference article for review. Keep site/about/behind-the-build and site/assets/behind-the-build separate from normal blog content.
 
@@ -64,7 +64,7 @@ Finish How we work before returning to individual product stories. Review each a
 - 13. A memory outside ChatGPT (published): versioned prompts, standards, decisions and lessons.
 - 14. Putting things on autopilot (published): scheduling, automated data updates and controlled publication.
 - 15. When things go wrong (published): tests, failure detection, debugging and lessons.
-- 16. Designing for everyone: mobile readability, accessibility, contrast and interaction.
+- 16. Designing for everyone (published): mobile readability, accessibility, contrast and interaction.
 
 ### Phase 3 — How we made it
 - 07. Tiny Pixel Zoo & Pixel Universe
@@ -90,3 +90,5 @@ Article 13 uses six genuine document extracts (verified against source), the doc
 Article 14 uses the actual EPL DST-gated schedule and restricted data-only publication path, Daily Pulse UTC schedule, retries and recovery logic, and 27 November historical run records 46048994673 and 46047348222. Two teaching simulations distinguish failed checks, no-change runs, paused publishing and independent summary/report generation. Successful no-change football run is not proof of an automatic merge. No production workflow, schedule, data or permission changes.
 
 Article 15 uses the documented West Ham August home-lane regression (8px clearance, test tolerance 7–10px, 252 historical Chromium checks), actual mobile About index correction PR #245, and six illustrative review scenarios. The spacing diagram contains no actual match data. Distinguish historical browser evidence from new simulated DOM tests; no accessibility sign-off implied. No production data, renderer, EPL implementation or workflow changes.
+
+Article 16 completes How we work. Use the actual EPL contrast and heading-lightening functions with six source palette colours, illustrative W/D/L symbols with visible labels and greyscale, and a 3×3 demonstration of the Pixel Studio's actual linear-index arrow/Home/End navigation. Retain descriptive labels, native keyboard/touch controls, reset and non-JS fallback. Link to the existing mobile typography demonstration. No comprehensive accessibility conformance or physical-device sign-off implied. No production data, studio, renderer or workflow changes.

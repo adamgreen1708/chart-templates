@@ -53,6 +53,8 @@ Our creative studios and gallery experiments have more freedom. They don't all n
 
 A chart that looks great on a laptop doesn't necessarily work on a phone.
 
+*Explore the reader's experience in [Designing for everyone](/about/behind-the-build/how-we-work/designing-for-everyone/).*
+
 We've gradually increased the size of our typography, refined our margins and reconsidered how much information we try to fit into a single image.
 
 Those lessons became part of our shared rendering framework.
