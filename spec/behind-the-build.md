@@ -13,7 +13,7 @@ Approved direction: 26 November 2026. An evergreen reference library within Abou
 - Keep approved article copy and assets intact through PR review, inspect phone sizes, verify links, interactions and Pages build. No direct main changes. Confirm the live URL after deployment.
 
 ## Roadmap
-Published collection: From conversation to creation; Building a chart factory; Keeping AI honest; Pixel Art Studio; Truchet Tile Studio; The Dot Studio; Bauhaus Art Studio; Premier League Unfolded; Interwoven; Python — Making sense of the numbers; JavaScript — Bringing things to life; HTML and CSS — Giving everything a home; Drawing with code — When numbers become pictures; Where do the numbers come from?; Finding the story; The recipe for a chart; Building a visual identity; From GitHub to website (18 articles: 12 How we work and 6 How we made it). See the approved Phase 2 and Phase 3 roadmap below.
+Published collection: From conversation to creation; Building a chart factory; Keeping AI honest; Pixel Art Studio; Truchet Tile Studio; The Dot Studio; Bauhaus Art Studio; Premier League Unfolded; Interwoven; Python — Making sense of the numbers; JavaScript — Bringing things to life; HTML and CSS — Giving everything a home; Drawing with code — When numbers become pictures; Where do the numbers come from?; Finding the story; The recipe for a chart; Building a visual identity; From GitHub to website; A memory outside ChatGPT (19 articles: 13 How we work and 6 How we made it). See the approved Phase 2 and Phase 3 roadmap below.
 
 Capture methodology, decisions and lessons at completion of substantial projects, then draft the relevant reference article for review. Keep site/about/behind-the-build and site/assets/behind-the-build separate from normal blog content.
 
@@ -61,7 +61,7 @@ Finish How we work before returning to individual product stories. Review each a
 - 10. The recipe for a chart (published): CHART_CONFIG and rendering rules.
 - 11. Building a visual identity (published): palette, typography, layout and consistent visual language.
 - 12. From GitHub to website (published): repositories, branches, commits, pull requests, Actions and Pages.
-- 13. A memory outside ChatGPT: versioned prompts, standards, decisions and lessons.
+- 13. A memory outside ChatGPT (published): versioned prompts, standards, decisions and lessons.
 - 14. Putting things on autopilot: scheduling, automated data updates and controlled publication.
 - 15. When things go wrong: tests, failure detection, debugging and lessons.
 - 16. Designing for everyone: mobile readability, accessibility, contrast and interaction.
@@ -84,3 +84,5 @@ Article 10 uses the three genuine September Bowie track-length recipes, not Patr
 Article 11 uses the actual house palette and legacy/current typography profiles. Colour attention and mobile type previews use illustrative marks only; preserve original Kipchoge, Gary and superhero chart PNGs unchanged. Show source-defined colour exceptions and distinguish illustrative SVG previews from actual rendered PNGs. No production CSS, renderer or chart changes; only Behind the build scoped styles.
 
 Article 12 uses actual PR #258, premerge build 45911674835 (deploy skipped) and postmerge deployment 45911725116 (success), checked 27 November 2026. The seven-stage teaching simulation distinguishes branch, commit, pull request, validation, human approval, merge and deployment, and blocks progress on a deliberately failed check. Human approval may precede PR creation; it must precede merge. No publishing workflow changes or actual GitHub operations occur in the browser demo.
+
+Article 13 uses six genuine document extracts (verified against source), the documented 30 October house-profile migration decision, and three teaching simulations: fresh brief vs repository context, document explorer, and recording a decision. No measured AI performance comparison or claim of automatic compliance; controls make no changes to GitHub. No changes to production guidance, renderer or workflows.

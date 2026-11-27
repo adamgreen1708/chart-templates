@@ -67,6 +67,8 @@ A new conversation can introduce a slightly different interpretation of an instr
 
 Moving our instructions, configurations and decisions into GitHub gives us a permanent reference point.
 
+*Explore how we retain those lessons in [A memory outside ChatGPT](/about/behind-the-build/how-we-work/external-memory/).*
+
 ## What we learnt
 
 The real value isn't necessarily in the individual tools. It's in how we've connected them.
