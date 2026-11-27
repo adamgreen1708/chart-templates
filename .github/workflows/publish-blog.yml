@@ -6,7 +6,8 @@ on:
       - main
     paths:
       - "site/**"
-      - "archive/projects/2026-11-interwoven/ASSETS.sha256"
+      - "archive/projects/**/ASSETS.sha256"
+      - "scripts/validate_gallery_assets.py"
       - "archive/projects/2026-11-interwoven/RECOVERY_ASSETS.sha256"
       - "spec/series/blockbuster-quote.md"
       - "spec/series/data-lens.md"
@@ -20,7 +21,8 @@ on:
   pull_request:
     paths:
       - "site/**"
-      - "archive/projects/2026-11-interwoven/ASSETS.sha256"
+      - "archive/projects/**/ASSETS.sha256"
+      - "scripts/validate_gallery_assets.py"
       - "archive/projects/2026-11-interwoven/RECOVERY_ASSETS.sha256"
       - "spec/series/blockbuster-quote.md"
       - "spec/series/data-lens.md"
@@ -63,6 +65,9 @@ jobs:
             sha256sum --check archive/projects/2026-11-interwoven/RECOVERY_ASSETS.sha256
           fi
 
+      - name: Validate all gallery release media
+        run: python3 scripts/validate_gallery_assets.py
+
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
@@ -78,6 +83,9 @@ jobs:
           test -s _site/gallery/interwoven/index.html
           test -s _site/gallery/interwoven/explore/index.html
           test -s _site/stories/interwoven-when-data-becomes-art/index.html
+
+      - name: Verify built gallery media and pages
+        run: python3 scripts/validate_gallery_assets.py --built _site
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
