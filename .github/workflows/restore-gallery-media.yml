@@ -1,0 +1,33 @@
+name: Restore approved gallery media
+on:
+  push:
+    branches: [fix/gallery-media-and-variations]
+    paths: ['.gallery-transfer/**', '.github/workflows/restore-gallery-media.yml']
+permissions:
+  contents: write
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble exact approved media
+        run: |
+          set -euo pipefail
+          for slug in creatures-of-the-grid variations-on-a-theme; do
+            dir=".gallery-transfer/$slug"
+            if [ -d "$dir" ]; then
+              mkdir -p "site/assets/gallery/$slug"
+              for name in gallery.png walkthrough.mp4; do
+                if compgen -G "$dir/$name.*" >/dev/null; then
+                  cat "$dir/$name."* > "site/assets/gallery/$slug/$name"
+                fi
+              done
+              sha256sum -c "archive/projects/2026-11-$slug/ASSETS.sha256"
+            fi
+          done
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/assets/gallery
+          git rm -r .gallery-transfer
+          git commit -m "Restore exact approved gallery media and remove transfer chunks"
+          git push
