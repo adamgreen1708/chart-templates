@@ -97,6 +97,8 @@ The content remained the same. Its presentation improved considerably.
 
 It's a useful reminder that consistency doesn't mean everything has to look identical.
 
+*Explore how we correct problems and retain the lessons in [When things go wrong](/about/behind-the-build/how-we-work/when-things-go-wrong/).*
+
 This is an actual rule from our Behind the build stylesheet:
 
 <div class="btb-py-code"><p>ACTUAL CSS INSTRUCTION</p><pre><code>.prose-page.btb-article {

@@ -39,6 +39,8 @@ These instructions live in GitHub. They're available to ChatGPT whenever we star
 
 We also have automated checks that help identify technical problems.
 
+*Explore how we correct problems and retain the lessons in [When things go wrong](/about/behind-the-build/how-we-work/when-things-go-wrong/).*
+
 But perhaps the most important control is recognising that different things need different types of checking.
 
 A piece of code can run successfully while producing a misleading chart. A chart can be entirely accurate while being thoroughly uninteresting.
