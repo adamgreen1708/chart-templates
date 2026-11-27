@@ -75,6 +75,8 @@ A rather more interesting human connection.
 
 We documented the experience in GitHub, including the limitations that remained, and strengthened our editorial guidance for future projects.
 
+*Explore how we retain those lessons in [A memory outside ChatGPT](/about/behind-the-build/how-we-work/external-memory/).*
+
 One of the resulting rules is particularly simple: don't make three charts just because we normally make three charts.
 
 Every chart should earn its place.
