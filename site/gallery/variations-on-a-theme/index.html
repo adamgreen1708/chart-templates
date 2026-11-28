@@ -1,0 +1,20 @@
+---
+layout: default
+title: "Variations on a Theme"
+description: "Exhibit 003. One subject. Four interpretations. An exploration of colour, repetition and perception."
+permalink: /gallery/variations-on-a-theme/
+social_image: /assets/gallery/variations-on-a-theme/gallery.jpg
+---
+<section class="page-hero shell-narrow"><p class="eyebrow"><a href="{{ '/gallery/' | relative_url }}">The Gallery</a> · Exhibit 003</p><h1>Variations on a Theme.</h1><p class="standfirst">One subject. Four interpretations.</p><p>An exploration of colour, repetition and perception.</p></section>
+<section class="shell-wide gallery-exhibit">
+  <figure><video id="variations-gallery-video" class="gallery-video" controls muted playsinline loop preload="metadata" poster="{{ '/assets/gallery/variations-on-a-theme/gallery.jpg' | relative_url }}" width="1600" height="900" aria-label="A 23-second continuous gallery film showing four large dot-art portraits"><source src="{{ '/assets/gallery/variations-on-a-theme/walkthrough.mp4' | relative_url }}" type="video/mp4">Your browser does not support embedded video. <a href="{{ '/assets/gallery/variations-on-a-theme/walkthrough.mp4' | relative_url }}">Open the MP4.</a></video><figcaption>Four original dot-art panels, presented as large canvases in a simulated gallery with a continuous looping camera movement.</figcaption></figure>
+  <div class="gallery-actions"><a class="read-link" href="{{ '/resources/dot-studio/' | relative_url }}">Create your own in The Dot Studio →</a><a href="{{ '/assets/gallery/variations-on-a-theme/walkthrough.mp4' | relative_url }}" download>Download the video</a></div>
+</section>
+<script>
+(function () {
+  var video = document.getElementById('variations-gallery-video');
+  if (video && window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    video.play().catch(function () {});
+  }
+})();
+</script>
