@@ -4,7 +4,7 @@ title: "Building a visual identity"
 description: "Creating something recognisably Coffeetableviz."
 permalink: /about/behind-the-build/how-we-work/visual-identity/
 collection_label: How we work
-article_number: "11"
+article_number: "06"
 last_reviewed: 2026-11-26
 social_image: /assets/behind-the-build/identity-vocabulary.svg
 ---

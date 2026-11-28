@@ -4,7 +4,7 @@ title: "Building a chart factory"
 description: "Why we don't ask ChatGPT to draw our charts."
 permalink: /about/behind-the-build/how-we-work/building-a-chart-factory/
 collection_label: How we work
-article_number: "02"
+article_number: "08"
 last_reviewed: 2026-11-26
 social_image: /assets/behind-the-build/factory.svg
 ---

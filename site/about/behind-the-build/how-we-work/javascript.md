@@ -4,7 +4,7 @@ title: "JavaScript — Bringing things to life"
 description: "What actually happens when we say JavaScript builds the interactive visualisation?"
 permalink: /about/behind-the-build/how-we-work/javascript/
 collection_label: How we work
-article_number: "05"
+article_number: "11"
 last_reviewed: 2026-11-26
 social_image: /assets/behind-the-build/javascript-action.svg
 ---

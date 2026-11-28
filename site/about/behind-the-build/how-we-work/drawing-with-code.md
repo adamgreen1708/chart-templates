@@ -4,7 +4,7 @@ title: "Drawing with code — When numbers become pictures"
 description: "How a collection of instructions becomes something we can see."
 permalink: /about/behind-the-build/how-we-work/drawing-with-code/
 collection_label: How we work
-article_number: "07"
+article_number: "09"
 last_reviewed: 2026-11-26
 social_image: /assets/behind-the-build/drawing-methods.svg
 ---

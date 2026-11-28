@@ -4,7 +4,7 @@ title: "A memory outside ChatGPT"
 description: "Building something that learns from its previous projects."
 permalink: /about/behind-the-build/how-we-work/external-memory/
 collection_label: How we work
-article_number: "13"
+article_number: "16"
 last_reviewed: 2026-11-27
 social_image: /assets/behind-the-build/memory-projects.svg
 ---

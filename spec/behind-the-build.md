@@ -17,6 +17,36 @@ Published collection: From conversation to creation; Building a chart factory; K
 
 Capture methodology, decisions and lessons at completion of substantial projects, then draft the relevant reference article for review. Keep site/about/behind-the-build and site/assets/behind-the-build separate from normal blog content.
 
+## Current reader order — approved 28 November 2026
+
+How we work is an evergreen learning path, not publication order. The shared index displays the following five phases and continuous article numbering; article front matter must match it. Existing URLs and How we made it numbering are unchanged. The original development roadmaps and numbered implementation notes below retain their historical numbering (not the current reader numbers).
+
+### Phase 1 — The foundations
+- 01. From conversation to creation
+- 02. Keeping AI honest
+
+### Phase 2 — From data to insight
+- 03. Where do the numbers come from?
+- 04. Python — Making sense of the numbers
+- 05. Finding the story
+
+### Phase 3 — From insight to visualisation
+- 06. Building a visual identity
+- 07. The recipe for a chart
+- 08. Building a chart factory
+- 09. Drawing with code — When numbers become pictures
+
+### Phase 4 — Bringing it to life
+- 10. HTML and CSS — Giving everything a home
+- 11. JavaScript — Bringing things to life
+- 12. Designing for everyone
+- 13. From GitHub to website
+
+### Phase 5 — Continuous improvement
+- 14. Putting things on autopilot
+- 15. When things go wrong
+- 16. A memory outside ChatGPT
+
 ## Navigation and spacing (26 November 2026)
 - Both collections and their direct article links appear on About under Behind the build. The dedicated index remains available for existing links, using the same shared include; do not require an intermediate page to reach an article. Article breadcrumbs return directly to the About section. Keep About highlighted within the collection.
 - Use the scoped compact hero and prose rules in the Behind the build stylesheet; do not inherit the generous 4rem heading margins and 8rem section padding. Preserve the original site-wide blog styles. Review phone and desktop rhythm; do not confuse generous breathing room with large empty gaps.
@@ -31,7 +61,7 @@ Load the Behind the build stylesheet in the shared HTML head only for About rout
 - Bauhaus explainer uses the actual built-in illustrative running values (not personal running records), studio palettes, area formulas and explicit zero-based versus min–max scale. Keep colour meanings explicit, decorative sequence labelled, native controls and no-JS fallback. Simplified layout and upright triangle orientation are intentional.
 
 ## Demystifying the code — approved follow-on roadmap
-Develop these How we work articles in order, with the established editorial review and approval gate:
+Historical development sequence (all published; original numbers retained). The current reader order is defined above:
 - 04. Python — Making sense of the numbers (published): show actual inputs, a small source-grounded transformation, validation and outputs.
 - 05. JavaScript — Bringing things to life (published): show how the browser reads data, creates marks, responds to events and updates the display.
 - 06. HTML and CSS — Giving everything a home (published): explain markup, typography, layout and responsive design.
@@ -53,7 +83,7 @@ Write for non-coders, not as full coding tutorials. Use plain-English step-by-st
 
 ## Extended editorial roadmap — approved 26 November 2026
 
-Finish How we work before returning to individual product stories. Review each article with Adam before publishing; retain the interactive, source-grounded reference approach.
+Historical development sequence, with original article numbers retained for the implementation notes below. How we work is complete; the current reader order is defined above. Review each future article with Adam before publishing; retain the interactive, source-grounded reference approach.
 
 ### Phase 2 — How we work
 - 08. Where do the numbers come from? (published): source discovery, API, provenance, missing values and suitability for a question.
