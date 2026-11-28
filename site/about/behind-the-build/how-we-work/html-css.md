@@ -4,7 +4,7 @@ title: "HTML and CSS — Giving everything a home"
 description: "How we turn a collection of content into a website with its own identity."
 permalink: /about/behind-the-build/how-we-work/html-css/
 collection_label: How we work
-article_number: "06"
+article_number: "10"
 last_reviewed: 2026-11-26
 social_image: /assets/behind-the-build/html-css-structure.svg
 ---
@@ -39,7 +39,7 @@ CSS describes how those elements should appear.
 
 It determines the colours, typography, spacing, alignment and dimensions.
 
-JavaScript, as we explored in the [previous article](/about/behind-the-build/how-we-work/javascript/), adds the behaviour.
+JavaScript, as we explore in the [next article](/about/behind-the-build/how-we-work/javascript/), adds the behaviour.
 
 Think of HTML as the architecture, CSS as the interior design and JavaScript as the things that move.
 

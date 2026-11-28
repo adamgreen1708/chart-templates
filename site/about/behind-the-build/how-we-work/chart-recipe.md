@@ -4,7 +4,7 @@ title: "The recipe for a chart"
 description: "How we tell the computer what to draw."
 permalink: /about/behind-the-build/how-we-work/chart-recipe/
 collection_label: How we work
-article_number: "10"
+article_number: "07"
 last_reviewed: 2026-11-26
 social_image: /assets/behind-the-build/recipe-anatomy.svg
 ---

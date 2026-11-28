@@ -4,7 +4,7 @@ title: "Where do the numbers come from?"
 description: "Why finding a dataset is only the beginning."
 permalink: /about/behind-the-build/how-we-work/data-sources/
 collection_label: How we work
-article_number: "08"
+article_number: "03"
 last_reviewed: 2026-11-26
 social_image: /assets/behind-the-build/data-source-check.svg
 ---

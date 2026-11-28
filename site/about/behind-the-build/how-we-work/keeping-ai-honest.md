@@ -4,7 +4,7 @@ title: "Keeping AI honest"
 description: "Why a successfully generated chart isn't necessarily a good chart."
 permalink: /about/behind-the-build/how-we-work/keeping-ai-honest/
 collection_label: How we work
-article_number: "03"
+article_number: "02"
 last_reviewed: 2026-11-26
 social_image: /assets/behind-the-build/controls.svg
 ---

@@ -4,7 +4,7 @@ title: "Designing for everyone"
 description: "Making our creations easier to see, understand and use."
 permalink: /about/behind-the-build/how-we-work/designing-for-everyone/
 collection_label: How we work
-article_number: "16"
+article_number: "12"
 last_reviewed: 2026-11-27
 social_image: /assets/behind-the-build/inclusive-devices.svg
 ---

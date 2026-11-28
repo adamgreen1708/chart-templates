@@ -4,7 +4,7 @@ title: "Finding the story"
 description: "Three charts aren't necessarily three discoveries."
 permalink: /about/behind-the-build/how-we-work/finding-the-story/
 collection_label: How we work
-article_number: "09"
+article_number: "05"
 last_reviewed: 2026-11-26
 social_image: /assets/behind-the-build/story-rabbit-hole.svg
 ---

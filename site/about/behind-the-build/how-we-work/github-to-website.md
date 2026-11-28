@@ -4,7 +4,7 @@ title: "From GitHub to website"
 description: 'What actually happens when I say "push"?'
 permalink: /about/behind-the-build/how-we-work/github-to-website/
 collection_label: How we work
-article_number: "12"
+article_number: "13"
 last_reviewed: 2026-11-27
 social_image: /assets/behind-the-build/publish-workshop.svg
 ---
